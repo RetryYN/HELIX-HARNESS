@@ -10,7 +10,7 @@ repository rootから次を実行します。
 python3 scaffold/research/wr255-sec009-l5l8-audit-20261101/validate_wr255_l5l8.py
 ```
 
-validatorは `verification-summary.json` と `check-child-report.json` を更新します。L4/L5/L8/L9の32 class identity、L5 rule IDの保持、L4/L5 codeとownerの対応、L9 source caseに結びつく285件のU-IDを照合します。negative U-IDの `condition`、`expected`、`expected_preserved` はL4 classと比較します。positive 8件は未確定のまま、各行の `oracle_id` と `test_citation` はnullであることを確認します。
+初回測定はcommit `9dffee8c34` の `verification-summary.json` と `check-child-report.json` に固定してあります。validatorの再測定はこの初回記録を書き換えず、L8 source revisionとSHA-256を含む別file名で追記します。追補には後続source revision `cb44877e1db6`、L8 SHA-256 `27531334c998af878f98714b89878ca23c41f75cfd130bae13c817eee9d1ce2c` の測定を記録します。L4/L5/L8/L9の32 class identity、L5 rule IDの保持、L4/L5 codeとownerの対応、L9 source caseに結びつく285件のU-IDを照合します。negative U-IDの `condition`、`expected`、`expected_preserved` はL4 classと比較します。positive 8件は未確定のまま、各行の `oracle_id` と `test_citation` はnullであることを確認します。
 
 ## U-ID表とsource参照
 
@@ -30,7 +30,7 @@ validatorはnegative 277行それぞれのL9 nested pointerを解決します。
 
 ## check-childの計測結果
 
-このL5/L8候補だけをcanonical L9と照合したpair固有のstatic checker結果は次の通りです。L4/L9補足と組み合わせた別worktreeのoverlay結果は、[L4/L9補足](../../wr255-sec009-l4l9-supplement-20261101/README.md)およびその `overlay-check-child.json` に分けて記録しています。
+このL5/L8候補だけをcanonical L9と照合したpair固有のstatic checker結果は次の通りです。L4/L9補足と組み合わせた別worktreeのoverlay結果は、[L4/L9補足](../../wr255-sec009-l4l9-supplement-20261101/README.md)およびその `overlay-check-child-d646a09e-cb6e085e-00376c40.json` に分けて記録しています。
 
 - L4/L9 pair: pass
 - L5/L8 pair: pass

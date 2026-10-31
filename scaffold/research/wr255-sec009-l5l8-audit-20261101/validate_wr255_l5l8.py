@@ -69,6 +69,15 @@ def git_text(*args: str) -> str:
     return subprocess.check_output(["git", *args], cwd=ROOT, text=True).strip()
 
 
+def write_immutable_json(path: Path, value: Any) -> None:
+    rendered = json.dumps(value, ensure_ascii=False, indent=2) + "\n"
+    if path.exists():
+        if path.read_text(encoding="utf-8") != rendered:
+            fail(f"append-only evidence path already exists with different bytes: {path.name}")
+        return
+    path.write_text(rendered, encoding="utf-8")
+
+
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--audit-dir", type=Path, default=AUDIT_DIR)
@@ -276,7 +285,11 @@ def main() -> int:
         checker_report = json.loads(check.stdout)
     except json.JSONDecodeError as exc:
         fail(f"static checker did not emit JSON: {exc}; stderr={check.stderr[-500:]}")
-    (audit_dir / "check-child-report.json").write_text(json.dumps(checker_report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    source_revision = git_text("log", "-1", "--format=%H", "--", FILES["l8"])
+    l8_digest = sha256(FILES["l8"])
+    report_stem = f"{source_revision[:12]}-{l8_digest[:8]}"
+    check_report_name = f"check-child-report-{report_stem}.json"
+    write_immutable_json(audit_dir / check_report_name, checker_report)
     negative = checker_report["negative_4way"]
     reasons = Counter(item.get("reason", "unknown") for item in negative.get("failures", []))
     expected_failure_count = 2235
@@ -289,7 +302,7 @@ def main() -> int:
         "schema": "sec009-l5l8-independent-audit.v1",
         "evidence_kind": "scaffold",
         "authority_effect": "none",
-        "source_revision": git_text("log", "-1", "--format=%H", "--", FILES["l8"]),
+        "source_revision": source_revision,
         "source_hashes": {name: sha256(path) for name, path in FILES.items()},
         "counts": {"classes_per_layer": 32, "l8_u_ids": 285, "l9_source_case_ids": 285, "negative": negative_count, "positive_unclosed": len(positives)},
         "class_audit": class_audit,
@@ -323,12 +336,13 @@ def main() -> int:
             "negative_4way_matched_case_count": negative.get("matched_case_count"),
             "negative_4way_failure_count": len(negative.get("failures", [])),
             "negative_4way_failure_reasons": dict(sorted(reasons.items())),
-            "full_report": "check-child-report.json",
+            "full_report": check_report_name,
             "interpretation": "L5/L8 pair passes; 4-way remains incomplete because L9 row-level expected/condition/preserved and compact observations are absent, plus class key alignment failures. This evidence does not claim formal verification.",
         },
     }
-    (audit_dir / "verification-summary.json").write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    print(json.dumps({"passed": True, "summary": str(audit_dir / "verification-summary.json"), "check_child_failures": expected_failure_count}, ensure_ascii=False))
+    report_name = f"verification-summary-{report_stem}.json"
+    write_immutable_json(audit_dir / report_name, report)
+    print(json.dumps({"passed": True, "summary": str(audit_dir / report_name), "check_child_failures": expected_failure_count}, ensure_ascii=False))
     return 0
 
 

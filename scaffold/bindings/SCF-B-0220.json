@@ -96,7 +96,9 @@
     "scaffold/research/wr255-sec009-l5l8-audit-20261101/validate_wr255_l5l8.py",
     "scaffold/research/wr255-sec009-l5l8-audit-20261101/verification-summary.json",
     "scaffold/research/wr255-sec009-l5l8-audit-20261101/check-child-report.json",
-    "scaffold/bindings/SCF-B-0220.json"
+    "scaffold/bindings/SCF-B-0220.json",
+    "scaffold/research/wr255-sec009-l5l8-audit-20261101/verification-summary-cb44877e1db6-27531334.json",
+    "scaffold/research/wr255-sec009-l5l8-audit-20261101/check-child-report-cb44877e1db6-27531334.json"
   ],
   "verification": {
     "evidence_kind": "scaffold",

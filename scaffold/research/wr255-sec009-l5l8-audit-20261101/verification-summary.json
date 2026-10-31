@@ -2,13 +2,13 @@
   "schema": "sec009-l5l8-independent-audit.v1",
   "evidence_kind": "scaffold",
   "authority_effect": "none",
-  "source_revision": "cb44877e1db60a872f3fa3d241260487028fe159",
+  "source_revision": "d8e48de751c04f4250326dd049763c08dce3eaac",
   "source_hashes": {
     "l3_business": "f1668180a3daccb38da15f471ade0806c64f094a77b0d7a5cef25edc9b6ce901",
     "l3_functional": "e4eeb70cc303e44199c7d898281e91c22dba89b47666353b9c80a4c634e898b5",
     "l4": "00376c402930e1287e9e0e896804b1de8a20390f8abbea8377b70712f868b9da",
     "l5": "1aefb9b64fb52abc8cf6eec7d32312bfcb9a07359d7406c2ca4e9fa9717fa190",
-    "l8": "27531334c998af878f98714b89878ca23c41f75cfd130bae13c817eee9d1ce2c",
+    "l8": "73f253a76363fe6f936c3f5707c8b3e43f46f75bec5483925fad96982740293c",
     "l9": "af0f3e68683233ee1caa68b816ee7221b1fd4359442b179b4eaa0052068548e1",
     "l10_business": "c34b8f9a99f8f240558458dd63033acd0d756dfe61ad9cd3aac0e8e1c8193f42",
     "checker": "e751526d67cd8df11e5aac1c5a1a178dfbd0fecc3f2ed21f995b7dda11ea4d5d"
@@ -423,11 +423,6 @@
       "population_state": "negative",
       "class_id": "SEC009_B01_POLICY_BINDING_UNRESOLVED",
       "rule_id": "SEC009_B01_POLICY_BINDING_UNRESOLVED",
-      "counterexample": "セキュリティポリシーのevent_idが欠落。同一source eventを特定できない。",
-      "l9_pointer": "/cases/0/negative_cases/0",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/0",
-      "l5_rule_pointer": "/failure_rules/0",
       "expected_sha256": "9d7def6a3ce039a367d4589323db6607ab143063ebfb333c458d967dbb3e1620"
     },
     {
@@ -436,11 +431,6 @@
       "population_state": "negative",
       "class_id": "SEC009_B01_POLICY_BINDING_CONFLICT",
       "rule_id": "SEC009_B01_POLICY_BINDING_CONFLICT",
-      "counterexample": "セキュリティポリシーのevent_idが参照先と一致しない（具体値は根拠に記載されていない）。ポリシー識別情報がsource eventと一致しない。",
-      "l9_pointer": "/cases/0/negative_cases/1",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/1",
-      "l5_rule_pointer": "/failure_rules/1",
       "expected_sha256": "f721c5b6d874bdbd2b5921d3715822b155e5686fe529070c559a3b11423a607e"
     },
     {
@@ -449,11 +439,6 @@
       "population_state": "negative",
       "class_id": "SEC009_B01_POLICY_BINDING_UNRESOLVED",
       "rule_id": "SEC009_B01_POLICY_BINDING_UNRESOLVED",
-      "counterexample": "セキュリティポリシーのrevisionが欠落。同一source eventを特定できない。",
-      "l9_pointer": "/cases/0/negative_cases/2",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/0",
-      "l5_rule_pointer": "/failure_rules/0",
       "expected_sha256": "9d7def6a3ce039a367d4589323db6607ab143063ebfb333c458d967dbb3e1620"
     },
     {
@@ -462,11 +447,6 @@
       "population_state": "negative",
       "class_id": "SEC009_B01_POLICY_BINDING_CONFLICT",
       "rule_id": "SEC009_B01_POLICY_BINDING_CONFLICT",
-      "counterexample": "セキュリティポリシーのrevisionが参照先と一致しない（具体値は根拠に記載されていない）。ポリシー識別情報がsource eventと一致しない。",
-      "l9_pointer": "/cases/0/negative_cases/3",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/1",
-      "l5_rule_pointer": "/failure_rules/1",
       "expected_sha256": "f721c5b6d874bdbd2b5921d3715822b155e5686fe529070c559a3b11423a607e"
     },
     {
@@ -475,11 +455,6 @@
       "population_state": "negative",
       "class_id": "SEC009_B01_POLICY_BINDING_UNRESOLVED",
       "rule_id": "SEC009_B01_POLICY_BINDING_UNRESOLVED",
-      "counterexample": "セキュリティポリシーのscopeが欠落。同一source eventを特定できない。",
-      "l9_pointer": "/cases/0/negative_cases/4",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/0",
-      "l5_rule_pointer": "/failure_rules/0",
       "expected_sha256": "9d7def6a3ce039a367d4589323db6607ab143063ebfb333c458d967dbb3e1620"
     },
     {
@@ -488,11 +463,6 @@
       "population_state": "negative",
       "class_id": "SEC009_B01_POLICY_BINDING_CONFLICT",
       "rule_id": "SEC009_B01_POLICY_BINDING_CONFLICT",
-      "counterexample": "セキュリティポリシーのscopeが参照先と一致しない（具体値は根拠に記載されていない）。ポリシー識別情報がsource eventと一致しない。",
-      "l9_pointer": "/cases/0/negative_cases/5",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/1",
-      "l5_rule_pointer": "/failure_rules/1",
       "expected_sha256": "f721c5b6d874bdbd2b5921d3715822b155e5686fe529070c559a3b11423a607e"
     },
     {
@@ -501,11 +471,6 @@
       "population_state": "negative",
       "class_id": "SEC009_B01_POLICY_BINDING_UNRESOLVED",
       "rule_id": "SEC009_B01_POLICY_BINDING_UNRESOLVED",
-      "counterexample": "セキュリティポリシーのoperationが欠落。同一source eventを特定できない。",
-      "l9_pointer": "/cases/0/negative_cases/6",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/0",
-      "l5_rule_pointer": "/failure_rules/0",
       "expected_sha256": "9d7def6a3ce039a367d4589323db6607ab143063ebfb333c458d967dbb3e1620"
     },
     {
@@ -514,11 +479,6 @@
       "population_state": "negative",
       "class_id": "SEC009_B01_POLICY_BINDING_CONFLICT",
       "rule_id": "SEC009_B01_POLICY_BINDING_CONFLICT",
-      "counterexample": "セキュリティポリシーのoperationが参照先と一致しない（具体値は根拠に記載されていない）。ポリシー識別情報がsource eventと一致しない。",
-      "l9_pointer": "/cases/0/negative_cases/7",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/1",
-      "l5_rule_pointer": "/failure_rules/1",
       "expected_sha256": "f721c5b6d874bdbd2b5921d3715822b155e5686fe529070c559a3b11423a607e"
     },
     {
@@ -527,11 +487,6 @@
       "population_state": "negative",
       "class_id": "SEC009_B01_POLICY_BINDING_UNRESOLVED",
       "rule_id": "SEC009_B01_POLICY_BINDING_UNRESOLVED",
-      "counterexample": "セキュリティポリシーのprojectが欠落。同一source eventを特定できない。",
-      "l9_pointer": "/cases/0/negative_cases/8",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/0",
-      "l5_rule_pointer": "/failure_rules/0",
       "expected_sha256": "9d7def6a3ce039a367d4589323db6607ab143063ebfb333c458d967dbb3e1620"
     },
     {
@@ -540,11 +495,6 @@
       "population_state": "negative",
       "class_id": "SEC009_B01_POLICY_BINDING_CONFLICT",
       "rule_id": "SEC009_B01_POLICY_BINDING_CONFLICT",
-      "counterexample": "セキュリティポリシーのprojectが参照先と一致しない（具体値は根拠に記載されていない）。ポリシー識別情報がsource eventと一致しない。",
-      "l9_pointer": "/cases/0/negative_cases/9",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/1",
-      "l5_rule_pointer": "/failure_rules/1",
       "expected_sha256": "f721c5b6d874bdbd2b5921d3715822b155e5686fe529070c559a3b11423a607e"
     },
     {
@@ -553,11 +503,6 @@
       "population_state": "negative",
       "class_id": "SEC009_B01_RECIPIENT_SET_CONFLICT",
       "rule_id": "SEC009_B01_RECIPIENT_SET_CONFLICT",
-      "counterexample": "セキュリティポリシーのselected_recipientsの期待recipientが除外されている。selected_recipientsで期待recipientが欠落するか、余分なrecipientが指定されている。",
-      "l9_pointer": "/cases/0/negative_cases/10",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/3",
-      "l5_rule_pointer": "/failure_rules/3",
       "expected_sha256": "1d44177a3f04f01a8577164d13f13081f759acb852faa954c05e987e262bccf5"
     },
     {
@@ -566,11 +511,6 @@
       "population_state": "negative",
       "class_id": "SEC009_B01_RECIPIENT_SET_CONFLICT",
       "rule_id": "SEC009_B01_RECIPIENT_SET_CONFLICT",
-      "counterexample": "セキュリティポリシーのselected_recipientsの想定外recipientが含まれている。selected_recipientsで期待recipientが欠落するか、余分なrecipientが指定されている。",
-      "l9_pointer": "/cases/0/negative_cases/11",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/3",
-      "l5_rule_pointer": "/failure_rules/3",
       "expected_sha256": "1d44177a3f04f01a8577164d13f13081f759acb852faa954c05e987e262bccf5"
     },
     {
@@ -579,11 +519,6 @@
       "population_state": "negative",
       "class_id": "SEC009_B01_RECIPIENT_SET_UNRESOLVED",
       "rule_id": "SEC009_B01_RECIPIENT_SET_UNRESOLVED",
-      "counterexample": "独立した期待recipient集合のunresolved。期待recipient集合を確定できない。",
-      "l9_pointer": "/cases/0/negative_cases/12",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/2",
-      "l5_rule_pointer": "/failure_rules/2",
       "expected_sha256": "be30b9b106ec00f97e5db2cc0c0eaac96d3e260e4877e78ad42f424669172272"
     },
     {
@@ -592,11 +527,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_INSTRUCTION_UNRESOLVED",
       "rule_id": "SEC009_F01_INSTRUCTION_UNRESOLVED",
-      "counterexample": "recipient os_assignmentのinstruction objectが欠落している。選択recipient向けinstructionが欠落している。",
-      "l9_pointer": "/cases/1/negative_cases/0",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/4",
-      "l5_rule_pointer": "/failure_rules/4",
       "expected_sha256": "f2a7ed350d75dabefbbe358b6f257c459f159fd9015739d63656c4309d7b0340"
     },
     {
@@ -605,11 +535,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
-      "counterexample": "recipient os_assignment。instructionsのevent_idが欠落。instructionの識別情報とsource bindingが揃っていない。",
-      "l9_pointer": "/cases/1/negative_cases/1",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/5",
-      "l5_rule_pointer": "/failure_rules/5",
       "expected_sha256": "bf7587cc04110bcbb55ef9bbb115f4bcd04ae342b11e5e996fbbcabf79243e4a"
     },
     {
@@ -618,11 +543,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
       "rule_id": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
-      "counterexample": "recipient os_assignment。instructionsのevent_idが参照先と一致しない（具体値は根拠に記載されていない）。instructionの識別情報・sourceが参照先と一致しない。",
-      "l9_pointer": "/cases/1/negative_cases/2",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/6",
-      "l5_rule_pointer": "/failure_rules/6",
       "expected_sha256": "994e2456613e0ad27f921f99a67be2a5666c1d9fab1c78934ac6380fb560fc07"
     },
     {
@@ -631,11 +551,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
-      "counterexample": "recipient os_assignment。instructionsのrevisionが欠落。instructionの識別情報とsource bindingが揃っていない。",
-      "l9_pointer": "/cases/1/negative_cases/3",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/5",
-      "l5_rule_pointer": "/failure_rules/5",
       "expected_sha256": "bf7587cc04110bcbb55ef9bbb115f4bcd04ae342b11e5e996fbbcabf79243e4a"
     },
     {
@@ -644,11 +559,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
       "rule_id": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
-      "counterexample": "recipient os_assignment。instructionsのrevisionが参照先と一致しない（具体値は根拠に記載されていない）。instructionの識別情報・sourceが参照先と一致しない。",
-      "l9_pointer": "/cases/1/negative_cases/4",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/6",
-      "l5_rule_pointer": "/failure_rules/6",
       "expected_sha256": "994e2456613e0ad27f921f99a67be2a5666c1d9fab1c78934ac6380fb560fc07"
     },
     {
@@ -657,11 +567,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
-      "counterexample": "recipient os_assignment。instructionsのscopeが欠落。instructionの識別情報とsource bindingが揃っていない。",
-      "l9_pointer": "/cases/1/negative_cases/5",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/5",
-      "l5_rule_pointer": "/failure_rules/5",
       "expected_sha256": "bf7587cc04110bcbb55ef9bbb115f4bcd04ae342b11e5e996fbbcabf79243e4a"
     },
     {
@@ -670,11 +575,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
       "rule_id": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
-      "counterexample": "recipient os_assignment。instructionsのscopeが参照先と一致しない（具体値は根拠に記載されていない）。instructionの識別情報・sourceが参照先と一致しない。",
-      "l9_pointer": "/cases/1/negative_cases/6",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/6",
-      "l5_rule_pointer": "/failure_rules/6",
       "expected_sha256": "994e2456613e0ad27f921f99a67be2a5666c1d9fab1c78934ac6380fb560fc07"
     },
     {
@@ -683,11 +583,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
-      "counterexample": "recipient os_assignment。instructionsのoperationが欠落。instructionの識別情報とsource bindingが揃っていない。",
-      "l9_pointer": "/cases/1/negative_cases/7",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/5",
-      "l5_rule_pointer": "/failure_rules/5",
       "expected_sha256": "bf7587cc04110bcbb55ef9bbb115f4bcd04ae342b11e5e996fbbcabf79243e4a"
     },
     {
@@ -696,11 +591,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
       "rule_id": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
-      "counterexample": "recipient os_assignment。instructionsのoperationが参照先と一致しない（具体値は根拠に記載されていない）。instructionの識別情報・sourceが参照先と一致しない。",
-      "l9_pointer": "/cases/1/negative_cases/8",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/6",
-      "l5_rule_pointer": "/failure_rules/6",
       "expected_sha256": "994e2456613e0ad27f921f99a67be2a5666c1d9fab1c78934ac6380fb560fc07"
     },
     {
@@ -709,11 +599,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
-      "counterexample": "recipient os_assignment。instructionsのprojectが欠落。instructionの識別情報とsource bindingが揃っていない。",
-      "l9_pointer": "/cases/1/negative_cases/9",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/5",
-      "l5_rule_pointer": "/failure_rules/5",
       "expected_sha256": "bf7587cc04110bcbb55ef9bbb115f4bcd04ae342b11e5e996fbbcabf79243e4a"
     },
     {
@@ -722,11 +607,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
       "rule_id": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
-      "counterexample": "recipient os_assignment。instructionsのprojectが参照先と一致しない（具体値は根拠に記載されていない）。instructionの識別情報・sourceが参照先と一致しない。",
-      "l9_pointer": "/cases/1/negative_cases/10",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/6",
-      "l5_rule_pointer": "/failure_rules/6",
       "expected_sha256": "994e2456613e0ad27f921f99a67be2a5666c1d9fab1c78934ac6380fb560fc07"
     },
     {
@@ -735,11 +615,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
-      "counterexample": "OS割当instructionのsource_ref:が欠落。instructionの識別情報とsource bindingが揃っていない。",
-      "l9_pointer": "/cases/1/negative_cases/11",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/5",
-      "l5_rule_pointer": "/failure_rules/5",
       "expected_sha256": "bf7587cc04110bcbb55ef9bbb115f4bcd04ae342b11e5e996fbbcabf79243e4a"
     },
     {
@@ -748,11 +623,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
       "rule_id": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
-      "counterexample": "OS割当instructionのsource_refがbindingと一致しない（具体値は根拠に記載されていない）。instructionの識別情報・sourceが参照先と一致しない。",
-      "l9_pointer": "/cases/1/negative_cases/12",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/6",
-      "l5_rule_pointer": "/failure_rules/6",
       "expected_sha256": "994e2456613e0ad27f921f99a67be2a5666c1d9fab1c78934ac6380fb560fc07"
     },
     {
@@ -761,11 +631,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_RECIPIENT_REPORT_UNRESOLVED",
       "rule_id": "SEC009_F01_RECIPIENT_REPORT_UNRESOLVED",
-      "counterexample": "recipient os_assignmentのreport objectが欠落している。選択recipient向けreportが欠落している。",
-      "l9_pointer": "/cases/1/negative_cases/13",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/9",
-      "l5_rule_pointer": "/failure_rules/9",
       "expected_sha256": "573278f82e29b4794af495dddebcd89f56b49684d67e6d5cbc33b36c6b020db9"
     },
     {
@@ -774,11 +639,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
-      "counterexample": "recipient os_assignment。reportsのevent_idが欠落。reportの識別情報とsource bindingが揃っていない。",
-      "l9_pointer": "/cases/1/negative_cases/14",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/10",
-      "l5_rule_pointer": "/failure_rules/10",
       "expected_sha256": "1d1c7006f49dd69e93880b71488dbe3f8f7a1e99a2e5e1455ed946153a664882"
     },
     {
@@ -787,11 +647,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_REPORT_BINDING_CONFLICT",
       "rule_id": "SEC009_F01_REPORT_BINDING_CONFLICT",
-      "counterexample": "recipient os_assignment。reportsのevent_idが参照先と一致しない（具体値は根拠に記載されていない）。reportの識別情報・sourceが参照先と一致しない。",
-      "l9_pointer": "/cases/1/negative_cases/15",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/11",
-      "l5_rule_pointer": "/failure_rules/11",
       "expected_sha256": "cab97d8e6254546a98ebd289f6803be0e755fbc6782a983cb0bf52b243a5f665"
     },
     {
@@ -800,11 +655,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
-      "counterexample": "recipient os_assignment。reportsのrevisionが欠落。reportの識別情報とsource bindingが揃っていない。",
-      "l9_pointer": "/cases/1/negative_cases/16",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/10",
-      "l5_rule_pointer": "/failure_rules/10",
       "expected_sha256": "1d1c7006f49dd69e93880b71488dbe3f8f7a1e99a2e5e1455ed946153a664882"
     },
     {
@@ -813,11 +663,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_REPORT_BINDING_CONFLICT",
       "rule_id": "SEC009_F01_REPORT_BINDING_CONFLICT",
-      "counterexample": "recipient os_assignment。reportsのrevisionが参照先と一致しない（具体値は根拠に記載されていない）。reportの識別情報・sourceが参照先と一致しない。",
-      "l9_pointer": "/cases/1/negative_cases/17",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/11",
-      "l5_rule_pointer": "/failure_rules/11",
       "expected_sha256": "cab97d8e6254546a98ebd289f6803be0e755fbc6782a983cb0bf52b243a5f665"
     },
     {
@@ -826,11 +671,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
-      "counterexample": "recipient os_assignment。reportsのscopeが欠落。reportの識別情報とsource bindingが揃っていない。",
-      "l9_pointer": "/cases/1/negative_cases/18",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/10",
-      "l5_rule_pointer": "/failure_rules/10",
       "expected_sha256": "1d1c7006f49dd69e93880b71488dbe3f8f7a1e99a2e5e1455ed946153a664882"
     },
     {
@@ -839,11 +679,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_REPORT_BINDING_CONFLICT",
       "rule_id": "SEC009_F01_REPORT_BINDING_CONFLICT",
-      "counterexample": "recipient os_assignment。reportsのscopeが参照先と一致しない（具体値は根拠に記載されていない）。reportの識別情報・sourceが参照先と一致しない。",
-      "l9_pointer": "/cases/1/negative_cases/19",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/11",
-      "l5_rule_pointer": "/failure_rules/11",
       "expected_sha256": "cab97d8e6254546a98ebd289f6803be0e755fbc6782a983cb0bf52b243a5f665"
     },
     {
@@ -852,11 +687,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
-      "counterexample": "recipient os_assignment。reportsのoperationが欠落。reportの識別情報とsource bindingが揃っていない。",
-      "l9_pointer": "/cases/1/negative_cases/20",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/10",
-      "l5_rule_pointer": "/failure_rules/10",
       "expected_sha256": "1d1c7006f49dd69e93880b71488dbe3f8f7a1e99a2e5e1455ed946153a664882"
     },
     {
@@ -865,11 +695,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_REPORT_BINDING_CONFLICT",
       "rule_id": "SEC009_F01_REPORT_BINDING_CONFLICT",
-      "counterexample": "recipient os_assignment。reportsのoperationが参照先と一致しない（具体値は根拠に記載されていない）。reportの識別情報・sourceが参照先と一致しない。",
-      "l9_pointer": "/cases/1/negative_cases/21",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/11",
-      "l5_rule_pointer": "/failure_rules/11",
       "expected_sha256": "cab97d8e6254546a98ebd289f6803be0e755fbc6782a983cb0bf52b243a5f665"
     },
     {
@@ -878,11 +703,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
-      "counterexample": "recipient os_assignment。reportsのprojectが欠落。reportの識別情報とsource bindingが揃っていない。",
-      "l9_pointer": "/cases/1/negative_cases/22",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/10",
-      "l5_rule_pointer": "/failure_rules/10",
       "expected_sha256": "1d1c7006f49dd69e93880b71488dbe3f8f7a1e99a2e5e1455ed946153a664882"
     },
     {
@@ -891,11 +711,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_REPORT_BINDING_CONFLICT",
       "rule_id": "SEC009_F01_REPORT_BINDING_CONFLICT",
-      "counterexample": "recipient os_assignment。reportsのprojectが参照先と一致しない（具体値は根拠に記載されていない）。reportの識別情報・sourceが参照先と一致しない。",
-      "l9_pointer": "/cases/1/negative_cases/23",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/11",
-      "l5_rule_pointer": "/failure_rules/11",
       "expected_sha256": "cab97d8e6254546a98ebd289f6803be0e755fbc6782a983cb0bf52b243a5f665"
     },
     {
@@ -904,11 +719,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
-      "counterexample": "OS割当report。source_ref:が欠落。reportの識別情報とsource bindingが揃っていない。",
-      "l9_pointer": "/cases/1/negative_cases/24",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/10",
-      "l5_rule_pointer": "/failure_rules/10",
       "expected_sha256": "1d1c7006f49dd69e93880b71488dbe3f8f7a1e99a2e5e1455ed946153a664882"
     },
     {
@@ -917,11 +727,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_REPORT_BINDING_CONFLICT",
       "rule_id": "SEC009_F01_REPORT_BINDING_CONFLICT",
-      "counterexample": "OS割当report。source_refがbindingと一致しない（具体値は根拠に記載されていない）。reportの識別情報・sourceが参照先と一致しない。",
-      "l9_pointer": "/cases/1/negative_cases/25",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/11",
-      "l5_rule_pointer": "/failure_rules/11",
       "expected_sha256": "cab97d8e6254546a98ebd289f6803be0e755fbc6782a983cb0bf52b243a5f665"
     },
     {
@@ -930,11 +735,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
-      "counterexample": "recipient os_assignmentの期待するpolicy refsが欠落。instructionの識別情報とsource bindingが揃っていない。",
-      "l9_pointer": "/cases/1/negative_cases/26",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/5",
-      "l5_rule_pointer": "/failure_rules/5",
       "expected_sha256": "bf7587cc04110bcbb55ef9bbb115f4bcd04ae342b11e5e996fbbcabf79243e4a"
     },
     {
@@ -943,11 +743,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
-      "counterexample": "recipient os_assignmentの期待するreport refsが欠落。reportの識別情報とsource bindingが揃っていない。",
-      "l9_pointer": "/cases/1/negative_cases/27",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/10",
-      "l5_rule_pointer": "/failure_rules/10",
       "expected_sha256": "1d1c7006f49dd69e93880b71488dbe3f8f7a1e99a2e5e1455ed946153a664882"
     },
     {
@@ -956,11 +751,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_RECIPIENT_NOT_DELIVERED",
       "rule_id": "SEC009_F01_RECIPIENT_NOT_DELIVERED",
-      "counterexample": "recipient os_assignmentのreceiptが届いておらず、instruction receiptが未送達。",
-      "l9_pointer": "/cases/1/negative_cases/28",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/13",
-      "l5_rule_pointer": "/failure_rules/13",
       "expected_sha256": "104229f62a5aad1c5fbe881aae39b685ccfc3aeb3a3b56dd54e1ed665fad4e47"
     },
     {
@@ -969,11 +759,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_RECIPIENT_RECEIPT_UNRESOLVED",
       "rule_id": "SEC009_F01_RECIPIENT_RECEIPT_UNRESOLVED",
-      "counterexample": "recipient os_assignmentのreceiptがunknown/unobserved。instruction receiptが未確認。",
-      "l9_pointer": "/cases/1/negative_cases/29",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/12",
-      "l5_rule_pointer": "/failure_rules/12",
       "expected_sha256": "006b4a549344c4b7a399ca8b894ed8582091b8389bf91c45a84c4e8748fd3eb1"
     },
     {
@@ -982,11 +767,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_RECIPIENT_NOT_APPLIED",
       "rule_id": "SEC009_F01_RECIPIENT_NOT_APPLIED",
-      "counterexample": "OS割当 new_assignment停止のが適用されていない。必須stop actionが未適用。",
-      "l9_pointer": "/cases/1/negative_cases/30",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/15",
-      "l5_rule_pointer": "/failure_rules/15",
       "expected_sha256": "60a1b0d2f6c37c4eb3437506ae91b7762675eca1c2b3e59a385756ca2036c909"
     },
     {
@@ -995,11 +775,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_RECIPIENT_APPLICATION_UNRESOLVED",
       "rule_id": "SEC009_F01_RECIPIENT_APPLICATION_UNRESOLVED",
-      "counterexample": "OS割当 new_assignment停止のが観測されていない。stopの適用が未観測。",
-      "l9_pointer": "/cases/1/negative_cases/31",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/14",
-      "l5_rule_pointer": "/failure_rules/14",
       "expected_sha256": "500c2fa35b2e8ee8a3d662d1a79b7d75b7e4d868a558ae09361a7e54b124cab8"
     },
     {
@@ -1008,11 +783,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_RECIPIENT_APPLICATION_UNRESOLVED",
       "rule_id": "SEC009_F01_RECIPIENT_APPLICATION_UNRESOLVED",
-      "counterexample": "recipient os_assignment。stop_new_assignmentの適用結果または状態が欠落している。stopの適用が未観測。",
-      "l9_pointer": "/cases/1/negative_cases/32",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/14",
-      "l5_rule_pointer": "/failure_rules/14",
       "expected_sha256": "500c2fa35b2e8ee8a3d662d1a79b7d75b7e4d868a558ae09361a7e54b124cab8"
     },
     {
@@ -1021,11 +791,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_RECIPIENT_CONTINUES_AFTER_STOP",
       "rule_id": "SEC009_F01_RECIPIENT_CONTINUES_AFTER_STOP",
-      "counterexample": "recipient os_assignment。new_assignment_continuesの継続・露出flagがtrue。stop後も作業が継続するか、対象の露出が残っている。",
-      "l9_pointer": "/cases/1/negative_cases/33",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/17",
-      "l5_rule_pointer": "/failure_rules/17",
       "expected_sha256": "faf07093f88dea961230edfb8cd5f0a9ee5e110c418ce65059a6ac4ca31aa2de"
     },
     {
@@ -1034,11 +799,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_RECIPIENT_POST_STATE_UNRESOLVED",
       "rule_id": "SEC009_F01_RECIPIENT_POST_STATE_UNRESOLVED",
-      "counterexample": "recipient os_assignment。new_assignment_continuesの適用結果または状態が欠落している。post-stop stateを確定できない。",
-      "l9_pointer": "/cases/1/negative_cases/34",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/16",
-      "l5_rule_pointer": "/failure_rules/16",
       "expected_sha256": "4ae598b8f415ffc5f187ca705c893ff88dc404487f3f03b48e119e01c581cc8d"
     },
     {
@@ -1047,11 +807,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_RECIPIENT_ACTIONS_CONFLICT",
       "rule_id": "SEC009_F01_RECIPIENT_ACTIONS_CONFLICT",
-      "counterexample": "recipient os_assignmentの必須action listが空。recipient actionsが必須集合と異なる。",
-      "l9_pointer": "/cases/1/negative_cases/35",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/8",
-      "l5_rule_pointer": "/failure_rules/8",
       "expected_sha256": "c05f59da80a0a25e6d6e0277d92110729ddfc2f0dd5ad9fdd62f9e231a8287c3"
     },
     {
@@ -1060,11 +815,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_INSTRUCTION_UNRESOLVED",
       "rule_id": "SEC009_F01_INSTRUCTION_UNRESOLVED",
-      "counterexample": "recipient worker_executionのinstruction objectが欠落している。選択recipient向けinstructionが欠落している。",
-      "l9_pointer": "/cases/1/negative_cases/36",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/4",
-      "l5_rule_pointer": "/failure_rules/4",
       "expected_sha256": "f2a7ed350d75dabefbbe358b6f257c459f159fd9015739d63656c4309d7b0340"
     },
     {
@@ -1073,11 +823,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
-      "counterexample": "recipient worker_execution。instructionsのevent_idが欠落。instructionの識別情報とsource bindingが揃っていない。",
-      "l9_pointer": "/cases/1/negative_cases/37",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/5",
-      "l5_rule_pointer": "/failure_rules/5",
       "expected_sha256": "bf7587cc04110bcbb55ef9bbb115f4bcd04ae342b11e5e996fbbcabf79243e4a"
     },
     {
@@ -1086,11 +831,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
       "rule_id": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
-      "counterexample": "recipient worker_execution。instructionsのevent_idが参照先と一致しない（具体値は根拠に記載されていない）。instructionの識別情報・sourceが参照先と一致しない。",
-      "l9_pointer": "/cases/1/negative_cases/38",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/6",
-      "l5_rule_pointer": "/failure_rules/6",
       "expected_sha256": "994e2456613e0ad27f921f99a67be2a5666c1d9fab1c78934ac6380fb560fc07"
     },
     {
@@ -1099,11 +839,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
-      "counterexample": "recipient worker_execution。instructionsのrevisionが欠落。instructionの識別情報とsource bindingが揃っていない。",
-      "l9_pointer": "/cases/1/negative_cases/39",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/5",
-      "l5_rule_pointer": "/failure_rules/5",
       "expected_sha256": "bf7587cc04110bcbb55ef9bbb115f4bcd04ae342b11e5e996fbbcabf79243e4a"
     },
     {
@@ -1112,11 +847,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
       "rule_id": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
-      "counterexample": "recipient worker_execution。instructionsのrevisionが参照先と一致しない（具体値は根拠に記載されていない）。instructionの識別情報・sourceが参照先と一致しない。",
-      "l9_pointer": "/cases/1/negative_cases/40",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/6",
-      "l5_rule_pointer": "/failure_rules/6",
       "expected_sha256": "994e2456613e0ad27f921f99a67be2a5666c1d9fab1c78934ac6380fb560fc07"
     },
     {
@@ -1125,11 +855,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
-      "counterexample": "recipient worker_execution。instructionsのscopeが欠落。instructionの識別情報とsource bindingが揃っていない。",
-      "l9_pointer": "/cases/1/negative_cases/41",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/5",
-      "l5_rule_pointer": "/failure_rules/5",
       "expected_sha256": "bf7587cc04110bcbb55ef9bbb115f4bcd04ae342b11e5e996fbbcabf79243e4a"
     },
     {
@@ -1138,11 +863,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
       "rule_id": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
-      "counterexample": "recipient worker_execution。instructionsのscopeが参照先と一致しない（具体値は根拠に記載されていない）。instructionの識別情報・sourceが参照先と一致しない。",
-      "l9_pointer": "/cases/1/negative_cases/42",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/6",
-      "l5_rule_pointer": "/failure_rules/6",
       "expected_sha256": "994e2456613e0ad27f921f99a67be2a5666c1d9fab1c78934ac6380fb560fc07"
     },
     {
@@ -1151,11 +871,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
-      "counterexample": "recipient worker_execution。instructionsのoperationが欠落。instructionの識別情報とsource bindingが揃っていない。",
-      "l9_pointer": "/cases/1/negative_cases/43",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/5",
-      "l5_rule_pointer": "/failure_rules/5",
       "expected_sha256": "bf7587cc04110bcbb55ef9bbb115f4bcd04ae342b11e5e996fbbcabf79243e4a"
     },
     {
@@ -1164,11 +879,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
       "rule_id": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
-      "counterexample": "recipient worker_execution。instructionsのoperationが参照先と一致しない（具体値は根拠に記載されていない）。instructionの識別情報・sourceが参照先と一致しない。",
-      "l9_pointer": "/cases/1/negative_cases/44",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/6",
-      "l5_rule_pointer": "/failure_rules/6",
       "expected_sha256": "994e2456613e0ad27f921f99a67be2a5666c1d9fab1c78934ac6380fb560fc07"
     },
     {
@@ -1177,11 +887,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
-      "counterexample": "recipient worker_execution。instructionsのprojectが欠落。instructionの識別情報とsource bindingが揃っていない。",
-      "l9_pointer": "/cases/1/negative_cases/45",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/5",
-      "l5_rule_pointer": "/failure_rules/5",
       "expected_sha256": "bf7587cc04110bcbb55ef9bbb115f4bcd04ae342b11e5e996fbbcabf79243e4a"
     },
     {
@@ -1190,11 +895,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
       "rule_id": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
-      "counterexample": "recipient worker_execution。instructionsのprojectが参照先と一致しない（具体値は根拠に記載されていない）。instructionの識別情報・sourceが参照先と一致しない。",
-      "l9_pointer": "/cases/1/negative_cases/46",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/6",
-      "l5_rule_pointer": "/failure_rules/6",
       "expected_sha256": "994e2456613e0ad27f921f99a67be2a5666c1d9fab1c78934ac6380fb560fc07"
     },
     {
@@ -1203,11 +903,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
-      "counterexample": "recipient worker_execution。instructionsのworkerが欠落。instructionの識別情報とsource bindingが揃っていない。",
-      "l9_pointer": "/cases/1/negative_cases/47",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/5",
-      "l5_rule_pointer": "/failure_rules/5",
       "expected_sha256": "bf7587cc04110bcbb55ef9bbb115f4bcd04ae342b11e5e996fbbcabf79243e4a"
     },
     {
@@ -1216,11 +911,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
       "rule_id": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
-      "counterexample": "recipient worker_execution。instructionsのworkerが参照先と一致しない（具体値は根拠に記載されていない）。instructionの識別情報・sourceが参照先と一致しない。",
-      "l9_pointer": "/cases/1/negative_cases/48",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/6",
-      "l5_rule_pointer": "/failure_rules/6",
       "expected_sha256": "994e2456613e0ad27f921f99a67be2a5666c1d9fab1c78934ac6380fb560fc07"
     },
     {
@@ -1229,11 +919,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
-      "counterexample": "recipient worker_execution。instructionsのenvironmentが欠落。instructionの識別情報とsource bindingが揃っていない。",
-      "l9_pointer": "/cases/1/negative_cases/49",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/5",
-      "l5_rule_pointer": "/failure_rules/5",
       "expected_sha256": "bf7587cc04110bcbb55ef9bbb115f4bcd04ae342b11e5e996fbbcabf79243e4a"
     },
     {
@@ -1242,11 +927,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
       "rule_id": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
-      "counterexample": "recipient worker_execution。instructionsのenvironmentが参照先と一致しない（具体値は根拠に記載されていない）。instructionの識別情報・sourceが参照先と一致しない。",
-      "l9_pointer": "/cases/1/negative_cases/50",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/6",
-      "l5_rule_pointer": "/failure_rules/6",
       "expected_sha256": "994e2456613e0ad27f921f99a67be2a5666c1d9fab1c78934ac6380fb560fc07"
     },
     {
@@ -1255,11 +935,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
-      "counterexample": "worker_execution向けinstruction。source_ref:が欠落。instructionの識別情報とsource bindingが揃っていない。",
-      "l9_pointer": "/cases/1/negative_cases/51",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/5",
-      "l5_rule_pointer": "/failure_rules/5",
       "expected_sha256": "bf7587cc04110bcbb55ef9bbb115f4bcd04ae342b11e5e996fbbcabf79243e4a"
     },
     {
@@ -1268,11 +943,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
       "rule_id": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
-      "counterexample": "worker_execution向けinstruction。source_refがbindingと一致しない（具体値は根拠に記載されていない）。instructionの識別情報・sourceが参照先と一致しない。",
-      "l9_pointer": "/cases/1/negative_cases/52",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/6",
-      "l5_rule_pointer": "/failure_rules/6",
       "expected_sha256": "994e2456613e0ad27f921f99a67be2a5666c1d9fab1c78934ac6380fb560fc07"
     },
     {
@@ -1281,11 +951,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_RECIPIENT_REPORT_UNRESOLVED",
       "rule_id": "SEC009_F01_RECIPIENT_REPORT_UNRESOLVED",
-      "counterexample": "recipient worker_executionのreport objectが欠落している。選択recipient向けreportが欠落している。",
-      "l9_pointer": "/cases/1/negative_cases/53",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/9",
-      "l5_rule_pointer": "/failure_rules/9",
       "expected_sha256": "573278f82e29b4794af495dddebcd89f56b49684d67e6d5cbc33b36c6b020db9"
     },
     {
@@ -1294,11 +959,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
-      "counterexample": "recipient worker_execution。reportsのevent_idが欠落。reportの識別情報とsource bindingが揃っていない。",
-      "l9_pointer": "/cases/1/negative_cases/54",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/10",
-      "l5_rule_pointer": "/failure_rules/10",
       "expected_sha256": "1d1c7006f49dd69e93880b71488dbe3f8f7a1e99a2e5e1455ed946153a664882"
     },
     {
@@ -1307,11 +967,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_REPORT_BINDING_CONFLICT",
       "rule_id": "SEC009_F01_REPORT_BINDING_CONFLICT",
-      "counterexample": "recipient worker_execution。reportsのevent_idが参照先と一致しない（具体値は根拠に記載されていない）。reportの識別情報・sourceが参照先と一致しない。",
-      "l9_pointer": "/cases/1/negative_cases/55",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/11",
-      "l5_rule_pointer": "/failure_rules/11",
       "expected_sha256": "cab97d8e6254546a98ebd289f6803be0e755fbc6782a983cb0bf52b243a5f665"
     },
     {
@@ -1320,11 +975,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
-      "counterexample": "recipient worker_execution。reportsのrevisionが欠落。reportの識別情報とsource bindingが揃っていない。",
-      "l9_pointer": "/cases/1/negative_cases/56",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/10",
-      "l5_rule_pointer": "/failure_rules/10",
       "expected_sha256": "1d1c7006f49dd69e93880b71488dbe3f8f7a1e99a2e5e1455ed946153a664882"
     },
     {
@@ -1333,11 +983,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_REPORT_BINDING_CONFLICT",
       "rule_id": "SEC009_F01_REPORT_BINDING_CONFLICT",
-      "counterexample": "recipient worker_execution。reportsのrevisionが参照先と一致しない（具体値は根拠に記載されていない）。reportの識別情報・sourceが参照先と一致しない。",
-      "l9_pointer": "/cases/1/negative_cases/57",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/11",
-      "l5_rule_pointer": "/failure_rules/11",
       "expected_sha256": "cab97d8e6254546a98ebd289f6803be0e755fbc6782a983cb0bf52b243a5f665"
     },
     {
@@ -1346,11 +991,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
-      "counterexample": "recipient worker_execution。reportsのscopeが欠落。reportの識別情報とsource bindingが揃っていない。",
-      "l9_pointer": "/cases/1/negative_cases/58",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/10",
-      "l5_rule_pointer": "/failure_rules/10",
       "expected_sha256": "1d1c7006f49dd69e93880b71488dbe3f8f7a1e99a2e5e1455ed946153a664882"
     },
     {
@@ -1359,11 +999,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_REPORT_BINDING_CONFLICT",
       "rule_id": "SEC009_F01_REPORT_BINDING_CONFLICT",
-      "counterexample": "recipient worker_execution。reportsのscopeが参照先と一致しない（具体値は根拠に記載されていない）。reportの識別情報・sourceが参照先と一致しない。",
-      "l9_pointer": "/cases/1/negative_cases/59",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/11",
-      "l5_rule_pointer": "/failure_rules/11",
       "expected_sha256": "cab97d8e6254546a98ebd289f6803be0e755fbc6782a983cb0bf52b243a5f665"
     },
     {
@@ -1372,11 +1007,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
-      "counterexample": "recipient worker_execution。reportsのoperationが欠落。reportの識別情報とsource bindingが揃っていない。",
-      "l9_pointer": "/cases/1/negative_cases/60",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/10",
-      "l5_rule_pointer": "/failure_rules/10",
       "expected_sha256": "1d1c7006f49dd69e93880b71488dbe3f8f7a1e99a2e5e1455ed946153a664882"
     },
     {
@@ -1385,11 +1015,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_REPORT_BINDING_CONFLICT",
       "rule_id": "SEC009_F01_REPORT_BINDING_CONFLICT",
-      "counterexample": "recipient worker_execution。reportsのoperationが参照先と一致しない（具体値は根拠に記載されていない）。reportの識別情報・sourceが参照先と一致しない。",
-      "l9_pointer": "/cases/1/negative_cases/61",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/11",
-      "l5_rule_pointer": "/failure_rules/11",
       "expected_sha256": "cab97d8e6254546a98ebd289f6803be0e755fbc6782a983cb0bf52b243a5f665"
     },
     {
@@ -1398,11 +1023,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
-      "counterexample": "recipient worker_execution。reportsのprojectが欠落。reportの識別情報とsource bindingが揃っていない。",
-      "l9_pointer": "/cases/1/negative_cases/62",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/10",
-      "l5_rule_pointer": "/failure_rules/10",
       "expected_sha256": "1d1c7006f49dd69e93880b71488dbe3f8f7a1e99a2e5e1455ed946153a664882"
     },
     {
@@ -1411,11 +1031,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_REPORT_BINDING_CONFLICT",
       "rule_id": "SEC009_F01_REPORT_BINDING_CONFLICT",
-      "counterexample": "recipient worker_execution。reportsのprojectが参照先と一致しない（具体値は根拠に記載されていない）。reportの識別情報・sourceが参照先と一致しない。",
-      "l9_pointer": "/cases/1/negative_cases/63",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/11",
-      "l5_rule_pointer": "/failure_rules/11",
       "expected_sha256": "cab97d8e6254546a98ebd289f6803be0e755fbc6782a983cb0bf52b243a5f665"
     },
     {
@@ -1424,11 +1039,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
-      "counterexample": "recipient worker_execution。reportsのworkerが欠落。reportの識別情報とsource bindingが揃っていない。",
-      "l9_pointer": "/cases/1/negative_cases/64",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/10",
-      "l5_rule_pointer": "/failure_rules/10",
       "expected_sha256": "1d1c7006f49dd69e93880b71488dbe3f8f7a1e99a2e5e1455ed946153a664882"
     },
     {
@@ -1437,11 +1047,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_REPORT_BINDING_CONFLICT",
       "rule_id": "SEC009_F01_REPORT_BINDING_CONFLICT",
-      "counterexample": "recipient worker_execution。reportsのworkerが参照先と一致しない（具体値は根拠に記載されていない）。reportの識別情報・sourceが参照先と一致しない。",
-      "l9_pointer": "/cases/1/negative_cases/65",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/11",
-      "l5_rule_pointer": "/failure_rules/11",
       "expected_sha256": "cab97d8e6254546a98ebd289f6803be0e755fbc6782a983cb0bf52b243a5f665"
     },
     {
@@ -1450,11 +1055,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
-      "counterexample": "recipient worker_execution。reportsのenvironmentが欠落。reportの識別情報とsource bindingが揃っていない。",
-      "l9_pointer": "/cases/1/negative_cases/66",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/10",
-      "l5_rule_pointer": "/failure_rules/10",
       "expected_sha256": "1d1c7006f49dd69e93880b71488dbe3f8f7a1e99a2e5e1455ed946153a664882"
     },
     {
@@ -1463,11 +1063,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_REPORT_BINDING_CONFLICT",
       "rule_id": "SEC009_F01_REPORT_BINDING_CONFLICT",
-      "counterexample": "recipient worker_execution。reportsのenvironmentが参照先と一致しない（具体値は根拠に記載されていない）。reportの識別情報・sourceが参照先と一致しない。",
-      "l9_pointer": "/cases/1/negative_cases/67",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/11",
-      "l5_rule_pointer": "/failure_rules/11",
       "expected_sha256": "cab97d8e6254546a98ebd289f6803be0e755fbc6782a983cb0bf52b243a5f665"
     },
     {
@@ -1476,11 +1071,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
-      "counterexample": "worker_execution向けreport。source_ref:が欠落。reportの識別情報とsource bindingが揃っていない。",
-      "l9_pointer": "/cases/1/negative_cases/68",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/10",
-      "l5_rule_pointer": "/failure_rules/10",
       "expected_sha256": "1d1c7006f49dd69e93880b71488dbe3f8f7a1e99a2e5e1455ed946153a664882"
     },
     {
@@ -1489,11 +1079,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_REPORT_BINDING_CONFLICT",
       "rule_id": "SEC009_F01_REPORT_BINDING_CONFLICT",
-      "counterexample": "worker_execution向けreport。source_refがbindingと一致しない（具体値は根拠に記載されていない）。reportの識別情報・sourceが参照先と一致しない。",
-      "l9_pointer": "/cases/1/negative_cases/69",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/11",
-      "l5_rule_pointer": "/failure_rules/11",
       "expected_sha256": "cab97d8e6254546a98ebd289f6803be0e755fbc6782a983cb0bf52b243a5f665"
     },
     {
@@ -1502,11 +1087,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
-      "counterexample": "recipient worker_executionの期待するpolicy refsが欠落。instructionの識別情報とsource bindingが揃っていない。",
-      "l9_pointer": "/cases/1/negative_cases/70",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/5",
-      "l5_rule_pointer": "/failure_rules/5",
       "expected_sha256": "bf7587cc04110bcbb55ef9bbb115f4bcd04ae342b11e5e996fbbcabf79243e4a"
     },
     {
@@ -1515,11 +1095,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
-      "counterexample": "recipient worker_executionの期待するreport refsが欠落。reportの識別情報とsource bindingが揃っていない。",
-      "l9_pointer": "/cases/1/negative_cases/71",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/10",
-      "l5_rule_pointer": "/failure_rules/10",
       "expected_sha256": "1d1c7006f49dd69e93880b71488dbe3f8f7a1e99a2e5e1455ed946153a664882"
     },
     {
@@ -1528,11 +1103,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_RECIPIENT_NOT_DELIVERED",
       "rule_id": "SEC009_F01_RECIPIENT_NOT_DELIVERED",
-      "counterexample": "recipient worker_executionのreceiptが届いておらず、instruction receiptが未送達。",
-      "l9_pointer": "/cases/1/negative_cases/72",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/13",
-      "l5_rule_pointer": "/failure_rules/13",
       "expected_sha256": "104229f62a5aad1c5fbe881aae39b685ccfc3aeb3a3b56dd54e1ed665fad4e47"
     },
     {
@@ -1541,11 +1111,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_RECIPIENT_RECEIPT_UNRESOLVED",
       "rule_id": "SEC009_F01_RECIPIENT_RECEIPT_UNRESOLVED",
-      "counterexample": "recipient worker_executionのreceiptがunknown/unobserved。instruction receiptが未確認。",
-      "l9_pointer": "/cases/1/negative_cases/73",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/12",
-      "l5_rule_pointer": "/failure_rules/12",
       "expected_sha256": "006b4a549344c4b7a399ca8b894ed8582091b8389bf91c45a84c4e8748fd3eb1"
     },
     {
@@ -1554,11 +1119,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_RECIPIENT_NOT_APPLIED",
       "rule_id": "SEC009_F01_RECIPIENT_NOT_APPLIED",
-      "counterexample": "worker_execution execution停止のが適用されていない。必須stop actionが未適用。",
-      "l9_pointer": "/cases/1/negative_cases/74",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/15",
-      "l5_rule_pointer": "/failure_rules/15",
       "expected_sha256": "60a1b0d2f6c37c4eb3437506ae91b7762675eca1c2b3e59a385756ca2036c909"
     },
     {
@@ -1567,11 +1127,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_RECIPIENT_APPLICATION_UNRESOLVED",
       "rule_id": "SEC009_F01_RECIPIENT_APPLICATION_UNRESOLVED",
-      "counterexample": "worker_execution execution停止のが観測されていない。stopの適用が未観測。",
-      "l9_pointer": "/cases/1/negative_cases/75",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/14",
-      "l5_rule_pointer": "/failure_rules/14",
       "expected_sha256": "500c2fa35b2e8ee8a3d662d1a79b7d75b7e4d868a558ae09361a7e54b124cab8"
     },
     {
@@ -1580,11 +1135,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_RECIPIENT_APPLICATION_UNRESOLVED",
       "rule_id": "SEC009_F01_RECIPIENT_APPLICATION_UNRESOLVED",
-      "counterexample": "recipient worker_execution。stop_executionの適用結果または状態が欠落している。stopの適用が未観測。",
-      "l9_pointer": "/cases/1/negative_cases/76",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/14",
-      "l5_rule_pointer": "/failure_rules/14",
       "expected_sha256": "500c2fa35b2e8ee8a3d662d1a79b7d75b7e4d868a558ae09361a7e54b124cab8"
     },
     {
@@ -1593,11 +1143,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_RECIPIENT_NOT_APPLIED",
       "rule_id": "SEC009_F01_RECIPIENT_NOT_APPLIED",
-      "counterexample": "worker_executionのpartial artifactを隔離するactionが適用されず、必須stop actionが未実施。",
-      "l9_pointer": "/cases/1/negative_cases/77",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/15",
-      "l5_rule_pointer": "/failure_rules/15",
       "expected_sha256": "60a1b0d2f6c37c4eb3437506ae91b7762675eca1c2b3e59a385756ca2036c909"
     },
     {
@@ -1606,11 +1151,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_RECIPIENT_APPLICATION_UNRESOLVED",
       "rule_id": "SEC009_F01_RECIPIENT_APPLICATION_UNRESOLVED",
-      "counterexample": "worker_executionのpartial artifactを隔離するactionが観測されず、stopの適用状況が未確認。",
-      "l9_pointer": "/cases/1/negative_cases/78",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/14",
-      "l5_rule_pointer": "/failure_rules/14",
       "expected_sha256": "500c2fa35b2e8ee8a3d662d1a79b7d75b7e4d868a558ae09361a7e54b124cab8"
     },
     {
@@ -1619,11 +1159,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_RECIPIENT_APPLICATION_UNRESOLVED",
       "rule_id": "SEC009_F01_RECIPIENT_APPLICATION_UNRESOLVED",
-      "counterexample": "recipient worker_execution。isolate_partial_artifactの適用結果または状態が欠落している。stopの適用が未観測。",
-      "l9_pointer": "/cases/1/negative_cases/79",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/14",
-      "l5_rule_pointer": "/failure_rules/14",
       "expected_sha256": "500c2fa35b2e8ee8a3d662d1a79b7d75b7e4d868a558ae09361a7e54b124cab8"
     },
     {
@@ -1632,11 +1167,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_RECIPIENT_CONTINUES_AFTER_STOP",
       "rule_id": "SEC009_F01_RECIPIENT_CONTINUES_AFTER_STOP",
-      "counterexample": "recipient worker_execution。execution_continuesの継続・露出flagがtrue。stop後も作業が継続するか、対象の露出が残っている。",
-      "l9_pointer": "/cases/1/negative_cases/80",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/17",
-      "l5_rule_pointer": "/failure_rules/17",
       "expected_sha256": "faf07093f88dea961230edfb8cd5f0a9ee5e110c418ce65059a6ac4ca31aa2de"
     },
     {
@@ -1645,11 +1175,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_RECIPIENT_POST_STATE_UNRESOLVED",
       "rule_id": "SEC009_F01_RECIPIENT_POST_STATE_UNRESOLVED",
-      "counterexample": "recipient worker_execution。execution_continuesの適用結果または状態が欠落している。post-stop stateを確定できない。",
-      "l9_pointer": "/cases/1/negative_cases/81",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/16",
-      "l5_rule_pointer": "/failure_rules/16",
       "expected_sha256": "4ae598b8f415ffc5f187ca705c893ff88dc404487f3f03b48e119e01c581cc8d"
     },
     {
@@ -1658,11 +1183,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_RECIPIENT_CONTINUES_AFTER_STOP",
       "rule_id": "SEC009_F01_RECIPIENT_CONTINUES_AFTER_STOP",
-      "counterexample": "recipient worker_execution。partial_artifact_exposedの継続・露出flagがtrue。stop後も作業が継続するか、対象の露出が残っている。",
-      "l9_pointer": "/cases/1/negative_cases/82",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/17",
-      "l5_rule_pointer": "/failure_rules/17",
       "expected_sha256": "faf07093f88dea961230edfb8cd5f0a9ee5e110c418ce65059a6ac4ca31aa2de"
     },
     {
@@ -1671,11 +1191,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_RECIPIENT_POST_STATE_UNRESOLVED",
       "rule_id": "SEC009_F01_RECIPIENT_POST_STATE_UNRESOLVED",
-      "counterexample": "recipient worker_execution。partial_artifact_exposedの適用結果または状態が欠落している。post-stop stateを確定できない。",
-      "l9_pointer": "/cases/1/negative_cases/83",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/16",
-      "l5_rule_pointer": "/failure_rules/16",
       "expected_sha256": "4ae598b8f415ffc5f187ca705c893ff88dc404487f3f03b48e119e01c581cc8d"
     },
     {
@@ -1684,11 +1199,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_RECIPIENT_ACTIONS_CONFLICT",
       "rule_id": "SEC009_F01_RECIPIENT_ACTIONS_CONFLICT",
-      "counterexample": "recipient worker_executionの必須action listが空。recipient actionsが必須集合と異なる。",
-      "l9_pointer": "/cases/1/negative_cases/84",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/8",
-      "l5_rule_pointer": "/failure_rules/8",
       "expected_sha256": "c05f59da80a0a25e6d6e0277d92110729ddfc2f0dd5ad9fdd62f9e231a8287c3"
     },
     {
@@ -1697,11 +1207,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_INSTRUCTION_UNRESOLVED",
       "rule_id": "SEC009_F01_INSTRUCTION_UNRESOLVED",
-      "counterexample": "recipient connect_communicationのinstruction objectが欠落している。選択recipient向けinstructionが欠落している。",
-      "l9_pointer": "/cases/1/negative_cases/85",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/4",
-      "l5_rule_pointer": "/failure_rules/4",
       "expected_sha256": "f2a7ed350d75dabefbbe358b6f257c459f159fd9015739d63656c4309d7b0340"
     },
     {
@@ -1710,11 +1215,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
-      "counterexample": "recipient connect_communication。instructionsのevent_idが欠落。instructionの識別情報とsource bindingが揃っていない。",
-      "l9_pointer": "/cases/1/negative_cases/86",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/5",
-      "l5_rule_pointer": "/failure_rules/5",
       "expected_sha256": "bf7587cc04110bcbb55ef9bbb115f4bcd04ae342b11e5e996fbbcabf79243e4a"
     },
     {
@@ -1723,11 +1223,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
       "rule_id": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
-      "counterexample": "recipient connect_communication。instructionsのevent_idが参照先と一致しない（具体値は根拠に記載されていない）。instructionの識別情報・sourceが参照先と一致しない。",
-      "l9_pointer": "/cases/1/negative_cases/87",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/6",
-      "l5_rule_pointer": "/failure_rules/6",
       "expected_sha256": "994e2456613e0ad27f921f99a67be2a5666c1d9fab1c78934ac6380fb560fc07"
     },
     {
@@ -1736,11 +1231,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
-      "counterexample": "recipient connect_communication。instructionsのrevisionが欠落。instructionの識別情報とsource bindingが揃っていない。",
-      "l9_pointer": "/cases/1/negative_cases/88",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/5",
-      "l5_rule_pointer": "/failure_rules/5",
       "expected_sha256": "bf7587cc04110bcbb55ef9bbb115f4bcd04ae342b11e5e996fbbcabf79243e4a"
     },
     {
@@ -1749,11 +1239,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
       "rule_id": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
-      "counterexample": "recipient connect_communication。instructionsのrevisionが参照先と一致しない（具体値は根拠に記載されていない）。instructionの識別情報・sourceが参照先と一致しない。",
-      "l9_pointer": "/cases/1/negative_cases/89",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/6",
-      "l5_rule_pointer": "/failure_rules/6",
       "expected_sha256": "994e2456613e0ad27f921f99a67be2a5666c1d9fab1c78934ac6380fb560fc07"
     },
     {
@@ -1762,11 +1247,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
-      "counterexample": "recipient connect_communication。instructionsのscopeが欠落。instructionの識別情報とsource bindingが揃っていない。",
-      "l9_pointer": "/cases/1/negative_cases/90",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/5",
-      "l5_rule_pointer": "/failure_rules/5",
       "expected_sha256": "bf7587cc04110bcbb55ef9bbb115f4bcd04ae342b11e5e996fbbcabf79243e4a"
     },
     {
@@ -1775,11 +1255,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
       "rule_id": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
-      "counterexample": "recipient connect_communication。instructionsのscopeが参照先と一致しない（具体値は根拠に記載されていない）。instructionの識別情報・sourceが参照先と一致しない。",
-      "l9_pointer": "/cases/1/negative_cases/91",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/6",
-      "l5_rule_pointer": "/failure_rules/6",
       "expected_sha256": "994e2456613e0ad27f921f99a67be2a5666c1d9fab1c78934ac6380fb560fc07"
     },
     {
@@ -1788,11 +1263,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
-      "counterexample": "recipient connect_communication。instructionsのoperationが欠落。instructionの識別情報とsource bindingが揃っていない。",
-      "l9_pointer": "/cases/1/negative_cases/92",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/5",
-      "l5_rule_pointer": "/failure_rules/5",
       "expected_sha256": "bf7587cc04110bcbb55ef9bbb115f4bcd04ae342b11e5e996fbbcabf79243e4a"
     },
     {
@@ -1801,11 +1271,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
       "rule_id": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
-      "counterexample": "recipient connect_communication。instructionsのoperationが参照先と一致しない（具体値は根拠に記載されていない）。instructionの識別情報・sourceが参照先と一致しない。",
-      "l9_pointer": "/cases/1/negative_cases/93",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/6",
-      "l5_rule_pointer": "/failure_rules/6",
       "expected_sha256": "994e2456613e0ad27f921f99a67be2a5666c1d9fab1c78934ac6380fb560fc07"
     },
     {
@@ -1814,11 +1279,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
-      "counterexample": "recipient connect_communication。instructionsのprojectが欠落。instructionの識別情報とsource bindingが揃っていない。",
-      "l9_pointer": "/cases/1/negative_cases/94",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/5",
-      "l5_rule_pointer": "/failure_rules/5",
       "expected_sha256": "bf7587cc04110bcbb55ef9bbb115f4bcd04ae342b11e5e996fbbcabf79243e4a"
     },
     {
@@ -1827,11 +1287,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
       "rule_id": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
-      "counterexample": "recipient connect_communication。instructionsのprojectが参照先と一致しない（具体値は根拠に記載されていない）。instructionの識別情報・sourceが参照先と一致しない。",
-      "l9_pointer": "/cases/1/negative_cases/95",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/6",
-      "l5_rule_pointer": "/failure_rules/6",
       "expected_sha256": "994e2456613e0ad27f921f99a67be2a5666c1d9fab1c78934ac6380fb560fc07"
     },
     {
@@ -1840,11 +1295,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
-      "counterexample": "recipient connect_communication。instructionsのconnectionが欠落。instructionの識別情報とsource bindingが揃っていない。",
-      "l9_pointer": "/cases/1/negative_cases/96",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/5",
-      "l5_rule_pointer": "/failure_rules/5",
       "expected_sha256": "bf7587cc04110bcbb55ef9bbb115f4bcd04ae342b11e5e996fbbcabf79243e4a"
     },
     {
@@ -1853,11 +1303,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
       "rule_id": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
-      "counterexample": "recipient connect_communication。instructionsのconnectionが参照先と一致しない（具体値は根拠に記載されていない）。instructionの識別情報・sourceが参照先と一致しない。",
-      "l9_pointer": "/cases/1/negative_cases/97",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/6",
-      "l5_rule_pointer": "/failure_rules/6",
       "expected_sha256": "994e2456613e0ad27f921f99a67be2a5666c1d9fab1c78934ac6380fb560fc07"
     },
     {
@@ -1866,11 +1311,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
-      "counterexample": "connect_communication instruction。source_ref:が欠落。instructionの識別情報とsource bindingが揃っていない。",
-      "l9_pointer": "/cases/1/negative_cases/98",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/5",
-      "l5_rule_pointer": "/failure_rules/5",
       "expected_sha256": "bf7587cc04110bcbb55ef9bbb115f4bcd04ae342b11e5e996fbbcabf79243e4a"
     },
     {
@@ -1879,11 +1319,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
       "rule_id": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
-      "counterexample": "connect_communication instruction。source_refがbindingと一致しない（具体値は根拠に記載されていない）。instructionの識別情報・sourceが参照先と一致しない。",
-      "l9_pointer": "/cases/1/negative_cases/99",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/6",
-      "l5_rule_pointer": "/failure_rules/6",
       "expected_sha256": "994e2456613e0ad27f921f99a67be2a5666c1d9fab1c78934ac6380fb560fc07"
     },
     {
@@ -1892,11 +1327,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_RECIPIENT_REPORT_UNRESOLVED",
       "rule_id": "SEC009_F01_RECIPIENT_REPORT_UNRESOLVED",
-      "counterexample": "recipient connect_communicationのreport objectが欠落している。選択recipient向けreportが欠落している。",
-      "l9_pointer": "/cases/1/negative_cases/100",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/9",
-      "l5_rule_pointer": "/failure_rules/9",
       "expected_sha256": "573278f82e29b4794af495dddebcd89f56b49684d67e6d5cbc33b36c6b020db9"
     },
     {
@@ -1905,11 +1335,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
-      "counterexample": "recipient connect_communication。reportsのevent_idが欠落。reportの識別情報とsource bindingが揃っていない。",
-      "l9_pointer": "/cases/1/negative_cases/101",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/10",
-      "l5_rule_pointer": "/failure_rules/10",
       "expected_sha256": "1d1c7006f49dd69e93880b71488dbe3f8f7a1e99a2e5e1455ed946153a664882"
     },
     {
@@ -1918,11 +1343,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_REPORT_BINDING_CONFLICT",
       "rule_id": "SEC009_F01_REPORT_BINDING_CONFLICT",
-      "counterexample": "recipient connect_communication。reportsのevent_idが参照先と一致しない（具体値は根拠に記載されていない）。reportの識別情報・sourceが参照先と一致しない。",
-      "l9_pointer": "/cases/1/negative_cases/102",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/11",
-      "l5_rule_pointer": "/failure_rules/11",
       "expected_sha256": "cab97d8e6254546a98ebd289f6803be0e755fbc6782a983cb0bf52b243a5f665"
     },
     {
@@ -1931,11 +1351,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
-      "counterexample": "recipient connect_communication。reportsのrevisionが欠落。reportの識別情報とsource bindingが揃っていない。",
-      "l9_pointer": "/cases/1/negative_cases/103",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/10",
-      "l5_rule_pointer": "/failure_rules/10",
       "expected_sha256": "1d1c7006f49dd69e93880b71488dbe3f8f7a1e99a2e5e1455ed946153a664882"
     },
     {
@@ -1944,11 +1359,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_REPORT_BINDING_CONFLICT",
       "rule_id": "SEC009_F01_REPORT_BINDING_CONFLICT",
-      "counterexample": "recipient connect_communication。reportsのrevisionが参照先と一致しない（具体値は根拠に記載されていない）。reportの識別情報・sourceが参照先と一致しない。",
-      "l9_pointer": "/cases/1/negative_cases/104",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/11",
-      "l5_rule_pointer": "/failure_rules/11",
       "expected_sha256": "cab97d8e6254546a98ebd289f6803be0e755fbc6782a983cb0bf52b243a5f665"
     },
     {
@@ -1957,11 +1367,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
-      "counterexample": "recipient connect_communication。reportsのscopeが欠落。reportの識別情報とsource bindingが揃っていない。",
-      "l9_pointer": "/cases/1/negative_cases/105",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/10",
-      "l5_rule_pointer": "/failure_rules/10",
       "expected_sha256": "1d1c7006f49dd69e93880b71488dbe3f8f7a1e99a2e5e1455ed946153a664882"
     },
     {
@@ -1970,11 +1375,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_REPORT_BINDING_CONFLICT",
       "rule_id": "SEC009_F01_REPORT_BINDING_CONFLICT",
-      "counterexample": "recipient connect_communication。reportsのscopeが参照先と一致しない（具体値は根拠に記載されていない）。reportの識別情報・sourceが参照先と一致しない。",
-      "l9_pointer": "/cases/1/negative_cases/106",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/11",
-      "l5_rule_pointer": "/failure_rules/11",
       "expected_sha256": "cab97d8e6254546a98ebd289f6803be0e755fbc6782a983cb0bf52b243a5f665"
     },
     {
@@ -1983,11 +1383,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
-      "counterexample": "recipient connect_communication。reportsのoperationが欠落。reportの識別情報とsource bindingが揃っていない。",
-      "l9_pointer": "/cases/1/negative_cases/107",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/10",
-      "l5_rule_pointer": "/failure_rules/10",
       "expected_sha256": "1d1c7006f49dd69e93880b71488dbe3f8f7a1e99a2e5e1455ed946153a664882"
     },
     {
@@ -1996,11 +1391,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_REPORT_BINDING_CONFLICT",
       "rule_id": "SEC009_F01_REPORT_BINDING_CONFLICT",
-      "counterexample": "recipient connect_communication。reportsのoperationが参照先と一致しない（具体値は根拠に記載されていない）。reportの識別情報・sourceが参照先と一致しない。",
-      "l9_pointer": "/cases/1/negative_cases/108",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/11",
-      "l5_rule_pointer": "/failure_rules/11",
       "expected_sha256": "cab97d8e6254546a98ebd289f6803be0e755fbc6782a983cb0bf52b243a5f665"
     },
     {
@@ -2009,11 +1399,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
-      "counterexample": "recipient connect_communication。reportsのprojectが欠落。reportの識別情報とsource bindingが揃っていない。",
-      "l9_pointer": "/cases/1/negative_cases/109",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/10",
-      "l5_rule_pointer": "/failure_rules/10",
       "expected_sha256": "1d1c7006f49dd69e93880b71488dbe3f8f7a1e99a2e5e1455ed946153a664882"
     },
     {
@@ -2022,11 +1407,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_REPORT_BINDING_CONFLICT",
       "rule_id": "SEC009_F01_REPORT_BINDING_CONFLICT",
-      "counterexample": "recipient connect_communication。reportsのprojectが参照先と一致しない（具体値は根拠に記載されていない）。reportの識別情報・sourceが参照先と一致しない。",
-      "l9_pointer": "/cases/1/negative_cases/110",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/11",
-      "l5_rule_pointer": "/failure_rules/11",
       "expected_sha256": "cab97d8e6254546a98ebd289f6803be0e755fbc6782a983cb0bf52b243a5f665"
     },
     {
@@ -2035,11 +1415,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
-      "counterexample": "recipient connect_communication。reportsのconnectionが欠落。reportの識別情報とsource bindingが揃っていない。",
-      "l9_pointer": "/cases/1/negative_cases/111",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/10",
-      "l5_rule_pointer": "/failure_rules/10",
       "expected_sha256": "1d1c7006f49dd69e93880b71488dbe3f8f7a1e99a2e5e1455ed946153a664882"
     },
     {
@@ -2048,11 +1423,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_REPORT_BINDING_CONFLICT",
       "rule_id": "SEC009_F01_REPORT_BINDING_CONFLICT",
-      "counterexample": "recipient connect_communication。reportsのconnectionが参照先と一致しない（具体値は根拠に記載されていない）。reportの識別情報・sourceが参照先と一致しない。",
-      "l9_pointer": "/cases/1/negative_cases/112",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/11",
-      "l5_rule_pointer": "/failure_rules/11",
       "expected_sha256": "cab97d8e6254546a98ebd289f6803be0e755fbc6782a983cb0bf52b243a5f665"
     },
     {
@@ -2061,11 +1431,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
-      "counterexample": "connect_communication report。source_ref:が欠落。reportの識別情報とsource bindingが揃っていない。",
-      "l9_pointer": "/cases/1/negative_cases/113",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/10",
-      "l5_rule_pointer": "/failure_rules/10",
       "expected_sha256": "1d1c7006f49dd69e93880b71488dbe3f8f7a1e99a2e5e1455ed946153a664882"
     },
     {
@@ -2074,11 +1439,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_REPORT_BINDING_CONFLICT",
       "rule_id": "SEC009_F01_REPORT_BINDING_CONFLICT",
-      "counterexample": "connect_communication report。source_refがbindingと一致しない（具体値は根拠に記載されていない）。reportの識別情報・sourceが参照先と一致しない。",
-      "l9_pointer": "/cases/1/negative_cases/114",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/11",
-      "l5_rule_pointer": "/failure_rules/11",
       "expected_sha256": "cab97d8e6254546a98ebd289f6803be0e755fbc6782a983cb0bf52b243a5f665"
     },
     {
@@ -2087,11 +1447,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
-      "counterexample": "recipient connect_communicationの期待するpolicy refsが欠落。instructionの識別情報とsource bindingが揃っていない。",
-      "l9_pointer": "/cases/1/negative_cases/115",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/5",
-      "l5_rule_pointer": "/failure_rules/5",
       "expected_sha256": "bf7587cc04110bcbb55ef9bbb115f4bcd04ae342b11e5e996fbbcabf79243e4a"
     },
     {
@@ -2100,11 +1455,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
-      "counterexample": "recipient connect_communicationの期待するreport refsが欠落。reportの識別情報とsource bindingが揃っていない。",
-      "l9_pointer": "/cases/1/negative_cases/116",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/10",
-      "l5_rule_pointer": "/failure_rules/10",
       "expected_sha256": "1d1c7006f49dd69e93880b71488dbe3f8f7a1e99a2e5e1455ed946153a664882"
     },
     {
@@ -2113,11 +1463,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_RECIPIENT_NOT_DELIVERED",
       "rule_id": "SEC009_F01_RECIPIENT_NOT_DELIVERED",
-      "counterexample": "recipient connect_communicationのreceiptが届いておらず、instruction receiptが未送達。",
-      "l9_pointer": "/cases/1/negative_cases/117",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/13",
-      "l5_rule_pointer": "/failure_rules/13",
       "expected_sha256": "104229f62a5aad1c5fbe881aae39b685ccfc3aeb3a3b56dd54e1ed665fad4e47"
     },
     {
@@ -2126,11 +1471,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_RECIPIENT_RECEIPT_UNRESOLVED",
       "rule_id": "SEC009_F01_RECIPIENT_RECEIPT_UNRESOLVED",
-      "counterexample": "recipient connect_communicationのreceiptがunknown/unobserved。instruction receiptが未確認。",
-      "l9_pointer": "/cases/1/negative_cases/118",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/12",
-      "l5_rule_pointer": "/failure_rules/12",
       "expected_sha256": "006b4a549344c4b7a399ca8b894ed8582091b8389bf91c45a84c4e8748fd3eb1"
     },
     {
@@ -2139,11 +1479,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_RECIPIENT_NOT_APPLIED",
       "rule_id": "SEC009_F01_RECIPIENT_NOT_APPLIED",
-      "counterexample": "connect_communication communication stopのが適用されていない。必須stop actionが未適用。",
-      "l9_pointer": "/cases/1/negative_cases/119",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/15",
-      "l5_rule_pointer": "/failure_rules/15",
       "expected_sha256": "60a1b0d2f6c37c4eb3437506ae91b7762675eca1c2b3e59a385756ca2036c909"
     },
     {
@@ -2152,11 +1487,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_RECIPIENT_APPLICATION_UNRESOLVED",
       "rule_id": "SEC009_F01_RECIPIENT_APPLICATION_UNRESOLVED",
-      "counterexample": "connect_communication communication stopのが観測されていない。stopの適用が未観測。",
-      "l9_pointer": "/cases/1/negative_cases/120",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/14",
-      "l5_rule_pointer": "/failure_rules/14",
       "expected_sha256": "500c2fa35b2e8ee8a3d662d1a79b7d75b7e4d868a558ae09361a7e54b124cab8"
     },
     {
@@ -2165,11 +1495,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_RECIPIENT_APPLICATION_UNRESOLVED",
       "rule_id": "SEC009_F01_RECIPIENT_APPLICATION_UNRESOLVED",
-      "counterexample": "recipient connect_communication。stop_communicationの適用結果または状態が欠落している。stopの適用が未観測。",
-      "l9_pointer": "/cases/1/negative_cases/121",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/14",
-      "l5_rule_pointer": "/failure_rules/14",
       "expected_sha256": "500c2fa35b2e8ee8a3d662d1a79b7d75b7e4d868a558ae09361a7e54b124cab8"
     },
     {
@@ -2178,11 +1503,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_RECIPIENT_CONTINUES_AFTER_STOP",
       "rule_id": "SEC009_F01_RECIPIENT_CONTINUES_AFTER_STOP",
-      "counterexample": "recipient connect_communication。communication_continuesの継続・露出flagがtrue。stop後も作業が継続するか、対象の露出が残っている。",
-      "l9_pointer": "/cases/1/negative_cases/122",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/17",
-      "l5_rule_pointer": "/failure_rules/17",
       "expected_sha256": "faf07093f88dea961230edfb8cd5f0a9ee5e110c418ce65059a6ac4ca31aa2de"
     },
     {
@@ -2191,11 +1511,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_RECIPIENT_POST_STATE_UNRESOLVED",
       "rule_id": "SEC009_F01_RECIPIENT_POST_STATE_UNRESOLVED",
-      "counterexample": "recipient connect_communication。communication_continuesの適用結果または状態が欠落している。post-stop stateを確定できない。",
-      "l9_pointer": "/cases/1/negative_cases/123",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/16",
-      "l5_rule_pointer": "/failure_rules/16",
       "expected_sha256": "4ae598b8f415ffc5f187ca705c893ff88dc404487f3f03b48e119e01c581cc8d"
     },
     {
@@ -2204,11 +1519,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_RECIPIENT_ACTIONS_CONFLICT",
       "rule_id": "SEC009_F01_RECIPIENT_ACTIONS_CONFLICT",
-      "counterexample": "recipient connect_communicationの必須action listが空。recipient actionsが必須集合と異なる。",
-      "l9_pointer": "/cases/1/negative_cases/124",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/8",
-      "l5_rule_pointer": "/failure_rules/8",
       "expected_sha256": "c05f59da80a0a25e6d6e0277d92110729ddfc2f0dd5ad9fdd62f9e231a8287c3"
     },
     {
@@ -2217,11 +1527,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_INSTRUCTION_UNRESOLVED",
       "rule_id": "SEC009_F01_INSTRUCTION_UNRESOLVED",
-      "counterexample": "recipient credential_useのinstruction objectが欠落している。選択recipient向けinstructionが欠落している。",
-      "l9_pointer": "/cases/1/negative_cases/125",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/4",
-      "l5_rule_pointer": "/failure_rules/4",
       "expected_sha256": "f2a7ed350d75dabefbbe358b6f257c459f159fd9015739d63656c4309d7b0340"
     },
     {
@@ -2230,11 +1535,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
-      "counterexample": "recipient credential_use。instructionsのevent_idが欠落。instructionの識別情報とsource bindingが揃っていない。",
-      "l9_pointer": "/cases/1/negative_cases/126",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/5",
-      "l5_rule_pointer": "/failure_rules/5",
       "expected_sha256": "bf7587cc04110bcbb55ef9bbb115f4bcd04ae342b11e5e996fbbcabf79243e4a"
     },
     {
@@ -2243,11 +1543,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
       "rule_id": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
-      "counterexample": "recipient credential_use。instructionsのevent_idが参照先と一致しない（具体値は根拠に記載されていない）。instructionの識別情報・sourceが参照先と一致しない。",
-      "l9_pointer": "/cases/1/negative_cases/127",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/6",
-      "l5_rule_pointer": "/failure_rules/6",
       "expected_sha256": "994e2456613e0ad27f921f99a67be2a5666c1d9fab1c78934ac6380fb560fc07"
     },
     {
@@ -2256,11 +1551,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
-      "counterexample": "recipient credential_use。instructionsのrevisionが欠落。instructionの識別情報とsource bindingが揃っていない。",
-      "l9_pointer": "/cases/1/negative_cases/128",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/5",
-      "l5_rule_pointer": "/failure_rules/5",
       "expected_sha256": "bf7587cc04110bcbb55ef9bbb115f4bcd04ae342b11e5e996fbbcabf79243e4a"
     },
     {
@@ -2269,11 +1559,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
       "rule_id": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
-      "counterexample": "recipient credential_use。instructionsのrevisionが参照先と一致しない（具体値は根拠に記載されていない）。instructionの識別情報・sourceが参照先と一致しない。",
-      "l9_pointer": "/cases/1/negative_cases/129",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/6",
-      "l5_rule_pointer": "/failure_rules/6",
       "expected_sha256": "994e2456613e0ad27f921f99a67be2a5666c1d9fab1c78934ac6380fb560fc07"
     },
     {
@@ -2282,11 +1567,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
-      "counterexample": "recipient credential_use。instructionsのscopeが欠落。instructionの識別情報とsource bindingが揃っていない。",
-      "l9_pointer": "/cases/1/negative_cases/130",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/5",
-      "l5_rule_pointer": "/failure_rules/5",
       "expected_sha256": "bf7587cc04110bcbb55ef9bbb115f4bcd04ae342b11e5e996fbbcabf79243e4a"
     },
     {
@@ -2295,11 +1575,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
       "rule_id": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
-      "counterexample": "recipient credential_use。instructionsのscopeが参照先と一致しない（具体値は根拠に記載されていない）。instructionの識別情報・sourceが参照先と一致しない。",
-      "l9_pointer": "/cases/1/negative_cases/131",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/6",
-      "l5_rule_pointer": "/failure_rules/6",
       "expected_sha256": "994e2456613e0ad27f921f99a67be2a5666c1d9fab1c78934ac6380fb560fc07"
     },
     {
@@ -2308,11 +1583,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
-      "counterexample": "recipient credential_use。instructionsのoperationが欠落。instructionの識別情報とsource bindingが揃っていない。",
-      "l9_pointer": "/cases/1/negative_cases/132",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/5",
-      "l5_rule_pointer": "/failure_rules/5",
       "expected_sha256": "bf7587cc04110bcbb55ef9bbb115f4bcd04ae342b11e5e996fbbcabf79243e4a"
     },
     {
@@ -2321,11 +1591,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
       "rule_id": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
-      "counterexample": "recipient credential_use。instructionsのoperationが参照先と一致しない（具体値は根拠に記載されていない）。instructionの識別情報・sourceが参照先と一致しない。",
-      "l9_pointer": "/cases/1/negative_cases/133",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/6",
-      "l5_rule_pointer": "/failure_rules/6",
       "expected_sha256": "994e2456613e0ad27f921f99a67be2a5666c1d9fab1c78934ac6380fb560fc07"
     },
     {
@@ -2334,11 +1599,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
-      "counterexample": "recipient credential_use。instructionsのprojectが欠落。instructionの識別情報とsource bindingが揃っていない。",
-      "l9_pointer": "/cases/1/negative_cases/134",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/5",
-      "l5_rule_pointer": "/failure_rules/5",
       "expected_sha256": "bf7587cc04110bcbb55ef9bbb115f4bcd04ae342b11e5e996fbbcabf79243e4a"
     },
     {
@@ -2347,11 +1607,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
       "rule_id": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
-      "counterexample": "recipient credential_use。instructionsのprojectが参照先と一致しない（具体値は根拠に記載されていない）。instructionの識別情報・sourceが参照先と一致しない。",
-      "l9_pointer": "/cases/1/negative_cases/135",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/6",
-      "l5_rule_pointer": "/failure_rules/6",
       "expected_sha256": "994e2456613e0ad27f921f99a67be2a5666c1d9fab1c78934ac6380fb560fc07"
     },
     {
@@ -2360,11 +1615,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
-      "counterexample": "recipient credential_use。instructionsのcredentialが欠落。instructionの識別情報とsource bindingが揃っていない。",
-      "l9_pointer": "/cases/1/negative_cases/136",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/5",
-      "l5_rule_pointer": "/failure_rules/5",
       "expected_sha256": "bf7587cc04110bcbb55ef9bbb115f4bcd04ae342b11e5e996fbbcabf79243e4a"
     },
     {
@@ -2373,11 +1623,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
       "rule_id": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
-      "counterexample": "recipient credential_use。instructionsのcredentialが参照先と一致しない（具体値は根拠に記載されていない）。instructionの識別情報・sourceが参照先と一致しない。",
-      "l9_pointer": "/cases/1/negative_cases/137",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/6",
-      "l5_rule_pointer": "/failure_rules/6",
       "expected_sha256": "994e2456613e0ad27f921f99a67be2a5666c1d9fab1c78934ac6380fb560fc07"
     },
     {
@@ -2386,11 +1631,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
-      "counterexample": "credential_use instruction。source_ref:が欠落。instructionの識別情報とsource bindingが揃っていない。",
-      "l9_pointer": "/cases/1/negative_cases/138",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/5",
-      "l5_rule_pointer": "/failure_rules/5",
       "expected_sha256": "bf7587cc04110bcbb55ef9bbb115f4bcd04ae342b11e5e996fbbcabf79243e4a"
     },
     {
@@ -2399,11 +1639,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
       "rule_id": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
-      "counterexample": "credential_use instruction。source_refがbindingと一致しない（具体値は根拠に記載されていない）。instructionの識別情報・sourceが参照先と一致しない。",
-      "l9_pointer": "/cases/1/negative_cases/139",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/6",
-      "l5_rule_pointer": "/failure_rules/6",
       "expected_sha256": "994e2456613e0ad27f921f99a67be2a5666c1d9fab1c78934ac6380fb560fc07"
     },
     {
@@ -2412,11 +1647,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_RECIPIENT_REPORT_UNRESOLVED",
       "rule_id": "SEC009_F01_RECIPIENT_REPORT_UNRESOLVED",
-      "counterexample": "recipient credential_useのreport objectが欠落している。選択recipient向けreportが欠落している。",
-      "l9_pointer": "/cases/1/negative_cases/140",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/9",
-      "l5_rule_pointer": "/failure_rules/9",
       "expected_sha256": "573278f82e29b4794af495dddebcd89f56b49684d67e6d5cbc33b36c6b020db9"
     },
     {
@@ -2425,11 +1655,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
-      "counterexample": "recipient credential_use。reportsのevent_idが欠落。reportの識別情報とsource bindingが揃っていない。",
-      "l9_pointer": "/cases/1/negative_cases/141",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/10",
-      "l5_rule_pointer": "/failure_rules/10",
       "expected_sha256": "1d1c7006f49dd69e93880b71488dbe3f8f7a1e99a2e5e1455ed946153a664882"
     },
     {
@@ -2438,11 +1663,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_REPORT_BINDING_CONFLICT",
       "rule_id": "SEC009_F01_REPORT_BINDING_CONFLICT",
-      "counterexample": "recipient credential_use。reportsのevent_idが参照先と一致しない（具体値は根拠に記載されていない）。reportの識別情報・sourceが参照先と一致しない。",
-      "l9_pointer": "/cases/1/negative_cases/142",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/11",
-      "l5_rule_pointer": "/failure_rules/11",
       "expected_sha256": "cab97d8e6254546a98ebd289f6803be0e755fbc6782a983cb0bf52b243a5f665"
     },
     {
@@ -2451,11 +1671,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
-      "counterexample": "recipient credential_use。reportsのrevisionが欠落。reportの識別情報とsource bindingが揃っていない。",
-      "l9_pointer": "/cases/1/negative_cases/143",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/10",
-      "l5_rule_pointer": "/failure_rules/10",
       "expected_sha256": "1d1c7006f49dd69e93880b71488dbe3f8f7a1e99a2e5e1455ed946153a664882"
     },
     {
@@ -2464,11 +1679,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_REPORT_BINDING_CONFLICT",
       "rule_id": "SEC009_F01_REPORT_BINDING_CONFLICT",
-      "counterexample": "recipient credential_use。reportsのrevisionが参照先と一致しない（具体値は根拠に記載されていない）。reportの識別情報・sourceが参照先と一致しない。",
-      "l9_pointer": "/cases/1/negative_cases/144",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/11",
-      "l5_rule_pointer": "/failure_rules/11",
       "expected_sha256": "cab97d8e6254546a98ebd289f6803be0e755fbc6782a983cb0bf52b243a5f665"
     },
     {
@@ -2477,11 +1687,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
-      "counterexample": "recipient credential_use。reportsのscopeが欠落。reportの識別情報とsource bindingが揃っていない。",
-      "l9_pointer": "/cases/1/negative_cases/145",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/10",
-      "l5_rule_pointer": "/failure_rules/10",
       "expected_sha256": "1d1c7006f49dd69e93880b71488dbe3f8f7a1e99a2e5e1455ed946153a664882"
     },
     {
@@ -2490,11 +1695,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_REPORT_BINDING_CONFLICT",
       "rule_id": "SEC009_F01_REPORT_BINDING_CONFLICT",
-      "counterexample": "recipient credential_use。reportsのscopeが参照先と一致しない（具体値は根拠に記載されていない）。reportの識別情報・sourceが参照先と一致しない。",
-      "l9_pointer": "/cases/1/negative_cases/146",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/11",
-      "l5_rule_pointer": "/failure_rules/11",
       "expected_sha256": "cab97d8e6254546a98ebd289f6803be0e755fbc6782a983cb0bf52b243a5f665"
     },
     {
@@ -2503,11 +1703,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
-      "counterexample": "recipient credential_use。reportsのoperationが欠落。reportの識別情報とsource bindingが揃っていない。",
-      "l9_pointer": "/cases/1/negative_cases/147",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/10",
-      "l5_rule_pointer": "/failure_rules/10",
       "expected_sha256": "1d1c7006f49dd69e93880b71488dbe3f8f7a1e99a2e5e1455ed946153a664882"
     },
     {
@@ -2516,11 +1711,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_REPORT_BINDING_CONFLICT",
       "rule_id": "SEC009_F01_REPORT_BINDING_CONFLICT",
-      "counterexample": "recipient credential_use。reportsのoperationが参照先と一致しない（具体値は根拠に記載されていない）。reportの識別情報・sourceが参照先と一致しない。",
-      "l9_pointer": "/cases/1/negative_cases/148",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/11",
-      "l5_rule_pointer": "/failure_rules/11",
       "expected_sha256": "cab97d8e6254546a98ebd289f6803be0e755fbc6782a983cb0bf52b243a5f665"
     },
     {
@@ -2529,11 +1719,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
-      "counterexample": "recipient credential_use。reportsのprojectが欠落。reportの識別情報とsource bindingが揃っていない。",
-      "l9_pointer": "/cases/1/negative_cases/149",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/10",
-      "l5_rule_pointer": "/failure_rules/10",
       "expected_sha256": "1d1c7006f49dd69e93880b71488dbe3f8f7a1e99a2e5e1455ed946153a664882"
     },
     {
@@ -2542,11 +1727,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_REPORT_BINDING_CONFLICT",
       "rule_id": "SEC009_F01_REPORT_BINDING_CONFLICT",
-      "counterexample": "recipient credential_use。reportsのprojectが参照先と一致しない（具体値は根拠に記載されていない）。reportの識別情報・sourceが参照先と一致しない。",
-      "l9_pointer": "/cases/1/negative_cases/150",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/11",
-      "l5_rule_pointer": "/failure_rules/11",
       "expected_sha256": "cab97d8e6254546a98ebd289f6803be0e755fbc6782a983cb0bf52b243a5f665"
     },
     {
@@ -2555,11 +1735,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
-      "counterexample": "recipient credential_use。reportsのcredentialが欠落。reportの識別情報とsource bindingが揃っていない。",
-      "l9_pointer": "/cases/1/negative_cases/151",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/10",
-      "l5_rule_pointer": "/failure_rules/10",
       "expected_sha256": "1d1c7006f49dd69e93880b71488dbe3f8f7a1e99a2e5e1455ed946153a664882"
     },
     {
@@ -2568,11 +1743,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_REPORT_BINDING_CONFLICT",
       "rule_id": "SEC009_F01_REPORT_BINDING_CONFLICT",
-      "counterexample": "recipient credential_use。reportsのcredentialが参照先と一致しない（具体値は根拠に記載されていない）。reportの識別情報・sourceが参照先と一致しない。",
-      "l9_pointer": "/cases/1/negative_cases/152",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/11",
-      "l5_rule_pointer": "/failure_rules/11",
       "expected_sha256": "cab97d8e6254546a98ebd289f6803be0e755fbc6782a983cb0bf52b243a5f665"
     },
     {
@@ -2581,11 +1751,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
-      "counterexample": "credential_use report。source_ref:が欠落。reportの識別情報とsource bindingが揃っていない。",
-      "l9_pointer": "/cases/1/negative_cases/153",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/10",
-      "l5_rule_pointer": "/failure_rules/10",
       "expected_sha256": "1d1c7006f49dd69e93880b71488dbe3f8f7a1e99a2e5e1455ed946153a664882"
     },
     {
@@ -2594,11 +1759,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_REPORT_BINDING_CONFLICT",
       "rule_id": "SEC009_F01_REPORT_BINDING_CONFLICT",
-      "counterexample": "credential_use report。source_refがbindingと一致しない（具体値は根拠に記載されていない）。reportの識別情報・sourceが参照先と一致しない。",
-      "l9_pointer": "/cases/1/negative_cases/154",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/11",
-      "l5_rule_pointer": "/failure_rules/11",
       "expected_sha256": "cab97d8e6254546a98ebd289f6803be0e755fbc6782a983cb0bf52b243a5f665"
     },
     {
@@ -2607,11 +1767,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
-      "counterexample": "recipient credential_useの期待するpolicy refsが欠落。instructionの識別情報とsource bindingが揃っていない。",
-      "l9_pointer": "/cases/1/negative_cases/155",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/5",
-      "l5_rule_pointer": "/failure_rules/5",
       "expected_sha256": "bf7587cc04110bcbb55ef9bbb115f4bcd04ae342b11e5e996fbbcabf79243e4a"
     },
     {
@@ -2620,11 +1775,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
-      "counterexample": "recipient credential_useの期待するreport refsが欠落。reportの識別情報とsource bindingが揃っていない。",
-      "l9_pointer": "/cases/1/negative_cases/156",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/10",
-      "l5_rule_pointer": "/failure_rules/10",
       "expected_sha256": "1d1c7006f49dd69e93880b71488dbe3f8f7a1e99a2e5e1455ed946153a664882"
     },
     {
@@ -2633,11 +1783,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_RECIPIENT_NOT_DELIVERED",
       "rule_id": "SEC009_F01_RECIPIENT_NOT_DELIVERED",
-      "counterexample": "recipient credential_useのreceiptが届いておらず、instruction receiptが未送達。",
-      "l9_pointer": "/cases/1/negative_cases/157",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/13",
-      "l5_rule_pointer": "/failure_rules/13",
       "expected_sha256": "104229f62a5aad1c5fbe881aae39b685ccfc3aeb3a3b56dd54e1ed665fad4e47"
     },
     {
@@ -2646,11 +1791,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_RECIPIENT_RECEIPT_UNRESOLVED",
       "rule_id": "SEC009_F01_RECIPIENT_RECEIPT_UNRESOLVED",
-      "counterexample": "recipient credential_useのreceiptがunknown/unobserved。instruction receiptが未確認。",
-      "l9_pointer": "/cases/1/negative_cases/158",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/12",
-      "l5_rule_pointer": "/failure_rules/12",
       "expected_sha256": "006b4a549344c4b7a399ca8b894ed8582091b8389bf91c45a84c4e8748fd3eb1"
     },
     {
@@ -2659,11 +1799,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_RECIPIENT_NOT_APPLIED",
       "rule_id": "SEC009_F01_RECIPIENT_NOT_APPLIED",
-      "counterexample": "credential_use credential-use stopのが適用されていない。必須stop actionが未適用。",
-      "l9_pointer": "/cases/1/negative_cases/159",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/15",
-      "l5_rule_pointer": "/failure_rules/15",
       "expected_sha256": "60a1b0d2f6c37c4eb3437506ae91b7762675eca1c2b3e59a385756ca2036c909"
     },
     {
@@ -2672,11 +1807,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_RECIPIENT_APPLICATION_UNRESOLVED",
       "rule_id": "SEC009_F01_RECIPIENT_APPLICATION_UNRESOLVED",
-      "counterexample": "credential_use credential-use stopのが観測されていない。stopの適用が未観測。",
-      "l9_pointer": "/cases/1/negative_cases/160",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/14",
-      "l5_rule_pointer": "/failure_rules/14",
       "expected_sha256": "500c2fa35b2e8ee8a3d662d1a79b7d75b7e4d868a558ae09361a7e54b124cab8"
     },
     {
@@ -2685,11 +1815,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_RECIPIENT_APPLICATION_UNRESOLVED",
       "rule_id": "SEC009_F01_RECIPIENT_APPLICATION_UNRESOLVED",
-      "counterexample": "recipient credential_use。stop_useの適用結果または状態が欠落している。stopの適用が未観測。",
-      "l9_pointer": "/cases/1/negative_cases/161",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/14",
-      "l5_rule_pointer": "/failure_rules/14",
       "expected_sha256": "500c2fa35b2e8ee8a3d662d1a79b7d75b7e4d868a558ae09361a7e54b124cab8"
     },
     {
@@ -2698,11 +1823,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_RECIPIENT_CONTINUES_AFTER_STOP",
       "rule_id": "SEC009_F01_RECIPIENT_CONTINUES_AFTER_STOP",
-      "counterexample": "recipient credential_use。use_continuesの継続・露出flagがtrue。stop後も作業が継続するか、対象の露出が残っている。",
-      "l9_pointer": "/cases/1/negative_cases/162",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/17",
-      "l5_rule_pointer": "/failure_rules/17",
       "expected_sha256": "faf07093f88dea961230edfb8cd5f0a9ee5e110c418ce65059a6ac4ca31aa2de"
     },
     {
@@ -2711,11 +1831,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_RECIPIENT_POST_STATE_UNRESOLVED",
       "rule_id": "SEC009_F01_RECIPIENT_POST_STATE_UNRESOLVED",
-      "counterexample": "recipient credential_use。use_continuesの適用結果または状態が欠落している。post-stop stateを確定できない。",
-      "l9_pointer": "/cases/1/negative_cases/163",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/16",
-      "l5_rule_pointer": "/failure_rules/16",
       "expected_sha256": "4ae598b8f415ffc5f187ca705c893ff88dc404487f3f03b48e119e01c581cc8d"
     },
     {
@@ -2724,11 +1839,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_RECIPIENT_ACTIONS_CONFLICT",
       "rule_id": "SEC009_F01_RECIPIENT_ACTIONS_CONFLICT",
-      "counterexample": "recipient credential_useの必須action listが空。recipient actionsが必須集合と異なる。",
-      "l9_pointer": "/cases/1/negative_cases/164",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/8",
-      "l5_rule_pointer": "/failure_rules/8",
       "expected_sha256": "c05f59da80a0a25e6d6e0277d92110729ddfc2f0dd5ad9fdd62f9e231a8287c3"
     },
     {
@@ -2737,11 +1847,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_INSTRUCTION_UNRESOLVED",
       "rule_id": "SEC009_F01_INSTRUCTION_UNRESOLVED",
-      "counterexample": "recipient artifact_accessのinstruction objectが欠落している。選択recipient向けinstructionが欠落している。",
-      "l9_pointer": "/cases/1/negative_cases/165",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/4",
-      "l5_rule_pointer": "/failure_rules/4",
       "expected_sha256": "f2a7ed350d75dabefbbe358b6f257c459f159fd9015739d63656c4309d7b0340"
     },
     {
@@ -2750,11 +1855,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
-      "counterexample": "recipient artifact_access。instructionsのevent_idが欠落。instructionの識別情報とsource bindingが揃っていない。",
-      "l9_pointer": "/cases/1/negative_cases/166",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/5",
-      "l5_rule_pointer": "/failure_rules/5",
       "expected_sha256": "bf7587cc04110bcbb55ef9bbb115f4bcd04ae342b11e5e996fbbcabf79243e4a"
     },
     {
@@ -2763,11 +1863,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
       "rule_id": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
-      "counterexample": "recipient artifact_access。instructionsのevent_idが参照先と一致しない（具体値は根拠に記載されていない）。instructionの識別情報・sourceが参照先と一致しない。",
-      "l9_pointer": "/cases/1/negative_cases/167",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/6",
-      "l5_rule_pointer": "/failure_rules/6",
       "expected_sha256": "994e2456613e0ad27f921f99a67be2a5666c1d9fab1c78934ac6380fb560fc07"
     },
     {
@@ -2776,11 +1871,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
-      "counterexample": "recipient artifact_access。instructionsのrevisionが欠落。instructionの識別情報とsource bindingが揃っていない。",
-      "l9_pointer": "/cases/1/negative_cases/168",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/5",
-      "l5_rule_pointer": "/failure_rules/5",
       "expected_sha256": "bf7587cc04110bcbb55ef9bbb115f4bcd04ae342b11e5e996fbbcabf79243e4a"
     },
     {
@@ -2789,11 +1879,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
       "rule_id": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
-      "counterexample": "recipient artifact_access。instructionsのrevisionが参照先と一致しない（具体値は根拠に記載されていない）。instructionの識別情報・sourceが参照先と一致しない。",
-      "l9_pointer": "/cases/1/negative_cases/169",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/6",
-      "l5_rule_pointer": "/failure_rules/6",
       "expected_sha256": "994e2456613e0ad27f921f99a67be2a5666c1d9fab1c78934ac6380fb560fc07"
     },
     {
@@ -2802,11 +1887,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
-      "counterexample": "recipient artifact_access。instructionsのscopeが欠落。instructionの識別情報とsource bindingが揃っていない。",
-      "l9_pointer": "/cases/1/negative_cases/170",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/5",
-      "l5_rule_pointer": "/failure_rules/5",
       "expected_sha256": "bf7587cc04110bcbb55ef9bbb115f4bcd04ae342b11e5e996fbbcabf79243e4a"
     },
     {
@@ -2815,11 +1895,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
       "rule_id": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
-      "counterexample": "recipient artifact_access。instructionsのscopeが参照先と一致しない（具体値は根拠に記載されていない）。instructionの識別情報・sourceが参照先と一致しない。",
-      "l9_pointer": "/cases/1/negative_cases/171",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/6",
-      "l5_rule_pointer": "/failure_rules/6",
       "expected_sha256": "994e2456613e0ad27f921f99a67be2a5666c1d9fab1c78934ac6380fb560fc07"
     },
     {
@@ -2828,11 +1903,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
-      "counterexample": "recipient artifact_access。instructionsのoperationが欠落。instructionの識別情報とsource bindingが揃っていない。",
-      "l9_pointer": "/cases/1/negative_cases/172",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/5",
-      "l5_rule_pointer": "/failure_rules/5",
       "expected_sha256": "bf7587cc04110bcbb55ef9bbb115f4bcd04ae342b11e5e996fbbcabf79243e4a"
     },
     {
@@ -2841,11 +1911,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
       "rule_id": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
-      "counterexample": "recipient artifact_access。instructionsのoperationが参照先と一致しない（具体値は根拠に記載されていない）。instructionの識別情報・sourceが参照先と一致しない。",
-      "l9_pointer": "/cases/1/negative_cases/173",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/6",
-      "l5_rule_pointer": "/failure_rules/6",
       "expected_sha256": "994e2456613e0ad27f921f99a67be2a5666c1d9fab1c78934ac6380fb560fc07"
     },
     {
@@ -2854,11 +1919,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
-      "counterexample": "recipient artifact_access。instructionsのprojectが欠落。instructionの識別情報とsource bindingが揃っていない。",
-      "l9_pointer": "/cases/1/negative_cases/174",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/5",
-      "l5_rule_pointer": "/failure_rules/5",
       "expected_sha256": "bf7587cc04110bcbb55ef9bbb115f4bcd04ae342b11e5e996fbbcabf79243e4a"
     },
     {
@@ -2867,11 +1927,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
       "rule_id": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
-      "counterexample": "recipient artifact_access。instructionsのprojectが参照先と一致しない（具体値は根拠に記載されていない）。instructionの識別情報・sourceが参照先と一致しない。",
-      "l9_pointer": "/cases/1/negative_cases/175",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/6",
-      "l5_rule_pointer": "/failure_rules/6",
       "expected_sha256": "994e2456613e0ad27f921f99a67be2a5666c1d9fab1c78934ac6380fb560fc07"
     },
     {
@@ -2880,11 +1935,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
-      "counterexample": "recipient artifact_access。instructionsのartifactが欠落。instructionの識別情報とsource bindingが揃っていない。",
-      "l9_pointer": "/cases/1/negative_cases/176",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/5",
-      "l5_rule_pointer": "/failure_rules/5",
       "expected_sha256": "bf7587cc04110bcbb55ef9bbb115f4bcd04ae342b11e5e996fbbcabf79243e4a"
     },
     {
@@ -2893,11 +1943,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
       "rule_id": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
-      "counterexample": "recipient artifact_access。instructionsのartifactが参照先と一致しない（具体値は根拠に記載されていない）。instructionの識別情報・sourceが参照先と一致しない。",
-      "l9_pointer": "/cases/1/negative_cases/177",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/6",
-      "l5_rule_pointer": "/failure_rules/6",
       "expected_sha256": "994e2456613e0ad27f921f99a67be2a5666c1d9fab1c78934ac6380fb560fc07"
     },
     {
@@ -2906,11 +1951,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
-      "counterexample": "artifact_access instruction。source_ref:が欠落。instructionの識別情報とsource bindingが揃っていない。",
-      "l9_pointer": "/cases/1/negative_cases/178",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/5",
-      "l5_rule_pointer": "/failure_rules/5",
       "expected_sha256": "bf7587cc04110bcbb55ef9bbb115f4bcd04ae342b11e5e996fbbcabf79243e4a"
     },
     {
@@ -2919,11 +1959,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
       "rule_id": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
-      "counterexample": "artifact_access instruction。source_refがbindingと一致しない（具体値は根拠に記載されていない）。instructionの識別情報・sourceが参照先と一致しない。",
-      "l9_pointer": "/cases/1/negative_cases/179",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/6",
-      "l5_rule_pointer": "/failure_rules/6",
       "expected_sha256": "994e2456613e0ad27f921f99a67be2a5666c1d9fab1c78934ac6380fb560fc07"
     },
     {
@@ -2932,11 +1967,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_RECIPIENT_REPORT_UNRESOLVED",
       "rule_id": "SEC009_F01_RECIPIENT_REPORT_UNRESOLVED",
-      "counterexample": "recipient artifact_accessのreport objectが欠落している。選択recipient向けreportが欠落している。",
-      "l9_pointer": "/cases/1/negative_cases/180",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/9",
-      "l5_rule_pointer": "/failure_rules/9",
       "expected_sha256": "573278f82e29b4794af495dddebcd89f56b49684d67e6d5cbc33b36c6b020db9"
     },
     {
@@ -2945,11 +1975,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
-      "counterexample": "recipient artifact_access。reportsのevent_idが欠落。reportの識別情報とsource bindingが揃っていない。",
-      "l9_pointer": "/cases/1/negative_cases/181",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/10",
-      "l5_rule_pointer": "/failure_rules/10",
       "expected_sha256": "1d1c7006f49dd69e93880b71488dbe3f8f7a1e99a2e5e1455ed946153a664882"
     },
     {
@@ -2958,11 +1983,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_REPORT_BINDING_CONFLICT",
       "rule_id": "SEC009_F01_REPORT_BINDING_CONFLICT",
-      "counterexample": "recipient artifact_access。reportsのevent_idが参照先と一致しない（具体値は根拠に記載されていない）。reportの識別情報・sourceが参照先と一致しない。",
-      "l9_pointer": "/cases/1/negative_cases/182",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/11",
-      "l5_rule_pointer": "/failure_rules/11",
       "expected_sha256": "cab97d8e6254546a98ebd289f6803be0e755fbc6782a983cb0bf52b243a5f665"
     },
     {
@@ -2971,11 +1991,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
-      "counterexample": "recipient artifact_access。reportsのrevisionが欠落。reportの識別情報とsource bindingが揃っていない。",
-      "l9_pointer": "/cases/1/negative_cases/183",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/10",
-      "l5_rule_pointer": "/failure_rules/10",
       "expected_sha256": "1d1c7006f49dd69e93880b71488dbe3f8f7a1e99a2e5e1455ed946153a664882"
     },
     {
@@ -2984,11 +1999,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_REPORT_BINDING_CONFLICT",
       "rule_id": "SEC009_F01_REPORT_BINDING_CONFLICT",
-      "counterexample": "recipient artifact_access。reportsのrevisionが参照先と一致しない（具体値は根拠に記載されていない）。reportの識別情報・sourceが参照先と一致しない。",
-      "l9_pointer": "/cases/1/negative_cases/184",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/11",
-      "l5_rule_pointer": "/failure_rules/11",
       "expected_sha256": "cab97d8e6254546a98ebd289f6803be0e755fbc6782a983cb0bf52b243a5f665"
     },
     {
@@ -2997,11 +2007,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
-      "counterexample": "recipient artifact_access。reportsのscopeが欠落。reportの識別情報とsource bindingが揃っていない。",
-      "l9_pointer": "/cases/1/negative_cases/185",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/10",
-      "l5_rule_pointer": "/failure_rules/10",
       "expected_sha256": "1d1c7006f49dd69e93880b71488dbe3f8f7a1e99a2e5e1455ed946153a664882"
     },
     {
@@ -3010,11 +2015,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_REPORT_BINDING_CONFLICT",
       "rule_id": "SEC009_F01_REPORT_BINDING_CONFLICT",
-      "counterexample": "recipient artifact_access。reportsのscopeが参照先と一致しない（具体値は根拠に記載されていない）。reportの識別情報・sourceが参照先と一致しない。",
-      "l9_pointer": "/cases/1/negative_cases/186",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/11",
-      "l5_rule_pointer": "/failure_rules/11",
       "expected_sha256": "cab97d8e6254546a98ebd289f6803be0e755fbc6782a983cb0bf52b243a5f665"
     },
     {
@@ -3023,11 +2023,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
-      "counterexample": "recipient artifact_access。reportsのoperationが欠落。reportの識別情報とsource bindingが揃っていない。",
-      "l9_pointer": "/cases/1/negative_cases/187",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/10",
-      "l5_rule_pointer": "/failure_rules/10",
       "expected_sha256": "1d1c7006f49dd69e93880b71488dbe3f8f7a1e99a2e5e1455ed946153a664882"
     },
     {
@@ -3036,11 +2031,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_REPORT_BINDING_CONFLICT",
       "rule_id": "SEC009_F01_REPORT_BINDING_CONFLICT",
-      "counterexample": "recipient artifact_access。reportsのoperationが参照先と一致しない（具体値は根拠に記載されていない）。reportの識別情報・sourceが参照先と一致しない。",
-      "l9_pointer": "/cases/1/negative_cases/188",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/11",
-      "l5_rule_pointer": "/failure_rules/11",
       "expected_sha256": "cab97d8e6254546a98ebd289f6803be0e755fbc6782a983cb0bf52b243a5f665"
     },
     {
@@ -3049,11 +2039,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
-      "counterexample": "recipient artifact_access。reportsのprojectが欠落。reportの識別情報とsource bindingが揃っていない。",
-      "l9_pointer": "/cases/1/negative_cases/189",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/10",
-      "l5_rule_pointer": "/failure_rules/10",
       "expected_sha256": "1d1c7006f49dd69e93880b71488dbe3f8f7a1e99a2e5e1455ed946153a664882"
     },
     {
@@ -3062,11 +2047,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_REPORT_BINDING_CONFLICT",
       "rule_id": "SEC009_F01_REPORT_BINDING_CONFLICT",
-      "counterexample": "recipient artifact_access。reportsのprojectが参照先と一致しない（具体値は根拠に記載されていない）。reportの識別情報・sourceが参照先と一致しない。",
-      "l9_pointer": "/cases/1/negative_cases/190",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/11",
-      "l5_rule_pointer": "/failure_rules/11",
       "expected_sha256": "cab97d8e6254546a98ebd289f6803be0e755fbc6782a983cb0bf52b243a5f665"
     },
     {
@@ -3075,11 +2055,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
-      "counterexample": "recipient artifact_access。reportsのartifactが欠落。reportの識別情報とsource bindingが揃っていない。",
-      "l9_pointer": "/cases/1/negative_cases/191",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/10",
-      "l5_rule_pointer": "/failure_rules/10",
       "expected_sha256": "1d1c7006f49dd69e93880b71488dbe3f8f7a1e99a2e5e1455ed946153a664882"
     },
     {
@@ -3088,11 +2063,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_REPORT_BINDING_CONFLICT",
       "rule_id": "SEC009_F01_REPORT_BINDING_CONFLICT",
-      "counterexample": "recipient artifact_access。reportsのartifactが参照先と一致しない（具体値は根拠に記載されていない）。reportの識別情報・sourceが参照先と一致しない。",
-      "l9_pointer": "/cases/1/negative_cases/192",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/11",
-      "l5_rule_pointer": "/failure_rules/11",
       "expected_sha256": "cab97d8e6254546a98ebd289f6803be0e755fbc6782a983cb0bf52b243a5f665"
     },
     {
@@ -3101,11 +2071,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
-      "counterexample": "artifact_access向けreportのsource_ref:が欠落。reportの識別情報とsource bindingが揃っていない。",
-      "l9_pointer": "/cases/1/negative_cases/193",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/10",
-      "l5_rule_pointer": "/failure_rules/10",
       "expected_sha256": "1d1c7006f49dd69e93880b71488dbe3f8f7a1e99a2e5e1455ed946153a664882"
     },
     {
@@ -3114,11 +2079,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_REPORT_BINDING_CONFLICT",
       "rule_id": "SEC009_F01_REPORT_BINDING_CONFLICT",
-      "counterexample": "artifact_access向けreportのsource_refがbindingと一致しない（具体値は根拠に記載されていない）。reportの識別情報・sourceが参照先と一致しない。",
-      "l9_pointer": "/cases/1/negative_cases/194",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/11",
-      "l5_rule_pointer": "/failure_rules/11",
       "expected_sha256": "cab97d8e6254546a98ebd289f6803be0e755fbc6782a983cb0bf52b243a5f665"
     },
     {
@@ -3127,11 +2087,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
-      "counterexample": "recipient artifact_accessの期待するpolicy refsが欠落。instructionの識別情報とsource bindingが揃っていない。",
-      "l9_pointer": "/cases/1/negative_cases/195",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/5",
-      "l5_rule_pointer": "/failure_rules/5",
       "expected_sha256": "bf7587cc04110bcbb55ef9bbb115f4bcd04ae342b11e5e996fbbcabf79243e4a"
     },
     {
@@ -3140,11 +2095,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
-      "counterexample": "recipient artifact_accessの期待するreport refsが欠落。reportの識別情報とsource bindingが揃っていない。",
-      "l9_pointer": "/cases/1/negative_cases/196",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/10",
-      "l5_rule_pointer": "/failure_rules/10",
       "expected_sha256": "1d1c7006f49dd69e93880b71488dbe3f8f7a1e99a2e5e1455ed946153a664882"
     },
     {
@@ -3153,11 +2103,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_RECIPIENT_NOT_DELIVERED",
       "rule_id": "SEC009_F01_RECIPIENT_NOT_DELIVERED",
-      "counterexample": "recipient artifact_accessのreceiptが届いておらず、instruction receiptが未送達。",
-      "l9_pointer": "/cases/1/negative_cases/197",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/13",
-      "l5_rule_pointer": "/failure_rules/13",
       "expected_sha256": "104229f62a5aad1c5fbe881aae39b685ccfc3aeb3a3b56dd54e1ed665fad4e47"
     },
     {
@@ -3166,11 +2111,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_RECIPIENT_RECEIPT_UNRESOLVED",
       "rule_id": "SEC009_F01_RECIPIENT_RECEIPT_UNRESOLVED",
-      "counterexample": "recipient artifact_accessのreceiptがunknown/unobserved。instruction receiptが未確認。",
-      "l9_pointer": "/cases/1/negative_cases/198",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/12",
-      "l5_rule_pointer": "/failure_rules/12",
       "expected_sha256": "006b4a549344c4b7a399ca8b894ed8582091b8389bf91c45a84c4e8748fd3eb1"
     },
     {
@@ -3179,11 +2119,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_RECIPIENT_NOT_APPLIED",
       "rule_id": "SEC009_F01_RECIPIENT_NOT_APPLIED",
-      "counterexample": "artifact_access artifact-access停止のが適用されていない。必須stop actionが未適用。",
-      "l9_pointer": "/cases/1/negative_cases/199",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/15",
-      "l5_rule_pointer": "/failure_rules/15",
       "expected_sha256": "60a1b0d2f6c37c4eb3437506ae91b7762675eca1c2b3e59a385756ca2036c909"
     },
     {
@@ -3192,11 +2127,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_RECIPIENT_APPLICATION_UNRESOLVED",
       "rule_id": "SEC009_F01_RECIPIENT_APPLICATION_UNRESOLVED",
-      "counterexample": "artifact_access artifact-access停止のが観測されていない。stopの適用が未観測。",
-      "l9_pointer": "/cases/1/negative_cases/200",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/14",
-      "l5_rule_pointer": "/failure_rules/14",
       "expected_sha256": "500c2fa35b2e8ee8a3d662d1a79b7d75b7e4d868a558ae09361a7e54b124cab8"
     },
     {
@@ -3205,11 +2135,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_RECIPIENT_APPLICATION_UNRESOLVED",
       "rule_id": "SEC009_F01_RECIPIENT_APPLICATION_UNRESOLVED",
-      "counterexample": "recipient artifact_access。stop_accessの適用結果または状態が欠落している。stopの適用が未観測。",
-      "l9_pointer": "/cases/1/negative_cases/201",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/14",
-      "l5_rule_pointer": "/failure_rules/14",
       "expected_sha256": "500c2fa35b2e8ee8a3d662d1a79b7d75b7e4d868a558ae09361a7e54b124cab8"
     },
     {
@@ -3218,11 +2143,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_RECIPIENT_CONTINUES_AFTER_STOP",
       "rule_id": "SEC009_F01_RECIPIENT_CONTINUES_AFTER_STOP",
-      "counterexample": "recipient artifact_access。access_continuesの継続・露出flagがtrue。stop後も作業が継続するか、対象の露出が残っている。",
-      "l9_pointer": "/cases/1/negative_cases/202",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/17",
-      "l5_rule_pointer": "/failure_rules/17",
       "expected_sha256": "faf07093f88dea961230edfb8cd5f0a9ee5e110c418ce65059a6ac4ca31aa2de"
     },
     {
@@ -3231,11 +2151,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_RECIPIENT_POST_STATE_UNRESOLVED",
       "rule_id": "SEC009_F01_RECIPIENT_POST_STATE_UNRESOLVED",
-      "counterexample": "recipient artifact_access。access_continuesの適用結果または状態が欠落している。post-stop stateを確定できない。",
-      "l9_pointer": "/cases/1/negative_cases/203",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/16",
-      "l5_rule_pointer": "/failure_rules/16",
       "expected_sha256": "4ae598b8f415ffc5f187ca705c893ff88dc404487f3f03b48e119e01c581cc8d"
     },
     {
@@ -3244,11 +2159,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_RECIPIENT_ACTIONS_CONFLICT",
       "rule_id": "SEC009_F01_RECIPIENT_ACTIONS_CONFLICT",
-      "counterexample": "recipient artifact_accessの必須action listが空。recipient actionsが必須集合と異なる。",
-      "l9_pointer": "/cases/1/negative_cases/204",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/8",
-      "l5_rule_pointer": "/failure_rules/8",
       "expected_sha256": "c05f59da80a0a25e6d6e0277d92110729ddfc2f0dd5ad9fdd62f9e231a8287c3"
     },
     {
@@ -3257,11 +2167,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_RECIPIENT_ACTIONS_UNRESOLVED",
       "rule_id": "SEC009_F01_RECIPIENT_ACTIONS_UNRESOLVED",
-      "counterexample": "recipient os_assignmentのaction listで同じ項目が重複している。必須recipient actionsが未確定。",
-      "l9_pointer": "/cases/1/negative_cases/206",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/7",
-      "l5_rule_pointer": "/failure_rules/7",
       "expected_sha256": "bc5c3908da6d3b621a34c00a1e1f7b716fd16aca08d72d36c9a7f52e3eca03af"
     },
     {
@@ -3270,11 +2175,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_RECIPIENT_ACTIONS_UNRESOLVED",
       "rule_id": "SEC009_F01_RECIPIENT_ACTIONS_UNRESOLVED",
-      "counterexample": "recipient os_assignmentのaction listに文字列以外の項目が含まれている。必須recipient actionsが未確定。",
-      "l9_pointer": "/cases/1/negative_cases/207",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/7",
-      "l5_rule_pointer": "/failure_rules/7",
       "expected_sha256": "bc5c3908da6d3b621a34c00a1e1f7b716fd16aca08d72d36c9a7f52e3eca03af"
     },
     {
@@ -3283,11 +2183,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_RECIPIENT_ACTIONS_UNRESOLVED",
       "rule_id": "SEC009_F01_RECIPIENT_ACTIONS_UNRESOLVED",
-      "counterexample": "recipient os_assignmentのactionsがlistではない。必須recipient actionsが未確定。",
-      "l9_pointer": "/cases/1/negative_cases/208",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/7",
-      "l5_rule_pointer": "/failure_rules/7",
       "expected_sha256": "bc5c3908da6d3b621a34c00a1e1f7b716fd16aca08d72d36c9a7f52e3eca03af"
     },
     {
@@ -3296,11 +2191,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_RECIPIENT_ACTIONS_UNRESOLVED",
       "rule_id": "SEC009_F01_RECIPIENT_ACTIONS_UNRESOLVED",
-      "counterexample": "recipient worker_executionのaction listで同じ項目が重複している。必須recipient actionsが未確定。",
-      "l9_pointer": "/cases/1/negative_cases/209",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/7",
-      "l5_rule_pointer": "/failure_rules/7",
       "expected_sha256": "bc5c3908da6d3b621a34c00a1e1f7b716fd16aca08d72d36c9a7f52e3eca03af"
     },
     {
@@ -3309,11 +2199,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_RECIPIENT_ACTIONS_UNRESOLVED",
       "rule_id": "SEC009_F01_RECIPIENT_ACTIONS_UNRESOLVED",
-      "counterexample": "recipient worker_executionのaction listに文字列以外の項目が含まれている。必須recipient actionsが未確定。",
-      "l9_pointer": "/cases/1/negative_cases/210",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/7",
-      "l5_rule_pointer": "/failure_rules/7",
       "expected_sha256": "bc5c3908da6d3b621a34c00a1e1f7b716fd16aca08d72d36c9a7f52e3eca03af"
     },
     {
@@ -3322,11 +2207,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_RECIPIENT_ACTIONS_UNRESOLVED",
       "rule_id": "SEC009_F01_RECIPIENT_ACTIONS_UNRESOLVED",
-      "counterexample": "recipient worker_executionのactionsがlistではない。必須recipient actionsが未確定。",
-      "l9_pointer": "/cases/1/negative_cases/211",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/7",
-      "l5_rule_pointer": "/failure_rules/7",
       "expected_sha256": "bc5c3908da6d3b621a34c00a1e1f7b716fd16aca08d72d36c9a7f52e3eca03af"
     },
     {
@@ -3335,11 +2215,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_RECIPIENT_ACTIONS_UNRESOLVED",
       "rule_id": "SEC009_F01_RECIPIENT_ACTIONS_UNRESOLVED",
-      "counterexample": "recipient connect_communicationのaction listで同じ項目が重複している。必須recipient actionsが未確定。",
-      "l9_pointer": "/cases/1/negative_cases/212",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/7",
-      "l5_rule_pointer": "/failure_rules/7",
       "expected_sha256": "bc5c3908da6d3b621a34c00a1e1f7b716fd16aca08d72d36c9a7f52e3eca03af"
     },
     {
@@ -3348,11 +2223,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_RECIPIENT_ACTIONS_UNRESOLVED",
       "rule_id": "SEC009_F01_RECIPIENT_ACTIONS_UNRESOLVED",
-      "counterexample": "recipient connect_communicationのaction listに文字列以外の項目が含まれている。必須recipient actionsが未確定。",
-      "l9_pointer": "/cases/1/negative_cases/213",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/7",
-      "l5_rule_pointer": "/failure_rules/7",
       "expected_sha256": "bc5c3908da6d3b621a34c00a1e1f7b716fd16aca08d72d36c9a7f52e3eca03af"
     },
     {
@@ -3361,11 +2231,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_RECIPIENT_ACTIONS_UNRESOLVED",
       "rule_id": "SEC009_F01_RECIPIENT_ACTIONS_UNRESOLVED",
-      "counterexample": "recipient connect_communicationのactionsがlistではない。必須recipient actionsが未確定。",
-      "l9_pointer": "/cases/1/negative_cases/214",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/7",
-      "l5_rule_pointer": "/failure_rules/7",
       "expected_sha256": "bc5c3908da6d3b621a34c00a1e1f7b716fd16aca08d72d36c9a7f52e3eca03af"
     },
     {
@@ -3374,11 +2239,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_RECIPIENT_ACTIONS_UNRESOLVED",
       "rule_id": "SEC009_F01_RECIPIENT_ACTIONS_UNRESOLVED",
-      "counterexample": "recipient credential_useのaction listで同じ項目が重複している。必須recipient actionsが未確定。",
-      "l9_pointer": "/cases/1/negative_cases/215",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/7",
-      "l5_rule_pointer": "/failure_rules/7",
       "expected_sha256": "bc5c3908da6d3b621a34c00a1e1f7b716fd16aca08d72d36c9a7f52e3eca03af"
     },
     {
@@ -3387,11 +2247,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_RECIPIENT_ACTIONS_UNRESOLVED",
       "rule_id": "SEC009_F01_RECIPIENT_ACTIONS_UNRESOLVED",
-      "counterexample": "recipient credential_useのaction listに文字列以外の項目が含まれている。必須recipient actionsが未確定。",
-      "l9_pointer": "/cases/1/negative_cases/216",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/7",
-      "l5_rule_pointer": "/failure_rules/7",
       "expected_sha256": "bc5c3908da6d3b621a34c00a1e1f7b716fd16aca08d72d36c9a7f52e3eca03af"
     },
     {
@@ -3400,11 +2255,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_RECIPIENT_ACTIONS_UNRESOLVED",
       "rule_id": "SEC009_F01_RECIPIENT_ACTIONS_UNRESOLVED",
-      "counterexample": "recipient credential_useのactionsがlistではない。必須recipient actionsが未確定。",
-      "l9_pointer": "/cases/1/negative_cases/217",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/7",
-      "l5_rule_pointer": "/failure_rules/7",
       "expected_sha256": "bc5c3908da6d3b621a34c00a1e1f7b716fd16aca08d72d36c9a7f52e3eca03af"
     },
     {
@@ -3413,11 +2263,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_RECIPIENT_ACTIONS_UNRESOLVED",
       "rule_id": "SEC009_F01_RECIPIENT_ACTIONS_UNRESOLVED",
-      "counterexample": "recipient artifact_accessのaction listで同じ項目が重複している。必須recipient actionsが未確定。",
-      "l9_pointer": "/cases/1/negative_cases/218",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/7",
-      "l5_rule_pointer": "/failure_rules/7",
       "expected_sha256": "bc5c3908da6d3b621a34c00a1e1f7b716fd16aca08d72d36c9a7f52e3eca03af"
     },
     {
@@ -3426,11 +2271,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_RECIPIENT_ACTIONS_UNRESOLVED",
       "rule_id": "SEC009_F01_RECIPIENT_ACTIONS_UNRESOLVED",
-      "counterexample": "recipient artifact_accessのaction listに文字列以外の項目が含まれている。必須recipient actionsが未確定。",
-      "l9_pointer": "/cases/1/negative_cases/219",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/7",
-      "l5_rule_pointer": "/failure_rules/7",
       "expected_sha256": "bc5c3908da6d3b621a34c00a1e1f7b716fd16aca08d72d36c9a7f52e3eca03af"
     },
     {
@@ -3439,11 +2279,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_RECIPIENT_ACTIONS_UNRESOLVED",
       "rule_id": "SEC009_F01_RECIPIENT_ACTIONS_UNRESOLVED",
-      "counterexample": "recipient artifact_accessのactionsがlistではない。必須recipient actionsが未確定。",
-      "l9_pointer": "/cases/1/negative_cases/220",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/7",
-      "l5_rule_pointer": "/failure_rules/7",
       "expected_sha256": "bc5c3908da6d3b621a34c00a1e1f7b716fd16aca08d72d36c9a7f52e3eca03af"
     },
     {
@@ -3458,11 +2293,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F02_ISOLATION_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F02_ISOLATION_BINDING_UNRESOLVED",
-      "counterexample": "isolationのevent_idが欠落。isolationとprior-stateの識別根拠が揃っていない。",
-      "l9_pointer": "/cases/2/negative_cases/0",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/22",
-      "l5_rule_pointer": "/failure_rules/22",
       "expected_sha256": "422431b6f3d65a684d0077ef70a7d41ec781f9e3ffed649958de1abb37dfe7b3"
     },
     {
@@ -3471,11 +2301,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F02_ISOLATION_BINDING_CONFLICT",
       "rule_id": "SEC009_F02_ISOLATION_BINDING_CONFLICT",
-      "counterexample": "isolationのevent_idが参照先と一致しない（具体値は根拠に記載されていない）。isolationの識別根拠がcontextと一致しない。",
-      "l9_pointer": "/cases/2/negative_cases/1",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/23",
-      "l5_rule_pointer": "/failure_rules/23",
       "expected_sha256": "db6cfb52020a9190a671bad06f6368760e719175e284820364136d0d8a5a6f89"
     },
     {
@@ -3484,11 +2309,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F02_ISOLATION_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F02_ISOLATION_BINDING_UNRESOLVED",
-      "counterexample": "isolationのrevisionが欠落。isolationとprior-stateの識別根拠が揃っていない。",
-      "l9_pointer": "/cases/2/negative_cases/2",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/22",
-      "l5_rule_pointer": "/failure_rules/22",
       "expected_sha256": "422431b6f3d65a684d0077ef70a7d41ec781f9e3ffed649958de1abb37dfe7b3"
     },
     {
@@ -3497,11 +2317,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F02_ISOLATION_BINDING_CONFLICT",
       "rule_id": "SEC009_F02_ISOLATION_BINDING_CONFLICT",
-      "counterexample": "isolationのrevisionが参照先と一致しない（具体値は根拠に記載されていない）。isolationの識別根拠がcontextと一致しない。",
-      "l9_pointer": "/cases/2/negative_cases/3",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/23",
-      "l5_rule_pointer": "/failure_rules/23",
       "expected_sha256": "db6cfb52020a9190a671bad06f6368760e719175e284820364136d0d8a5a6f89"
     },
     {
@@ -3510,11 +2325,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F02_ISOLATION_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F02_ISOLATION_BINDING_UNRESOLVED",
-      "counterexample": "isolationのscopeが欠落。isolationとprior-stateの識別根拠が揃っていない。",
-      "l9_pointer": "/cases/2/negative_cases/4",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/22",
-      "l5_rule_pointer": "/failure_rules/22",
       "expected_sha256": "422431b6f3d65a684d0077ef70a7d41ec781f9e3ffed649958de1abb37dfe7b3"
     },
     {
@@ -3523,11 +2333,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F02_ISOLATION_BINDING_CONFLICT",
       "rule_id": "SEC009_F02_ISOLATION_BINDING_CONFLICT",
-      "counterexample": "isolationのscopeが参照先と一致しない（具体値は根拠に記載されていない）。isolationの識別根拠がcontextと一致しない。",
-      "l9_pointer": "/cases/2/negative_cases/5",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/23",
-      "l5_rule_pointer": "/failure_rules/23",
       "expected_sha256": "db6cfb52020a9190a671bad06f6368760e719175e284820364136d0d8a5a6f89"
     },
     {
@@ -3536,11 +2341,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F02_ISOLATION_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F02_ISOLATION_BINDING_UNRESOLVED",
-      "counterexample": "isolationのoperationが欠落。isolationとprior-stateの識別根拠が揃っていない。",
-      "l9_pointer": "/cases/2/negative_cases/6",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/22",
-      "l5_rule_pointer": "/failure_rules/22",
       "expected_sha256": "422431b6f3d65a684d0077ef70a7d41ec781f9e3ffed649958de1abb37dfe7b3"
     },
     {
@@ -3549,11 +2349,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F02_ISOLATION_BINDING_CONFLICT",
       "rule_id": "SEC009_F02_ISOLATION_BINDING_CONFLICT",
-      "counterexample": "isolationのoperationが参照先と一致しない（具体値は根拠に記載されていない）。isolationの識別根拠がcontextと一致しない。",
-      "l9_pointer": "/cases/2/negative_cases/7",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/23",
-      "l5_rule_pointer": "/failure_rules/23",
       "expected_sha256": "db6cfb52020a9190a671bad06f6368760e719175e284820364136d0d8a5a6f89"
     },
     {
@@ -3562,11 +2357,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F02_ISOLATION_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F02_ISOLATION_BINDING_UNRESOLVED",
-      "counterexample": "isolationのprojectが欠落。isolationとprior-stateの識別根拠が揃っていない。",
-      "l9_pointer": "/cases/2/negative_cases/8",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/22",
-      "l5_rule_pointer": "/failure_rules/22",
       "expected_sha256": "422431b6f3d65a684d0077ef70a7d41ec781f9e3ffed649958de1abb37dfe7b3"
     },
     {
@@ -3575,11 +2365,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F02_ISOLATION_BINDING_CONFLICT",
       "rule_id": "SEC009_F02_ISOLATION_BINDING_CONFLICT",
-      "counterexample": "isolationのprojectが参照先と一致しない（具体値は根拠に記載されていない）。isolationの識別根拠がcontextと一致しない。",
-      "l9_pointer": "/cases/2/negative_cases/9",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/23",
-      "l5_rule_pointer": "/failure_rules/23",
       "expected_sha256": "db6cfb52020a9190a671bad06f6368760e719175e284820364136d0d8a5a6f89"
     },
     {
@@ -3588,11 +2373,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F02_ISOLATION_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F02_ISOLATION_BINDING_UNRESOLVED",
-      "counterexample": "isolationのsource refが欠落。isolationとprior-stateの識別根拠が揃っていない。",
-      "l9_pointer": "/cases/2/negative_cases/10",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/22",
-      "l5_rule_pointer": "/failure_rules/22",
       "expected_sha256": "422431b6f3d65a684d0077ef70a7d41ec781f9e3ffed649958de1abb37dfe7b3"
     },
     {
@@ -3601,11 +2381,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F02_ISOLATION_BINDING_CONFLICT",
       "rule_id": "SEC009_F02_ISOLATION_BINDING_CONFLICT",
-      "counterexample": "isolationのsource refが参照先と一致しない（具体値は根拠に記載されていない）。isolationの識別根拠がcontextと一致しない。",
-      "l9_pointer": "/cases/2/negative_cases/11",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/23",
-      "l5_rule_pointer": "/failure_rules/23",
       "expected_sha256": "db6cfb52020a9190a671bad06f6368760e719175e284820364136d0d8a5a6f89"
     },
     {
@@ -3614,11 +2389,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F02_ISOLATION_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F02_ISOLATION_BINDING_UNRESOLVED",
-      "counterexample": "isolationのbefore-state refが欠落。isolationとprior-stateの識別根拠が揃っていない。",
-      "l9_pointer": "/cases/2/negative_cases/12",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/22",
-      "l5_rule_pointer": "/failure_rules/22",
       "expected_sha256": "422431b6f3d65a684d0077ef70a7d41ec781f9e3ffed649958de1abb37dfe7b3"
     },
     {
@@ -3627,11 +2397,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F02_ISOLATION_BINDING_CONFLICT",
       "rule_id": "SEC009_F02_ISOLATION_BINDING_CONFLICT",
-      "counterexample": "isolationのbefore-state refが参照先と一致しない（具体値は根拠に記載されていない）。isolationの識別根拠がcontextと一致しない。",
-      "l9_pointer": "/cases/2/negative_cases/13",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/23",
-      "l5_rule_pointer": "/failure_rules/23",
       "expected_sha256": "db6cfb52020a9190a671bad06f6368760e719175e284820364136d0d8a5a6f89"
     },
     {
@@ -3640,11 +2405,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F02_ISOLATION_UNRESOLVED",
       "rule_id": "SEC009_F02_ISOLATION_UNRESOLVED",
-      "counterexample": "isolationのstateがunknown。isolationの完了状態を確認できない。",
-      "l9_pointer": "/cases/2/negative_cases/14",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/24",
-      "l5_rule_pointer": "/failure_rules/24",
       "expected_sha256": "96ded60f65013be0dd0dda1ed439d1a53180c2fc4981c01817d607bb9950721c"
     },
     {
@@ -3653,11 +2413,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F02_ISOLATION_NOT_APPLIED",
       "rule_id": "SEC009_F02_ISOLATION_NOT_APPLIED",
-      "counterexample": "isolationのstateが隔離されていない。影響対象scopeが隔離されていない。",
-      "l9_pointer": "/cases/2/negative_cases/15",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/25",
-      "l5_rule_pointer": "/failure_rules/25",
       "expected_sha256": "024aeedb1c617bf684bb130ae284f776a824787a101bd63c7703475f2c03c2d0"
     },
     {
@@ -3666,11 +2421,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F02_ISOLATION_UNRESOLVED",
       "rule_id": "SEC009_F02_ISOLATION_UNRESOLVED",
-      "counterexample": "isolationのstateは計画段階にとどまる。isolationの完了状態を確認できない。",
-      "l9_pointer": "/cases/2/negative_cases/16",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/24",
-      "l5_rule_pointer": "/failure_rules/24",
       "expected_sha256": "96ded60f65013be0dd0dda1ed439d1a53180c2fc4981c01817d607bb9950721c"
     },
     {
@@ -3679,11 +2429,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F02_RECOVERY_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F02_RECOVERY_BINDING_UNRESOLVED",
-      "counterexample": "recoveryのevent_idが欠落。recoveryと復元後stateの識別根拠が揃っていない。",
-      "l9_pointer": "/cases/2/negative_cases/17",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/26",
-      "l5_rule_pointer": "/failure_rules/26",
       "expected_sha256": "b9491c0b8703d29931f7d871f421523ad4b79e4b1e01b4506feee640b50ea5a7"
     },
     {
@@ -3692,11 +2437,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F02_RECOVERY_BINDING_CONFLICT",
       "rule_id": "SEC009_F02_RECOVERY_BINDING_CONFLICT",
-      "counterexample": "recoveryのevent_idが参照先と一致しない（具体値は根拠に記載されていない）。recoveryの識別根拠がcontextと一致しない。",
-      "l9_pointer": "/cases/2/negative_cases/18",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/27",
-      "l5_rule_pointer": "/failure_rules/27",
       "expected_sha256": "36dec4f791b5403059208b62f19148daba8302abd36f82930792a3eb86bf0224"
     },
     {
@@ -3705,11 +2445,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F02_RECOVERY_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F02_RECOVERY_BINDING_UNRESOLVED",
-      "counterexample": "recoveryのrevisionが欠落。recoveryと復元後stateの識別根拠が揃っていない。",
-      "l9_pointer": "/cases/2/negative_cases/19",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/26",
-      "l5_rule_pointer": "/failure_rules/26",
       "expected_sha256": "b9491c0b8703d29931f7d871f421523ad4b79e4b1e01b4506feee640b50ea5a7"
     },
     {
@@ -3718,11 +2453,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F02_RECOVERY_BINDING_CONFLICT",
       "rule_id": "SEC009_F02_RECOVERY_BINDING_CONFLICT",
-      "counterexample": "recoveryのrevisionが参照先と一致しない（具体値は根拠に記載されていない）。recoveryの識別根拠がcontextと一致しない。",
-      "l9_pointer": "/cases/2/negative_cases/20",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/27",
-      "l5_rule_pointer": "/failure_rules/27",
       "expected_sha256": "36dec4f791b5403059208b62f19148daba8302abd36f82930792a3eb86bf0224"
     },
     {
@@ -3731,11 +2461,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F02_RECOVERY_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F02_RECOVERY_BINDING_UNRESOLVED",
-      "counterexample": "recoveryのscopeが欠落。recoveryと復元後stateの識別根拠が揃っていない。",
-      "l9_pointer": "/cases/2/negative_cases/21",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/26",
-      "l5_rule_pointer": "/failure_rules/26",
       "expected_sha256": "b9491c0b8703d29931f7d871f421523ad4b79e4b1e01b4506feee640b50ea5a7"
     },
     {
@@ -3744,11 +2469,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F02_RECOVERY_BINDING_CONFLICT",
       "rule_id": "SEC009_F02_RECOVERY_BINDING_CONFLICT",
-      "counterexample": "recoveryのscopeが参照先と一致しない（具体値は根拠に記載されていない）。recoveryの識別根拠がcontextと一致しない。",
-      "l9_pointer": "/cases/2/negative_cases/22",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/27",
-      "l5_rule_pointer": "/failure_rules/27",
       "expected_sha256": "36dec4f791b5403059208b62f19148daba8302abd36f82930792a3eb86bf0224"
     },
     {
@@ -3757,11 +2477,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F02_RECOVERY_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F02_RECOVERY_BINDING_UNRESOLVED",
-      "counterexample": "recoveryのoperationが欠落。recoveryと復元後stateの識別根拠が揃っていない。",
-      "l9_pointer": "/cases/2/negative_cases/23",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/26",
-      "l5_rule_pointer": "/failure_rules/26",
       "expected_sha256": "b9491c0b8703d29931f7d871f421523ad4b79e4b1e01b4506feee640b50ea5a7"
     },
     {
@@ -3770,11 +2485,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F02_RECOVERY_BINDING_CONFLICT",
       "rule_id": "SEC009_F02_RECOVERY_BINDING_CONFLICT",
-      "counterexample": "recoveryのoperationが参照先と一致しない（具体値は根拠に記載されていない）。recoveryの識別根拠がcontextと一致しない。",
-      "l9_pointer": "/cases/2/negative_cases/24",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/27",
-      "l5_rule_pointer": "/failure_rules/27",
       "expected_sha256": "36dec4f791b5403059208b62f19148daba8302abd36f82930792a3eb86bf0224"
     },
     {
@@ -3783,11 +2493,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F02_RECOVERY_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F02_RECOVERY_BINDING_UNRESOLVED",
-      "counterexample": "recoveryのprojectが欠落。recoveryと復元後stateの識別根拠が揃っていない。",
-      "l9_pointer": "/cases/2/negative_cases/25",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/26",
-      "l5_rule_pointer": "/failure_rules/26",
       "expected_sha256": "b9491c0b8703d29931f7d871f421523ad4b79e4b1e01b4506feee640b50ea5a7"
     },
     {
@@ -3796,11 +2501,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F02_RECOVERY_BINDING_CONFLICT",
       "rule_id": "SEC009_F02_RECOVERY_BINDING_CONFLICT",
-      "counterexample": "recoveryのprojectが参照先と一致しない（具体値は根拠に記載されていない）。recoveryの識別根拠がcontextと一致しない。",
-      "l9_pointer": "/cases/2/negative_cases/26",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/27",
-      "l5_rule_pointer": "/failure_rules/27",
       "expected_sha256": "36dec4f791b5403059208b62f19148daba8302abd36f82930792a3eb86bf0224"
     },
     {
@@ -3809,11 +2509,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F02_RECOVERY_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F02_RECOVERY_BINDING_UNRESOLVED",
-      "counterexample": "recoveryのsource refが欠落。recoveryと復元後stateの識別根拠が揃っていない。",
-      "l9_pointer": "/cases/2/negative_cases/27",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/26",
-      "l5_rule_pointer": "/failure_rules/26",
       "expected_sha256": "b9491c0b8703d29931f7d871f421523ad4b79e4b1e01b4506feee640b50ea5a7"
     },
     {
@@ -3822,11 +2517,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F02_RECOVERY_BINDING_CONFLICT",
       "rule_id": "SEC009_F02_RECOVERY_BINDING_CONFLICT",
-      "counterexample": "recoveryのsource refが参照先と一致しない（具体値は根拠に記載されていない）。recoveryの識別根拠がcontextと一致しない。",
-      "l9_pointer": "/cases/2/negative_cases/28",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/27",
-      "l5_rule_pointer": "/failure_rules/27",
       "expected_sha256": "36dec4f791b5403059208b62f19148daba8302abd36f82930792a3eb86bf0224"
     },
     {
@@ -3835,11 +2525,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F02_RECOVERY_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F02_RECOVERY_BINDING_UNRESOLVED",
-      "counterexample": "recoveryのrestored-state refが欠落。recoveryと復元後stateの識別根拠が揃っていない。",
-      "l9_pointer": "/cases/2/negative_cases/29",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/26",
-      "l5_rule_pointer": "/failure_rules/26",
       "expected_sha256": "b9491c0b8703d29931f7d871f421523ad4b79e4b1e01b4506feee640b50ea5a7"
     },
     {
@@ -3848,11 +2533,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F02_RECOVERY_BINDING_CONFLICT",
       "rule_id": "SEC009_F02_RECOVERY_BINDING_CONFLICT",
-      "counterexample": "recoveryのrestored-state refが参照先と一致しない（具体値は根拠に記載されていない）。recoveryの識別根拠がcontextと一致しない。",
-      "l9_pointer": "/cases/2/negative_cases/30",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/27",
-      "l5_rule_pointer": "/failure_rules/27",
       "expected_sha256": "36dec4f791b5403059208b62f19148daba8302abd36f82930792a3eb86bf0224"
     },
     {
@@ -3861,11 +2541,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F02_RECOVERY_UNRESOLVED",
       "rule_id": "SEC009_F02_RECOVERY_UNRESOLVED",
-      "counterexample": "recoveryのstateがunknown。prior stateへのrecoveryを確認できない。",
-      "l9_pointer": "/cases/2/negative_cases/31",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/28",
-      "l5_rule_pointer": "/failure_rules/28",
       "expected_sha256": "545a5c65a7eb10688863a507b8a2c3855bc68caf8deea4ca06616c0b17931a42"
     },
     {
@@ -3874,11 +2549,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F02_RECOVERY_INCOMPLETE",
       "rule_id": "SEC009_F02_RECOVERY_INCOMPLETE",
-      "counterexample": "recoveryのstateは一部のみ完了している。prior stateへのrecoveryが完了していない。",
-      "l9_pointer": "/cases/2/negative_cases/32",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/29",
-      "l5_rule_pointer": "/failure_rules/29",
       "expected_sha256": "439ff82d48466e36685fc5eb176483c9fc674ff6010b6d40f5564e2533e3f31c"
     },
     {
@@ -3887,11 +2557,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F02_RECOVERY_UNRESOLVED",
       "rule_id": "SEC009_F02_RECOVERY_UNRESOLVED",
-      "counterexample": "recoveryのstateは計画段階にとどまる。prior stateへのrecoveryを確認できない。",
-      "l9_pointer": "/cases/2/negative_cases/33",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/28",
-      "l5_rule_pointer": "/failure_rules/28",
       "expected_sha256": "545a5c65a7eb10688863a507b8a2c3855bc68caf8deea4ca06616c0b17931a42"
     },
     {
@@ -3900,11 +2565,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F02_GLOBAL_STOP_EXPANSION",
       "rule_id": "SEC009_F02_GLOBAL_STOP_EXPANSION",
-      "counterexample": "policyのall_scopes_stop_requestedがtrueで、影響対象scopeの外まで停止要求が広がっている。",
-      "l9_pointer": "/cases/2/negative_cases/34",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/21",
-      "l5_rule_pointer": "/failure_rules/21",
       "expected_sha256": "46f7ccf2fbc2c8f9f902f05bcb4216939f1671f94fd2fb47fa7a7758477996b2"
     },
     {
@@ -3913,11 +2573,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F02_TRIGGER_CATEGORY_UNRESOLVED",
       "rule_id": "SEC009_F02_TRIGGER_CATEGORY_UNRESOLVED",
-      "counterexample": "event。category:がunknown。safety/general trigger categoryを確定できない。",
-      "l9_pointer": "/cases/2/negative_cases/35",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/18",
-      "l5_rule_pointer": "/failure_rules/18",
       "expected_sha256": "56e88243edddfb1d8d4887a71e624002f39c345d877cd683884155a852564a28"
     },
     {
@@ -3926,11 +2581,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F02_TRIGGER_CATEGORY_CONFLICT",
       "rule_id": "SEC009_F02_TRIGGER_CATEGORY_CONFLICT",
-      "counterexample": "event.categoryが参照先と一致せず、期待categoryとも異なる。",
-      "l9_pointer": "/cases/2/negative_cases/36",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/19",
-      "l5_rule_pointer": "/failure_rules/19",
       "expected_sha256": "488bbffbab1bfb22930c1208993d333cddcfe9c275f553cffe21e419379efd57"
     },
     {
@@ -3939,11 +2589,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F02_GLOBAL_STOP_EXPANSION",
       "rule_id": "SEC009_F02_GLOBAL_STOP_EXPANSION",
-      "counterexample": "general-meaning policy scopeが無関係なscopeの停止を求めており、stop要求に対象外scopeが含まれている。",
-      "l9_pointer": "/cases/2/negative_cases/37",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/21",
-      "l5_rule_pointer": "/failure_rules/21",
       "expected_sha256": "46f7ccf2fbc2c8f9f902f05bcb4216939f1671f94fd2fb47fa7a7758477996b2"
     },
     {
@@ -3952,11 +2597,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F02_TRIGGER_CATEGORY_UNRESOLVED",
       "rule_id": "SEC009_F02_TRIGGER_CATEGORY_UNRESOLVED",
-      "counterexample": "event。expected_category:が欠落。safety/general trigger categoryを確定できない。",
-      "l9_pointer": "/cases/2/negative_cases/38",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/18",
-      "l5_rule_pointer": "/failure_rules/18",
       "expected_sha256": "56e88243edddfb1d8d4887a71e624002f39c345d877cd683884155a852564a28"
     },
     {
@@ -3965,11 +2605,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F02_TRIGGER_CATEGORY_CONFLICT",
       "rule_id": "SEC009_F02_TRIGGER_CATEGORY_CONFLICT",
-      "counterexample": "event categoryの一般的な主張が期待する安全上の意味と一致しない。event categoryが期待categoryと一致しない。",
-      "l9_pointer": "/cases/2/negative_cases/39",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/19",
-      "l5_rule_pointer": "/failure_rules/19",
       "expected_sha256": "488bbffbab1bfb22930c1208993d333cddcfe9c275f553cffe21e419379efd57"
     },
     {
@@ -3978,11 +2613,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F02_STOP_SCOPE_UNRESOLVED",
       "rule_id": "SEC009_F02_STOP_SCOPE_UNRESOLVED",
-      "counterexample": "safety policyのstop scopeがnullのため、局所的なstop scopeを確定できない。",
-      "l9_pointer": "/cases/2/negative_cases/41",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/20",
-      "l5_rule_pointer": "/failure_rules/20",
       "expected_sha256": "c891d3977ce13c0ca820de406bf94af10d0ba24d13932e13b883c55d3a5992f4"
     },
     {
@@ -3991,11 +2621,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F02_STOP_SCOPE_UNRESOLVED",
       "rule_id": "SEC009_F02_STOP_SCOPE_UNRESOLVED",
-      "counterexample": "general-meaning stop scopeがnullのため、局所的なstop scopeを確定できない。",
-      "l9_pointer": "/cases/2/negative_cases/42",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/20",
-      "l5_rule_pointer": "/failure_rules/20",
       "expected_sha256": "c891d3977ce13c0ca820de406bf94af10d0ba24d13932e13b883c55d3a5992f4"
     },
     {
@@ -4004,11 +2629,6 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_RECIPIENT_COMPOSITE_FINDINGS",
       "rule_id": "SEC009_F01_RECIPIENT_COMPOSITE_FINDINGS",
-      "counterexample": "適用・recovery後のrecipient結果のworkerが継続。credential停止は未適用。OS receiptはunknown。workerが継続, credential停止が未適用, OS receipt isがunknown。",
-      "l9_pointer": "/cases/1/negative_cases/205",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/30",
-      "l5_rule_pointer": "/failure_rules/30",
       "expected_sha256": "b593bf333e909509879540c24d0468166894dce57e9f7ce4f354e6cf1567b126"
     },
     {
@@ -4017,23 +2637,9 @@
       "population_state": "negative",
       "class_id": "SEC009_F02_ISOLATION_RECOVERY_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F02_ISOLATION_RECOVERY_BINDING_UNRESOLVED",
-      "counterexample": "shared isolation/recovery before-state source:が欠落。prior-state sourceが欠けているためisolationとrecoveryを確定できない。",
-      "l9_pointer": "/cases/2/negative_cases/40",
-      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
-      "l4_class_pointer": "/failure_classifications/31",
-      "l5_rule_pointer": "/failure_rules/31",
       "expected_sha256": "ecee8ca83ff8c06221e68a8d6e763b3733c7e4f308f657937536abaddd10a606"
     }
   ],
-  "negative_source_review": {
-    "summary": "Each negative L9 nested source pointer was resolved individually. Every `given` object contains only the shared evidence_limit notice; no concrete field values or paired conflicting values are present. Counterexamples therefore state the source ID's missing/conflict dimension plus the L4 class meaning, and conflict rows explicitly avoid inventing values.",
-    "negative_case_count": 277,
-    "distinct_given_hashes": 1,
-    "given_hash_counts": {
-      "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68": 277
-    },
-    "case_id_and_pointer_are_in_row_audit": true
-  },
   "positive_source_review": {
     "summary": "No positive expected values were copied from L9 expected_proposal. The eight current L9 source cases provide only the shared evidence_limit input field; no case-specific input facts support independent expected/preserved values under the cited L3/L10/L4 contracts.",
     "contract_oracle": "HELIXSECURITY-L10-009-B01 is resolved at contract level; individual oracle_id is null for each U-ID.",
