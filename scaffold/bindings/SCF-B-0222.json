@@ -111,7 +111,9 @@
     "scaffold/research/wr259-naming-l9-slim-20261101/evidence/validation-results-r9.json",
     "scaffold/research/wr259-naming-l9-slim-20261101/evidence/merge-overlay-check-child-r7.json",
     "scaffold/research/wr259-naming-l9-slim-20261101/evidence/evidence-history-index-r2.json",
-    "scaffold/research/wr259-naming-l9-slim-20261101/evidence/evidence-history-index-r3.json"
+    "scaffold/research/wr259-naming-l9-slim-20261101/evidence/evidence-history-index-r3.json",
+    "scaffold/research/wr259-naming-l9-slim-20261101/evidence/validation-results-r10.json",
+    "scaffold/research/wr259-naming-l9-slim-20261101/evidence/merge-overlay-check-child-r8.json"
   ],
   "verification": {
     "evidence_kind": "scaffold",
