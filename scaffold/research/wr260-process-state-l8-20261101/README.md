@@ -18,7 +18,7 @@ L5の公開関数7件、L9 branch 7件と既存canonical listを維持した。3
 
 起点はIssue #3510、PR #4006のdigest/repr指摘、PR #4002の重複、PR #3998の行別意味・期待確認である。旧HELIXの対応箇所`archive/legacy-generation-2026-09-14/root/docs/governance/ddd-tdd-rules.md:21-33,112-121`を読み、公開契約とfailure semanticsを先に固定し、複雑さを減らせるか記録する点を参照した。旧sourceのtest、fixture、oracleは現行へ持ち込んでいない。
 
-L4↔L9 pairとL5↔L8 pairはそれぞれ7対7でpassし、4way成立を意味しない。`check-child`のnegative 4wayは223 failuresで、依頼記録上の従前223件から変化なしだった。属性別は`presence` 216件、`negative_case_count` 7件。層別行数はL4=34、L8=34、L5=34、L9=182。件数差や未対応caseが残るため、34行追加による失敗減少は主張しない。最新main overlay上の現在測定は[`verification-summary-r6.json`](verification-summary-r6.json)に記録した。失敗行IDはr5とr6で一致することを確認し、巨大な residual 一覧は複写していない。
+L4↔L9 pairとL5↔L8 pairはそれぞれ7対7でpassし、4way成立を意味しない。`check-child`のnegative 4wayは223 failuresで、依頼記録上の従前223件から変化なしだった。属性別は`presence` 216件、`negative_case_count` 7件。層別行数はL4=34、L8=34、L5=34、L9=182。件数差や未対応caseが残るため、34行追加による失敗減少は主張しない。最新main overlay上の現在測定は[`verification-summary-r6.json`](verification-summary-r6.json)に記録した。失敗行IDは、git履歴から復元できるr5とr6で一致することを確認し、巨大な residual 一覧は複写していない。
 
 source groupの実数は305 map entry。従前の332はrule stringの27文字を行として数えた誤りだったため、L8のinventoryに訂正根拠を残した。L8入力に対応する現行L9 pointerは209件で、6件は根拠がなく未対応のまま保持した。
 
@@ -26,4 +26,4 @@ source groupの実数は305 map entry。従前の332はrule stringの27文字を
 
 `validate_process_state_l8.py`は固定baseとの行別意味差分、識別子、条件文、owner、参照、空期待・patch/full-return形、壊れたpointer、負例根拠を調べる静的validatorである。unit条件はID suffixをそのまま表示せず、基準行の入力事情を日本語で表す。source-binding conditionにoperation/pathレシピが残らないことも検査する。既定では記録ファイルを書かず、`--record PATH`指定時も新規pathをexclusive-createする。origin/main `151713275e2c2aa65bb23a8fe38eb63c46d570c8` overlayでvalidatorは全検査pass。`design_verification_checker.py check-child`では両pair、4層pin、ownership capがpassし、negative 4wayは上記223 failures。`scfctl validate`は207 bindings / fail 0、`scfctl stale`はstale 0。旧CLI、hook、runtime、CIは起動していない。
 
-`verification-summary.json`、`verification-summary-r2.json`〜`verification-summary-r5.json`は前段候補・前回overlayの測定として不変の履歴に保持する。現候補の再検収は`verification-summary-r6.json`を参照する。L8を参照するSCF-B-0186/0188/0202/0223は最終L8 SHAをstale検出用pinとして持ち、直前のpin hashを注記に履歴として残した。
+現treeには現行測定の`verification-summary-r6.json`だけを置く。先行snapshot `verification-summary.json`、`verification-summary-r2.json`〜`verification-summary-r5.json`は、重複する測定本文を並置しないようtreeから除いた。各snapshotのcommit、blob ID、本文SHA-256、byte数と復元方法は[`verification-summary-disposition.json`](verification-summary-disposition.json)に記録しており、Git履歴から別名へ正確に復元できる。元のGit objectは変更・破棄していない。L8を参照するSCF-B-0186/0188/0202/0223は最終L8 SHAをstale検出用pinとして持ち、直前のpin hashを注記に履歴として残した。
