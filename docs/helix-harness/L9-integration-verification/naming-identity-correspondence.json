@@ -411,2686 +411,825 @@
       "l4_ref": "HARNESS-L4-048-F01",
       "requirement_ref": "HARNESS-L3-048-F01",
       "system_oracle_ref": "HARNESS-L10-048-F01",
-      "approved_l10": {
-        "id": "HARNESS-L10-048-F01",
-        "parent": "HARNESS-L2-048",
-        "title": "対象と役割からの命名",
-        "requirement_ref": "HARNESS-L3-048-F01",
-        "positive_input": "同じ名称で役割が異なる対象、曖昧名称で根拠あり/なしを比較する。",
-        "expected_observation": "対象と宣言役割の意味が辿れ、曖昧名の理由/例外を確認できる。",
-        "negative_input": "文字列類似で役割推測、Managerを無根拠許可。",
-        "failure_observation": "根拠不足を対象作成側へ返し、語彙の存在を命名decisionにしない。",
-        "execution_state": "not_executed"
-      },
       "connection_scope": "独立原内容→当該pure照合→対象別結果/候補/返却。実BRAIN/製品resolver/OS運転は未binding。",
-      "concrete_cases": [
+      "execution_state": "not_executed",
+      "effect": "none",
+      "system_oracle_allowlist": [
         {
+          "oracle_number": "L9-SYSTEM-ORACLE-01",
           "id": "H048-F01-SAME-NAME-DIFFERENT-ROLE",
           "requirement_ref": "HARNESS-L3-048-F01",
           "system_oracle_ref": "HARNESS-L10-048-F01",
           "l4_ref": "HARNESS-L4-048-F01",
-          "independent_source_packet": {
-            "ref": {
-              "identity": "SOURCE-H048-F01-SAME-NAME-DIFFERENT-ROLE",
-              "revision": "fixture-content-96728e55739a925b15853a1c293ff578810a289f51ede567599ef1a13c1f78e1",
-              "scope": "PRODUCT-P",
-              "owner": "synthetic-fixture-owner"
-            },
-            "raw_utf8": "{\"evaluation_date\":\"2030-01-01\",\"role_vocabulary\":[\"Entity\",\"ValueObject\",\"Aggregate\",\"DomainService\",\"Policy\",\"Specification\",\"Command\",\"Query\",\"DomainEvent\",\"Receipt\",\"Port\",\"Adapter\",\"Repository\"],\"targets\":[{\"consumers\":[\"C1\"],\"declared_role\":\"Query\",\"exception\":null,\"id\":\"OBJ-P\",\"meaning\":\"値の照会\",\"name\":\"lookup\",\"role_basis\":\"読み取り操作\"},{\"consumers\":[\"C2\"],\"declared_role\":\"Repository\",\"exception\":null,\"id\":\"OBJ-R\",\"meaning\":\"永続objectの取得\",\"name\":\"lookup\",\"role_basis\":\"永続化境界\"}]}",
-            "sha256": "96728e55739a925b15853a1c293ff578810a289f51ede567599ef1a13c1f78e1",
-            "qualification": "synthetic_fixture_only_no_actual_source_qualification"
-          },
-          "expected_material": {
-            "target_results": {
-              "OBJ-P": "candidate_only:Query",
-              "OBJ-R": "candidate_only:Repository"
-            },
-            "canonical_decided_here": false,
-            "unaffected_Q": "original_Q",
-            "effects": {
-              "actual_rename": false,
-              "actual_DesignRefactor": false,
-              "actual_CI": false,
-              "actual_merge": false,
-              "actual_authority": false,
-              "actual_design_complete": false,
-              "actual_acceptance": false
-            }
-          },
-          "basis": "同じ文字列を同じ役割へ統合せず、宣言/原意味を使う。",
-          "execution_state": "not_executed",
-          "effect": "none"
+          "condition": "OBJ-Pは役割根拠とconsumerを持つQuery、同じnameのOBJ-RはRepositoryとして別role。",
+          "oracle_property": "同じ文字列を同じ役割へ統合せず、宣言/原意味を使う。",
+          "expected_observation": "OBJ-P=candidate_only:Query.",
+          "return_targets": [],
+          "execution_state": "not_executed"
         },
         {
+          "oracle_number": "L9-SYSTEM-ORACLE-02",
           "id": "H048-F01-LEXICAL-GUESS",
           "requirement_ref": "HARNESS-L3-048-F01",
           "system_oracle_ref": "HARNESS-L10-048-F01",
           "l4_ref": "HARNESS-L4-048-F01",
-          "independent_source_packet": {
-            "ref": {
-              "identity": "SOURCE-H048-F01-LEXICAL-GUESS",
-              "revision": "fixture-content-d8147aae911b7793f6c9543156b95e7ff325f8ec6bac13afd217fdafd5d2d0eb",
-              "scope": "PRODUCT-P",
-              "owner": "synthetic-fixture-owner"
-            },
-            "raw_utf8": "{\"evaluation_date\":\"2030-01-01\",\"role_vocabulary\":[\"Entity\",\"ValueObject\",\"Aggregate\",\"DomainService\",\"Policy\",\"Specification\",\"Command\",\"Query\",\"DomainEvent\",\"Receipt\",\"Port\",\"Adapter\",\"Repository\"],\"targets\":[{\"consumers\":[\"C1\"],\"declared_role\":null,\"exception\":null,\"id\":\"OBJ-P\",\"meaning\":\"値の照会\",\"name\":\"Manager\",\"role_basis\":\"読み取り操作\"},{\"consumers\":[\"C2\"],\"declared_role\":\"Repository\",\"exception\":null,\"id\":\"OBJ-R\",\"meaning\":\"永続objectの取得\",\"name\":\"lookup\",\"role_basis\":\"永続化境界\"}]}",
-            "sha256": "d8147aae911b7793f6c9543156b95e7ff325f8ec6bac13afd217fdafd5d2d0eb",
-            "qualification": "synthetic_fixture_only_no_actual_source_qualification"
-          },
-          "expected_material": {
-            "target_results": {
-              "OBJ-P": "unknown_role",
-              "OBJ-R": "candidate_only:Repository"
-            },
-            "canonical_decided_here": false,
-            "unaffected_Q": "original_Q",
-            "effects": {
-              "actual_rename": false,
-              "actual_DesignRefactor": false,
-              "actual_CI": false,
-              "actual_merge": false,
-              "actual_authority": false,
-              "actual_design_complete": false,
-              "actual_acceptance": false
-            }
-          },
-          "basis": "対象Pだけを作成側へ返す。Rの別役割候補は保持。",
-          "execution_state": "not_executed",
-          "effect": "none"
+          "condition": "OBJ-Pの宣言roleが欠落。名称だけではroleを確定しない。",
+          "oracle_property": "対象Pだけを作成側へ返す。Rの別役割候補は保持。",
+          "expected_observation": "OBJ-P=unknown_role.",
+          "return_targets": [
+            "対象作成側"
+          ],
+          "execution_state": "not_executed"
         },
         {
+          "oracle_number": "L9-SYSTEM-ORACLE-03",
           "id": "H048-F01-NO-BASIS-MANAGER",
           "requirement_ref": "HARNESS-L3-048-F01",
           "system_oracle_ref": "HARNESS-L10-048-F01",
           "l4_ref": "HARNESS-L4-048-F01",
-          "independent_source_packet": {
-            "ref": {
-              "identity": "SOURCE-H048-F01-NO-BASIS-MANAGER",
-              "revision": "fixture-content-74acc3ba3da834dec2e0f453336c3e62441d7d5b25401e1bba42a5777a540339",
-              "scope": "PRODUCT-P",
-              "owner": "synthetic-fixture-owner"
-            },
-            "raw_utf8": "{\"evaluation_date\":\"2030-01-01\",\"role_vocabulary\":[\"Entity\",\"ValueObject\",\"Aggregate\",\"DomainService\",\"Policy\",\"Specification\",\"Command\",\"Query\",\"DomainEvent\",\"Receipt\",\"Port\",\"Adapter\",\"Repository\"],\"targets\":[{\"consumers\":[\"C1\"],\"declared_role\":\"Query\",\"exception\":null,\"id\":\"OBJ-P\",\"meaning\":\"値の照会\",\"name\":\"Manager\",\"role_basis\":null},{\"consumers\":[\"C2\"],\"declared_role\":\"Repository\",\"exception\":null,\"id\":\"OBJ-R\",\"meaning\":\"永続objectの取得\",\"name\":\"lookup\",\"role_basis\":\"永続化境界\"}]}",
-            "sha256": "74acc3ba3da834dec2e0f453336c3e62441d7d5b25401e1bba42a5777a540339",
-            "qualification": "synthetic_fixture_only_no_actual_source_qualification"
-          },
-          "expected_material": {
-            "target_results": {
-              "OBJ-P": "missing_basis",
-              "OBJ-R": "candidate_only:Repository"
-            },
-            "canonical_decided_here": false,
-            "unaffected_Q": "original_Q",
-            "effects": {
-              "actual_rename": false,
-              "actual_DesignRefactor": false,
-              "actual_CI": false,
-              "actual_merge": false,
-              "actual_authority": false,
-              "actual_design_complete": false,
-              "actual_acceptance": false
-            }
-          },
-          "basis": "対象Pだけを作成側へ返す。Rの別役割候補は保持。",
-          "execution_state": "not_executed",
-          "effect": "none"
+          "condition": "OBJ-Pのrole根拠が欠落。",
+          "oracle_property": "対象Pだけを作成側へ返す。Rの別役割候補は保持。",
+          "expected_observation": "OBJ-P=missing_basis.",
+          "return_targets": [
+            "対象作成側"
+          ],
+          "execution_state": "not_executed"
         },
         {
+          "oracle_number": "L9-SYSTEM-ORACLE-04",
           "id": "H048-F01-NO-CONSUMER",
           "requirement_ref": "HARNESS-L3-048-F01",
           "system_oracle_ref": "HARNESS-L10-048-F01",
           "l4_ref": "HARNESS-L4-048-F01",
-          "independent_source_packet": {
-            "ref": {
-              "identity": "SOURCE-H048-F01-NO-CONSUMER",
-              "revision": "fixture-content-c2ac7c0e6ca4b76f8050d354a36998813bcb3a6ef108246a835ff554f85252f2",
-              "scope": "PRODUCT-P",
-              "owner": "synthetic-fixture-owner"
-            },
-            "raw_utf8": "{\"evaluation_date\":\"2030-01-01\",\"role_vocabulary\":[\"Entity\",\"ValueObject\",\"Aggregate\",\"DomainService\",\"Policy\",\"Specification\",\"Command\",\"Query\",\"DomainEvent\",\"Receipt\",\"Port\",\"Adapter\",\"Repository\"],\"targets\":[{\"consumers\":[],\"declared_role\":\"Query\",\"exception\":null,\"id\":\"OBJ-P\",\"meaning\":\"値の照会\",\"name\":\"Manager\",\"role_basis\":\"読み取り操作\"},{\"consumers\":[\"C2\"],\"declared_role\":\"Repository\",\"exception\":null,\"id\":\"OBJ-R\",\"meaning\":\"永続objectの取得\",\"name\":\"lookup\",\"role_basis\":\"永続化境界\"}]}",
-            "sha256": "c2ac7c0e6ca4b76f8050d354a36998813bcb3a6ef108246a835ff554f85252f2",
-            "qualification": "synthetic_fixture_only_no_actual_source_qualification"
-          },
-          "expected_material": {
-            "target_results": {
-              "OBJ-P": "missing_consumer",
-              "OBJ-R": "candidate_only:Repository"
-            },
-            "canonical_decided_here": false,
-            "unaffected_Q": "original_Q",
-            "effects": {
-              "actual_rename": false,
-              "actual_DesignRefactor": false,
-              "actual_CI": false,
-              "actual_merge": false,
-              "actual_authority": false,
-              "actual_design_complete": false,
-              "actual_acceptance": false
-            }
-          },
-          "basis": "対象Pだけを作成側へ返す。Rの別役割候補は保持。",
-          "execution_state": "not_executed",
-          "effect": "none"
+          "condition": "OBJ-Pのconsumerが欠落。",
+          "oracle_property": "対象Pだけを作成側へ返す。Rの別役割候補は保持。",
+          "expected_observation": "OBJ-P=missing_consumer.",
+          "return_targets": [
+            "対象作成側"
+          ],
+          "execution_state": "not_executed"
         },
         {
+          "oracle_number": "L9-SYSTEM-ORACLE-05",
           "id": "H048-F01-MANAGER-REASONED-EXCEPTION",
           "requirement_ref": "HARNESS-L3-048-F01",
           "system_oracle_ref": "HARNESS-L10-048-F01",
           "l4_ref": "HARNESS-L4-048-F01",
-          "independent_source_packet": {
-            "ref": {
-              "identity": "SOURCE-H048-F01-MANAGER-REASONED-EXCEPTION",
-              "revision": "fixture-content-9199212eb94ec3ba1c77a3389755aed2bd0bec4ac8c3faf02b7a16eb21862e00",
-              "scope": "PRODUCT-P",
-              "owner": "synthetic-fixture-owner"
-            },
-            "raw_utf8": "{\"evaluation_date\":\"2030-01-01\",\"role_vocabulary\":[\"Entity\",\"ValueObject\",\"Aggregate\",\"DomainService\",\"Policy\",\"Specification\",\"Command\",\"Query\",\"DomainEvent\",\"Receipt\",\"Port\",\"Adapter\",\"Repository\"],\"targets\":[{\"consumers\":[\"C1\"],\"declared_role\":\"Query\",\"exception\":{\"expiry\":\"2030-02-01\",\"owner\":\"PRODUCT-P-owner\",\"reason\":\"既存利用者への段階移行\",\"scope\":\"PRODUCT-P\"},\"id\":\"OBJ-P\",\"meaning\":\"値の照会\",\"name\":\"Manager\",\"role_basis\":\"読み取り操作\"},{\"consumers\":[\"C2\"],\"declared_role\":\"Repository\",\"exception\":null,\"id\":\"OBJ-R\",\"meaning\":\"永続objectの取得\",\"name\":\"lookup\",\"role_basis\":\"永続化境界\"}]}",
-            "sha256": "9199212eb94ec3ba1c77a3389755aed2bd0bec4ac8c3faf02b7a16eb21862e00",
-            "qualification": "synthetic_fixture_only_no_actual_source_qualification"
-          },
-          "expected_material": {
-            "target_results": {
-              "OBJ-P": "candidate_only:Query_with_scoped_exception",
-              "OBJ-R": "candidate_only:Repository"
-            },
-            "canonical_decided_here": false,
-            "unaffected_Q": "original_Q",
-            "effects": {
-              "actual_rename": false,
-              "actual_DesignRefactor": false,
-              "actual_CI": false,
-              "actual_merge": false,
-              "actual_authority": false,
-              "actual_design_complete": false,
-              "actual_acceptance": false
-            }
-          },
-          "basis": "根拠/consumerと有効な期限付き例外を照合。",
-          "execution_state": "not_executed",
-          "effect": "none"
+          "condition": "OBJ-Pの別role候補にscope付き例外あり。",
+          "oracle_property": "根拠/consumerと有効な期限付き例外を照合。",
+          "expected_observation": "OBJ-P=candidate_only:Query_with_scoped_exception.",
+          "return_targets": [],
+          "execution_state": "not_executed"
         },
         {
+          "oracle_number": "L9-SYSTEM-ORACLE-06",
           "id": "H048-F01-MANAGER-NO-EXCEPTION",
           "requirement_ref": "HARNESS-L3-048-F01",
           "system_oracle_ref": "HARNESS-L10-048-F01",
           "l4_ref": "HARNESS-L4-048-F01",
-          "independent_source_packet": {
-            "ref": {
-              "identity": "SOURCE-H048-F01-MANAGER-NO-EXCEPTION",
-              "revision": "fixture-content-8e2356c28d9ffe53b6bd54bcc8929e7a31e9026443f8d066705207c863af0ef4",
-              "scope": "PRODUCT-P",
-              "owner": "synthetic-fixture-owner"
-            },
-            "raw_utf8": "{\"evaluation_date\":\"2030-01-01\",\"role_vocabulary\":[\"Entity\",\"ValueObject\",\"Aggregate\",\"DomainService\",\"Policy\",\"Specification\",\"Command\",\"Query\",\"DomainEvent\",\"Receipt\",\"Port\",\"Adapter\",\"Repository\"],\"targets\":[{\"consumers\":[\"C1\"],\"declared_role\":\"Query\",\"exception\":null,\"id\":\"OBJ-P\",\"meaning\":\"値の照会\",\"name\":\"Manager\",\"role_basis\":\"読み取り操作\"},{\"consumers\":[\"C2\"],\"declared_role\":\"Repository\",\"exception\":null,\"id\":\"OBJ-R\",\"meaning\":\"永続objectの取得\",\"name\":\"lookup\",\"role_basis\":\"永続化境界\"}]}",
-            "sha256": "8e2356c28d9ffe53b6bd54bcc8929e7a31e9026443f8d066705207c863af0ef4",
-            "qualification": "synthetic_fixture_only_no_actual_source_qualification"
-          },
-          "expected_material": {
-            "target_results": {
-              "OBJ-P": "missing_scoped_exception",
-              "OBJ-R": "candidate_only:Repository"
-            },
-            "canonical_decided_here": false,
-            "unaffected_Q": "original_Q",
-            "effects": {
-              "actual_rename": false,
-              "actual_DesignRefactor": false,
-              "actual_CI": false,
-              "actual_merge": false,
-              "actual_authority": false,
-              "actual_design_complete": false,
-              "actual_acceptance": false
-            }
-          },
-          "basis": "語彙に役割があるだけでは曖昧名の例外を作らない。",
-          "execution_state": "not_executed",
-          "effect": "none"
+          "condition": "OBJ-Pに別name候補がありscope付き例外なし。",
+          "oracle_property": "語彙に役割があるだけでは曖昧名の例外を作らない。",
+          "expected_observation": "OBJ-P=missing_scoped_exception.",
+          "return_targets": [
+            "対象作成側"
+          ],
+          "execution_state": "not_executed"
         }
       ],
-      "execution_state": "not_executed",
-      "effect": "none"
+      "system_oracle_pointer": "docs/helix-harness/L10-verification/functional-verification.json#/cases/47",
+      "shared_oracle_boundary": "OBJ-Rはcandidate_only:Repositoryを維持。canonical decision/rename/authority/acceptanceを生成せず、無影響のQはoriginal_Qを維持。"
     },
     {
       "id": "HARNESS-L9-048-F02",
       "l4_ref": "HARNESS-L4-048-F02",
       "requirement_ref": "HARNESS-L3-048-F02",
       "system_oracle_ref": "HARNESS-L10-048-F02",
-      "approved_l10": {
-        "id": "HARNESS-L10-048-F02",
-        "parent": "HARNESS-L2-048",
-        "title": "identity・symbol・oracleの独立対応",
-        "requirement_ref": "HARNESS-L3-048-F02",
-        "positive_input": "同objectのbefore/after symbolとdomain operation/oracle対応を照合する。",
-        "expected_observation": "object ID/oracle IDが保持されsymbolだけの差分と区別できる。",
-        "negative_input": "private名だけのoracle、名前変更でID更新、symbol/oracle edge欠落、別対象へpair付替。",
-        "failure_observation": "切れたedgeと影響対象を示し、命名適合を不成立にする。",
-        "execution_state": "not_executed"
-      },
       "connection_scope": "独立原内容→当該pure照合→対象別結果/候補/返却。実BRAIN/製品resolver/OS運転は未binding。",
-      "concrete_cases": [
+      "execution_state": "not_executed",
+      "effect": "none",
+      "system_oracle_allowlist": [
         {
+          "oracle_number": "L9-SYSTEM-ORACLE-07",
           "id": "H048-F02-NORMAL",
           "requirement_ref": "HARNESS-L3-048-F02",
           "system_oracle_ref": "HARNESS-L10-048-F02",
           "l4_ref": "HARNESS-L4-048-F02",
-          "independent_source_packet": {
-            "ref": {
-              "identity": "SOURCE-H048-F02-NORMAL",
-              "revision": "fixture-content-c9d063fd2177cae56cc2eab9fbceb1251c02eb327f82594f3b35ffddfc039c81",
-              "scope": "PRODUCT-P",
-              "owner": "synthetic-fixture-owner"
-            },
-            "raw_utf8": "{\"after\":{\"object\":\"OBJ-P\",\"oracle\":\"ORACLE-P\",\"symbol\":\"readValue\"},\"before\":{\"object\":\"OBJ-P\",\"oracle\":\"ORACLE-P\",\"symbol\":\"oldLookup\"},\"operation\":\"read\",\"oracle_edge\":{\"object\":\"OBJ-P\",\"operation\":\"read\",\"oracle\":\"ORACLE-P\"},\"pair\":{\"requirement_object\":\"OBJ-P\",\"verification_object\":\"OBJ-P\"},\"stable_object\":\"OBJ-P\",\"stable_oracle\":\"ORACLE-P\",\"symbol_edge\":{\"object\":\"OBJ-P\",\"operation\":\"read\",\"symbol\":\"readValue\"}}",
-            "sha256": "c9d063fd2177cae56cc2eab9fbceb1251c02eb327f82594f3b35ffddfc039c81",
-            "qualification": "synthetic_fixture_only_no_actual_source_qualification"
-          },
-          "expected_material": {
-            "edge_results": {
-              "object_identity": "held",
-              "oracle_identity": "held",
-              "symbol_edge": "bound",
-              "oracle_edge": "bound",
-              "pair": "same_object"
-            },
-            "symbol_change": "candidate_only",
-            "unaffected_Q": "original_Q",
-            "effects": {
-              "actual_rename": false,
-              "actual_DesignRefactor": false,
-              "actual_CI": false,
-              "actual_merge": false,
-              "actual_authority": false,
-              "actual_design_complete": false,
-              "actual_acceptance": false
-            }
-          },
-          "basis": "symbol候補の差分でも独立IDとpairは不変。",
-          "execution_state": "not_executed",
-          "effect": "none"
+          "condition": "symbol変更候補で、object/oracle ID・両edge・pairを保持。",
+          "oracle_property": "symbol候補の差分でも独立IDとpairは不変。",
+          "expected_observation": "identity/edge/pairは一致。symbol変更はcandidate-only。",
+          "return_targets": [],
+          "execution_state": "not_executed"
         },
         {
+          "oracle_number": "L9-SYSTEM-ORACLE-08",
           "id": "H048-F02-OBJECT-ID-CHANGED",
           "requirement_ref": "HARNESS-L3-048-F02",
           "system_oracle_ref": "HARNESS-L10-048-F02",
           "l4_ref": "HARNESS-L4-048-F02",
-          "independent_source_packet": {
-            "ref": {
-              "identity": "SOURCE-H048-F02-OBJECT-ID-CHANGED",
-              "revision": "fixture-content-408e30405ff91876de5a4f1532f6465ae08d4eb2fcb5a252191a54417edb1524",
-              "scope": "PRODUCT-P",
-              "owner": "synthetic-fixture-owner"
-            },
-            "raw_utf8": "{\"after\":{\"object\":\"OBJ-X\",\"oracle\":\"ORACLE-P\",\"symbol\":\"readValue\"},\"before\":{\"object\":\"OBJ-P\",\"oracle\":\"ORACLE-P\",\"symbol\":\"oldLookup\"},\"operation\":\"read\",\"oracle_edge\":{\"object\":\"OBJ-P\",\"operation\":\"read\",\"oracle\":\"ORACLE-P\"},\"pair\":{\"requirement_object\":\"OBJ-P\",\"verification_object\":\"OBJ-P\"},\"stable_object\":\"OBJ-P\",\"stable_oracle\":\"ORACLE-P\",\"symbol_edge\":{\"object\":\"OBJ-P\",\"operation\":\"read\",\"symbol\":\"readValue\"}}",
-            "sha256": "408e30405ff91876de5a4f1532f6465ae08d4eb2fcb5a252191a54417edb1524",
-            "qualification": "synthetic_fixture_only_no_actual_source_qualification"
-          },
-          "expected_material": {
-            "edge_results": {
-              "object_identity": "conflict",
-              "oracle_identity": "held",
-              "symbol_edge": "bound",
-              "oracle_edge": "bound",
-              "pair": "same_object"
-            },
-            "symbol_change": "candidate_only",
-            "unaffected_Q": "original_Q",
-            "effects": {
-              "actual_rename": false,
-              "actual_DesignRefactor": false,
-              "actual_CI": false,
-              "actual_merge": false,
-              "actual_authority": false,
-              "actual_design_complete": false,
-              "actual_acceptance": false
-            }
-          },
-          "basis": "変更前独立IDとの不一致を局所保持。",
-          "execution_state": "not_executed",
-          "effect": "none"
+          "condition": "object identityが不一致",
+          "oracle_property": "変更前独立IDとの不一致を局所保持。",
+          "expected_observation": "object_identity=conflict.",
+          "return_targets": [],
+          "execution_state": "not_executed"
         },
         {
+          "oracle_number": "L9-SYSTEM-ORACLE-09",
           "id": "H048-F02-ORACLE-ID-CHANGED",
           "requirement_ref": "HARNESS-L3-048-F02",
           "system_oracle_ref": "HARNESS-L10-048-F02",
           "l4_ref": "HARNESS-L4-048-F02",
-          "independent_source_packet": {
-            "ref": {
-              "identity": "SOURCE-H048-F02-ORACLE-ID-CHANGED",
-              "revision": "fixture-content-8883fca27a2b83e465865d7d14299eb6b2414aaa1b5aedc188c7d5a062006215",
-              "scope": "PRODUCT-P",
-              "owner": "synthetic-fixture-owner"
-            },
-            "raw_utf8": "{\"after\":{\"object\":\"OBJ-P\",\"oracle\":\"ORACLE-X\",\"symbol\":\"readValue\"},\"before\":{\"object\":\"OBJ-P\",\"oracle\":\"ORACLE-P\",\"symbol\":\"oldLookup\"},\"operation\":\"read\",\"oracle_edge\":{\"object\":\"OBJ-P\",\"operation\":\"read\",\"oracle\":\"ORACLE-P\"},\"pair\":{\"requirement_object\":\"OBJ-P\",\"verification_object\":\"OBJ-P\"},\"stable_object\":\"OBJ-P\",\"stable_oracle\":\"ORACLE-P\",\"symbol_edge\":{\"object\":\"OBJ-P\",\"operation\":\"read\",\"symbol\":\"readValue\"}}",
-            "sha256": "8883fca27a2b83e465865d7d14299eb6b2414aaa1b5aedc188c7d5a062006215",
-            "qualification": "synthetic_fixture_only_no_actual_source_qualification"
-          },
-          "expected_material": {
-            "edge_results": {
-              "object_identity": "held",
-              "oracle_identity": "conflict",
-              "symbol_edge": "bound",
-              "oracle_edge": "bound",
-              "pair": "same_object"
-            },
-            "symbol_change": "candidate_only",
-            "unaffected_Q": "original_Q",
-            "effects": {
-              "actual_rename": false,
-              "actual_DesignRefactor": false,
-              "actual_CI": false,
-              "actual_merge": false,
-              "actual_authority": false,
-              "actual_design_complete": false,
-              "actual_acceptance": false
-            }
-          },
-          "basis": "変更前独立IDとの不一致を局所保持。",
-          "execution_state": "not_executed",
-          "effect": "none"
+          "condition": "oracle identityが不一致",
+          "oracle_property": "変更前独立IDとの不一致を局所保持。",
+          "expected_observation": "oracle_identity=conflict.",
+          "return_targets": [],
+          "execution_state": "not_executed"
         },
         {
+          "oracle_number": "L9-SYSTEM-ORACLE-10",
           "id": "H048-F02-SYMBOL-EDGE-MISSING",
           "requirement_ref": "HARNESS-L3-048-F02",
           "system_oracle_ref": "HARNESS-L10-048-F02",
           "l4_ref": "HARNESS-L4-048-F02",
-          "independent_source_packet": {
-            "ref": {
-              "identity": "SOURCE-H048-F02-SYMBOL-EDGE-MISSING",
-              "revision": "fixture-content-87610571da006d999b71111b75ba94c8ac89a3d774e9b39879210c22e294adee",
-              "scope": "PRODUCT-P",
-              "owner": "synthetic-fixture-owner"
-            },
-            "raw_utf8": "{\"after\":{\"object\":\"OBJ-P\",\"oracle\":\"ORACLE-P\",\"symbol\":\"readValue\"},\"before\":{\"object\":\"OBJ-P\",\"oracle\":\"ORACLE-P\",\"symbol\":\"oldLookup\"},\"operation\":\"read\",\"oracle_edge\":{\"object\":\"OBJ-P\",\"operation\":\"read\",\"oracle\":\"ORACLE-P\"},\"pair\":{\"requirement_object\":\"OBJ-P\",\"verification_object\":\"OBJ-P\"},\"stable_object\":\"OBJ-P\",\"stable_oracle\":\"ORACLE-P\",\"symbol_edge\":null}",
-            "sha256": "87610571da006d999b71111b75ba94c8ac89a3d774e9b39879210c22e294adee",
-            "qualification": "synthetic_fixture_only_no_actual_source_qualification"
-          },
-          "expected_material": {
-            "edge_results": {
-              "object_identity": "held",
-              "oracle_identity": "held",
-              "symbol_edge": "missing",
-              "oracle_edge": "bound",
-              "pair": "same_object"
-            },
-            "symbol_change": "candidate_only",
-            "unaffected_Q": "original_Q",
-            "effects": {
-              "actual_rename": false,
-              "actual_DesignRefactor": false,
-              "actual_CI": false,
-              "actual_merge": false,
-              "actual_authority": false,
-              "actual_design_complete": false,
-              "actual_acceptance": false
-            }
-          },
-          "basis": "名前が存在してもedgeを推測で補わない。",
-          "execution_state": "not_executed",
-          "effect": "none"
+          "condition": "symbol edgeが欠落",
+          "oracle_property": "名前が存在してもedgeを推測で補わない。",
+          "expected_observation": "symbol_edge=missing.",
+          "return_targets": [],
+          "execution_state": "not_executed"
         },
         {
+          "oracle_number": "L9-SYSTEM-ORACLE-11",
           "id": "H048-F02-ORACLE-EDGE-MISSING",
           "requirement_ref": "HARNESS-L3-048-F02",
           "system_oracle_ref": "HARNESS-L10-048-F02",
           "l4_ref": "HARNESS-L4-048-F02",
-          "independent_source_packet": {
-            "ref": {
-              "identity": "SOURCE-H048-F02-ORACLE-EDGE-MISSING",
-              "revision": "fixture-content-f1f43cdef0f74aa33affa11607b8a8f082a50e8ff6741eb32c6b86d48c8103e2",
-              "scope": "PRODUCT-P",
-              "owner": "synthetic-fixture-owner"
-            },
-            "raw_utf8": "{\"after\":{\"object\":\"OBJ-P\",\"oracle\":\"ORACLE-P\",\"symbol\":\"readValue\"},\"before\":{\"object\":\"OBJ-P\",\"oracle\":\"ORACLE-P\",\"symbol\":\"oldLookup\"},\"operation\":\"read\",\"oracle_edge\":null,\"pair\":{\"requirement_object\":\"OBJ-P\",\"verification_object\":\"OBJ-P\"},\"stable_object\":\"OBJ-P\",\"stable_oracle\":\"ORACLE-P\",\"symbol_edge\":{\"object\":\"OBJ-P\",\"operation\":\"read\",\"symbol\":\"readValue\"}}",
-            "sha256": "f1f43cdef0f74aa33affa11607b8a8f082a50e8ff6741eb32c6b86d48c8103e2",
-            "qualification": "synthetic_fixture_only_no_actual_source_qualification"
-          },
-          "expected_material": {
-            "edge_results": {
-              "object_identity": "held",
-              "oracle_identity": "held",
-              "symbol_edge": "bound",
-              "oracle_edge": "missing",
-              "pair": "same_object"
-            },
-            "symbol_change": "candidate_only",
-            "unaffected_Q": "original_Q",
-            "effects": {
-              "actual_rename": false,
-              "actual_DesignRefactor": false,
-              "actual_CI": false,
-              "actual_merge": false,
-              "actual_authority": false,
-              "actual_design_complete": false,
-              "actual_acceptance": false
-            }
-          },
-          "basis": "名前が存在してもedgeを推測で補わない。",
-          "execution_state": "not_executed",
-          "effect": "none"
+          "condition": "oracle edgeが欠落",
+          "oracle_property": "名前が存在してもedgeを推測で補わない。",
+          "expected_observation": "oracle_edge=missing.",
+          "return_targets": [],
+          "execution_state": "not_executed"
         },
         {
+          "oracle_number": "L9-SYSTEM-ORACLE-12",
           "id": "H048-F02-PRIVATE-ONLY-ORACLE",
           "requirement_ref": "HARNESS-L3-048-F02",
           "system_oracle_ref": "HARNESS-L10-048-F02",
           "l4_ref": "HARNESS-L4-048-F02",
-          "independent_source_packet": {
-            "ref": {
-              "identity": "SOURCE-H048-F02-PRIVATE-ONLY-ORACLE",
-              "revision": "fixture-content-62f05e8fe7aef3d86721efdd1683e19883b0b0c7116bcf2e4f7f779dde91de1f",
-              "scope": "PRODUCT-P",
-              "owner": "synthetic-fixture-owner"
-            },
-            "raw_utf8": "{\"after\":{\"object\":\"OBJ-P\",\"oracle\":\"ORACLE-P\",\"symbol\":\"readValue\"},\"before\":{\"object\":\"OBJ-P\",\"oracle\":\"ORACLE-P\",\"symbol\":\"oldLookup\"},\"operation\":\"read\",\"oracle_edge\":{\"private_symbol\":\"readValue\"},\"pair\":{\"requirement_object\":\"OBJ-P\",\"verification_object\":\"OBJ-P\"},\"stable_object\":\"OBJ-P\",\"stable_oracle\":\"ORACLE-P\",\"symbol_edge\":{\"object\":\"OBJ-P\",\"operation\":\"read\",\"symbol\":\"readValue\"}}",
-            "sha256": "62f05e8fe7aef3d86721efdd1683e19883b0b0c7116bcf2e4f7f779dde91de1f",
-            "qualification": "synthetic_fixture_only_no_actual_source_qualification"
-          },
-          "expected_material": {
-            "edge_results": {
-              "object_identity": "held",
-              "oracle_identity": "held",
-              "symbol_edge": "bound",
-              "oracle_edge": "private_only_rejected",
-              "pair": "same_object"
-            },
-            "symbol_change": "candidate_only",
-            "unaffected_Q": "original_Q",
-            "effects": {
-              "actual_rename": false,
-              "actual_DesignRefactor": false,
-              "actual_CI": false,
-              "actual_merge": false,
-              "actual_authority": false,
-              "actual_design_complete": false,
-              "actual_acceptance": false
-            }
-          },
-          "basis": "domain object/operation/oracle IDを持たないbindingを拒否。",
-          "execution_state": "not_executed",
-          "effect": "none"
+          "condition": "oracle edgeがprivate-onlyで、public edgeは欠落。",
+          "oracle_property": "domain object/operation/oracle IDを持たないbindingを拒否。",
+          "expected_observation": "oracle_edge=private_only_rejected.",
+          "return_targets": [],
+          "execution_state": "not_executed"
         },
         {
+          "oracle_number": "L9-SYSTEM-ORACLE-13",
           "id": "H048-F02-FOREIGN-OBJECT-PAIR",
           "requirement_ref": "HARNESS-L3-048-F02",
           "system_oracle_ref": "HARNESS-L10-048-F02",
           "l4_ref": "HARNESS-L4-048-F02",
-          "independent_source_packet": {
-            "ref": {
-              "identity": "SOURCE-H048-F02-FOREIGN-OBJECT-PAIR",
-              "revision": "fixture-content-6fc1fe299e57f1173567d5e37e671798fac55742fc278080247f9556a88af357",
-              "scope": "PRODUCT-P",
-              "owner": "synthetic-fixture-owner"
-            },
-            "raw_utf8": "{\"after\":{\"object\":\"OBJ-P\",\"oracle\":\"ORACLE-P\",\"symbol\":\"readValue\"},\"before\":{\"object\":\"OBJ-P\",\"oracle\":\"ORACLE-P\",\"symbol\":\"oldLookup\"},\"operation\":\"read\",\"oracle_edge\":{\"object\":\"OBJ-P\",\"operation\":\"read\",\"oracle\":\"ORACLE-P\"},\"pair\":{\"requirement_object\":\"OBJ-P\",\"verification_object\":\"OBJ-X\"},\"stable_object\":\"OBJ-P\",\"stable_oracle\":\"ORACLE-P\",\"symbol_edge\":{\"object\":\"OBJ-P\",\"operation\":\"read\",\"symbol\":\"readValue\"}}",
-            "sha256": "6fc1fe299e57f1173567d5e37e671798fac55742fc278080247f9556a88af357",
-            "qualification": "synthetic_fixture_only_no_actual_source_qualification"
-          },
-          "expected_material": {
-            "edge_results": {
-              "object_identity": "held",
-              "oracle_identity": "held",
-              "symbol_edge": "bound",
-              "oracle_edge": "bound",
-              "pair": "conflict"
-            },
-            "symbol_change": "candidate_only",
-            "unaffected_Q": "original_Q",
-            "effects": {
-              "actual_rename": false,
-              "actual_DesignRefactor": false,
-              "actual_CI": false,
-              "actual_merge": false,
-              "actual_authority": false,
-              "actual_design_complete": false,
-              "actual_acceptance": false
-            }
-          },
-          "basis": "別objectの対検証を名称一致で接続しない。",
-          "execution_state": "not_executed",
-          "effect": "none"
+          "condition": "verification pairのobjectが不一致",
+          "oracle_property": "別objectの対検証を名称一致で接続しない。",
+          "expected_observation": "pair=conflict.",
+          "return_targets": [],
+          "execution_state": "not_executed"
         }
       ],
-      "execution_state": "not_executed",
-      "effect": "none"
+      "system_oracle_pointer": "docs/helix-harness/L10-verification/functional-verification.json#/cases/48",
+      "shared_oracle_boundary": "symbol候補でobject/oracle identityやpairを変えず、identity不一致やedge欠落は不適合。実renameを行わず、無影響のQはoriginal_Qを維持。",
+      "shared_return_target": "切れたedgeと影響対象を示し、命名適合を不成立にする。"
     },
     {
       "id": "HARNESS-L9-048-F03",
       "l4_ref": "HARNESS-L4-048-F03",
       "requirement_ref": "HARNESS-L3-048-F03",
       "system_oracle_ref": "HARNESS-L10-048-F03",
-      "approved_l10": {
-        "id": "HARNESS-L10-048-F03",
-        "parent": "HARNESS-L2-048",
-        "title": "自動修正候補の全条件",
-        "requirement_ref": "HARNESS-L3-048-F03",
-        "positive_input": "全条件が揃う候補と一条件ずつ欠く候補を照合する。",
-        "expected_observation": "提示可能な候補と不足条件を区別し、実変更/承認/mergeが未成立と辿れる。",
-        "negative_input": "文字列だけの統合、consumer一部だけ、署名不明、rollback無し、候補から実renameを実行。",
-        "failure_observation": "不足条件の自動修正候補を拒否し、対象作成側へ理由付きfindingを返す。",
-        "execution_state": "not_executed"
-      },
       "connection_scope": "独立原内容→当該pure照合→対象別結果/候補/返却。実BRAIN/製品resolver/OS運転は未binding。",
-      "concrete_cases": [
+      "execution_state": "not_executed",
+      "effect": "none",
+      "system_oracle_allowlist": [
         {
+          "oracle_number": "L9-SYSTEM-ORACLE-14",
           "id": "H048-F03-NORMAL",
           "requirement_ref": "HARNESS-L3-048-F03",
           "system_oracle_ref": "HARNESS-L10-048-F03",
           "l4_ref": "HARNESS-L4-048-F03",
-          "independent_source_packet": {
-            "ref": {
-              "identity": "SOURCE-H048-F03-NORMAL",
-              "revision": "fixture-content-85de45d95d25f48e115ff4426953a06a3e7499dfe59c6c0039f351e9a3b0e582",
-              "scope": "PRODUCT-P",
-              "owner": "synthetic-fixture-owner"
-            },
-            "raw_utf8": "{\"behavior_invariant\":{\"expected\":\"same value/failure/effects\",\"oracle\":\"ORACLE-P\"},\"canonical_decision\":{\"name\":\"readValue\",\"owner\":\"PRODUCT-P-owner\",\"revision\":\"decision-P@r1\"},\"evidence_basis\":\"content\",\"minimum_transform\":{\"changes\":[\"symbol edge only\"]},\"observed_consumers\":[\"C1\",\"C2\"],\"requested_effect\":\"candidate_only\",\"required_consumers\":[\"C1\",\"C2\"],\"rollback\":{\"preserve_object\":\"OBJ-P\",\"preserve_oracle\":\"ORACLE-P\",\"restore_symbol\":\"oldLookup\"},\"signature_after\":{\"call_graph\":[\"port.read\"],\"consumer_contract\":{\"C1\":\"value-read@r1\",\"C2\":\"value-read@r1\"},\"effects\":[],\"failure\":[\"not_found\"],\"inputs\":[\"value_id\"],\"outputs\":[\"value\"],\"state_transition\":\"unchanged\"},\"signature_before\":{\"call_graph\":[\"port.read\"],\"consumer_contract\":{\"C1\":\"value-read@r1\",\"C2\":\"value-read@r1\"},\"effects\":[],\"failure\":[\"not_found\"],\"inputs\":[\"value_id\"],\"outputs\":[\"value\"],\"state_transition\":\"unchanged\"},\"visibility\":\"internal\"}",
-            "sha256": "85de45d95d25f48e115ff4426953a06a3e7499dfe59c6c0039f351e9a3b0e582",
-            "qualification": "synthetic_fixture_only_no_actual_source_qualification"
-          },
-          "expected_material": {
-            "condition_results": {
-              "canonical": "supported_synthetic_condition",
-              "internal": "supported_synthetic_condition",
-              "consumers": "supported_synthetic_condition",
-              "signature:inputs": "supported_synthetic_condition",
-              "signature:outputs": "supported_synthetic_condition",
-              "signature:effects": "supported_synthetic_condition",
-              "signature:failure": "supported_synthetic_condition",
-              "signature:state_transition": "supported_synthetic_condition",
-              "signature:call_graph": "supported_synthetic_condition",
-              "signature:consumer_contract": "supported_synthetic_condition",
-              "behavior_invariant": "supported_synthetic_condition",
-              "minimum_transform": "supported_synthetic_condition",
-              "rollback": "supported_synthetic_condition",
-              "semantic_basis": "supported_synthetic_condition",
-              "operation_boundary": "supported_synthetic_condition"
-            },
-            "candidate_presentable": true,
-            "unaffected_Q": "original_Q",
-            "effects": {
-              "actual_rename": false,
-              "actual_DesignRefactor": false,
-              "actual_CI": false,
-              "actual_merge": false,
-              "actual_authority": false,
-              "actual_design_complete": false,
-              "actual_acceptance": false
-            }
-          },
-          "basis": "全条件の内容が揃う合成候補。実rename/PR/receipt作成は未実行。",
-          "execution_state": "not_executed",
-          "effect": "none"
+          "condition": "internal候補のcanonical・consumer・signature・rollback条件を充足。",
+          "oracle_property": "全条件の内容が揃う合成候補。実rename/PR/receipt作成は未実行。",
+          "expected_observation": "candidate_presentable=true; 不足条件なし。",
+          "return_targets": [],
+          "execution_state": "not_executed"
         },
         {
+          "oracle_number": "L9-SYSTEM-ORACLE-15",
           "id": "H048-F03-CANONICAL-MISSING",
           "requirement_ref": "HARNESS-L3-048-F03",
           "system_oracle_ref": "HARNESS-L10-048-F03",
           "l4_ref": "HARNESS-L4-048-F03",
-          "independent_source_packet": {
-            "ref": {
-              "identity": "SOURCE-H048-F03-CANONICAL-MISSING",
-              "revision": "fixture-content-3a665cb6bbcaff4337ff6a3d5ffb55fa74b1c0c9ca9f2f2a0ddbe20facec26d1",
-              "scope": "PRODUCT-P",
-              "owner": "synthetic-fixture-owner"
-            },
-            "raw_utf8": "{\"behavior_invariant\":{\"expected\":\"same value/failure/effects\",\"oracle\":\"ORACLE-P\"},\"canonical_decision\":null,\"evidence_basis\":\"content\",\"minimum_transform\":{\"changes\":[\"symbol edge only\"]},\"observed_consumers\":[\"C1\",\"C2\"],\"requested_effect\":\"candidate_only\",\"required_consumers\":[\"C1\",\"C2\"],\"rollback\":{\"preserve_object\":\"OBJ-P\",\"preserve_oracle\":\"ORACLE-P\",\"restore_symbol\":\"oldLookup\"},\"signature_after\":{\"call_graph\":[\"port.read\"],\"consumer_contract\":{\"C1\":\"value-read@r1\",\"C2\":\"value-read@r1\"},\"effects\":[],\"failure\":[\"not_found\"],\"inputs\":[\"value_id\"],\"outputs\":[\"value\"],\"state_transition\":\"unchanged\"},\"signature_before\":{\"call_graph\":[\"port.read\"],\"consumer_contract\":{\"C1\":\"value-read@r1\",\"C2\":\"value-read@r1\"},\"effects\":[],\"failure\":[\"not_found\"],\"inputs\":[\"value_id\"],\"outputs\":[\"value\"],\"state_transition\":\"unchanged\"},\"visibility\":\"internal\"}",
-            "sha256": "3a665cb6bbcaff4337ff6a3d5ffb55fa74b1c0c9ca9f2f2a0ddbe20facec26d1",
-            "qualification": "synthetic_fixture_only_no_actual_source_qualification"
-          },
-          "expected_material": {
-            "condition_results": {
-              "canonical": "missing",
-              "internal": "supported_synthetic_condition",
-              "consumers": "supported_synthetic_condition",
-              "signature:inputs": "supported_synthetic_condition",
-              "signature:outputs": "supported_synthetic_condition",
-              "signature:effects": "supported_synthetic_condition",
-              "signature:failure": "supported_synthetic_condition",
-              "signature:state_transition": "supported_synthetic_condition",
-              "signature:call_graph": "supported_synthetic_condition",
-              "signature:consumer_contract": "supported_synthetic_condition",
-              "behavior_invariant": "supported_synthetic_condition",
-              "minimum_transform": "supported_synthetic_condition",
-              "rollback": "supported_synthetic_condition",
-              "semantic_basis": "supported_synthetic_condition",
-              "operation_boundary": "supported_synthetic_condition"
-            },
-            "candidate_presentable": false,
-            "unaffected_Q": "original_Q",
-            "effects": {
-              "actual_rename": false,
-              "actual_DesignRefactor": false,
-              "actual_CI": false,
-              "actual_merge": false,
-              "actual_authority": false,
-              "actual_design_complete": false,
-              "actual_acceptance": false
-            }
-          },
-          "basis": "一条件の不足/越境で当該候補を拒否。他条件を保持。",
-          "execution_state": "not_executed",
-          "effect": "none"
+          "condition": "canonical decisionが欠落",
+          "oracle_property": "一条件の不足/越境で当該候補を拒否。他条件を保持。",
+          "expected_observation": "candidate_presentable=false; canonical=missing.",
+          "return_targets": [],
+          "execution_state": "not_executed"
         },
         {
+          "oracle_number": "L9-SYSTEM-ORACLE-16",
           "id": "H048-F03-PUBLIC-SURFACE",
           "requirement_ref": "HARNESS-L3-048-F03",
           "system_oracle_ref": "HARNESS-L10-048-F03",
           "l4_ref": "HARNESS-L4-048-F03",
-          "independent_source_packet": {
-            "ref": {
-              "identity": "SOURCE-H048-F03-PUBLIC-SURFACE",
-              "revision": "fixture-content-514ff1bafaf5a2544f43478029f564b0e6fa4a814c9392427a4d3efb4a846a60",
-              "scope": "PRODUCT-P",
-              "owner": "synthetic-fixture-owner"
-            },
-            "raw_utf8": "{\"behavior_invariant\":{\"expected\":\"same value/failure/effects\",\"oracle\":\"ORACLE-P\"},\"canonical_decision\":{\"name\":\"readValue\",\"owner\":\"PRODUCT-P-owner\",\"revision\":\"decision-P@r1\"},\"evidence_basis\":\"content\",\"minimum_transform\":{\"changes\":[\"symbol edge only\"]},\"observed_consumers\":[\"C1\",\"C2\"],\"requested_effect\":\"candidate_only\",\"required_consumers\":[\"C1\",\"C2\"],\"rollback\":{\"preserve_object\":\"OBJ-P\",\"preserve_oracle\":\"ORACLE-P\",\"restore_symbol\":\"oldLookup\"},\"signature_after\":{\"call_graph\":[\"port.read\"],\"consumer_contract\":{\"C1\":\"value-read@r1\",\"C2\":\"value-read@r1\"},\"effects\":[],\"failure\":[\"not_found\"],\"inputs\":[\"value_id\"],\"outputs\":[\"value\"],\"state_transition\":\"unchanged\"},\"signature_before\":{\"call_graph\":[\"port.read\"],\"consumer_contract\":{\"C1\":\"value-read@r1\",\"C2\":\"value-read@r1\"},\"effects\":[],\"failure\":[\"not_found\"],\"inputs\":[\"value_id\"],\"outputs\":[\"value\"],\"state_transition\":\"unchanged\"},\"visibility\":\"public_API\"}",
-            "sha256": "514ff1bafaf5a2544f43478029f564b0e6fa4a814c9392427a4d3efb4a846a60",
-            "qualification": "synthetic_fixture_only_no_actual_source_qualification"
-          },
-          "expected_material": {
-            "condition_results": {
-              "canonical": "supported_synthetic_condition",
-              "internal": "rejected",
-              "consumers": "supported_synthetic_condition",
-              "signature:inputs": "supported_synthetic_condition",
-              "signature:outputs": "supported_synthetic_condition",
-              "signature:effects": "supported_synthetic_condition",
-              "signature:failure": "supported_synthetic_condition",
-              "signature:state_transition": "supported_synthetic_condition",
-              "signature:call_graph": "supported_synthetic_condition",
-              "signature:consumer_contract": "supported_synthetic_condition",
-              "behavior_invariant": "supported_synthetic_condition",
-              "minimum_transform": "supported_synthetic_condition",
-              "rollback": "supported_synthetic_condition",
-              "semantic_basis": "supported_synthetic_condition",
-              "operation_boundary": "supported_synthetic_condition"
-            },
-            "candidate_presentable": false,
-            "unaffected_Q": "original_Q",
-            "effects": {
-              "actual_rename": false,
-              "actual_DesignRefactor": false,
-              "actual_CI": false,
-              "actual_merge": false,
-              "actual_authority": false,
-              "actual_design_complete": false,
-              "actual_acceptance": false
-            }
-          },
-          "basis": "一条件の不足/越境で当該候補を拒否。他条件を保持。",
-          "execution_state": "not_executed",
-          "effect": "none"
+          "condition": "internal visibility境界外の候補",
+          "oracle_property": "一条件の不足/越境で当該候補を拒否。他条件を保持。",
+          "expected_observation": "candidate_presentable=false; internal=rejected.",
+          "return_targets": [],
+          "execution_state": "not_executed"
         },
         {
+          "oracle_number": "L9-SYSTEM-ORACLE-17",
           "id": "H048-F03-CONSUMER-PARTIAL",
           "requirement_ref": "HARNESS-L3-048-F03",
           "system_oracle_ref": "HARNESS-L10-048-F03",
           "l4_ref": "HARNESS-L4-048-F03",
-          "independent_source_packet": {
-            "ref": {
-              "identity": "SOURCE-H048-F03-CONSUMER-PARTIAL",
-              "revision": "fixture-content-7fe54486f65829fedd84f73e4250d7e7722145250a34c2c42c8f7f71695766db",
-              "scope": "PRODUCT-P",
-              "owner": "synthetic-fixture-owner"
-            },
-            "raw_utf8": "{\"behavior_invariant\":{\"expected\":\"same value/failure/effects\",\"oracle\":\"ORACLE-P\"},\"canonical_decision\":{\"name\":\"readValue\",\"owner\":\"PRODUCT-P-owner\",\"revision\":\"decision-P@r1\"},\"evidence_basis\":\"content\",\"minimum_transform\":{\"changes\":[\"symbol edge only\"]},\"observed_consumers\":[\"C1\"],\"requested_effect\":\"candidate_only\",\"required_consumers\":[\"C1\",\"C2\"],\"rollback\":{\"preserve_object\":\"OBJ-P\",\"preserve_oracle\":\"ORACLE-P\",\"restore_symbol\":\"oldLookup\"},\"signature_after\":{\"call_graph\":[\"port.read\"],\"consumer_contract\":{\"C1\":\"value-read@r1\",\"C2\":\"value-read@r1\"},\"effects\":[],\"failure\":[\"not_found\"],\"inputs\":[\"value_id\"],\"outputs\":[\"value\"],\"state_transition\":\"unchanged\"},\"signature_before\":{\"call_graph\":[\"port.read\"],\"consumer_contract\":{\"C1\":\"value-read@r1\",\"C2\":\"value-read@r1\"},\"effects\":[],\"failure\":[\"not_found\"],\"inputs\":[\"value_id\"],\"outputs\":[\"value\"],\"state_transition\":\"unchanged\"},\"visibility\":\"internal\"}",
-            "sha256": "7fe54486f65829fedd84f73e4250d7e7722145250a34c2c42c8f7f71695766db",
-            "qualification": "synthetic_fixture_only_no_actual_source_qualification"
-          },
-          "expected_material": {
-            "condition_results": {
-              "canonical": "supported_synthetic_condition",
-              "internal": "supported_synthetic_condition",
-              "consumers": "missing",
-              "signature:inputs": "supported_synthetic_condition",
-              "signature:outputs": "supported_synthetic_condition",
-              "signature:effects": "supported_synthetic_condition",
-              "signature:failure": "supported_synthetic_condition",
-              "signature:state_transition": "supported_synthetic_condition",
-              "signature:call_graph": "supported_synthetic_condition",
-              "signature:consumer_contract": "supported_synthetic_condition",
-              "behavior_invariant": "supported_synthetic_condition",
-              "minimum_transform": "supported_synthetic_condition",
-              "rollback": "supported_synthetic_condition",
-              "semantic_basis": "supported_synthetic_condition",
-              "operation_boundary": "supported_synthetic_condition"
-            },
-            "candidate_presentable": false,
-            "unaffected_Q": "original_Q",
-            "effects": {
-              "actual_rename": false,
-              "actual_DesignRefactor": false,
-              "actual_CI": false,
-              "actual_merge": false,
-              "actual_authority": false,
-              "actual_design_complete": false,
-              "actual_acceptance": false
-            }
-          },
-          "basis": "一条件の不足/越境で当該候補を拒否。他条件を保持。",
-          "execution_state": "not_executed",
-          "effect": "none"
+          "condition": "observed consumer coverageが不足",
+          "oracle_property": "一条件の不足/越境で当該候補を拒否。他条件を保持。",
+          "expected_observation": "candidate_presentable=false; consumers=missing.",
+          "return_targets": [],
+          "execution_state": "not_executed"
         },
         {
+          "oracle_number": "L9-SYSTEM-ORACLE-18",
           "id": "H048-F03-CONSUMER-SAME-COUNT-FOREIGN",
           "requirement_ref": "HARNESS-L3-048-F03",
           "system_oracle_ref": "HARNESS-L10-048-F03",
           "l4_ref": "HARNESS-L4-048-F03",
-          "independent_source_packet": {
-            "ref": {
-              "identity": "SOURCE-H048-F03-CONSUMER-SAME-COUNT-FOREIGN",
-              "revision": "fixture-content-4ceb56f8006d061488cecaa42b133c59583f584f283dccb6a6f555a62b0fdee0",
-              "scope": "PRODUCT-P",
-              "owner": "synthetic-fixture-owner"
-            },
-            "raw_utf8": "{\"behavior_invariant\":{\"expected\":\"same value/failure/effects\",\"oracle\":\"ORACLE-P\"},\"canonical_decision\":{\"name\":\"readValue\",\"owner\":\"PRODUCT-P-owner\",\"revision\":\"decision-P@r1\"},\"evidence_basis\":\"content\",\"minimum_transform\":{\"changes\":[\"symbol edge only\"]},\"observed_consumers\":[\"C1\",\"CX\"],\"requested_effect\":\"candidate_only\",\"required_consumers\":[\"C1\",\"C2\"],\"rollback\":{\"preserve_object\":\"OBJ-P\",\"preserve_oracle\":\"ORACLE-P\",\"restore_symbol\":\"oldLookup\"},\"signature_after\":{\"call_graph\":[\"port.read\"],\"consumer_contract\":{\"C1\":\"value-read@r1\",\"C2\":\"value-read@r1\"},\"effects\":[],\"failure\":[\"not_found\"],\"inputs\":[\"value_id\"],\"outputs\":[\"value\"],\"state_transition\":\"unchanged\"},\"signature_before\":{\"call_graph\":[\"port.read\"],\"consumer_contract\":{\"C1\":\"value-read@r1\",\"C2\":\"value-read@r1\"},\"effects\":[],\"failure\":[\"not_found\"],\"inputs\":[\"value_id\"],\"outputs\":[\"value\"],\"state_transition\":\"unchanged\"},\"visibility\":\"internal\"}",
-            "sha256": "4ceb56f8006d061488cecaa42b133c59583f584f283dccb6a6f555a62b0fdee0",
-            "qualification": "synthetic_fixture_only_no_actual_source_qualification"
-          },
-          "expected_material": {
-            "condition_results": {
-              "canonical": "supported_synthetic_condition",
-              "internal": "supported_synthetic_condition",
-              "consumers": "conflict",
-              "signature:inputs": "supported_synthetic_condition",
-              "signature:outputs": "supported_synthetic_condition",
-              "signature:effects": "supported_synthetic_condition",
-              "signature:failure": "supported_synthetic_condition",
-              "signature:state_transition": "supported_synthetic_condition",
-              "signature:call_graph": "supported_synthetic_condition",
-              "signature:consumer_contract": "supported_synthetic_condition",
-              "behavior_invariant": "supported_synthetic_condition",
-              "minimum_transform": "supported_synthetic_condition",
-              "rollback": "supported_synthetic_condition",
-              "semantic_basis": "supported_synthetic_condition",
-              "operation_boundary": "supported_synthetic_condition"
-            },
-            "candidate_presentable": false,
-            "unaffected_Q": "original_Q",
-            "effects": {
-              "actual_rename": false,
-              "actual_DesignRefactor": false,
-              "actual_CI": false,
-              "actual_merge": false,
-              "actual_authority": false,
-              "actual_design_complete": false,
-              "actual_acceptance": false
-            }
-          },
-          "basis": "一条件の不足/越境で当該候補を拒否。他条件を保持。",
-          "execution_state": "not_executed",
-          "effect": "none"
+          "condition": "consumer identityが不一致",
+          "oracle_property": "一条件の不足/越境で当該候補を拒否。他条件を保持。",
+          "expected_observation": "candidate_presentable=false; consumers=conflict.",
+          "return_targets": [],
+          "execution_state": "not_executed"
         },
         {
+          "oracle_number": "L9-SYSTEM-ORACLE-19",
           "id": "H048-F03-INVARIANT-MISSING",
           "requirement_ref": "HARNESS-L3-048-F03",
           "system_oracle_ref": "HARNESS-L10-048-F03",
           "l4_ref": "HARNESS-L4-048-F03",
-          "independent_source_packet": {
-            "ref": {
-              "identity": "SOURCE-H048-F03-INVARIANT-MISSING",
-              "revision": "fixture-content-553cda7760f7f0e122d6532ed95d92fb31ac8f1939733be944ceb3be0c2116df",
-              "scope": "PRODUCT-P",
-              "owner": "synthetic-fixture-owner"
-            },
-            "raw_utf8": "{\"behavior_invariant\":null,\"canonical_decision\":{\"name\":\"readValue\",\"owner\":\"PRODUCT-P-owner\",\"revision\":\"decision-P@r1\"},\"evidence_basis\":\"content\",\"minimum_transform\":{\"changes\":[\"symbol edge only\"]},\"observed_consumers\":[\"C1\",\"C2\"],\"requested_effect\":\"candidate_only\",\"required_consumers\":[\"C1\",\"C2\"],\"rollback\":{\"preserve_object\":\"OBJ-P\",\"preserve_oracle\":\"ORACLE-P\",\"restore_symbol\":\"oldLookup\"},\"signature_after\":{\"call_graph\":[\"port.read\"],\"consumer_contract\":{\"C1\":\"value-read@r1\",\"C2\":\"value-read@r1\"},\"effects\":[],\"failure\":[\"not_found\"],\"inputs\":[\"value_id\"],\"outputs\":[\"value\"],\"state_transition\":\"unchanged\"},\"signature_before\":{\"call_graph\":[\"port.read\"],\"consumer_contract\":{\"C1\":\"value-read@r1\",\"C2\":\"value-read@r1\"},\"effects\":[],\"failure\":[\"not_found\"],\"inputs\":[\"value_id\"],\"outputs\":[\"value\"],\"state_transition\":\"unchanged\"},\"visibility\":\"internal\"}",
-            "sha256": "553cda7760f7f0e122d6532ed95d92fb31ac8f1939733be944ceb3be0c2116df",
-            "qualification": "synthetic_fixture_only_no_actual_source_qualification"
-          },
-          "expected_material": {
-            "condition_results": {
-              "canonical": "supported_synthetic_condition",
-              "internal": "supported_synthetic_condition",
-              "consumers": "supported_synthetic_condition",
-              "signature:inputs": "supported_synthetic_condition",
-              "signature:outputs": "supported_synthetic_condition",
-              "signature:effects": "supported_synthetic_condition",
-              "signature:failure": "supported_synthetic_condition",
-              "signature:state_transition": "supported_synthetic_condition",
-              "signature:call_graph": "supported_synthetic_condition",
-              "signature:consumer_contract": "supported_synthetic_condition",
-              "behavior_invariant": "missing",
-              "minimum_transform": "supported_synthetic_condition",
-              "rollback": "supported_synthetic_condition",
-              "semantic_basis": "supported_synthetic_condition",
-              "operation_boundary": "supported_synthetic_condition"
-            },
-            "candidate_presentable": false,
-            "unaffected_Q": "original_Q",
-            "effects": {
-              "actual_rename": false,
-              "actual_DesignRefactor": false,
-              "actual_CI": false,
-              "actual_merge": false,
-              "actual_authority": false,
-              "actual_design_complete": false,
-              "actual_acceptance": false
-            }
-          },
-          "basis": "一条件の不足/越境で当該候補を拒否。他条件を保持。",
-          "execution_state": "not_executed",
-          "effect": "none"
+          "condition": "behavior invariantが欠落",
+          "oracle_property": "一条件の不足/越境で当該候補を拒否。他条件を保持。",
+          "expected_observation": "candidate_presentable=false; behavior_invariant=missing.",
+          "return_targets": [],
+          "execution_state": "not_executed"
         },
         {
+          "oracle_number": "L9-SYSTEM-ORACLE-20",
           "id": "H048-F03-MINIMUM-MISSING",
           "requirement_ref": "HARNESS-L3-048-F03",
           "system_oracle_ref": "HARNESS-L10-048-F03",
           "l4_ref": "HARNESS-L4-048-F03",
-          "independent_source_packet": {
-            "ref": {
-              "identity": "SOURCE-H048-F03-MINIMUM-MISSING",
-              "revision": "fixture-content-bc3c5ac9995a3d58663ced218f021af66890e33532faa1e3e8b3bd066bc022a0",
-              "scope": "PRODUCT-P",
-              "owner": "synthetic-fixture-owner"
-            },
-            "raw_utf8": "{\"behavior_invariant\":{\"expected\":\"same value/failure/effects\",\"oracle\":\"ORACLE-P\"},\"canonical_decision\":{\"name\":\"readValue\",\"owner\":\"PRODUCT-P-owner\",\"revision\":\"decision-P@r1\"},\"evidence_basis\":\"content\",\"minimum_transform\":null,\"observed_consumers\":[\"C1\",\"C2\"],\"requested_effect\":\"candidate_only\",\"required_consumers\":[\"C1\",\"C2\"],\"rollback\":{\"preserve_object\":\"OBJ-P\",\"preserve_oracle\":\"ORACLE-P\",\"restore_symbol\":\"oldLookup\"},\"signature_after\":{\"call_graph\":[\"port.read\"],\"consumer_contract\":{\"C1\":\"value-read@r1\",\"C2\":\"value-read@r1\"},\"effects\":[],\"failure\":[\"not_found\"],\"inputs\":[\"value_id\"],\"outputs\":[\"value\"],\"state_transition\":\"unchanged\"},\"signature_before\":{\"call_graph\":[\"port.read\"],\"consumer_contract\":{\"C1\":\"value-read@r1\",\"C2\":\"value-read@r1\"},\"effects\":[],\"failure\":[\"not_found\"],\"inputs\":[\"value_id\"],\"outputs\":[\"value\"],\"state_transition\":\"unchanged\"},\"visibility\":\"internal\"}",
-            "sha256": "bc3c5ac9995a3d58663ced218f021af66890e33532faa1e3e8b3bd066bc022a0",
-            "qualification": "synthetic_fixture_only_no_actual_source_qualification"
-          },
-          "expected_material": {
-            "condition_results": {
-              "canonical": "supported_synthetic_condition",
-              "internal": "supported_synthetic_condition",
-              "consumers": "supported_synthetic_condition",
-              "signature:inputs": "supported_synthetic_condition",
-              "signature:outputs": "supported_synthetic_condition",
-              "signature:effects": "supported_synthetic_condition",
-              "signature:failure": "supported_synthetic_condition",
-              "signature:state_transition": "supported_synthetic_condition",
-              "signature:call_graph": "supported_synthetic_condition",
-              "signature:consumer_contract": "supported_synthetic_condition",
-              "behavior_invariant": "supported_synthetic_condition",
-              "minimum_transform": "missing",
-              "rollback": "supported_synthetic_condition",
-              "semantic_basis": "supported_synthetic_condition",
-              "operation_boundary": "supported_synthetic_condition"
-            },
-            "candidate_presentable": false,
-            "unaffected_Q": "original_Q",
-            "effects": {
-              "actual_rename": false,
-              "actual_DesignRefactor": false,
-              "actual_CI": false,
-              "actual_merge": false,
-              "actual_authority": false,
-              "actual_design_complete": false,
-              "actual_acceptance": false
-            }
-          },
-          "basis": "一条件の不足/越境で当該候補を拒否。他条件を保持。",
-          "execution_state": "not_executed",
-          "effect": "none"
+          "condition": "minimum transform宣言が欠落",
+          "oracle_property": "一条件の不足/越境で当該候補を拒否。他条件を保持。",
+          "expected_observation": "candidate_presentable=false; minimum_transform=missing.",
+          "return_targets": [],
+          "execution_state": "not_executed"
         },
         {
+          "oracle_number": "L9-SYSTEM-ORACLE-21",
           "id": "H048-F03-ROLLBACK-MISSING",
           "requirement_ref": "HARNESS-L3-048-F03",
           "system_oracle_ref": "HARNESS-L10-048-F03",
           "l4_ref": "HARNESS-L4-048-F03",
-          "independent_source_packet": {
-            "ref": {
-              "identity": "SOURCE-H048-F03-ROLLBACK-MISSING",
-              "revision": "fixture-content-327a293ecfb41af83fce47efa3fad062eb5606f062f142fa231121519d68856e",
-              "scope": "PRODUCT-P",
-              "owner": "synthetic-fixture-owner"
-            },
-            "raw_utf8": "{\"behavior_invariant\":{\"expected\":\"same value/failure/effects\",\"oracle\":\"ORACLE-P\"},\"canonical_decision\":{\"name\":\"readValue\",\"owner\":\"PRODUCT-P-owner\",\"revision\":\"decision-P@r1\"},\"evidence_basis\":\"content\",\"minimum_transform\":{\"changes\":[\"symbol edge only\"]},\"observed_consumers\":[\"C1\",\"C2\"],\"requested_effect\":\"candidate_only\",\"required_consumers\":[\"C1\",\"C2\"],\"rollback\":null,\"signature_after\":{\"call_graph\":[\"port.read\"],\"consumer_contract\":{\"C1\":\"value-read@r1\",\"C2\":\"value-read@r1\"},\"effects\":[],\"failure\":[\"not_found\"],\"inputs\":[\"value_id\"],\"outputs\":[\"value\"],\"state_transition\":\"unchanged\"},\"signature_before\":{\"call_graph\":[\"port.read\"],\"consumer_contract\":{\"C1\":\"value-read@r1\",\"C2\":\"value-read@r1\"},\"effects\":[],\"failure\":[\"not_found\"],\"inputs\":[\"value_id\"],\"outputs\":[\"value\"],\"state_transition\":\"unchanged\"},\"visibility\":\"internal\"}",
-            "sha256": "327a293ecfb41af83fce47efa3fad062eb5606f062f142fa231121519d68856e",
-            "qualification": "synthetic_fixture_only_no_actual_source_qualification"
-          },
-          "expected_material": {
-            "condition_results": {
-              "canonical": "supported_synthetic_condition",
-              "internal": "supported_synthetic_condition",
-              "consumers": "supported_synthetic_condition",
-              "signature:inputs": "supported_synthetic_condition",
-              "signature:outputs": "supported_synthetic_condition",
-              "signature:effects": "supported_synthetic_condition",
-              "signature:failure": "supported_synthetic_condition",
-              "signature:state_transition": "supported_synthetic_condition",
-              "signature:call_graph": "supported_synthetic_condition",
-              "signature:consumer_contract": "supported_synthetic_condition",
-              "behavior_invariant": "supported_synthetic_condition",
-              "minimum_transform": "supported_synthetic_condition",
-              "rollback": "missing",
-              "semantic_basis": "supported_synthetic_condition",
-              "operation_boundary": "supported_synthetic_condition"
-            },
-            "candidate_presentable": false,
-            "unaffected_Q": "original_Q",
-            "effects": {
-              "actual_rename": false,
-              "actual_DesignRefactor": false,
-              "actual_CI": false,
-              "actual_merge": false,
-              "actual_authority": false,
-              "actual_design_complete": false,
-              "actual_acceptance": false
-            }
-          },
-          "basis": "一条件の不足/越境で当該候補を拒否。他条件を保持。",
-          "execution_state": "not_executed",
-          "effect": "none"
+          "condition": "rollback宣言が欠落",
+          "oracle_property": "一条件の不足/越境で当該候補を拒否。他条件を保持。",
+          "expected_observation": "candidate_presentable=false; rollback=missing.",
+          "return_targets": [],
+          "execution_state": "not_executed"
         },
         {
+          "oracle_number": "L9-SYSTEM-ORACLE-22",
           "id": "H048-F03-LEXICAL-ONLY",
           "requirement_ref": "HARNESS-L3-048-F03",
           "system_oracle_ref": "HARNESS-L10-048-F03",
           "l4_ref": "HARNESS-L4-048-F03",
-          "independent_source_packet": {
-            "ref": {
-              "identity": "SOURCE-H048-F03-LEXICAL-ONLY",
-              "revision": "fixture-content-8e1d1c56bba4006a9c8316271d29cca9a0c8ab6f9afe34114e842a7a0db091ff",
-              "scope": "PRODUCT-P",
-              "owner": "synthetic-fixture-owner"
-            },
-            "raw_utf8": "{\"behavior_invariant\":{\"expected\":\"same value/failure/effects\",\"oracle\":\"ORACLE-P\"},\"canonical_decision\":{\"name\":\"readValue\",\"owner\":\"PRODUCT-P-owner\",\"revision\":\"decision-P@r1\"},\"evidence_basis\":\"lexical_only\",\"minimum_transform\":{\"changes\":[\"symbol edge only\"]},\"observed_consumers\":[\"C1\",\"C2\"],\"requested_effect\":\"candidate_only\",\"required_consumers\":[\"C1\",\"C2\"],\"rollback\":{\"preserve_object\":\"OBJ-P\",\"preserve_oracle\":\"ORACLE-P\",\"restore_symbol\":\"oldLookup\"},\"signature_after\":{\"call_graph\":[\"port.read\"],\"consumer_contract\":{\"C1\":\"value-read@r1\",\"C2\":\"value-read@r1\"},\"effects\":[],\"failure\":[\"not_found\"],\"inputs\":[\"value_id\"],\"outputs\":[\"value\"],\"state_transition\":\"unchanged\"},\"signature_before\":{\"call_graph\":[\"port.read\"],\"consumer_contract\":{\"C1\":\"value-read@r1\",\"C2\":\"value-read@r1\"},\"effects\":[],\"failure\":[\"not_found\"],\"inputs\":[\"value_id\"],\"outputs\":[\"value\"],\"state_transition\":\"unchanged\"},\"visibility\":\"internal\"}",
-            "sha256": "8e1d1c56bba4006a9c8316271d29cca9a0c8ab6f9afe34114e842a7a0db091ff",
-            "qualification": "synthetic_fixture_only_no_actual_source_qualification"
-          },
-          "expected_material": {
-            "condition_results": {
-              "canonical": "supported_synthetic_condition",
-              "internal": "supported_synthetic_condition",
-              "consumers": "supported_synthetic_condition",
-              "signature:inputs": "supported_synthetic_condition",
-              "signature:outputs": "supported_synthetic_condition",
-              "signature:effects": "supported_synthetic_condition",
-              "signature:failure": "supported_synthetic_condition",
-              "signature:state_transition": "supported_synthetic_condition",
-              "signature:call_graph": "supported_synthetic_condition",
-              "signature:consumer_contract": "supported_synthetic_condition",
-              "behavior_invariant": "supported_synthetic_condition",
-              "minimum_transform": "supported_synthetic_condition",
-              "rollback": "supported_synthetic_condition",
-              "semantic_basis": "rejected",
-              "operation_boundary": "supported_synthetic_condition"
-            },
-            "candidate_presentable": false,
-            "unaffected_Q": "original_Q",
-            "effects": {
-              "actual_rename": false,
-              "actual_DesignRefactor": false,
-              "actual_CI": false,
-              "actual_merge": false,
-              "actual_authority": false,
-              "actual_design_complete": false,
-              "actual_acceptance": false
-            }
-          },
-          "basis": "一条件の不足/越境で当該候補を拒否。他条件を保持。",
-          "execution_state": "not_executed",
-          "effect": "none"
+          "condition": "evidence basisがlexical-only",
+          "oracle_property": "一条件の不足/越境で当該候補を拒否。他条件を保持。",
+          "expected_observation": "candidate_presentable=false; semantic_basis=rejected.",
+          "return_targets": [],
+          "execution_state": "not_executed"
         },
         {
+          "oracle_number": "L9-SYSTEM-ORACLE-23",
           "id": "H048-F03-REAL-RENAME-REQUEST",
           "requirement_ref": "HARNESS-L3-048-F03",
           "system_oracle_ref": "HARNESS-L10-048-F03",
           "l4_ref": "HARNESS-L4-048-F03",
-          "independent_source_packet": {
-            "ref": {
-              "identity": "SOURCE-H048-F03-REAL-RENAME-REQUEST",
-              "revision": "fixture-content-ab27e2467e6d81e5d23c4faba2000ea9b6a4e4b13cae04ebd792bb966a4f2361",
-              "scope": "PRODUCT-P",
-              "owner": "synthetic-fixture-owner"
-            },
-            "raw_utf8": "{\"behavior_invariant\":{\"expected\":\"same value/failure/effects\",\"oracle\":\"ORACLE-P\"},\"canonical_decision\":{\"name\":\"readValue\",\"owner\":\"PRODUCT-P-owner\",\"revision\":\"decision-P@r1\"},\"evidence_basis\":\"content\",\"minimum_transform\":{\"changes\":[\"symbol edge only\"]},\"observed_consumers\":[\"C1\",\"C2\"],\"requested_effect\":\"execute_rename\",\"required_consumers\":[\"C1\",\"C2\"],\"rollback\":{\"preserve_object\":\"OBJ-P\",\"preserve_oracle\":\"ORACLE-P\",\"restore_symbol\":\"oldLookup\"},\"signature_after\":{\"call_graph\":[\"port.read\"],\"consumer_contract\":{\"C1\":\"value-read@r1\",\"C2\":\"value-read@r1\"},\"effects\":[],\"failure\":[\"not_found\"],\"inputs\":[\"value_id\"],\"outputs\":[\"value\"],\"state_transition\":\"unchanged\"},\"signature_before\":{\"call_graph\":[\"port.read\"],\"consumer_contract\":{\"C1\":\"value-read@r1\",\"C2\":\"value-read@r1\"},\"effects\":[],\"failure\":[\"not_found\"],\"inputs\":[\"value_id\"],\"outputs\":[\"value\"],\"state_transition\":\"unchanged\"},\"visibility\":\"internal\"}",
-            "sha256": "ab27e2467e6d81e5d23c4faba2000ea9b6a4e4b13cae04ebd792bb966a4f2361",
-            "qualification": "synthetic_fixture_only_no_actual_source_qualification"
-          },
-          "expected_material": {
-            "condition_results": {
-              "canonical": "supported_synthetic_condition",
-              "internal": "supported_synthetic_condition",
-              "consumers": "supported_synthetic_condition",
-              "signature:inputs": "supported_synthetic_condition",
-              "signature:outputs": "supported_synthetic_condition",
-              "signature:effects": "supported_synthetic_condition",
-              "signature:failure": "supported_synthetic_condition",
-              "signature:state_transition": "supported_synthetic_condition",
-              "signature:call_graph": "supported_synthetic_condition",
-              "signature:consumer_contract": "supported_synthetic_condition",
-              "behavior_invariant": "supported_synthetic_condition",
-              "minimum_transform": "supported_synthetic_condition",
-              "rollback": "supported_synthetic_condition",
-              "semantic_basis": "supported_synthetic_condition",
-              "operation_boundary": "rejected"
-            },
-            "candidate_presentable": false,
-            "unaffected_Q": "original_Q",
-            "effects": {
-              "actual_rename": false,
-              "actual_DesignRefactor": false,
-              "actual_CI": false,
-              "actual_merge": false,
-              "actual_authority": false,
-              "actual_design_complete": false,
-              "actual_acceptance": false
-            }
-          },
-          "basis": "一条件の不足/越境で当該候補を拒否。他条件を保持。",
-          "execution_state": "not_executed",
-          "effect": "none"
+          "condition": "candidate-only operation境界外の実行要求",
+          "oracle_property": "一条件の不足/越境で当該候補を拒否。他条件を保持。",
+          "expected_observation": "candidate_presentable=false; operation_boundary=rejected.",
+          "return_targets": [],
+          "execution_state": "not_executed"
         },
         {
+          "oracle_number": "L9-SYSTEM-ORACLE-24",
           "id": "H048-F03-SIGNATURE-INPUTS-MISSING",
           "requirement_ref": "HARNESS-L3-048-F03",
           "system_oracle_ref": "HARNESS-L10-048-F03",
           "l4_ref": "HARNESS-L4-048-F03",
-          "independent_source_packet": {
-            "ref": {
-              "identity": "SOURCE-H048-F03-SIGNATURE-INPUTS-MISSING",
-              "revision": "fixture-content-83f5ac52e2555e122c0acd81060fac823f46e7487274730de76e783e303ed1cd",
-              "scope": "PRODUCT-P",
-              "owner": "synthetic-fixture-owner"
-            },
-            "raw_utf8": "{\"behavior_invariant\":{\"expected\":\"same value/failure/effects\",\"oracle\":\"ORACLE-P\"},\"canonical_decision\":{\"name\":\"readValue\",\"owner\":\"PRODUCT-P-owner\",\"revision\":\"decision-P@r1\"},\"evidence_basis\":\"content\",\"minimum_transform\":{\"changes\":[\"symbol edge only\"]},\"observed_consumers\":[\"C1\",\"C2\"],\"requested_effect\":\"candidate_only\",\"required_consumers\":[\"C1\",\"C2\"],\"rollback\":{\"preserve_object\":\"OBJ-P\",\"preserve_oracle\":\"ORACLE-P\",\"restore_symbol\":\"oldLookup\"},\"signature_after\":{\"call_graph\":[\"port.read\"],\"consumer_contract\":{\"C1\":\"value-read@r1\",\"C2\":\"value-read@r1\"},\"effects\":[],\"failure\":[\"not_found\"],\"inputs\":null,\"outputs\":[\"value\"],\"state_transition\":\"unchanged\"},\"signature_before\":{\"call_graph\":[\"port.read\"],\"consumer_contract\":{\"C1\":\"value-read@r1\",\"C2\":\"value-read@r1\"},\"effects\":[],\"failure\":[\"not_found\"],\"inputs\":[\"value_id\"],\"outputs\":[\"value\"],\"state_transition\":\"unchanged\"},\"visibility\":\"internal\"}",
-            "sha256": "83f5ac52e2555e122c0acd81060fac823f46e7487274730de76e783e303ed1cd",
-            "qualification": "synthetic_fixture_only_no_actual_source_qualification"
-          },
-          "expected_material": {
-            "condition_results": {
-              "canonical": "supported_synthetic_condition",
-              "internal": "supported_synthetic_condition",
-              "consumers": "supported_synthetic_condition",
-              "signature:inputs": "missing",
-              "signature:outputs": "supported_synthetic_condition",
-              "signature:effects": "supported_synthetic_condition",
-              "signature:failure": "supported_synthetic_condition",
-              "signature:state_transition": "supported_synthetic_condition",
-              "signature:call_graph": "supported_synthetic_condition",
-              "signature:consumer_contract": "supported_synthetic_condition",
-              "behavior_invariant": "supported_synthetic_condition",
-              "minimum_transform": "supported_synthetic_condition",
-              "rollback": "supported_synthetic_condition",
-              "semantic_basis": "supported_synthetic_condition",
-              "operation_boundary": "supported_synthetic_condition"
-            },
-            "candidate_presentable": false,
-            "unaffected_Q": "original_Q",
-            "effects": {
-              "actual_rename": false,
-              "actual_DesignRefactor": false,
-              "actual_CI": false,
-              "actual_merge": false,
-              "actual_authority": false,
-              "actual_design_complete": false,
-              "actual_acceptance": false
-            }
-          },
-          "basis": "署名六軸を個別原内容比較し、他軸で補完しない。",
-          "execution_state": "not_executed",
-          "effect": "none"
+          "condition": "signature inputsが欠落。",
+          "oracle_property": "署名六軸を個別原内容比較し、他軸で補完しない。",
+          "expected_observation": "candidate_presentable=false; signature:inputs=missing.",
+          "return_targets": [],
+          "execution_state": "not_executed"
         },
         {
+          "oracle_number": "L9-SYSTEM-ORACLE-25",
           "id": "H048-F03-SIGNATURE-INPUTS-MISMATCH",
           "requirement_ref": "HARNESS-L3-048-F03",
           "system_oracle_ref": "HARNESS-L10-048-F03",
           "l4_ref": "HARNESS-L4-048-F03",
-          "independent_source_packet": {
-            "ref": {
-              "identity": "SOURCE-H048-F03-SIGNATURE-INPUTS-MISMATCH",
-              "revision": "fixture-content-79eaf1458034b7b079605a6d4cc44dffd2ee4762df30d8874897b78984acc236",
-              "scope": "PRODUCT-P",
-              "owner": "synthetic-fixture-owner"
-            },
-            "raw_utf8": "{\"behavior_invariant\":{\"expected\":\"same value/failure/effects\",\"oracle\":\"ORACLE-P\"},\"canonical_decision\":{\"name\":\"readValue\",\"owner\":\"PRODUCT-P-owner\",\"revision\":\"decision-P@r1\"},\"evidence_basis\":\"content\",\"minimum_transform\":{\"changes\":[\"symbol edge only\"]},\"observed_consumers\":[\"C1\",\"C2\"],\"requested_effect\":\"candidate_only\",\"required_consumers\":[\"C1\",\"C2\"],\"rollback\":{\"preserve_object\":\"OBJ-P\",\"preserve_oracle\":\"ORACLE-P\",\"restore_symbol\":\"oldLookup\"},\"signature_after\":{\"call_graph\":[\"port.read\"],\"consumer_contract\":{\"C1\":\"value-read@r1\",\"C2\":\"value-read@r1\"},\"effects\":[],\"failure\":[\"not_found\"],\"inputs\":\"foreign-signature-value\",\"outputs\":[\"value\"],\"state_transition\":\"unchanged\"},\"signature_before\":{\"call_graph\":[\"port.read\"],\"consumer_contract\":{\"C1\":\"value-read@r1\",\"C2\":\"value-read@r1\"},\"effects\":[],\"failure\":[\"not_found\"],\"inputs\":[\"value_id\"],\"outputs\":[\"value\"],\"state_transition\":\"unchanged\"},\"visibility\":\"internal\"}",
-            "sha256": "79eaf1458034b7b079605a6d4cc44dffd2ee4762df30d8874897b78984acc236",
-            "qualification": "synthetic_fixture_only_no_actual_source_qualification"
-          },
-          "expected_material": {
-            "condition_results": {
-              "canonical": "supported_synthetic_condition",
-              "internal": "supported_synthetic_condition",
-              "consumers": "supported_synthetic_condition",
-              "signature:inputs": "conflict",
-              "signature:outputs": "supported_synthetic_condition",
-              "signature:effects": "supported_synthetic_condition",
-              "signature:failure": "supported_synthetic_condition",
-              "signature:state_transition": "supported_synthetic_condition",
-              "signature:call_graph": "supported_synthetic_condition",
-              "signature:consumer_contract": "supported_synthetic_condition",
-              "behavior_invariant": "supported_synthetic_condition",
-              "minimum_transform": "supported_synthetic_condition",
-              "rollback": "supported_synthetic_condition",
-              "semantic_basis": "supported_synthetic_condition",
-              "operation_boundary": "supported_synthetic_condition"
-            },
-            "candidate_presentable": false,
-            "unaffected_Q": "original_Q",
-            "effects": {
-              "actual_rename": false,
-              "actual_DesignRefactor": false,
-              "actual_CI": false,
-              "actual_merge": false,
-              "actual_authority": false,
-              "actual_design_complete": false,
-              "actual_acceptance": false
-            }
-          },
-          "basis": "署名六軸を個別原内容比較し、他軸で補完しない。",
-          "execution_state": "not_executed",
-          "effect": "none"
+          "condition": "signature inputsが不一致。",
+          "oracle_property": "署名六軸を個別原内容比較し、他軸で補完しない。",
+          "expected_observation": "candidate_presentable=false; signature:inputs=conflict.",
+          "return_targets": [],
+          "execution_state": "not_executed"
         },
         {
+          "oracle_number": "L9-SYSTEM-ORACLE-26",
           "id": "H048-F03-SIGNATURE-OUTPUTS-MISSING",
           "requirement_ref": "HARNESS-L3-048-F03",
           "system_oracle_ref": "HARNESS-L10-048-F03",
           "l4_ref": "HARNESS-L4-048-F03",
-          "independent_source_packet": {
-            "ref": {
-              "identity": "SOURCE-H048-F03-SIGNATURE-OUTPUTS-MISSING",
-              "revision": "fixture-content-f355c9068012f92c65ea285540beab5c1c824d5dd17bf883417afa9c34ba2ed7",
-              "scope": "PRODUCT-P",
-              "owner": "synthetic-fixture-owner"
-            },
-            "raw_utf8": "{\"behavior_invariant\":{\"expected\":\"same value/failure/effects\",\"oracle\":\"ORACLE-P\"},\"canonical_decision\":{\"name\":\"readValue\",\"owner\":\"PRODUCT-P-owner\",\"revision\":\"decision-P@r1\"},\"evidence_basis\":\"content\",\"minimum_transform\":{\"changes\":[\"symbol edge only\"]},\"observed_consumers\":[\"C1\",\"C2\"],\"requested_effect\":\"candidate_only\",\"required_consumers\":[\"C1\",\"C2\"],\"rollback\":{\"preserve_object\":\"OBJ-P\",\"preserve_oracle\":\"ORACLE-P\",\"restore_symbol\":\"oldLookup\"},\"signature_after\":{\"call_graph\":[\"port.read\"],\"consumer_contract\":{\"C1\":\"value-read@r1\",\"C2\":\"value-read@r1\"},\"effects\":[],\"failure\":[\"not_found\"],\"inputs\":[\"value_id\"],\"outputs\":null,\"state_transition\":\"unchanged\"},\"signature_before\":{\"call_graph\":[\"port.read\"],\"consumer_contract\":{\"C1\":\"value-read@r1\",\"C2\":\"value-read@r1\"},\"effects\":[],\"failure\":[\"not_found\"],\"inputs\":[\"value_id\"],\"outputs\":[\"value\"],\"state_transition\":\"unchanged\"},\"visibility\":\"internal\"}",
-            "sha256": "f355c9068012f92c65ea285540beab5c1c824d5dd17bf883417afa9c34ba2ed7",
-            "qualification": "synthetic_fixture_only_no_actual_source_qualification"
-          },
-          "expected_material": {
-            "condition_results": {
-              "canonical": "supported_synthetic_condition",
-              "internal": "supported_synthetic_condition",
-              "consumers": "supported_synthetic_condition",
-              "signature:inputs": "supported_synthetic_condition",
-              "signature:outputs": "missing",
-              "signature:effects": "supported_synthetic_condition",
-              "signature:failure": "supported_synthetic_condition",
-              "signature:state_transition": "supported_synthetic_condition",
-              "signature:call_graph": "supported_synthetic_condition",
-              "signature:consumer_contract": "supported_synthetic_condition",
-              "behavior_invariant": "supported_synthetic_condition",
-              "minimum_transform": "supported_synthetic_condition",
-              "rollback": "supported_synthetic_condition",
-              "semantic_basis": "supported_synthetic_condition",
-              "operation_boundary": "supported_synthetic_condition"
-            },
-            "candidate_presentable": false,
-            "unaffected_Q": "original_Q",
-            "effects": {
-              "actual_rename": false,
-              "actual_DesignRefactor": false,
-              "actual_CI": false,
-              "actual_merge": false,
-              "actual_authority": false,
-              "actual_design_complete": false,
-              "actual_acceptance": false
-            }
-          },
-          "basis": "署名六軸を個別原内容比較し、他軸で補完しない。",
-          "execution_state": "not_executed",
-          "effect": "none"
+          "condition": "signature outputsが欠落。",
+          "oracle_property": "署名六軸を個別原内容比較し、他軸で補完しない。",
+          "expected_observation": "candidate_presentable=false; signature:outputs=missing.",
+          "return_targets": [],
+          "execution_state": "not_executed"
         },
         {
+          "oracle_number": "L9-SYSTEM-ORACLE-27",
           "id": "H048-F03-SIGNATURE-OUTPUTS-MISMATCH",
           "requirement_ref": "HARNESS-L3-048-F03",
           "system_oracle_ref": "HARNESS-L10-048-F03",
           "l4_ref": "HARNESS-L4-048-F03",
-          "independent_source_packet": {
-            "ref": {
-              "identity": "SOURCE-H048-F03-SIGNATURE-OUTPUTS-MISMATCH",
-              "revision": "fixture-content-4d1f714fab0583bd51fa3409a43a40ec98f920166558f68c839ae1f24e139d6f",
-              "scope": "PRODUCT-P",
-              "owner": "synthetic-fixture-owner"
-            },
-            "raw_utf8": "{\"behavior_invariant\":{\"expected\":\"same value/failure/effects\",\"oracle\":\"ORACLE-P\"},\"canonical_decision\":{\"name\":\"readValue\",\"owner\":\"PRODUCT-P-owner\",\"revision\":\"decision-P@r1\"},\"evidence_basis\":\"content\",\"minimum_transform\":{\"changes\":[\"symbol edge only\"]},\"observed_consumers\":[\"C1\",\"C2\"],\"requested_effect\":\"candidate_only\",\"required_consumers\":[\"C1\",\"C2\"],\"rollback\":{\"preserve_object\":\"OBJ-P\",\"preserve_oracle\":\"ORACLE-P\",\"restore_symbol\":\"oldLookup\"},\"signature_after\":{\"call_graph\":[\"port.read\"],\"consumer_contract\":{\"C1\":\"value-read@r1\",\"C2\":\"value-read@r1\"},\"effects\":[],\"failure\":[\"not_found\"],\"inputs\":[\"value_id\"],\"outputs\":\"foreign-signature-value\",\"state_transition\":\"unchanged\"},\"signature_before\":{\"call_graph\":[\"port.read\"],\"consumer_contract\":{\"C1\":\"value-read@r1\",\"C2\":\"value-read@r1\"},\"effects\":[],\"failure\":[\"not_found\"],\"inputs\":[\"value_id\"],\"outputs\":[\"value\"],\"state_transition\":\"unchanged\"},\"visibility\":\"internal\"}",
-            "sha256": "4d1f714fab0583bd51fa3409a43a40ec98f920166558f68c839ae1f24e139d6f",
-            "qualification": "synthetic_fixture_only_no_actual_source_qualification"
-          },
-          "expected_material": {
-            "condition_results": {
-              "canonical": "supported_synthetic_condition",
-              "internal": "supported_synthetic_condition",
-              "consumers": "supported_synthetic_condition",
-              "signature:inputs": "supported_synthetic_condition",
-              "signature:outputs": "conflict",
-              "signature:effects": "supported_synthetic_condition",
-              "signature:failure": "supported_synthetic_condition",
-              "signature:state_transition": "supported_synthetic_condition",
-              "signature:call_graph": "supported_synthetic_condition",
-              "signature:consumer_contract": "supported_synthetic_condition",
-              "behavior_invariant": "supported_synthetic_condition",
-              "minimum_transform": "supported_synthetic_condition",
-              "rollback": "supported_synthetic_condition",
-              "semantic_basis": "supported_synthetic_condition",
-              "operation_boundary": "supported_synthetic_condition"
-            },
-            "candidate_presentable": false,
-            "unaffected_Q": "original_Q",
-            "effects": {
-              "actual_rename": false,
-              "actual_DesignRefactor": false,
-              "actual_CI": false,
-              "actual_merge": false,
-              "actual_authority": false,
-              "actual_design_complete": false,
-              "actual_acceptance": false
-            }
-          },
-          "basis": "署名六軸を個別原内容比較し、他軸で補完しない。",
-          "execution_state": "not_executed",
-          "effect": "none"
+          "condition": "signature outputsが不一致。",
+          "oracle_property": "署名六軸を個別原内容比較し、他軸で補完しない。",
+          "expected_observation": "candidate_presentable=false; signature:outputs=conflict.",
+          "return_targets": [],
+          "execution_state": "not_executed"
         },
         {
+          "oracle_number": "L9-SYSTEM-ORACLE-28",
           "id": "H048-F03-SIGNATURE-EFFECTS-MISSING",
           "requirement_ref": "HARNESS-L3-048-F03",
           "system_oracle_ref": "HARNESS-L10-048-F03",
           "l4_ref": "HARNESS-L4-048-F03",
-          "independent_source_packet": {
-            "ref": {
-              "identity": "SOURCE-H048-F03-SIGNATURE-EFFECTS-MISSING",
-              "revision": "fixture-content-db872275b56d66cfd6b81553a05964d73ec77a2dd11b86e128b23227388372bc",
-              "scope": "PRODUCT-P",
-              "owner": "synthetic-fixture-owner"
-            },
-            "raw_utf8": "{\"behavior_invariant\":{\"expected\":\"same value/failure/effects\",\"oracle\":\"ORACLE-P\"},\"canonical_decision\":{\"name\":\"readValue\",\"owner\":\"PRODUCT-P-owner\",\"revision\":\"decision-P@r1\"},\"evidence_basis\":\"content\",\"minimum_transform\":{\"changes\":[\"symbol edge only\"]},\"observed_consumers\":[\"C1\",\"C2\"],\"requested_effect\":\"candidate_only\",\"required_consumers\":[\"C1\",\"C2\"],\"rollback\":{\"preserve_object\":\"OBJ-P\",\"preserve_oracle\":\"ORACLE-P\",\"restore_symbol\":\"oldLookup\"},\"signature_after\":{\"call_graph\":[\"port.read\"],\"consumer_contract\":{\"C1\":\"value-read@r1\",\"C2\":\"value-read@r1\"},\"effects\":null,\"failure\":[\"not_found\"],\"inputs\":[\"value_id\"],\"outputs\":[\"value\"],\"state_transition\":\"unchanged\"},\"signature_before\":{\"call_graph\":[\"port.read\"],\"consumer_contract\":{\"C1\":\"value-read@r1\",\"C2\":\"value-read@r1\"},\"effects\":[],\"failure\":[\"not_found\"],\"inputs\":[\"value_id\"],\"outputs\":[\"value\"],\"state_transition\":\"unchanged\"},\"visibility\":\"internal\"}",
-            "sha256": "db872275b56d66cfd6b81553a05964d73ec77a2dd11b86e128b23227388372bc",
-            "qualification": "synthetic_fixture_only_no_actual_source_qualification"
-          },
-          "expected_material": {
-            "condition_results": {
-              "canonical": "supported_synthetic_condition",
-              "internal": "supported_synthetic_condition",
-              "consumers": "supported_synthetic_condition",
-              "signature:inputs": "supported_synthetic_condition",
-              "signature:outputs": "supported_synthetic_condition",
-              "signature:effects": "missing",
-              "signature:failure": "supported_synthetic_condition",
-              "signature:state_transition": "supported_synthetic_condition",
-              "signature:call_graph": "supported_synthetic_condition",
-              "signature:consumer_contract": "supported_synthetic_condition",
-              "behavior_invariant": "supported_synthetic_condition",
-              "minimum_transform": "supported_synthetic_condition",
-              "rollback": "supported_synthetic_condition",
-              "semantic_basis": "supported_synthetic_condition",
-              "operation_boundary": "supported_synthetic_condition"
-            },
-            "candidate_presentable": false,
-            "unaffected_Q": "original_Q",
-            "effects": {
-              "actual_rename": false,
-              "actual_DesignRefactor": false,
-              "actual_CI": false,
-              "actual_merge": false,
-              "actual_authority": false,
-              "actual_design_complete": false,
-              "actual_acceptance": false
-            }
-          },
-          "basis": "署名六軸を個別原内容比較し、他軸で補完しない。",
-          "execution_state": "not_executed",
-          "effect": "none"
+          "condition": "signature effectsが欠落。",
+          "oracle_property": "署名六軸を個別原内容比較し、他軸で補完しない。",
+          "expected_observation": "candidate_presentable=false; signature:effects=missing.",
+          "return_targets": [],
+          "execution_state": "not_executed"
         },
         {
+          "oracle_number": "L9-SYSTEM-ORACLE-29",
           "id": "H048-F03-SIGNATURE-EFFECTS-MISMATCH",
           "requirement_ref": "HARNESS-L3-048-F03",
           "system_oracle_ref": "HARNESS-L10-048-F03",
           "l4_ref": "HARNESS-L4-048-F03",
-          "independent_source_packet": {
-            "ref": {
-              "identity": "SOURCE-H048-F03-SIGNATURE-EFFECTS-MISMATCH",
-              "revision": "fixture-content-e131003f3469da952117177daddefa83157a2d6a9e46daf08ed137539456b707",
-              "scope": "PRODUCT-P",
-              "owner": "synthetic-fixture-owner"
-            },
-            "raw_utf8": "{\"behavior_invariant\":{\"expected\":\"same value/failure/effects\",\"oracle\":\"ORACLE-P\"},\"canonical_decision\":{\"name\":\"readValue\",\"owner\":\"PRODUCT-P-owner\",\"revision\":\"decision-P@r1\"},\"evidence_basis\":\"content\",\"minimum_transform\":{\"changes\":[\"symbol edge only\"]},\"observed_consumers\":[\"C1\",\"C2\"],\"requested_effect\":\"candidate_only\",\"required_consumers\":[\"C1\",\"C2\"],\"rollback\":{\"preserve_object\":\"OBJ-P\",\"preserve_oracle\":\"ORACLE-P\",\"restore_symbol\":\"oldLookup\"},\"signature_after\":{\"call_graph\":[\"port.read\"],\"consumer_contract\":{\"C1\":\"value-read@r1\",\"C2\":\"value-read@r1\"},\"effects\":\"foreign-signature-value\",\"failure\":[\"not_found\"],\"inputs\":[\"value_id\"],\"outputs\":[\"value\"],\"state_transition\":\"unchanged\"},\"signature_before\":{\"call_graph\":[\"port.read\"],\"consumer_contract\":{\"C1\":\"value-read@r1\",\"C2\":\"value-read@r1\"},\"effects\":[],\"failure\":[\"not_found\"],\"inputs\":[\"value_id\"],\"outputs\":[\"value\"],\"state_transition\":\"unchanged\"},\"visibility\":\"internal\"}",
-            "sha256": "e131003f3469da952117177daddefa83157a2d6a9e46daf08ed137539456b707",
-            "qualification": "synthetic_fixture_only_no_actual_source_qualification"
-          },
-          "expected_material": {
-            "condition_results": {
-              "canonical": "supported_synthetic_condition",
-              "internal": "supported_synthetic_condition",
-              "consumers": "supported_synthetic_condition",
-              "signature:inputs": "supported_synthetic_condition",
-              "signature:outputs": "supported_synthetic_condition",
-              "signature:effects": "conflict",
-              "signature:failure": "supported_synthetic_condition",
-              "signature:state_transition": "supported_synthetic_condition",
-              "signature:call_graph": "supported_synthetic_condition",
-              "signature:consumer_contract": "supported_synthetic_condition",
-              "behavior_invariant": "supported_synthetic_condition",
-              "minimum_transform": "supported_synthetic_condition",
-              "rollback": "supported_synthetic_condition",
-              "semantic_basis": "supported_synthetic_condition",
-              "operation_boundary": "supported_synthetic_condition"
-            },
-            "candidate_presentable": false,
-            "unaffected_Q": "original_Q",
-            "effects": {
-              "actual_rename": false,
-              "actual_DesignRefactor": false,
-              "actual_CI": false,
-              "actual_merge": false,
-              "actual_authority": false,
-              "actual_design_complete": false,
-              "actual_acceptance": false
-            }
-          },
-          "basis": "署名六軸を個別原内容比較し、他軸で補完しない。",
-          "execution_state": "not_executed",
-          "effect": "none"
+          "condition": "signature effectsが不一致。",
+          "oracle_property": "署名六軸を個別原内容比較し、他軸で補完しない。",
+          "expected_observation": "candidate_presentable=false; signature:effects=conflict.",
+          "return_targets": [],
+          "execution_state": "not_executed"
         },
         {
+          "oracle_number": "L9-SYSTEM-ORACLE-30",
           "id": "H048-F03-SIGNATURE-FAILURE-MISSING",
           "requirement_ref": "HARNESS-L3-048-F03",
           "system_oracle_ref": "HARNESS-L10-048-F03",
           "l4_ref": "HARNESS-L4-048-F03",
-          "independent_source_packet": {
-            "ref": {
-              "identity": "SOURCE-H048-F03-SIGNATURE-FAILURE-MISSING",
-              "revision": "fixture-content-9e7f7c1e59c8d967472767e82c5c69e153137be72fd82f918d463a6bca526d42",
-              "scope": "PRODUCT-P",
-              "owner": "synthetic-fixture-owner"
-            },
-            "raw_utf8": "{\"behavior_invariant\":{\"expected\":\"same value/failure/effects\",\"oracle\":\"ORACLE-P\"},\"canonical_decision\":{\"name\":\"readValue\",\"owner\":\"PRODUCT-P-owner\",\"revision\":\"decision-P@r1\"},\"evidence_basis\":\"content\",\"minimum_transform\":{\"changes\":[\"symbol edge only\"]},\"observed_consumers\":[\"C1\",\"C2\"],\"requested_effect\":\"candidate_only\",\"required_consumers\":[\"C1\",\"C2\"],\"rollback\":{\"preserve_object\":\"OBJ-P\",\"preserve_oracle\":\"ORACLE-P\",\"restore_symbol\":\"oldLookup\"},\"signature_after\":{\"call_graph\":[\"port.read\"],\"consumer_contract\":{\"C1\":\"value-read@r1\",\"C2\":\"value-read@r1\"},\"effects\":[],\"failure\":null,\"inputs\":[\"value_id\"],\"outputs\":[\"value\"],\"state_transition\":\"unchanged\"},\"signature_before\":{\"call_graph\":[\"port.read\"],\"consumer_contract\":{\"C1\":\"value-read@r1\",\"C2\":\"value-read@r1\"},\"effects\":[],\"failure\":[\"not_found\"],\"inputs\":[\"value_id\"],\"outputs\":[\"value\"],\"state_transition\":\"unchanged\"},\"visibility\":\"internal\"}",
-            "sha256": "9e7f7c1e59c8d967472767e82c5c69e153137be72fd82f918d463a6bca526d42",
-            "qualification": "synthetic_fixture_only_no_actual_source_qualification"
-          },
-          "expected_material": {
-            "condition_results": {
-              "canonical": "supported_synthetic_condition",
-              "internal": "supported_synthetic_condition",
-              "consumers": "supported_synthetic_condition",
-              "signature:inputs": "supported_synthetic_condition",
-              "signature:outputs": "supported_synthetic_condition",
-              "signature:effects": "supported_synthetic_condition",
-              "signature:failure": "missing",
-              "signature:state_transition": "supported_synthetic_condition",
-              "signature:call_graph": "supported_synthetic_condition",
-              "signature:consumer_contract": "supported_synthetic_condition",
-              "behavior_invariant": "supported_synthetic_condition",
-              "minimum_transform": "supported_synthetic_condition",
-              "rollback": "supported_synthetic_condition",
-              "semantic_basis": "supported_synthetic_condition",
-              "operation_boundary": "supported_synthetic_condition"
-            },
-            "candidate_presentable": false,
-            "unaffected_Q": "original_Q",
-            "effects": {
-              "actual_rename": false,
-              "actual_DesignRefactor": false,
-              "actual_CI": false,
-              "actual_merge": false,
-              "actual_authority": false,
-              "actual_design_complete": false,
-              "actual_acceptance": false
-            }
-          },
-          "basis": "署名六軸を個別原内容比較し、他軸で補完しない。",
-          "execution_state": "not_executed",
-          "effect": "none"
+          "condition": "signature failureが欠落。",
+          "oracle_property": "署名六軸を個別原内容比較し、他軸で補完しない。",
+          "expected_observation": "candidate_presentable=false; signature:failure=missing.",
+          "return_targets": [],
+          "execution_state": "not_executed"
         },
         {
+          "oracle_number": "L9-SYSTEM-ORACLE-31",
           "id": "H048-F03-SIGNATURE-FAILURE-MISMATCH",
           "requirement_ref": "HARNESS-L3-048-F03",
           "system_oracle_ref": "HARNESS-L10-048-F03",
           "l4_ref": "HARNESS-L4-048-F03",
-          "independent_source_packet": {
-            "ref": {
-              "identity": "SOURCE-H048-F03-SIGNATURE-FAILURE-MISMATCH",
-              "revision": "fixture-content-3a4300dbb52dd0ce78b832c5ec7835dfb0e46c5034c33b2921901f885832c1a8",
-              "scope": "PRODUCT-P",
-              "owner": "synthetic-fixture-owner"
-            },
-            "raw_utf8": "{\"behavior_invariant\":{\"expected\":\"same value/failure/effects\",\"oracle\":\"ORACLE-P\"},\"canonical_decision\":{\"name\":\"readValue\",\"owner\":\"PRODUCT-P-owner\",\"revision\":\"decision-P@r1\"},\"evidence_basis\":\"content\",\"minimum_transform\":{\"changes\":[\"symbol edge only\"]},\"observed_consumers\":[\"C1\",\"C2\"],\"requested_effect\":\"candidate_only\",\"required_consumers\":[\"C1\",\"C2\"],\"rollback\":{\"preserve_object\":\"OBJ-P\",\"preserve_oracle\":\"ORACLE-P\",\"restore_symbol\":\"oldLookup\"},\"signature_after\":{\"call_graph\":[\"port.read\"],\"consumer_contract\":{\"C1\":\"value-read@r1\",\"C2\":\"value-read@r1\"},\"effects\":[],\"failure\":\"foreign-signature-value\",\"inputs\":[\"value_id\"],\"outputs\":[\"value\"],\"state_transition\":\"unchanged\"},\"signature_before\":{\"call_graph\":[\"port.read\"],\"consumer_contract\":{\"C1\":\"value-read@r1\",\"C2\":\"value-read@r1\"},\"effects\":[],\"failure\":[\"not_found\"],\"inputs\":[\"value_id\"],\"outputs\":[\"value\"],\"state_transition\":\"unchanged\"},\"visibility\":\"internal\"}",
-            "sha256": "3a4300dbb52dd0ce78b832c5ec7835dfb0e46c5034c33b2921901f885832c1a8",
-            "qualification": "synthetic_fixture_only_no_actual_source_qualification"
-          },
-          "expected_material": {
-            "condition_results": {
-              "canonical": "supported_synthetic_condition",
-              "internal": "supported_synthetic_condition",
-              "consumers": "supported_synthetic_condition",
-              "signature:inputs": "supported_synthetic_condition",
-              "signature:outputs": "supported_synthetic_condition",
-              "signature:effects": "supported_synthetic_condition",
-              "signature:failure": "conflict",
-              "signature:state_transition": "supported_synthetic_condition",
-              "signature:call_graph": "supported_synthetic_condition",
-              "signature:consumer_contract": "supported_synthetic_condition",
-              "behavior_invariant": "supported_synthetic_condition",
-              "minimum_transform": "supported_synthetic_condition",
-              "rollback": "supported_synthetic_condition",
-              "semantic_basis": "supported_synthetic_condition",
-              "operation_boundary": "supported_synthetic_condition"
-            },
-            "candidate_presentable": false,
-            "unaffected_Q": "original_Q",
-            "effects": {
-              "actual_rename": false,
-              "actual_DesignRefactor": false,
-              "actual_CI": false,
-              "actual_merge": false,
-              "actual_authority": false,
-              "actual_design_complete": false,
-              "actual_acceptance": false
-            }
-          },
-          "basis": "署名六軸を個別原内容比較し、他軸で補完しない。",
-          "execution_state": "not_executed",
-          "effect": "none"
+          "condition": "signature failureが不一致。",
+          "oracle_property": "署名六軸を個別原内容比較し、他軸で補完しない。",
+          "expected_observation": "candidate_presentable=false; signature:failure=conflict.",
+          "return_targets": [],
+          "execution_state": "not_executed"
         },
         {
+          "oracle_number": "L9-SYSTEM-ORACLE-32",
           "id": "H048-F03-SIGNATURE-STATE_TRANSITION-MISSING",
           "requirement_ref": "HARNESS-L3-048-F03",
           "system_oracle_ref": "HARNESS-L10-048-F03",
           "l4_ref": "HARNESS-L4-048-F03",
-          "independent_source_packet": {
-            "ref": {
-              "identity": "SOURCE-H048-F03-SIGNATURE-STATE_TRANSITION-MISSING",
-              "revision": "fixture-content-da4384505d2558e227ed91d4f351a488c92251ecf87a3509c88f0afcbf3591d8",
-              "scope": "PRODUCT-P",
-              "owner": "synthetic-fixture-owner"
-            },
-            "raw_utf8": "{\"behavior_invariant\":{\"expected\":\"same value/failure/effects\",\"oracle\":\"ORACLE-P\"},\"canonical_decision\":{\"name\":\"readValue\",\"owner\":\"PRODUCT-P-owner\",\"revision\":\"decision-P@r1\"},\"evidence_basis\":\"content\",\"minimum_transform\":{\"changes\":[\"symbol edge only\"]},\"observed_consumers\":[\"C1\",\"C2\"],\"requested_effect\":\"candidate_only\",\"required_consumers\":[\"C1\",\"C2\"],\"rollback\":{\"preserve_object\":\"OBJ-P\",\"preserve_oracle\":\"ORACLE-P\",\"restore_symbol\":\"oldLookup\"},\"signature_after\":{\"call_graph\":[\"port.read\"],\"consumer_contract\":{\"C1\":\"value-read@r1\",\"C2\":\"value-read@r1\"},\"effects\":[],\"failure\":[\"not_found\"],\"inputs\":[\"value_id\"],\"outputs\":[\"value\"],\"state_transition\":null},\"signature_before\":{\"call_graph\":[\"port.read\"],\"consumer_contract\":{\"C1\":\"value-read@r1\",\"C2\":\"value-read@r1\"},\"effects\":[],\"failure\":[\"not_found\"],\"inputs\":[\"value_id\"],\"outputs\":[\"value\"],\"state_transition\":\"unchanged\"},\"visibility\":\"internal\"}",
-            "sha256": "da4384505d2558e227ed91d4f351a488c92251ecf87a3509c88f0afcbf3591d8",
-            "qualification": "synthetic_fixture_only_no_actual_source_qualification"
-          },
-          "expected_material": {
-            "condition_results": {
-              "canonical": "supported_synthetic_condition",
-              "internal": "supported_synthetic_condition",
-              "consumers": "supported_synthetic_condition",
-              "signature:inputs": "supported_synthetic_condition",
-              "signature:outputs": "supported_synthetic_condition",
-              "signature:effects": "supported_synthetic_condition",
-              "signature:failure": "supported_synthetic_condition",
-              "signature:state_transition": "missing",
-              "signature:call_graph": "supported_synthetic_condition",
-              "signature:consumer_contract": "supported_synthetic_condition",
-              "behavior_invariant": "supported_synthetic_condition",
-              "minimum_transform": "supported_synthetic_condition",
-              "rollback": "supported_synthetic_condition",
-              "semantic_basis": "supported_synthetic_condition",
-              "operation_boundary": "supported_synthetic_condition"
-            },
-            "candidate_presentable": false,
-            "unaffected_Q": "original_Q",
-            "effects": {
-              "actual_rename": false,
-              "actual_DesignRefactor": false,
-              "actual_CI": false,
-              "actual_merge": false,
-              "actual_authority": false,
-              "actual_design_complete": false,
-              "actual_acceptance": false
-            }
-          },
-          "basis": "署名六軸を個別原内容比較し、他軸で補完しない。",
-          "execution_state": "not_executed",
-          "effect": "none"
+          "condition": "signature state_transitionが欠落。",
+          "oracle_property": "署名六軸を個別原内容比較し、他軸で補完しない。",
+          "expected_observation": "candidate_presentable=false; signature:state_transition=missing.",
+          "return_targets": [],
+          "execution_state": "not_executed"
         },
         {
+          "oracle_number": "L9-SYSTEM-ORACLE-33",
           "id": "H048-F03-SIGNATURE-STATE_TRANSITION-MISMATCH",
           "requirement_ref": "HARNESS-L3-048-F03",
           "system_oracle_ref": "HARNESS-L10-048-F03",
           "l4_ref": "HARNESS-L4-048-F03",
-          "independent_source_packet": {
-            "ref": {
-              "identity": "SOURCE-H048-F03-SIGNATURE-STATE_TRANSITION-MISMATCH",
-              "revision": "fixture-content-8b1bed3af83cbf6c245c89f860ef94d13f873e530622c58d1e7ab6b70066985f",
-              "scope": "PRODUCT-P",
-              "owner": "synthetic-fixture-owner"
-            },
-            "raw_utf8": "{\"behavior_invariant\":{\"expected\":\"same value/failure/effects\",\"oracle\":\"ORACLE-P\"},\"canonical_decision\":{\"name\":\"readValue\",\"owner\":\"PRODUCT-P-owner\",\"revision\":\"decision-P@r1\"},\"evidence_basis\":\"content\",\"minimum_transform\":{\"changes\":[\"symbol edge only\"]},\"observed_consumers\":[\"C1\",\"C2\"],\"requested_effect\":\"candidate_only\",\"required_consumers\":[\"C1\",\"C2\"],\"rollback\":{\"preserve_object\":\"OBJ-P\",\"preserve_oracle\":\"ORACLE-P\",\"restore_symbol\":\"oldLookup\"},\"signature_after\":{\"call_graph\":[\"port.read\"],\"consumer_contract\":{\"C1\":\"value-read@r1\",\"C2\":\"value-read@r1\"},\"effects\":[],\"failure\":[\"not_found\"],\"inputs\":[\"value_id\"],\"outputs\":[\"value\"],\"state_transition\":\"foreign-signature-value\"},\"signature_before\":{\"call_graph\":[\"port.read\"],\"consumer_contract\":{\"C1\":\"value-read@r1\",\"C2\":\"value-read@r1\"},\"effects\":[],\"failure\":[\"not_found\"],\"inputs\":[\"value_id\"],\"outputs\":[\"value\"],\"state_transition\":\"unchanged\"},\"visibility\":\"internal\"}",
-            "sha256": "8b1bed3af83cbf6c245c89f860ef94d13f873e530622c58d1e7ab6b70066985f",
-            "qualification": "synthetic_fixture_only_no_actual_source_qualification"
-          },
-          "expected_material": {
-            "condition_results": {
-              "canonical": "supported_synthetic_condition",
-              "internal": "supported_synthetic_condition",
-              "consumers": "supported_synthetic_condition",
-              "signature:inputs": "supported_synthetic_condition",
-              "signature:outputs": "supported_synthetic_condition",
-              "signature:effects": "supported_synthetic_condition",
-              "signature:failure": "supported_synthetic_condition",
-              "signature:state_transition": "conflict",
-              "signature:call_graph": "supported_synthetic_condition",
-              "signature:consumer_contract": "supported_synthetic_condition",
-              "behavior_invariant": "supported_synthetic_condition",
-              "minimum_transform": "supported_synthetic_condition",
-              "rollback": "supported_synthetic_condition",
-              "semantic_basis": "supported_synthetic_condition",
-              "operation_boundary": "supported_synthetic_condition"
-            },
-            "candidate_presentable": false,
-            "unaffected_Q": "original_Q",
-            "effects": {
-              "actual_rename": false,
-              "actual_DesignRefactor": false,
-              "actual_CI": false,
-              "actual_merge": false,
-              "actual_authority": false,
-              "actual_design_complete": false,
-              "actual_acceptance": false
-            }
-          },
-          "basis": "署名六軸を個別原内容比較し、他軸で補完しない。",
-          "execution_state": "not_executed",
-          "effect": "none"
+          "condition": "signature state_transitionが不一致。",
+          "oracle_property": "署名六軸を個別原内容比較し、他軸で補完しない。",
+          "expected_observation": "candidate_presentable=false; signature:state_transition=conflict.",
+          "return_targets": [],
+          "execution_state": "not_executed"
         },
         {
+          "oracle_number": "L9-SYSTEM-ORACLE-34",
           "id": "H048-F03-SIGNATURE-CALL_GRAPH-MISSING",
           "requirement_ref": "HARNESS-L3-048-F03",
           "system_oracle_ref": "HARNESS-L10-048-F03",
           "l4_ref": "HARNESS-L4-048-F03",
-          "independent_source_packet": {
-            "ref": {
-              "identity": "SOURCE-H048-F03-SIGNATURE-CALL_GRAPH-MISSING",
-              "revision": "fixture-content-df1e56bad893d8db239c7ec3c9f0fecb58c0d8e23819982c3f08d3553fe8241c",
-              "scope": "PRODUCT-P",
-              "owner": "synthetic-fixture-owner"
-            },
-            "raw_utf8": "{\"behavior_invariant\":{\"expected\":\"same value/failure/effects\",\"oracle\":\"ORACLE-P\"},\"canonical_decision\":{\"name\":\"readValue\",\"owner\":\"PRODUCT-P-owner\",\"revision\":\"decision-P@r1\"},\"evidence_basis\":\"content\",\"minimum_transform\":{\"changes\":[\"symbol edge only\"]},\"observed_consumers\":[\"C1\",\"C2\"],\"requested_effect\":\"candidate_only\",\"required_consumers\":[\"C1\",\"C2\"],\"rollback\":{\"preserve_object\":\"OBJ-P\",\"preserve_oracle\":\"ORACLE-P\",\"restore_symbol\":\"oldLookup\"},\"signature_after\":{\"call_graph\":null,\"consumer_contract\":{\"C1\":\"value-read@r1\",\"C2\":\"value-read@r1\"},\"effects\":[],\"failure\":[\"not_found\"],\"inputs\":[\"value_id\"],\"outputs\":[\"value\"],\"state_transition\":\"unchanged\"},\"signature_before\":{\"call_graph\":[\"port.read\"],\"consumer_contract\":{\"C1\":\"value-read@r1\",\"C2\":\"value-read@r1\"},\"effects\":[],\"failure\":[\"not_found\"],\"inputs\":[\"value_id\"],\"outputs\":[\"value\"],\"state_transition\":\"unchanged\"},\"visibility\":\"internal\"}",
-            "sha256": "df1e56bad893d8db239c7ec3c9f0fecb58c0d8e23819982c3f08d3553fe8241c",
-            "qualification": "synthetic_fixture_only_no_actual_source_qualification"
-          },
-          "expected_material": {
-            "condition_results": {
-              "canonical": "supported_synthetic_condition",
-              "internal": "supported_synthetic_condition",
-              "consumers": "supported_synthetic_condition",
-              "signature:inputs": "supported_synthetic_condition",
-              "signature:outputs": "supported_synthetic_condition",
-              "signature:effects": "supported_synthetic_condition",
-              "signature:failure": "supported_synthetic_condition",
-              "signature:state_transition": "supported_synthetic_condition",
-              "signature:call_graph": "missing",
-              "signature:consumer_contract": "supported_synthetic_condition",
-              "behavior_invariant": "supported_synthetic_condition",
-              "minimum_transform": "supported_synthetic_condition",
-              "rollback": "supported_synthetic_condition",
-              "semantic_basis": "supported_synthetic_condition",
-              "operation_boundary": "supported_synthetic_condition"
-            },
-            "candidate_presentable": false,
-            "unaffected_Q": "original_Q",
-            "effects": {
-              "actual_rename": false,
-              "actual_DesignRefactor": false,
-              "actual_CI": false,
-              "actual_merge": false,
-              "actual_authority": false,
-              "actual_design_complete": false,
-              "actual_acceptance": false
-            }
-          },
-          "basis": "署名六軸を個別原内容比較し、他軸で補完しない。",
-          "execution_state": "not_executed",
-          "effect": "none"
+          "condition": "signature call_graphが欠落。",
+          "oracle_property": "署名六軸を個別原内容比較し、他軸で補完しない。",
+          "expected_observation": "candidate_presentable=false; signature:call_graph=missing.",
+          "return_targets": [],
+          "execution_state": "not_executed"
         },
         {
+          "oracle_number": "L9-SYSTEM-ORACLE-35",
           "id": "H048-F03-SIGNATURE-CALL_GRAPH-MISMATCH",
           "requirement_ref": "HARNESS-L3-048-F03",
           "system_oracle_ref": "HARNESS-L10-048-F03",
           "l4_ref": "HARNESS-L4-048-F03",
-          "independent_source_packet": {
-            "ref": {
-              "identity": "SOURCE-H048-F03-SIGNATURE-CALL_GRAPH-MISMATCH",
-              "revision": "fixture-content-04e52f9a3b1e37ef831caf2bf77166b73e0eed1057827b3c8f81f94be70b87c9",
-              "scope": "PRODUCT-P",
-              "owner": "synthetic-fixture-owner"
-            },
-            "raw_utf8": "{\"behavior_invariant\":{\"expected\":\"same value/failure/effects\",\"oracle\":\"ORACLE-P\"},\"canonical_decision\":{\"name\":\"readValue\",\"owner\":\"PRODUCT-P-owner\",\"revision\":\"decision-P@r1\"},\"evidence_basis\":\"content\",\"minimum_transform\":{\"changes\":[\"symbol edge only\"]},\"observed_consumers\":[\"C1\",\"C2\"],\"requested_effect\":\"candidate_only\",\"required_consumers\":[\"C1\",\"C2\"],\"rollback\":{\"preserve_object\":\"OBJ-P\",\"preserve_oracle\":\"ORACLE-P\",\"restore_symbol\":\"oldLookup\"},\"signature_after\":{\"call_graph\":\"foreign-signature-value\",\"consumer_contract\":{\"C1\":\"value-read@r1\",\"C2\":\"value-read@r1\"},\"effects\":[],\"failure\":[\"not_found\"],\"inputs\":[\"value_id\"],\"outputs\":[\"value\"],\"state_transition\":\"unchanged\"},\"signature_before\":{\"call_graph\":[\"port.read\"],\"consumer_contract\":{\"C1\":\"value-read@r1\",\"C2\":\"value-read@r1\"},\"effects\":[],\"failure\":[\"not_found\"],\"inputs\":[\"value_id\"],\"outputs\":[\"value\"],\"state_transition\":\"unchanged\"},\"visibility\":\"internal\"}",
-            "sha256": "04e52f9a3b1e37ef831caf2bf77166b73e0eed1057827b3c8f81f94be70b87c9",
-            "qualification": "synthetic_fixture_only_no_actual_source_qualification"
-          },
-          "expected_material": {
-            "condition_results": {
-              "canonical": "supported_synthetic_condition",
-              "internal": "supported_synthetic_condition",
-              "consumers": "supported_synthetic_condition",
-              "signature:inputs": "supported_synthetic_condition",
-              "signature:outputs": "supported_synthetic_condition",
-              "signature:effects": "supported_synthetic_condition",
-              "signature:failure": "supported_synthetic_condition",
-              "signature:state_transition": "supported_synthetic_condition",
-              "signature:call_graph": "conflict",
-              "signature:consumer_contract": "supported_synthetic_condition",
-              "behavior_invariant": "supported_synthetic_condition",
-              "minimum_transform": "supported_synthetic_condition",
-              "rollback": "supported_synthetic_condition",
-              "semantic_basis": "supported_synthetic_condition",
-              "operation_boundary": "supported_synthetic_condition"
-            },
-            "candidate_presentable": false,
-            "unaffected_Q": "original_Q",
-            "effects": {
-              "actual_rename": false,
-              "actual_DesignRefactor": false,
-              "actual_CI": false,
-              "actual_merge": false,
-              "actual_authority": false,
-              "actual_design_complete": false,
-              "actual_acceptance": false
-            }
-          },
-          "basis": "署名六軸を個別原内容比較し、他軸で補完しない。",
-          "execution_state": "not_executed",
-          "effect": "none"
+          "condition": "signature call_graphが不一致。",
+          "oracle_property": "署名六軸を個別原内容比較し、他軸で補完しない。",
+          "expected_observation": "candidate_presentable=false; signature:call_graph=conflict.",
+          "return_targets": [],
+          "execution_state": "not_executed"
         },
         {
+          "oracle_number": "L9-SYSTEM-ORACLE-36",
           "id": "H048-F03-SIGNATURE-CONSUMER_CONTRACT-MISSING",
           "requirement_ref": "HARNESS-L3-048-F03",
           "system_oracle_ref": "HARNESS-L10-048-F03",
           "l4_ref": "HARNESS-L4-048-F03",
-          "independent_source_packet": {
-            "ref": {
-              "identity": "SOURCE-H048-F03-SIGNATURE-CONSUMER_CONTRACT-MISSING",
-              "revision": "fixture-content-301e6b505676657004356771d61603a86561594f5cfa2225b8fedc60c2c2f950",
-              "scope": "PRODUCT-P",
-              "owner": "synthetic-fixture-owner"
-            },
-            "raw_utf8": "{\"behavior_invariant\":{\"expected\":\"same value/failure/effects\",\"oracle\":\"ORACLE-P\"},\"canonical_decision\":{\"name\":\"readValue\",\"owner\":\"PRODUCT-P-owner\",\"revision\":\"decision-P@r1\"},\"evidence_basis\":\"content\",\"minimum_transform\":{\"changes\":[\"symbol edge only\"]},\"observed_consumers\":[\"C1\",\"C2\"],\"requested_effect\":\"candidate_only\",\"required_consumers\":[\"C1\",\"C2\"],\"rollback\":{\"preserve_object\":\"OBJ-P\",\"preserve_oracle\":\"ORACLE-P\",\"restore_symbol\":\"oldLookup\"},\"signature_after\":{\"call_graph\":[\"port.read\"],\"consumer_contract\":null,\"effects\":[],\"failure\":[\"not_found\"],\"inputs\":[\"value_id\"],\"outputs\":[\"value\"],\"state_transition\":\"unchanged\"},\"signature_before\":{\"call_graph\":[\"port.read\"],\"consumer_contract\":{\"C1\":\"value-read@r1\",\"C2\":\"value-read@r1\"},\"effects\":[],\"failure\":[\"not_found\"],\"inputs\":[\"value_id\"],\"outputs\":[\"value\"],\"state_transition\":\"unchanged\"},\"visibility\":\"internal\"}",
-            "sha256": "301e6b505676657004356771d61603a86561594f5cfa2225b8fedc60c2c2f950",
-            "qualification": "synthetic_fixture_only_no_actual_source_qualification"
-          },
-          "expected_material": {
-            "condition_results": {
-              "canonical": "supported_synthetic_condition",
-              "internal": "supported_synthetic_condition",
-              "consumers": "supported_synthetic_condition",
-              "signature:inputs": "supported_synthetic_condition",
-              "signature:outputs": "supported_synthetic_condition",
-              "signature:effects": "supported_synthetic_condition",
-              "signature:failure": "supported_synthetic_condition",
-              "signature:state_transition": "supported_synthetic_condition",
-              "signature:call_graph": "supported_synthetic_condition",
-              "signature:consumer_contract": "missing",
-              "behavior_invariant": "supported_synthetic_condition",
-              "minimum_transform": "supported_synthetic_condition",
-              "rollback": "supported_synthetic_condition",
-              "semantic_basis": "supported_synthetic_condition",
-              "operation_boundary": "supported_synthetic_condition"
-            },
-            "candidate_presentable": false,
-            "unaffected_Q": "original_Q",
-            "effects": {
-              "actual_rename": false,
-              "actual_DesignRefactor": false,
-              "actual_CI": false,
-              "actual_merge": false,
-              "actual_authority": false,
-              "actual_design_complete": false,
-              "actual_acceptance": false
-            }
-          },
-          "basis": "署名六軸を個別原内容比較し、他軸で補完しない。",
-          "execution_state": "not_executed",
-          "effect": "none"
+          "condition": "signature consumer_contractが欠落。",
+          "oracle_property": "署名六軸を個別原内容比較し、他軸で補完しない。",
+          "expected_observation": "candidate_presentable=false; signature:consumer_contract=missing.",
+          "return_targets": [],
+          "execution_state": "not_executed"
         },
         {
+          "oracle_number": "L9-SYSTEM-ORACLE-37",
           "id": "H048-F03-SIGNATURE-CONSUMER_CONTRACT-MISMATCH",
           "requirement_ref": "HARNESS-L3-048-F03",
           "system_oracle_ref": "HARNESS-L10-048-F03",
           "l4_ref": "HARNESS-L4-048-F03",
-          "independent_source_packet": {
-            "ref": {
-              "identity": "SOURCE-H048-F03-SIGNATURE-CONSUMER_CONTRACT-MISMATCH",
-              "revision": "fixture-content-9e1c294d2a64a27bf840bf7ca5624e561dc3e9ab10448ac1282f98de81cd72d3",
-              "scope": "PRODUCT-P",
-              "owner": "synthetic-fixture-owner"
-            },
-            "raw_utf8": "{\"behavior_invariant\":{\"expected\":\"same value/failure/effects\",\"oracle\":\"ORACLE-P\"},\"canonical_decision\":{\"name\":\"readValue\",\"owner\":\"PRODUCT-P-owner\",\"revision\":\"decision-P@r1\"},\"evidence_basis\":\"content\",\"minimum_transform\":{\"changes\":[\"symbol edge only\"]},\"observed_consumers\":[\"C1\",\"C2\"],\"requested_effect\":\"candidate_only\",\"required_consumers\":[\"C1\",\"C2\"],\"rollback\":{\"preserve_object\":\"OBJ-P\",\"preserve_oracle\":\"ORACLE-P\",\"restore_symbol\":\"oldLookup\"},\"signature_after\":{\"call_graph\":[\"port.read\"],\"consumer_contract\":\"foreign-signature-value\",\"effects\":[],\"failure\":[\"not_found\"],\"inputs\":[\"value_id\"],\"outputs\":[\"value\"],\"state_transition\":\"unchanged\"},\"signature_before\":{\"call_graph\":[\"port.read\"],\"consumer_contract\":{\"C1\":\"value-read@r1\",\"C2\":\"value-read@r1\"},\"effects\":[],\"failure\":[\"not_found\"],\"inputs\":[\"value_id\"],\"outputs\":[\"value\"],\"state_transition\":\"unchanged\"},\"visibility\":\"internal\"}",
-            "sha256": "9e1c294d2a64a27bf840bf7ca5624e561dc3e9ab10448ac1282f98de81cd72d3",
-            "qualification": "synthetic_fixture_only_no_actual_source_qualification"
-          },
-          "expected_material": {
-            "condition_results": {
-              "canonical": "supported_synthetic_condition",
-              "internal": "supported_synthetic_condition",
-              "consumers": "supported_synthetic_condition",
-              "signature:inputs": "supported_synthetic_condition",
-              "signature:outputs": "supported_synthetic_condition",
-              "signature:effects": "supported_synthetic_condition",
-              "signature:failure": "supported_synthetic_condition",
-              "signature:state_transition": "supported_synthetic_condition",
-              "signature:call_graph": "supported_synthetic_condition",
-              "signature:consumer_contract": "conflict",
-              "behavior_invariant": "supported_synthetic_condition",
-              "minimum_transform": "supported_synthetic_condition",
-              "rollback": "supported_synthetic_condition",
-              "semantic_basis": "supported_synthetic_condition",
-              "operation_boundary": "supported_synthetic_condition"
-            },
-            "candidate_presentable": false,
-            "unaffected_Q": "original_Q",
-            "effects": {
-              "actual_rename": false,
-              "actual_DesignRefactor": false,
-              "actual_CI": false,
-              "actual_merge": false,
-              "actual_authority": false,
-              "actual_design_complete": false,
-              "actual_acceptance": false
-            }
-          },
-          "basis": "署名六軸を個別原内容比較し、他軸で補完しない。",
-          "execution_state": "not_executed",
-          "effect": "none"
+          "condition": "signature consumer_contractが不一致。",
+          "oracle_property": "署名六軸を個別原内容比較し、他軸で補完しない。",
+          "expected_observation": "candidate_presentable=false; signature:consumer_contract=conflict.",
+          "return_targets": [],
+          "execution_state": "not_executed"
         }
       ],
-      "execution_state": "not_executed",
-      "effect": "none"
+      "system_oracle_pointer": "docs/helix-harness/L10-verification/functional-verification.json#/cases/49",
+      "shared_oracle_boundary": "条件が一つでも不成立ならcandidate提示を拒否。rename/PR/receiptを生成せず、無影響のQはoriginal_Qを維持。",
+      "shared_return_target": "対象作成側"
     },
     {
       "id": "HARNESS-L9-048-F04",
       "l4_ref": "HARNESS-L4-048-F04",
       "requirement_ref": "HARNESS-L3-048-F04",
       "system_oracle_ref": "HARNESS-L10-048-F04",
-      "approved_l10": {
-        "id": "HARNESS-L10-048-F04",
-        "parent": "HARNESS-L2-048",
-        "title": "返却と期限付き例外",
-        "requirement_ref": "HARNESS-L3-048-F04",
-        "positive_input": "対象境界別のfindingと有効/無期限/owner無し例外を照合する。",
-        "expected_observation": "自動修正拒否と理由付き例外の範囲を区別し、未解決の影響を残す。",
-        "negative_input": "public変更をinternal rename扱い、無期限/owner無し例外で通過、warningだけで全scope停止。",
-        "failure_observation": "対象の返却理由/例外不足を残し、他scopeの成立を失わせない。",
-        "execution_state": "not_executed"
-      },
       "connection_scope": "独立原内容→当該pure照合→対象別結果/候補/返却。実BRAIN/製品resolver/OS運転は未binding。",
-      "concrete_cases": [
+      "execution_state": "not_executed",
+      "effect": "none",
+      "system_oracle_allowlist": [
         {
+          "oracle_number": "L9-SYSTEM-ORACLE-38",
           "id": "H048-F04-VALID-EXCEPTION",
           "requirement_ref": "HARNESS-L3-048-F04",
           "system_oracle_ref": "HARNESS-L10-048-F04",
           "l4_ref": "HARNESS-L4-048-F04",
-          "independent_source_packet": {
-            "ref": {
-              "identity": "SOURCE-H048-F04-VALID-EXCEPTION",
-              "revision": "fixture-content-1e54b3bf0381d4c9050afdad13084e9894c111070d3dd6056a5eea601b253ef4",
-              "scope": "PRODUCT-P",
-              "owner": "synthetic-fixture-owner"
-            },
-            "raw_utf8": "{\"boundary\":\"internal\",\"evaluation_date\":\"2030-01-01\",\"exception\":{\"expiry\":\"2030-02-01\",\"owner\":\"PRODUCT-P-owner\",\"reason\":\"役割確定まで既存利用を継続\",\"scope\":\"PRODUCT-P\"},\"finding\":{\"id\":\"FIND-P\",\"impact\":[\"OBJ-P\"],\"owner\":\"PRODUCT-P-owner\",\"reason\":\"role_unknown\"},\"scope\":\"PRODUCT-P\",\"warning_requests_global_stop\":false}",
-            "sha256": "1e54b3bf0381d4c9050afdad13084e9894c111070d3dd6056a5eea601b253ef4",
-            "qualification": "synthetic_fixture_only_no_actual_source_qualification"
-          },
-          "expected_material": {
-            "auto_rename": "rejected",
-            "return_candidate": "product_author",
-            "finding_retained": "FIND-P",
-            "exception_result": "valid_for_fixture_scope",
-            "local_continuation": true,
-            "global_stop": false,
-            "unaffected_Q": "original_Q",
-            "effects": {
-              "actual_rename": false,
-              "actual_DesignRefactor": false,
-              "actual_CI": false,
-              "actual_merge": false,
-              "actual_authority": false,
-              "actual_design_complete": false,
-              "actual_acceptance": false
-            }
-          },
-          "basis": "例外は局所継続のみ。自動rename拒否と影響を消さない。",
-          "execution_state": "not_executed",
-          "effect": "none"
+          "condition": "internal境界のrole_unknown findingに、PRODUCT-P限定の有効例外。",
+          "oracle_property": "例外は局所継続のみ。自動rename拒否と影響を消さない。",
+          "expected_observation": "exception=valid; local_continuation=true.",
+          "return_targets": [
+            "product_author"
+          ],
+          "execution_state": "not_executed"
         },
         {
+          "oracle_number": "L9-SYSTEM-ORACLE-39",
           "id": "H048-F04-OWNER-MISSING",
           "requirement_ref": "HARNESS-L3-048-F04",
           "system_oracle_ref": "HARNESS-L10-048-F04",
           "l4_ref": "HARNESS-L4-048-F04",
-          "independent_source_packet": {
-            "ref": {
-              "identity": "SOURCE-H048-F04-OWNER-MISSING",
-              "revision": "fixture-content-580ffcfc7fb896060a30850e377b004f6a7c62a0885a13ce7df9dae6675bee40",
-              "scope": "PRODUCT-P",
-              "owner": "synthetic-fixture-owner"
-            },
-            "raw_utf8": "{\"boundary\":\"internal\",\"evaluation_date\":\"2030-01-01\",\"exception\":{\"expiry\":\"2030-02-01\",\"owner\":null,\"reason\":\"役割確定まで既存利用を継続\",\"scope\":\"PRODUCT-P\"},\"finding\":{\"id\":\"FIND-P\",\"impact\":[\"OBJ-P\"],\"owner\":\"PRODUCT-P-owner\",\"reason\":\"role_unknown\"},\"scope\":\"PRODUCT-P\",\"warning_requests_global_stop\":false}",
-            "sha256": "580ffcfc7fb896060a30850e377b004f6a7c62a0885a13ce7df9dae6675bee40",
-            "qualification": "synthetic_fixture_only_no_actual_source_qualification"
-          },
-          "expected_material": {
-            "auto_rename": "rejected",
-            "return_candidate": "product_author",
-            "finding_retained": "FIND-P",
-            "exception_result": "missing_owner",
-            "local_continuation": false,
-            "global_stop": false,
-            "unaffected_Q": "original_Q",
-            "effects": {
-              "actual_rename": false,
-              "actual_DesignRefactor": false,
-              "actual_CI": false,
-              "actual_merge": false,
-              "actual_authority": false,
-              "actual_design_complete": false,
-              "actual_acceptance": false
-            }
-          },
-          "basis": "例外不足はPのみ。Qを停止しない。",
-          "execution_state": "not_executed",
-          "effect": "none"
+          "condition": "exception ownerが欠落。",
+          "oracle_property": "例外不足はPのみ。Qを停止しない。",
+          "expected_observation": "exception=missing_owner; local_continuation=false.",
+          "return_targets": [
+            "product_author"
+          ],
+          "execution_state": "not_executed"
         },
         {
+          "oracle_number": "L9-SYSTEM-ORACLE-40",
           "id": "H048-F04-EXPIRY-MISSING",
           "requirement_ref": "HARNESS-L3-048-F04",
           "system_oracle_ref": "HARNESS-L10-048-F04",
           "l4_ref": "HARNESS-L4-048-F04",
-          "independent_source_packet": {
-            "ref": {
-              "identity": "SOURCE-H048-F04-EXPIRY-MISSING",
-              "revision": "fixture-content-fbfeb69577fdab8a7c1f09f0fd67ab932cd01da8eca92d54735124595c672086",
-              "scope": "PRODUCT-P",
-              "owner": "synthetic-fixture-owner"
-            },
-            "raw_utf8": "{\"boundary\":\"internal\",\"evaluation_date\":\"2030-01-01\",\"exception\":{\"expiry\":null,\"owner\":\"PRODUCT-P-owner\",\"reason\":\"役割確定まで既存利用を継続\",\"scope\":\"PRODUCT-P\"},\"finding\":{\"id\":\"FIND-P\",\"impact\":[\"OBJ-P\"],\"owner\":\"PRODUCT-P-owner\",\"reason\":\"role_unknown\"},\"scope\":\"PRODUCT-P\",\"warning_requests_global_stop\":false}",
-            "sha256": "fbfeb69577fdab8a7c1f09f0fd67ab932cd01da8eca92d54735124595c672086",
-            "qualification": "synthetic_fixture_only_no_actual_source_qualification"
-          },
-          "expected_material": {
-            "auto_rename": "rejected",
-            "return_candidate": "product_author",
-            "finding_retained": "FIND-P",
-            "exception_result": "missing_expiry",
-            "local_continuation": false,
-            "global_stop": false,
-            "unaffected_Q": "original_Q",
-            "effects": {
-              "actual_rename": false,
-              "actual_DesignRefactor": false,
-              "actual_CI": false,
-              "actual_merge": false,
-              "actual_authority": false,
-              "actual_design_complete": false,
-              "actual_acceptance": false
-            }
-          },
-          "basis": "例外不足はPのみ。Qを停止しない。",
-          "execution_state": "not_executed",
-          "effect": "none"
+          "condition": "exception expiryが欠落。",
+          "oracle_property": "例外不足はPのみ。Qを停止しない。",
+          "expected_observation": "exception=missing_expiry; local_continuation=false.",
+          "return_targets": [
+            "product_author"
+          ],
+          "execution_state": "not_executed"
         },
         {
+          "oracle_number": "L9-SYSTEM-ORACLE-41",
           "id": "H048-F04-EXPIRED",
           "requirement_ref": "HARNESS-L3-048-F04",
           "system_oracle_ref": "HARNESS-L10-048-F04",
           "l4_ref": "HARNESS-L4-048-F04",
-          "independent_source_packet": {
-            "ref": {
-              "identity": "SOURCE-H048-F04-EXPIRED",
-              "revision": "fixture-content-c68250b7cafd0b42ef6235c717955b3de62b530ce6520df7ef781d3a97db1219",
-              "scope": "PRODUCT-P",
-              "owner": "synthetic-fixture-owner"
-            },
-            "raw_utf8": "{\"boundary\":\"internal\",\"evaluation_date\":\"2030-01-01\",\"exception\":{\"expiry\":\"2029-12-31\",\"owner\":\"PRODUCT-P-owner\",\"reason\":\"役割確定まで既存利用を継続\",\"scope\":\"PRODUCT-P\"},\"finding\":{\"id\":\"FIND-P\",\"impact\":[\"OBJ-P\"],\"owner\":\"PRODUCT-P-owner\",\"reason\":\"role_unknown\"},\"scope\":\"PRODUCT-P\",\"warning_requests_global_stop\":false}",
-            "sha256": "c68250b7cafd0b42ef6235c717955b3de62b530ce6520df7ef781d3a97db1219",
-            "qualification": "synthetic_fixture_only_no_actual_source_qualification"
-          },
-          "expected_material": {
-            "auto_rename": "rejected",
-            "return_candidate": "product_author",
-            "finding_retained": "FIND-P",
-            "exception_result": "expired",
-            "local_continuation": false,
-            "global_stop": false,
-            "unaffected_Q": "original_Q",
-            "effects": {
-              "actual_rename": false,
-              "actual_DesignRefactor": false,
-              "actual_CI": false,
-              "actual_merge": false,
-              "actual_authority": false,
-              "actual_design_complete": false,
-              "actual_acceptance": false
-            }
-          },
-          "basis": "例外不足はPのみ。Qを停止しない。",
-          "execution_state": "not_executed",
-          "effect": "none"
+          "condition": "exceptionが期限切れ。",
+          "oracle_property": "例外不足はPのみ。Qを停止しない。",
+          "expected_observation": "exception=expired; local_continuation=false.",
+          "return_targets": [
+            "product_author"
+          ],
+          "execution_state": "not_executed"
         },
         {
+          "oracle_number": "L9-SYSTEM-ORACLE-42",
           "id": "H048-F04-REASON-MISSING",
           "requirement_ref": "HARNESS-L3-048-F04",
           "system_oracle_ref": "HARNESS-L10-048-F04",
           "l4_ref": "HARNESS-L4-048-F04",
-          "independent_source_packet": {
-            "ref": {
-              "identity": "SOURCE-H048-F04-REASON-MISSING",
-              "revision": "fixture-content-397896c04a9a5f859c30b63c9a60d626fa1a69c4436c8a4c9169c861eaeee8aa",
-              "scope": "PRODUCT-P",
-              "owner": "synthetic-fixture-owner"
-            },
-            "raw_utf8": "{\"boundary\":\"internal\",\"evaluation_date\":\"2030-01-01\",\"exception\":{\"expiry\":\"2030-02-01\",\"owner\":\"PRODUCT-P-owner\",\"reason\":null,\"scope\":\"PRODUCT-P\"},\"finding\":{\"id\":\"FIND-P\",\"impact\":[\"OBJ-P\"],\"owner\":\"PRODUCT-P-owner\",\"reason\":\"role_unknown\"},\"scope\":\"PRODUCT-P\",\"warning_requests_global_stop\":false}",
-            "sha256": "397896c04a9a5f859c30b63c9a60d626fa1a69c4436c8a4c9169c861eaeee8aa",
-            "qualification": "synthetic_fixture_only_no_actual_source_qualification"
-          },
-          "expected_material": {
-            "auto_rename": "rejected",
-            "return_candidate": "product_author",
-            "finding_retained": "FIND-P",
-            "exception_result": "missing_reason",
-            "local_continuation": false,
-            "global_stop": false,
-            "unaffected_Q": "original_Q",
-            "effects": {
-              "actual_rename": false,
-              "actual_DesignRefactor": false,
-              "actual_CI": false,
-              "actual_merge": false,
-              "actual_authority": false,
-              "actual_design_complete": false,
-              "actual_acceptance": false
-            }
-          },
-          "basis": "例外不足はPのみ。Qを停止しない。",
-          "execution_state": "not_executed",
-          "effect": "none"
+          "condition": "exception reasonが欠落。",
+          "oracle_property": "例外不足はPのみ。Qを停止しない。",
+          "expected_observation": "exception=missing_reason; local_continuation=false.",
+          "return_targets": [
+            "product_author"
+          ],
+          "execution_state": "not_executed"
         },
         {
+          "oracle_number": "L9-SYSTEM-ORACLE-43",
           "id": "H048-F04-FOREIGN-SCOPE",
           "requirement_ref": "HARNESS-L3-048-F04",
           "system_oracle_ref": "HARNESS-L10-048-F04",
           "l4_ref": "HARNESS-L4-048-F04",
-          "independent_source_packet": {
-            "ref": {
-              "identity": "SOURCE-H048-F04-FOREIGN-SCOPE",
-              "revision": "fixture-content-2c2a82071d4e0f580fbadcfb636dd5551d284c95b9d348212c6768a68a80cdac",
-              "scope": "PRODUCT-P",
-              "owner": "synthetic-fixture-owner"
-            },
-            "raw_utf8": "{\"boundary\":\"internal\",\"evaluation_date\":\"2030-01-01\",\"exception\":{\"expiry\":\"2030-02-01\",\"owner\":\"PRODUCT-P-owner\",\"reason\":\"役割確定まで既存利用を継続\",\"scope\":\"PRODUCT-Q\"},\"finding\":{\"id\":\"FIND-P\",\"impact\":[\"OBJ-P\"],\"owner\":\"PRODUCT-P-owner\",\"reason\":\"role_unknown\"},\"scope\":\"PRODUCT-P\",\"warning_requests_global_stop\":false}",
-            "sha256": "2c2a82071d4e0f580fbadcfb636dd5551d284c95b9d348212c6768a68a80cdac",
-            "qualification": "synthetic_fixture_only_no_actual_source_qualification"
-          },
-          "expected_material": {
-            "auto_rename": "rejected",
-            "return_candidate": "product_author",
-            "finding_retained": "FIND-P",
-            "exception_result": "scope_conflict",
-            "local_continuation": false,
-            "global_stop": false,
-            "unaffected_Q": "original_Q",
-            "effects": {
-              "actual_rename": false,
-              "actual_DesignRefactor": false,
-              "actual_CI": false,
-              "actual_merge": false,
-              "actual_authority": false,
-              "actual_design_complete": false,
-              "actual_acceptance": false
-            }
-          },
-          "basis": "例外不足はPのみ。Qを停止しない。",
-          "execution_state": "not_executed",
-          "effect": "none"
+          "condition": "exception scopeが別対象。",
+          "oracle_property": "例外不足はPのみ。Qを停止しない。",
+          "expected_observation": "exception=scope_conflict; local_continuation=false.",
+          "return_targets": [
+            "product_author"
+          ],
+          "execution_state": "not_executed"
         },
         {
+          "oracle_number": "L9-SYSTEM-ORACLE-44",
           "id": "H048-F04-PUBLIC_API",
           "requirement_ref": "HARNESS-L3-048-F04",
           "system_oracle_ref": "HARNESS-L10-048-F04",
           "l4_ref": "HARNESS-L4-048-F04",
-          "independent_source_packet": {
-            "ref": {
-              "identity": "SOURCE-H048-F04-PUBLIC_API",
-              "revision": "fixture-content-82a5cfb6b2a03a88d8e0caa3558ac920abaf02a229f576dea05f8f635bfecdce",
-              "scope": "PRODUCT-P",
-              "owner": "synthetic-fixture-owner"
-            },
-            "raw_utf8": "{\"boundary\":\"public_API\",\"evaluation_date\":\"2030-01-01\",\"exception\":{\"expiry\":\"2030-02-01\",\"owner\":\"PRODUCT-P-owner\",\"reason\":\"役割確定まで既存利用を継続\",\"scope\":\"PRODUCT-P\"},\"finding\":{\"id\":\"FIND-P\",\"impact\":[\"OBJ-P\"],\"owner\":\"PRODUCT-P-owner\",\"reason\":\"observable_contract_change\"},\"scope\":\"PRODUCT-P\",\"warning_requests_global_stop\":false}",
-            "sha256": "82a5cfb6b2a03a88d8e0caa3558ac920abaf02a229f576dea05f8f635bfecdce",
-            "qualification": "synthetic_fixture_only_no_actual_source_qualification"
-          },
-          "expected_material": {
-            "auto_rename": "rejected",
-            "return_candidate": "Redesign_or_Retrofit_with_compatibility_migration",
-            "finding_retained": "FIND-P",
-            "exception_result": "valid_for_fixture_scope",
-            "local_continuation": true,
-            "global_stop": false,
-            "unaffected_Q": "original_Q",
-            "effects": {
-              "actual_rename": false,
-              "actual_DesignRefactor": false,
-              "actual_CI": false,
-              "actual_merge": false,
-              "actual_authority": false,
-              "actual_design_complete": false,
-              "actual_acceptance": false
-            }
-          },
-          "basis": "public/persisted/configをinternalとして自動修正しない。",
-          "execution_state": "not_executed",
-          "effect": "none"
+          "condition": "対象はpublic API。name変更だけで継続しない。",
+          "oracle_property": "public/persisted/configをinternalとして自動修正しない。",
+          "expected_observation": "exception=valid; local_continuation=true.",
+          "return_targets": [
+            "Redesign_or_Retrofit_with_compatibility_migration"
+          ],
+          "execution_state": "not_executed"
         },
         {
+          "oracle_number": "L9-SYSTEM-ORACLE-45",
           "id": "H048-F04-PUBLIC_CLI",
           "requirement_ref": "HARNESS-L3-048-F04",
           "system_oracle_ref": "HARNESS-L10-048-F04",
           "l4_ref": "HARNESS-L4-048-F04",
-          "independent_source_packet": {
-            "ref": {
-              "identity": "SOURCE-H048-F04-PUBLIC_CLI",
-              "revision": "fixture-content-6353ec4b2953f936e01a9e94b4162c64fdd9f0e45c54769c2508f6061a4f3573",
-              "scope": "PRODUCT-P",
-              "owner": "synthetic-fixture-owner"
-            },
-            "raw_utf8": "{\"boundary\":\"public_CLI\",\"evaluation_date\":\"2030-01-01\",\"exception\":{\"expiry\":\"2030-02-01\",\"owner\":\"PRODUCT-P-owner\",\"reason\":\"役割確定まで既存利用を継続\",\"scope\":\"PRODUCT-P\"},\"finding\":{\"id\":\"FIND-P\",\"impact\":[\"OBJ-P\"],\"owner\":\"PRODUCT-P-owner\",\"reason\":\"observable_contract_change\"},\"scope\":\"PRODUCT-P\",\"warning_requests_global_stop\":false}",
-            "sha256": "6353ec4b2953f936e01a9e94b4162c64fdd9f0e45c54769c2508f6061a4f3573",
-            "qualification": "synthetic_fixture_only_no_actual_source_qualification"
-          },
-          "expected_material": {
-            "auto_rename": "rejected",
-            "return_candidate": "Redesign_or_Retrofit_with_compatibility_migration",
-            "finding_retained": "FIND-P",
-            "exception_result": "valid_for_fixture_scope",
-            "local_continuation": true,
-            "global_stop": false,
-            "unaffected_Q": "original_Q",
-            "effects": {
-              "actual_rename": false,
-              "actual_DesignRefactor": false,
-              "actual_CI": false,
-              "actual_merge": false,
-              "actual_authority": false,
-              "actual_design_complete": false,
-              "actual_acceptance": false
-            }
-          },
-          "basis": "public/persisted/configをinternalとして自動修正しない。",
-          "execution_state": "not_executed",
-          "effect": "none"
+          "condition": "対象はpublic CLI。name変更だけで継続しない。",
+          "oracle_property": "public/persisted/configをinternalとして自動修正しない。",
+          "expected_observation": "exception=valid; local_continuation=true.",
+          "return_targets": [
+            "Redesign_or_Retrofit_with_compatibility_migration"
+          ],
+          "execution_state": "not_executed"
         },
         {
+          "oracle_number": "L9-SYSTEM-ORACLE-46",
           "id": "H048-F04-PERSISTED_FIELD",
           "requirement_ref": "HARNESS-L3-048-F04",
           "system_oracle_ref": "HARNESS-L10-048-F04",
           "l4_ref": "HARNESS-L4-048-F04",
-          "independent_source_packet": {
-            "ref": {
-              "identity": "SOURCE-H048-F04-PERSISTED_FIELD",
-              "revision": "fixture-content-f1ce7c695d1f6745fde9ff5d86924e3a4c8b3ced3c58137b9d245a0a574be19e",
-              "scope": "PRODUCT-P",
-              "owner": "synthetic-fixture-owner"
-            },
-            "raw_utf8": "{\"boundary\":\"persisted_field\",\"evaluation_date\":\"2030-01-01\",\"exception\":{\"expiry\":\"2030-02-01\",\"owner\":\"PRODUCT-P-owner\",\"reason\":\"役割確定まで既存利用を継続\",\"scope\":\"PRODUCT-P\"},\"finding\":{\"id\":\"FIND-P\",\"impact\":[\"OBJ-P\"],\"owner\":\"PRODUCT-P-owner\",\"reason\":\"observable_contract_change\"},\"scope\":\"PRODUCT-P\",\"warning_requests_global_stop\":false}",
-            "sha256": "f1ce7c695d1f6745fde9ff5d86924e3a4c8b3ced3c58137b9d245a0a574be19e",
-            "qualification": "synthetic_fixture_only_no_actual_source_qualification"
-          },
-          "expected_material": {
-            "auto_rename": "rejected",
-            "return_candidate": "Redesign_or_Retrofit_with_compatibility_migration",
-            "finding_retained": "FIND-P",
-            "exception_result": "valid_for_fixture_scope",
-            "local_continuation": true,
-            "global_stop": false,
-            "unaffected_Q": "original_Q",
-            "effects": {
-              "actual_rename": false,
-              "actual_DesignRefactor": false,
-              "actual_CI": false,
-              "actual_merge": false,
-              "actual_authority": false,
-              "actual_design_complete": false,
-              "actual_acceptance": false
-            }
-          },
-          "basis": "public/persisted/configをinternalとして自動修正しない。",
-          "execution_state": "not_executed",
-          "effect": "none"
+          "condition": "対象は永続field。name変更だけで継続しない。",
+          "oracle_property": "public/persisted/configをinternalとして自動修正しない。",
+          "expected_observation": "exception=valid; local_continuation=true.",
+          "return_targets": [
+            "Redesign_or_Retrofit_with_compatibility_migration"
+          ],
+          "execution_state": "not_executed"
         },
         {
+          "oracle_number": "L9-SYSTEM-ORACLE-47",
           "id": "H048-F04-PERSISTED_EVENT",
           "requirement_ref": "HARNESS-L3-048-F04",
           "system_oracle_ref": "HARNESS-L10-048-F04",
           "l4_ref": "HARNESS-L4-048-F04",
-          "independent_source_packet": {
-            "ref": {
-              "identity": "SOURCE-H048-F04-PERSISTED_EVENT",
-              "revision": "fixture-content-6e80e585137cc8b2207368e49a8bfd6ef2d3b0b698221cbe279a47e3a6360ae9",
-              "scope": "PRODUCT-P",
-              "owner": "synthetic-fixture-owner"
-            },
-            "raw_utf8": "{\"boundary\":\"persisted_event\",\"evaluation_date\":\"2030-01-01\",\"exception\":{\"expiry\":\"2030-02-01\",\"owner\":\"PRODUCT-P-owner\",\"reason\":\"役割確定まで既存利用を継続\",\"scope\":\"PRODUCT-P\"},\"finding\":{\"id\":\"FIND-P\",\"impact\":[\"OBJ-P\"],\"owner\":\"PRODUCT-P-owner\",\"reason\":\"observable_contract_change\"},\"scope\":\"PRODUCT-P\",\"warning_requests_global_stop\":false}",
-            "sha256": "6e80e585137cc8b2207368e49a8bfd6ef2d3b0b698221cbe279a47e3a6360ae9",
-            "qualification": "synthetic_fixture_only_no_actual_source_qualification"
-          },
-          "expected_material": {
-            "auto_rename": "rejected",
-            "return_candidate": "Redesign_or_Retrofit_with_compatibility_migration",
-            "finding_retained": "FIND-P",
-            "exception_result": "valid_for_fixture_scope",
-            "local_continuation": true,
-            "global_stop": false,
-            "unaffected_Q": "original_Q",
-            "effects": {
-              "actual_rename": false,
-              "actual_DesignRefactor": false,
-              "actual_CI": false,
-              "actual_merge": false,
-              "actual_authority": false,
-              "actual_design_complete": false,
-              "actual_acceptance": false
-            }
-          },
-          "basis": "public/persisted/configをinternalとして自動修正しない。",
-          "execution_state": "not_executed",
-          "effect": "none"
+          "condition": "対象は永続event。name変更だけで継続しない。",
+          "oracle_property": "public/persisted/configをinternalとして自動修正しない。",
+          "expected_observation": "exception=valid; local_continuation=true.",
+          "return_targets": [
+            "Redesign_or_Retrofit_with_compatibility_migration"
+          ],
+          "execution_state": "not_executed"
         },
         {
+          "oracle_number": "L9-SYSTEM-ORACLE-48",
           "id": "H048-F04-DIRECT_CONFIG_KEY",
           "requirement_ref": "HARNESS-L3-048-F04",
           "system_oracle_ref": "HARNESS-L10-048-F04",
           "l4_ref": "HARNESS-L4-048-F04",
-          "independent_source_packet": {
-            "ref": {
-              "identity": "SOURCE-H048-F04-DIRECT_CONFIG_KEY",
-              "revision": "fixture-content-66b8c5211b699ad0f5c2f155000a2838de8cef9689b9e551aabf7862560d4bc8",
-              "scope": "PRODUCT-P",
-              "owner": "synthetic-fixture-owner"
-            },
-            "raw_utf8": "{\"boundary\":\"direct_config_key\",\"evaluation_date\":\"2030-01-01\",\"exception\":{\"expiry\":\"2030-02-01\",\"owner\":\"PRODUCT-P-owner\",\"reason\":\"役割確定まで既存利用を継続\",\"scope\":\"PRODUCT-P\"},\"finding\":{\"id\":\"FIND-P\",\"impact\":[\"OBJ-P\"],\"owner\":\"PRODUCT-P-owner\",\"reason\":\"observable_contract_change\"},\"scope\":\"PRODUCT-P\",\"warning_requests_global_stop\":false}",
-            "sha256": "66b8c5211b699ad0f5c2f155000a2838de8cef9689b9e551aabf7862560d4bc8",
-            "qualification": "synthetic_fixture_only_no_actual_source_qualification"
-          },
-          "expected_material": {
-            "auto_rename": "rejected",
-            "return_candidate": "Redesign_or_Retrofit_with_compatibility_migration",
-            "finding_retained": "FIND-P",
-            "exception_result": "valid_for_fixture_scope",
-            "local_continuation": true,
-            "global_stop": false,
-            "unaffected_Q": "original_Q",
-            "effects": {
-              "actual_rename": false,
-              "actual_DesignRefactor": false,
-              "actual_CI": false,
-              "actual_merge": false,
-              "actual_authority": false,
-              "actual_design_complete": false,
-              "actual_acceptance": false
-            }
-          },
-          "basis": "public/persisted/configをinternalとして自動修正しない。",
-          "execution_state": "not_executed",
-          "effect": "none"
+          "condition": "対象は直接参照config key。name変更だけで継続しない。",
+          "oracle_property": "public/persisted/configをinternalとして自動修正しない。",
+          "expected_observation": "exception=valid; local_continuation=true.",
+          "return_targets": [
+            "Redesign_or_Retrofit_with_compatibility_migration"
+          ],
+          "execution_state": "not_executed"
         },
         {
+          "oracle_number": "L9-SYSTEM-ORACLE-49",
           "id": "H048-F04-CONSUMER_INCOMPLETE",
           "requirement_ref": "HARNESS-L3-048-F04",
           "system_oracle_ref": "HARNESS-L10-048-F04",
           "l4_ref": "HARNESS-L4-048-F04",
-          "independent_source_packet": {
-            "ref": {
-              "identity": "SOURCE-H048-F04-CONSUMER_INCOMPLETE",
-              "revision": "fixture-content-a689acf93a406d4721b7ce2f4453b440d7ceb20e86cf2bbc6008d8e7ebf00cfb",
-              "scope": "PRODUCT-P",
-              "owner": "synthetic-fixture-owner"
-            },
-            "raw_utf8": "{\"boundary\":\"internal\",\"evaluation_date\":\"2030-01-01\",\"exception\":{\"expiry\":\"2030-02-01\",\"owner\":\"PRODUCT-P-owner\",\"reason\":\"役割確定まで既存利用を継続\",\"scope\":\"PRODUCT-P\"},\"finding\":{\"id\":\"FIND-P\",\"impact\":[\"OBJ-P\"],\"owner\":\"PRODUCT-P-owner\",\"reason\":\"consumer_incomplete\"},\"scope\":\"PRODUCT-P\",\"warning_requests_global_stop\":false}",
-            "sha256": "a689acf93a406d4721b7ce2f4453b440d7ceb20e86cf2bbc6008d8e7ebf00cfb",
-            "qualification": "synthetic_fixture_only_no_actual_source_qualification"
-          },
-          "expected_material": {
-            "auto_rename": "rejected",
-            "return_candidate": "product_author",
-            "finding_retained": "FIND-P",
-            "exception_result": "valid_for_fixture_scope",
-            "local_continuation": true,
-            "global_stop": false,
-            "unaffected_Q": "original_Q",
-            "effects": {
-              "actual_rename": false,
-              "actual_DesignRefactor": false,
-              "actual_CI": false,
-              "actual_merge": false,
-              "actual_authority": false,
-              "actual_design_complete": false,
-              "actual_acceptance": false
-            }
-          },
-          "basis": "対象作成側へ理由/影響/ownerを保持して返す。",
-          "execution_state": "not_executed",
-          "effect": "none"
+          "condition": "findingはconsumer情報不足。",
+          "oracle_property": "対象作成側へ理由/影響/ownerを保持して返す。",
+          "expected_observation": "exception=valid; local_continuation=true.",
+          "return_targets": [
+            "product_author"
+          ],
+          "execution_state": "not_executed"
         },
         {
+          "oracle_number": "L9-SYSTEM-ORACLE-50",
           "id": "H048-F04-SIGNATURE_MISMATCH",
           "requirement_ref": "HARNESS-L3-048-F04",
           "system_oracle_ref": "HARNESS-L10-048-F04",
           "l4_ref": "HARNESS-L4-048-F04",
-          "independent_source_packet": {
-            "ref": {
-              "identity": "SOURCE-H048-F04-SIGNATURE_MISMATCH",
-              "revision": "fixture-content-eac5dff09f0b5ac236d2a104094d696bfb0e59979eac66693651839c62c58598",
-              "scope": "PRODUCT-P",
-              "owner": "synthetic-fixture-owner"
-            },
-            "raw_utf8": "{\"boundary\":\"internal\",\"evaluation_date\":\"2030-01-01\",\"exception\":{\"expiry\":\"2030-02-01\",\"owner\":\"PRODUCT-P-owner\",\"reason\":\"役割確定まで既存利用を継続\",\"scope\":\"PRODUCT-P\"},\"finding\":{\"id\":\"FIND-P\",\"impact\":[\"OBJ-P\"],\"owner\":\"PRODUCT-P-owner\",\"reason\":\"signature_mismatch\"},\"scope\":\"PRODUCT-P\",\"warning_requests_global_stop\":false}",
-            "sha256": "eac5dff09f0b5ac236d2a104094d696bfb0e59979eac66693651839c62c58598",
-            "qualification": "synthetic_fixture_only_no_actual_source_qualification"
-          },
-          "expected_material": {
-            "auto_rename": "rejected",
-            "return_candidate": "product_author",
-            "finding_retained": "FIND-P",
-            "exception_result": "valid_for_fixture_scope",
-            "local_continuation": true,
-            "global_stop": false,
-            "unaffected_Q": "original_Q",
-            "effects": {
-              "actual_rename": false,
-              "actual_DesignRefactor": false,
-              "actual_CI": false,
-              "actual_merge": false,
-              "actual_authority": false,
-              "actual_design_complete": false,
-              "actual_acceptance": false
-            }
-          },
-          "basis": "対象作成側へ理由/影響/ownerを保持して返す。",
-          "execution_state": "not_executed",
-          "effect": "none"
+          "condition": "findingはsignature不一致。",
+          "oracle_property": "対象作成側へ理由/影響/ownerを保持して返す。",
+          "expected_observation": "exception=valid; local_continuation=true.",
+          "return_targets": [
+            "product_author"
+          ],
+          "execution_state": "not_executed"
         },
         {
+          "oracle_number": "L9-SYSTEM-ORACLE-51",
           "id": "H048-F04-WARNING-GLOBAL-STOP-REJECTED",
           "requirement_ref": "HARNESS-L3-048-F04",
           "system_oracle_ref": "HARNESS-L10-048-F04",
           "l4_ref": "HARNESS-L4-048-F04",
-          "independent_source_packet": {
-            "ref": {
-              "identity": "SOURCE-H048-F04-WARNING-GLOBAL-STOP-REJECTED",
-              "revision": "fixture-content-2f7f897af7ad9a1d4f4729ab1d773bd431b6958c08f0717335a9e3daeca75929",
-              "scope": "PRODUCT-P",
-              "owner": "synthetic-fixture-owner"
-            },
-            "raw_utf8": "{\"boundary\":\"internal\",\"evaluation_date\":\"2030-01-01\",\"exception\":{\"expiry\":\"2030-02-01\",\"owner\":\"PRODUCT-P-owner\",\"reason\":\"役割確定まで既存利用を継続\",\"scope\":\"PRODUCT-P\"},\"finding\":{\"id\":\"FIND-P\",\"impact\":[\"OBJ-P\"],\"owner\":\"PRODUCT-P-owner\",\"reason\":\"role_unknown\"},\"scope\":\"PRODUCT-P\",\"warning_requests_global_stop\":true}",
-            "sha256": "2f7f897af7ad9a1d4f4729ab1d773bd431b6958c08f0717335a9e3daeca75929",
-            "qualification": "synthetic_fixture_only_no_actual_source_qualification"
-          },
-          "expected_material": {
-            "auto_rename": "rejected",
-            "return_candidate": "product_author",
-            "finding_retained": "FIND-P",
-            "exception_result": "valid_for_fixture_scope",
-            "local_continuation": true,
-            "global_stop": false,
-            "unaffected_Q": "original_Q",
-            "effects": {
-              "actual_rename": false,
-              "actual_DesignRefactor": false,
-              "actual_CI": false,
-              "actual_merge": false,
-              "actual_authority": false,
-              "actual_design_complete": false,
-              "actual_acceptance": false
-            }
-          },
-          "basis": "warningの全scope停止要求を拒否し、P局所条件/Q成立を保持。",
-          "execution_state": "not_executed",
-          "effect": "none"
+          "condition": "warningが全scope停止を要求。",
+          "oracle_property": "warningの全scope停止要求を拒否し、P局所条件/Q成立を保持。",
+          "expected_observation": "exception=valid; local_continuation=true.",
+          "return_targets": [
+            "product_author"
+          ],
+          "execution_state": "not_executed"
         }
       ],
-      "execution_state": "not_executed",
-      "effect": "none"
+      "system_oracle_pointer": "docs/helix-harness/L10-verification/functional-verification.json#/cases/50",
+      "shared_oracle_boundary": "自動renameを拒否してfindingを保持。warningで無関係scopeを停止せず、無影響のQはoriginal_Qを維持。"
     },
     {
       "id": "HARNESS-L9-048-B01",
       "l4_ref": "HARNESS-L4-048-B01",
       "requirement_ref": "HARNESS-L3-048-B01",
       "system_oracle_ref": "HARNESS-L10-048-B01",
-      "approved_l10": {
-        "id": "HARNESS-L10-048-B01",
-        "parent": "HARNESS-L2-048",
-        "title": "命名知識と検査の権限境界",
-        "requirement_ref": "HARNESS-L3-048-B01",
-        "positive_input": "同じ命名候補を知識提示、規範照合、製品decision、CI候補として区別する。",
-        "expected_observation": "各ownerと権限不足を辿れ、知識/検査結果を採択や実装許可にしない。",
-        "negative_input": "BRAIN語彙で既決規範変更、CIで採択/自己merge、既存要求ID/機構責務名の変更。",
-        "failure_observation": "上書き/権限越境を拒否し、候補提示と実操作の成立を分ける。",
-        "execution_state": "not_executed"
-      },
       "connection_scope": "独立原内容→当該pure照合→対象別結果/候補/返却。実BRAIN/製品resolver/OS運転は未binding。",
-      "concrete_cases": [
+      "execution_state": "not_executed",
+      "effect": "none",
+      "system_oracle_allowlist": [
         {
+          "oracle_number": "L9-SYSTEM-ORACLE-52",
           "id": "H048-B01-NORMAL",
           "requirement_ref": "HARNESS-L3-048-B01",
           "system_oracle_ref": "HARNESS-L10-048-B01",
           "l4_ref": "HARNESS-L4-048-B01",
-          "independent_source_packet": {
-            "ref": {
-              "identity": "SOURCE-H048-B01-NORMAL",
-              "revision": "fixture-content-018f54b3e9978bdcc97593261a3226746d6a3e0c560de981af67debe36fa7783",
-              "scope": "PRODUCT-P",
-              "owner": "synthetic-fixture-owner"
-            },
-            "raw_utf8": "{\"knowledge_source\":{\"content\":\"Query is a read role\",\"owner\":\"BRAIN\",\"revision\":\"vocab@r1\"},\"norm_source\":{\"content\":\"candidate_and_findings_only\",\"owner\":\"HARNESS\",\"revision\":\"norm@r1\"},\"product_decision\":{\"content\":\"readValue\",\"owner\":\"PRODUCT-P-owner\",\"revision\":\"decision@r1\"},\"proposal\":{\"CI_effect\":\"finding_only\",\"norm_content\":\"candidate_and_findings_only\",\"product_name\":\"readValue\"},\"protected_after\":{\"adopted_body\":\"original\",\"mechanism_role\":\"OS\",\"requirement_id\":\"REQ-P\"},\"protected_before\":{\"adopted_body\":\"original\",\"mechanism_role\":\"OS\",\"requirement_id\":\"REQ-P\"}}",
-            "sha256": "018f54b3e9978bdcc97593261a3226746d6a3e0c560de981af67debe36fa7783",
-            "qualification": "synthetic_fixture_only_no_actual_source_qualification"
-          },
-          "expected_material": {
-            "boundary_results": {
-              "norm": "held",
-              "product_decision": "held",
-              "CI": "candidate_only",
-              "requirement_id": "held",
-              "mechanism_role": "held",
-              "adopted_body": "held"
-            },
-            "owner_return_candidates": [],
-            "unaffected_Q": "original_Q",
-            "effects": {
-              "actual_rename": false,
-              "actual_DesignRefactor": false,
-              "actual_CI": false,
-              "actual_merge": false,
-              "actual_authority": false,
-              "actual_design_complete": false,
-              "actual_acceptance": false
-            }
-          },
-          "basis": "知識/規範/製品/CIを別入力で比較。知識から採択を生成しない。",
-          "execution_state": "not_executed",
-          "effect": "none"
+          "condition": "knowledge/norm/product decision/CIを別入力で扱い、保護対象の変更なし。",
+          "oracle_property": "知識/規範/製品/CIを別入力で比較。知識から採択を生成しない。",
+          "expected_observation": "各入力を分離して保持。CIはcandidate-only。",
+          "return_targets": [],
+          "execution_state": "not_executed"
         },
         {
+          "oracle_number": "L9-SYSTEM-ORACLE-53",
           "id": "H048-B01-BRAIN-NORM-OVERRIDE",
           "requirement_ref": "HARNESS-L3-048-B01",
           "system_oracle_ref": "HARNESS-L10-048-B01",
           "l4_ref": "HARNESS-L4-048-B01",
-          "independent_source_packet": {
-            "ref": {
-              "identity": "SOURCE-H048-B01-BRAIN-NORM-OVERRIDE",
-              "revision": "fixture-content-26a5f4108104a32d0127d414deec49681ca54daa32b38c9d72365df0c1f2b77a",
-              "scope": "PRODUCT-P",
-              "owner": "synthetic-fixture-owner"
-            },
-            "raw_utf8": "{\"knowledge_source\":{\"content\":\"Query is a read role\",\"owner\":\"BRAIN\",\"revision\":\"vocab@r1\"},\"norm_source\":{\"content\":\"candidate_and_findings_only\",\"owner\":\"HARNESS\",\"revision\":\"norm@r1\"},\"product_decision\":{\"content\":\"readValue\",\"owner\":\"PRODUCT-P-owner\",\"revision\":\"decision@r1\"},\"proposal\":{\"CI_effect\":\"finding_only\",\"norm_content\":\"knowledge_overrides_norm\",\"product_name\":\"readValue\"},\"protected_after\":{\"adopted_body\":\"original\",\"mechanism_role\":\"OS\",\"requirement_id\":\"REQ-P\"},\"protected_before\":{\"adopted_body\":\"original\",\"mechanism_role\":\"OS\",\"requirement_id\":\"REQ-P\"}}",
-            "sha256": "26a5f4108104a32d0127d414deec49681ca54daa32b38c9d72365df0c1f2b77a",
-            "qualification": "synthetic_fixture_only_no_actual_source_qualification"
-          },
-          "expected_material": {
-            "boundary_results": {
-              "norm": "rejected",
-              "product_decision": "held",
-              "CI": "candidate_only",
-              "requirement_id": "held",
-              "mechanism_role": "held",
-              "adopted_body": "held"
-            },
-            "owner_return_candidates": [
-              "HARNESS-norm-owner"
-            ],
-            "unaffected_Q": "original_Q",
-            "effects": {
-              "actual_rename": false,
-              "actual_DesignRefactor": false,
-              "actual_CI": false,
-              "actual_merge": false,
-              "actual_authority": false,
-              "actual_design_complete": false,
-              "actual_acceptance": false
-            }
-          },
-          "basis": "他ownerの原内容を上書きする提案/操作を拒否。",
-          "execution_state": "not_executed",
-          "effect": "none"
+          "condition": "proposalがnorm ownerの原内容を置換しようとする",
+          "oracle_property": "他ownerの原内容を上書きする提案/操作を拒否。",
+          "expected_observation": "norm=rejected.",
+          "return_targets": [
+            "HARNESS-norm-owner"
+          ],
+          "execution_state": "not_executed"
         },
         {
+          "oracle_number": "L9-SYSTEM-ORACLE-54",
           "id": "H048-B01-BRAIN-PRODUCT-OVERRIDE",
           "requirement_ref": "HARNESS-L3-048-B01",
           "system_oracle_ref": "HARNESS-L10-048-B01",
           "l4_ref": "HARNESS-L4-048-B01",
-          "independent_source_packet": {
-            "ref": {
-              "identity": "SOURCE-H048-B01-BRAIN-PRODUCT-OVERRIDE",
-              "revision": "fixture-content-0a8ad05e7611d0ec32d8ed222cdd3dfdf182f061d22cb353af57ef3f691d2faf",
-              "scope": "PRODUCT-P",
-              "owner": "synthetic-fixture-owner"
-            },
-            "raw_utf8": "{\"knowledge_source\":{\"content\":\"Query is a read role\",\"owner\":\"BRAIN\",\"revision\":\"vocab@r1\"},\"norm_source\":{\"content\":\"candidate_and_findings_only\",\"owner\":\"HARNESS\",\"revision\":\"norm@r1\"},\"product_decision\":{\"content\":\"readValue\",\"owner\":\"PRODUCT-P-owner\",\"revision\":\"decision@r1\"},\"proposal\":{\"CI_effect\":\"finding_only\",\"norm_content\":\"candidate_and_findings_only\",\"product_name\":\"knowledgeChosenName\"},\"protected_after\":{\"adopted_body\":\"original\",\"mechanism_role\":\"OS\",\"requirement_id\":\"REQ-P\"},\"protected_before\":{\"adopted_body\":\"original\",\"mechanism_role\":\"OS\",\"requirement_id\":\"REQ-P\"}}",
-            "sha256": "0a8ad05e7611d0ec32d8ed222cdd3dfdf182f061d22cb353af57ef3f691d2faf",
-            "qualification": "synthetic_fixture_only_no_actual_source_qualification"
-          },
-          "expected_material": {
-            "boundary_results": {
-              "norm": "held",
-              "product_decision": "rejected",
-              "CI": "candidate_only",
-              "requirement_id": "held",
-              "mechanism_role": "held",
-              "adopted_body": "held"
-            },
-            "owner_return_candidates": [
-              "product-design-owner"
-            ],
-            "unaffected_Q": "original_Q",
-            "effects": {
-              "actual_rename": false,
-              "actual_DesignRefactor": false,
-              "actual_CI": false,
-              "actual_merge": false,
-              "actual_authority": false,
-              "actual_design_complete": false,
-              "actual_acceptance": false
-            }
-          },
-          "basis": "他ownerの原内容を上書きする提案/操作を拒否。",
-          "execution_state": "not_executed",
-          "effect": "none"
+          "condition": "proposalがknowledgeからproduct nameを決めようとする",
+          "oracle_property": "他ownerの原内容を上書きする提案/操作を拒否。",
+          "expected_observation": "product_decision=rejected.",
+          "return_targets": [
+            "product-design-owner"
+          ],
+          "execution_state": "not_executed"
         },
         {
+          "oracle_number": "L9-SYSTEM-ORACLE-55",
           "id": "H048-B01-CI-ADOPTION",
           "requirement_ref": "HARNESS-L3-048-B01",
           "system_oracle_ref": "HARNESS-L10-048-B01",
           "l4_ref": "HARNESS-L4-048-B01",
-          "independent_source_packet": {
-            "ref": {
-              "identity": "SOURCE-H048-B01-CI-ADOPTION",
-              "revision": "fixture-content-b4490830cefa71cec2811237dc33bec49379cb477625fa30dfc3db0e3d6a53fb",
-              "scope": "PRODUCT-P",
-              "owner": "synthetic-fixture-owner"
-            },
-            "raw_utf8": "{\"knowledge_source\":{\"content\":\"Query is a read role\",\"owner\":\"BRAIN\",\"revision\":\"vocab@r1\"},\"norm_source\":{\"content\":\"candidate_and_findings_only\",\"owner\":\"HARNESS\",\"revision\":\"norm@r1\"},\"product_decision\":{\"content\":\"readValue\",\"owner\":\"PRODUCT-P-owner\",\"revision\":\"decision@r1\"},\"proposal\":{\"CI_effect\":\"adopt\",\"norm_content\":\"candidate_and_findings_only\",\"product_name\":\"readValue\"},\"protected_after\":{\"adopted_body\":\"original\",\"mechanism_role\":\"OS\",\"requirement_id\":\"REQ-P\"},\"protected_before\":{\"adopted_body\":\"original\",\"mechanism_role\":\"OS\",\"requirement_id\":\"REQ-P\"}}",
-            "sha256": "b4490830cefa71cec2811237dc33bec49379cb477625fa30dfc3db0e3d6a53fb",
-            "qualification": "synthetic_fixture_only_no_actual_source_qualification"
-          },
-          "expected_material": {
-            "boundary_results": {
-              "norm": "held",
-              "product_decision": "held",
-              "CI": "rejected",
-              "requirement_id": "held",
-              "mechanism_role": "held",
-              "adopted_body": "held"
-            },
-            "owner_return_candidates": [
-              "CI-boundary-owner"
-            ],
-            "unaffected_Q": "original_Q",
-            "effects": {
-              "actual_rename": false,
-              "actual_DesignRefactor": false,
-              "actual_CI": false,
-              "actual_merge": false,
-              "actual_authority": false,
-              "actual_design_complete": false,
-              "actual_acceptance": false
-            }
-          },
-          "basis": "他ownerの原内容を上書きする提案/操作を拒否。",
-          "execution_state": "not_executed",
-          "effect": "none"
+          "condition": "proposalがCI adoptionを要求。",
+          "oracle_property": "他ownerの原内容を上書きする提案/操作を拒否。",
+          "expected_observation": "CI=rejected.",
+          "return_targets": [
+            "CI-boundary-owner"
+          ],
+          "execution_state": "not_executed"
         },
         {
+          "oracle_number": "L9-SYSTEM-ORACLE-56",
           "id": "H048-B01-CI-SELF-MERGE",
           "requirement_ref": "HARNESS-L3-048-B01",
           "system_oracle_ref": "HARNESS-L10-048-B01",
           "l4_ref": "HARNESS-L4-048-B01",
-          "independent_source_packet": {
-            "ref": {
-              "identity": "SOURCE-H048-B01-CI-SELF-MERGE",
-              "revision": "fixture-content-dedf9768c81d84b84cba22595212d19c02d8264f205f1d2eb89b0183b6d85d9a",
-              "scope": "PRODUCT-P",
-              "owner": "synthetic-fixture-owner"
-            },
-            "raw_utf8": "{\"knowledge_source\":{\"content\":\"Query is a read role\",\"owner\":\"BRAIN\",\"revision\":\"vocab@r1\"},\"norm_source\":{\"content\":\"candidate_and_findings_only\",\"owner\":\"HARNESS\",\"revision\":\"norm@r1\"},\"product_decision\":{\"content\":\"readValue\",\"owner\":\"PRODUCT-P-owner\",\"revision\":\"decision@r1\"},\"proposal\":{\"CI_effect\":\"self_merge\",\"norm_content\":\"candidate_and_findings_only\",\"product_name\":\"readValue\"},\"protected_after\":{\"adopted_body\":\"original\",\"mechanism_role\":\"OS\",\"requirement_id\":\"REQ-P\"},\"protected_before\":{\"adopted_body\":\"original\",\"mechanism_role\":\"OS\",\"requirement_id\":\"REQ-P\"}}",
-            "sha256": "dedf9768c81d84b84cba22595212d19c02d8264f205f1d2eb89b0183b6d85d9a",
-            "qualification": "synthetic_fixture_only_no_actual_source_qualification"
-          },
-          "expected_material": {
-            "boundary_results": {
-              "norm": "held",
-              "product_decision": "held",
-              "CI": "rejected",
-              "requirement_id": "held",
-              "mechanism_role": "held",
-              "adopted_body": "held"
-            },
-            "owner_return_candidates": [
-              "CI-boundary-owner"
-            ],
-            "unaffected_Q": "original_Q",
-            "effects": {
-              "actual_rename": false,
-              "actual_DesignRefactor": false,
-              "actual_CI": false,
-              "actual_merge": false,
-              "actual_authority": false,
-              "actual_design_complete": false,
-              "actual_acceptance": false
-            }
-          },
-          "basis": "他ownerの原内容を上書きする提案/操作を拒否。",
-          "execution_state": "not_executed",
-          "effect": "none"
+          "condition": "proposalがCI self-mergeを要求。",
+          "oracle_property": "他ownerの原内容を上書きする提案/操作を拒否。",
+          "expected_observation": "CI=rejected.",
+          "return_targets": [
+            "CI-boundary-owner"
+          ],
+          "execution_state": "not_executed"
         },
         {
+          "oracle_number": "L9-SYSTEM-ORACLE-57",
           "id": "H048-B01-REQUIREMENT_ID-CHANGE",
           "requirement_ref": "HARNESS-L3-048-B01",
           "system_oracle_ref": "HARNESS-L10-048-B01",
           "l4_ref": "HARNESS-L4-048-B01",
-          "independent_source_packet": {
-            "ref": {
-              "identity": "SOURCE-H048-B01-REQUIREMENT_ID-CHANGE",
-              "revision": "fixture-content-dfbb7f86041b39b3f498293ae9e4ac608041b5caaf8c050205ebfb7a2e3d1dcb",
-              "scope": "PRODUCT-P",
-              "owner": "synthetic-fixture-owner"
-            },
-            "raw_utf8": "{\"knowledge_source\":{\"content\":\"Query is a read role\",\"owner\":\"BRAIN\",\"revision\":\"vocab@r1\"},\"norm_source\":{\"content\":\"candidate_and_findings_only\",\"owner\":\"HARNESS\",\"revision\":\"norm@r1\"},\"product_decision\":{\"content\":\"readValue\",\"owner\":\"PRODUCT-P-owner\",\"revision\":\"decision@r1\"},\"proposal\":{\"CI_effect\":\"finding_only\",\"norm_content\":\"candidate_and_findings_only\",\"product_name\":\"readValue\"},\"protected_after\":{\"adopted_body\":\"original\",\"mechanism_role\":\"OS\",\"requirement_id\":\"changed\"},\"protected_before\":{\"adopted_body\":\"original\",\"mechanism_role\":\"OS\",\"requirement_id\":\"REQ-P\"}}",
-            "sha256": "dfbb7f86041b39b3f498293ae9e4ac608041b5caaf8c050205ebfb7a2e3d1dcb",
-            "qualification": "synthetic_fixture_only_no_actual_source_qualification"
-          },
-          "expected_material": {
-            "boundary_results": {
-              "norm": "held",
-              "product_decision": "held",
-              "CI": "candidate_only",
-              "requirement_id": "out_of_scope_change_rejected",
-              "mechanism_role": "held",
-              "adopted_body": "held"
-            },
-            "owner_return_candidates": [
-              "original-meaning-owner"
-            ],
-            "unaffected_Q": "original_Q",
-            "effects": {
-              "actual_rename": false,
-              "actual_DesignRefactor": false,
-              "actual_CI": false,
-              "actual_merge": false,
-              "actual_authority": false,
-              "actual_design_complete": false,
-              "actual_acceptance": false
-            }
-          },
-          "basis": "既存ID/機構責務/採択本文変更を048へ混載しない。",
-          "execution_state": "not_executed",
-          "effect": "none"
+          "condition": "requirement identityをこのscope外で変更",
+          "oracle_property": "既存ID/機構責務/採択本文変更を048へ混載しない。",
+          "expected_observation": "requirement_id=out_of_scope_change_rejected.",
+          "return_targets": [
+            "original-meaning-owner"
+          ],
+          "execution_state": "not_executed"
         },
         {
+          "oracle_number": "L9-SYSTEM-ORACLE-58",
           "id": "H048-B01-MECHANISM_ROLE-CHANGE",
           "requirement_ref": "HARNESS-L3-048-B01",
           "system_oracle_ref": "HARNESS-L10-048-B01",
           "l4_ref": "HARNESS-L4-048-B01",
-          "independent_source_packet": {
-            "ref": {
-              "identity": "SOURCE-H048-B01-MECHANISM_ROLE-CHANGE",
-              "revision": "fixture-content-8ebeac12fe9bc07ad59d7b6c208efdfd10776b35095644fc834c2014a8fea2d2",
-              "scope": "PRODUCT-P",
-              "owner": "synthetic-fixture-owner"
-            },
-            "raw_utf8": "{\"knowledge_source\":{\"content\":\"Query is a read role\",\"owner\":\"BRAIN\",\"revision\":\"vocab@r1\"},\"norm_source\":{\"content\":\"candidate_and_findings_only\",\"owner\":\"HARNESS\",\"revision\":\"norm@r1\"},\"product_decision\":{\"content\":\"readValue\",\"owner\":\"PRODUCT-P-owner\",\"revision\":\"decision@r1\"},\"proposal\":{\"CI_effect\":\"finding_only\",\"norm_content\":\"candidate_and_findings_only\",\"product_name\":\"readValue\"},\"protected_after\":{\"adopted_body\":\"original\",\"mechanism_role\":\"changed\",\"requirement_id\":\"REQ-P\"},\"protected_before\":{\"adopted_body\":\"original\",\"mechanism_role\":\"OS\",\"requirement_id\":\"REQ-P\"}}",
-            "sha256": "8ebeac12fe9bc07ad59d7b6c208efdfd10776b35095644fc834c2014a8fea2d2",
-            "qualification": "synthetic_fixture_only_no_actual_source_qualification"
-          },
-          "expected_material": {
-            "boundary_results": {
-              "norm": "held",
-              "product_decision": "held",
-              "CI": "candidate_only",
-              "requirement_id": "held",
-              "mechanism_role": "out_of_scope_change_rejected",
-              "adopted_body": "held"
-            },
-            "owner_return_candidates": [
-              "original-meaning-owner"
-            ],
-            "unaffected_Q": "original_Q",
-            "effects": {
-              "actual_rename": false,
-              "actual_DesignRefactor": false,
-              "actual_CI": false,
-              "actual_merge": false,
-              "actual_authority": false,
-              "actual_design_complete": false,
-              "actual_acceptance": false
-            }
-          },
-          "basis": "既存ID/機構責務/採択本文変更を048へ混載しない。",
-          "execution_state": "not_executed",
-          "effect": "none"
+          "condition": "mechanism roleをこのscope外で変更",
+          "oracle_property": "既存ID/機構責務/採択本文変更を048へ混載しない。",
+          "expected_observation": "mechanism_role=out_of_scope_change_rejected.",
+          "return_targets": [
+            "original-meaning-owner"
+          ],
+          "execution_state": "not_executed"
         },
         {
+          "oracle_number": "L9-SYSTEM-ORACLE-59",
           "id": "H048-B01-ADOPTED_BODY-CHANGE",
           "requirement_ref": "HARNESS-L3-048-B01",
           "system_oracle_ref": "HARNESS-L10-048-B01",
           "l4_ref": "HARNESS-L4-048-B01",
-          "independent_source_packet": {
-            "ref": {
-              "identity": "SOURCE-H048-B01-ADOPTED_BODY-CHANGE",
-              "revision": "fixture-content-513343a424b98e91064eeba45a613a017597c7b205159a794b75d69789baf4a8",
-              "scope": "PRODUCT-P",
-              "owner": "synthetic-fixture-owner"
-            },
-            "raw_utf8": "{\"knowledge_source\":{\"content\":\"Query is a read role\",\"owner\":\"BRAIN\",\"revision\":\"vocab@r1\"},\"norm_source\":{\"content\":\"candidate_and_findings_only\",\"owner\":\"HARNESS\",\"revision\":\"norm@r1\"},\"product_decision\":{\"content\":\"readValue\",\"owner\":\"PRODUCT-P-owner\",\"revision\":\"decision@r1\"},\"proposal\":{\"CI_effect\":\"finding_only\",\"norm_content\":\"candidate_and_findings_only\",\"product_name\":\"readValue\"},\"protected_after\":{\"adopted_body\":\"changed\",\"mechanism_role\":\"OS\",\"requirement_id\":\"REQ-P\"},\"protected_before\":{\"adopted_body\":\"original\",\"mechanism_role\":\"OS\",\"requirement_id\":\"REQ-P\"}}",
-            "sha256": "513343a424b98e91064eeba45a613a017597c7b205159a794b75d69789baf4a8",
-            "qualification": "synthetic_fixture_only_no_actual_source_qualification"
-          },
-          "expected_material": {
-            "boundary_results": {
-              "norm": "held",
-              "product_decision": "held",
-              "CI": "candidate_only",
-              "requirement_id": "held",
-              "mechanism_role": "held",
-              "adopted_body": "out_of_scope_change_rejected"
-            },
-            "owner_return_candidates": [
-              "original-meaning-owner"
-            ],
-            "unaffected_Q": "original_Q",
-            "effects": {
-              "actual_rename": false,
-              "actual_DesignRefactor": false,
-              "actual_CI": false,
-              "actual_merge": false,
-              "actual_authority": false,
-              "actual_design_complete": false,
-              "actual_acceptance": false
-            }
-          },
-          "basis": "既存ID/機構責務/採択本文変更を048へ混載しない。",
-          "execution_state": "not_executed",
-          "effect": "none"
+          "condition": "adopted bodyをこのscope外で変更",
+          "oracle_property": "既存ID/機構責務/採択本文変更を048へ混載しない。",
+          "expected_observation": "adopted_body=out_of_scope_change_rejected.",
+          "return_targets": [
+            "original-meaning-owner"
+          ],
+          "execution_state": "not_executed"
         }
       ],
-      "execution_state": "not_executed",
-      "effect": "none"
+      "system_oracle_pointer": "docs/helix-harness/L10-verification/business-verification.json#/cases/9",
+      "shared_oracle_boundary": "knowledge/norm/product decision/CIを分離。authority/acceptance/merge/renameを生成せず、無影響のQはoriginal_Qを維持。"
     }
   ],
   "completion": "初回合成例のみ。実source資格/組合せ/詳細設計/実観測は未成立。",
@@ -3104,5 +1243,32 @@
     },
     "synthetic_only": true,
     "formal_schema_or_actual_execution": false
-  }
+  },
+  "removed_materials": {
+    "decision_ref": "GitHub #3510 comment 6447665479 / PR #4005 review R1 F1 and R2; WR259-HARNESS-NAMING-L9-SLIM",
+    "git_commit": "fe79e0004d8164bffc4be7c8c31dd9e14da2ead3",
+    "path": "docs/helix-harness/L9-integration-verification/naming-identity-correspondence.json",
+    "meaning": "撤去前59 caseにはcode/condition/axis/state/backflow_owner fieldは存在しない。raw fixture packetとexpected_materialの具体returnから、id/order、basis、raw差分で導く条件、L4/L10に照らす期待観測、指定されたreturn targetを短く再構成した。元sourceにないcode等の差分保持は主張しない。",
+    "removed_key_rule": "59件すべてのindependent_source_packet（raw_utf8/hash等）およびexpected_materialの全返却/副作用詳細を撤去。値の再複製はせず固定revisionで辿る。行にはoracle番号、ID、既存参照、元basis、raw差分条件、expected_materialとL4/L10から導くexpected observation、明記されたreturn target、not_executedを保持する。元caseにないcode/axis/state/backflow_ownerは生成しない。",
+    "use_boundary": "DT-VT-105（L5↔L8詳細設計との照合）。現行allowlistはL4契約と番号付きsystem oracleの実行境界・短い観測だけで、fixture/raw/full return/実行結果ではない。L10 oracleはsource_pinsの固定bytesにあるsystem_oracle_pointerで参照する。"
+  },
+  "source_field_presence": {
+    "fixed_revision": "fe79e0004d8164bffc4be7c8c31dd9e14da2ead3",
+    "source_case_pointer": "/verification_obligations/*/concrete_cases/*",
+    "source_fields_absent": [
+      "code",
+      "condition",
+      "axis",
+      "state",
+      "backflow_owner"
+    ],
+    "projection_note": "元sourceに存在しないfieldの差分保持は主張しない。現在のcondition/expected_observationは元raw packet・expected_materialとL4/L10の意味から短く導出した。"
+  },
+  "l4_contract_source": {
+    "path": "docs/helix-harness/L4-basic-design/naming-identity-correspondence.json",
+    "revision": "fe79e0004d8164bffc4be7c8c31dd9e14da2ead3",
+    "sha256": "45f8ca2ab75b9748994d913e46b2351ccdb9293e71201eb23887853bdb048eb7",
+    "note": "保持した5つのl4_refを照合するL4 HARNESS-048契約の固定source。"
+  },
+  "non_generation_boundary": "全59件は合成例の未実行状態（execution_state=not_executed）。実rename、design refactor、CI運転、merge、authority、design完了、acceptanceを発生させず、無関係のQはoriginal_Qを保つ。"
 }
