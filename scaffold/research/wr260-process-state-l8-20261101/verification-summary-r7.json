@@ -1,12 +1,12 @@
 {
-  "schema": "wr260-process-state-l8-verification-summary.v6",
+  "schema": "wr260-process-state-l8-verification-summary.v7",
   "evidence_kind": "scaffold",
   "authority_effect": "none",
   "request_id": "WR260-PROCESS-STATE-L8-SLIM",
   "base_revision": "569bde0bc5792349f0833461f0bb1bb6db33c592",
-  "main_revision_checked": "151713275e2c2aa65bb23a8fe38eb63c46d570c8",
-  "measured_head": "fea2a62db2dc3901431b70f052f45d6ccea943ba",
-  "measurement_scope": "latest-main overlay; semantic-condition correction after independent review; read-only/static validation",
+  "main_revision_checked": "fe6232a6062685aeb15e1b8641533ea86fa712f4",
+  "measured_head": "ecaf60e41b6939f141720db16be241352e0eadeb",
+  "measurement_scope": "latest-main overlay after #4016; current summary-history consolidation; read-only/static validation",
   "change": {
     "document": "docs/helix-harness/L8-unit-verification/process-state-port.json",
     "bytes_before": 9811684,
@@ -23,7 +23,7 @@
     "source_binding_controls": 7,
     "source_binding_conditions": "意味の説明へ置換。operation/path、patch、path-arrayを出力条件に保持しない。全7件はfunction_refとfixed-base base_row_refを保持。",
     "meaning_basis": "固定baseのcase row、negative classification reason、candidate/failure constraint、function referenceを照合。L9 expected valuesは転記しない。",
-    "prior_measurement": "verification-summary-r5.jsonは不変。今回の223残差row listとr5 row listはitem-by-itemで一致。"
+    "prior_measurement": "verification-summary-r6.json is retained in Git history as the prior 1517132 overlay. Current 223 residual rows were compared item-by-item with the reconstructed r5 snapshot and were identical."
   },
   "inventory": {
     "unit_rows": 215,
@@ -177,7 +177,7 @@
           "L8": 34,
           "L5": 34
         },
-        "row_residuals_reference": "verification-summary-r5.json#/verification/check_child/negative_4way/row_residuals",
+        "row_residuals_reference": "verification-summary-disposition.json entry for verification-summary-r5.json; reconstruct its recorded Git commit/path to inspect row-level residuals.",
         "current_row_residual_sha256": "c9ec848dd0e08669d18f7bace1fd9dc979447e0d20d2642eb81d363d8e0973f4",
         "residual_lists_equal_to_r5": true,
         "claim_of_failure_reduction": false
@@ -236,8 +236,9 @@
     ]
   },
   "history": {
-    "verification-summary-r5.json": "immutable preceding latest-main overlay; the 223 row-residual list equals this current run item by item.",
-    "verification-summary.json and r2-r4": "immutable earlier evidence; not overwritten.",
-    "binding_pin_history": "prior pin SHA remains in each affected binding note; current L8 digest is stale-detection only."
+    "current_summary": "verification-summary-r7.json is the only current measurement after latest-main fe6232a overlay.",
+    "prior_measurements": "verification-summary.json and r2-r6 are preserved as Git blobs and indexed by commit/blob/content SHA-256/bytes and restoration instructions in verification-summary-disposition.json.",
+    "r5_residual_comparison": "Current 223 row residuals equal the reconstructed verification-summary-r5.json row list item by item; no residual list is duplicated.",
+    "binding_pin_history": "Prior pin SHA remains in each affected binding note; current L8 digest is stale-detection only."
   }
 }

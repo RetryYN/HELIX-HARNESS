@@ -3,60 +3,76 @@
   "evidence_kind": "scaffold",
   "authority_effect": "none",
   "request_id": "WR260-PROCESS-STATE-L8-SLIM",
-  "purpose": "重複した過去時点summaryを現treeから除き、各時点のGit復元識別子と復元方法を一箇所に集約する。summary本文とGit objectは変更・破棄しない。",
+  "purpose": "重複した過去時点summaryを現treeから除き、各時点のGit復元識別子と復元方法を一箇所に集約する。summary本文とGit objectは変更・破棄しない。r7は最新main fe6232aの現行測定として保持し、r1-r6を履歴blobへ退避する。",
   "retained_current_summary": {
-    "path": "scaffold/research/wr260-process-state-l8-20261101/verification-summary-r6.json",
-    "snapshot_commit": "e203cd6e4c73aba229ee50fdbc6a0b55e93885d7",
-    "git_blob_oid": "cf78a83145db9d7dbc642e158916670da8e63192",
-    "content_sha256": "9983a1f75fbdb12ce34209e9b12f63f3fa5729ad31fc7ad7ad44b87b04f2e4e6",
-    "bytes": 10104,
-    "role": "現行の最新main overlay測定（main 151713275e2c2aa65bb23a8fe38eb63c46d570c8、実装測定HEAD fea2a62db2dc3901431b70f052f45d6ccea943ba）"
+    "path": "scaffold/research/wr260-process-state-l8-20261101/verification-summary-r7.json",
+    "git_blob_oid": "1d5313c7628ac5c6d8de217c356fc69359faa361",
+    "content_sha256": "5f6f15a34ab0625511305ef8532fb583b8a694f9ce816070e0c84ab21a822f2c",
+    "bytes": 10519,
+    "measured_revision": "ecaf60e41b6939f141720db16be241352e0eadeb",
+    "main_revision_checked": "fe6232a6062685aeb15e1b8641533ea86fa712f4",
+    "role": "sole current latest-main overlay measurement. The file blob/hash are fixed here; this measurement is for the measured revision, while its containing commit is recorded by Git after this disposition is committed."
   },
   "retired_worktree_snapshots": [
     {
       "path": "scaffold/research/wr260-process-state-l8-20261101/verification-summary.json",
       "disposition": "working_tree_copy_removed_git_history_preserved",
-      "last_snapshot_commit": "53b341e556a42d6c2e72cc3652d5a832ef7fade6",
+      "last_snapshot_commit": "285737965eb2a2b949f73978de183a76c3923b46",
       "git_blob_oid": "b10a55c5bab8ebc6809a8b9ca8eeb2853b6210cb",
       "content_sha256": "f5816ab0a7f5d547d127ee8e86d81dcefc259b57cf98d7b731300c355a53e851",
       "bytes": 28570,
-      "timepoint_role": "最初の候補測定。本文軽量化初版で、当時の検査findingを含む。"
+      "timepoint_role": "最初の候補測定。本文軽量化初版で、当時の検査findingを含む。",
+      "pre_rebase_commit_id": "53b341e556a42d6c2e72cc3652d5a832ef7fade6"
     },
     {
       "path": "scaffold/research/wr260-process-state-l8-20261101/verification-summary-r2.json",
       "disposition": "working_tree_copy_removed_git_history_preserved",
-      "last_snapshot_commit": "7d8fc996c7606ffb14f9ef97a65e515effeb5e78",
+      "last_snapshot_commit": "226a72ec4268fd11d5e9f37f7c042d0229870691",
       "git_blob_oid": "7f059e05e34667dc3e4f45562432dd2eef8b4e54",
       "content_sha256": "14bad04bcbef667cecfc39b6c216ac508b01628d1cfd78356772e649f66489a4",
       "bytes": 61239,
-      "timepoint_role": "中間候補測定。L8 684,533 bytes。"
+      "timepoint_role": "中間候補測定。L8 684,533 bytes。",
+      "pre_rebase_commit_id": "7d8fc996c7606ffb14f9ef97a65e515effeb5e78"
     },
     {
       "path": "scaffold/research/wr260-process-state-l8-20261101/verification-summary-r3.json",
       "disposition": "working_tree_copy_removed_git_history_preserved",
-      "last_snapshot_commit": "7d8fc996c7606ffb14f9ef97a65e515effeb5e78",
+      "last_snapshot_commit": "226a72ec4268fd11d5e9f37f7c042d0229870691",
       "git_blob_oid": "807257d0370dd0d1e0daa4dc673230a59d312435",
       "content_sha256": "aef15b0c634cb087048f63602bea4291f0fc75487ae7cf85773bed30c8ce1b34",
       "bytes": 73627,
-      "timepoint_role": "source-pointer候補測定。main d09c189。"
+      "timepoint_role": "source-pointer候補測定。main d09c189。",
+      "pre_rebase_commit_id": "7d8fc996c7606ffb14f9ef97a65e515effeb5e78"
     },
     {
       "path": "scaffold/research/wr260-process-state-l8-20261101/verification-summary-r4.json",
       "disposition": "working_tree_copy_removed_git_history_preserved",
-      "last_snapshot_commit": "7d8fc996c7606ffb14f9ef97a65e515effeb5e78",
+      "last_snapshot_commit": "226a72ec4268fd11d5e9f37f7c042d0229870691",
       "git_blob_oid": "3c1ab2dd67a847e5be868a7220606efffdd0a8d6",
       "content_sha256": "cf25759161c4c9137392ec8e76f5d6a5b96508d2f97b8b70d70e2bf9ae5f1101",
       "bytes": 73659,
-      "timepoint_role": "latest-main overlay前測定。main fdf7539。"
+      "timepoint_role": "latest-main overlay前測定。main fdf7539。",
+      "pre_rebase_commit_id": "7d8fc996c7606ffb14f9ef97a65e515effeb5e78"
     },
     {
       "path": "scaffold/research/wr260-process-state-l8-20261101/verification-summary-r5.json",
       "disposition": "working_tree_copy_removed_git_history_preserved",
-      "last_snapshot_commit": "5c41ffe2bab6165a8d6630a7c70ecf69ccb76573",
+      "last_snapshot_commit": "eb2b342b89be19614779262a5c519962e579cc2a",
       "git_blob_oid": "93ae36c0c1196ec449998a1fdbd75a9bea94673c",
       "content_sha256": "07c914f60daee342cac821089a08a296c0929a9e8527eba1a39b05fc90db5224",
       "bytes": 73891,
-      "timepoint_role": "main fdf7539 overlay測定。4way残差223行の比較基準。"
+      "timepoint_role": "main fdf7539 overlay測定。4way残差223行の比較基準。",
+      "pre_rebase_commit_id": "5c41ffe2bab6165a8d6630a7c70ecf69ccb76573"
+    },
+    {
+      "path": "scaffold/research/wr260-process-state-l8-20261101/verification-summary-r6.json",
+      "disposition": "prior_current_summary_archived_in_git_history",
+      "last_snapshot_commit": "90c20574a2989dd59b865c955d51daca132fe871",
+      "pre_rebase_commit_id": "e203cd6e4c73aba229ee50fdbc6a0b55e93885d7",
+      "git_blob_oid": "cf78a83145db9d7dbc642e158916670da8e63192",
+      "content_sha256": "9983a1f75fbdb12ce34209e9b12f63f3fa5729ad31fc7ad7ad44b87b04f2e4e6",
+      "bytes": 10104,
+      "timepoint_role": "2026-11-01 prior current overlay measured on main 151713275e; superseded by r7 after main advanced to fe6232a; preserved as a distinct measurement."
     }
   ],
   "restore": {
@@ -65,5 +81,5 @@
     "verification_command": "sha256sum <chosen-output-path>",
     "note": "復元先には現行summaryを上書きせず別名の出力先を選ぶ。commit/pathとblob oidはいずれも下表の値を使える。各snapshotのbytesとSHA-256を照合してから利用する。"
   },
-  "boundary": "過去summaryは対象commitのblobとしてgit履歴に保持される。現treeではverification-summary-r6.jsonだけを現行summaryとして置き、本dispositionは復元索引であってsummary測定を複製しない。"
+  "boundary": "現treeではverification-summary-r7.jsonだけを現行summaryとして置く。本dispositionはr1-r6の復元索引であり、summary測定を複製しない。r6以前のpre-rebase commit IDは追跡用に併記し、復元にはlatest-main overlayの祖先として到達可能なlast_snapshot_commitとblob OIDを使う。"
 }

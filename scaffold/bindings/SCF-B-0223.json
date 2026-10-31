@@ -73,7 +73,7 @@
     "docs/helix-harness/L8-unit-verification/process-state-port.json",
     "scaffold/research/wr260-process-state-l8-20261101/README.md",
     "scaffold/research/wr260-process-state-l8-20261101/validate_process_state_l8.py",
-    "scaffold/research/wr260-process-state-l8-20261101/verification-summary-r6.json",
+    "scaffold/research/wr260-process-state-l8-20261101/verification-summary-r7.json",
     "scaffold/research/wr260-process-state-l8-20261101/verification-summary-disposition.json"
   ],
   "verification": {
@@ -86,7 +86,7 @@
     "oracles": [
       "WR260 base revision 569bde0bc5792349f0833461f0bb1bb6db33c592; L8 SHA-256 f5055c9a7d19654402f3f2b595038cf0f81ed717659c342c6190c5f88577e5b2. Provenance/expected-delta comparison only.",
       "Current L8 byte length 1509558 and SHA-256 acccdb31c2cfee3fbe2d389bed5eedd7e12c63be14a22c44950d73f1320748db.",
-      "WR260 verification-summary-r6.json is the single current measurement and records 215/172 preservation and check-child residual counts; 223 failure total remains unchanged from request baseline. verification-summary-disposition.json stores prior snapshot commit/blob/content SHA-256 and restoration instructions without duplicating their bodies."
+      "WR260 verification-summary-r7.json is the single current measurement on latest main fe6232a and records 215/172 preservation and check-child residual counts; 223 failure total remains unchanged from request baseline. verification-summary-disposition.json stores prior snapshot commit/blob/content SHA-256 and restoration instructions without duplicating their bodies."
     ],
     "negative_cases": [
       "No claim of 4way pass or failure-count reduction.",
