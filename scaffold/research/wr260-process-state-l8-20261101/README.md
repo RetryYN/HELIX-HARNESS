@@ -4,7 +4,7 @@ status: scaffold。静的な文書整理・照合であり、`authority_effect=n
 
 ## 整理内容
 
-固定base `569bde0bc5792349f0833461f0bb1bb6db33c592` のL8を由来として、canonicalな7件の`cases` listを維持した。本文は9,811,684 bytesから627,824 bytesへ縮小した（93.60%減）。215 U-IDごとにID、機能参照、日本語で具体化した固有入力条件、基準行との差分期待、ownerの根拠、元行参照を保ち、7機能の共通契約は各groupに一度だけ置いた。expected欄は固定base差分を省かず、state/valueの重複表現を統合した。期待差が基準行と同じ48行は、差がない事実を残して行単位で未検証とした。172 qualification行のうち差がない17行も未検証と記録し、固有の期待を推測で埋めていない。
+固定base `569bde0bc5792349f0833461f0bb1bb6db33c592` のL8を由来として、canonicalな7件の`cases` listを維持した。本文は9,811,684 bytesから628,446 bytesへ縮小した（93.59%減）。215 U-IDごとにID、機能参照、日本語で具体化した固有入力条件、基準行との差分期待、ownerの根拠、元行参照を保ち、7機能の共通契約は各groupに一度だけ置いた。expected欄は固定base差分を省かず、state/valueの重複表現を統合した。期待差が基準行と同じ48行は、差がない事実を残して行単位で未検証とした。172 qualification行のうち差がない17行も未検証と記録し、固有の期待を推測で埋めていない。
 
 他の節も別々に固定baseと照合した。qualification 172行の条件はcase ID suffixではなく、固定baseの当該mutation fieldと資格状態から日本語で導出した。F01ではfreezeの必須集合にagreement/verificationが含まれ、startではverification、backflowではagreementが必須集合に含まれない差を条件に残した。F02のPoC適用性unknownは2行ともunknown化後の型付き意味・期待が同一なので同じ条件を保ち、PoC非適用理由unknownはPoC applicable / not_applicableの違いと期待差を別条件にした。action/applicability contextを独立に証明できない17行は未検証として残した。qualification matrix 141行では固定baseの資格条件と型付き状態、明示されたowner状態を保ち、共通effectとexecution stateを一度だけ保持した。mixed red/missing + green/stale等の12行はfieldごとの状態条件と集約結果を残した。content counterexample 14行、valley content counterexample 10行、source-binding control 7行はID・固定baseの意味入力条件・差分期待・provenanceを残した。source-binding conditionは「005_valleyのrequest association欠落」等の意味条件であり、operation/path文字列ではない。matrixはfixture値や配列を再現せず、field別の根拠状態境界を短文で示す。patch列、入力値配列、全返却は残さない。source groupは305行で、各keyと存在するrole/state/member/affected field/source identity/scope/owner情報を保った。legacy comparisonは10行、source pinは16行を維持した。
 
