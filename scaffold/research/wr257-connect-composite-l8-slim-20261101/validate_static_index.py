@@ -21,8 +21,7 @@ L10B = 'docs/helix-connect/L10-verification/business-verification.json'
 EVIDENCE = 'scaffold/research/wr257-connect-composite-l8-slim-20261101/static-evidence.json'
 EVIDENCE_DIR = 'scaffold/research/wr257-connect-composite-l8-slim-20261101'
 BINDING = 'scaffold/bindings/SCF-B-0216.json'
-CHECK_CHILD = 'scaffold/research/wr257-connect-composite-l8-slim-20261101/checker-evidence/merge-overlay-check-child-82fba857.json'
-CHECK_CHILD_RAW = 'scaffold/research/wr257-connect-composite-l8-slim-20261101/checker-evidence/raw-check-child-report-82fba857.json'
+CHECK_CHILD_DIR = 'scaffold/research/wr257-connect-composite-l8-slim-20261101/checker-evidence'
 
 PROBE_EXPECTATIONS = {
     'LOCAL-C007-N01-EXACT-DECLARED-SCOPE-THREE-BOUNDARY-EVIDENCE-READONLY-OWNER-PROBE': ('必要証拠3件のうち第三境界の原証拠・提出証拠がともに欠ける。', '証拠集合はcontent conflictとして保留し、証拠ownerへ返す。'),
@@ -336,10 +335,41 @@ def main() -> None:
     current = load(L8)
     prior = base_load(L8)
     l5, l4, l9 = load(L5), load(L4), load(L9)
-    check_child = load(CHECK_CHILD)
-    raw_check_child = load(CHECK_CHILD_RAW)
+    l8_sha = sha((ROOT / L8).read_bytes())
+    assert '短い反例・期待判断' in current['method']['rule'] and 'patch path' not in current['method']['rule']
+    assert 'op/path/value' not in current['local_probe_contract']['expectation']
+    assert '固定基準revision' in current['local_probe_contract']['expectation']
+    assert 'DT-VT-105' in current['local_probe_contract']['boundary'] and 'not_executed' in current['local_probe_contract']['boundary']
+    assert 'source_ref values' not in current['common_expectation_boundary']['oracle_role']
+    assert '短い反例・期待判断' in current['common_expectation_boundary']['oracle_role']
+    assert '全返却期待' not in json.dumps(current['pure_primitive_cases'], ensure_ascii=False)
+    assert isinstance(current['coverage_limit'], str) and '件' in current['coverage_limit'] and '未検証' in current['coverage_limit']
+    assert 'coverage' not in current['l5_unit_traceability']['coverage_boundary']
+    for derivation in current['l5_unit_traceability']['local_probe_rule_derivations']:
+        assert '固定基準revision' in derivation['expected_delta_source']
+        assert 'not_executed' in derivation['boundary'] and 'DT-VT-105' in derivation['boundary']
+    head = subprocess.check_output(['git', 'rev-parse', 'HEAD'], cwd=ROOT, text=True).strip()
+    check_child_candidates = []
+    for report_path in sorted((ROOT / CHECK_CHILD_DIR).glob('merge-overlay-check-child-*.json')):
+        item = json.loads(report_path.read_text(encoding='utf-8'))
+        if item.get('target_sha256') != l8_sha:
+            continue
+        candidate_revision = item.get('candidate_revision', '')
+        is_ancestor = subprocess.run(['git', 'merge-base', '--is-ancestor', candidate_revision, head], cwd=ROOT, check=False).returncode == 0
+        if not is_ancestor:
+            continue
+        distance = int(subprocess.check_output(['git', 'rev-list', '--count', f'{candidate_revision}..{head}'], cwd=ROOT, text=True))
+        check_child_candidates.append((distance, report_path.relative_to(ROOT).as_posix(), item))
+    assert check_child_candidates, 'checker evidence for current L8 must be based on a candidate revision in HEAD history'
+    latest_distance = min(item[0] for item in check_child_candidates)
+    latest_reports = [item for item in check_child_candidates if item[0] == latest_distance]
+    assert len(latest_reports) == 1, 'latest candidate overlay checker evidence must be unique'
+    _, check_child_path, check_child = latest_reports[0]
+    raw_check_child_path = check_child.get('source_report_path')
+    assert isinstance(raw_check_child_path, str) and raw_check_child_path.startswith(CHECK_CHILD_DIR + '/')
+    raw_check_child = load(raw_check_child_path)
     assert check_child['schema'] == 'wr257-check-child-merge-overlay-evidence.v1'
-    assert check_child['target_path'] == L8 and check_child['target_sha256'] == sha((ROOT / L8).read_bytes())
+    assert check_child['target_path'] == L8 and check_child['target_sha256'] == l8_sha
     assert check_child['checker_completed'] is True and check_child['crash_free'] is True
     assert check_child['checker_exit_code'] == 1 and check_child['overall_passed'] is False
     assert check_child['L8_ownership_cap_failure_count'] == 0
@@ -354,8 +384,8 @@ def main() -> None:
     assert overlay_tree == check_child['overlay_tree']
     overlay_parents = subprocess.check_output(['git', 'rev-list', '--parents', '-n', '1', check_child['overlay_revision']], cwd=ROOT, text=True).strip().split()
     assert overlay_parents == [check_child['overlay_revision'], check_child['main_revision'], check_child['candidate_revision']]
-    assert sha((ROOT / CHECK_CHILD_RAW).read_bytes()) == check_child['source_report_sha256']
-    checker_report = json.loads((ROOT / CHECK_CHILD_RAW).read_text(encoding='utf-8'))
+    assert sha((ROOT / raw_check_child_path).read_bytes()) == check_child['source_report_sha256']
+    checker_report = raw_check_child
     assert checker_report['passed'] is False
     assert [(item['layer'], item['passed'], len(item['failures'])) for item in checker_report['ownership_caps']] == [
         (item['layer'], item['passed'], item['failure_count']) for item in check_child['ownership_caps']
@@ -712,6 +742,8 @@ def main() -> None:
         payload['recorded_appendix'] = output
     else:
         binding = load(BINDING)
+        assert check_child_path in binding.get('artifacts', [])
+        assert raw_check_child_path in binding.get('artifacts', [])
         measurement_paths = [path for path in binding.get('artifacts', []) if 'static-evidence-measurement-' in path]
         matching = [(path, load(path)) for path in measurement_paths if load(path).get('target_sha256') == payload['target_sha256']]
         assert matching, 'binding must point to a measurement appendix for the current L8 bytes'
