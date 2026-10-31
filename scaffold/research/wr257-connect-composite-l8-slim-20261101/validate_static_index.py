@@ -77,21 +77,21 @@ def resolve(doc, pointer: str):
     return value
 
 
-def derive_case_expectation(case_id: str, function_ref: str, rule_refs: list[str], scenario_basis: str, l5_doc) -> dict:
+def derive_case_expectation(case_id: str, function_ref: str, rule_refs: list[str], l5_doc) -> dict:
     if rule_refs:
         tag = case_id.split('-')[1]
         indexes = {rule['id']: i for i, rule in enumerate(l5_doc['contract_views'][tag]['failure_rules'])}
-        return {'scenario_class': 'negative', 'condition': scenario_basis, 'l5_refs': [f'/contract_views/{tag}/failure_rules/{indexes[ref.split(":", 1)[1]]}' for ref in rule_refs], 'verification_status': 'unverified'}
+        return {'scenario_class': 'negative', 'l5_refs': [f'/contract_views/{tag}/failure_rules/{indexes[ref.split(":", 1)[1]]}' for ref in rule_refs], 'verification_status': 'unverified'}
     if function_ref == 'FN-C007-01':
-        return {'scenario_class': 'normal', 'condition': scenario_basis, 'l5_refs': ['/contract_views/F01/terminal_predicate'], 'verification_status': 'unverified'}
+        return {'scenario_class': 'normal', 'l5_refs': ['/contract_views/F01/terminal_predicate'], 'verification_status': 'unverified'}
     if function_ref == 'FN-C007-02':
-        return {'scenario_class': 'negative', 'condition': scenario_basis, 'l5_refs': ['/contract_views/F02'], 'verification_status': 'unverified'}
+        return {'scenario_class': 'negative', 'l5_refs': ['/contract_views/F02'], 'verification_status': 'unverified'}
     if function_ref == 'FN-C007-03' and 'EXACT-DECLARED-SCOPE' in case_id:
-        return {'scenario_class': 'normal', 'condition': scenario_basis, 'l5_refs': ['/contract_views/N01/evidence_predicate'], 'verification_status': 'unverified'}
+        return {'scenario_class': 'normal', 'l5_refs': ['/contract_views/N01/evidence_predicate'], 'verification_status': 'unverified'}
     if function_ref == 'FN-C007-03':
-        return {'scenario_class': 'negative', 'condition': scenario_basis, 'l5_refs': ['/contract_views/N01/evidence_predicate'], 'verification_status': 'unverified'}
+        return {'scenario_class': 'negative', 'l5_refs': ['/contract_views/N01/evidence_predicate'], 'verification_status': 'unverified'}
     if function_ref == 'FN-C007-04':
-        return {'scenario_class': 'normal', 'condition': scenario_basis, 'l5_refs': ['/contract_views/B01/acceptance'], 'verification_status': 'unverified'}
+        return {'scenario_class': 'normal', 'l5_refs': ['/contract_views/B01/acceptance'], 'verification_status': 'unverified'}
     raise AssertionError((case_id, function_ref, rule_refs))
 
 
@@ -347,6 +347,8 @@ def main() -> None:
     assert '短い反例・期待判断' in current['common_expectation_boundary']['oracle_role'] and 'source_ref values' not in current['common_expectation_boundary']['oracle_role']
     assert 'decode指示' in current['common_expectation_boundary']['oracle_role'] and '実行引数binding' in current['common_expectation_boundary']['oracle_role']
     assert '全返却期待' not in json.dumps(current['pure_primitive_cases'], ensure_ascii=False)
+    scenario_conditions = current['common_expectation_boundary']['scenario_conditions']
+    assert '一度だけ' in current['common_expectation_boundary']['scenario_conditions_boundary']
     assert isinstance(current['coverage_limit'], str) and '宣言' in current['coverage_limit'] and '未検証' in current['coverage_limit'] and 'coverage' not in current['coverage_limit']
     assert 'coverage' not in current['l5_unit_traceability']['coverage_boundary']
     for derivation in current['l5_unit_traceability']['local_probe_rule_derivations']:
@@ -411,22 +413,26 @@ def main() -> None:
     pinned_docs = {L4: l4, L9: l9}
     pin_records = {item['path']: item for item in current['source_pair_pins']}
 
-    case_columns = ['id', 'function_ref', 'requirement_ref', 'l4_ref', 'l9_ref', 'system_oracle_ref', 'source_packet_pointer', 'expected_oracle_pointer', 'scenario_basis', 'boundary', 'execution_state', 'qualification', 'u_id', 'l5_function_ref', 'l5_failure_rule_refs', 'expected']
+    case_columns = ['id', 'function_ref', 'requirement_ref', 'l4_ref', 'l9_ref', 'system_oracle_ref', 'source_packet_pointer', 'expected_oracle_pointer', 'scenario_condition_ref', 'boundary', 'execution_state', 'qualification', 'u_id', 'l5_function_ref', 'l5_failure_rule_refs', 'expected']
     case_rows = []
     for case in current['cases']:
         packet_ref = case['source_packet_ref']
         assert 'typed_arguments' not in case and 'raw_pointer_suffix' not in packet_ref
+        assert 'scenario_basis' not in case and 'condition' not in case['expected']
         assert packet_ref['document'] == L9 and packet_ref['pointer'].endswith('/independent_source_packet/raw_utf8')
         case_rows.append([
             case['id'], case['function_ref'], case['requirement_ref'], case['l4_ref'], case['l9_ref'],
             case['system_oracle_ref'], packet_ref['pointer'],
-            case['expected_oracle_ref']['pointer'], case['scenario_basis'], case['boundary'],
+            case['expected_oracle_ref']['pointer'], case['scenario_condition_ref'], case['boundary'],
             case['execution_state'], case['qualification'], case['u_id'], case['l5_function_ref'],
             case['l5_failure_rule_refs'], case['expected'],
         ])
     local_probes = current['local_probes']
     assert isinstance(current['cases'], list)
     assert len(case_rows) == len(prior['cases']) == 91
+    condition_texts = [item['condition'] for item in scenario_conditions.values()]
+    assert len(scenario_conditions) == 33 and len(set(condition_texts)) == 33
+    assert all(set(item) == {'function_ref', 'condition'} for item in scenario_conditions.values())
     assert isinstance(local_probes, list) and len(local_probes) == len(prior['local_probes']) == 27
     assert len(current['local_probe_source_reuse']) == len(prior['local_probe_source_reuse']) == 1
     assert len(current['pure_primitive_cases']) == len(prior['pure_primitive_cases']) == 7
@@ -446,13 +452,15 @@ def main() -> None:
     assert case_columns[-4:] == ['u_id', 'l5_function_ref', 'l5_failure_rule_refs', 'expected']
     duplicate_expectation_groups = {}
     for row in case_rows:
-        cid, role, req, l4_ref, l9_ref, oracle, source_ptr, expected_ptr, basis, boundary, state, qualification = row[:12]
+        cid, role, req, l4_ref, l9_ref, oracle, source_ptr, expected_ptr, condition_ref, boundary, state, qualification = row[:12]
         oi, ci, source_case = l9_by_id[cid]
         assert source_ptr == f'/verification_obligations/{oi}/concrete_cases/{ci}/independent_source_packet/raw_utf8'
         assert expected_ptr == f'/verification_obligations/{oi}/concrete_cases/{ci}/expected_material'
         assert resolve(l9, source_ptr) == source_case['independent_source_packet']['raw_utf8']
         assert resolve(l9, expected_ptr) == source_case['expected_material']
-        assert basis == source_case['basis']
+        assert condition_ref in scenario_conditions
+        assert scenario_conditions[condition_ref]['function_ref'] == role
+        assert scenario_conditions[condition_ref]['condition'] == source_case['basis']
         assert role in {fn['id'] for fn in l5['algorithms']}
         assert state == 'not_executed' and qualification == 'synthetic_fixture_only'
 
@@ -474,7 +482,7 @@ def main() -> None:
         assert uid.startswith('U-C007-') and uid not in rows_by_uid
         assert fn in function_refs
         rows_by_uid[uid] = row
-        derived = derive_case_expectation(row[0], fn, rule_refs, row[8], l5)
+        derived = derive_case_expectation(row[0], fn, rule_refs, l5)
         assert set(expected) == set(derived) | {'source_basis', 'decision'}
         assert expected == {**derived, 'source_basis': expected.get('source_basis'), 'decision': expected.get('decision')}
         _, _, source_case = l9_by_id[row[0]]
@@ -520,7 +528,7 @@ def main() -> None:
         assert all(resolve(l5, pointer) is not None for pointer in expected['l5_refs'])
         assert expected['verification_status'] == 'unverified'
         branch_case_ids.append(row[0])
-        group_key = (row[8], historical_expectation_group_key(row[0], derived, rule_refs, l5))
+        group_key = (scenario_conditions[row[8]]['condition'], historical_expectation_group_key(row[0], derived, rule_refs, l5))
         duplicate_expectation_groups.setdefault(group_key, []).append((row[0], focus))
         tag = row[0].split('-')[1]
         ob_index = next(i for i, ob in enumerate(l9['verification_obligations']) if ob['id'].endswith('-' + tag))

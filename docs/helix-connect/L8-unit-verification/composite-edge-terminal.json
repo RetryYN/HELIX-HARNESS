@@ -245,14 +245,12 @@
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
-      "scenario_basis": "四つの合成端点/別能力・版・scopeの三辺を、宣言順序とoperation対応/全辺receiptへ対照。実接続集合を採用しない。",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-001",
       "l5_function_ref": "FN-C007-01",
       "l5_failure_rule_refs": [],
       "expected": {
         "scenario_class": "normal",
-        "condition": "四つの合成端点/別能力・版・scopeの三辺を、宣言順序とoperation対応/全辺receiptへ対照。実接続集合を採用しない。",
         "l5_refs": [
           "/contract_views/F01/terminal_predicate"
         ],
@@ -264,7 +262,8 @@
           "difference": "baseline_fixture"
         },
         "decision": "宣言済み三辺の必要条件が揃う範囲でfixture correspondenceを示す。"
-      }
+      },
+      "scenario_condition_ref": "SC-C007-01"
     },
     {
       "id": "C007-F01-ORIGINAL-RECEIPT-EDGE-1-MISSING",
@@ -285,7 +284,6 @@
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
-      "scenario_basis": "一辺原receiptの欠落は他辺greenで相殺しない。",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-002",
       "l5_function_ref": "FN-C007-01",
@@ -299,7 +297,6 @@
       ],
       "expected": {
         "scenario_class": "negative",
-        "condition": "一辺原receiptの欠落は他辺greenで相殺しない。",
         "l5_refs": [
           "/contract_views/F01/failure_rules/2",
           "/contract_views/F01/failure_rules/3",
@@ -316,7 +313,8 @@
           "difference": "missing_receipt"
         },
         "decision": "EDGE-P-1.original_receipts:missing_receipt。構成体をholdしterminal success不可。"
-      }
+      },
+      "scenario_condition_ref": "SC-C007-02"
     },
     {
       "id": "C007-F01-ORIGINAL-RECEIPT-EDGE-2-MISSING",
@@ -337,7 +335,6 @@
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
-      "scenario_basis": "一辺原receiptの欠落は他辺greenで相殺しない。",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-003",
       "l5_function_ref": "FN-C007-01",
@@ -351,7 +348,6 @@
       ],
       "expected": {
         "scenario_class": "negative",
-        "condition": "一辺原receiptの欠落は他辺greenで相殺しない。",
         "l5_refs": [
           "/contract_views/F01/failure_rules/2",
           "/contract_views/F01/failure_rules/3",
@@ -368,7 +364,8 @@
           "difference": "missing_receipt"
         },
         "decision": "EDGE-P-2.original_receipts:missing_receipt。構成体をholdしterminal success不可。"
-      }
+      },
+      "scenario_condition_ref": "SC-C007-02"
     },
     {
       "id": "C007-F01-ORIGINAL-RECEIPT-EDGE-3-MISSING",
@@ -389,7 +386,6 @@
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
-      "scenario_basis": "一辺原receiptの欠落は他辺greenで相殺しない。",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-004",
       "l5_function_ref": "FN-C007-01",
@@ -403,7 +399,6 @@
       ],
       "expected": {
         "scenario_class": "negative",
-        "condition": "一辺原receiptの欠落は他辺greenで相殺しない。",
         "l5_refs": [
           "/contract_views/F01/failure_rules/2",
           "/contract_views/F01/failure_rules/3",
@@ -420,7 +415,8 @@
           "difference": "missing_receipt"
         },
         "decision": "EDGE-P-3.original_receipts:missing_receipt。構成体をholdしterminal success不可。"
-      }
+      },
+      "scenario_condition_ref": "SC-C007-02"
     },
     {
       "id": "C007-F01-RECEIPT-TARGET-CONNECTION_IDENTITY-FOREIGN",
@@ -441,7 +437,6 @@
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
-      "scenario_basis": "原/提出receiptが同値でも対象辺の契約/operation/attempt/scope等へ結ばれない場合は保留。",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-005",
       "l5_function_ref": "FN-C007-01",
@@ -450,7 +445,6 @@
       ],
       "expected": {
         "scenario_class": "negative",
-        "condition": "原/提出receiptが同値でも対象辺の契約/operation/attempt/scope等へ結ばれない場合は保留。",
         "l5_refs": [
           "/contract_views/F01/failure_rules/5"
         ],
@@ -462,7 +456,8 @@
           "difference": "foreign_target"
         },
         "decision": "EDGE-P-2.connection_identity:foreign_target。構成体をholdしterminal success不可。"
-      }
+      },
+      "scenario_condition_ref": "SC-C007-03"
     },
     {
       "id": "C007-F01-RECEIPT-TARGET-CONTRACT_REVISION-FOREIGN",
@@ -483,7 +478,6 @@
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
-      "scenario_basis": "原/提出receiptが同値でも対象辺の契約/operation/attempt/scope等へ結ばれない場合は保留。",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-006",
       "l5_function_ref": "FN-C007-01",
@@ -492,7 +486,6 @@
       ],
       "expected": {
         "scenario_class": "negative",
-        "condition": "原/提出receiptが同値でも対象辺の契約/operation/attempt/scope等へ結ばれない場合は保留。",
         "l5_refs": [
           "/contract_views/F01/failure_rules/5"
         ],
@@ -504,7 +497,8 @@
           "difference": "foreign_target"
         },
         "decision": "EDGE-P-2.contract_revision:foreign_target。構成体をholdしterminal success不可。"
-      }
+      },
+      "scenario_condition_ref": "SC-C007-03"
     },
     {
       "id": "C007-F01-RECEIPT-TARGET-ABILITY_REF-FOREIGN",
@@ -525,7 +519,6 @@
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
-      "scenario_basis": "原/提出receiptが同値でも対象辺の契約/operation/attempt/scope等へ結ばれない場合は保留。",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-007",
       "l5_function_ref": "FN-C007-01",
@@ -534,7 +527,6 @@
       ],
       "expected": {
         "scenario_class": "negative",
-        "condition": "原/提出receiptが同値でも対象辺の契約/operation/attempt/scope等へ結ばれない場合は保留。",
         "l5_refs": [
           "/contract_views/F01/failure_rules/5"
         ],
@@ -546,7 +538,8 @@
           "difference": "foreign_target"
         },
         "decision": "EDGE-P-2.ability_ref:foreign_target。構成体をholdしterminal success不可。"
-      }
+      },
+      "scenario_condition_ref": "SC-C007-03"
     },
     {
       "id": "C007-F01-RECEIPT-TARGET-SCOPE-FOREIGN",
@@ -567,7 +560,6 @@
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
-      "scenario_basis": "原/提出receiptが同値でも対象辺の契約/operation/attempt/scope等へ結ばれない場合は保留。",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-008",
       "l5_function_ref": "FN-C007-01",
@@ -576,7 +568,6 @@
       ],
       "expected": {
         "scenario_class": "negative",
-        "condition": "原/提出receiptが同値でも対象辺の契約/operation/attempt/scope等へ結ばれない場合は保留。",
         "l5_refs": [
           "/contract_views/F01/failure_rules/5"
         ],
@@ -588,7 +579,8 @@
           "difference": "foreign_target"
         },
         "decision": "EDGE-P-2.scope:foreign_target。構成体をholdしterminal success不可。"
-      }
+      },
+      "scenario_condition_ref": "SC-C007-03"
     },
     {
       "id": "C007-F01-RECEIPT-TARGET-OPERATION_IDENTITY-FOREIGN",
@@ -609,7 +601,6 @@
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
-      "scenario_basis": "原/提出receiptが同値でも対象辺の契約/operation/attempt/scope等へ結ばれない場合は保留。",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-009",
       "l5_function_ref": "FN-C007-01",
@@ -618,7 +609,6 @@
       ],
       "expected": {
         "scenario_class": "negative",
-        "condition": "原/提出receiptが同値でも対象辺の契約/operation/attempt/scope等へ結ばれない場合は保留。",
         "l5_refs": [
           "/contract_views/F01/failure_rules/5"
         ],
@@ -630,7 +620,8 @@
           "difference": "foreign_target"
         },
         "decision": "EDGE-P-2.operation_identity:foreign_target。構成体をholdしterminal success不可。"
-      }
+      },
+      "scenario_condition_ref": "SC-C007-03"
     },
     {
       "id": "C007-F01-RECEIPT-TARGET-ATTEMPT_IDENTITY-FOREIGN",
@@ -651,7 +642,6 @@
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
-      "scenario_basis": "原/提出receiptが同値でも対象辺の契約/operation/attempt/scope等へ結ばれない場合は保留。",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-010",
       "l5_function_ref": "FN-C007-01",
@@ -660,7 +650,6 @@
       ],
       "expected": {
         "scenario_class": "negative",
-        "condition": "原/提出receiptが同値でも対象辺の契約/operation/attempt/scope等へ結ばれない場合は保留。",
         "l5_refs": [
           "/contract_views/F01/failure_rules/5"
         ],
@@ -672,7 +661,8 @@
           "difference": "foreign_target"
         },
         "decision": "EDGE-P-2.attempt_identity:foreign_target。構成体をholdしterminal success不可。"
-      }
+      },
+      "scenario_condition_ref": "SC-C007-03"
     },
     {
       "id": "C007-F01-RECEIPT-TARGET-CORRELATION-FOREIGN",
@@ -693,7 +683,6 @@
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
-      "scenario_basis": "原/提出receiptが同値でも対象辺の契約/operation/attempt/scope等へ結ばれない場合は保留。",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-011",
       "l5_function_ref": "FN-C007-01",
@@ -702,7 +691,6 @@
       ],
       "expected": {
         "scenario_class": "negative",
-        "condition": "原/提出receiptが同値でも対象辺の契約/operation/attempt/scope等へ結ばれない場合は保留。",
         "l5_refs": [
           "/contract_views/F01/failure_rules/5"
         ],
@@ -714,7 +702,8 @@
           "difference": "foreign_target"
         },
         "decision": "EDGE-P-2.correlation:foreign_target。構成体をholdしterminal success不可。"
-      }
+      },
+      "scenario_condition_ref": "SC-C007-03"
     },
     {
       "id": "C007-F01-RECEIPT-TARGET-EXPIRY_REF-FOREIGN",
@@ -735,7 +724,6 @@
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
-      "scenario_basis": "原/提出receiptが同値でも対象辺の契約/operation/attempt/scope等へ結ばれない場合は保留。",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-012",
       "l5_function_ref": "FN-C007-01",
@@ -744,7 +732,6 @@
       ],
       "expected": {
         "scenario_class": "negative",
-        "condition": "原/提出receiptが同値でも対象辺の契約/operation/attempt/scope等へ結ばれない場合は保留。",
         "l5_refs": [
           "/contract_views/F01/failure_rules/5"
         ],
@@ -756,7 +743,8 @@
           "difference": "foreign_target"
         },
         "decision": "EDGE-P-2.expiry_ref:foreign_target。構成体をholdしterminal success不可。"
-      }
+      },
+      "scenario_condition_ref": "SC-C007-03"
     },
     {
       "id": "C007-F01-RECEIPT-TARGET-PERMISSION_REF-FOREIGN",
@@ -777,7 +765,6 @@
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
-      "scenario_basis": "原/提出receiptが同値でも対象辺の契約/operation/attempt/scope等へ結ばれない場合は保留。",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-013",
       "l5_function_ref": "FN-C007-01",
@@ -786,7 +773,6 @@
       ],
       "expected": {
         "scenario_class": "negative",
-        "condition": "原/提出receiptが同値でも対象辺の契約/operation/attempt/scope等へ結ばれない場合は保留。",
         "l5_refs": [
           "/contract_views/F01/failure_rules/5"
         ],
@@ -798,7 +784,8 @@
           "difference": "foreign_target"
         },
         "decision": "EDGE-P-2.permission_ref:foreign_target。構成体をholdしterminal success不可。"
-      }
+      },
+      "scenario_condition_ref": "SC-C007-03"
     },
     {
       "id": "C007-F01-RECEIPT-TARGET-IDEMPOTENCY-FOREIGN",
@@ -819,7 +806,6 @@
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
-      "scenario_basis": "原/提出receiptが同値でも対象辺の契約/operation/attempt/scope等へ結ばれない場合は保留。",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-014",
       "l5_function_ref": "FN-C007-01",
@@ -828,7 +814,6 @@
       ],
       "expected": {
         "scenario_class": "negative",
-        "condition": "原/提出receiptが同値でも対象辺の契約/operation/attempt/scope等へ結ばれない場合は保留。",
         "l5_refs": [
           "/contract_views/F01/failure_rules/5"
         ],
@@ -840,7 +825,8 @@
           "difference": "foreign_target"
         },
         "decision": "EDGE-P-2.idempotency:foreign_target。構成体をholdしterminal success不可。"
-      }
+      },
+      "scenario_condition_ref": "SC-C007-03"
     },
     {
       "id": "C007-F01-RECEIPT-TARGET-CONTENT_DIGEST-FOREIGN",
@@ -861,7 +847,6 @@
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
-      "scenario_basis": "原/提出receiptが同値でも対象辺の契約/operation/attempt/scope等へ結ばれない場合は保留。",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-015",
       "l5_function_ref": "FN-C007-01",
@@ -870,7 +855,6 @@
       ],
       "expected": {
         "scenario_class": "negative",
-        "condition": "原/提出receiptが同値でも対象辺の契約/operation/attempt/scope等へ結ばれない場合は保留。",
         "l5_refs": [
           "/contract_views/F01/failure_rules/5"
         ],
@@ -882,7 +866,8 @@
           "difference": "foreign_target"
         },
         "decision": "EDGE-P-2.content_digest:foreign_target。構成体をholdしterminal success不可。"
-      }
+      },
+      "scenario_condition_ref": "SC-C007-03"
     },
     {
       "id": "C007-F01-RECEIPT-TARGET-REGISTRATION_REVISION-FOREIGN",
@@ -903,7 +888,6 @@
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
-      "scenario_basis": "原/提出receiptが同値でも対象辺の契約/operation/attempt/scope等へ結ばれない場合は保留。",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-016",
       "l5_function_ref": "FN-C007-01",
@@ -912,7 +896,6 @@
       ],
       "expected": {
         "scenario_class": "negative",
-        "condition": "原/提出receiptが同値でも対象辺の契約/operation/attempt/scope等へ結ばれない場合は保留。",
         "l5_refs": [
           "/contract_views/F01/failure_rules/5"
         ],
@@ -924,7 +907,8 @@
           "difference": "foreign_target"
         },
         "decision": "EDGE-P-2.registration_revision:foreign_target。構成体をholdしterminal success不可。"
-      }
+      },
+      "scenario_condition_ref": "SC-C007-03"
     },
     {
       "id": "C007-F01-RECEIPT-TARGET-RECOVERY_REF-FOREIGN",
@@ -945,7 +929,6 @@
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
-      "scenario_basis": "原/提出receiptが同値でも対象辺の契約/operation/attempt/scope等へ結ばれない場合は保留。",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-017",
       "l5_function_ref": "FN-C007-01",
@@ -954,7 +937,6 @@
       ],
       "expected": {
         "scenario_class": "negative",
-        "condition": "原/提出receiptが同値でも対象辺の契約/operation/attempt/scope等へ結ばれない場合は保留。",
         "l5_refs": [
           "/contract_views/F01/failure_rules/5"
         ],
@@ -966,7 +948,8 @@
           "difference": "foreign_target"
         },
         "decision": "EDGE-P-2.recovery_ref:foreign_target。構成体をholdしterminal success不可。"
-      }
+      },
+      "scenario_condition_ref": "SC-C007-03"
     },
     {
       "id": "C007-F01-RECEIPT-COMPOSITE-IDENTITY-FOREIGN",
@@ -987,7 +970,6 @@
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
-      "scenario_basis": "別構成体revision/scope/要求/ownerの証拠を当該集合へ外挿しない。",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-018",
       "l5_function_ref": "FN-C007-01",
@@ -996,7 +978,6 @@
       ],
       "expected": {
         "scenario_class": "negative",
-        "condition": "別構成体revision/scope/要求/ownerの証拠を当該集合へ外挿しない。",
         "l5_refs": [
           "/contract_views/F01/failure_rules/6"
         ],
@@ -1008,7 +989,8 @@
           "difference": "foreign_target"
         },
         "decision": "COMPOSITE-P.identity:foreign_target。構成体をholdしterminal success不可。"
-      }
+      },
+      "scenario_condition_ref": "SC-C007-04"
     },
     {
       "id": "C007-F01-RECEIPT-COMPOSITE-REVISION-FOREIGN",
@@ -1029,7 +1011,6 @@
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
-      "scenario_basis": "別構成体revision/scope/要求/ownerの証拠を当該集合へ外挿しない。",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-019",
       "l5_function_ref": "FN-C007-01",
@@ -1038,7 +1019,6 @@
       ],
       "expected": {
         "scenario_class": "negative",
-        "condition": "別構成体revision/scope/要求/ownerの証拠を当該集合へ外挿しない。",
         "l5_refs": [
           "/contract_views/F01/failure_rules/6"
         ],
@@ -1050,7 +1030,8 @@
           "difference": "foreign_target"
         },
         "decision": "COMPOSITE-P.revision:foreign_target。構成体をholdしterminal success不可。"
-      }
+      },
+      "scenario_condition_ref": "SC-C007-04"
     },
     {
       "id": "C007-F01-RECEIPT-COMPOSITE-SCOPE-FOREIGN",
@@ -1071,7 +1052,6 @@
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
-      "scenario_basis": "別構成体revision/scope/要求/ownerの証拠を当該集合へ外挿しない。",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-020",
       "l5_function_ref": "FN-C007-01",
@@ -1080,7 +1060,6 @@
       ],
       "expected": {
         "scenario_class": "negative",
-        "condition": "別構成体revision/scope/要求/ownerの証拠を当該集合へ外挿しない。",
         "l5_refs": [
           "/contract_views/F01/failure_rules/6"
         ],
@@ -1092,7 +1071,8 @@
           "difference": "foreign_target"
         },
         "decision": "COMPOSITE-P.scope:foreign_target。構成体をholdしterminal success不可。"
-      }
+      },
+      "scenario_condition_ref": "SC-C007-04"
     },
     {
       "id": "C007-F01-RECEIPT-COMPOSITE-REQUIREMENT_REVISION-FOREIGN",
@@ -1113,7 +1093,6 @@
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
-      "scenario_basis": "別構成体revision/scope/要求/ownerの証拠を当該集合へ外挿しない。",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-021",
       "l5_function_ref": "FN-C007-01",
@@ -1122,7 +1101,6 @@
       ],
       "expected": {
         "scenario_class": "negative",
-        "condition": "別構成体revision/scope/要求/ownerの証拠を当該集合へ外挿しない。",
         "l5_refs": [
           "/contract_views/F01/failure_rules/6"
         ],
@@ -1134,7 +1112,8 @@
           "difference": "foreign_target"
         },
         "decision": "COMPOSITE-P.requirement_revision:foreign_target。構成体をholdしterminal success不可。"
-      }
+      },
+      "scenario_condition_ref": "SC-C007-04"
     },
     {
       "id": "C007-F01-RECEIPT-COMPOSITE-CORRELATION-FOREIGN",
@@ -1155,7 +1134,6 @@
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
-      "scenario_basis": "別構成体revision/scope/要求/ownerの証拠を当該集合へ外挿しない。",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-022",
       "l5_function_ref": "FN-C007-01",
@@ -1164,7 +1142,6 @@
       ],
       "expected": {
         "scenario_class": "negative",
-        "condition": "別構成体revision/scope/要求/ownerの証拠を当該集合へ外挿しない。",
         "l5_refs": [
           "/contract_views/F01/failure_rules/6"
         ],
@@ -1176,7 +1153,8 @@
           "difference": "foreign_target"
         },
         "decision": "COMPOSITE-P.correlation:foreign_target。構成体をholdしterminal success不可。"
-      }
+      },
+      "scenario_condition_ref": "SC-C007-04"
     },
     {
       "id": "C007-F01-RECEIPT-COMPOSITE-OWNER-FOREIGN",
@@ -1197,7 +1175,6 @@
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
-      "scenario_basis": "別構成体revision/scope/要求/ownerの証拠を当該集合へ外挿しない。",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-023",
       "l5_function_ref": "FN-C007-01",
@@ -1206,7 +1183,6 @@
       ],
       "expected": {
         "scenario_class": "negative",
-        "condition": "別構成体revision/scope/要求/ownerの証拠を当該集合へ外挿しない。",
         "l5_refs": [
           "/contract_views/F01/failure_rules/6"
         ],
@@ -1218,7 +1194,8 @@
           "difference": "foreign_target"
         },
         "decision": "COMPOSITE-P.owner:foreign_target。構成体をholdしterminal success不可。"
-      }
+      },
+      "scenario_condition_ref": "SC-C007-04"
     },
     {
       "id": "C007-F01-ORIGINAL-REGISTRATION_STATE-UNKNOWN",
@@ -1239,7 +1216,6 @@
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
-      "scenario_basis": "内容同値でも元観測の未成立/失効/stale/部分/効果未観測は全体終端にならない。",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-024",
       "l5_function_ref": "FN-C007-01",
@@ -1248,7 +1224,6 @@
       ],
       "expected": {
         "scenario_class": "negative",
-        "condition": "内容同値でも元観測の未成立/失効/stale/部分/効果未観測は全体終端にならない。",
         "l5_refs": [
           "/contract_views/F01/failure_rules/7"
         ],
@@ -1260,7 +1235,8 @@
           "difference": "registration_unknown"
         },
         "decision": "RECEIPT-2.registration_state:registration_unknown。構成体をholdしterminal success不可。"
-      }
+      },
+      "scenario_condition_ref": "SC-C007-05"
     },
     {
       "id": "C007-F01-ORIGINAL-COMPATIBILITY_STATE-STALE",
@@ -1281,7 +1257,6 @@
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
-      "scenario_basis": "内容同値でも元観測の未成立/失効/stale/部分/効果未観測は全体終端にならない。",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-025",
       "l5_function_ref": "FN-C007-01",
@@ -1290,7 +1265,6 @@
       ],
       "expected": {
         "scenario_class": "negative",
-        "condition": "内容同値でも元観測の未成立/失効/stale/部分/効果未観測は全体終端にならない。",
         "l5_refs": [
           "/contract_views/F01/failure_rules/7"
         ],
@@ -1302,7 +1276,8 @@
           "difference": "compatibility_stale"
         },
         "decision": "RECEIPT-2.compatibility_state:compatibility_stale。構成体をholdしterminal success不可。"
-      }
+      },
+      "scenario_condition_ref": "SC-C007-05"
     },
     {
       "id": "C007-F01-ORIGINAL-EXPIRY_STATE-EXPIRED",
@@ -1323,7 +1298,6 @@
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
-      "scenario_basis": "内容同値でも元観測の未成立/失効/stale/部分/効果未観測は全体終端にならない。",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-026",
       "l5_function_ref": "FN-C007-01",
@@ -1332,7 +1306,6 @@
       ],
       "expected": {
         "scenario_class": "negative",
-        "condition": "内容同値でも元観測の未成立/失効/stale/部分/効果未観測は全体終端にならない。",
         "l5_refs": [
           "/contract_views/F01/failure_rules/7"
         ],
@@ -1344,7 +1317,8 @@
           "difference": "expiry_invalid"
         },
         "decision": "RECEIPT-2.expiry_state:expiry_invalid。構成体をholdしterminal success不可。"
-      }
+      },
+      "scenario_condition_ref": "SC-C007-05"
     },
     {
       "id": "C007-F01-ORIGINAL-PERMISSION_STATE-REVOKED",
@@ -1365,7 +1339,6 @@
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
-      "scenario_basis": "内容同値でも元観測の未成立/失効/stale/部分/効果未観測は全体終端にならない。",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-027",
       "l5_function_ref": "FN-C007-01",
@@ -1374,7 +1347,6 @@
       ],
       "expected": {
         "scenario_class": "negative",
-        "condition": "内容同値でも元観測の未成立/失効/stale/部分/効果未観測は全体終端にならない。",
         "l5_refs": [
           "/contract_views/F01/failure_rules/7"
         ],
@@ -1386,7 +1358,8 @@
           "difference": "permission_revoked"
         },
         "decision": "RECEIPT-2.permission_state:permission_revoked。構成体をholdしterminal success不可。"
-      }
+      },
+      "scenario_condition_ref": "SC-C007-05"
     },
     {
       "id": "C007-F01-ORIGINAL-RESULT_STATE-PARTIAL_SUCCESS",
@@ -1407,7 +1380,6 @@
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
-      "scenario_basis": "内容同値でも元観測の未成立/失効/stale/部分/効果未観測は全体終端にならない。",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-028",
       "l5_function_ref": "FN-C007-01",
@@ -1416,7 +1388,6 @@
       ],
       "expected": {
         "scenario_class": "negative",
-        "condition": "内容同値でも元観測の未成立/失効/stale/部分/効果未観測は全体終端にならない。",
         "l5_refs": [
           "/contract_views/F01/failure_rules/7"
         ],
@@ -1428,7 +1399,8 @@
           "difference": "result_partial"
         },
         "decision": "RECEIPT-2.result_state:result_partial。構成体をholdしterminal success不可。"
-      }
+      },
+      "scenario_condition_ref": "SC-C007-05"
     },
     {
       "id": "C007-F01-ORIGINAL-RECEIVER_EFFECT_STATE-NOT_OBSERVED",
@@ -1449,7 +1421,6 @@
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
-      "scenario_basis": "内容同値でも元観測の未成立/失効/stale/部分/効果未観測は全体終端にならない。",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-029",
       "l5_function_ref": "FN-C007-01",
@@ -1458,7 +1429,6 @@
       ],
       "expected": {
         "scenario_class": "negative",
-        "condition": "内容同値でも元観測の未成立/失効/stale/部分/効果未観測は全体終端にならない。",
         "l5_refs": [
           "/contract_views/F01/failure_rules/7"
         ],
@@ -1470,7 +1440,8 @@
           "difference": "receiver_effect_unobserved"
         },
         "decision": "RECEIPT-2.receiver_effect_state:receiver_effect_unobserved。構成体をholdしterminal success不可。"
-      }
+      },
+      "scenario_condition_ref": "SC-C007-05"
     },
     {
       "id": "C007-F01-ORIGINAL-EDGE-DEFINITION-MISSING",
@@ -1491,7 +1462,6 @@
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
-      "scenario_basis": "宣言済み必須辺が未定義なら欠落/順序/mappingを推測で補わない。",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-030",
       "l5_function_ref": "FN-C007-01",
@@ -1502,7 +1472,6 @@
       ],
       "expected": {
         "scenario_class": "negative",
-        "condition": "宣言済み必須辺が未定義なら欠落/順序/mappingを推測で補わない。",
         "l5_refs": [
           "/contract_views/F01/failure_rules/0",
           "/contract_views/F01/failure_rules/8",
@@ -1516,7 +1485,8 @@
           "difference": "edge_definition_missing"
         },
         "decision": "EDGE-P-2.original_edges:edge_definition_missing。構成体をholdしterminal success不可。"
-      }
+      },
+      "scenario_condition_ref": "SC-C007-06"
     },
     {
       "id": "C007-F01-SUBMITTED-EDGE-ORDER-REVERSED",
@@ -1537,7 +1507,6 @@
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
-      "scenario_basis": "元構成体ownerの順序を提出順序で置換しない。",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-031",
       "l5_function_ref": "FN-C007-01",
@@ -1546,7 +1515,6 @@
       ],
       "expected": {
         "scenario_class": "negative",
-        "condition": "元構成体ownerの順序を提出順序で置換しない。",
         "l5_refs": [
           "/contract_views/F01/failure_rules/1"
         ],
@@ -1558,7 +1526,8 @@
           "difference": "order_reversed"
         },
         "decision": "対象record.submitted_edges:order_reversed。構成体をholdしterminal success不可。"
-      }
+      },
+      "scenario_condition_ref": "SC-C007-07"
     },
     {
       "id": "C007-F01-ORIGINAL-MAPPING-SOURCE_OPERATION-UNKNOWN",
@@ -1579,7 +1548,6 @@
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
-      "scenario_basis": "元operation mappingの不明/別内容を原/提出同値で成立にしない。",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-032",
       "l5_function_ref": "FN-C007-01",
@@ -1589,7 +1557,6 @@
       ],
       "expected": {
         "scenario_class": "negative",
-        "condition": "元operation mappingの不明/別内容を原/提出同値で成立にしない。",
         "l5_refs": [
           "/contract_views/F01/failure_rules/5",
           "/contract_views/F01/failure_rules/8"
@@ -1602,7 +1569,8 @@
           "difference": "target_missing"
         },
         "decision": "EDGE-P-2.source_operation:target_missing。構成体をholdしterminal success不可。"
-      }
+      },
+      "scenario_condition_ref": "SC-C007-08"
     },
     {
       "id": "C007-F01-ORIGINAL-MAPPING-SOURCE_OPERATION-FOREIGN",
@@ -1623,7 +1591,6 @@
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
-      "scenario_basis": "元operation mappingの不明/別内容を原/提出同値で成立にしない。",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-033",
       "l5_function_ref": "FN-C007-01",
@@ -1632,7 +1599,6 @@
       ],
       "expected": {
         "scenario_class": "negative",
-        "condition": "元operation mappingの不明/別内容を原/提出同値で成立にしない。",
         "l5_refs": [
           "/contract_views/F01/failure_rules/8"
         ],
@@ -1644,7 +1610,8 @@
           "difference": "foreign_target"
         },
         "decision": "EDGE-P-2.source_operation:foreign_target。構成体をholdしterminal success不可。"
-      }
+      },
+      "scenario_condition_ref": "SC-C007-08"
     },
     {
       "id": "C007-F01-ORIGINAL-MAPPING-SOURCE_ENDPOINT-FOREIGN",
@@ -1665,7 +1632,6 @@
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
-      "scenario_basis": "元operation mappingの不明/別内容を原/提出同値で成立にしない。",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-034",
       "l5_function_ref": "FN-C007-01",
@@ -1674,7 +1640,6 @@
       ],
       "expected": {
         "scenario_class": "negative",
-        "condition": "元operation mappingの不明/別内容を原/提出同値で成立にしない。",
         "l5_refs": [
           "/contract_views/F01/failure_rules/8"
         ],
@@ -1686,7 +1651,8 @@
           "difference": "foreign_target"
         },
         "decision": "EDGE-P-2.source_endpoint:foreign_target。構成体をholdしterminal success不可。"
-      }
+      },
+      "scenario_condition_ref": "SC-C007-08"
     },
     {
       "id": "C007-F01-SUBMITTED-RECEIPT-MISSING",
@@ -1707,7 +1673,6 @@
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
-      "scenario_basis": "独立原receiptがあっても提出欠落は内容不足として保持。",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-035",
       "l5_function_ref": "FN-C007-01",
@@ -1717,7 +1682,6 @@
       ],
       "expected": {
         "scenario_class": "negative",
-        "condition": "独立原receiptがあっても提出欠落は内容不足として保持。",
         "l5_refs": [
           "/contract_views/F01/failure_rules/3",
           "/contract_views/F01/failure_rules/4"
@@ -1730,7 +1694,8 @@
           "difference": "missing_receipt"
         },
         "decision": "EDGE-P-2.submitted_receipts:missing_receipt。構成体をholdしterminal success不可。"
-      }
+      },
+      "scenario_condition_ref": "SC-C007-09"
     },
     {
       "id": "C007-F01-SUBMITTED-RECEIPT-DUPLICATE",
@@ -1751,7 +1716,6 @@
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
-      "scenario_basis": "同辺receipt重複を欠落と混同せず、元と提出集合の個数を保持する。",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-036",
       "l5_function_ref": "FN-C007-01",
@@ -1761,7 +1725,6 @@
       ],
       "expected": {
         "scenario_class": "negative",
-        "condition": "同辺receipt重複を欠落と混同せず、元と提出集合の個数を保持する。",
         "l5_refs": [
           "/contract_views/F01/failure_rules/3",
           "/contract_views/F01/failure_rules/4"
@@ -1774,7 +1737,8 @@
           "difference": "duplicate_receipt"
         },
         "decision": "unselected connection.submitted_receipts:duplicate_receipt。構成体をholdしterminal success不可。"
-      }
+      },
+      "scenario_condition_ref": "SC-C007-10"
     },
     {
       "id": "C007-F01-ONE_EDGE_GREEN_IS_COMPOSITE",
@@ -1795,7 +1759,6 @@
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
-      "scenario_basis": "一辺green/欠落辺/未定mappingで構成完了claimを拒否。",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-037",
       "l5_function_ref": "FN-C007-01",
@@ -1809,7 +1772,6 @@
       ],
       "expected": {
         "scenario_class": "negative",
-        "condition": "一辺green/欠落辺/未定mappingで構成完了claimを拒否。",
         "l5_refs": [
           "/contract_views/F01/failure_rules/2",
           "/contract_views/F01/failure_rules/3",
@@ -1826,7 +1788,8 @@
           "difference": "missing_receipt"
         },
         "decision": "EDGE-P-2+EDGE-P-3.original_receipts:missing_receipt。構成体をholdしterminal success不可。"
-      }
+      },
+      "scenario_condition_ref": "SC-C007-11"
     },
     {
       "id": "C007-F01-MISSING_EDGE_COMPLETE",
@@ -1847,7 +1810,6 @@
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
-      "scenario_basis": "一辺green/欠落辺/未定mappingで構成完了claimを拒否。",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-038",
       "l5_function_ref": "FN-C007-01",
@@ -1861,7 +1823,6 @@
       ],
       "expected": {
         "scenario_class": "negative",
-        "condition": "一辺green/欠落辺/未定mappingで構成完了claimを拒否。",
         "l5_refs": [
           "/contract_views/F01/failure_rules/2",
           "/contract_views/F01/failure_rules/3",
@@ -1878,7 +1839,8 @@
           "difference": "missing_receipt"
         },
         "decision": "EDGE-P-2.original_receipts:missing_receipt。構成体をholdしterminal success不可。"
-      }
+      },
+      "scenario_condition_ref": "SC-C007-11"
     },
     {
       "id": "C007-F01-UNKNOWN_MAPPING_COMPLETE",
@@ -1899,7 +1861,6 @@
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
-      "scenario_basis": "一辺green/欠落辺/未定mappingで構成完了claimを拒否。",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-039",
       "l5_function_ref": "FN-C007-01",
@@ -1909,7 +1870,6 @@
       ],
       "expected": {
         "scenario_class": "negative",
-        "condition": "一辺green/欠落辺/未定mappingで構成完了claimを拒否。",
         "l5_refs": [
           "/contract_views/F01/failure_rules/5",
           "/contract_views/F01/failure_rules/8"
@@ -1922,7 +1882,8 @@
           "difference": "target_missing"
         },
         "decision": "EDGE-P-2.source_operation:target_missing。構成体をholdしterminal success不可。"
-      }
+      },
+      "scenario_condition_ref": "SC-C007-11"
     },
     {
       "id": "C007-F02-STALE-MIDDLE-PREDECESSOR-RETAINED-NO-DOWNSTREAM",
@@ -1943,14 +1904,12 @@
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
-      "scenario_basis": "中間staleは先行成功/局所ownerと未完/後続未実行を保持し全体成功にしない。",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-040",
       "l5_function_ref": "FN-C007-02",
       "l5_failure_rule_refs": [],
       "expected": {
         "scenario_class": "negative",
-        "condition": "中間staleは先行成功/局所ownerと未完/後続未実行を保持し全体成功にしない。",
         "l5_refs": [
           "/contract_views/F02"
         ],
@@ -1962,7 +1921,8 @@
           "difference": "stale_middle_stop"
         },
         "decision": "middle stop.cause:stale_middle_stop。停止位置・先行成功・未完・ownerを残し、後続未実行。"
-      }
+      },
+      "scenario_condition_ref": "SC-C007-12"
     },
     {
       "id": "C007-F02-MIDDLE-TIMEOUT",
@@ -1983,14 +1943,12 @@
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
-      "scenario_basis": "中間故障を個別保持。後続実行を捏造せず業務再計画は元ownerへ残す。",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-041",
       "l5_function_ref": "FN-C007-02",
       "l5_failure_rule_refs": [],
       "expected": {
         "scenario_class": "negative",
-        "condition": "中間故障を個別保持。後続実行を捏造せず業務再計画は元ownerへ残す。",
         "l5_refs": [
           "/contract_views/F02"
         ],
@@ -2002,7 +1960,8 @@
           "difference": "failure_cause_timeout"
         },
         "decision": "EDGE-P-2.cause:failure_cause_timeout。停止位置・先行成功・未完・ownerを残し、後続未実行。"
-      }
+      },
+      "scenario_condition_ref": "SC-C007-13"
     },
     {
       "id": "C007-F02-MIDDLE-DIGEST_CONFLICT",
@@ -2023,14 +1982,12 @@
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
-      "scenario_basis": "中間故障を個別保持。後続実行を捏造せず業務再計画は元ownerへ残す。",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-042",
       "l5_function_ref": "FN-C007-02",
       "l5_failure_rule_refs": [],
       "expected": {
         "scenario_class": "negative",
-        "condition": "中間故障を個別保持。後続実行を捏造せず業務再計画は元ownerへ残す。",
         "l5_refs": [
           "/contract_views/F02"
         ],
@@ -2042,7 +1999,8 @@
           "difference": "failure_cause_digest_conflict"
         },
         "decision": "EDGE-P-2.cause:failure_cause_digest_conflict。停止位置・先行成功・未完・ownerを残し、後続未実行。"
-      }
+      },
+      "scenario_condition_ref": "SC-C007-13"
     },
     {
       "id": "C007-F02-MIDDLE-EXPIRY",
@@ -2063,14 +2021,12 @@
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
-      "scenario_basis": "中間故障を個別保持。後続実行を捏造せず業務再計画は元ownerへ残す。",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-043",
       "l5_function_ref": "FN-C007-02",
       "l5_failure_rule_refs": [],
       "expected": {
         "scenario_class": "negative",
-        "condition": "中間故障を個別保持。後続実行を捏造せず業務再計画は元ownerへ残す。",
         "l5_refs": [
           "/contract_views/F02"
         ],
@@ -2082,7 +2038,8 @@
           "difference": "failure_cause_expiry"
         },
         "decision": "EDGE-P-2.cause:failure_cause_expiry。停止位置・先行成功・未完・ownerを残し、後続未実行。"
-      }
+      },
+      "scenario_condition_ref": "SC-C007-13"
     },
     {
       "id": "C007-F02-MIDDLE-CANCELLED",
@@ -2103,14 +2060,12 @@
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
-      "scenario_basis": "中間故障を個別保持。後続実行を捏造せず業務再計画は元ownerへ残す。",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-044",
       "l5_function_ref": "FN-C007-02",
       "l5_failure_rule_refs": [],
       "expected": {
         "scenario_class": "negative",
-        "condition": "中間故障を個別保持。後続実行を捏造せず業務再計画は元ownerへ残す。",
         "l5_refs": [
           "/contract_views/F02"
         ],
@@ -2122,7 +2077,8 @@
           "difference": "failure_cause_cancelled"
         },
         "decision": "EDGE-P-2.cause:failure_cause_cancelled。停止位置・先行成功・未完・ownerを残し、後続未実行。"
-      }
+      },
+      "scenario_condition_ref": "SC-C007-13"
     },
     {
       "id": "C007-F02-MIDDLE-PERMISSION_REVOKED",
@@ -2143,14 +2099,12 @@
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
-      "scenario_basis": "中間故障を個別保持。後続実行を捏造せず業務再計画は元ownerへ残す。",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-045",
       "l5_function_ref": "FN-C007-02",
       "l5_failure_rule_refs": [],
       "expected": {
         "scenario_class": "negative",
-        "condition": "中間故障を個別保持。後続実行を捏造せず業務再計画は元ownerへ残す。",
         "l5_refs": [
           "/contract_views/F02"
         ],
@@ -2162,7 +2116,8 @@
           "difference": "failure_cause_permission_revoked"
         },
         "decision": "EDGE-P-2.cause:failure_cause_permission_revoked。停止位置・先行成功・未完・ownerを残し、後続未実行。"
-      }
+      },
+      "scenario_condition_ref": "SC-C007-13"
     },
     {
       "id": "C007-F02-MIDDLE-PARTIAL_SUCCESS",
@@ -2183,14 +2138,12 @@
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
-      "scenario_basis": "中間故障を個別保持。後続実行を捏造せず業務再計画は元ownerへ残す。",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-046",
       "l5_function_ref": "FN-C007-02",
       "l5_failure_rule_refs": [],
       "expected": {
         "scenario_class": "negative",
-        "condition": "中間故障を個別保持。後続実行を捏造せず業務再計画は元ownerへ残す。",
         "l5_refs": [
           "/contract_views/F02"
         ],
@@ -2202,7 +2155,8 @@
           "difference": "failure_cause_partial_success"
         },
         "decision": "EDGE-P-2.cause:failure_cause_partial_success。停止位置・先行成功・未完・ownerを残し、後続未実行。"
-      }
+      },
+      "scenario_condition_ref": "SC-C007-13"
     },
     {
       "id": "C007-F02-MIDDLE-UNKNOWN",
@@ -2223,14 +2177,12 @@
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
-      "scenario_basis": "中間故障を個別保持。後続実行を捏造せず業務再計画は元ownerへ残す。",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-047",
       "l5_function_ref": "FN-C007-02",
       "l5_failure_rule_refs": [],
       "expected": {
         "scenario_class": "negative",
-        "condition": "中間故障を個別保持。後続実行を捏造せず業務再計画は元ownerへ残す。",
         "l5_refs": [
           "/contract_views/F02"
         ],
@@ -2242,7 +2194,8 @@
           "difference": "failure_cause_unknown"
         },
         "decision": "EDGE-P-2.cause:failure_cause_unknown。停止位置・先行成功・未完・ownerを残し、後続未実行。"
-      }
+      },
+      "scenario_condition_ref": "SC-C007-13"
     },
     {
       "id": "C007-F02-SUBMITTED-PRIOR_SUCCESSES-ERASED",
@@ -2263,7 +2216,6 @@
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
-      "scenario_basis": "失敗で先行成功/元未完を消去しない。",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-048",
       "l5_function_ref": "FN-C007-02",
@@ -2272,7 +2224,6 @@
       ],
       "expected": {
         "scenario_class": "negative",
-        "condition": "失敗で先行成功/元未完を消去しない。",
         "l5_refs": [
           "/contract_views/F02/failure_rules/1"
         ],
@@ -2284,7 +2235,8 @@
           "difference": "trace_entry_erased"
         },
         "decision": "EDGE-P-1.submitted_prior_successes:trace_entry_erased。停止位置・先行成功・未完・ownerを残し、後続未実行。"
-      }
+      },
+      "scenario_condition_ref": "SC-C007-14"
     },
     {
       "id": "C007-F02-SUBMITTED-UNFINISHED-ERASED",
@@ -2305,7 +2257,6 @@
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
-      "scenario_basis": "失敗で先行成功/元未完を消去しない。",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-049",
       "l5_function_ref": "FN-C007-02",
@@ -2314,7 +2265,6 @@
       ],
       "expected": {
         "scenario_class": "negative",
-        "condition": "失敗で先行成功/元未完を消去しない。",
         "l5_refs": [
           "/contract_views/F02/failure_rules/2"
         ],
@@ -2326,7 +2276,8 @@
           "difference": "trace_entry_erased"
         },
         "decision": "EDGE-P-2+EDGE-P-3.submitted_unfinished:trace_entry_erased。停止位置・先行成功・未完・ownerを残し、後続未実行。"
-      }
+      },
+      "scenario_condition_ref": "SC-C007-14"
     },
     {
       "id": "C007-F02-SUBMITTED-DOWNSTREAM-ATTEMPT-INVENTED",
@@ -2347,7 +2298,6 @@
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
-      "scenario_basis": "未観測/未許可の後続を実行済みにしない。",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-050",
       "l5_function_ref": "FN-C007-02",
@@ -2356,7 +2306,6 @@
       ],
       "expected": {
         "scenario_class": "negative",
-        "condition": "未観測/未許可の後続を実行済みにしない。",
         "l5_refs": [
           "/contract_views/F02/failure_rules/3"
         ],
@@ -2368,7 +2317,8 @@
           "difference": "unauthorized_attempt_present"
         },
         "decision": "EDGE-P-3.EDGE-P-3:unauthorized_attempt_present。停止位置・先行成功・未完・ownerを残し、後続未実行。"
-      }
+      },
+      "scenario_condition_ref": "SC-C007-15"
     },
     {
       "id": "C007-F02-ORIGINAL-UNAUTHORIZED-DOWNSTREAM-ATTEMPT",
@@ -2389,7 +2339,6 @@
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
-      "scenario_basis": "原/提出同値でも先行条件なし後続attemptを許容せず保留。",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-051",
       "l5_function_ref": "FN-C007-02",
@@ -2398,7 +2347,6 @@
       ],
       "expected": {
         "scenario_class": "negative",
-        "condition": "原/提出同値でも先行条件なし後続attemptを許容せず保留。",
         "l5_refs": [
           "/contract_views/F02/failure_rules/5"
         ],
@@ -2410,7 +2358,8 @@
           "difference": "unauthorized_attempt_present"
         },
         "decision": "EDGE-P-3.EDGE-P-3:unauthorized_attempt_present。停止位置・先行成功・未完・ownerを残し、後続未実行。"
-      }
+      },
+      "scenario_condition_ref": "SC-C007-16"
     },
     {
       "id": "C007-F02-SUBMITTED-STOP-OWNER-FOREIGN",
@@ -2431,7 +2380,6 @@
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
-      "scenario_basis": "停止の発生辺/operation/attempt/owner/recoveryを変えない。",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-052",
       "l5_function_ref": "FN-C007-02",
@@ -2440,7 +2388,6 @@
       ],
       "expected": {
         "scenario_class": "negative",
-        "condition": "停止の発生辺/operation/attempt/owner/recoveryを変えない。",
         "l5_refs": [
           "/contract_views/F02/failure_rules/6"
         ],
@@ -2452,7 +2399,8 @@
           "difference": "foreign_target"
         },
         "decision": "EDGE-P-2.owner:foreign_target。停止位置・先行成功・未完・ownerを残し、後続未実行。"
-      }
+      },
+      "scenario_condition_ref": "SC-C007-17"
     },
     {
       "id": "C007-F02-SUBMITTED-STOP-RECOVERY_REF-FOREIGN",
@@ -2473,7 +2421,6 @@
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
-      "scenario_basis": "停止の発生辺/operation/attempt/owner/recoveryを変えない。",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-053",
       "l5_function_ref": "FN-C007-02",
@@ -2482,7 +2429,6 @@
       ],
       "expected": {
         "scenario_class": "negative",
-        "condition": "停止の発生辺/operation/attempt/owner/recoveryを変えない。",
         "l5_refs": [
           "/contract_views/F02/failure_rules/6"
         ],
@@ -2494,7 +2440,8 @@
           "difference": "foreign_target"
         },
         "decision": "EDGE-P-2.recovery_ref:foreign_target。停止位置・先行成功・未完・ownerを残し、後続未実行。"
-      }
+      },
+      "scenario_condition_ref": "SC-C007-17"
     },
     {
       "id": "C007-F02-SUBMITTED-STOP-EDGE_IDENTITY-FOREIGN",
@@ -2515,7 +2462,6 @@
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
-      "scenario_basis": "停止の発生辺/operation/attempt/owner/recoveryを変えない。",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-054",
       "l5_function_ref": "FN-C007-02",
@@ -2524,7 +2470,6 @@
       ],
       "expected": {
         "scenario_class": "negative",
-        "condition": "停止の発生辺/operation/attempt/owner/recoveryを変えない。",
         "l5_refs": [
           "/contract_views/F02/failure_rules/6"
         ],
@@ -2536,7 +2481,8 @@
           "difference": "foreign_target"
         },
         "decision": "EDGE-P-2.edge_identity:foreign_target。停止位置・先行成功・未完・ownerを残し、後続未実行。"
-      }
+      },
+      "scenario_condition_ref": "SC-C007-17"
     },
     {
       "id": "C007-F02-SUBMITTED-STOP-OPERATION_IDENTITY-FOREIGN",
@@ -2557,7 +2503,6 @@
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
-      "scenario_basis": "停止の発生辺/operation/attempt/owner/recoveryを変えない。",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-055",
       "l5_function_ref": "FN-C007-02",
@@ -2566,7 +2511,6 @@
       ],
       "expected": {
         "scenario_class": "negative",
-        "condition": "停止の発生辺/operation/attempt/owner/recoveryを変えない。",
         "l5_refs": [
           "/contract_views/F02/failure_rules/6"
         ],
@@ -2578,7 +2522,8 @@
           "difference": "foreign_target"
         },
         "decision": "EDGE-P-2.operation_identity:foreign_target。停止位置・先行成功・未完・ownerを残し、後続未実行。"
-      }
+      },
+      "scenario_condition_ref": "SC-C007-17"
     },
     {
       "id": "C007-F02-SUBMITTED-STOP-ATTEMPT_IDENTITY-FOREIGN",
@@ -2599,7 +2544,6 @@
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
-      "scenario_basis": "停止の発生辺/operation/attempt/owner/recoveryを変えない。",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-056",
       "l5_function_ref": "FN-C007-02",
@@ -2608,7 +2552,6 @@
       ],
       "expected": {
         "scenario_class": "negative",
-        "condition": "停止の発生辺/operation/attempt/owner/recoveryを変えない。",
         "l5_refs": [
           "/contract_views/F02/failure_rules/6"
         ],
@@ -2620,7 +2563,8 @@
           "difference": "foreign_target"
         },
         "decision": "EDGE-P-2.attempt_identity:foreign_target。停止位置・先行成功・未完・ownerを残し、後続未実行。"
-      }
+      },
+      "scenario_condition_ref": "SC-C007-17"
     },
     {
       "id": "C007-F02-HANDOFF-COMPOSITE-SCOPE-FOREIGN",
@@ -2641,7 +2585,6 @@
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
-      "scenario_basis": "別構成scopeのhandoffで元未完を引継ぎ済みにしない。",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-057",
       "l5_function_ref": "FN-C007-02",
@@ -2650,7 +2593,6 @@
       ],
       "expected": {
         "scenario_class": "negative",
-        "condition": "別構成scopeのhandoffで元未完を引継ぎ済みにしない。",
         "l5_refs": [
           "/contract_views/F02/failure_rules/4"
         ],
@@ -2662,7 +2604,8 @@
           "difference": "foreign_target"
         },
         "decision": "COMPOSITE-P.scope:foreign_target。停止位置・先行成功・未完・ownerを残し、後続未実行。"
-      }
+      },
+      "scenario_condition_ref": "SC-C007-18"
     },
     {
       "id": "C007-F02-ORIGINAL-STOP-OWNER-FOREIGN",
@@ -2683,7 +2626,6 @@
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
-      "scenario_basis": "原/提出停止記録が同値でも元辺owner/operation/attempt/recoveryを照合する。",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-058",
       "l5_function_ref": "FN-C007-02",
@@ -2692,7 +2634,6 @@
       ],
       "expected": {
         "scenario_class": "negative",
-        "condition": "原/提出停止記録が同値でも元辺owner/operation/attempt/recoveryを照合する。",
         "l5_refs": [
           "/contract_views/F02/failure_rules/0"
         ],
@@ -2704,7 +2645,8 @@
           "difference": "foreign_target"
         },
         "decision": "EDGE-P-2.owner:foreign_target。停止位置・先行成功・未完・ownerを残し、後続未実行。"
-      }
+      },
+      "scenario_condition_ref": "SC-C007-19"
     },
     {
       "id": "C007-F02-ORIGINAL-STOP-RECOVERY_REF-FOREIGN",
@@ -2725,7 +2667,6 @@
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
-      "scenario_basis": "原/提出停止記録が同値でも元辺owner/operation/attempt/recoveryを照合する。",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-059",
       "l5_function_ref": "FN-C007-02",
@@ -2734,7 +2675,6 @@
       ],
       "expected": {
         "scenario_class": "negative",
-        "condition": "原/提出停止記録が同値でも元辺owner/operation/attempt/recoveryを照合する。",
         "l5_refs": [
           "/contract_views/F02/failure_rules/0"
         ],
@@ -2746,7 +2686,8 @@
           "difference": "foreign_target"
         },
         "decision": "EDGE-P-2.recovery_ref:foreign_target。停止位置・先行成功・未完・ownerを残し、後続未実行。"
-      }
+      },
+      "scenario_condition_ref": "SC-C007-19"
     },
     {
       "id": "C007-F02-ORIGINAL-STOP-OPERATION_IDENTITY-FOREIGN",
@@ -2767,7 +2708,6 @@
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
-      "scenario_basis": "原/提出停止記録が同値でも元辺owner/operation/attempt/recoveryを照合する。",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-060",
       "l5_function_ref": "FN-C007-02",
@@ -2776,7 +2716,6 @@
       ],
       "expected": {
         "scenario_class": "negative",
-        "condition": "原/提出停止記録が同値でも元辺owner/operation/attempt/recoveryを照合する。",
         "l5_refs": [
           "/contract_views/F02/failure_rules/0"
         ],
@@ -2788,7 +2727,8 @@
           "difference": "foreign_target"
         },
         "decision": "EDGE-P-2.operation_identity:foreign_target。停止位置・先行成功・未完・ownerを残し、後続未実行。"
-      }
+      },
+      "scenario_condition_ref": "SC-C007-19"
     },
     {
       "id": "C007-F02-ORIGINAL-STOP-ATTEMPT_IDENTITY-FOREIGN",
@@ -2809,7 +2749,6 @@
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
-      "scenario_basis": "原/提出停止記録が同値でも元辺owner/operation/attempt/recoveryを照合する。",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-061",
       "l5_function_ref": "FN-C007-02",
@@ -2818,7 +2757,6 @@
       ],
       "expected": {
         "scenario_class": "negative",
-        "condition": "原/提出停止記録が同値でも元辺owner/operation/attempt/recoveryを照合する。",
         "l5_refs": [
           "/contract_views/F02/failure_rules/0"
         ],
@@ -2830,7 +2768,8 @@
           "difference": "foreign_target"
         },
         "decision": "EDGE-P-2.attempt_identity:foreign_target。停止位置・先行成功・未完・ownerを残し、後続未実行。"
-      }
+      },
+      "scenario_condition_ref": "SC-C007-19"
     },
     {
       "id": "C007-F02-UNAUTHORIZED_DOWNSTREAM_RETRY",
@@ -2851,7 +2790,6 @@
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
-      "scenario_basis": "後続無許可再送/別辺green相殺/全trace消去claimを拒否。",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-062",
       "l5_function_ref": "FN-C007-02",
@@ -2860,7 +2798,6 @@
       ],
       "expected": {
         "scenario_class": "negative",
-        "condition": "後続無許可再送/別辺green相殺/全trace消去claimを拒否。",
         "l5_refs": [
           "/contract_views/F02/failure_rules/3"
         ],
@@ -2872,7 +2809,8 @@
           "difference": "unsupported_claim_asserted"
         },
         "decision": "claims.unauthorized_downstream_retry:unsupported_claim_asserted。停止位置・先行成功・未完・ownerを残し、後続未実行。"
-      }
+      },
+      "scenario_condition_ref": "SC-C007-20"
     },
     {
       "id": "C007-F02-OTHER_EDGE_GREEN_OFFSETS",
@@ -2893,7 +2831,6 @@
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
-      "scenario_basis": "後続無許可再送/別辺green相殺/全trace消去claimを拒否。",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-063",
       "l5_function_ref": "FN-C007-02",
@@ -2902,7 +2839,6 @@
       ],
       "expected": {
         "scenario_class": "negative",
-        "condition": "後続無許可再送/別辺green相殺/全trace消去claimを拒否。",
         "l5_refs": [
           "/contract_views/F02/failure_rules/6"
         ],
@@ -2914,7 +2850,8 @@
           "difference": "failure_cause_changed"
         },
         "decision": "EDGE-P-2.cause:failure_cause_changed。停止位置・先行成功・未完・ownerを残し、後続未実行。"
-      }
+      },
+      "scenario_condition_ref": "SC-C007-20"
     },
     {
       "id": "C007-F02-ERASE_FULL_TRACE",
@@ -2935,7 +2872,6 @@
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
-      "scenario_basis": "後続無許可再送/別辺green相殺/全trace消去claimを拒否。",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-064",
       "l5_function_ref": "FN-C007-02",
@@ -2945,7 +2881,6 @@
       ],
       "expected": {
         "scenario_class": "negative",
-        "condition": "後続無許可再送/別辺green相殺/全trace消去claimを拒否。",
         "l5_refs": [
           "/contract_views/F02/failure_rules/1",
           "/contract_views/F02/failure_rules/2"
@@ -2958,7 +2893,8 @@
           "difference": "unsupported_claim_asserted"
         },
         "decision": "claims.erase_full_trace:unsupported_claim_asserted。停止位置・先行成功・未完・ownerを残し、後続未実行。"
-      }
+      },
+      "scenario_condition_ref": "SC-C007-20"
     },
     {
       "id": "C007-N01-EXACT-DECLARED-SCOPE-THREE-BOUNDARY-EVIDENCE",
@@ -2979,14 +2915,12 @@
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
-      "scenario_basis": "要求revision/構成/選択connection集合/登録/operation/attempt/効果停止への同対象結合。実source資格は未成立。",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-065",
       "l5_function_ref": "FN-C007-03",
       "l5_failure_rule_refs": [],
       "expected": {
         "scenario_class": "normal",
-        "condition": "要求revision/構成/選択connection集合/登録/operation/attempt/効果停止への同対象結合。実source資格は未成立。",
         "l5_refs": [
           "/contract_views/N01/evidence_predicate"
         ],
@@ -2998,7 +2932,8 @@
           "difference": "baseline_fixture"
         },
         "decision": "宣言済み三辺の必要条件が揃う範囲でfixture correspondenceを示す。"
-      }
+      },
+      "scenario_condition_ref": "SC-C007-21"
     },
     {
       "id": "C007-N01-EVIDENCE-TARGET-COMPOSITE_IDENTITY-FOREIGN",
@@ -3019,7 +2954,6 @@
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
-      "scenario_basis": "未見版/別scope/connection集合/登録/operation/attempt/効果停止証拠を外挿しない。",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-066",
       "l5_function_ref": "FN-C007-03",
@@ -3028,7 +2962,6 @@
       ],
       "expected": {
         "scenario_class": "negative",
-        "condition": "未見版/別scope/connection集合/登録/operation/attempt/効果停止証拠を外挿しない。",
         "l5_refs": [
           "/contract_views/N01/failure_rules/1"
         ],
@@ -3040,7 +2973,8 @@
           "difference": "foreign_target"
         },
         "decision": "EDGE-P-2.composite_identity:foreign_target。evidenceをholdしscope外挿・実作用なし。"
-      }
+      },
+      "scenario_condition_ref": "SC-C007-22"
     },
     {
       "id": "C007-N01-EVIDENCE-TARGET-COMPOSITE_REVISION-FOREIGN",
@@ -3061,7 +2995,6 @@
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
-      "scenario_basis": "未見版/別scope/connection集合/登録/operation/attempt/効果停止証拠を外挿しない。",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-067",
       "l5_function_ref": "FN-C007-03",
@@ -3070,7 +3003,6 @@
       ],
       "expected": {
         "scenario_class": "negative",
-        "condition": "未見版/別scope/connection集合/登録/operation/attempt/効果停止証拠を外挿しない。",
         "l5_refs": [
           "/contract_views/N01/failure_rules/1"
         ],
@@ -3082,7 +3014,8 @@
           "difference": "foreign_target"
         },
         "decision": "EDGE-P-2.composite_revision:foreign_target。evidenceをholdしscope外挿・実作用なし。"
-      }
+      },
+      "scenario_condition_ref": "SC-C007-22"
     },
     {
       "id": "C007-N01-EVIDENCE-TARGET-REQUIREMENT_REVISION-FOREIGN",
@@ -3103,7 +3036,6 @@
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
-      "scenario_basis": "未見版/別scope/connection集合/登録/operation/attempt/効果停止証拠を外挿しない。",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-068",
       "l5_function_ref": "FN-C007-03",
@@ -3112,7 +3044,6 @@
       ],
       "expected": {
         "scenario_class": "negative",
-        "condition": "未見版/別scope/connection集合/登録/operation/attempt/効果停止証拠を外挿しない。",
         "l5_refs": [
           "/contract_views/N01/failure_rules/1"
         ],
@@ -3124,7 +3055,8 @@
           "difference": "foreign_target"
         },
         "decision": "EDGE-P-2.requirement_revision:foreign_target。evidenceをholdしscope外挿・実作用なし。"
-      }
+      },
+      "scenario_condition_ref": "SC-C007-22"
     },
     {
       "id": "C007-N01-EVIDENCE-TARGET-SCOPE-FOREIGN",
@@ -3145,7 +3077,6 @@
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
-      "scenario_basis": "未見版/別scope/connection集合/登録/operation/attempt/効果停止証拠を外挿しない。",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-069",
       "l5_function_ref": "FN-C007-03",
@@ -3154,7 +3085,6 @@
       ],
       "expected": {
         "scenario_class": "negative",
-        "condition": "未見版/別scope/connection集合/登録/operation/attempt/効果停止証拠を外挿しない。",
         "l5_refs": [
           "/contract_views/N01/failure_rules/1"
         ],
@@ -3166,7 +3096,8 @@
           "difference": "foreign_target"
         },
         "decision": "EDGE-P-2.scope:foreign_target。evidenceをholdしscope外挿・実作用なし。"
-      }
+      },
+      "scenario_condition_ref": "SC-C007-22"
     },
     {
       "id": "C007-N01-EVIDENCE-TARGET-CONNECTION_EXACT_SET-FOREIGN",
@@ -3187,7 +3118,6 @@
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
-      "scenario_basis": "未見版/別scope/connection集合/登録/operation/attempt/効果停止証拠を外挿しない。",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-070",
       "l5_function_ref": "FN-C007-03",
@@ -3196,7 +3126,6 @@
       ],
       "expected": {
         "scenario_class": "negative",
-        "condition": "未見版/別scope/connection集合/登録/operation/attempt/効果停止証拠を外挿しない。",
         "l5_refs": [
           "/contract_views/N01/failure_rules/1"
         ],
@@ -3208,7 +3137,8 @@
           "difference": "foreign_target"
         },
         "decision": "EDGE-P-2.connection_exact_set:foreign_target。evidenceをholdしscope外挿・実作用なし。"
-      }
+      },
+      "scenario_condition_ref": "SC-C007-22"
     },
     {
       "id": "C007-N01-EVIDENCE-TARGET-ENDPOINT_REGISTRATION_REVISIONS-FOREIGN",
@@ -3229,7 +3159,6 @@
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
-      "scenario_basis": "未見版/別scope/connection集合/登録/operation/attempt/効果停止証拠を外挿しない。",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-071",
       "l5_function_ref": "FN-C007-03",
@@ -3238,7 +3167,6 @@
       ],
       "expected": {
         "scenario_class": "negative",
-        "condition": "未見版/別scope/connection集合/登録/operation/attempt/効果停止証拠を外挿しない。",
         "l5_refs": [
           "/contract_views/N01/failure_rules/1"
         ],
@@ -3250,7 +3178,8 @@
           "difference": "foreign_target"
         },
         "decision": "EDGE-P-2.endpoint_registration_revisions:foreign_target。evidenceをholdしscope外挿・実作用なし。"
-      }
+      },
+      "scenario_condition_ref": "SC-C007-22"
     },
     {
       "id": "C007-N01-EVIDENCE-TARGET-OPERATION_ATTEMPTS-FOREIGN",
@@ -3271,7 +3200,6 @@
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
-      "scenario_basis": "未見版/別scope/connection集合/登録/operation/attempt/効果停止証拠を外挿しない。",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-072",
       "l5_function_ref": "FN-C007-03",
@@ -3280,7 +3208,6 @@
       ],
       "expected": {
         "scenario_class": "negative",
-        "condition": "未見版/別scope/connection集合/登録/operation/attempt/効果停止証拠を外挿しない。",
         "l5_refs": [
           "/contract_views/N01/failure_rules/1"
         ],
@@ -3292,7 +3219,8 @@
           "difference": "foreign_target"
         },
         "decision": "EDGE-P-2.operation_attempts:foreign_target。evidenceをholdしscope外挿・実作用なし。"
-      }
+      },
+      "scenario_condition_ref": "SC-C007-22"
     },
     {
       "id": "C007-N01-EVIDENCE-TARGET-EFFECT_STOP_REF-FOREIGN",
@@ -3313,7 +3241,6 @@
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
-      "scenario_basis": "未見版/別scope/connection集合/登録/operation/attempt/効果停止証拠を外挿しない。",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-073",
       "l5_function_ref": "FN-C007-03",
@@ -3322,7 +3249,6 @@
       ],
       "expected": {
         "scenario_class": "negative",
-        "condition": "未見版/別scope/connection集合/登録/operation/attempt/効果停止証拠を外挿しない。",
         "l5_refs": [
           "/contract_views/N01/failure_rules/1"
         ],
@@ -3334,7 +3260,8 @@
           "difference": "target_missing"
         },
         "decision": "EDGE-P-2.effect_stop_ref:target_missing。evidenceをholdしscope外挿・実作用なし。"
-      }
+      },
+      "scenario_condition_ref": "SC-C007-22"
     },
     {
       "id": "C007-N01-ORIGINAL-BOUNDARY-EVIDENCE-MISSING",
@@ -3355,7 +3282,6 @@
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
-      "scenario_basis": "必須証拠一件不足をfield存在や件数で埋めない。",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-074",
       "l5_function_ref": "FN-C007-03",
@@ -3364,7 +3290,6 @@
       ],
       "expected": {
         "scenario_class": "negative",
-        "condition": "必須証拠一件不足をfield存在や件数で埋めない。",
         "l5_refs": [
           "/contract_views/N01/failure_rules/0"
         ],
@@ -3376,7 +3301,8 @@
           "difference": "missing_evidence"
         },
         "decision": "EDGE-P-2.original_evidence:missing_evidence。evidenceをholdしscope外挿・実作用なし。"
-      }
+      },
+      "scenario_condition_ref": "SC-C007-23"
     },
     {
       "id": "C007-N01-ORIGINAL-BOUNDARY-NOT-EXECUTED",
@@ -3397,7 +3323,6 @@
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
-      "scenario_basis": "未実行を実観測へ昇格させない。",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-075",
       "l5_function_ref": "FN-C007-03",
@@ -3406,7 +3331,6 @@
       ],
       "expected": {
         "scenario_class": "negative",
-        "condition": "未実行を実観測へ昇格させない。",
         "l5_refs": [
           "/contract_views/N01/failure_rules/3"
         ],
@@ -3418,7 +3342,8 @@
           "difference": "observation_not_executed"
         },
         "decision": "EDGE-P-2.observation_state:observation_not_executed。evidenceをholdしscope外挿・実作用なし。"
-      }
+      },
+      "scenario_condition_ref": "SC-C007-24"
     },
     {
       "id": "C007-N01-SUBMITTED-BOUNDARY-EVIDENCE-MISSING",
@@ -3439,7 +3364,6 @@
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
-      "scenario_basis": "原必要証拠と提出集合の差を保持。",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-076",
       "l5_function_ref": "FN-C007-03",
@@ -3448,7 +3372,6 @@
       ],
       "expected": {
         "scenario_class": "negative",
-        "condition": "原必要証拠と提出集合の差を保持。",
         "l5_refs": [
           "/contract_views/N01/failure_rules/2"
         ],
@@ -3460,7 +3383,8 @@
           "difference": "missing_evidence"
         },
         "decision": "EDGE-P-2.submitted_evidence:missing_evidence。evidenceをholdしscope外挿・実作用なし。"
-      }
+      },
+      "scenario_condition_ref": "SC-C007-25"
     },
     {
       "id": "C007-N01-ORIGINAL-EVIDENCE-EDGE-FOREIGN",
@@ -3481,7 +3405,6 @@
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
-      "scenario_basis": "証拠identityの元辺対応を独立mapへ結び、集合targetだけで別辺証拠を同じ辺にしない。",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-077",
       "l5_function_ref": "FN-C007-03",
@@ -3490,7 +3413,6 @@
       ],
       "expected": {
         "scenario_class": "negative",
-        "condition": "証拠identityの元辺対応を独立mapへ結び、集合targetだけで別辺証拠を同じ辺にしない。",
         "l5_refs": [
           "/contract_views/N01/failure_rules/4"
         ],
@@ -3502,7 +3424,8 @@
           "difference": "foreign_target"
         },
         "decision": "EDGE-P-2.edge_identity:foreign_target。evidenceをholdしscope外挿・実作用なし。"
-      }
+      },
+      "scenario_condition_ref": "SC-C007-26"
     },
     {
       "id": "C007-N01-FIELD_COUNT_COMPOSITE_COMPLETE",
@@ -3523,7 +3446,6 @@
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
-      "scenario_basis": "件数/別scope/fixtureだけで全構成完了claimを拒否。",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-078",
       "l5_function_ref": "FN-C007-03",
@@ -3532,7 +3454,6 @@
       ],
       "expected": {
         "scenario_class": "negative",
-        "condition": "件数/別scope/fixtureだけで全構成完了claimを拒否。",
         "l5_refs": [
           "/contract_views/N01/failure_rules/0"
         ],
@@ -3544,7 +3465,8 @@
           "difference": "missing_evidence"
         },
         "decision": "EDGE-P-2.original_evidence:missing_evidence。evidenceをholdしscope外挿・実作用なし。"
-      }
+      },
+      "scenario_condition_ref": "SC-C007-27"
     },
     {
       "id": "C007-N01-FOREIGN_SCOPE_SUCCESS_INHERITED",
@@ -3565,7 +3487,6 @@
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
-      "scenario_basis": "件数/別scope/fixtureだけで全構成完了claimを拒否。",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-079",
       "l5_function_ref": "FN-C007-03",
@@ -3574,7 +3495,6 @@
       ],
       "expected": {
         "scenario_class": "negative",
-        "condition": "件数/別scope/fixtureだけで全構成完了claimを拒否。",
         "l5_refs": [
           "/contract_views/N01/failure_rules/1"
         ],
@@ -3586,7 +3506,8 @@
           "difference": "foreign_target"
         },
         "decision": "EDGE-P-2.scope:foreign_target。evidenceをholdしscope外挿・実作用なし。"
-      }
+      },
+      "scenario_condition_ref": "SC-C007-27"
     },
     {
       "id": "C007-N01-FIXTURE_ALL_CONNECTIONS_COMPLETE",
@@ -3607,14 +3528,12 @@
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
-      "scenario_basis": "件数/別scope/fixtureだけで全構成完了claimを拒否。",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-080",
       "l5_function_ref": "FN-C007-03",
       "l5_failure_rule_refs": [],
       "expected": {
         "scenario_class": "negative",
-        "condition": "件数/別scope/fixtureだけで全構成完了claimを拒否。",
         "l5_refs": [
           "/contract_views/N01/evidence_predicate"
         ],
@@ -3626,7 +3545,8 @@
           "difference": "unsupported_claim_asserted"
         },
         "decision": "claims.fixture_all_connections_complete:unsupported_claim_asserted。evidenceをholdしscope外挿・実作用なし。"
-      }
+      },
+      "scenario_condition_ref": "SC-C007-27"
     },
     {
       "id": "C007-B01-TECHNICAL-TERMINAL-BUSINESS-NOT-ACCEPTED",
@@ -3647,14 +3567,12 @@
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
-      "scenario_basis": "技術終端と元業務未受入/必要閉包/未選択交換を分ける。再送004は当該選択のみ。",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-081",
       "l5_function_ref": "FN-C007-04",
       "l5_failure_rule_refs": [],
       "expected": {
         "scenario_class": "normal",
-        "condition": "技術終端と元業務未受入/必要閉包/未選択交換を分ける。再送004は当該選択のみ。",
         "l5_refs": [
           "/contract_views/B01/acceptance"
         ],
@@ -3666,7 +3584,8 @@
           "difference": "business_not_accepted"
         },
         "decision": "技術終端と業務未受入を分け、Acceptedを生成せず元ownerの判断を残す。"
-      }
+      },
+      "scenario_condition_ref": "SC-C007-28"
     },
     {
       "id": "C007-B01-SUBMITTED-BUSINESS-OWNER-OVERRIDE",
@@ -3687,7 +3606,6 @@
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
-      "scenario_basis": "CONNECTが元業務判断/採否/受入を代筆しない。",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-082",
       "l5_function_ref": "FN-C007-04",
@@ -3696,7 +3614,6 @@
       ],
       "expected": {
         "scenario_class": "negative",
-        "condition": "CONNECTが元業務判断/採否/受入を代筆しない。",
         "l5_refs": [
           "/contract_views/B01/failure_rules/1"
         ],
@@ -3708,7 +3625,8 @@
           "difference": "business_owner_overridden"
         },
         "decision": "submitted_business_record.owner:business_owner_overridden。元業務ownerへ返しAcceptedを生成しない。"
-      }
+      },
+      "scenario_condition_ref": "SC-C007-29"
     },
     {
       "id": "C007-B01-SUBMITTED-BUSINESS-STATE-OVERRIDE",
@@ -3729,7 +3647,6 @@
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
-      "scenario_basis": "CONNECTが元業務判断/採否/受入を代筆しない。",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-083",
       "l5_function_ref": "FN-C007-04",
@@ -3738,7 +3655,6 @@
       ],
       "expected": {
         "scenario_class": "negative",
-        "condition": "CONNECTが元業務判断/採否/受入を代筆しない。",
         "l5_refs": [
           "/contract_views/B01/failure_rules/1"
         ],
@@ -3750,7 +3666,8 @@
           "difference": "business_state_overridden"
         },
         "decision": "submitted_business_record.state:business_state_overridden。元業務ownerへ返しAcceptedを生成しない。"
-      }
+      },
+      "scenario_condition_ref": "SC-C007-29"
     },
     {
       "id": "C007-B01-SUBMITTED-BUSINESS-REQUIREMENT_ADOPTION-OVERRIDE",
@@ -3771,7 +3688,6 @@
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
-      "scenario_basis": "CONNECTが元業務判断/採否/受入を代筆しない。",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-084",
       "l5_function_ref": "FN-C007-04",
@@ -3780,7 +3696,6 @@
       ],
       "expected": {
         "scenario_class": "negative",
-        "condition": "CONNECTが元業務判断/採否/受入を代筆しない。",
         "l5_refs": [
           "/contract_views/B01/failure_rules/1"
         ],
@@ -3792,7 +3707,8 @@
           "difference": "business_requirement_adoption_overridden"
         },
         "decision": "submitted_business_record.requirement_adoption:business_requirement_adoption_overridden。元業務ownerへ返しAcceptedを生成しない。"
-      }
+      },
+      "scenario_condition_ref": "SC-C007-29"
     },
     {
       "id": "C007-B01-SUBMITTED-BUSINESS-ACCEPTANCE_REF-OVERRIDE",
@@ -3813,7 +3729,6 @@
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
-      "scenario_basis": "CONNECTが元業務判断/採否/受入を代筆しない。",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-085",
       "l5_function_ref": "FN-C007-04",
@@ -3822,7 +3737,6 @@
       ],
       "expected": {
         "scenario_class": "negative",
-        "condition": "CONNECTが元業務判断/採否/受入を代筆しない。",
         "l5_refs": [
           "/contract_views/B01/failure_rules/1"
         ],
@@ -3834,7 +3748,8 @@
           "difference": "business_acceptance_ref_overridden"
         },
         "decision": "submitted_business_record.acceptance_ref:business_acceptance_ref_overridden。元業務ownerへ返しAcceptedを生成しない。"
-      }
+      },
+      "scenario_condition_ref": "SC-C007-29"
     },
     {
       "id": "C007-B01-UNSELECTED-REPLACEMENT-REQUIRED",
@@ -3855,7 +3770,6 @@
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
-      "scenario_basis": "交換006は選択操作時に限る。",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-086",
       "l5_function_ref": "FN-C007-04",
@@ -3864,7 +3778,6 @@
       ],
       "expected": {
         "scenario_class": "negative",
-        "condition": "交換006は選択操作時に限る。",
         "l5_refs": [
           "/contract_views/B01/failure_rules/2"
         ],
@@ -3876,7 +3789,8 @@
           "difference": "unselected_requirement_added"
         },
         "decision": "unselected dependency.required_contracts:unselected_requirement_added。元業務ownerへ返しAcceptedを生成しない。"
-      }
+      },
+      "scenario_condition_ref": "SC-C007-30"
     },
     {
       "id": "C007-B01-UNSELECTED-CONNECTION-ADDED",
@@ -3897,7 +3811,6 @@
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
-      "scenario_basis": "未棚卸の全接続完成待ちを当該閉包へ追加しない。",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-087",
       "l5_function_ref": "FN-C007-04",
@@ -3906,7 +3819,6 @@
       ],
       "expected": {
         "scenario_class": "negative",
-        "condition": "未棚卸の全接続完成待ちを当該閉包へ追加しない。",
         "l5_refs": [
           "/contract_views/B01/failure_rules/2"
         ],
@@ -3918,7 +3830,8 @@
           "difference": "unselected_connection_added"
         },
         "decision": "unselected connection.selected_edges:unselected_connection_added。元業務ownerへ返しAcceptedを生成しない。"
-      }
+      },
+      "scenario_condition_ref": "SC-C007-31"
     },
     {
       "id": "C007-B01-SELECTED-SEC-CONTRACT-ERASED",
@@ -3939,7 +3852,6 @@
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
-      "scenario_basis": "当該必要SEC境界を省いて成立にしない。",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-088",
       "l5_function_ref": "FN-C007-04",
@@ -3948,7 +3860,6 @@
       ],
       "expected": {
         "scenario_class": "negative",
-        "condition": "当該必要SEC境界を省いて成立にしない。",
         "l5_refs": [
           "/contract_views/B01/failure_rules/2"
         ],
@@ -3960,7 +3871,8 @@
           "difference": "required_contract_removed"
         },
         "decision": "SEC-operation-contract.required_contracts:required_contract_removed。元業務ownerへ返しAcceptedを生成しない。"
-      }
+      },
+      "scenario_condition_ref": "SC-C007-32"
     },
     {
       "id": "C007-B01-TECHNICAL_RECEIPT_IS_ACCEPTED",
@@ -3981,7 +3893,6 @@
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
-      "scenario_basis": "技術receiptでAccepted/全未棚卸接続完成待ち/未選択交換必須claimを拒否。",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-089",
       "l5_function_ref": "FN-C007-04",
@@ -3990,7 +3901,6 @@
       ],
       "expected": {
         "scenario_class": "negative",
-        "condition": "技術receiptでAccepted/全未棚卸接続完成待ち/未選択交換必須claimを拒否。",
         "l5_refs": [
           "/contract_views/B01/failure_rules/1"
         ],
@@ -4002,7 +3912,8 @@
           "difference": "business_state_overridden"
         },
         "decision": "submitted_business_record.state:business_state_overridden。元業務ownerへ返しAcceptedを生成しない。"
-      }
+      },
+      "scenario_condition_ref": "SC-C007-33"
     },
     {
       "id": "C007-B01-WAIT_ALL_UNINVENTORIED_CONNECTIONS",
@@ -4023,7 +3934,6 @@
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
-      "scenario_basis": "技術receiptでAccepted/全未棚卸接続完成待ち/未選択交換必須claimを拒否。",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-090",
       "l5_function_ref": "FN-C007-04",
@@ -4032,7 +3942,6 @@
       ],
       "expected": {
         "scenario_class": "negative",
-        "condition": "技術receiptでAccepted/全未棚卸接続完成待ち/未選択交換必須claimを拒否。",
         "l5_refs": [
           "/contract_views/B01/failure_rules/2"
         ],
@@ -4044,7 +3953,8 @@
           "difference": "unselected_connection_added"
         },
         "decision": "unselected connection.selected_edges:unselected_connection_added。元業務ownerへ返しAcceptedを生成しない。"
-      }
+      },
+      "scenario_condition_ref": "SC-C007-33"
     },
     {
       "id": "C007-B01-UNSELECTED_REPLACEMENT_REQUIRED",
@@ -4065,7 +3975,6 @@
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
-      "scenario_basis": "技術receiptでAccepted/全未棚卸接続完成待ち/未選択交換必須claimを拒否。",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-091",
       "l5_function_ref": "FN-C007-04",
@@ -4074,7 +3983,6 @@
       ],
       "expected": {
         "scenario_class": "negative",
-        "condition": "技術receiptでAccepted/全未棚卸接続完成待ち/未選択交換必須claimを拒否。",
         "l5_refs": [
           "/contract_views/B01/failure_rules/2"
         ],
@@ -4086,7 +3994,8 @@
           "difference": "unselected_requirement_added"
         },
         "decision": "unselected dependency.required_contracts:unselected_requirement_added。元業務ownerへ返しAcceptedを生成しない。"
-      }
+      },
+      "scenario_condition_ref": "SC-C007-33"
     }
   ],
   "preserved_l9_oracle": {
@@ -4547,7 +4456,142 @@
   "common_expectation_boundary": {
     "oracle_role": "91件のsource caseはL9 expected_materialを独立した全返却期待の照合元として固定revision/pointerで参照する。source_packet_ref等のsource pointerは由来・意味参照だけで、decode指示、実行引数binding、fixture再構成を示さない。局所probeはID、source参照、短い反例・期待判断だけを持つ。固定履歴はvalidatorの由来・failure_rule被覆の静的比較に使うだけで、現行L8のprobe値・変更指示・oracle生成材料として扱わず、L7 test fixture/caseも追加しない。",
     "shared_state": "全case/probeは未実行であり、合成fixtureに限る静的照合である。実source/owner適格性、通信、権限、受信側効果、業務受入、正式schema/codec、全domain閉包を成立させない。",
-    "unverified": "全非等価mutation family、全graph/edge/scope/owner combinations、および実行時挙動は未検証。"
+    "unverified": "全非等価mutation family、全graph/edge/scope/owner combinations、および実行時挙動は未検証。",
+    "scenario_conditions": {
+      "SC-C007-01": {
+        "function_ref": "FN-C007-01",
+        "condition": "四つの合成端点/別能力・版・scopeの三辺を、宣言順序とoperation対応/全辺receiptへ対照。実接続集合を採用しない。"
+      },
+      "SC-C007-02": {
+        "function_ref": "FN-C007-01",
+        "condition": "一辺原receiptの欠落は他辺greenで相殺しない。"
+      },
+      "SC-C007-03": {
+        "function_ref": "FN-C007-01",
+        "condition": "原/提出receiptが同値でも対象辺の契約/operation/attempt/scope等へ結ばれない場合は保留。"
+      },
+      "SC-C007-04": {
+        "function_ref": "FN-C007-01",
+        "condition": "別構成体revision/scope/要求/ownerの証拠を当該集合へ外挿しない。"
+      },
+      "SC-C007-05": {
+        "function_ref": "FN-C007-01",
+        "condition": "内容同値でも元観測の未成立/失効/stale/部分/効果未観測は全体終端にならない。"
+      },
+      "SC-C007-06": {
+        "function_ref": "FN-C007-01",
+        "condition": "宣言済み必須辺が未定義なら欠落/順序/mappingを推測で補わない。"
+      },
+      "SC-C007-07": {
+        "function_ref": "FN-C007-01",
+        "condition": "元構成体ownerの順序を提出順序で置換しない。"
+      },
+      "SC-C007-08": {
+        "function_ref": "FN-C007-01",
+        "condition": "元operation mappingの不明/別内容を原/提出同値で成立にしない。"
+      },
+      "SC-C007-09": {
+        "function_ref": "FN-C007-01",
+        "condition": "独立原receiptがあっても提出欠落は内容不足として保持。"
+      },
+      "SC-C007-10": {
+        "function_ref": "FN-C007-01",
+        "condition": "同辺receipt重複を欠落と混同せず、元と提出集合の個数を保持する。"
+      },
+      "SC-C007-11": {
+        "function_ref": "FN-C007-01",
+        "condition": "一辺green/欠落辺/未定mappingで構成完了claimを拒否。"
+      },
+      "SC-C007-12": {
+        "function_ref": "FN-C007-02",
+        "condition": "中間staleは先行成功/局所ownerと未完/後続未実行を保持し全体成功にしない。"
+      },
+      "SC-C007-13": {
+        "function_ref": "FN-C007-02",
+        "condition": "中間故障を個別保持。後続実行を捏造せず業務再計画は元ownerへ残す。"
+      },
+      "SC-C007-14": {
+        "function_ref": "FN-C007-02",
+        "condition": "失敗で先行成功/元未完を消去しない。"
+      },
+      "SC-C007-15": {
+        "function_ref": "FN-C007-02",
+        "condition": "未観測/未許可の後続を実行済みにしない。"
+      },
+      "SC-C007-16": {
+        "function_ref": "FN-C007-02",
+        "condition": "原/提出同値でも先行条件なし後続attemptを許容せず保留。"
+      },
+      "SC-C007-17": {
+        "function_ref": "FN-C007-02",
+        "condition": "停止の発生辺/operation/attempt/owner/recoveryを変えない。"
+      },
+      "SC-C007-18": {
+        "function_ref": "FN-C007-02",
+        "condition": "別構成scopeのhandoffで元未完を引継ぎ済みにしない。"
+      },
+      "SC-C007-19": {
+        "function_ref": "FN-C007-02",
+        "condition": "原/提出停止記録が同値でも元辺owner/operation/attempt/recoveryを照合する。"
+      },
+      "SC-C007-20": {
+        "function_ref": "FN-C007-02",
+        "condition": "後続無許可再送/別辺green相殺/全trace消去claimを拒否。"
+      },
+      "SC-C007-21": {
+        "function_ref": "FN-C007-03",
+        "condition": "要求revision/構成/選択connection集合/登録/operation/attempt/効果停止への同対象結合。実source資格は未成立。"
+      },
+      "SC-C007-22": {
+        "function_ref": "FN-C007-03",
+        "condition": "未見版/別scope/connection集合/登録/operation/attempt/効果停止証拠を外挿しない。"
+      },
+      "SC-C007-23": {
+        "function_ref": "FN-C007-03",
+        "condition": "必須証拠一件不足をfield存在や件数で埋めない。"
+      },
+      "SC-C007-24": {
+        "function_ref": "FN-C007-03",
+        "condition": "未実行を実観測へ昇格させない。"
+      },
+      "SC-C007-25": {
+        "function_ref": "FN-C007-03",
+        "condition": "原必要証拠と提出集合の差を保持。"
+      },
+      "SC-C007-26": {
+        "function_ref": "FN-C007-03",
+        "condition": "証拠identityの元辺対応を独立mapへ結び、集合targetだけで別辺証拠を同じ辺にしない。"
+      },
+      "SC-C007-27": {
+        "function_ref": "FN-C007-03",
+        "condition": "件数/別scope/fixtureだけで全構成完了claimを拒否。"
+      },
+      "SC-C007-28": {
+        "function_ref": "FN-C007-04",
+        "condition": "技術終端と元業務未受入/必要閉包/未選択交換を分ける。再送004は当該選択のみ。"
+      },
+      "SC-C007-29": {
+        "function_ref": "FN-C007-04",
+        "condition": "CONNECTが元業務判断/採否/受入を代筆しない。"
+      },
+      "SC-C007-30": {
+        "function_ref": "FN-C007-04",
+        "condition": "交換006は選択操作時に限る。"
+      },
+      "SC-C007-31": {
+        "function_ref": "FN-C007-04",
+        "condition": "未棚卸の全接続完成待ちを当該閉包へ追加しない。"
+      },
+      "SC-C007-32": {
+        "function_ref": "FN-C007-04",
+        "condition": "当該必要SEC境界を省いて成立にしない。"
+      },
+      "SC-C007-33": {
+        "function_ref": "FN-C007-04",
+        "condition": "技術receiptでAccepted/全未棚卸接続完成待ち/未選択交換必須claimを拒否。"
+      }
+    },
+    "scenario_conditions_boundary": "共通シナリオ条件はこの表に一度だけ記録する。case行はscenario_condition_refで参照し、対象固有の差分・期待判断だけを持つ。"
   },
   "removed_materials": {
     "decision_ref": "https://github.com/RetryYN/HELIX-HARNESS/issues/3510#issuecomment-6447665479",
