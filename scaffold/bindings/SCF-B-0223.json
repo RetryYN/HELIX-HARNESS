@@ -1,0 +1,104 @@
+{
+  "schema_revision": 1,
+  "id": "SCF-B-0223",
+  "kind": "scaffold",
+  "title": "WR260 HARNESS-015 L8 process-state軽量化と照合",
+  "product": "HELIX-HARNESS",
+  "owner_candidate": "HARNESS-015 L8軽量化候補の責務owner候補",
+  "state": "registered",
+  "reason": "Issue #3510とPR #4006/#4002/#3998の失敗起点に基づく。L8 U-IDごとの条件・期待を保ち、実行材料の重複を除く。L4/L9の件数・意味変更を含めない。",
+  "upstream": [
+    {
+      "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+      "sha256": "e6253059bb117446412ecb8b054ae533641054c8a1be4a535eb1f784017fa3e9",
+      "note": "L4負例classificationの照合源。文書は変更しない。"
+    },
+    {
+      "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
+      "sha256": "b8b77871f3970a10b21313028f762346e75e85c4ed4209639a23fe6f2f5f6f2d",
+      "note": "公開関数・failure_rulesの照合源。文書は変更しない。"
+    },
+    {
+      "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+      "sha256": "acccdb31c2cfee3fbe2d389bed5eedd7e12c63be14a22c44950d73f1320748db",
+      "note": "WR260の候補文書。固定変更前revisionは由来・期待差分の静的比較のみ。 [WR260 final pin refresh 2026-11-01: previous candidate SHA-256 007eb77cacdb3b39def9bb05f8fc4d75a16bb6f901689424f7b6b5d2dcc0d085 is historical; current L8 SHA-256 acccdb31c2cfee3fbe2d389bed5eedd7e12c63be14a22c44950d73f1320748db is pinned for stale detection. Earlier source comparison notes remain unchanged.]"
+    },
+    {
+      "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+      "sha256": "60942b72d432a79e72b03ab42a616e264b442bfc60b5d53e3aeb54f9c84a847e",
+      "note": "branchと現行行の識別照合源。本文は変更せず、疑似対応は作らない。"
+    }
+  ],
+  "role": "L8 process-state U-IDごとの条件と期待を保持しながら、重複実行payloadを除いた静的候補とその検査を束縛する。",
+  "obligations": [
+    "7 canonical case groups、L5 public functions 7件とL9 branches 7件を保持する。",
+    "215 U-ID、172 qualification row、141 qualification-matrix rowほか全行種をbefore/afterで棚卸しする。",
+    "34 negative rowsはL4 classificationとL5 failure_rulesおよび既存L8 U-ID条件から構成し、L9行を転記しない。",
+    "removed_materialsは6 key、use_boundaryにDT-VT-105を含む。",
+    "78個の無効L9 symbolic pseudo-ID pointerを実行材料から除き、根拠のない現行代替参照を作らない。",
+    "既存履歴は変更せず、固定revisionを由来・期待差分の照合にのみ使う。",
+    "validatorは既定で記録ファイルを書かず、明示記録時も既存ファイルへ上書きしない。"
+  ],
+  "connections": {
+    "consumers": [
+      "WR260 static validator",
+      "design_verification_checker check-child",
+      "scfctl validate/stale"
+    ],
+    "dependencies": [
+      "Issue #3510",
+      "L4 process-state-port.json",
+      "L5 process-state-port.json",
+      "L9 process-state-port.json",
+      "DT-VT-105"
+    ],
+    "boundary": "静的文書整理と構造照合のみ。実行、承認、formal oracle、受入、完了を生成しない。"
+  },
+  "operations": {
+    "allowed": [
+      "L8候補と固定変更前文書のID/期待差分の静的比較",
+      "L4/L5負例規則との静的比較",
+      "current RFC6901 pointer解決",
+      "design_verification_checker check-child",
+      "scfctl validate/stale"
+    ],
+    "forbidden": [
+      "L4/L9本文または負例値の変更",
+      "fixture restore/use/execute",
+      "runtime/test/CI/algorithmの実行",
+      "L7 oracle、approval、execution result、acceptance、completionの生成"
+    ]
+  },
+  "artifacts": [
+    "docs/helix-harness/L8-unit-verification/process-state-port.json",
+    "scaffold/research/wr260-process-state-l8-20261101/README.md",
+    "scaffold/research/wr260-process-state-l8-20261101/validate_process_state_l8.py",
+    "scaffold/research/wr260-process-state-l8-20261101/verification-summary.json"
+  ],
+  "verification": {
+    "evidence_kind": "scaffold",
+    "scope": [
+      "schema_interface",
+      "source_revision_stale",
+      "negative_case"
+    ],
+    "oracles": [
+      "WR260 base revision 569bde0bc5792349f0833461f0bb1bb6db33c592; L8 SHA-256 f5055c9a7d19654402f3f2b595038cf0f81ed717659c342c6190c5f88577e5b2. Provenance/expected-delta comparison only.",
+      "Current L8 byte length 1509558 and SHA-256 acccdb31c2cfee3fbe2d389bed5eedd7e12c63be14a22c44950d73f1320748db.",
+      "WR260 verification-summary lists 215/172 preservation and measured check-child residuals; 223 failure total remains unchanged from request baseline."
+    ],
+    "negative_cases": [
+      "No claim of 4way pass or failure-count reduction.",
+      "Do not map L9 ids absent source evidence.",
+      "Do not use fixed revision as fixture or execution input."
+    ]
+  },
+  "replacement": {
+    "role_target": "Formal HARNESS-015 L5/L8 pair development and verification design",
+    "formal_artifacts": [],
+    "issue": 1866,
+    "status": "pending"
+  },
+  "created": "2026-11-01",
+  "updated": "2026-11-01"
+}
