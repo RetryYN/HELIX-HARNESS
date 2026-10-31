@@ -703,10 +703,67 @@ def scan_keys(value: Any, prohibited: set[str], found: list[str], path: str="$",
     elif isinstance(value,list):
         for i,item in enumerate(value):scan_keys(item,prohibited,found,f"{path}[{i}]",key_counts)
 
+def baseline_fixture_audit(current: dict[str,Any], historical: dict[str,Any]) -> tuple[bool,int,int,int,int]:
+    short_expected={
+        "target_results[0].quality_stage_support.observed=known":"対象のObserved品質stage支援根拠をknownとして扱う。実運用成立やhealthyとは推定しない。",
+        "target_results[0].quality_stage_support.operated=known":"対象のOperated品質stage支援根拠をknownとして扱う。実権限・完了とは推定しない。",
+    }
+    old_by_function={g.get("function_ref","").rsplit("-",1)[-1]:g for g in historical.get("cases",[])}
+    current_by_function={g.get("function_ref","").rsplit("-",1)[-1]:g for g in current.get("cases",[])}
+    ok=True; baseline_count=0; compact_bytes=0
+    for suffix,wanted_count in (("F05",2),("N01",3)):
+        old_group=old_by_function.get(suffix,{}); group=current_by_function.get(suffix,{})
+        old_baselines=old_group.get("qualification_matrix",{}).get("baselines",[])
+        baselines=group.get("qualification_matrix",{}).get("baselines",[])
+        current_cases={row.get("id"):row for row in group.get("cases",[])}
+        old_cases={row.get("id"):row for row in old_group.get("cases",[])}
+        ok &= len(old_baselines)==wanted_count and len(baselines)==wanted_count
+        baseline_count += len(baselines)
+        for old,row in zip(old_baselines,baselines):
+            allowed={"source_case_ref","typed_case_ref","condition","expected","expected_ref"}
+            ok &= set(row)==set(row).intersection(allowed)
+            ok &= not any(k in row for k in ("source_packet_ref","source_cells","source_ref","revision"))
+            case_id=old.get("typed_case_ref"); old_case=old_cases.get(case_id,{}); current_case=current_cases.get(case_id,{})
+            ok &= row.get("typed_case_ref")==case_id and row.get("source_case_ref")==old.get("source_case_ref")
+            ok &= bool(old_case) and bool(current_case)
+            expected_condition=str(current_case.get("condition"," ")).replace("合成fixture","合成入力")
+            ok &= row.get("condition")==expected_condition
+            original_expected=current_case.get("expected")
+            if isinstance(original_expected,str) and original_expected.startswith("群共通期待: "):
+                common=original_expected.removeprefix("群共通期待: ")
+                ok &= common==group.get("common_unit_contract",{}).get("expected")
+                ok &= row.get("expected_ref")=="common_unit_contract.expected" and "expected" not in row
+            elif suffix=="N01" and original_expected in short_expected:
+                ok &= row.get("expected")==short_expected[original_expected] and "expected_ref" not in row
+            else:
+                ok &= row.get("expected")==original_expected and "expected_ref" not in row
+        compact_bytes += len(json.dumps(baselines,ensure_ascii=False,separators=(",",":")).encode("utf-8"))
+
+    bad_fixture_revisions=[]; nonpin_hex=[]
+    hex_token=re.compile(r"(?i)(?<![0-9a-f])[0-9a-f]{64}(?![0-9a-f])")
+    def walk(value: Any,path: str="$",top: bool=False) -> None:
+        if isinstance(value,dict):
+            for key,item in value.items():
+                if top and key in {"source_pins","legacy_comparison"}:continue
+                child=f"{path}/{key}"
+                if key in {"revision","content_revision"} and isinstance(item,str) and "fixture" in item.lower():
+                    bad_fixture_revisions.append(child)
+                walk(item,child)
+        elif isinstance(value,list):
+            for i,item in enumerate(value):walk(item,f"{path}/{i}")
+        elif isinstance(value,str):
+            if hex_token.search(value):nonpin_hex.append(path)
+    walk(current,top=True)
+    ok &= not bad_fixture_revisions and not nonpin_hex
+    return bool(ok),baseline_count,compact_bytes,len(bad_fixture_revisions),len(nonpin_hex)
+
 def run() -> dict[str,Any]:
     cur=read(L8); old=git_json(BASE,L8); l4,l5,l9=read(L4),read(L5),read(L9)
     checks:dict[str,bool]={}; counts:dict[str,int]={}; unresolved=[]
     old_groups=old["cases"]; groups=cur.get("cases",[])
+    baseline_ok,baseline_count,baseline_bytes,fixture_revision_count,nonpin_hex_count=baseline_fixture_audit(cur,old)
+    checks["F05_N01_baselines_preserve_short_source_meaning"]=baseline_ok
+    checks["fixture_revision_and_64hex_absent_outside_source_pins_and_legacy"]=(fixture_revision_count==0 and nonpin_hex_count==0)
     checks["canonical_case_groups_match"]=[g.get("id") for g in groups]==[g.get("id") for g in old_groups]
     checks["L5_functions_retained"]=[g.get("function_ref") for g in groups]==[f.get("id") for f in l5.get("functions",[])]
     checks["L9_branches_retained"]=[g.get("l9_ref") for g in groups]==[g.get("id") for g in l9.get("cases",[])]
@@ -962,7 +1019,7 @@ def run() -> dict[str,Any]:
                 if row.get("l9_counterpart_status"):negative_ok=False
             elif row.get("l9_counterpart_status")!="unresolved: no exact current L9 case ID recorded":negative_ok=False
 
-    counts={"unit_rows":unit_count,"qualification_rows":qual_count,"qualification_matrix_rows":matrix_count,"mixed_qualification_rows":mixed_count,"content_counterexample_rows":content_count,"valley_content_counterexample_rows":valley_count,"source_binding_control_rows":control_count,"source_group_rows":source_group_count,"negative_rule_rows":negative_count,"resolved_current_l9_input_pointers":resolved_inputs,"unit_unverified_rows":sum(1 for x in unresolved if '-L8-' in x and '-QUAL-' not in x),"qualification_unverified_rows":sum(1 for x in unresolved if '-QUAL-' in x)}
+    counts={"unit_rows":unit_count,"qualification_rows":qual_count,"qualification_matrix_rows":matrix_count,"mixed_qualification_rows":mixed_count,"content_counterexample_rows":content_count,"valley_content_counterexample_rows":valley_count,"source_binding_control_rows":control_count,"source_group_rows":source_group_count,"negative_rule_rows":negative_count,"resolved_current_l9_input_pointers":resolved_inputs,"unit_unverified_rows":sum(1 for x in unresolved if '-L8-' in x and '-QUAL-' not in x),"qualification_unverified_rows":sum(1 for x in unresolved if '-QUAL-' in x),"F05_N01_baseline_rows":baseline_count,"F05_N01_compact_baseline_bytes":baseline_bytes,"non_pin_fixture_revision_count":fixture_revision_count,"non_pin_64hex_count":nonpin_hex_count}
     checks["U_ID_condition_expected_owner_provenance"] = unit_ok
     checks["qualification_expected_diff_provenance"] = qual_ok
     checks["qualification_matrix_semantics"] = matrix_ok
@@ -1075,10 +1132,11 @@ def run() -> dict[str,Any]:
         and current_qual.get(normal_na_id,{}).get("expected")!=current_qual.get(both_na_na_id,{}).get("expected")
     )
     checks["removed_materials_six_keys_DT_VT_105"]=set(cur.get("removed_materials",{}))=={"decision_ref","git_commit","path","meaning","removed_key_rule","use_boundary"} and "DT-VT-105" in cur.get("removed_materials",{}).get("use_boundary","")
+    checks["removed_materials_decision_comment_ref"]=cur.get("removed_materials",{}).get("decision_ref")=="https://github.com/RetryYN/HELIX-HARNESS/issues/3510#issuecomment-6447665479"
     checks["negative_rows_have_L4_L5_support"] = negative_count==34 and negative_ok
     checks["two_negative_l9_counterparts_explicitly_unresolved"] = sum(1 for g in groups for r in g.get("negative_cases",[]) if r.get("l9_counterpart_status"))==2
     checks["current_L9_input_refs_209_unmapped_6"] = resolved_inputs==209 and sum(1 for g in groups for r in g["cases"] if not r.get("source_case_ref"))==6
-    checks["source_pin_rows_16"]=len(cur.get("source_pins",[]))==16
+    checks["source_pin_rows_17_including_historical_R3"]=len(cur.get("source_pins",[]))==17 and any(p.get("path")==L8 and p.get("revision")=="e8b005bf779a561b9f1461569821fc90dcc4821e" and p.get("sha256")=="a3538a663faa75f8e032463be0401efec89f088e762b6fe04b35b0c807c75cb0" for p in cur.get("source_pins",[]))
     checks["no_python_repr_or_overlong_row_text"]=all(len(row.get("expected",""))<3000 for g in groups for kind in ("cases","qualification_cases","content_counterexamples","valley_content_counterexamples","source_binding_controls") for row in g.get(kind,[]) if isinstance(row,dict))
     checks["fixed_base_not_mutated"]=subprocess.check_output(["git","rev-parse",BASE+"^{}"],cwd=ROOT).decode().strip()==BASE
     result={"schema":"wr260-process-state-l8-static-audit.v2","evidence_kind":"scaffold","authority_effect":"none","base_revision":BASE,"current_l8_sha256":hashlib.sha256((ROOT/L8).read_bytes()).hexdigest(),"counts":counts,"unverified_row_ids":unresolved,"checks":checks,"problems":present+pointer_problems,"passed":all(checks.values())}
