@@ -112,17 +112,26 @@ def main() -> int:
     if "L8-unit-verification" in l9_bytes.decode("utf-8"):
         failures.append("l9_contains_l8_reference")
 
-    # 4. Verify L5 failure_rules (26) and unit_case_rows (37) and L8 unit_cases (69) + standalone_unit_cases (37)
+    # 4. Verify L9 nested removal, L5 failure_rules (26) + unit_only_negative_classifications (3) without unit_case_rows/L8 IDs, and L8 unit_cases (69) + standalone_unit_cases (37)
+    for ci, c in enumerate(l9.get("cases", [])):
+        for nested_key in ("negative_cases", "positive_cases", "source_case_refs"):
+            if nested_key in c:
+                failures.append(f"l9_case_{ci}_still_has_{nested_key}")
     if l5.get("negative_equivalence_classes") != {"source_rows": "failure_rules"}:
         failures.append("l5_missing_negative_equivalence_classes_marker")
     if len(l5.get("failure_rules", [])) != 26:
         failures.append(
             f"l5_failure_rules_count_mismatch: {len(l5.get('failure_rules', []))}"
         )
-    if len(l5.get("unit_case_rows", [])) != 37:
+    if "unit_case_rows" in l5:
+        failures.append("l5_still_has_unit_case_rows")
+    if len(l5.get("unit_only_negative_classifications", [])) != 3:
         failures.append(
-            f"l5_unit_case_rows_count_mismatch: {len(l5.get('unit_case_rows', []))}"
+            f"l5_unit_only_negative_classifications_count_mismatch: {len(l5.get('unit_only_negative_classifications', []))}"
         )
+    l5_text = l5_bytes.decode("utf-8")
+    if "U-SEC005" in l5_text or "SEC005-L8" in l5_text:
+        failures.append("l5_contains_l8_case_id")
     if len(l9.get("negative_equivalence_classes", [])) != 26:
         failures.append("l9_neg_eq_classes_count_mismatch")
     if len(l9.get("integration_cases", [])) != 69:
@@ -133,6 +142,14 @@ def main() -> int:
         failures.append("l8_unit_cases_count_mismatch")
     if len(l8.get("standalone_unit_cases", [])) != 37:
         failures.append("l8_standalone_unit_cases_count_mismatch")
+    for uc in l8.get("unit_cases", []):
+        if "l5_contract_expectation" in uc or "expected_property" in uc:
+            failures.append(f"l8_unit_case_has_removed_field:{uc.get('id')}")
+    for sc in l8.get("standalone_unit_cases", []):
+        if "contract_clause" in sc.get("condition", {}) or "oracle_basis" in sc.get(
+            "expected", {}
+        ):
+            failures.append(f"l8_standalone_case_has_l5_copy:{sc.get('id')}")
     if "literal_materialization_contract" in l8:
         failures.append("l8_still_has_literal_materialization_contract")
 

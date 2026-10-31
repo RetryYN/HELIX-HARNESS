@@ -6,7 +6,7 @@
   "product": "HELIX-HARNESS",
   "owner_candidate": "HELIX-SECURITY SEC005 L4/L9 design verification owner",
   "state": "registered",
-  "reason": "SEC005 credential-value-boundaryのL4/L9/L5/L8 explicit_negative_equivalence_classes（26 class・L8/L9ペア負例69行1:1・standalone U-ID 37行・L4二重表折り畳み・L8 ownership cap解消）および比較前固定artifact（blind-derivation-r2.json / blind-derivation.json）と履歴集約記録を保持する静的研究証拠。",
+  "reason": "SEC005 credential-value-boundaryのL4/L9/L5/L8 explicit_negative_equivalence_classes（26 class・L8/L9ペア負例69行1:1・L8単独保持standalone U-ID 37行・L4二重表折り畳み・L9 nested撤去・L8 ownership cap解消）および比較前固定artifact（blind-derivation-r2.json / blind-derivation.json）と履歴集約記録を保持する静的研究証拠。",
   "upstream": [
     {
       "path": "docs/helix-security/L3-requirements/functional-requirements.json",
@@ -30,23 +30,23 @@
     },
     {
       "path": "docs/helix-security/L4-basic-design/credential-value-boundary.json",
-      "sha256": "0d8b20911333683de76b4adc515663595078c69286b3621a90748f4e6824ffb0",
-      "note": "Pinned SEC005 L4 basic design with folded single failure_classifications table (26 classes, new_parent_link, 94,917 bytes < 222,017 bytes at #3980 merge)."
+      "sha256": "2a517d419f2b25e35fdb6ed6e83afba971648ca6b806c02dbf95aaa568f3d19c",
+      "note": "Pinned SEC005 L4 basic design with folded single failure_classifications table (26 classes, new_parent_link, 95,006 bytes < 222,017 bytes on main)."
     },
     {
       "path": "docs/helix-security/L9-integration-verification/credential-value-boundary.json",
-      "sha256": "38ec51dfda66025b96ba44c31088bfdde29e44004b08428a769cc159c7365bc4",
-      "note": "Pinned SEC005 L9 integration verification with explicit negative_equivalence_classes (26) and integration_cases (69), zero L8 pointers (711,197 bytes < 755,453 bytes at #3980 merge)."
+      "sha256": "fdbbd03e980c126b32862f20e7854459b62a16f67ae3006734fd04ea97566b71",
+      "note": "Pinned SEC005 L9 integration verification with explicit negative_equivalence_classes (26) and integration_cases (69), nested cases[0..2] arrays removed, zero L8 pointers (222,630 bytes < 755,453 bytes on main)."
     },
     {
       "path": "docs/helix-security/L5-detail-design/credential-value-boundary.json",
-      "sha256": "c71016bc8142646a6cb8b05c7afde050f1da5aac3538373f971f36b9347a8b60",
-      "note": "Pinned SEC005 L5 detail design with failure_rules (26), unit_case_rows (37 standalone U-ID rows including unit_only_negative_classifications), and functions[*].unit_case_refs (106 U-IDs)."
+      "sha256": "cbba1069d6ad969224bc7e7dd97bed61cdb19d59e8d0fd437a737d4cb430742d",
+      "note": "Pinned SEC005 L5 detail design with functions (12), failure_rules (26), and unit_only_negative_classifications (3 moved from L4), with zero L8 case IDs or unit_case_rows (137,775 bytes)."
     },
     {
       "path": "docs/helix-security/L8-unit-verification/credential-value-boundary.json",
-      "sha256": "8639f9383ad77e4ae1f83fbf8343baa27d122ef6e362fcaab08d46780fbc680a",
-      "note": "Pinned SEC005 L8 unit verification with negative_equivalence_classes (26), unit_cases (69 U-ID rows 1:1 with L9), standalone_unit_cases (37 U-ID rows 1:1 with L5), L5-contract-derived expectations (DT-VT-105), and 0 ownership cap failures."
+      "sha256": "165cc05309313d7b6fab52e4eee7e8fad114ece8283f5c8fb466646b0e7be5c0",
+      "note": "Pinned SEC005 L8 unit verification with negative_equivalence_classes (26), unit_cases (69 U-ID rows 1:1 with L9), standalone_unit_cases (37 U-ID rows held solely by L8), expectations independently derived from L3/L10/L4 and L5 input/output types (DT-VT-105), and 0 ownership cap failures (301,241 bytes < 6,325,300 bytes on main)."
     },
     {
       "path": "docs/governance/design-verification-quality-assurance.md",
