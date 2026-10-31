@@ -70,48 +70,64 @@ def derive_condition(group, original, normal):
     current=json.loads(original["independent_source_packet"]["raw_utf8"])
     baseline=json.loads(normal["independent_source_packet"]["raw_utf8"])
     if original["id"]==normal["id"]:
-        return "baseline"
+        if group=="F01":
+            targets=current["targets"]
+            if len(targets)==2 and targets[0].get("declared_role")=="Query" and targets[1].get("declared_role")=="Repository" and targets[0].get("role_basis") and targets[0].get("consumers"):
+                return "OBJ-Pは役割根拠とconsumerを持つQuery、同じnameのOBJ-RはRepositoryとして別role。"
+        if group=="F02":
+            if current["stable_object"]==current["pair"]["verification_object"]==current["pair"]["requirement_object"] and current["stable_oracle"]==current["oracle_edge"]["oracle"]:
+                return "symbol変更候補で、object/oracle ID・両edge・pairを保持。"
+        if group=="F03":
+            if current["visibility"]=="internal" and current["canonical_decision"] and current["required_consumers"]==current["observed_consumers"] and current["signature_before"]==current["signature_after"] and current["rollback"]:
+                return "internal候補のcanonical・consumer・signature・rollback条件を充足。"
+        if group=="F04":
+            if current["boundary"]=="internal" and current["exception"]["scope"]==current["scope"] and current["finding"]["reason"]=="role_unknown":
+                return "internal境界のrole_unknown findingに、PRODUCT-P限定の有効例外。"
+        if group=="B01":
+            if current["protected_before"]==current["protected_after"] and all(key in current for key in ("knowledge_source","norm_source","product_decision","proposal")):
+                return "knowledge/norm/product decision/CIを別入力で扱い、保護対象の変更なし。"
+        raise ValueError(f"baseline semantic check failed: {group}")
     paths=[path for path,_,_ in leaf_differences(baseline,current)]
     if group=="F01":
         target=current["targets"][0]
-        if target.get("declared_role") is None:return "OBJ-P declared role is missing; proposed name alone cannot establish role."
-        if target.get("role_basis") is None:return "OBJ-P role basis is missing."
-        if not target.get("consumers"):return "OBJ-P has no observed consumer."
-        if target.get("exception"):return "OBJ-P has a scoped exception for the alternative role candidate."
-        return "OBJ-P has an alternative name candidate without a scoped exception."
+        if target.get("declared_role") is None:return "OBJ-Pの宣言roleが欠落。名称だけではroleを確定しない。"
+        if target.get("role_basis") is None:return "OBJ-Pのrole根拠が欠落。"
+        if not target.get("consumers"):return "OBJ-Pのconsumerが欠落。"
+        if target.get("exception"):return "OBJ-Pの別role候補にscope付き例外あり。"
+        return "OBJ-Pに別name候補がありscope付き例外なし。"
     if group=="F02":
-        if "/oracle_edge/private_symbol" in paths:return "oracle edge is private-only; public edge is absent."
-        labels={"/after/object":"object identity conflict","/after/oracle":"oracle identity conflict","/symbol_edge":"symbol edge missing","/oracle_edge":"oracle edge missing","/oracle_edge/object":"private-only oracle edge","/pair/verification_object":"verification pair object conflict"}
+        if "/oracle_edge/private_symbol" in paths:return "oracle edgeがprivate-onlyで、public edgeは欠落。"
+        labels={"/after/object":"object identityが不一致","/after/oracle":"oracle identityが不一致","/symbol_edge":"symbol edgeが欠落","/oracle_edge":"oracle edgeが欠落","/oracle_edge/object":"private-only oracle edge","/pair/verification_object":"verification pairのobjectが不一致"}
         return "; ".join(labels[path] for path in paths)
     if group=="F03":
         path=paths[0]
-        labels={"/canonical_decision":"canonical decision missing","/visibility":"candidate crosses the internal visibility boundary","/observed_consumers":"observed consumer coverage is incomplete","/observed_consumers/1":"consumer identity conflicts","/behavior_invariant":"behavior invariant missing","/minimum_transform":"minimum-transform declaration missing","/rollback":"rollback declaration missing","/evidence_basis":"evidence is lexical-only","/requested_effect":"request crosses the candidate-only operation boundary"}
+        labels={"/canonical_decision":"canonical decisionが欠落","/visibility":"internal visibility境界外の候補","/observed_consumers":"observed consumer coverageが不足","/observed_consumers/1":"consumer identityが不一致","/behavior_invariant":"behavior invariantが欠落","/minimum_transform":"minimum transform宣言が欠落","/rollback":"rollback宣言が欠落","/evidence_basis":"evidence basisがlexical-only","/requested_effect":"candidate-only operation境界外の実行要求"}
         if path in labels:return labels[path]
         if path.startswith("/signature_after/"):
             axis=path.rsplit("/",1)[1]
             state="missing" if pointer(current,path[1:]) is None else "conflicting"
-            return f"signature {axis} is {state}."
+            return f"signature {axis}が{'欠落' if state=='missing' else '不一致'}。"
         raise ValueError(f"unclassified F03 source delta {path}")
     if group=="F04":
-        if "/exception/owner" in paths:return "exception owner is missing."
+        if "/exception/owner" in paths:return "exception ownerが欠落。"
         if "/exception/expiry" in paths:
             expiry=current["exception"].get("expiry")
-            return "exception is expired." if expiry and expiry<current["evaluation_date"] else "exception expiry is missing."
-        if "/exception/reason" in paths:return "exception reason is missing."
-        if "/exception/scope" in paths:return "exception scope is foreign."
+            return "exceptionが期限切れ。" if expiry and expiry<current["evaluation_date"] else "exception expiryが欠落。"
+        if "/exception/reason" in paths:return "exception reasonが欠落。"
+        if "/exception/scope" in paths:return "exception scopeが別対象。"
         if "/boundary" in paths:
-            category={"public_API":"public API","public_CLI":"public CLI","persisted_field":"persisted field","persisted_event":"persisted event","direct_config_key":"direct configuration key"}[current["boundary"]]
-            return f"affected surface is a {category}; naming-only continuation is insufficient."
+            category={"public_API":"public API","public_CLI":"public CLI","persisted_field":"永続field","persisted_event":"永続event","direct_config_key":"直接参照config key"}[current["boundary"]]
+            return f"対象は{category}。name変更だけで継続しない。"
         if "/finding/reason" in paths:
             reason=current["finding"]["reason"]
-            return "finding indicates incomplete consumer information." if reason=="consumer_incomplete" else "finding indicates signature mismatch."
-        return "warning requests a global stop."
+            return "findingはconsumer情報不足。" if reason=="consumer_incomplete" else "findingはsignature不一致。"
+        return "warningが全scope停止を要求。"
     if group=="B01":
         path=paths[0]
-        labels={"/proposal/norm_content":"proposal attempts to replace norm-owner content","/proposal/product_name":"proposal derives a product name from knowledge","/proposal/CI_effect":"proposal requests CI adoption or self-merge","/protected_after/requirement_id":"requirement identity is changed outside this scope","/protected_after/mechanism_role":"mechanism role is changed outside this scope","/protected_after/adopted_body":"adopted requirement body is changed outside this scope"}
+        labels={"/proposal/norm_content":"proposalがnorm ownerの原内容を置換しようとする","/proposal/product_name":"proposalがknowledgeからproduct nameを決めようとする","/proposal/CI_effect":"proposalがCI adoption/self-mergeを要求","/protected_after/requirement_id":"requirement identityをこのscope外で変更","/protected_after/mechanism_role":"mechanism roleをこのscope外で変更","/protected_after/adopted_body":"adopted bodyをこのscope外で変更"}
         if path=="/proposal/CI_effect":
             effect=current["proposal"]["CI_effect"]
-            return "proposal requests CI self-merge." if effect=="self_merge" else "proposal requests CI adoption."
+            return "proposalがCI self-mergeを要求。" if effect=="self_merge" else "proposalがCI adoptionを要求。"
         return labels[path]
     raise ValueError(f"unclassified obligation group {group}")
 
@@ -121,10 +137,10 @@ def derive_expected(group, material):
     if group=="F02":
         failures=[f"{key}={value}" for key,value in material["edge_results"].items() if value not in {"held","bound","same_object"}]
         if failures:return "; ".join(failures)+"."
-        return "identity, edges, and pair are aligned; symbol change remains candidate-only."
+        return "identity/edge/pairは一致。symbol変更はcandidate-only。"
     if group=="F03":
         failures=[f"{key}={value}" for key,value in material["condition_results"].items() if value!="supported_synthetic_condition"]
-        if not failures:return "candidate_presentable=true; no unsupported condition."
+        if not failures:return "candidate_presentable=true; 不足条件なし。"
         return "candidate_presentable=false; "+"; ".join(failures)+"."
     if group=="F04":
         result="valid" if material["exception_result"]=="valid_for_fixture_scope" else material["exception_result"]
@@ -132,14 +148,14 @@ def derive_expected(group, material):
     boundary_results=material["boundary_results"]
     changed={key:value for key,value in boundary_results.items() if value not in {"held","candidate_only"}}
     if changed:return "; ".join(f"{key}={value}" for key,value in changed.items())+"."
-    return "separate inputs held; CI remains candidate-only."
+    return "各入力を分離して保持。CIはcandidate-only。"
 
 SHARED_BOUNDARIES={
- "F01":"OBJ-R retains its Repository role; no canonical decision, rename, authority, or acceptance is produced; unaffected Q remains original_Q.",
- "F02":"A symbol candidate cannot alter object/oracle identity or the pair; mismatched identities or missing edges fail conformity; no actual rename occurs; unaffected Q remains original_Q.",
- "F03":"A single failed condition rejects candidate presentation; no rename/PR/receipt is produced; unaffected Q remains original_Q.",
- "F04":"Automatic rename is rejected and the finding retained; warning cannot stop unrelated scope; unaffected Q remains original_Q.",
- "B01":"Knowledge, norm, product decision, and CI remain separate; no authority/acceptance/merge/rename is produced; unaffected Q remains original_Q."
+ "F01":"OBJ-Rはcandidate_only:Repositoryを維持。canonical decision/rename/authority/acceptanceを生成せず、無影響のQはoriginal_Qを維持。",
+ "F02":"symbol候補でobject/oracle identityやpairを変えず、identity不一致やedge欠落は不適合。実renameを行わず、無影響のQはoriginal_Qを維持。",
+ "F03":"条件が一つでも不成立ならcandidate提示を拒否。rename/PR/receiptを生成せず、無影響のQはoriginal_Qを維持。",
+ "F04":"自動renameを拒否してfindingを保持。warningで無関係scopeを停止せず、無影響のQはoriginal_Qを維持。",
+ "B01":"knowledge/norm/product decision/CIを分離。authority/acceptance/merge/renameを生成せず、無影響のQはoriginal_Qを維持。"
 }
 SHARED_RETURNS={"F02":"切れたedgeと影響対象を示し、命名適合を不成立にする。","F03":"対象作成側"}
 
@@ -182,6 +198,7 @@ def main():
     source_fields=current.get("source_field_presence",{})
     checks["absent_source_fields_are_declared_and_not_misrepresented_as_source_diffs"]=(source_fields.get("fixed_revision")==BASE and source_fields.get("source_fields_absent")==ABSENT_ORIGINAL_FIELDS and not any({"code","axis","state","backflow_owner"}.intersection(node) for node in walk(current)))
     checks["fixture_full_return_mutation_and_approved_l10_copies_absent"]=not any(FORBIDDEN_KEYS.intersection(node) for node in walk(current))
+    checks["non_generation_boundary_is_japanese_and_fixed"] = current.get("non_generation_boundary")=="全59件は合成例の未実行状態（execution_state=not_executed）。実rename、design refactor、CI運転、merge、authority、design完了、acceptanceを発生させず、無関係のQはoriginal_Qを保つ。"
     checks["L4_contract_source_pin_resolves"] = False
     l4pin=current.get("l4_contract_source",{})
     try:
@@ -221,8 +238,10 @@ def main():
             expected_returns=expected_row_returns(group,material)
             checks["59_oracles_derive_from_fixed_original_basis_packet_expected_material_and_L3_L4_L10"] &= row.get("oracle_number")==f"L9-SYSTEM-ORACLE-{oracle_no:02d}" and row.get("id")==original["id"] and row.get("requirement_ref")==original["requirement_ref"] and row.get("system_oracle_ref")==original["system_oracle_ref"] and row.get("l4_ref")==original["l4_ref"] and row.get("oracle_property")==original["basis"] and row.get("condition")==derive_condition(group,original,normal) and row.get("expected_observation")==derive_expected(group,material) and row.get("return_targets")==expected_returns and row.get("execution_state")==original["execution_state"]=="not_executed"
             summary_text=row.get("condition","")+" "+row.get("expected_observation","")
-            forbidden_summary_markers=["→","{\"","unaffected_Q=","canonical_decided_here=","owner_return_candidates=","remaining ","all 15 named conditions","raw_utf8","expected_material"]
-            checks["row_summaries_are_compact_and_shared_boundaries_are_factored"] &= not any(marker in summary_text for marker in forbidden_summary_markers) and len(summary_text)<240
+            forbidden_summary_markers=["→","{\"","unaffected_Q=","canonical_decided_here=","owner_return_candidates=","remaining ","all 15 named conditions","raw_utf8","expected_material"," is missing."," is expired.","cannot ","A symbol ","A single ","Knowledge, "," remains original"," is produced","is aligned;","requests a global stop"]
+            checks["row_summaries_are_compact_and_shared_boundaries_are_factored"] &= not any(marker in summary_text for marker in forbidden_summary_markers) and len(summary_text)<240 and row.get("condition")!="baseline"
+            checks["human_facing_summaries_are_japanese"] = checks.get("human_facing_summaries_are_japanese",True) and not any(marker in summary_text for marker in forbidden_summary_markers[9:])
+            checks["human_facing_summaries_are_japanese"] &= not any(marker in new_ob.get("shared_oracle_boundary","") for marker in [" retains "," is produced","A symbol ","Knowledge, "," remains original"," is rejected"])
             if group in SHARED_RETURNS:
                 if group=="F02": shared_return_ok=SHARED_RETURNS[group]==l10obj.get("failure_observation")
                 else: shared_return_ok=all(derive_return_targets(group,item["expected_material"],l10obj)==[SHARED_RETURNS[group]] for item in originals[1:]) and derive_return_targets(group,originals[0]["expected_material"],l10obj)==[]

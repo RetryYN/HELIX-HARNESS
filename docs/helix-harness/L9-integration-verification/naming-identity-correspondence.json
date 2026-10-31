@@ -421,7 +421,7 @@
           "requirement_ref": "HARNESS-L3-048-F01",
           "system_oracle_ref": "HARNESS-L10-048-F01",
           "l4_ref": "HARNESS-L4-048-F01",
-          "condition": "baseline",
+          "condition": "OBJ-Pは役割根拠とconsumerを持つQuery、同じnameのOBJ-RはRepositoryとして別role。",
           "oracle_property": "同じ文字列を同じ役割へ統合せず、宣言/原意味を使う。",
           "expected_observation": "OBJ-P=candidate_only:Query.",
           "return_targets": [],
@@ -433,7 +433,7 @@
           "requirement_ref": "HARNESS-L3-048-F01",
           "system_oracle_ref": "HARNESS-L10-048-F01",
           "l4_ref": "HARNESS-L4-048-F01",
-          "condition": "OBJ-P declared role is missing; proposed name alone cannot establish role.",
+          "condition": "OBJ-Pの宣言roleが欠落。名称だけではroleを確定しない。",
           "oracle_property": "対象Pだけを作成側へ返す。Rの別役割候補は保持。",
           "expected_observation": "OBJ-P=unknown_role.",
           "return_targets": [
@@ -447,7 +447,7 @@
           "requirement_ref": "HARNESS-L3-048-F01",
           "system_oracle_ref": "HARNESS-L10-048-F01",
           "l4_ref": "HARNESS-L4-048-F01",
-          "condition": "OBJ-P role basis is missing.",
+          "condition": "OBJ-Pのrole根拠が欠落。",
           "oracle_property": "対象Pだけを作成側へ返す。Rの別役割候補は保持。",
           "expected_observation": "OBJ-P=missing_basis.",
           "return_targets": [
@@ -461,7 +461,7 @@
           "requirement_ref": "HARNESS-L3-048-F01",
           "system_oracle_ref": "HARNESS-L10-048-F01",
           "l4_ref": "HARNESS-L4-048-F01",
-          "condition": "OBJ-P has no observed consumer.",
+          "condition": "OBJ-Pのconsumerが欠落。",
           "oracle_property": "対象Pだけを作成側へ返す。Rの別役割候補は保持。",
           "expected_observation": "OBJ-P=missing_consumer.",
           "return_targets": [
@@ -475,7 +475,7 @@
           "requirement_ref": "HARNESS-L3-048-F01",
           "system_oracle_ref": "HARNESS-L10-048-F01",
           "l4_ref": "HARNESS-L4-048-F01",
-          "condition": "OBJ-P has a scoped exception for the alternative role candidate.",
+          "condition": "OBJ-Pの別role候補にscope付き例外あり。",
           "oracle_property": "根拠/consumerと有効な期限付き例外を照合。",
           "expected_observation": "OBJ-P=candidate_only:Query_with_scoped_exception.",
           "return_targets": [],
@@ -487,7 +487,7 @@
           "requirement_ref": "HARNESS-L3-048-F01",
           "system_oracle_ref": "HARNESS-L10-048-F01",
           "l4_ref": "HARNESS-L4-048-F01",
-          "condition": "OBJ-P has an alternative name candidate without a scoped exception.",
+          "condition": "OBJ-Pに別name候補がありscope付き例外なし。",
           "oracle_property": "語彙に役割があるだけでは曖昧名の例外を作らない。",
           "expected_observation": "OBJ-P=missing_scoped_exception.",
           "return_targets": [
@@ -497,7 +497,7 @@
         }
       ],
       "system_oracle_pointer": "docs/helix-harness/L10-verification/functional-verification.json#/cases/47",
-      "shared_oracle_boundary": "OBJ-R retains its Repository role; no canonical decision, rename, authority, or acceptance is produced; unaffected Q remains original_Q."
+      "shared_oracle_boundary": "OBJ-Rはcandidate_only:Repositoryを維持。canonical decision/rename/authority/acceptanceを生成せず、無影響のQはoriginal_Qを維持。"
     },
     {
       "id": "HARNESS-L9-048-F02",
@@ -514,9 +514,9 @@
           "requirement_ref": "HARNESS-L3-048-F02",
           "system_oracle_ref": "HARNESS-L10-048-F02",
           "l4_ref": "HARNESS-L4-048-F02",
-          "condition": "baseline",
+          "condition": "symbol変更候補で、object/oracle ID・両edge・pairを保持。",
           "oracle_property": "symbol候補の差分でも独立IDとpairは不変。",
-          "expected_observation": "identity, edges, and pair are aligned; symbol change remains candidate-only.",
+          "expected_observation": "identity/edge/pairは一致。symbol変更はcandidate-only。",
           "return_targets": [],
           "execution_state": "not_executed"
         },
@@ -526,7 +526,7 @@
           "requirement_ref": "HARNESS-L3-048-F02",
           "system_oracle_ref": "HARNESS-L10-048-F02",
           "l4_ref": "HARNESS-L4-048-F02",
-          "condition": "object identity conflict",
+          "condition": "object identityが不一致",
           "oracle_property": "変更前独立IDとの不一致を局所保持。",
           "expected_observation": "object_identity=conflict.",
           "return_targets": [],
@@ -538,7 +538,7 @@
           "requirement_ref": "HARNESS-L3-048-F02",
           "system_oracle_ref": "HARNESS-L10-048-F02",
           "l4_ref": "HARNESS-L4-048-F02",
-          "condition": "oracle identity conflict",
+          "condition": "oracle identityが不一致",
           "oracle_property": "変更前独立IDとの不一致を局所保持。",
           "expected_observation": "oracle_identity=conflict.",
           "return_targets": [],
@@ -550,7 +550,7 @@
           "requirement_ref": "HARNESS-L3-048-F02",
           "system_oracle_ref": "HARNESS-L10-048-F02",
           "l4_ref": "HARNESS-L4-048-F02",
-          "condition": "symbol edge missing",
+          "condition": "symbol edgeが欠落",
           "oracle_property": "名前が存在してもedgeを推測で補わない。",
           "expected_observation": "symbol_edge=missing.",
           "return_targets": [],
@@ -562,7 +562,7 @@
           "requirement_ref": "HARNESS-L3-048-F02",
           "system_oracle_ref": "HARNESS-L10-048-F02",
           "l4_ref": "HARNESS-L4-048-F02",
-          "condition": "oracle edge missing",
+          "condition": "oracle edgeが欠落",
           "oracle_property": "名前が存在してもedgeを推測で補わない。",
           "expected_observation": "oracle_edge=missing.",
           "return_targets": [],
@@ -574,7 +574,7 @@
           "requirement_ref": "HARNESS-L3-048-F02",
           "system_oracle_ref": "HARNESS-L10-048-F02",
           "l4_ref": "HARNESS-L4-048-F02",
-          "condition": "oracle edge is private-only; public edge is absent.",
+          "condition": "oracle edgeがprivate-onlyで、public edgeは欠落。",
           "oracle_property": "domain object/operation/oracle IDを持たないbindingを拒否。",
           "expected_observation": "oracle_edge=private_only_rejected.",
           "return_targets": [],
@@ -586,7 +586,7 @@
           "requirement_ref": "HARNESS-L3-048-F02",
           "system_oracle_ref": "HARNESS-L10-048-F02",
           "l4_ref": "HARNESS-L4-048-F02",
-          "condition": "verification pair object conflict",
+          "condition": "verification pairのobjectが不一致",
           "oracle_property": "別objectの対検証を名称一致で接続しない。",
           "expected_observation": "pair=conflict.",
           "return_targets": [],
@@ -594,7 +594,7 @@
         }
       ],
       "system_oracle_pointer": "docs/helix-harness/L10-verification/functional-verification.json#/cases/48",
-      "shared_oracle_boundary": "A symbol candidate cannot alter object/oracle identity or the pair; mismatched identities or missing edges fail conformity; no actual rename occurs; unaffected Q remains original_Q.",
+      "shared_oracle_boundary": "symbol候補でobject/oracle identityやpairを変えず、identity不一致やedge欠落は不適合。実renameを行わず、無影響のQはoriginal_Qを維持。",
       "shared_return_target": "切れたedgeと影響対象を示し、命名適合を不成立にする。"
     },
     {
@@ -612,9 +612,9 @@
           "requirement_ref": "HARNESS-L3-048-F03",
           "system_oracle_ref": "HARNESS-L10-048-F03",
           "l4_ref": "HARNESS-L4-048-F03",
-          "condition": "baseline",
+          "condition": "internal候補のcanonical・consumer・signature・rollback条件を充足。",
           "oracle_property": "全条件の内容が揃う合成候補。実rename/PR/receipt作成は未実行。",
-          "expected_observation": "candidate_presentable=true; no unsupported condition.",
+          "expected_observation": "candidate_presentable=true; 不足条件なし。",
           "return_targets": [],
           "execution_state": "not_executed"
         },
@@ -624,7 +624,7 @@
           "requirement_ref": "HARNESS-L3-048-F03",
           "system_oracle_ref": "HARNESS-L10-048-F03",
           "l4_ref": "HARNESS-L4-048-F03",
-          "condition": "canonical decision missing",
+          "condition": "canonical decisionが欠落",
           "oracle_property": "一条件の不足/越境で当該候補を拒否。他条件を保持。",
           "expected_observation": "candidate_presentable=false; canonical=missing.",
           "return_targets": [],
@@ -636,7 +636,7 @@
           "requirement_ref": "HARNESS-L3-048-F03",
           "system_oracle_ref": "HARNESS-L10-048-F03",
           "l4_ref": "HARNESS-L4-048-F03",
-          "condition": "candidate crosses the internal visibility boundary",
+          "condition": "internal visibility境界外の候補",
           "oracle_property": "一条件の不足/越境で当該候補を拒否。他条件を保持。",
           "expected_observation": "candidate_presentable=false; internal=rejected.",
           "return_targets": [],
@@ -648,7 +648,7 @@
           "requirement_ref": "HARNESS-L3-048-F03",
           "system_oracle_ref": "HARNESS-L10-048-F03",
           "l4_ref": "HARNESS-L4-048-F03",
-          "condition": "observed consumer coverage is incomplete",
+          "condition": "observed consumer coverageが不足",
           "oracle_property": "一条件の不足/越境で当該候補を拒否。他条件を保持。",
           "expected_observation": "candidate_presentable=false; consumers=missing.",
           "return_targets": [],
@@ -660,7 +660,7 @@
           "requirement_ref": "HARNESS-L3-048-F03",
           "system_oracle_ref": "HARNESS-L10-048-F03",
           "l4_ref": "HARNESS-L4-048-F03",
-          "condition": "consumer identity conflicts",
+          "condition": "consumer identityが不一致",
           "oracle_property": "一条件の不足/越境で当該候補を拒否。他条件を保持。",
           "expected_observation": "candidate_presentable=false; consumers=conflict.",
           "return_targets": [],
@@ -672,7 +672,7 @@
           "requirement_ref": "HARNESS-L3-048-F03",
           "system_oracle_ref": "HARNESS-L10-048-F03",
           "l4_ref": "HARNESS-L4-048-F03",
-          "condition": "behavior invariant missing",
+          "condition": "behavior invariantが欠落",
           "oracle_property": "一条件の不足/越境で当該候補を拒否。他条件を保持。",
           "expected_observation": "candidate_presentable=false; behavior_invariant=missing.",
           "return_targets": [],
@@ -684,7 +684,7 @@
           "requirement_ref": "HARNESS-L3-048-F03",
           "system_oracle_ref": "HARNESS-L10-048-F03",
           "l4_ref": "HARNESS-L4-048-F03",
-          "condition": "minimum-transform declaration missing",
+          "condition": "minimum transform宣言が欠落",
           "oracle_property": "一条件の不足/越境で当該候補を拒否。他条件を保持。",
           "expected_observation": "candidate_presentable=false; minimum_transform=missing.",
           "return_targets": [],
@@ -696,7 +696,7 @@
           "requirement_ref": "HARNESS-L3-048-F03",
           "system_oracle_ref": "HARNESS-L10-048-F03",
           "l4_ref": "HARNESS-L4-048-F03",
-          "condition": "rollback declaration missing",
+          "condition": "rollback宣言が欠落",
           "oracle_property": "一条件の不足/越境で当該候補を拒否。他条件を保持。",
           "expected_observation": "candidate_presentable=false; rollback=missing.",
           "return_targets": [],
@@ -708,7 +708,7 @@
           "requirement_ref": "HARNESS-L3-048-F03",
           "system_oracle_ref": "HARNESS-L10-048-F03",
           "l4_ref": "HARNESS-L4-048-F03",
-          "condition": "evidence is lexical-only",
+          "condition": "evidence basisがlexical-only",
           "oracle_property": "一条件の不足/越境で当該候補を拒否。他条件を保持。",
           "expected_observation": "candidate_presentable=false; semantic_basis=rejected.",
           "return_targets": [],
@@ -720,7 +720,7 @@
           "requirement_ref": "HARNESS-L3-048-F03",
           "system_oracle_ref": "HARNESS-L10-048-F03",
           "l4_ref": "HARNESS-L4-048-F03",
-          "condition": "request crosses the candidate-only operation boundary",
+          "condition": "candidate-only operation境界外の実行要求",
           "oracle_property": "一条件の不足/越境で当該候補を拒否。他条件を保持。",
           "expected_observation": "candidate_presentable=false; operation_boundary=rejected.",
           "return_targets": [],
@@ -732,7 +732,7 @@
           "requirement_ref": "HARNESS-L3-048-F03",
           "system_oracle_ref": "HARNESS-L10-048-F03",
           "l4_ref": "HARNESS-L4-048-F03",
-          "condition": "signature inputs is missing.",
+          "condition": "signature inputsが欠落。",
           "oracle_property": "署名六軸を個別原内容比較し、他軸で補完しない。",
           "expected_observation": "candidate_presentable=false; signature:inputs=missing.",
           "return_targets": [],
@@ -744,7 +744,7 @@
           "requirement_ref": "HARNESS-L3-048-F03",
           "system_oracle_ref": "HARNESS-L10-048-F03",
           "l4_ref": "HARNESS-L4-048-F03",
-          "condition": "signature inputs is conflicting.",
+          "condition": "signature inputsが不一致。",
           "oracle_property": "署名六軸を個別原内容比較し、他軸で補完しない。",
           "expected_observation": "candidate_presentable=false; signature:inputs=conflict.",
           "return_targets": [],
@@ -756,7 +756,7 @@
           "requirement_ref": "HARNESS-L3-048-F03",
           "system_oracle_ref": "HARNESS-L10-048-F03",
           "l4_ref": "HARNESS-L4-048-F03",
-          "condition": "signature outputs is missing.",
+          "condition": "signature outputsが欠落。",
           "oracle_property": "署名六軸を個別原内容比較し、他軸で補完しない。",
           "expected_observation": "candidate_presentable=false; signature:outputs=missing.",
           "return_targets": [],
@@ -768,7 +768,7 @@
           "requirement_ref": "HARNESS-L3-048-F03",
           "system_oracle_ref": "HARNESS-L10-048-F03",
           "l4_ref": "HARNESS-L4-048-F03",
-          "condition": "signature outputs is conflicting.",
+          "condition": "signature outputsが不一致。",
           "oracle_property": "署名六軸を個別原内容比較し、他軸で補完しない。",
           "expected_observation": "candidate_presentable=false; signature:outputs=conflict.",
           "return_targets": [],
@@ -780,7 +780,7 @@
           "requirement_ref": "HARNESS-L3-048-F03",
           "system_oracle_ref": "HARNESS-L10-048-F03",
           "l4_ref": "HARNESS-L4-048-F03",
-          "condition": "signature effects is missing.",
+          "condition": "signature effectsが欠落。",
           "oracle_property": "署名六軸を個別原内容比較し、他軸で補完しない。",
           "expected_observation": "candidate_presentable=false; signature:effects=missing.",
           "return_targets": [],
@@ -792,7 +792,7 @@
           "requirement_ref": "HARNESS-L3-048-F03",
           "system_oracle_ref": "HARNESS-L10-048-F03",
           "l4_ref": "HARNESS-L4-048-F03",
-          "condition": "signature effects is conflicting.",
+          "condition": "signature effectsが不一致。",
           "oracle_property": "署名六軸を個別原内容比較し、他軸で補完しない。",
           "expected_observation": "candidate_presentable=false; signature:effects=conflict.",
           "return_targets": [],
@@ -804,7 +804,7 @@
           "requirement_ref": "HARNESS-L3-048-F03",
           "system_oracle_ref": "HARNESS-L10-048-F03",
           "l4_ref": "HARNESS-L4-048-F03",
-          "condition": "signature failure is missing.",
+          "condition": "signature failureが欠落。",
           "oracle_property": "署名六軸を個別原内容比較し、他軸で補完しない。",
           "expected_observation": "candidate_presentable=false; signature:failure=missing.",
           "return_targets": [],
@@ -816,7 +816,7 @@
           "requirement_ref": "HARNESS-L3-048-F03",
           "system_oracle_ref": "HARNESS-L10-048-F03",
           "l4_ref": "HARNESS-L4-048-F03",
-          "condition": "signature failure is conflicting.",
+          "condition": "signature failureが不一致。",
           "oracle_property": "署名六軸を個別原内容比較し、他軸で補完しない。",
           "expected_observation": "candidate_presentable=false; signature:failure=conflict.",
           "return_targets": [],
@@ -828,7 +828,7 @@
           "requirement_ref": "HARNESS-L3-048-F03",
           "system_oracle_ref": "HARNESS-L10-048-F03",
           "l4_ref": "HARNESS-L4-048-F03",
-          "condition": "signature state_transition is missing.",
+          "condition": "signature state_transitionが欠落。",
           "oracle_property": "署名六軸を個別原内容比較し、他軸で補完しない。",
           "expected_observation": "candidate_presentable=false; signature:state_transition=missing.",
           "return_targets": [],
@@ -840,7 +840,7 @@
           "requirement_ref": "HARNESS-L3-048-F03",
           "system_oracle_ref": "HARNESS-L10-048-F03",
           "l4_ref": "HARNESS-L4-048-F03",
-          "condition": "signature state_transition is conflicting.",
+          "condition": "signature state_transitionが不一致。",
           "oracle_property": "署名六軸を個別原内容比較し、他軸で補完しない。",
           "expected_observation": "candidate_presentable=false; signature:state_transition=conflict.",
           "return_targets": [],
@@ -852,7 +852,7 @@
           "requirement_ref": "HARNESS-L3-048-F03",
           "system_oracle_ref": "HARNESS-L10-048-F03",
           "l4_ref": "HARNESS-L4-048-F03",
-          "condition": "signature call_graph is missing.",
+          "condition": "signature call_graphが欠落。",
           "oracle_property": "署名六軸を個別原内容比較し、他軸で補完しない。",
           "expected_observation": "candidate_presentable=false; signature:call_graph=missing.",
           "return_targets": [],
@@ -864,7 +864,7 @@
           "requirement_ref": "HARNESS-L3-048-F03",
           "system_oracle_ref": "HARNESS-L10-048-F03",
           "l4_ref": "HARNESS-L4-048-F03",
-          "condition": "signature call_graph is conflicting.",
+          "condition": "signature call_graphが不一致。",
           "oracle_property": "署名六軸を個別原内容比較し、他軸で補完しない。",
           "expected_observation": "candidate_presentable=false; signature:call_graph=conflict.",
           "return_targets": [],
@@ -876,7 +876,7 @@
           "requirement_ref": "HARNESS-L3-048-F03",
           "system_oracle_ref": "HARNESS-L10-048-F03",
           "l4_ref": "HARNESS-L4-048-F03",
-          "condition": "signature consumer_contract is missing.",
+          "condition": "signature consumer_contractが欠落。",
           "oracle_property": "署名六軸を個別原内容比較し、他軸で補完しない。",
           "expected_observation": "candidate_presentable=false; signature:consumer_contract=missing.",
           "return_targets": [],
@@ -888,7 +888,7 @@
           "requirement_ref": "HARNESS-L3-048-F03",
           "system_oracle_ref": "HARNESS-L10-048-F03",
           "l4_ref": "HARNESS-L4-048-F03",
-          "condition": "signature consumer_contract is conflicting.",
+          "condition": "signature consumer_contractが不一致。",
           "oracle_property": "署名六軸を個別原内容比較し、他軸で補完しない。",
           "expected_observation": "candidate_presentable=false; signature:consumer_contract=conflict.",
           "return_targets": [],
@@ -896,7 +896,7 @@
         }
       ],
       "system_oracle_pointer": "docs/helix-harness/L10-verification/functional-verification.json#/cases/49",
-      "shared_oracle_boundary": "A single failed condition rejects candidate presentation; no rename/PR/receipt is produced; unaffected Q remains original_Q.",
+      "shared_oracle_boundary": "条件が一つでも不成立ならcandidate提示を拒否。rename/PR/receiptを生成せず、無影響のQはoriginal_Qを維持。",
       "shared_return_target": "対象作成側"
     },
     {
@@ -914,7 +914,7 @@
           "requirement_ref": "HARNESS-L3-048-F04",
           "system_oracle_ref": "HARNESS-L10-048-F04",
           "l4_ref": "HARNESS-L4-048-F04",
-          "condition": "baseline",
+          "condition": "internal境界のrole_unknown findingに、PRODUCT-P限定の有効例外。",
           "oracle_property": "例外は局所継続のみ。自動rename拒否と影響を消さない。",
           "expected_observation": "exception=valid; local_continuation=true.",
           "return_targets": [
@@ -928,7 +928,7 @@
           "requirement_ref": "HARNESS-L3-048-F04",
           "system_oracle_ref": "HARNESS-L10-048-F04",
           "l4_ref": "HARNESS-L4-048-F04",
-          "condition": "exception owner is missing.",
+          "condition": "exception ownerが欠落。",
           "oracle_property": "例外不足はPのみ。Qを停止しない。",
           "expected_observation": "exception=missing_owner; local_continuation=false.",
           "return_targets": [
@@ -942,7 +942,7 @@
           "requirement_ref": "HARNESS-L3-048-F04",
           "system_oracle_ref": "HARNESS-L10-048-F04",
           "l4_ref": "HARNESS-L4-048-F04",
-          "condition": "exception expiry is missing.",
+          "condition": "exception expiryが欠落。",
           "oracle_property": "例外不足はPのみ。Qを停止しない。",
           "expected_observation": "exception=missing_expiry; local_continuation=false.",
           "return_targets": [
@@ -956,7 +956,7 @@
           "requirement_ref": "HARNESS-L3-048-F04",
           "system_oracle_ref": "HARNESS-L10-048-F04",
           "l4_ref": "HARNESS-L4-048-F04",
-          "condition": "exception is expired.",
+          "condition": "exceptionが期限切れ。",
           "oracle_property": "例外不足はPのみ。Qを停止しない。",
           "expected_observation": "exception=expired; local_continuation=false.",
           "return_targets": [
@@ -970,7 +970,7 @@
           "requirement_ref": "HARNESS-L3-048-F04",
           "system_oracle_ref": "HARNESS-L10-048-F04",
           "l4_ref": "HARNESS-L4-048-F04",
-          "condition": "exception reason is missing.",
+          "condition": "exception reasonが欠落。",
           "oracle_property": "例外不足はPのみ。Qを停止しない。",
           "expected_observation": "exception=missing_reason; local_continuation=false.",
           "return_targets": [
@@ -984,7 +984,7 @@
           "requirement_ref": "HARNESS-L3-048-F04",
           "system_oracle_ref": "HARNESS-L10-048-F04",
           "l4_ref": "HARNESS-L4-048-F04",
-          "condition": "exception scope is foreign.",
+          "condition": "exception scopeが別対象。",
           "oracle_property": "例外不足はPのみ。Qを停止しない。",
           "expected_observation": "exception=scope_conflict; local_continuation=false.",
           "return_targets": [
@@ -998,7 +998,7 @@
           "requirement_ref": "HARNESS-L3-048-F04",
           "system_oracle_ref": "HARNESS-L10-048-F04",
           "l4_ref": "HARNESS-L4-048-F04",
-          "condition": "affected surface is a public API; naming-only continuation is insufficient.",
+          "condition": "対象はpublic API。name変更だけで継続しない。",
           "oracle_property": "public/persisted/configをinternalとして自動修正しない。",
           "expected_observation": "exception=valid; local_continuation=true.",
           "return_targets": [
@@ -1012,7 +1012,7 @@
           "requirement_ref": "HARNESS-L3-048-F04",
           "system_oracle_ref": "HARNESS-L10-048-F04",
           "l4_ref": "HARNESS-L4-048-F04",
-          "condition": "affected surface is a public CLI; naming-only continuation is insufficient.",
+          "condition": "対象はpublic CLI。name変更だけで継続しない。",
           "oracle_property": "public/persisted/configをinternalとして自動修正しない。",
           "expected_observation": "exception=valid; local_continuation=true.",
           "return_targets": [
@@ -1026,7 +1026,7 @@
           "requirement_ref": "HARNESS-L3-048-F04",
           "system_oracle_ref": "HARNESS-L10-048-F04",
           "l4_ref": "HARNESS-L4-048-F04",
-          "condition": "affected surface is a persisted field; naming-only continuation is insufficient.",
+          "condition": "対象は永続field。name変更だけで継続しない。",
           "oracle_property": "public/persisted/configをinternalとして自動修正しない。",
           "expected_observation": "exception=valid; local_continuation=true.",
           "return_targets": [
@@ -1040,7 +1040,7 @@
           "requirement_ref": "HARNESS-L3-048-F04",
           "system_oracle_ref": "HARNESS-L10-048-F04",
           "l4_ref": "HARNESS-L4-048-F04",
-          "condition": "affected surface is a persisted event; naming-only continuation is insufficient.",
+          "condition": "対象は永続event。name変更だけで継続しない。",
           "oracle_property": "public/persisted/configをinternalとして自動修正しない。",
           "expected_observation": "exception=valid; local_continuation=true.",
           "return_targets": [
@@ -1054,7 +1054,7 @@
           "requirement_ref": "HARNESS-L3-048-F04",
           "system_oracle_ref": "HARNESS-L10-048-F04",
           "l4_ref": "HARNESS-L4-048-F04",
-          "condition": "affected surface is a direct configuration key; naming-only continuation is insufficient.",
+          "condition": "対象は直接参照config key。name変更だけで継続しない。",
           "oracle_property": "public/persisted/configをinternalとして自動修正しない。",
           "expected_observation": "exception=valid; local_continuation=true.",
           "return_targets": [
@@ -1068,7 +1068,7 @@
           "requirement_ref": "HARNESS-L3-048-F04",
           "system_oracle_ref": "HARNESS-L10-048-F04",
           "l4_ref": "HARNESS-L4-048-F04",
-          "condition": "finding indicates incomplete consumer information.",
+          "condition": "findingはconsumer情報不足。",
           "oracle_property": "対象作成側へ理由/影響/ownerを保持して返す。",
           "expected_observation": "exception=valid; local_continuation=true.",
           "return_targets": [
@@ -1082,7 +1082,7 @@
           "requirement_ref": "HARNESS-L3-048-F04",
           "system_oracle_ref": "HARNESS-L10-048-F04",
           "l4_ref": "HARNESS-L4-048-F04",
-          "condition": "finding indicates signature mismatch.",
+          "condition": "findingはsignature不一致。",
           "oracle_property": "対象作成側へ理由/影響/ownerを保持して返す。",
           "expected_observation": "exception=valid; local_continuation=true.",
           "return_targets": [
@@ -1096,7 +1096,7 @@
           "requirement_ref": "HARNESS-L3-048-F04",
           "system_oracle_ref": "HARNESS-L10-048-F04",
           "l4_ref": "HARNESS-L4-048-F04",
-          "condition": "warning requests a global stop.",
+          "condition": "warningが全scope停止を要求。",
           "oracle_property": "warningの全scope停止要求を拒否し、P局所条件/Q成立を保持。",
           "expected_observation": "exception=valid; local_continuation=true.",
           "return_targets": [
@@ -1106,7 +1106,7 @@
         }
       ],
       "system_oracle_pointer": "docs/helix-harness/L10-verification/functional-verification.json#/cases/50",
-      "shared_oracle_boundary": "Automatic rename is rejected and the finding retained; warning cannot stop unrelated scope; unaffected Q remains original_Q."
+      "shared_oracle_boundary": "自動renameを拒否してfindingを保持。warningで無関係scopeを停止せず、無影響のQはoriginal_Qを維持。"
     },
     {
       "id": "HARNESS-L9-048-B01",
@@ -1123,9 +1123,9 @@
           "requirement_ref": "HARNESS-L3-048-B01",
           "system_oracle_ref": "HARNESS-L10-048-B01",
           "l4_ref": "HARNESS-L4-048-B01",
-          "condition": "baseline",
+          "condition": "knowledge/norm/product decision/CIを別入力で扱い、保護対象の変更なし。",
           "oracle_property": "知識/規範/製品/CIを別入力で比較。知識から採択を生成しない。",
-          "expected_observation": "separate inputs held; CI remains candidate-only.",
+          "expected_observation": "各入力を分離して保持。CIはcandidate-only。",
           "return_targets": [],
           "execution_state": "not_executed"
         },
@@ -1135,7 +1135,7 @@
           "requirement_ref": "HARNESS-L3-048-B01",
           "system_oracle_ref": "HARNESS-L10-048-B01",
           "l4_ref": "HARNESS-L4-048-B01",
-          "condition": "proposal attempts to replace norm-owner content",
+          "condition": "proposalがnorm ownerの原内容を置換しようとする",
           "oracle_property": "他ownerの原内容を上書きする提案/操作を拒否。",
           "expected_observation": "norm=rejected.",
           "return_targets": [
@@ -1149,7 +1149,7 @@
           "requirement_ref": "HARNESS-L3-048-B01",
           "system_oracle_ref": "HARNESS-L10-048-B01",
           "l4_ref": "HARNESS-L4-048-B01",
-          "condition": "proposal derives a product name from knowledge",
+          "condition": "proposalがknowledgeからproduct nameを決めようとする",
           "oracle_property": "他ownerの原内容を上書きする提案/操作を拒否。",
           "expected_observation": "product_decision=rejected.",
           "return_targets": [
@@ -1163,7 +1163,7 @@
           "requirement_ref": "HARNESS-L3-048-B01",
           "system_oracle_ref": "HARNESS-L10-048-B01",
           "l4_ref": "HARNESS-L4-048-B01",
-          "condition": "proposal requests CI adoption.",
+          "condition": "proposalがCI adoptionを要求。",
           "oracle_property": "他ownerの原内容を上書きする提案/操作を拒否。",
           "expected_observation": "CI=rejected.",
           "return_targets": [
@@ -1177,7 +1177,7 @@
           "requirement_ref": "HARNESS-L3-048-B01",
           "system_oracle_ref": "HARNESS-L10-048-B01",
           "l4_ref": "HARNESS-L4-048-B01",
-          "condition": "proposal requests CI self-merge.",
+          "condition": "proposalがCI self-mergeを要求。",
           "oracle_property": "他ownerの原内容を上書きする提案/操作を拒否。",
           "expected_observation": "CI=rejected.",
           "return_targets": [
@@ -1191,7 +1191,7 @@
           "requirement_ref": "HARNESS-L3-048-B01",
           "system_oracle_ref": "HARNESS-L10-048-B01",
           "l4_ref": "HARNESS-L4-048-B01",
-          "condition": "requirement identity is changed outside this scope",
+          "condition": "requirement identityをこのscope外で変更",
           "oracle_property": "既存ID/機構責務/採択本文変更を048へ混載しない。",
           "expected_observation": "requirement_id=out_of_scope_change_rejected.",
           "return_targets": [
@@ -1205,7 +1205,7 @@
           "requirement_ref": "HARNESS-L3-048-B01",
           "system_oracle_ref": "HARNESS-L10-048-B01",
           "l4_ref": "HARNESS-L4-048-B01",
-          "condition": "mechanism role is changed outside this scope",
+          "condition": "mechanism roleをこのscope外で変更",
           "oracle_property": "既存ID/機構責務/採択本文変更を048へ混載しない。",
           "expected_observation": "mechanism_role=out_of_scope_change_rejected.",
           "return_targets": [
@@ -1219,7 +1219,7 @@
           "requirement_ref": "HARNESS-L3-048-B01",
           "system_oracle_ref": "HARNESS-L10-048-B01",
           "l4_ref": "HARNESS-L4-048-B01",
-          "condition": "adopted requirement body is changed outside this scope",
+          "condition": "adopted bodyをこのscope外で変更",
           "oracle_property": "既存ID/機構責務/採択本文変更を048へ混載しない。",
           "expected_observation": "adopted_body=out_of_scope_change_rejected.",
           "return_targets": [
@@ -1229,7 +1229,7 @@
         }
       ],
       "system_oracle_pointer": "docs/helix-harness/L10-verification/business-verification.json#/cases/9",
-      "shared_oracle_boundary": "Knowledge, norm, product decision, and CI remain separate; no authority/acceptance/merge/rename is produced; unaffected Q remains original_Q."
+      "shared_oracle_boundary": "knowledge/norm/product decision/CIを分離。authority/acceptance/merge/renameを生成せず、無影響のQはoriginal_Qを維持。"
     }
   ],
   "completion": "初回合成例のみ。実source資格/組合せ/詳細設計/実観測は未成立。",
@@ -1262,13 +1262,13 @@
       "state",
       "backflow_owner"
     ],
-    "projection_note": "不存在だったsource fieldの差分保持は主張しない。現在のcondition/expected_observationは元raw packetとexpected_material、およびL4/L10意味から短く導出した。"
+    "projection_note": "元sourceに存在しないfieldの差分保持は主張しない。現在のcondition/expected_observationは元raw packet・expected_materialとL4/L10の意味から短く導出した。"
   },
   "l4_contract_source": {
     "path": "docs/helix-harness/L4-basic-design/naming-identity-correspondence.json",
     "revision": "fe79e0004d8164bffc4be7c8c31dd9e14da2ead3",
     "sha256": "45f8ca2ab75b9748994d913e46b2351ccdb9293e71201eb23887853bdb048eb7",
-    "note": "L4 HARNESS-048 contracts source for the five retained l4_ref values."
+    "note": "保持した5つのl4_refを照合するL4 HARNESS-048契約の固定source。"
   },
-  "non_generation_boundary": "All 59 cases remain synthetic and execution_state=not_executed. No actual rename, design refactor, CI, merge, authority, design completion, or acceptance is produced; unrelated Q remains original_Q."
+  "non_generation_boundary": "全59件は合成例の未実行状態（execution_state=not_executed）。実rename、design refactor、CI運転、merge、authority、design完了、acceptanceを発生させず、無関係のQはoriginal_Qを保つ。"
 }

@@ -30,8 +30,8 @@
     },
     {
       "path": "docs/helix-harness/L9-integration-verification/naming-identity-correspondence.json",
-      "sha256": "d4cf9ae28ffc10b0c8662693ee88aa4500414cae94b71dec5781bb426e9afaad",
-      "note": "WR259 semantic-compaction follow-up L9 target bytes."
+      "sha256": "23ce94cce5ad25ae72c37e757b6e988fe5696ab51c2ded5b1a3d87484e1ba954",
+      "note": "WR259 latest L9 bytes with Japanese compact semantic summaries."
     },
     {
       "path": "docs/governance/design-verification-quality-assurance.md",
@@ -40,19 +40,19 @@
     },
     {
       "path": "scaffold/research/wr259-naming-l9-slim-20261101/README.md",
-      "sha256": "d90ad9902ad3c33f3cebb824e6f4716c04e49f2928f78f070893cfdf3ecd650e",
+      "sha256": "881634d0bfa872f0c561a30d501053c495c5c8d37c0e7d1cf15f83536cf43d99",
       "note": "WR259固定作業treeのsource/artifact bytes。"
     },
     {
       "path": "scaffold/research/wr259-naming-l9-slim-20261101/validate_l9_slim.py",
-      "sha256": "3294849f1d225bd684c643053d4c0507ea1f962c768522fe66f43e1e3166d39f",
+      "sha256": "caed32bbd7943a0bea3af7adf8aec8644fc95550d0847a378a8d994c93077990",
       "note": "WR259固定作業treeのsource/artifact bytes。"
     }
   ],
   "role": "Temporary static evidence for the HARNESS-048 L9 allowlist projection and its consumer/source reconciliation.",
   "obligations": [
-    "Keep all 59 numbered rows in the same order. Retain ID, original basis, L3/L4/L10 references, concise source-derived condition and unique result, return owner/target where row-specific, and not_executed. The fixed base lacks code/condition/axis/state/backflow_owner; record that absence without claiming retention or generating replacements. Factor group-wide non-generation, unaffected-state, and common return boundaries once per obligation.",
-    "Remove raw fixture packets/hashes, full expected_material returns/effects, and duplicate approved_l10 objects. Keep only concise changed-field fact and unique judgment per row; never stringify mutation before/after or complete return projections. Resolve system_oracle_ref and numeric pinned L10 JSON Pointer.",
+    "Keep all 59 numbered rows in order with ID, source basis, L3/L4/L10 references, Japanese concise source-derived condition/result, row-specific return target, and not_executed state. The fixed source lacks top-level code/condition/axis/state/backflow_owner; declare their absence and generate no replacements. Normal rows must retain their concrete distinguishing meaning, including OBJ-P Query versus OBJ-R Repository.",
+    "Remove raw fixture packets/hashes, full expected_material return/effect projections, and approved_l10 object copies. Do not serialize raw values as before/after prose. Put common non-generation/unaffected boundaries and common return targets once per obligation; retain only each row’s distinguishing condition/result.",
     "Preserve all ten fixed authority source pins, legacy_comparison, full_goal_scope_preserved, and unverified scope from the fixed base. Record removed material through the six required removed_materials keys pinned to fe79e0004d8164bffc4be7c8c31dd9e14da2ead3 and name DT-VT-105 use boundary.",
     "Resolve all 37 L5 L9 consumer pointers at their existing fixed revision b52ad0e1e954790ebe57b2d87da46ea6712a07d9 and compare canonical hashes; inspect L8 and confirm no direct L9 JSON pointers. L8 is identity/reference crosscheck only.",
     "Keep historical WR251 evidence immutable; append current upstream rebind context to SCF-B-0211 and record new corrections and measurements in new evidence files.",
@@ -92,7 +92,6 @@
     "docs/helix-harness/L9-integration-verification/naming-identity-correspondence.json",
     "scaffold/research/wr259-naming-l9-slim-20261101/README.md",
     "scaffold/research/wr259-naming-l9-slim-20261101/validate_l9_slim.py",
-    "scaffold/research/wr259-naming-l9-slim-20261101/evidence/merge-overlay-check-child.json",
     "scaffold/bindings/SCF-B-0211.json",
     "scaffold/bindings/SCF-B-0222.json",
     "scaffold/research/wr259-naming-l9-slim-20261101/evidence/validation-results-r2.json",
@@ -116,7 +115,7 @@
       "forbidden_write_scope"
     ],
     "oracles": [
-      "Validator derives each row from fixed-base raw packet and expected_material but emits no raw values/full projections; it checks compact semantics, group-shared boundaries/returns, forbidden string residue, order, references, absent source fields, and not_executed. L8 checks IDs/references only.",
+      "Validator re-derives 59 Japanese row summaries and common boundaries from fixed-base raw packets/expected_material, checks that normal rows are meaningful and explanatory prose is Japanese, detects raw before/after/full projections, and verifies absent source fields. L8 checks IDs/references only.",
       "All five L10 numeric pointers resolve to their fixed-base L10 object matching system_oracle_ref, requirement, and not_executed state; all L3/L4 requirement/oracle links resolve.",
       "All 37 L5 sources resolve at source_revision b52ad0e1e954790ebe57b2d87da46ea6712a07d9 and match canonical hashes.",
       "All ten fixed L9 source pins and legacy comparison match fixed base.",
