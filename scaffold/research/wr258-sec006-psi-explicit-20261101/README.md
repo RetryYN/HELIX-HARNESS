@@ -45,3 +45,6 @@ PR #4007 R1で追加した50 L9 rowがID以外に同じ内容となっていた�
 `validate_pr4007_r1_oracle_uniqueness.py`は50対応の一意性、case conditionの一意性、L8 JSON pointerの解決、rowwise artifact内のfunction/class対応、L3/L10/L4 source pointerの実在とexpected/class値のL4一致、従前98行の保持を検査する。結果は`pr4007-r1-oracle-uniqueness-validation.json`に保存した。50条件/50 L8対象、従前98行、合計148行で静的検証PASS。
 
 統合candidate builderは正本L9の50 rowを再複製せず、同じcandidate ID↔L8 caseをchecker overlayへ接続する。実際の一時overlay結果は`pr4007-r1-case-specific-overlay-check-child.json`に保存した。L4/L9・L5/L8 pairはPASS、4wayは141 matched/10 failures。内訳はoperation-deferの局所L8 unknownとL9 system absentの不一致、空class参照とL8 integration refの各1件、primary-tree callerの6件が一対一で未参照である。これらは修正済みとせずFAILのまま記録する。
+
+
+最新origin/main `3c2ea6734d0038d8fd93f8bdbf090e0db6a9e09d`へこのbranchを一時squash overlayして正式L4/L5/L8/L9文書へ`check-child`を実行した結果は`pr4007-r1-latest-main-overlay-r1.json`を参照する。L4/L9とL5/L8 pairはPASS、4wayは0 matched/79 failures（partial markerによるclass table/key/ownerとL8/L9 case-array不足）だった。同じ一時worktree内の統合candidateは141 matched/10 failuresで、50行の対応後もlocal deferとsystem absentの期待差1件、L8 class/ref不足各1件、6 caller一対多が残った。`scfctl validate`は202件・fail 0、`stale` 0。
