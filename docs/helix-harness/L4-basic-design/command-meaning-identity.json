@@ -4,64 +4,78 @@
   "paired_document": "docs/helix-harness/L9-integration-verification/command-meaning-identity.json",
   "parent": "HARNESS-L2-052",
   "status": "candidate_pending_independent_review",
-  "source_main": "e756561cac897a3ac466d53fb4e83d9e32f4ecaa",
+  "source_main": "3c2ea6734d0038d8fd93f8bdbf090e0db6a9e09d",
   "purpose": "052承認済み8義務の意味比較とOS053への接続境界。正式実装・実運転は未成立。",
   "source_pins": [
     {
       "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
-      "sha256": "a3b907cdc316117d4684632f9a1cbf36125eb6e6172f9cfc286060617583d7be"
+      "sha256": "a3b907cdc316117d4684632f9a1cbf36125eb6e6172f9cfc286060617583d7be",
+      "revision": "3c2ea6734d0038d8fd93f8bdbf090e0db6a9e09d"
     },
     {
       "path": "docs/helix-harness/L3-requirements/nfr-grade.json",
-      "sha256": "b62f823d1c2edfd192ba8aeccb71159f3322aab17fa991d7ceb85712d8fbd486"
+      "sha256": "b62f823d1c2edfd192ba8aeccb71159f3322aab17fa991d7ceb85712d8fbd486",
+      "revision": "3c2ea6734d0038d8fd93f8bdbf090e0db6a9e09d"
     },
     {
       "path": "docs/helix-harness/L3-requirements/business-requirements.json",
-      "sha256": "25e0e8f8ee8acbc220483ab6854155218193861086cf757f933e2cd6263f444d"
+      "sha256": "25e0e8f8ee8acbc220483ab6854155218193861086cf757f933e2cd6263f444d",
+      "revision": "3c2ea6734d0038d8fd93f8bdbf090e0db6a9e09d"
     },
     {
       "path": "docs/helix-harness/L10-verification/functional-verification.json",
-      "sha256": "fc58ad2268746d7924ac9be33e8f3f75e6d3c2cc619e27fbc1ddc34edd065cb2"
+      "sha256": "fc58ad2268746d7924ac9be33e8f3f75e6d3c2cc619e27fbc1ddc34edd065cb2",
+      "revision": "3c2ea6734d0038d8fd93f8bdbf090e0db6a9e09d"
     },
     {
       "path": "docs/helix-harness/L10-verification/nfr-verification.json",
-      "sha256": "578b1b368bdd3878ade8fcab77cc47320b8acc1d2d967af1708b333bea2f36b0"
+      "sha256": "578b1b368bdd3878ade8fcab77cc47320b8acc1d2d967af1708b333bea2f36b0",
+      "revision": "3c2ea6734d0038d8fd93f8bdbf090e0db6a9e09d"
     },
     {
       "path": "docs/helix-harness/L10-verification/business-verification.json",
-      "sha256": "3a9982ef2e59e3d027ce8e5cd72b9879b6224a8e4ea74b657bf9b67c90934319"
+      "sha256": "3a9982ef2e59e3d027ce8e5cd72b9879b6224a8e4ea74b657bf9b67c90934319",
+      "revision": "3c2ea6734d0038d8fd93f8bdbf090e0db6a9e09d"
     },
     {
       "path": "docs/helix-harness/L2-requirements/product-requirements.md",
-      "sha256": "c5a2eb180f260534174abbf031121f49122791621f7728c4e1be6348a93dab2d"
+      "sha256": "e755aa99f9d8b7add908974ca6254d048fe614e58463c01178a3538e6ce3df13",
+      "revision": "3c2ea6734d0038d8fd93f8bdbf090e0db6a9e09d"
     },
     {
       "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
-      "sha256": "05c5f5a3071f46e3b8904f51a73749b31b9681d69a3a6c3655e532a11eaaa1cd"
+      "sha256": "671fbea2bae0cf6a7e9d726c04b368df02d95b9f5d78e463f0196a92190d3ffb",
+      "revision": "3c2ea6734d0038d8fd93f8bdbf090e0db6a9e09d"
     },
     {
       "path": "docs/governance/decisions/requirements-entry-restart-po-decision-2026-10-12.md",
-      "sha256": "994a81b2d5eb4cbf291951b688fca85fa2b1353848091c0ab4cfac91fb8c131b"
+      "sha256": "994a81b2d5eb4cbf291951b688fca85fa2b1353848091c0ab4cfac91fb8c131b",
+      "revision": "3c2ea6734d0038d8fd93f8bdbf090e0db6a9e09d"
     },
     {
       "path": "docs/governance/decisions/helix-harness-prerequisite-contracts-l3-l10-delegated-decision-2026-10-12.md",
-      "sha256": "06a2fd8afd05c2fa5721732dd7614c0bad3040bb71a56437336e5ff44687ae6e"
+      "sha256": "06a2fd8afd05c2fa5721732dd7614c0bad3040bb71a56437336e5ff44687ae6e",
+      "revision": "3c2ea6734d0038d8fd93f8bdbf090e0db6a9e09d"
     },
     {
       "path": "docs/concept/helix-concept.md",
-      "sha256": "bbc787c5dc17de9eded156285ad82ef768788cfa31822dfffa477db073a5e715"
+      "sha256": "bbc787c5dc17de9eded156285ad82ef768788cfa31822dfffa477db073a5e715",
+      "revision": "3c2ea6734d0038d8fd93f8bdbf090e0db6a9e09d"
     },
     {
       "path": "docs/concept/helix-principles.md",
-      "sha256": "5b3d1d42b38a6e09d5c4da45760036e5234f5a316b3a02e7c48fb88a48a4c441"
+      "sha256": "5b3d1d42b38a6e09d5c4da45760036e5234f5a316b3a02e7c48fb88a48a4c441",
+      "revision": "3c2ea6734d0038d8fd93f8bdbf090e0db6a9e09d"
     },
     {
       "path": "docs/helix-os/L4-basic-design/atomic-canonicalization.json",
-      "sha256": "3e14df41a7782889a4d7e1d416afe98b99693e9d7a32bb8fb17c006466129e62"
+      "sha256": "3e14df41a7782889a4d7e1d416afe98b99693e9d7a32bb8fb17c006466129e62",
+      "revision": "3c2ea6734d0038d8fd93f8bdbf090e0db6a9e09d"
     },
     {
       "path": "docs/helix-os/L5-detail-design/atomic-canonicalization.json",
-      "sha256": "30fb55d761550e9407ba818a048b8e1bde89d6671f5044a32fe5217ed86486ea"
+      "sha256": "b5c0a8927f417a33e325c8e43ed2d5651d9d537e8163b41162614187f8a41c01",
+      "revision": "3c2ea6734d0038d8fd93f8bdbf090e0db6a9e09d"
     }
   ],
   "legacy_comparison": [
