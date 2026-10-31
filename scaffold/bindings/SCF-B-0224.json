@@ -1,0 +1,138 @@
+{
+  "schema_revision": 1,
+  "id": "SCF-B-0224",
+  "kind": "scaffold",
+  "title": "WR258 SEC006 L5/L8 caller来歴とcase対応候補",
+  "product": "HELIX-HARNESS",
+  "owner_candidate": "HELIX-HARNESS SEC006 L5/L8 source comparison owner",
+  "state": "registered",
+  "reason": "WR258で明示依頼されたPR-B専用のL5/L8 V-pair候補。L3/L10/L4とL5 class ruleから独立導出したunit-case期待を保持し、L9 stable IDへの一対一参照とQA §58のcondition完全一致を検証する。L4/L9、L3/L10、QAは変更しない。authority effectなし。",
+  "upstream": [
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+      "sha256": "e4eeb70cc303e44199c7d898281e91c22dba89b47666353b9c80a4c634e898b5",
+      "note": "SEC003 F01/F02の承認済み要求source。"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.json",
+      "sha256": "e6da7eaff29a623b5d069801280c295d9dd7cc43b51d9cde25b12a8110e5072a",
+      "note": "SEC003 F01/F02のverification source。実行証拠ではない。"
+    },
+    {
+      "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+      "sha256": "16d4fc5e3fcf0c677703b694b538f6d8f5542db36291850ed7f72865f0d9c72c",
+      "note": "PR-Aで定義した15 classと期待の意味。PR-Bでは変更しない。"
+    },
+    {
+      "path": "docs/helix-security/L5-detail-design/project-scope-isolation.json",
+      "sha256": "e084e05c1569790509e2a096a45b04f340b3494e9afa9bdf6c4e967e83b59d66",
+      "note": "PR-Bで追加した15 owner ruleとcaller provenance contract。旧pin 41c49bc0b62b415422067297bd9accf848e4f14e253fab9779e778c49c2e1eddを保持。"
+    },
+    {
+      "path": "docs/helix-security/L8-unit-verification/project-scope-isolation.json",
+      "sha256": "623c93c59c18a78b0083ea98497ae3e778fc367e9423d9a3cc04d822d72cfe24",
+      "note": "PR-Bで追加したL8 class projection、148 unit-case designと6 caller provenance行。実行済みfixtureとは扱わない。旧pin 6d093e482b013e733bc3eb5950aef5b8385b3288dc85bbcb9854bea92830900dを履歴として保持。 PR-B L8/L9 case alignment updated on main 8ca99d8afcfcca2e5240afb992289ea8c80c41a6; prior pin f280fbade1cd83acdf3c67c28718f7003e54e91548ea1a65e0c0c04c517d7371 retained in this note. 旧pinは直前値として履歴保持。"
+    },
+    {
+      "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
+      "sha256": "0d46617674373fb9b1677c02eac2766765aafb448192b5c6fc1674b4e7fa88da",
+      "note": "PR-Aの既存98+追加50 system oracle。PR-Bからは参照のみ。 PR-B L8/L9 case alignment updated on main 8ca99d8afcfcca2e5240afb992289ea8c80c41a6; prior pin eda71cc49c10ddf0681ae7ab629c6862b3e0c984854cecf0fdf8fc9faa0a0e5c retained in this note. 旧pinは直前値として履歴保持。"
+    },
+    {
+      "path": "docs/governance/design-verification-quality-assurance.md",
+      "sha256": "f5751e236dc073fe67114c1fcb4b0f64b3d746290b25d75b61e60a08e3c99c85",
+      "note": "QA §3/58/82のpair・4way要件。変更なし。"
+    },
+    {
+      "path": "scaffold/research/wr258-sec006-psi-explicit-20261101/pr-b-l8-integration-case-ref-candidate-r2.json",
+      "sha256": "d2b9b5cf7a9ddf5b776609ca4188f91dafd8d8a33253b02db463daca350ed551",
+      "note": "PR-A由来の固定50 mapping候補。PR-Bで49件をL8 unit designへ対応し、046は局所deferと分けた。 PR-B L8/L9 case alignment updated on main 8ca99d8afcfcca2e5240afb992289ea8c80c41a6; prior pin 298f6d6b255c7a27e58b9d417955cdc73763575337ac044be06686e1bc46b995 retained in this note. 旧pinは直前値として履歴保持。"
+    },
+    {
+      "path": "scaffold/research/wr250-sec006-psi-l5l8-20261031/rowwise-comparison-r1.json",
+      "sha256": "bee6d4f1d69c34a7037c6d24de601cc591381c30eb3c093e2c6ee588e577029e",
+      "note": "固定source rowwise比較で保持した91 candidate ID/function/L9 mapping。"
+    }
+  ],
+  "role": "SEC006のL5/L8候補とcase correspondence根拠を分離した一つのV-pairとして登録し、source hashと現在の静的検証を追跡する。",
+  "obligations": [
+    "L5/L8のみを変更し、L3/L10/L4/L9/QAの意味とbytesを変更しない。",
+    "L8 expectedとexpected_preservedは対応L4 classとL5 failure ruleから独立導出し、L9値との一致は導出後の照合として確認する。",
+    "L8の148 unit casesをL9の148 casewise integration rowsへ一対一で結び、QA §58に従いcondition文字列を一致させる。",
+    "stable L9 ID SEC003-L9-ORACLE-001..050を用い、mapping_candidate_id等の作業用tokenと不要な行別condition-source欄をcanonical L8へ残さない。",
+    "6 primary-tree caller provenance rowsをcaller別のL5/L8投影として保ち、L9 system expectedの改変や同一unit観測の複製を行わない。",
+    "local OPERATION-DEFERを空findingの単体観測としてnegative inventory外に保ち、system-level connection absentは別のabstract compose U-IDで扱う。",
+    "ORACLE-046のsystem absent candidateはabstract/not-executedとして扱い、未提供のraw fixture/8-part concrete valuesやauthorizationを作らない。",
+    "current formal check-child、scfctl validate/stale、validator実測を追補記録し、過去時点artifactをdisposition経由で復元可能にする。"
+  ],
+  "connections": {
+    "consumers": [
+      "PR #4007 merged L4/L9 pair",
+      "QA §3 CHK-NEG-4WAY-MATCH",
+      "separate future L4/L9 casewise supplement"
+    ],
+    "dependencies": [
+      "SEC003 L3/L10 F01/F02",
+      "PR-A L4/L9 15-class source projection and 148 casewise integration rows",
+      "QA §58/82",
+      "fixed WR250 rowwise comparison"
+    ],
+    "boundary": "本bindingはPR-BのL5/L8候補だけを登録する。merged PR-AのL4/L9正本は参照し、編集しない。L5/L8 static candidateは実行・runtime・authorization proofではない。"
+  },
+  "operations": {
+    "allowed": [
+      "静的JSON/class/ID/pointer/hash検証",
+      "current check-child、scfctl validate/staleの測定",
+      "whitespace/diff検査"
+    ],
+    "forbidden": [
+      "L3/L10/L4/L9/QA編集",
+      "旧runtime/CLI/hook/test/CI起動",
+      "未提供fixture値、実観測、権限設定を捏造",
+      "4way FAILをPASSと報告"
+    ]
+  },
+  "artifacts": [
+    "docs/helix-security/L5-detail-design/project-scope-isolation.json",
+    "docs/helix-security/L8-unit-verification/project-scope-isolation.json",
+    "scaffold/bindings/SCF-B-0201.json",
+    "scaffold/bindings/SCF-B-0218.json",
+    "scaffold/bindings/SCF-B-0224.json",
+    "scaffold/research/wr258-sec006-psi-explicit-20261101/README.md",
+    "scaffold/research/wr258-sec006-psi-explicit-20261101/validate_wr258_prb_l5l8.py",
+    "scaffold/research/wr258-sec006-psi-explicit-20261101/prb-l5l8-current-measurement.json",
+    "scaffold/research/wr258-sec006-psi-explicit-20261101/prb-l5l8-measurement-disposition.json"
+  ],
+  "verification": {
+    "evidence_kind": "scaffold",
+    "scope": [
+      "source_revision_stale",
+      "negative_case",
+      "schema_interface"
+    ],
+    "oracles": [
+      "L5/L8 pair、class owner、source/hash、current binding pinは現行bytesから検査する。",
+      "148 L8 unit case IDsはL9の148 integration case IDsへ一対一に対応し、全condition文字列はQA §58に従い一致する。",
+      "L8 expected/expected_preservedはL3要件を根拠にしたL4 class expectationとL5 failure rule projectionの一致で独立確認し、その後L9 oracleとの意味一致を照合する。",
+      "stable L9 ID追加50件、固定49 mapping、91 retained candidateはsource由来identityとclassを保つ。",
+      "6 caller projectionは別々に保ち、L9 expected_preservedをcaller別へ改変しない。",
+      "local operation-deferは空finding・classなし。ORACLE-046は別のabstract system absent compose caseである。",
+      "formal 4wayの数値は実checker出力どおり記録し、実行済みfixtureやruntime結果を主張しない。"
+    ],
+    "negative_cases": [
+      "L3/L10/L4/L9/QAを変更してL5/L8と同じV-pairに含めない。",
+      "L9 system expectedをcaller provenanceで改変したり、L8 expectedの導出元として扱わない。",
+      "operation-deferの空findingを偽findingで補わず、ORACLE-046と一対一対応させない。",
+      "未提供fixture part、観測値、authorization値を作らず、未実行を実行済みと報告しない。",
+      "formal checker結果をPASS/FAILとも実測と異なる値で報告しない。"
+    ]
+  },
+  "replacement": {
+    "role_target": "L4/L9 casewise supplement and complete admissible four-layer transition after independent design/review.",
+    "formal_artifacts": [],
+    "issue": 3510,
+    "status": "pending"
+  },
+  "created": "2026-11-02",
+  "updated": "2026-11-02"
+}

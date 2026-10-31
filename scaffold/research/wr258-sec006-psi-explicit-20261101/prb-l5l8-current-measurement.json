@@ -1,0 +1,80 @@
+{
+  "schema": "wr258-prb-l5l8-validation.v1",
+  "evidence_kind": "scaffold",
+  "authority_effect": "none",
+  "source": {
+    "origin_main": "8ca99d8afcfcca2e5240afb992289ea8c80c41a6",
+    "merge_base": "8ca99d8afcfcca2e5240afb992289ea8c80c41a6",
+    "head": "2ff738cdb2551757da73463dc08d73e0cceab689"
+  },
+  "static_checks": {
+    "passed": true,
+    "failure_count": 0,
+    "failures": [],
+    "class_rows": {
+      "L4": 15,
+      "L5": 15,
+      "L8": 15,
+      "L9": 15
+    },
+    "unit_cases": 148,
+    "unique_l9_refs": 148,
+    "applied_fixed_mappings": 49,
+    "retained_l8_candidates": 91,
+    "caller_rows": 6,
+    "former_no_class_rows": {
+      "mapped": 8,
+      "local_defer": 1
+    },
+    "stable_added_l9_integration_rows": 50,
+    "l9_integration_rows": 148,
+    "case_conditions_exact_match": 148,
+    "independent_l4_l5_expectations": 148
+  },
+  "formal_check_child": {
+    "exit": 0,
+    "passed": true,
+    "pair_statuses": {
+      "L4_L9": true,
+      "L5_L8": true
+    },
+    "fourway_counts": {
+      "L4": 15,
+      "L9": 15,
+      "L8": 15,
+      "L5": 15
+    },
+    "class_rows": {
+      "L4": 15,
+      "L9": 15,
+      "L8": 15,
+      "L5": 15
+    },
+    "case_rows": {
+      "L8": 148,
+      "L9": 148
+    },
+    "matched_case_count": 148,
+    "failure_count": 0,
+    "failure_groups": {}
+  },
+  "scfctl": {
+    "validate_exit": 0,
+    "validate_summary": "bindings=209 fail=0",
+    "stale_exit": 0,
+    "stale_summary": "stale=0"
+  },
+  "sha256": {
+    "docs/helix-security/L3-requirements/functional-requirements.json": "e4eeb70cc303e44199c7d898281e91c22dba89b47666353b9c80a4c634e898b5",
+    "docs/helix-security/L10-verification/functional-verification.json": "e6da7eaff29a623b5d069801280c295d9dd7cc43b51d9cde25b12a8110e5072a",
+    "docs/helix-security/L4-basic-design/project-scope-isolation.json": "16d4fc5e3fcf0c677703b694b538f6d8f5542db36291850ed7f72865f0d9c72c",
+    "docs/helix-security/L5-detail-design/project-scope-isolation.json": "e084e05c1569790509e2a096a45b04f340b3494e9afa9bdf6c4e967e83b59d66",
+    "docs/helix-security/L8-unit-verification/project-scope-isolation.json": "623c93c59c18a78b0083ea98497ae3e778fc367e9423d9a3cc04d822d72cfe24",
+    "docs/helix-security/L9-integration-verification/project-scope-isolation.json": "0d46617674373fb9b1677c02eac2766765aafb448192b5c6fc1674b4e7fa88da",
+    "docs/governance/design-verification-quality-assurance.md": "f5751e236dc073fe67114c1fcb4b0f64b3d746290b25d75b61e60a08e3c99c85",
+    "scaffold/research/wr258-sec006-psi-explicit-20261101/pr-b-l8-integration-case-ref-candidate-r2.json": "d2b9b5cf7a9ddf5b776609ca4188f91dafd8d8a33253b02db463daca350ed551",
+    "scaffold/research/wr250-sec006-psi-l5l8-20261031/rowwise-comparison-r1.json": "bee6d4f1d69c34a7037c6d24de601cc591381c30eb3c093e2c6ee588e577029e",
+    "scaffold/bindings/SCF-B-0224.json": "79368bdb6db7abaffb8d9c685310a55e1382fb8832339a5bc65b9ec1d121f224",
+    "scaffold/research/wr258-sec006-psi-explicit-20261101/validate_wr258_prb_l5l8.py": "de3f12e043e09fa508e500165de984f88ee4c2c34560cd4aa7386a608969b452"
+  }
+}
