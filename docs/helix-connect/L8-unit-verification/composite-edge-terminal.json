@@ -238,7 +238,10 @@
       "scenario_basis",
       "boundary",
       "execution_state",
-      "qualification"
+      "qualification",
+      "u_id",
+      "l5_function_ref",
+      "l5_failure_rule_refs"
     ],
     "rows": [
       [
@@ -253,7 +256,10 @@
         "四つの合成端点/別能力・版・scopeの三辺を、宣言順序とoperation対応/全辺receiptへ対照。実接続集合を採用しない。",
         "synthetic_fixture_only; no source qualification or effect",
         "not_executed",
-        "synthetic_fixture_only"
+        "synthetic_fixture_only",
+        "U-C007-001",
+        "FN-C007-01",
+        []
       ],
       [
         "C007-F01-ORIGINAL-RECEIPT-EDGE-1-MISSING",
@@ -267,7 +273,17 @@
         "一辺原receiptの欠落は他辺greenで相殺しない。",
         "synthetic_fixture_only; no source qualification or effect",
         "not_executed",
-        "synthetic_fixture_only"
+        "synthetic_fixture_only",
+        "U-C007-002",
+        "FN-C007-01",
+        [
+          "F01:receipt_cardinality_original",
+          "F01:receipt_cardinality_submitted",
+          "F01:receipt_content",
+          "F01:edge_target",
+          "F01:composite_target",
+          "F01:edge_conditions"
+        ]
       ],
       [
         "C007-F01-ORIGINAL-RECEIPT-EDGE-2-MISSING",
@@ -281,7 +297,17 @@
         "一辺原receiptの欠落は他辺greenで相殺しない。",
         "synthetic_fixture_only; no source qualification or effect",
         "not_executed",
-        "synthetic_fixture_only"
+        "synthetic_fixture_only",
+        "U-C007-003",
+        "FN-C007-01",
+        [
+          "F01:receipt_cardinality_original",
+          "F01:receipt_cardinality_submitted",
+          "F01:receipt_content",
+          "F01:edge_target",
+          "F01:composite_target",
+          "F01:edge_conditions"
+        ]
       ],
       [
         "C007-F01-ORIGINAL-RECEIPT-EDGE-3-MISSING",
@@ -295,7 +321,17 @@
         "一辺原receiptの欠落は他辺greenで相殺しない。",
         "synthetic_fixture_only; no source qualification or effect",
         "not_executed",
-        "synthetic_fixture_only"
+        "synthetic_fixture_only",
+        "U-C007-004",
+        "FN-C007-01",
+        [
+          "F01:receipt_cardinality_original",
+          "F01:receipt_cardinality_submitted",
+          "F01:receipt_content",
+          "F01:edge_target",
+          "F01:composite_target",
+          "F01:edge_conditions"
+        ]
       ],
       [
         "C007-F01-RECEIPT-TARGET-CONNECTION_IDENTITY-FOREIGN",
@@ -309,7 +345,12 @@
         "原/提出receiptが同値でも対象辺の契約/operation/attempt/scope等へ結ばれない場合は保留。",
         "synthetic_fixture_only; no source qualification or effect",
         "not_executed",
-        "synthetic_fixture_only"
+        "synthetic_fixture_only",
+        "U-C007-005",
+        "FN-C007-01",
+        [
+          "F01:edge_target"
+        ]
       ],
       [
         "C007-F01-RECEIPT-TARGET-CONTRACT_REVISION-FOREIGN",
@@ -323,7 +364,12 @@
         "原/提出receiptが同値でも対象辺の契約/operation/attempt/scope等へ結ばれない場合は保留。",
         "synthetic_fixture_only; no source qualification or effect",
         "not_executed",
-        "synthetic_fixture_only"
+        "synthetic_fixture_only",
+        "U-C007-006",
+        "FN-C007-01",
+        [
+          "F01:edge_target"
+        ]
       ],
       [
         "C007-F01-RECEIPT-TARGET-ABILITY_REF-FOREIGN",
@@ -337,7 +383,12 @@
         "原/提出receiptが同値でも対象辺の契約/operation/attempt/scope等へ結ばれない場合は保留。",
         "synthetic_fixture_only; no source qualification or effect",
         "not_executed",
-        "synthetic_fixture_only"
+        "synthetic_fixture_only",
+        "U-C007-007",
+        "FN-C007-01",
+        [
+          "F01:edge_target"
+        ]
       ],
       [
         "C007-F01-RECEIPT-TARGET-SCOPE-FOREIGN",
@@ -351,7 +402,12 @@
         "原/提出receiptが同値でも対象辺の契約/operation/attempt/scope等へ結ばれない場合は保留。",
         "synthetic_fixture_only; no source qualification or effect",
         "not_executed",
-        "synthetic_fixture_only"
+        "synthetic_fixture_only",
+        "U-C007-008",
+        "FN-C007-01",
+        [
+          "F01:edge_target"
+        ]
       ],
       [
         "C007-F01-RECEIPT-TARGET-OPERATION_IDENTITY-FOREIGN",
@@ -365,7 +421,12 @@
         "原/提出receiptが同値でも対象辺の契約/operation/attempt/scope等へ結ばれない場合は保留。",
         "synthetic_fixture_only; no source qualification or effect",
         "not_executed",
-        "synthetic_fixture_only"
+        "synthetic_fixture_only",
+        "U-C007-009",
+        "FN-C007-01",
+        [
+          "F01:edge_target"
+        ]
       ],
       [
         "C007-F01-RECEIPT-TARGET-ATTEMPT_IDENTITY-FOREIGN",
@@ -379,7 +440,12 @@
         "原/提出receiptが同値でも対象辺の契約/operation/attempt/scope等へ結ばれない場合は保留。",
         "synthetic_fixture_only; no source qualification or effect",
         "not_executed",
-        "synthetic_fixture_only"
+        "synthetic_fixture_only",
+        "U-C007-010",
+        "FN-C007-01",
+        [
+          "F01:edge_target"
+        ]
       ],
       [
         "C007-F01-RECEIPT-TARGET-CORRELATION-FOREIGN",
@@ -393,7 +459,12 @@
         "原/提出receiptが同値でも対象辺の契約/operation/attempt/scope等へ結ばれない場合は保留。",
         "synthetic_fixture_only; no source qualification or effect",
         "not_executed",
-        "synthetic_fixture_only"
+        "synthetic_fixture_only",
+        "U-C007-011",
+        "FN-C007-01",
+        [
+          "F01:edge_target"
+        ]
       ],
       [
         "C007-F01-RECEIPT-TARGET-EXPIRY_REF-FOREIGN",
@@ -407,7 +478,12 @@
         "原/提出receiptが同値でも対象辺の契約/operation/attempt/scope等へ結ばれない場合は保留。",
         "synthetic_fixture_only; no source qualification or effect",
         "not_executed",
-        "synthetic_fixture_only"
+        "synthetic_fixture_only",
+        "U-C007-012",
+        "FN-C007-01",
+        [
+          "F01:edge_target"
+        ]
       ],
       [
         "C007-F01-RECEIPT-TARGET-PERMISSION_REF-FOREIGN",
@@ -421,7 +497,12 @@
         "原/提出receiptが同値でも対象辺の契約/operation/attempt/scope等へ結ばれない場合は保留。",
         "synthetic_fixture_only; no source qualification or effect",
         "not_executed",
-        "synthetic_fixture_only"
+        "synthetic_fixture_only",
+        "U-C007-013",
+        "FN-C007-01",
+        [
+          "F01:edge_target"
+        ]
       ],
       [
         "C007-F01-RECEIPT-TARGET-IDEMPOTENCY-FOREIGN",
@@ -435,7 +516,12 @@
         "原/提出receiptが同値でも対象辺の契約/operation/attempt/scope等へ結ばれない場合は保留。",
         "synthetic_fixture_only; no source qualification or effect",
         "not_executed",
-        "synthetic_fixture_only"
+        "synthetic_fixture_only",
+        "U-C007-014",
+        "FN-C007-01",
+        [
+          "F01:edge_target"
+        ]
       ],
       [
         "C007-F01-RECEIPT-TARGET-CONTENT_DIGEST-FOREIGN",
@@ -449,7 +535,12 @@
         "原/提出receiptが同値でも対象辺の契約/operation/attempt/scope等へ結ばれない場合は保留。",
         "synthetic_fixture_only; no source qualification or effect",
         "not_executed",
-        "synthetic_fixture_only"
+        "synthetic_fixture_only",
+        "U-C007-015",
+        "FN-C007-01",
+        [
+          "F01:edge_target"
+        ]
       ],
       [
         "C007-F01-RECEIPT-TARGET-REGISTRATION_REVISION-FOREIGN",
@@ -463,7 +554,12 @@
         "原/提出receiptが同値でも対象辺の契約/operation/attempt/scope等へ結ばれない場合は保留。",
         "synthetic_fixture_only; no source qualification or effect",
         "not_executed",
-        "synthetic_fixture_only"
+        "synthetic_fixture_only",
+        "U-C007-016",
+        "FN-C007-01",
+        [
+          "F01:edge_target"
+        ]
       ],
       [
         "C007-F01-RECEIPT-TARGET-RECOVERY_REF-FOREIGN",
@@ -477,7 +573,12 @@
         "原/提出receiptが同値でも対象辺の契約/operation/attempt/scope等へ結ばれない場合は保留。",
         "synthetic_fixture_only; no source qualification or effect",
         "not_executed",
-        "synthetic_fixture_only"
+        "synthetic_fixture_only",
+        "U-C007-017",
+        "FN-C007-01",
+        [
+          "F01:edge_target"
+        ]
       ],
       [
         "C007-F01-RECEIPT-COMPOSITE-IDENTITY-FOREIGN",
@@ -491,7 +592,12 @@
         "別構成体revision/scope/要求/ownerの証拠を当該集合へ外挿しない。",
         "synthetic_fixture_only; no source qualification or effect",
         "not_executed",
-        "synthetic_fixture_only"
+        "synthetic_fixture_only",
+        "U-C007-018",
+        "FN-C007-01",
+        [
+          "F01:composite_target"
+        ]
       ],
       [
         "C007-F01-RECEIPT-COMPOSITE-REVISION-FOREIGN",
@@ -505,7 +611,12 @@
         "別構成体revision/scope/要求/ownerの証拠を当該集合へ外挿しない。",
         "synthetic_fixture_only; no source qualification or effect",
         "not_executed",
-        "synthetic_fixture_only"
+        "synthetic_fixture_only",
+        "U-C007-019",
+        "FN-C007-01",
+        [
+          "F01:composite_target"
+        ]
       ],
       [
         "C007-F01-RECEIPT-COMPOSITE-SCOPE-FOREIGN",
@@ -519,7 +630,12 @@
         "別構成体revision/scope/要求/ownerの証拠を当該集合へ外挿しない。",
         "synthetic_fixture_only; no source qualification or effect",
         "not_executed",
-        "synthetic_fixture_only"
+        "synthetic_fixture_only",
+        "U-C007-020",
+        "FN-C007-01",
+        [
+          "F01:composite_target"
+        ]
       ],
       [
         "C007-F01-RECEIPT-COMPOSITE-REQUIREMENT_REVISION-FOREIGN",
@@ -533,7 +649,12 @@
         "別構成体revision/scope/要求/ownerの証拠を当該集合へ外挿しない。",
         "synthetic_fixture_only; no source qualification or effect",
         "not_executed",
-        "synthetic_fixture_only"
+        "synthetic_fixture_only",
+        "U-C007-021",
+        "FN-C007-01",
+        [
+          "F01:composite_target"
+        ]
       ],
       [
         "C007-F01-RECEIPT-COMPOSITE-CORRELATION-FOREIGN",
@@ -547,7 +668,12 @@
         "別構成体revision/scope/要求/ownerの証拠を当該集合へ外挿しない。",
         "synthetic_fixture_only; no source qualification or effect",
         "not_executed",
-        "synthetic_fixture_only"
+        "synthetic_fixture_only",
+        "U-C007-022",
+        "FN-C007-01",
+        [
+          "F01:composite_target"
+        ]
       ],
       [
         "C007-F01-RECEIPT-COMPOSITE-OWNER-FOREIGN",
@@ -561,7 +687,12 @@
         "別構成体revision/scope/要求/ownerの証拠を当該集合へ外挿しない。",
         "synthetic_fixture_only; no source qualification or effect",
         "not_executed",
-        "synthetic_fixture_only"
+        "synthetic_fixture_only",
+        "U-C007-023",
+        "FN-C007-01",
+        [
+          "F01:composite_target"
+        ]
       ],
       [
         "C007-F01-ORIGINAL-REGISTRATION_STATE-UNKNOWN",
@@ -575,7 +706,12 @@
         "内容同値でも元観測の未成立/失効/stale/部分/効果未観測は全体終端にならない。",
         "synthetic_fixture_only; no source qualification or effect",
         "not_executed",
-        "synthetic_fixture_only"
+        "synthetic_fixture_only",
+        "U-C007-024",
+        "FN-C007-01",
+        [
+          "F01:edge_conditions"
+        ]
       ],
       [
         "C007-F01-ORIGINAL-COMPATIBILITY_STATE-STALE",
@@ -589,7 +725,12 @@
         "内容同値でも元観測の未成立/失効/stale/部分/効果未観測は全体終端にならない。",
         "synthetic_fixture_only; no source qualification or effect",
         "not_executed",
-        "synthetic_fixture_only"
+        "synthetic_fixture_only",
+        "U-C007-025",
+        "FN-C007-01",
+        [
+          "F01:edge_conditions"
+        ]
       ],
       [
         "C007-F01-ORIGINAL-EXPIRY_STATE-EXPIRED",
@@ -603,7 +744,12 @@
         "内容同値でも元観測の未成立/失効/stale/部分/効果未観測は全体終端にならない。",
         "synthetic_fixture_only; no source qualification or effect",
         "not_executed",
-        "synthetic_fixture_only"
+        "synthetic_fixture_only",
+        "U-C007-026",
+        "FN-C007-01",
+        [
+          "F01:edge_conditions"
+        ]
       ],
       [
         "C007-F01-ORIGINAL-PERMISSION_STATE-REVOKED",
@@ -617,7 +763,12 @@
         "内容同値でも元観測の未成立/失効/stale/部分/効果未観測は全体終端にならない。",
         "synthetic_fixture_only; no source qualification or effect",
         "not_executed",
-        "synthetic_fixture_only"
+        "synthetic_fixture_only",
+        "U-C007-027",
+        "FN-C007-01",
+        [
+          "F01:edge_conditions"
+        ]
       ],
       [
         "C007-F01-ORIGINAL-RESULT_STATE-PARTIAL_SUCCESS",
@@ -631,7 +782,12 @@
         "内容同値でも元観測の未成立/失効/stale/部分/効果未観測は全体終端にならない。",
         "synthetic_fixture_only; no source qualification or effect",
         "not_executed",
-        "synthetic_fixture_only"
+        "synthetic_fixture_only",
+        "U-C007-028",
+        "FN-C007-01",
+        [
+          "F01:edge_conditions"
+        ]
       ],
       [
         "C007-F01-ORIGINAL-RECEIVER_EFFECT_STATE-NOT_OBSERVED",
@@ -645,7 +801,12 @@
         "内容同値でも元観測の未成立/失効/stale/部分/効果未観測は全体終端にならない。",
         "synthetic_fixture_only; no source qualification or effect",
         "not_executed",
-        "synthetic_fixture_only"
+        "synthetic_fixture_only",
+        "U-C007-029",
+        "FN-C007-01",
+        [
+          "F01:edge_conditions"
+        ]
       ],
       [
         "C007-F01-ORIGINAL-EDGE-DEFINITION-MISSING",
@@ -659,7 +820,14 @@
         "宣言済み必須辺が未定義なら欠落/順序/mappingを推測で補わない。",
         "synthetic_fixture_only; no source qualification or effect",
         "not_executed",
-        "synthetic_fixture_only"
+        "synthetic_fixture_only",
+        "U-C007-030",
+        "FN-C007-01",
+        [
+          "F01:required_edge_set",
+          "F01:operation_mapping",
+          "F01:unselected_receipts"
+        ]
       ],
       [
         "C007-F01-SUBMITTED-EDGE-ORDER-REVERSED",
@@ -673,7 +841,12 @@
         "元構成体ownerの順序を提出順序で置換しない。",
         "synthetic_fixture_only; no source qualification or effect",
         "not_executed",
-        "synthetic_fixture_only"
+        "synthetic_fixture_only",
+        "U-C007-031",
+        "FN-C007-01",
+        [
+          "F01:edge_definition"
+        ]
       ],
       [
         "C007-F01-ORIGINAL-MAPPING-SOURCE_OPERATION-UNKNOWN",
@@ -687,7 +860,13 @@
         "元operation mappingの不明/別内容を原/提出同値で成立にしない。",
         "synthetic_fixture_only; no source qualification or effect",
         "not_executed",
-        "synthetic_fixture_only"
+        "synthetic_fixture_only",
+        "U-C007-032",
+        "FN-C007-01",
+        [
+          "F01:edge_target",
+          "F01:operation_mapping"
+        ]
       ],
       [
         "C007-F01-ORIGINAL-MAPPING-SOURCE_OPERATION-FOREIGN",
@@ -701,7 +880,12 @@
         "元operation mappingの不明/別内容を原/提出同値で成立にしない。",
         "synthetic_fixture_only; no source qualification or effect",
         "not_executed",
-        "synthetic_fixture_only"
+        "synthetic_fixture_only",
+        "U-C007-033",
+        "FN-C007-01",
+        [
+          "F01:operation_mapping"
+        ]
       ],
       [
         "C007-F01-ORIGINAL-MAPPING-SOURCE_ENDPOINT-FOREIGN",
@@ -715,7 +899,12 @@
         "元operation mappingの不明/別内容を原/提出同値で成立にしない。",
         "synthetic_fixture_only; no source qualification or effect",
         "not_executed",
-        "synthetic_fixture_only"
+        "synthetic_fixture_only",
+        "U-C007-034",
+        "FN-C007-01",
+        [
+          "F01:operation_mapping"
+        ]
       ],
       [
         "C007-F01-SUBMITTED-RECEIPT-MISSING",
@@ -729,7 +918,13 @@
         "独立原receiptがあっても提出欠落は内容不足として保持。",
         "synthetic_fixture_only; no source qualification or effect",
         "not_executed",
-        "synthetic_fixture_only"
+        "synthetic_fixture_only",
+        "U-C007-035",
+        "FN-C007-01",
+        [
+          "F01:receipt_cardinality_submitted",
+          "F01:receipt_content"
+        ]
       ],
       [
         "C007-F01-SUBMITTED-RECEIPT-DUPLICATE",
@@ -743,7 +938,13 @@
         "同辺receipt重複を欠落と混同せず、元と提出集合の個数を保持する。",
         "synthetic_fixture_only; no source qualification or effect",
         "not_executed",
-        "synthetic_fixture_only"
+        "synthetic_fixture_only",
+        "U-C007-036",
+        "FN-C007-01",
+        [
+          "F01:receipt_cardinality_submitted",
+          "F01:receipt_content"
+        ]
       ],
       [
         "C007-F01-ONE_EDGE_GREEN_IS_COMPOSITE",
@@ -757,7 +958,17 @@
         "一辺green/欠落辺/未定mappingで構成完了claimを拒否。",
         "synthetic_fixture_only; no source qualification or effect",
         "not_executed",
-        "synthetic_fixture_only"
+        "synthetic_fixture_only",
+        "U-C007-037",
+        "FN-C007-01",
+        [
+          "F01:receipt_cardinality_original",
+          "F01:receipt_cardinality_submitted",
+          "F01:receipt_content",
+          "F01:edge_target",
+          "F01:composite_target",
+          "F01:edge_conditions"
+        ]
       ],
       [
         "C007-F01-MISSING_EDGE_COMPLETE",
@@ -771,7 +982,17 @@
         "一辺green/欠落辺/未定mappingで構成完了claimを拒否。",
         "synthetic_fixture_only; no source qualification or effect",
         "not_executed",
-        "synthetic_fixture_only"
+        "synthetic_fixture_only",
+        "U-C007-038",
+        "FN-C007-01",
+        [
+          "F01:receipt_cardinality_original",
+          "F01:receipt_cardinality_submitted",
+          "F01:receipt_content",
+          "F01:edge_target",
+          "F01:composite_target",
+          "F01:edge_conditions"
+        ]
       ],
       [
         "C007-F01-UNKNOWN_MAPPING_COMPLETE",
@@ -785,7 +1006,13 @@
         "一辺green/欠落辺/未定mappingで構成完了claimを拒否。",
         "synthetic_fixture_only; no source qualification or effect",
         "not_executed",
-        "synthetic_fixture_only"
+        "synthetic_fixture_only",
+        "U-C007-039",
+        "FN-C007-01",
+        [
+          "F01:edge_target",
+          "F01:operation_mapping"
+        ]
       ],
       [
         "C007-F02-STALE-MIDDLE-PREDECESSOR-RETAINED-NO-DOWNSTREAM",
@@ -799,7 +1026,10 @@
         "中間staleは先行成功/局所ownerと未完/後続未実行を保持し全体成功にしない。",
         "synthetic_fixture_only; no source qualification or effect",
         "not_executed",
-        "synthetic_fixture_only"
+        "synthetic_fixture_only",
+        "U-C007-040",
+        "FN-C007-02",
+        []
       ],
       [
         "C007-F02-MIDDLE-TIMEOUT",
@@ -813,7 +1043,10 @@
         "中間故障を個別保持。後続実行を捏造せず業務再計画は元ownerへ残す。",
         "synthetic_fixture_only; no source qualification or effect",
         "not_executed",
-        "synthetic_fixture_only"
+        "synthetic_fixture_only",
+        "U-C007-041",
+        "FN-C007-02",
+        []
       ],
       [
         "C007-F02-MIDDLE-DIGEST_CONFLICT",
@@ -827,7 +1060,10 @@
         "中間故障を個別保持。後続実行を捏造せず業務再計画は元ownerへ残す。",
         "synthetic_fixture_only; no source qualification or effect",
         "not_executed",
-        "synthetic_fixture_only"
+        "synthetic_fixture_only",
+        "U-C007-042",
+        "FN-C007-02",
+        []
       ],
       [
         "C007-F02-MIDDLE-EXPIRY",
@@ -841,7 +1077,10 @@
         "中間故障を個別保持。後続実行を捏造せず業務再計画は元ownerへ残す。",
         "synthetic_fixture_only; no source qualification or effect",
         "not_executed",
-        "synthetic_fixture_only"
+        "synthetic_fixture_only",
+        "U-C007-043",
+        "FN-C007-02",
+        []
       ],
       [
         "C007-F02-MIDDLE-CANCELLED",
@@ -855,7 +1094,10 @@
         "中間故障を個別保持。後続実行を捏造せず業務再計画は元ownerへ残す。",
         "synthetic_fixture_only; no source qualification or effect",
         "not_executed",
-        "synthetic_fixture_only"
+        "synthetic_fixture_only",
+        "U-C007-044",
+        "FN-C007-02",
+        []
       ],
       [
         "C007-F02-MIDDLE-PERMISSION_REVOKED",
@@ -869,7 +1111,10 @@
         "中間故障を個別保持。後続実行を捏造せず業務再計画は元ownerへ残す。",
         "synthetic_fixture_only; no source qualification or effect",
         "not_executed",
-        "synthetic_fixture_only"
+        "synthetic_fixture_only",
+        "U-C007-045",
+        "FN-C007-02",
+        []
       ],
       [
         "C007-F02-MIDDLE-PARTIAL_SUCCESS",
@@ -883,7 +1128,10 @@
         "中間故障を個別保持。後続実行を捏造せず業務再計画は元ownerへ残す。",
         "synthetic_fixture_only; no source qualification or effect",
         "not_executed",
-        "synthetic_fixture_only"
+        "synthetic_fixture_only",
+        "U-C007-046",
+        "FN-C007-02",
+        []
       ],
       [
         "C007-F02-MIDDLE-UNKNOWN",
@@ -897,7 +1145,10 @@
         "中間故障を個別保持。後続実行を捏造せず業務再計画は元ownerへ残す。",
         "synthetic_fixture_only; no source qualification or effect",
         "not_executed",
-        "synthetic_fixture_only"
+        "synthetic_fixture_only",
+        "U-C007-047",
+        "FN-C007-02",
+        []
       ],
       [
         "C007-F02-SUBMITTED-PRIOR_SUCCESSES-ERASED",
@@ -911,7 +1162,12 @@
         "失敗で先行成功/元未完を消去しない。",
         "synthetic_fixture_only; no source qualification or effect",
         "not_executed",
-        "synthetic_fixture_only"
+        "synthetic_fixture_only",
+        "U-C007-048",
+        "FN-C007-02",
+        [
+          "F02:prior_successes"
+        ]
       ],
       [
         "C007-F02-SUBMITTED-UNFINISHED-ERASED",
@@ -925,7 +1181,12 @@
         "失敗で先行成功/元未完を消去しない。",
         "synthetic_fixture_only; no source qualification or effect",
         "not_executed",
-        "synthetic_fixture_only"
+        "synthetic_fixture_only",
+        "U-C007-049",
+        "FN-C007-02",
+        [
+          "F02:unfinished"
+        ]
       ],
       [
         "C007-F02-SUBMITTED-DOWNSTREAM-ATTEMPT-INVENTED",
@@ -939,7 +1200,12 @@
         "未観測/未許可の後続を実行済みにしない。",
         "synthetic_fixture_only; no source qualification or effect",
         "not_executed",
-        "synthetic_fixture_only"
+        "synthetic_fixture_only",
+        "U-C007-050",
+        "FN-C007-02",
+        [
+          "F02:downstream_attempts"
+        ]
       ],
       [
         "C007-F02-ORIGINAL-UNAUTHORIZED-DOWNSTREAM-ATTEMPT",
@@ -953,7 +1219,12 @@
         "原/提出同値でも先行条件なし後続attemptを許容せず保留。",
         "synthetic_fixture_only; no source qualification or effect",
         "not_executed",
-        "synthetic_fixture_only"
+        "synthetic_fixture_only",
+        "U-C007-051",
+        "FN-C007-02",
+        [
+          "F02:unauthorized_attempt"
+        ]
       ],
       [
         "C007-F02-SUBMITTED-STOP-OWNER-FOREIGN",
@@ -967,7 +1238,12 @@
         "停止の発生辺/operation/attempt/owner/recoveryを変えない。",
         "synthetic_fixture_only; no source qualification or effect",
         "not_executed",
-        "synthetic_fixture_only"
+        "synthetic_fixture_only",
+        "U-C007-052",
+        "FN-C007-02",
+        [
+          "F02:stop_content"
+        ]
       ],
       [
         "C007-F02-SUBMITTED-STOP-RECOVERY_REF-FOREIGN",
@@ -981,7 +1257,12 @@
         "停止の発生辺/operation/attempt/owner/recoveryを変えない。",
         "synthetic_fixture_only; no source qualification or effect",
         "not_executed",
-        "synthetic_fixture_only"
+        "synthetic_fixture_only",
+        "U-C007-053",
+        "FN-C007-02",
+        [
+          "F02:stop_content"
+        ]
       ],
       [
         "C007-F02-SUBMITTED-STOP-EDGE_IDENTITY-FOREIGN",
@@ -995,7 +1276,12 @@
         "停止の発生辺/operation/attempt/owner/recoveryを変えない。",
         "synthetic_fixture_only; no source qualification or effect",
         "not_executed",
-        "synthetic_fixture_only"
+        "synthetic_fixture_only",
+        "U-C007-054",
+        "FN-C007-02",
+        [
+          "F02:stop_content"
+        ]
       ],
       [
         "C007-F02-SUBMITTED-STOP-OPERATION_IDENTITY-FOREIGN",
@@ -1009,7 +1295,12 @@
         "停止の発生辺/operation/attempt/owner/recoveryを変えない。",
         "synthetic_fixture_only; no source qualification or effect",
         "not_executed",
-        "synthetic_fixture_only"
+        "synthetic_fixture_only",
+        "U-C007-055",
+        "FN-C007-02",
+        [
+          "F02:stop_content"
+        ]
       ],
       [
         "C007-F02-SUBMITTED-STOP-ATTEMPT_IDENTITY-FOREIGN",
@@ -1023,7 +1314,12 @@
         "停止の発生辺/operation/attempt/owner/recoveryを変えない。",
         "synthetic_fixture_only; no source qualification or effect",
         "not_executed",
-        "synthetic_fixture_only"
+        "synthetic_fixture_only",
+        "U-C007-056",
+        "FN-C007-02",
+        [
+          "F02:stop_content"
+        ]
       ],
       [
         "C007-F02-HANDOFF-COMPOSITE-SCOPE-FOREIGN",
@@ -1037,7 +1333,12 @@
         "別構成scopeのhandoffで元未完を引継ぎ済みにしない。",
         "synthetic_fixture_only; no source qualification or effect",
         "not_executed",
-        "synthetic_fixture_only"
+        "synthetic_fixture_only",
+        "U-C007-057",
+        "FN-C007-02",
+        [
+          "F02:handoff_target"
+        ]
       ],
       [
         "C007-F02-ORIGINAL-STOP-OWNER-FOREIGN",
@@ -1051,7 +1352,12 @@
         "原/提出停止記録が同値でも元辺owner/operation/attempt/recoveryを照合する。",
         "synthetic_fixture_only; no source qualification or effect",
         "not_executed",
-        "synthetic_fixture_only"
+        "synthetic_fixture_only",
+        "U-C007-058",
+        "FN-C007-02",
+        [
+          "F02:stop_binding"
+        ]
       ],
       [
         "C007-F02-ORIGINAL-STOP-RECOVERY_REF-FOREIGN",
@@ -1065,7 +1371,12 @@
         "原/提出停止記録が同値でも元辺owner/operation/attempt/recoveryを照合する。",
         "synthetic_fixture_only; no source qualification or effect",
         "not_executed",
-        "synthetic_fixture_only"
+        "synthetic_fixture_only",
+        "U-C007-059",
+        "FN-C007-02",
+        [
+          "F02:stop_binding"
+        ]
       ],
       [
         "C007-F02-ORIGINAL-STOP-OPERATION_IDENTITY-FOREIGN",
@@ -1079,7 +1390,12 @@
         "原/提出停止記録が同値でも元辺owner/operation/attempt/recoveryを照合する。",
         "synthetic_fixture_only; no source qualification or effect",
         "not_executed",
-        "synthetic_fixture_only"
+        "synthetic_fixture_only",
+        "U-C007-060",
+        "FN-C007-02",
+        [
+          "F02:stop_binding"
+        ]
       ],
       [
         "C007-F02-ORIGINAL-STOP-ATTEMPT_IDENTITY-FOREIGN",
@@ -1093,7 +1409,12 @@
         "原/提出停止記録が同値でも元辺owner/operation/attempt/recoveryを照合する。",
         "synthetic_fixture_only; no source qualification or effect",
         "not_executed",
-        "synthetic_fixture_only"
+        "synthetic_fixture_only",
+        "U-C007-061",
+        "FN-C007-02",
+        [
+          "F02:stop_binding"
+        ]
       ],
       [
         "C007-F02-UNAUTHORIZED_DOWNSTREAM_RETRY",
@@ -1107,7 +1428,12 @@
         "後続無許可再送/別辺green相殺/全trace消去claimを拒否。",
         "synthetic_fixture_only; no source qualification or effect",
         "not_executed",
-        "synthetic_fixture_only"
+        "synthetic_fixture_only",
+        "U-C007-062",
+        "FN-C007-02",
+        [
+          "F02:downstream_attempts"
+        ]
       ],
       [
         "C007-F02-OTHER_EDGE_GREEN_OFFSETS",
@@ -1121,7 +1447,12 @@
         "後続無許可再送/別辺green相殺/全trace消去claimを拒否。",
         "synthetic_fixture_only; no source qualification or effect",
         "not_executed",
-        "synthetic_fixture_only"
+        "synthetic_fixture_only",
+        "U-C007-063",
+        "FN-C007-02",
+        [
+          "F02:stop_content"
+        ]
       ],
       [
         "C007-F02-ERASE_FULL_TRACE",
@@ -1135,7 +1466,13 @@
         "後続無許可再送/別辺green相殺/全trace消去claimを拒否。",
         "synthetic_fixture_only; no source qualification or effect",
         "not_executed",
-        "synthetic_fixture_only"
+        "synthetic_fixture_only",
+        "U-C007-064",
+        "FN-C007-02",
+        [
+          "F02:prior_successes",
+          "F02:unfinished"
+        ]
       ],
       [
         "C007-N01-EXACT-DECLARED-SCOPE-THREE-BOUNDARY-EVIDENCE",
@@ -1149,7 +1486,10 @@
         "要求revision/構成/選択connection集合/登録/operation/attempt/効果停止への同対象結合。実source資格は未成立。",
         "synthetic_fixture_only; no source qualification or effect",
         "not_executed",
-        "synthetic_fixture_only"
+        "synthetic_fixture_only",
+        "U-C007-065",
+        "FN-C007-03",
+        []
       ],
       [
         "C007-N01-EVIDENCE-TARGET-COMPOSITE_IDENTITY-FOREIGN",
@@ -1163,7 +1503,12 @@
         "未見版/別scope/connection集合/登録/operation/attempt/効果停止証拠を外挿しない。",
         "synthetic_fixture_only; no source qualification or effect",
         "not_executed",
-        "synthetic_fixture_only"
+        "synthetic_fixture_only",
+        "U-C007-066",
+        "FN-C007-03",
+        [
+          "N01:evidence_target"
+        ]
       ],
       [
         "C007-N01-EVIDENCE-TARGET-COMPOSITE_REVISION-FOREIGN",
@@ -1177,7 +1522,12 @@
         "未見版/別scope/connection集合/登録/operation/attempt/効果停止証拠を外挿しない。",
         "synthetic_fixture_only; no source qualification or effect",
         "not_executed",
-        "synthetic_fixture_only"
+        "synthetic_fixture_only",
+        "U-C007-067",
+        "FN-C007-03",
+        [
+          "N01:evidence_target"
+        ]
       ],
       [
         "C007-N01-EVIDENCE-TARGET-REQUIREMENT_REVISION-FOREIGN",
@@ -1191,7 +1541,12 @@
         "未見版/別scope/connection集合/登録/operation/attempt/効果停止証拠を外挿しない。",
         "synthetic_fixture_only; no source qualification or effect",
         "not_executed",
-        "synthetic_fixture_only"
+        "synthetic_fixture_only",
+        "U-C007-068",
+        "FN-C007-03",
+        [
+          "N01:evidence_target"
+        ]
       ],
       [
         "C007-N01-EVIDENCE-TARGET-SCOPE-FOREIGN",
@@ -1205,7 +1560,12 @@
         "未見版/別scope/connection集合/登録/operation/attempt/効果停止証拠を外挿しない。",
         "synthetic_fixture_only; no source qualification or effect",
         "not_executed",
-        "synthetic_fixture_only"
+        "synthetic_fixture_only",
+        "U-C007-069",
+        "FN-C007-03",
+        [
+          "N01:evidence_target"
+        ]
       ],
       [
         "C007-N01-EVIDENCE-TARGET-CONNECTION_EXACT_SET-FOREIGN",
@@ -1219,7 +1579,12 @@
         "未見版/別scope/connection集合/登録/operation/attempt/効果停止証拠を外挿しない。",
         "synthetic_fixture_only; no source qualification or effect",
         "not_executed",
-        "synthetic_fixture_only"
+        "synthetic_fixture_only",
+        "U-C007-070",
+        "FN-C007-03",
+        [
+          "N01:evidence_target"
+        ]
       ],
       [
         "C007-N01-EVIDENCE-TARGET-ENDPOINT_REGISTRATION_REVISIONS-FOREIGN",
@@ -1233,7 +1598,12 @@
         "未見版/別scope/connection集合/登録/operation/attempt/効果停止証拠を外挿しない。",
         "synthetic_fixture_only; no source qualification or effect",
         "not_executed",
-        "synthetic_fixture_only"
+        "synthetic_fixture_only",
+        "U-C007-071",
+        "FN-C007-03",
+        [
+          "N01:evidence_target"
+        ]
       ],
       [
         "C007-N01-EVIDENCE-TARGET-OPERATION_ATTEMPTS-FOREIGN",
@@ -1247,7 +1617,12 @@
         "未見版/別scope/connection集合/登録/operation/attempt/効果停止証拠を外挿しない。",
         "synthetic_fixture_only; no source qualification or effect",
         "not_executed",
-        "synthetic_fixture_only"
+        "synthetic_fixture_only",
+        "U-C007-072",
+        "FN-C007-03",
+        [
+          "N01:evidence_target"
+        ]
       ],
       [
         "C007-N01-EVIDENCE-TARGET-EFFECT_STOP_REF-FOREIGN",
@@ -1261,7 +1636,12 @@
         "未見版/別scope/connection集合/登録/operation/attempt/効果停止証拠を外挿しない。",
         "synthetic_fixture_only; no source qualification or effect",
         "not_executed",
-        "synthetic_fixture_only"
+        "synthetic_fixture_only",
+        "U-C007-073",
+        "FN-C007-03",
+        [
+          "N01:evidence_target"
+        ]
       ],
       [
         "C007-N01-ORIGINAL-BOUNDARY-EVIDENCE-MISSING",
@@ -1275,7 +1655,12 @@
         "必須証拠一件不足をfield存在や件数で埋めない。",
         "synthetic_fixture_only; no source qualification or effect",
         "not_executed",
-        "synthetic_fixture_only"
+        "synthetic_fixture_only",
+        "U-C007-074",
+        "FN-C007-03",
+        [
+          "N01:required_evidence_set"
+        ]
       ],
       [
         "C007-N01-ORIGINAL-BOUNDARY-NOT-EXECUTED",
@@ -1289,7 +1674,12 @@
         "未実行を実観測へ昇格させない。",
         "synthetic_fixture_only; no source qualification or effect",
         "not_executed",
-        "synthetic_fixture_only"
+        "synthetic_fixture_only",
+        "U-C007-075",
+        "FN-C007-03",
+        [
+          "N01:evidence_observation"
+        ]
       ],
       [
         "C007-N01-SUBMITTED-BOUNDARY-EVIDENCE-MISSING",
@@ -1303,7 +1693,12 @@
         "原必要証拠と提出集合の差を保持。",
         "synthetic_fixture_only; no source qualification or effect",
         "not_executed",
-        "synthetic_fixture_only"
+        "synthetic_fixture_only",
+        "U-C007-076",
+        "FN-C007-03",
+        [
+          "N01:evidence_cardinality_or_content"
+        ]
       ],
       [
         "C007-N01-ORIGINAL-EVIDENCE-EDGE-FOREIGN",
@@ -1317,7 +1712,12 @@
         "証拠identityの元辺対応を独立mapへ結び、集合targetだけで別辺証拠を同じ辺にしない。",
         "synthetic_fixture_only; no source qualification or effect",
         "not_executed",
-        "synthetic_fixture_only"
+        "synthetic_fixture_only",
+        "U-C007-077",
+        "FN-C007-03",
+        [
+          "N01:edge_binding"
+        ]
       ],
       [
         "C007-N01-FIELD_COUNT_COMPOSITE_COMPLETE",
@@ -1331,7 +1731,12 @@
         "件数/別scope/fixtureだけで全構成完了claimを拒否。",
         "synthetic_fixture_only; no source qualification or effect",
         "not_executed",
-        "synthetic_fixture_only"
+        "synthetic_fixture_only",
+        "U-C007-078",
+        "FN-C007-03",
+        [
+          "N01:required_evidence_set"
+        ]
       ],
       [
         "C007-N01-FOREIGN_SCOPE_SUCCESS_INHERITED",
@@ -1345,7 +1750,12 @@
         "件数/別scope/fixtureだけで全構成完了claimを拒否。",
         "synthetic_fixture_only; no source qualification or effect",
         "not_executed",
-        "synthetic_fixture_only"
+        "synthetic_fixture_only",
+        "U-C007-079",
+        "FN-C007-03",
+        [
+          "N01:evidence_target"
+        ]
       ],
       [
         "C007-N01-FIXTURE_ALL_CONNECTIONS_COMPLETE",
@@ -1359,7 +1769,10 @@
         "件数/別scope/fixtureだけで全構成完了claimを拒否。",
         "synthetic_fixture_only; no source qualification or effect",
         "not_executed",
-        "synthetic_fixture_only"
+        "synthetic_fixture_only",
+        "U-C007-080",
+        "FN-C007-03",
+        []
       ],
       [
         "C007-B01-TECHNICAL-TERMINAL-BUSINESS-NOT-ACCEPTED",
@@ -1373,7 +1786,10 @@
         "技術終端と元業務未受入/必要閉包/未選択交換を分ける。再送004は当該選択のみ。",
         "synthetic_fixture_only; no source qualification or effect",
         "not_executed",
-        "synthetic_fixture_only"
+        "synthetic_fixture_only",
+        "U-C007-081",
+        "FN-C007-04",
+        []
       ],
       [
         "C007-B01-SUBMITTED-BUSINESS-OWNER-OVERRIDE",
@@ -1387,7 +1803,12 @@
         "CONNECTが元業務判断/採否/受入を代筆しない。",
         "synthetic_fixture_only; no source qualification or effect",
         "not_executed",
-        "synthetic_fixture_only"
+        "synthetic_fixture_only",
+        "U-C007-082",
+        "FN-C007-04",
+        [
+          "B01:business_content"
+        ]
       ],
       [
         "C007-B01-SUBMITTED-BUSINESS-STATE-OVERRIDE",
@@ -1401,7 +1822,12 @@
         "CONNECTが元業務判断/採否/受入を代筆しない。",
         "synthetic_fixture_only; no source qualification or effect",
         "not_executed",
-        "synthetic_fixture_only"
+        "synthetic_fixture_only",
+        "U-C007-083",
+        "FN-C007-04",
+        [
+          "B01:business_content"
+        ]
       ],
       [
         "C007-B01-SUBMITTED-BUSINESS-REQUIREMENT_ADOPTION-OVERRIDE",
@@ -1415,7 +1841,12 @@
         "CONNECTが元業務判断/採否/受入を代筆しない。",
         "synthetic_fixture_only; no source qualification or effect",
         "not_executed",
-        "synthetic_fixture_only"
+        "synthetic_fixture_only",
+        "U-C007-084",
+        "FN-C007-04",
+        [
+          "B01:business_content"
+        ]
       ],
       [
         "C007-B01-SUBMITTED-BUSINESS-ACCEPTANCE_REF-OVERRIDE",
@@ -1429,7 +1860,12 @@
         "CONNECTが元業務判断/採否/受入を代筆しない。",
         "synthetic_fixture_only; no source qualification or effect",
         "not_executed",
-        "synthetic_fixture_only"
+        "synthetic_fixture_only",
+        "U-C007-085",
+        "FN-C007-04",
+        [
+          "B01:business_content"
+        ]
       ],
       [
         "C007-B01-UNSELECTED-REPLACEMENT-REQUIRED",
@@ -1443,7 +1879,12 @@
         "交換006は選択操作時に限る。",
         "synthetic_fixture_only; no source qualification or effect",
         "not_executed",
-        "synthetic_fixture_only"
+        "synthetic_fixture_only",
+        "U-C007-086",
+        "FN-C007-04",
+        [
+          "B01:dependency_content"
+        ]
       ],
       [
         "C007-B01-UNSELECTED-CONNECTION-ADDED",
@@ -1457,7 +1898,12 @@
         "未棚卸の全接続完成待ちを当該閉包へ追加しない。",
         "synthetic_fixture_only; no source qualification or effect",
         "not_executed",
-        "synthetic_fixture_only"
+        "synthetic_fixture_only",
+        "U-C007-087",
+        "FN-C007-04",
+        [
+          "B01:dependency_content"
+        ]
       ],
       [
         "C007-B01-SELECTED-SEC-CONTRACT-ERASED",
@@ -1471,7 +1917,12 @@
         "当該必要SEC境界を省いて成立にしない。",
         "synthetic_fixture_only; no source qualification or effect",
         "not_executed",
-        "synthetic_fixture_only"
+        "synthetic_fixture_only",
+        "U-C007-088",
+        "FN-C007-04",
+        [
+          "B01:dependency_content"
+        ]
       ],
       [
         "C007-B01-TECHNICAL_RECEIPT_IS_ACCEPTED",
@@ -1485,7 +1936,12 @@
         "技術receiptでAccepted/全未棚卸接続完成待ち/未選択交換必須claimを拒否。",
         "synthetic_fixture_only; no source qualification or effect",
         "not_executed",
-        "synthetic_fixture_only"
+        "synthetic_fixture_only",
+        "U-C007-089",
+        "FN-C007-04",
+        [
+          "B01:business_content"
+        ]
       ],
       [
         "C007-B01-WAIT_ALL_UNINVENTORIED_CONNECTIONS",
@@ -1499,7 +1955,12 @@
         "技術receiptでAccepted/全未棚卸接続完成待ち/未選択交換必須claimを拒否。",
         "synthetic_fixture_only; no source qualification or effect",
         "not_executed",
-        "synthetic_fixture_only"
+        "synthetic_fixture_only",
+        "U-C007-090",
+        "FN-C007-04",
+        [
+          "B01:dependency_content"
+        ]
       ],
       [
         "C007-B01-UNSELECTED_REPLACEMENT_REQUIRED",
@@ -1513,7 +1974,12 @@
         "技術receiptでAccepted/全未棚卸接続完成待ち/未選択交換必須claimを拒否。",
         "synthetic_fixture_only; no source qualification or effect",
         "not_executed",
-        "synthetic_fixture_only"
+        "synthetic_fixture_only",
+        "U-C007-091",
+        "FN-C007-04",
+        [
+          "B01:dependency_content"
+        ]
       ]
     ],
     "count": 91
@@ -4496,5 +4962,1718 @@
       "name": "compare_business_boundary",
       "l5_pointer": "/algorithms/3"
     }
-  ]
+  ],
+  "l5_unit_traceability": {
+    "source_pins": [
+      {
+        "path": "docs/helix-connect/L5-detail-design/composite-edge-terminal.json",
+        "revision": "5e596eed9e7b0910b132d4a859e9c76fc2e8eac9",
+        "sha256": "0f672d5d2a8abc906a0c61139359ac41f1725635b2d2a43aef8fa3b08e2f85cd"
+      },
+      {
+        "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
+        "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
+        "sha256": "313757d63a2afdbfa2bfd7d9ceff8db0f294131e393ac360fcf96b3938635f72"
+      }
+    ],
+    "l5_public_functions": [
+      {
+        "function_ref": "FN-C007-01",
+        "name": "compare_composite_terminal",
+        "source_ref": {
+          "path": "docs/helix-connect/L5-detail-design/composite-edge-terminal.json",
+          "revision": "5e596eed9e7b0910b132d4a859e9c76fc2e8eac9",
+          "pointer": "/pure_signatures/0"
+        },
+        "algorithm_ref": {
+          "path": "docs/helix-connect/L5-detail-design/composite-edge-terminal.json",
+          "revision": "5e596eed9e7b0910b132d4a859e9c76fc2e8eac9",
+          "pointer": "/algorithms/0"
+        },
+        "l9_obligation_ref": {
+          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
+          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
+          "pointer": "/verification_obligations/0"
+        },
+        "case_u_ids": [
+          "U-C007-001",
+          "U-C007-002",
+          "U-C007-003",
+          "U-C007-004",
+          "U-C007-005",
+          "U-C007-006",
+          "U-C007-007",
+          "U-C007-008",
+          "U-C007-009",
+          "U-C007-010",
+          "U-C007-011",
+          "U-C007-012",
+          "U-C007-013",
+          "U-C007-014",
+          "U-C007-015",
+          "U-C007-016",
+          "U-C007-017",
+          "U-C007-018",
+          "U-C007-019",
+          "U-C007-020",
+          "U-C007-021",
+          "U-C007-022",
+          "U-C007-023",
+          "U-C007-024",
+          "U-C007-025",
+          "U-C007-026",
+          "U-C007-027",
+          "U-C007-028",
+          "U-C007-029",
+          "U-C007-030",
+          "U-C007-031",
+          "U-C007-032",
+          "U-C007-033",
+          "U-C007-034",
+          "U-C007-035",
+          "U-C007-036",
+          "U-C007-037",
+          "U-C007-038",
+          "U-C007-039"
+        ]
+      },
+      {
+        "function_ref": "FN-C007-02",
+        "name": "compare_intermediate_stop",
+        "source_ref": {
+          "path": "docs/helix-connect/L5-detail-design/composite-edge-terminal.json",
+          "revision": "5e596eed9e7b0910b132d4a859e9c76fc2e8eac9",
+          "pointer": "/pure_signatures/1"
+        },
+        "algorithm_ref": {
+          "path": "docs/helix-connect/L5-detail-design/composite-edge-terminal.json",
+          "revision": "5e596eed9e7b0910b132d4a859e9c76fc2e8eac9",
+          "pointer": "/algorithms/1"
+        },
+        "l9_obligation_ref": {
+          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
+          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
+          "pointer": "/verification_obligations/1"
+        },
+        "case_u_ids": [
+          "U-C007-040",
+          "U-C007-041",
+          "U-C007-042",
+          "U-C007-043",
+          "U-C007-044",
+          "U-C007-045",
+          "U-C007-046",
+          "U-C007-047",
+          "U-C007-048",
+          "U-C007-049",
+          "U-C007-050",
+          "U-C007-051",
+          "U-C007-052",
+          "U-C007-053",
+          "U-C007-054",
+          "U-C007-055",
+          "U-C007-056",
+          "U-C007-057",
+          "U-C007-058",
+          "U-C007-059",
+          "U-C007-060",
+          "U-C007-061",
+          "U-C007-062",
+          "U-C007-063",
+          "U-C007-064"
+        ]
+      },
+      {
+        "function_ref": "FN-C007-03",
+        "name": "compare_evidence_scope",
+        "source_ref": {
+          "path": "docs/helix-connect/L5-detail-design/composite-edge-terminal.json",
+          "revision": "5e596eed9e7b0910b132d4a859e9c76fc2e8eac9",
+          "pointer": "/pure_signatures/2"
+        },
+        "algorithm_ref": {
+          "path": "docs/helix-connect/L5-detail-design/composite-edge-terminal.json",
+          "revision": "5e596eed9e7b0910b132d4a859e9c76fc2e8eac9",
+          "pointer": "/algorithms/2"
+        },
+        "l9_obligation_ref": {
+          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
+          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
+          "pointer": "/verification_obligations/2"
+        },
+        "case_u_ids": [
+          "U-C007-065",
+          "U-C007-066",
+          "U-C007-067",
+          "U-C007-068",
+          "U-C007-069",
+          "U-C007-070",
+          "U-C007-071",
+          "U-C007-072",
+          "U-C007-073",
+          "U-C007-074",
+          "U-C007-075",
+          "U-C007-076",
+          "U-C007-077",
+          "U-C007-078",
+          "U-C007-079",
+          "U-C007-080"
+        ]
+      },
+      {
+        "function_ref": "FN-C007-04",
+        "name": "compare_business_boundary",
+        "source_ref": {
+          "path": "docs/helix-connect/L5-detail-design/composite-edge-terminal.json",
+          "revision": "5e596eed9e7b0910b132d4a859e9c76fc2e8eac9",
+          "pointer": "/pure_signatures/3"
+        },
+        "algorithm_ref": {
+          "path": "docs/helix-connect/L5-detail-design/composite-edge-terminal.json",
+          "revision": "5e596eed9e7b0910b132d4a859e9c76fc2e8eac9",
+          "pointer": "/algorithms/3"
+        },
+        "l9_obligation_ref": {
+          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
+          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
+          "pointer": "/verification_obligations/3"
+        },
+        "case_u_ids": [
+          "U-C007-081",
+          "U-C007-082",
+          "U-C007-083",
+          "U-C007-084",
+          "U-C007-085",
+          "U-C007-086",
+          "U-C007-087",
+          "U-C007-088",
+          "U-C007-089",
+          "U-C007-090",
+          "U-C007-091"
+        ]
+      }
+    ],
+    "l5_failure_rules": [
+      {
+        "rule_id": "required_edge_set",
+        "function_ref": "FN-C007-01",
+        "source_ref": {
+          "path": "docs/helix-connect/L5-detail-design/composite-edge-terminal.json",
+          "revision": "5e596eed9e7b0910b132d4a859e9c76fc2e8eac9",
+          "pointer": "/contract_views/F01/failure_rules/0"
+        },
+        "case_u_ids": [
+          "U-C007-030"
+        ],
+        "coverage_status": "l9_oracle_witnessed"
+      },
+      {
+        "rule_id": "edge_definition",
+        "function_ref": "FN-C007-01",
+        "source_ref": {
+          "path": "docs/helix-connect/L5-detail-design/composite-edge-terminal.json",
+          "revision": "5e596eed9e7b0910b132d4a859e9c76fc2e8eac9",
+          "pointer": "/contract_views/F01/failure_rules/1"
+        },
+        "case_u_ids": [
+          "U-C007-031"
+        ],
+        "coverage_status": "l9_oracle_witnessed"
+      },
+      {
+        "rule_id": "receipt_cardinality_original",
+        "function_ref": "FN-C007-01",
+        "source_ref": {
+          "path": "docs/helix-connect/L5-detail-design/composite-edge-terminal.json",
+          "revision": "5e596eed9e7b0910b132d4a859e9c76fc2e8eac9",
+          "pointer": "/contract_views/F01/failure_rules/2"
+        },
+        "case_u_ids": [
+          "U-C007-002",
+          "U-C007-003",
+          "U-C007-004",
+          "U-C007-037",
+          "U-C007-038"
+        ],
+        "coverage_status": "l9_oracle_witnessed"
+      },
+      {
+        "rule_id": "receipt_cardinality_submitted",
+        "function_ref": "FN-C007-01",
+        "source_ref": {
+          "path": "docs/helix-connect/L5-detail-design/composite-edge-terminal.json",
+          "revision": "5e596eed9e7b0910b132d4a859e9c76fc2e8eac9",
+          "pointer": "/contract_views/F01/failure_rules/3"
+        },
+        "case_u_ids": [
+          "U-C007-002",
+          "U-C007-003",
+          "U-C007-004",
+          "U-C007-035",
+          "U-C007-036",
+          "U-C007-037",
+          "U-C007-038"
+        ],
+        "coverage_status": "l9_oracle_witnessed"
+      },
+      {
+        "rule_id": "receipt_content",
+        "function_ref": "FN-C007-01",
+        "source_ref": {
+          "path": "docs/helix-connect/L5-detail-design/composite-edge-terminal.json",
+          "revision": "5e596eed9e7b0910b132d4a859e9c76fc2e8eac9",
+          "pointer": "/contract_views/F01/failure_rules/4"
+        },
+        "case_u_ids": [
+          "U-C007-002",
+          "U-C007-003",
+          "U-C007-004",
+          "U-C007-035",
+          "U-C007-036",
+          "U-C007-037",
+          "U-C007-038"
+        ],
+        "coverage_status": "l9_oracle_witnessed"
+      },
+      {
+        "rule_id": "edge_target",
+        "function_ref": "FN-C007-01",
+        "source_ref": {
+          "path": "docs/helix-connect/L5-detail-design/composite-edge-terminal.json",
+          "revision": "5e596eed9e7b0910b132d4a859e9c76fc2e8eac9",
+          "pointer": "/contract_views/F01/failure_rules/5"
+        },
+        "case_u_ids": [
+          "U-C007-002",
+          "U-C007-003",
+          "U-C007-004",
+          "U-C007-005",
+          "U-C007-006",
+          "U-C007-007",
+          "U-C007-008",
+          "U-C007-009",
+          "U-C007-010",
+          "U-C007-011",
+          "U-C007-012",
+          "U-C007-013",
+          "U-C007-014",
+          "U-C007-015",
+          "U-C007-016",
+          "U-C007-017",
+          "U-C007-032",
+          "U-C007-037",
+          "U-C007-038",
+          "U-C007-039"
+        ],
+        "coverage_status": "l9_oracle_witnessed"
+      },
+      {
+        "rule_id": "composite_target",
+        "function_ref": "FN-C007-01",
+        "source_ref": {
+          "path": "docs/helix-connect/L5-detail-design/composite-edge-terminal.json",
+          "revision": "5e596eed9e7b0910b132d4a859e9c76fc2e8eac9",
+          "pointer": "/contract_views/F01/failure_rules/6"
+        },
+        "case_u_ids": [
+          "U-C007-002",
+          "U-C007-003",
+          "U-C007-004",
+          "U-C007-018",
+          "U-C007-019",
+          "U-C007-020",
+          "U-C007-021",
+          "U-C007-022",
+          "U-C007-023",
+          "U-C007-037",
+          "U-C007-038"
+        ],
+        "coverage_status": "l9_oracle_witnessed"
+      },
+      {
+        "rule_id": "edge_conditions",
+        "function_ref": "FN-C007-01",
+        "source_ref": {
+          "path": "docs/helix-connect/L5-detail-design/composite-edge-terminal.json",
+          "revision": "5e596eed9e7b0910b132d4a859e9c76fc2e8eac9",
+          "pointer": "/contract_views/F01/failure_rules/7"
+        },
+        "case_u_ids": [
+          "U-C007-002",
+          "U-C007-003",
+          "U-C007-004",
+          "U-C007-024",
+          "U-C007-025",
+          "U-C007-026",
+          "U-C007-027",
+          "U-C007-028",
+          "U-C007-029",
+          "U-C007-037",
+          "U-C007-038"
+        ],
+        "coverage_status": "l9_oracle_witnessed"
+      },
+      {
+        "rule_id": "operation_mapping",
+        "function_ref": "FN-C007-01",
+        "source_ref": {
+          "path": "docs/helix-connect/L5-detail-design/composite-edge-terminal.json",
+          "revision": "5e596eed9e7b0910b132d4a859e9c76fc2e8eac9",
+          "pointer": "/contract_views/F01/failure_rules/8"
+        },
+        "case_u_ids": [
+          "U-C007-030",
+          "U-C007-032",
+          "U-C007-033",
+          "U-C007-034",
+          "U-C007-039"
+        ],
+        "coverage_status": "l9_oracle_witnessed"
+      },
+      {
+        "rule_id": "unselected_receipts",
+        "function_ref": "FN-C007-01",
+        "source_ref": {
+          "path": "docs/helix-connect/L5-detail-design/composite-edge-terminal.json",
+          "revision": "5e596eed9e7b0910b132d4a859e9c76fc2e8eac9",
+          "pointer": "/contract_views/F01/failure_rules/9"
+        },
+        "case_u_ids": [
+          "U-C007-030"
+        ],
+        "coverage_status": "l9_oracle_witnessed"
+      },
+      {
+        "rule_id": "stop_binding",
+        "function_ref": "FN-C007-02",
+        "source_ref": {
+          "path": "docs/helix-connect/L5-detail-design/composite-edge-terminal.json",
+          "revision": "5e596eed9e7b0910b132d4a859e9c76fc2e8eac9",
+          "pointer": "/contract_views/F02/failure_rules/0"
+        },
+        "case_u_ids": [
+          "U-C007-058",
+          "U-C007-059",
+          "U-C007-060",
+          "U-C007-061"
+        ],
+        "coverage_status": "l9_oracle_witnessed"
+      },
+      {
+        "rule_id": "prior_successes",
+        "function_ref": "FN-C007-02",
+        "source_ref": {
+          "path": "docs/helix-connect/L5-detail-design/composite-edge-terminal.json",
+          "revision": "5e596eed9e7b0910b132d4a859e9c76fc2e8eac9",
+          "pointer": "/contract_views/F02/failure_rules/1"
+        },
+        "case_u_ids": [
+          "U-C007-048",
+          "U-C007-064"
+        ],
+        "coverage_status": "l9_oracle_witnessed"
+      },
+      {
+        "rule_id": "unfinished",
+        "function_ref": "FN-C007-02",
+        "source_ref": {
+          "path": "docs/helix-connect/L5-detail-design/composite-edge-terminal.json",
+          "revision": "5e596eed9e7b0910b132d4a859e9c76fc2e8eac9",
+          "pointer": "/contract_views/F02/failure_rules/2"
+        },
+        "case_u_ids": [
+          "U-C007-049",
+          "U-C007-064"
+        ],
+        "coverage_status": "l9_oracle_witnessed"
+      },
+      {
+        "rule_id": "downstream_attempts",
+        "function_ref": "FN-C007-02",
+        "source_ref": {
+          "path": "docs/helix-connect/L5-detail-design/composite-edge-terminal.json",
+          "revision": "5e596eed9e7b0910b132d4a859e9c76fc2e8eac9",
+          "pointer": "/contract_views/F02/failure_rules/3"
+        },
+        "case_u_ids": [
+          "U-C007-050",
+          "U-C007-062"
+        ],
+        "coverage_status": "l9_oracle_witnessed"
+      },
+      {
+        "rule_id": "handoff_target",
+        "function_ref": "FN-C007-02",
+        "source_ref": {
+          "path": "docs/helix-connect/L5-detail-design/composite-edge-terminal.json",
+          "revision": "5e596eed9e7b0910b132d4a859e9c76fc2e8eac9",
+          "pointer": "/contract_views/F02/failure_rules/4"
+        },
+        "case_u_ids": [
+          "U-C007-057"
+        ],
+        "coverage_status": "l9_oracle_witnessed"
+      },
+      {
+        "rule_id": "unauthorized_attempt",
+        "function_ref": "FN-C007-02",
+        "source_ref": {
+          "path": "docs/helix-connect/L5-detail-design/composite-edge-terminal.json",
+          "revision": "5e596eed9e7b0910b132d4a859e9c76fc2e8eac9",
+          "pointer": "/contract_views/F02/failure_rules/5"
+        },
+        "case_u_ids": [
+          "U-C007-051"
+        ],
+        "coverage_status": "l9_oracle_witnessed"
+      },
+      {
+        "rule_id": "stop_content",
+        "function_ref": "FN-C007-02",
+        "source_ref": {
+          "path": "docs/helix-connect/L5-detail-design/composite-edge-terminal.json",
+          "revision": "5e596eed9e7b0910b132d4a859e9c76fc2e8eac9",
+          "pointer": "/contract_views/F02/failure_rules/6"
+        },
+        "case_u_ids": [
+          "U-C007-052",
+          "U-C007-053",
+          "U-C007-054",
+          "U-C007-055",
+          "U-C007-056",
+          "U-C007-063"
+        ],
+        "coverage_status": "l9_oracle_witnessed"
+      },
+      {
+        "rule_id": "stop_position",
+        "function_ref": "FN-C007-02",
+        "source_ref": {
+          "path": "docs/helix-connect/L5-detail-design/composite-edge-terminal.json",
+          "revision": "5e596eed9e7b0910b132d4a859e9c76fc2e8eac9",
+          "pointer": "/contract_views/F02/failure_rules/7"
+        },
+        "case_u_ids": [],
+        "coverage_status": "no_l9_oracle_witness; derived_needed_u_id",
+        "needed_u_id": "U-C007-RULE-F02-08",
+        "unverified_reason": "No L9 concrete case failure_reasons area was found for this rule; a dedicated unit oracle case is still needed."
+      },
+      {
+        "rule_id": "required_evidence_set",
+        "function_ref": "FN-C007-03",
+        "source_ref": {
+          "path": "docs/helix-connect/L5-detail-design/composite-edge-terminal.json",
+          "revision": "5e596eed9e7b0910b132d4a859e9c76fc2e8eac9",
+          "pointer": "/contract_views/N01/failure_rules/0"
+        },
+        "case_u_ids": [
+          "U-C007-074",
+          "U-C007-078"
+        ],
+        "coverage_status": "l9_oracle_witnessed"
+      },
+      {
+        "rule_id": "evidence_target",
+        "function_ref": "FN-C007-03",
+        "source_ref": {
+          "path": "docs/helix-connect/L5-detail-design/composite-edge-terminal.json",
+          "revision": "5e596eed9e7b0910b132d4a859e9c76fc2e8eac9",
+          "pointer": "/contract_views/N01/failure_rules/1"
+        },
+        "case_u_ids": [
+          "U-C007-066",
+          "U-C007-067",
+          "U-C007-068",
+          "U-C007-069",
+          "U-C007-070",
+          "U-C007-071",
+          "U-C007-072",
+          "U-C007-073",
+          "U-C007-079"
+        ],
+        "coverage_status": "l9_oracle_witnessed"
+      },
+      {
+        "rule_id": "evidence_cardinality_or_content",
+        "function_ref": "FN-C007-03",
+        "source_ref": {
+          "path": "docs/helix-connect/L5-detail-design/composite-edge-terminal.json",
+          "revision": "5e596eed9e7b0910b132d4a859e9c76fc2e8eac9",
+          "pointer": "/contract_views/N01/failure_rules/2"
+        },
+        "case_u_ids": [
+          "U-C007-076"
+        ],
+        "coverage_status": "l9_oracle_witnessed"
+      },
+      {
+        "rule_id": "evidence_observation",
+        "function_ref": "FN-C007-03",
+        "source_ref": {
+          "path": "docs/helix-connect/L5-detail-design/composite-edge-terminal.json",
+          "revision": "5e596eed9e7b0910b132d4a859e9c76fc2e8eac9",
+          "pointer": "/contract_views/N01/failure_rules/3"
+        },
+        "case_u_ids": [
+          "U-C007-075"
+        ],
+        "coverage_status": "l9_oracle_witnessed"
+      },
+      {
+        "rule_id": "edge_binding",
+        "function_ref": "FN-C007-03",
+        "source_ref": {
+          "path": "docs/helix-connect/L5-detail-design/composite-edge-terminal.json",
+          "revision": "5e596eed9e7b0910b132d4a859e9c76fc2e8eac9",
+          "pointer": "/contract_views/N01/failure_rules/4"
+        },
+        "case_u_ids": [
+          "U-C007-077"
+        ],
+        "coverage_status": "l9_oracle_witnessed"
+      },
+      {
+        "rule_id": "technical_content",
+        "function_ref": "FN-C007-04",
+        "source_ref": {
+          "path": "docs/helix-connect/L5-detail-design/composite-edge-terminal.json",
+          "revision": "5e596eed9e7b0910b132d4a859e9c76fc2e8eac9",
+          "pointer": "/contract_views/B01/failure_rules/0"
+        },
+        "case_u_ids": [],
+        "coverage_status": "no_l9_oracle_witness; derived_needed_u_id",
+        "needed_u_id": "U-C007-RULE-B01-01",
+        "unverified_reason": "No L9 concrete case failure_reasons area was found for this rule; a dedicated unit oracle case is still needed."
+      },
+      {
+        "rule_id": "business_content",
+        "function_ref": "FN-C007-04",
+        "source_ref": {
+          "path": "docs/helix-connect/L5-detail-design/composite-edge-terminal.json",
+          "revision": "5e596eed9e7b0910b132d4a859e9c76fc2e8eac9",
+          "pointer": "/contract_views/B01/failure_rules/1"
+        },
+        "case_u_ids": [
+          "U-C007-082",
+          "U-C007-083",
+          "U-C007-084",
+          "U-C007-085",
+          "U-C007-089"
+        ],
+        "coverage_status": "l9_oracle_witnessed"
+      },
+      {
+        "rule_id": "dependency_content",
+        "function_ref": "FN-C007-04",
+        "source_ref": {
+          "path": "docs/helix-connect/L5-detail-design/composite-edge-terminal.json",
+          "revision": "5e596eed9e7b0910b132d4a859e9c76fc2e8eac9",
+          "pointer": "/contract_views/B01/failure_rules/2"
+        },
+        "case_u_ids": [
+          "U-C007-086",
+          "U-C007-087",
+          "U-C007-088",
+          "U-C007-090",
+          "U-C007-091"
+        ],
+        "coverage_status": "l9_oracle_witnessed"
+      }
+    ],
+    "l9_basic_branches": [
+      {
+        "source_case_id": "C007-F01-FOUR-MECHANISMS-THREE-DISTINCT-EDGES",
+        "u_id": "U-C007-001",
+        "function_ref": "FN-C007-01",
+        "source_ref": {
+          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
+          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
+          "pointer": "/verification_obligations/0/concrete_cases/0"
+        },
+        "execution_state": "not_executed",
+        "fixture_only": true
+      },
+      {
+        "source_case_id": "C007-F01-ORIGINAL-RECEIPT-EDGE-1-MISSING",
+        "u_id": "U-C007-002",
+        "function_ref": "FN-C007-01",
+        "source_ref": {
+          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
+          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
+          "pointer": "/verification_obligations/0/concrete_cases/1"
+        },
+        "execution_state": "not_executed",
+        "fixture_only": true
+      },
+      {
+        "source_case_id": "C007-F01-ORIGINAL-RECEIPT-EDGE-2-MISSING",
+        "u_id": "U-C007-003",
+        "function_ref": "FN-C007-01",
+        "source_ref": {
+          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
+          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
+          "pointer": "/verification_obligations/0/concrete_cases/2"
+        },
+        "execution_state": "not_executed",
+        "fixture_only": true
+      },
+      {
+        "source_case_id": "C007-F01-ORIGINAL-RECEIPT-EDGE-3-MISSING",
+        "u_id": "U-C007-004",
+        "function_ref": "FN-C007-01",
+        "source_ref": {
+          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
+          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
+          "pointer": "/verification_obligations/0/concrete_cases/3"
+        },
+        "execution_state": "not_executed",
+        "fixture_only": true
+      },
+      {
+        "source_case_id": "C007-F01-RECEIPT-TARGET-CONNECTION_IDENTITY-FOREIGN",
+        "u_id": "U-C007-005",
+        "function_ref": "FN-C007-01",
+        "source_ref": {
+          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
+          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
+          "pointer": "/verification_obligations/0/concrete_cases/4"
+        },
+        "execution_state": "not_executed",
+        "fixture_only": true
+      },
+      {
+        "source_case_id": "C007-F01-RECEIPT-TARGET-CONTRACT_REVISION-FOREIGN",
+        "u_id": "U-C007-006",
+        "function_ref": "FN-C007-01",
+        "source_ref": {
+          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
+          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
+          "pointer": "/verification_obligations/0/concrete_cases/5"
+        },
+        "execution_state": "not_executed",
+        "fixture_only": true
+      },
+      {
+        "source_case_id": "C007-F01-RECEIPT-TARGET-ABILITY_REF-FOREIGN",
+        "u_id": "U-C007-007",
+        "function_ref": "FN-C007-01",
+        "source_ref": {
+          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
+          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
+          "pointer": "/verification_obligations/0/concrete_cases/6"
+        },
+        "execution_state": "not_executed",
+        "fixture_only": true
+      },
+      {
+        "source_case_id": "C007-F01-RECEIPT-TARGET-SCOPE-FOREIGN",
+        "u_id": "U-C007-008",
+        "function_ref": "FN-C007-01",
+        "source_ref": {
+          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
+          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
+          "pointer": "/verification_obligations/0/concrete_cases/7"
+        },
+        "execution_state": "not_executed",
+        "fixture_only": true
+      },
+      {
+        "source_case_id": "C007-F01-RECEIPT-TARGET-OPERATION_IDENTITY-FOREIGN",
+        "u_id": "U-C007-009",
+        "function_ref": "FN-C007-01",
+        "source_ref": {
+          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
+          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
+          "pointer": "/verification_obligations/0/concrete_cases/8"
+        },
+        "execution_state": "not_executed",
+        "fixture_only": true
+      },
+      {
+        "source_case_id": "C007-F01-RECEIPT-TARGET-ATTEMPT_IDENTITY-FOREIGN",
+        "u_id": "U-C007-010",
+        "function_ref": "FN-C007-01",
+        "source_ref": {
+          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
+          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
+          "pointer": "/verification_obligations/0/concrete_cases/9"
+        },
+        "execution_state": "not_executed",
+        "fixture_only": true
+      },
+      {
+        "source_case_id": "C007-F01-RECEIPT-TARGET-CORRELATION-FOREIGN",
+        "u_id": "U-C007-011",
+        "function_ref": "FN-C007-01",
+        "source_ref": {
+          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
+          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
+          "pointer": "/verification_obligations/0/concrete_cases/10"
+        },
+        "execution_state": "not_executed",
+        "fixture_only": true
+      },
+      {
+        "source_case_id": "C007-F01-RECEIPT-TARGET-EXPIRY_REF-FOREIGN",
+        "u_id": "U-C007-012",
+        "function_ref": "FN-C007-01",
+        "source_ref": {
+          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
+          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
+          "pointer": "/verification_obligations/0/concrete_cases/11"
+        },
+        "execution_state": "not_executed",
+        "fixture_only": true
+      },
+      {
+        "source_case_id": "C007-F01-RECEIPT-TARGET-PERMISSION_REF-FOREIGN",
+        "u_id": "U-C007-013",
+        "function_ref": "FN-C007-01",
+        "source_ref": {
+          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
+          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
+          "pointer": "/verification_obligations/0/concrete_cases/12"
+        },
+        "execution_state": "not_executed",
+        "fixture_only": true
+      },
+      {
+        "source_case_id": "C007-F01-RECEIPT-TARGET-IDEMPOTENCY-FOREIGN",
+        "u_id": "U-C007-014",
+        "function_ref": "FN-C007-01",
+        "source_ref": {
+          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
+          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
+          "pointer": "/verification_obligations/0/concrete_cases/13"
+        },
+        "execution_state": "not_executed",
+        "fixture_only": true
+      },
+      {
+        "source_case_id": "C007-F01-RECEIPT-TARGET-CONTENT_DIGEST-FOREIGN",
+        "u_id": "U-C007-015",
+        "function_ref": "FN-C007-01",
+        "source_ref": {
+          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
+          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
+          "pointer": "/verification_obligations/0/concrete_cases/14"
+        },
+        "execution_state": "not_executed",
+        "fixture_only": true
+      },
+      {
+        "source_case_id": "C007-F01-RECEIPT-TARGET-REGISTRATION_REVISION-FOREIGN",
+        "u_id": "U-C007-016",
+        "function_ref": "FN-C007-01",
+        "source_ref": {
+          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
+          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
+          "pointer": "/verification_obligations/0/concrete_cases/15"
+        },
+        "execution_state": "not_executed",
+        "fixture_only": true
+      },
+      {
+        "source_case_id": "C007-F01-RECEIPT-TARGET-RECOVERY_REF-FOREIGN",
+        "u_id": "U-C007-017",
+        "function_ref": "FN-C007-01",
+        "source_ref": {
+          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
+          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
+          "pointer": "/verification_obligations/0/concrete_cases/16"
+        },
+        "execution_state": "not_executed",
+        "fixture_only": true
+      },
+      {
+        "source_case_id": "C007-F01-RECEIPT-COMPOSITE-IDENTITY-FOREIGN",
+        "u_id": "U-C007-018",
+        "function_ref": "FN-C007-01",
+        "source_ref": {
+          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
+          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
+          "pointer": "/verification_obligations/0/concrete_cases/17"
+        },
+        "execution_state": "not_executed",
+        "fixture_only": true
+      },
+      {
+        "source_case_id": "C007-F01-RECEIPT-COMPOSITE-REVISION-FOREIGN",
+        "u_id": "U-C007-019",
+        "function_ref": "FN-C007-01",
+        "source_ref": {
+          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
+          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
+          "pointer": "/verification_obligations/0/concrete_cases/18"
+        },
+        "execution_state": "not_executed",
+        "fixture_only": true
+      },
+      {
+        "source_case_id": "C007-F01-RECEIPT-COMPOSITE-SCOPE-FOREIGN",
+        "u_id": "U-C007-020",
+        "function_ref": "FN-C007-01",
+        "source_ref": {
+          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
+          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
+          "pointer": "/verification_obligations/0/concrete_cases/19"
+        },
+        "execution_state": "not_executed",
+        "fixture_only": true
+      },
+      {
+        "source_case_id": "C007-F01-RECEIPT-COMPOSITE-REQUIREMENT_REVISION-FOREIGN",
+        "u_id": "U-C007-021",
+        "function_ref": "FN-C007-01",
+        "source_ref": {
+          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
+          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
+          "pointer": "/verification_obligations/0/concrete_cases/20"
+        },
+        "execution_state": "not_executed",
+        "fixture_only": true
+      },
+      {
+        "source_case_id": "C007-F01-RECEIPT-COMPOSITE-CORRELATION-FOREIGN",
+        "u_id": "U-C007-022",
+        "function_ref": "FN-C007-01",
+        "source_ref": {
+          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
+          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
+          "pointer": "/verification_obligations/0/concrete_cases/21"
+        },
+        "execution_state": "not_executed",
+        "fixture_only": true
+      },
+      {
+        "source_case_id": "C007-F01-RECEIPT-COMPOSITE-OWNER-FOREIGN",
+        "u_id": "U-C007-023",
+        "function_ref": "FN-C007-01",
+        "source_ref": {
+          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
+          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
+          "pointer": "/verification_obligations/0/concrete_cases/22"
+        },
+        "execution_state": "not_executed",
+        "fixture_only": true
+      },
+      {
+        "source_case_id": "C007-F01-ORIGINAL-REGISTRATION_STATE-UNKNOWN",
+        "u_id": "U-C007-024",
+        "function_ref": "FN-C007-01",
+        "source_ref": {
+          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
+          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
+          "pointer": "/verification_obligations/0/concrete_cases/23"
+        },
+        "execution_state": "not_executed",
+        "fixture_only": true
+      },
+      {
+        "source_case_id": "C007-F01-ORIGINAL-COMPATIBILITY_STATE-STALE",
+        "u_id": "U-C007-025",
+        "function_ref": "FN-C007-01",
+        "source_ref": {
+          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
+          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
+          "pointer": "/verification_obligations/0/concrete_cases/24"
+        },
+        "execution_state": "not_executed",
+        "fixture_only": true
+      },
+      {
+        "source_case_id": "C007-F01-ORIGINAL-EXPIRY_STATE-EXPIRED",
+        "u_id": "U-C007-026",
+        "function_ref": "FN-C007-01",
+        "source_ref": {
+          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
+          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
+          "pointer": "/verification_obligations/0/concrete_cases/25"
+        },
+        "execution_state": "not_executed",
+        "fixture_only": true
+      },
+      {
+        "source_case_id": "C007-F01-ORIGINAL-PERMISSION_STATE-REVOKED",
+        "u_id": "U-C007-027",
+        "function_ref": "FN-C007-01",
+        "source_ref": {
+          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
+          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
+          "pointer": "/verification_obligations/0/concrete_cases/26"
+        },
+        "execution_state": "not_executed",
+        "fixture_only": true
+      },
+      {
+        "source_case_id": "C007-F01-ORIGINAL-RESULT_STATE-PARTIAL_SUCCESS",
+        "u_id": "U-C007-028",
+        "function_ref": "FN-C007-01",
+        "source_ref": {
+          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
+          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
+          "pointer": "/verification_obligations/0/concrete_cases/27"
+        },
+        "execution_state": "not_executed",
+        "fixture_only": true
+      },
+      {
+        "source_case_id": "C007-F01-ORIGINAL-RECEIVER_EFFECT_STATE-NOT_OBSERVED",
+        "u_id": "U-C007-029",
+        "function_ref": "FN-C007-01",
+        "source_ref": {
+          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
+          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
+          "pointer": "/verification_obligations/0/concrete_cases/28"
+        },
+        "execution_state": "not_executed",
+        "fixture_only": true
+      },
+      {
+        "source_case_id": "C007-F01-ORIGINAL-EDGE-DEFINITION-MISSING",
+        "u_id": "U-C007-030",
+        "function_ref": "FN-C007-01",
+        "source_ref": {
+          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
+          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
+          "pointer": "/verification_obligations/0/concrete_cases/29"
+        },
+        "execution_state": "not_executed",
+        "fixture_only": true
+      },
+      {
+        "source_case_id": "C007-F01-SUBMITTED-EDGE-ORDER-REVERSED",
+        "u_id": "U-C007-031",
+        "function_ref": "FN-C007-01",
+        "source_ref": {
+          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
+          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
+          "pointer": "/verification_obligations/0/concrete_cases/30"
+        },
+        "execution_state": "not_executed",
+        "fixture_only": true
+      },
+      {
+        "source_case_id": "C007-F01-ORIGINAL-MAPPING-SOURCE_OPERATION-UNKNOWN",
+        "u_id": "U-C007-032",
+        "function_ref": "FN-C007-01",
+        "source_ref": {
+          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
+          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
+          "pointer": "/verification_obligations/0/concrete_cases/31"
+        },
+        "execution_state": "not_executed",
+        "fixture_only": true
+      },
+      {
+        "source_case_id": "C007-F01-ORIGINAL-MAPPING-SOURCE_OPERATION-FOREIGN",
+        "u_id": "U-C007-033",
+        "function_ref": "FN-C007-01",
+        "source_ref": {
+          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
+          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
+          "pointer": "/verification_obligations/0/concrete_cases/32"
+        },
+        "execution_state": "not_executed",
+        "fixture_only": true
+      },
+      {
+        "source_case_id": "C007-F01-ORIGINAL-MAPPING-SOURCE_ENDPOINT-FOREIGN",
+        "u_id": "U-C007-034",
+        "function_ref": "FN-C007-01",
+        "source_ref": {
+          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
+          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
+          "pointer": "/verification_obligations/0/concrete_cases/33"
+        },
+        "execution_state": "not_executed",
+        "fixture_only": true
+      },
+      {
+        "source_case_id": "C007-F01-SUBMITTED-RECEIPT-MISSING",
+        "u_id": "U-C007-035",
+        "function_ref": "FN-C007-01",
+        "source_ref": {
+          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
+          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
+          "pointer": "/verification_obligations/0/concrete_cases/34"
+        },
+        "execution_state": "not_executed",
+        "fixture_only": true
+      },
+      {
+        "source_case_id": "C007-F01-SUBMITTED-RECEIPT-DUPLICATE",
+        "u_id": "U-C007-036",
+        "function_ref": "FN-C007-01",
+        "source_ref": {
+          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
+          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
+          "pointer": "/verification_obligations/0/concrete_cases/35"
+        },
+        "execution_state": "not_executed",
+        "fixture_only": true
+      },
+      {
+        "source_case_id": "C007-F01-ONE_EDGE_GREEN_IS_COMPOSITE",
+        "u_id": "U-C007-037",
+        "function_ref": "FN-C007-01",
+        "source_ref": {
+          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
+          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
+          "pointer": "/verification_obligations/0/concrete_cases/36"
+        },
+        "execution_state": "not_executed",
+        "fixture_only": true
+      },
+      {
+        "source_case_id": "C007-F01-MISSING_EDGE_COMPLETE",
+        "u_id": "U-C007-038",
+        "function_ref": "FN-C007-01",
+        "source_ref": {
+          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
+          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
+          "pointer": "/verification_obligations/0/concrete_cases/37"
+        },
+        "execution_state": "not_executed",
+        "fixture_only": true
+      },
+      {
+        "source_case_id": "C007-F01-UNKNOWN_MAPPING_COMPLETE",
+        "u_id": "U-C007-039",
+        "function_ref": "FN-C007-01",
+        "source_ref": {
+          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
+          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
+          "pointer": "/verification_obligations/0/concrete_cases/38"
+        },
+        "execution_state": "not_executed",
+        "fixture_only": true
+      },
+      {
+        "source_case_id": "C007-F02-STALE-MIDDLE-PREDECESSOR-RETAINED-NO-DOWNSTREAM",
+        "u_id": "U-C007-040",
+        "function_ref": "FN-C007-02",
+        "source_ref": {
+          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
+          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
+          "pointer": "/verification_obligations/1/concrete_cases/0"
+        },
+        "execution_state": "not_executed",
+        "fixture_only": true
+      },
+      {
+        "source_case_id": "C007-F02-MIDDLE-TIMEOUT",
+        "u_id": "U-C007-041",
+        "function_ref": "FN-C007-02",
+        "source_ref": {
+          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
+          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
+          "pointer": "/verification_obligations/1/concrete_cases/1"
+        },
+        "execution_state": "not_executed",
+        "fixture_only": true
+      },
+      {
+        "source_case_id": "C007-F02-MIDDLE-DIGEST_CONFLICT",
+        "u_id": "U-C007-042",
+        "function_ref": "FN-C007-02",
+        "source_ref": {
+          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
+          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
+          "pointer": "/verification_obligations/1/concrete_cases/2"
+        },
+        "execution_state": "not_executed",
+        "fixture_only": true
+      },
+      {
+        "source_case_id": "C007-F02-MIDDLE-EXPIRY",
+        "u_id": "U-C007-043",
+        "function_ref": "FN-C007-02",
+        "source_ref": {
+          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
+          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
+          "pointer": "/verification_obligations/1/concrete_cases/3"
+        },
+        "execution_state": "not_executed",
+        "fixture_only": true
+      },
+      {
+        "source_case_id": "C007-F02-MIDDLE-CANCELLED",
+        "u_id": "U-C007-044",
+        "function_ref": "FN-C007-02",
+        "source_ref": {
+          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
+          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
+          "pointer": "/verification_obligations/1/concrete_cases/4"
+        },
+        "execution_state": "not_executed",
+        "fixture_only": true
+      },
+      {
+        "source_case_id": "C007-F02-MIDDLE-PERMISSION_REVOKED",
+        "u_id": "U-C007-045",
+        "function_ref": "FN-C007-02",
+        "source_ref": {
+          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
+          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
+          "pointer": "/verification_obligations/1/concrete_cases/5"
+        },
+        "execution_state": "not_executed",
+        "fixture_only": true
+      },
+      {
+        "source_case_id": "C007-F02-MIDDLE-PARTIAL_SUCCESS",
+        "u_id": "U-C007-046",
+        "function_ref": "FN-C007-02",
+        "source_ref": {
+          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
+          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
+          "pointer": "/verification_obligations/1/concrete_cases/6"
+        },
+        "execution_state": "not_executed",
+        "fixture_only": true
+      },
+      {
+        "source_case_id": "C007-F02-MIDDLE-UNKNOWN",
+        "u_id": "U-C007-047",
+        "function_ref": "FN-C007-02",
+        "source_ref": {
+          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
+          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
+          "pointer": "/verification_obligations/1/concrete_cases/7"
+        },
+        "execution_state": "not_executed",
+        "fixture_only": true
+      },
+      {
+        "source_case_id": "C007-F02-SUBMITTED-PRIOR_SUCCESSES-ERASED",
+        "u_id": "U-C007-048",
+        "function_ref": "FN-C007-02",
+        "source_ref": {
+          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
+          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
+          "pointer": "/verification_obligations/1/concrete_cases/8"
+        },
+        "execution_state": "not_executed",
+        "fixture_only": true
+      },
+      {
+        "source_case_id": "C007-F02-SUBMITTED-UNFINISHED-ERASED",
+        "u_id": "U-C007-049",
+        "function_ref": "FN-C007-02",
+        "source_ref": {
+          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
+          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
+          "pointer": "/verification_obligations/1/concrete_cases/9"
+        },
+        "execution_state": "not_executed",
+        "fixture_only": true
+      },
+      {
+        "source_case_id": "C007-F02-SUBMITTED-DOWNSTREAM-ATTEMPT-INVENTED",
+        "u_id": "U-C007-050",
+        "function_ref": "FN-C007-02",
+        "source_ref": {
+          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
+          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
+          "pointer": "/verification_obligations/1/concrete_cases/10"
+        },
+        "execution_state": "not_executed",
+        "fixture_only": true
+      },
+      {
+        "source_case_id": "C007-F02-ORIGINAL-UNAUTHORIZED-DOWNSTREAM-ATTEMPT",
+        "u_id": "U-C007-051",
+        "function_ref": "FN-C007-02",
+        "source_ref": {
+          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
+          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
+          "pointer": "/verification_obligations/1/concrete_cases/11"
+        },
+        "execution_state": "not_executed",
+        "fixture_only": true
+      },
+      {
+        "source_case_id": "C007-F02-SUBMITTED-STOP-OWNER-FOREIGN",
+        "u_id": "U-C007-052",
+        "function_ref": "FN-C007-02",
+        "source_ref": {
+          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
+          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
+          "pointer": "/verification_obligations/1/concrete_cases/12"
+        },
+        "execution_state": "not_executed",
+        "fixture_only": true
+      },
+      {
+        "source_case_id": "C007-F02-SUBMITTED-STOP-RECOVERY_REF-FOREIGN",
+        "u_id": "U-C007-053",
+        "function_ref": "FN-C007-02",
+        "source_ref": {
+          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
+          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
+          "pointer": "/verification_obligations/1/concrete_cases/13"
+        },
+        "execution_state": "not_executed",
+        "fixture_only": true
+      },
+      {
+        "source_case_id": "C007-F02-SUBMITTED-STOP-EDGE_IDENTITY-FOREIGN",
+        "u_id": "U-C007-054",
+        "function_ref": "FN-C007-02",
+        "source_ref": {
+          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
+          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
+          "pointer": "/verification_obligations/1/concrete_cases/14"
+        },
+        "execution_state": "not_executed",
+        "fixture_only": true
+      },
+      {
+        "source_case_id": "C007-F02-SUBMITTED-STOP-OPERATION_IDENTITY-FOREIGN",
+        "u_id": "U-C007-055",
+        "function_ref": "FN-C007-02",
+        "source_ref": {
+          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
+          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
+          "pointer": "/verification_obligations/1/concrete_cases/15"
+        },
+        "execution_state": "not_executed",
+        "fixture_only": true
+      },
+      {
+        "source_case_id": "C007-F02-SUBMITTED-STOP-ATTEMPT_IDENTITY-FOREIGN",
+        "u_id": "U-C007-056",
+        "function_ref": "FN-C007-02",
+        "source_ref": {
+          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
+          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
+          "pointer": "/verification_obligations/1/concrete_cases/16"
+        },
+        "execution_state": "not_executed",
+        "fixture_only": true
+      },
+      {
+        "source_case_id": "C007-F02-HANDOFF-COMPOSITE-SCOPE-FOREIGN",
+        "u_id": "U-C007-057",
+        "function_ref": "FN-C007-02",
+        "source_ref": {
+          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
+          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
+          "pointer": "/verification_obligations/1/concrete_cases/17"
+        },
+        "execution_state": "not_executed",
+        "fixture_only": true
+      },
+      {
+        "source_case_id": "C007-F02-ORIGINAL-STOP-OWNER-FOREIGN",
+        "u_id": "U-C007-058",
+        "function_ref": "FN-C007-02",
+        "source_ref": {
+          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
+          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
+          "pointer": "/verification_obligations/1/concrete_cases/18"
+        },
+        "execution_state": "not_executed",
+        "fixture_only": true
+      },
+      {
+        "source_case_id": "C007-F02-ORIGINAL-STOP-RECOVERY_REF-FOREIGN",
+        "u_id": "U-C007-059",
+        "function_ref": "FN-C007-02",
+        "source_ref": {
+          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
+          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
+          "pointer": "/verification_obligations/1/concrete_cases/19"
+        },
+        "execution_state": "not_executed",
+        "fixture_only": true
+      },
+      {
+        "source_case_id": "C007-F02-ORIGINAL-STOP-OPERATION_IDENTITY-FOREIGN",
+        "u_id": "U-C007-060",
+        "function_ref": "FN-C007-02",
+        "source_ref": {
+          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
+          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
+          "pointer": "/verification_obligations/1/concrete_cases/20"
+        },
+        "execution_state": "not_executed",
+        "fixture_only": true
+      },
+      {
+        "source_case_id": "C007-F02-ORIGINAL-STOP-ATTEMPT_IDENTITY-FOREIGN",
+        "u_id": "U-C007-061",
+        "function_ref": "FN-C007-02",
+        "source_ref": {
+          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
+          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
+          "pointer": "/verification_obligations/1/concrete_cases/21"
+        },
+        "execution_state": "not_executed",
+        "fixture_only": true
+      },
+      {
+        "source_case_id": "C007-F02-UNAUTHORIZED_DOWNSTREAM_RETRY",
+        "u_id": "U-C007-062",
+        "function_ref": "FN-C007-02",
+        "source_ref": {
+          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
+          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
+          "pointer": "/verification_obligations/1/concrete_cases/22"
+        },
+        "execution_state": "not_executed",
+        "fixture_only": true
+      },
+      {
+        "source_case_id": "C007-F02-OTHER_EDGE_GREEN_OFFSETS",
+        "u_id": "U-C007-063",
+        "function_ref": "FN-C007-02",
+        "source_ref": {
+          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
+          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
+          "pointer": "/verification_obligations/1/concrete_cases/23"
+        },
+        "execution_state": "not_executed",
+        "fixture_only": true
+      },
+      {
+        "source_case_id": "C007-F02-ERASE_FULL_TRACE",
+        "u_id": "U-C007-064",
+        "function_ref": "FN-C007-02",
+        "source_ref": {
+          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
+          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
+          "pointer": "/verification_obligations/1/concrete_cases/24"
+        },
+        "execution_state": "not_executed",
+        "fixture_only": true
+      },
+      {
+        "source_case_id": "C007-N01-EXACT-DECLARED-SCOPE-THREE-BOUNDARY-EVIDENCE",
+        "u_id": "U-C007-065",
+        "function_ref": "FN-C007-03",
+        "source_ref": {
+          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
+          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
+          "pointer": "/verification_obligations/2/concrete_cases/0"
+        },
+        "execution_state": "not_executed",
+        "fixture_only": true
+      },
+      {
+        "source_case_id": "C007-N01-EVIDENCE-TARGET-COMPOSITE_IDENTITY-FOREIGN",
+        "u_id": "U-C007-066",
+        "function_ref": "FN-C007-03",
+        "source_ref": {
+          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
+          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
+          "pointer": "/verification_obligations/2/concrete_cases/1"
+        },
+        "execution_state": "not_executed",
+        "fixture_only": true
+      },
+      {
+        "source_case_id": "C007-N01-EVIDENCE-TARGET-COMPOSITE_REVISION-FOREIGN",
+        "u_id": "U-C007-067",
+        "function_ref": "FN-C007-03",
+        "source_ref": {
+          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
+          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
+          "pointer": "/verification_obligations/2/concrete_cases/2"
+        },
+        "execution_state": "not_executed",
+        "fixture_only": true
+      },
+      {
+        "source_case_id": "C007-N01-EVIDENCE-TARGET-REQUIREMENT_REVISION-FOREIGN",
+        "u_id": "U-C007-068",
+        "function_ref": "FN-C007-03",
+        "source_ref": {
+          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
+          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
+          "pointer": "/verification_obligations/2/concrete_cases/3"
+        },
+        "execution_state": "not_executed",
+        "fixture_only": true
+      },
+      {
+        "source_case_id": "C007-N01-EVIDENCE-TARGET-SCOPE-FOREIGN",
+        "u_id": "U-C007-069",
+        "function_ref": "FN-C007-03",
+        "source_ref": {
+          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
+          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
+          "pointer": "/verification_obligations/2/concrete_cases/4"
+        },
+        "execution_state": "not_executed",
+        "fixture_only": true
+      },
+      {
+        "source_case_id": "C007-N01-EVIDENCE-TARGET-CONNECTION_EXACT_SET-FOREIGN",
+        "u_id": "U-C007-070",
+        "function_ref": "FN-C007-03",
+        "source_ref": {
+          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
+          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
+          "pointer": "/verification_obligations/2/concrete_cases/5"
+        },
+        "execution_state": "not_executed",
+        "fixture_only": true
+      },
+      {
+        "source_case_id": "C007-N01-EVIDENCE-TARGET-ENDPOINT_REGISTRATION_REVISIONS-FOREIGN",
+        "u_id": "U-C007-071",
+        "function_ref": "FN-C007-03",
+        "source_ref": {
+          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
+          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
+          "pointer": "/verification_obligations/2/concrete_cases/6"
+        },
+        "execution_state": "not_executed",
+        "fixture_only": true
+      },
+      {
+        "source_case_id": "C007-N01-EVIDENCE-TARGET-OPERATION_ATTEMPTS-FOREIGN",
+        "u_id": "U-C007-072",
+        "function_ref": "FN-C007-03",
+        "source_ref": {
+          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
+          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
+          "pointer": "/verification_obligations/2/concrete_cases/7"
+        },
+        "execution_state": "not_executed",
+        "fixture_only": true
+      },
+      {
+        "source_case_id": "C007-N01-EVIDENCE-TARGET-EFFECT_STOP_REF-FOREIGN",
+        "u_id": "U-C007-073",
+        "function_ref": "FN-C007-03",
+        "source_ref": {
+          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
+          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
+          "pointer": "/verification_obligations/2/concrete_cases/8"
+        },
+        "execution_state": "not_executed",
+        "fixture_only": true
+      },
+      {
+        "source_case_id": "C007-N01-ORIGINAL-BOUNDARY-EVIDENCE-MISSING",
+        "u_id": "U-C007-074",
+        "function_ref": "FN-C007-03",
+        "source_ref": {
+          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
+          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
+          "pointer": "/verification_obligations/2/concrete_cases/9"
+        },
+        "execution_state": "not_executed",
+        "fixture_only": true
+      },
+      {
+        "source_case_id": "C007-N01-ORIGINAL-BOUNDARY-NOT-EXECUTED",
+        "u_id": "U-C007-075",
+        "function_ref": "FN-C007-03",
+        "source_ref": {
+          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
+          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
+          "pointer": "/verification_obligations/2/concrete_cases/10"
+        },
+        "execution_state": "not_executed",
+        "fixture_only": true
+      },
+      {
+        "source_case_id": "C007-N01-SUBMITTED-BOUNDARY-EVIDENCE-MISSING",
+        "u_id": "U-C007-076",
+        "function_ref": "FN-C007-03",
+        "source_ref": {
+          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
+          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
+          "pointer": "/verification_obligations/2/concrete_cases/11"
+        },
+        "execution_state": "not_executed",
+        "fixture_only": true
+      },
+      {
+        "source_case_id": "C007-N01-ORIGINAL-EVIDENCE-EDGE-FOREIGN",
+        "u_id": "U-C007-077",
+        "function_ref": "FN-C007-03",
+        "source_ref": {
+          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
+          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
+          "pointer": "/verification_obligations/2/concrete_cases/12"
+        },
+        "execution_state": "not_executed",
+        "fixture_only": true
+      },
+      {
+        "source_case_id": "C007-N01-FIELD_COUNT_COMPOSITE_COMPLETE",
+        "u_id": "U-C007-078",
+        "function_ref": "FN-C007-03",
+        "source_ref": {
+          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
+          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
+          "pointer": "/verification_obligations/2/concrete_cases/13"
+        },
+        "execution_state": "not_executed",
+        "fixture_only": true
+      },
+      {
+        "source_case_id": "C007-N01-FOREIGN_SCOPE_SUCCESS_INHERITED",
+        "u_id": "U-C007-079",
+        "function_ref": "FN-C007-03",
+        "source_ref": {
+          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
+          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
+          "pointer": "/verification_obligations/2/concrete_cases/14"
+        },
+        "execution_state": "not_executed",
+        "fixture_only": true
+      },
+      {
+        "source_case_id": "C007-N01-FIXTURE_ALL_CONNECTIONS_COMPLETE",
+        "u_id": "U-C007-080",
+        "function_ref": "FN-C007-03",
+        "source_ref": {
+          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
+          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
+          "pointer": "/verification_obligations/2/concrete_cases/15"
+        },
+        "execution_state": "not_executed",
+        "fixture_only": true
+      },
+      {
+        "source_case_id": "C007-B01-TECHNICAL-TERMINAL-BUSINESS-NOT-ACCEPTED",
+        "u_id": "U-C007-081",
+        "function_ref": "FN-C007-04",
+        "source_ref": {
+          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
+          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
+          "pointer": "/verification_obligations/3/concrete_cases/0"
+        },
+        "execution_state": "not_executed",
+        "fixture_only": true
+      },
+      {
+        "source_case_id": "C007-B01-SUBMITTED-BUSINESS-OWNER-OVERRIDE",
+        "u_id": "U-C007-082",
+        "function_ref": "FN-C007-04",
+        "source_ref": {
+          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
+          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
+          "pointer": "/verification_obligations/3/concrete_cases/1"
+        },
+        "execution_state": "not_executed",
+        "fixture_only": true
+      },
+      {
+        "source_case_id": "C007-B01-SUBMITTED-BUSINESS-STATE-OVERRIDE",
+        "u_id": "U-C007-083",
+        "function_ref": "FN-C007-04",
+        "source_ref": {
+          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
+          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
+          "pointer": "/verification_obligations/3/concrete_cases/2"
+        },
+        "execution_state": "not_executed",
+        "fixture_only": true
+      },
+      {
+        "source_case_id": "C007-B01-SUBMITTED-BUSINESS-REQUIREMENT_ADOPTION-OVERRIDE",
+        "u_id": "U-C007-084",
+        "function_ref": "FN-C007-04",
+        "source_ref": {
+          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
+          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
+          "pointer": "/verification_obligations/3/concrete_cases/3"
+        },
+        "execution_state": "not_executed",
+        "fixture_only": true
+      },
+      {
+        "source_case_id": "C007-B01-SUBMITTED-BUSINESS-ACCEPTANCE_REF-OVERRIDE",
+        "u_id": "U-C007-085",
+        "function_ref": "FN-C007-04",
+        "source_ref": {
+          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
+          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
+          "pointer": "/verification_obligations/3/concrete_cases/4"
+        },
+        "execution_state": "not_executed",
+        "fixture_only": true
+      },
+      {
+        "source_case_id": "C007-B01-UNSELECTED-REPLACEMENT-REQUIRED",
+        "u_id": "U-C007-086",
+        "function_ref": "FN-C007-04",
+        "source_ref": {
+          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
+          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
+          "pointer": "/verification_obligations/3/concrete_cases/5"
+        },
+        "execution_state": "not_executed",
+        "fixture_only": true
+      },
+      {
+        "source_case_id": "C007-B01-UNSELECTED-CONNECTION-ADDED",
+        "u_id": "U-C007-087",
+        "function_ref": "FN-C007-04",
+        "source_ref": {
+          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
+          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
+          "pointer": "/verification_obligations/3/concrete_cases/6"
+        },
+        "execution_state": "not_executed",
+        "fixture_only": true
+      },
+      {
+        "source_case_id": "C007-B01-SELECTED-SEC-CONTRACT-ERASED",
+        "u_id": "U-C007-088",
+        "function_ref": "FN-C007-04",
+        "source_ref": {
+          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
+          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
+          "pointer": "/verification_obligations/3/concrete_cases/7"
+        },
+        "execution_state": "not_executed",
+        "fixture_only": true
+      },
+      {
+        "source_case_id": "C007-B01-TECHNICAL_RECEIPT_IS_ACCEPTED",
+        "u_id": "U-C007-089",
+        "function_ref": "FN-C007-04",
+        "source_ref": {
+          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
+          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
+          "pointer": "/verification_obligations/3/concrete_cases/8"
+        },
+        "execution_state": "not_executed",
+        "fixture_only": true
+      },
+      {
+        "source_case_id": "C007-B01-WAIT_ALL_UNINVENTORIED_CONNECTIONS",
+        "u_id": "U-C007-090",
+        "function_ref": "FN-C007-04",
+        "source_ref": {
+          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
+          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
+          "pointer": "/verification_obligations/3/concrete_cases/9"
+        },
+        "execution_state": "not_executed",
+        "fixture_only": true
+      },
+      {
+        "source_case_id": "C007-B01-UNSELECTED_REPLACEMENT_REQUIRED",
+        "u_id": "U-C007-091",
+        "function_ref": "FN-C007-04",
+        "source_ref": {
+          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
+          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
+          "pointer": "/verification_obligations/3/concrete_cases/10"
+        },
+        "execution_state": "not_executed",
+        "fixture_only": true
+      }
+    ],
+    "coverage_boundary": "L9 expected failure_reasons are the only evidence used to attach a branch U-ID to an L5 failure_rule. A missing witness is explicitly marked and assigned a derived needed U-ID; this does not claim the missing case is present or executed."
+  }
 }

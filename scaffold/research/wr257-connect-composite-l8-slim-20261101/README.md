@@ -10,7 +10,7 @@ request: `WR257-CONNECT-COMPOSITE-L8-SLIM` / Issue #3510
 
 `docs/helix-connect/L8-unit-verification/composite-edge-terminal.json`を、既存のsource case IDと局所probeを保持するU-ID表へ縮約した。HELIX-CONNECTは機構であり、HELIX-HARNESSの製品数には含めない。要求、L4/L5/L9/L3/L10の意味、authority、実行状態は変更しない。
 
-保持した宣言は、L9由来source case 91件、local probe 27件、同一sourceの再照合1件、primitive 7件、typed carrier境界1件。各行は識別子、役割、独立oracle参照、差分意図または期待、fixture-only境界、未実行状態を持つ。27 local probeは事前固定した期待deltaの全値を保持し、pin済みL4/L9の既存値と一致する大きな配列・recordのみrevisionとJSON Pointerを持つ`source_ref`で参照する。`source_ref`は既存値の所在を共有する索引で、期待値の生成器ではない。
+保持した宣言は、L9由来source case 91件、local probe 27件、同一sourceの再照合1件、primitive 7件、typed carrier境界1件。91件それぞれに新しいU-IDを付与し、既存のL9 source case IDは別列で保持した。各branch U-IDを固定L9 pointerへ、L5公開関数4件を固定L5 signature/algorithm pointerへ結び、各L5 failure_rule 26件も個別に照合した。L9 failure_reasonsのareaが根拠として解決するruleは24件でcase U-IDへ対応づけた。F02 `stop_position` と B01 `technical_content` はL9 oracleに対応するfailure例が見つからず、未充足と明記し、必要なderived U-IDを置いた。L5 `unit_case_refs`が無いこととは別の対応表であり、L5のunit_case_refsを捏造していない。各行は識別子、役割、独立oracle参照、差分意図または期待、fixture-only境界、未実行状態を持つ。27 local probeは事前固定した期待deltaの全値を保持し、pin済みL4/L9の既存値と一致する大きな配列・recordのみrevisionとJSON Pointerを持つ`source_ref`で参照する。`source_ref`は既存値の所在を共有する索引で、期待値の生成器ではない。
 
 raw fixture、inline mutated bytes、full return全体、fixture digestはL8から外した。期待delta全値の重複配列は参照へ集約した。L9の91 source caseはL9期待全体と正確なpointerで結び、L5に`unit_case_refs`がない事実を記録した。L5 unit caseへの偽の対応は作らない。L7 test citationも未確認のままとし、L9/L10 source refをtest citationへ読み替えない。
 
@@ -20,10 +20,12 @@ raw fixture、inline mutated bytes、full return全体、fixture digestはL8か�
 
 | 項目 | base `663b75324810a6f004668a1451de5b03acc542c3` | 現在 |
 |---|---:|---:|
-| L8 bytes | 1,014,166 | 196,639 |
+| L8 bytes | 1,014,166 | 271,965 |
 | source case | 91 | 91 IDを維持 |
 | local probe | 27 | 27 IDと期待delta全値を維持 |
 | source reuse / primitive / typed | 1 / 7 / 1 | 同数を維持 |
+| L5 public function / failure_rule | 4 / 26 | 4関数を全対応、24 ruleにL9 oracle witness、2 ruleは未充足として必要U-IDを記録 |
+| L9 basic branch U-ID | 91 | 91個の固有U-IDと固定L9 pointerを対応 |
 | L5 `unit_case_refs` | 無し | 無しを明記、捏造なし |
 
 実測値は`static-evidence.json`に記録した。チェックは文書ID、JSON Pointer、source revision/bytes pin、意味表の保持を確かめる静的照合であり、製品testではない。
@@ -36,6 +38,6 @@ raw fixture、inline mutated bytes、full return全体、fixture digestはL8か�
 
 ## 再現可能な静的照合
 
-`python3 -B scaffold/research/wr257-connect-composite-l8-slim-20261101/validate_static_index.py`は、base L8との宣言ID/順序/件数比較、L9 source/expected pointerとbasisの照合、全27 expected deltaの復元比較、L4/L5/L9 exact bytes pin、L5 `unit_case_refs`不在、fixture hash除去、6-key `removed_materials`とDT-VT-105境界を確認する。`--record`は同じ結果を`static-evidence.json`へ記録する。
+`python3 -B scaffold/research/wr257-connect-composite-l8-slim-20261101/validate_static_index.py`は、base L8との宣言ID/順序/件数比較、L9 source/expected pointerとbasisの照合、全27 expected deltaの復元比較、L4/L5/L9 exact bytes pin、91 U-IDとL9 branchの一対一対応、L5の4 public function/26 failure_ruleのsource pointer・rule witness coverage、L5 `unit_case_refs`不在、fixture hash除去、6-key `removed_materials`とDT-VT-105境界を確認する。`--record`は同じ結果を`static-evidence.json`へ記録する。
 
 `scfctl validate`と`scfctl stale`はscaffold Bindingとsource pinの静的確認である。いずれも実装・動作・検証合格・承認を生成しない。旧CLI、runtime、test、CIは起動していない。

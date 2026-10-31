@@ -25,8 +25,8 @@
     },
     {
       "path": "docs/helix-connect/L8-unit-verification/composite-edge-terminal.json",
-      "sha256": "e8ecf160244f65df96c5926acc092b5fb7c0841b53340e875765518d688e4fcb",
-      "note": "対象U-ID表"
+      "sha256": "540f286cc5ed7aeb7453b21f0e0b0278082f61e35bb4ff8c4839067d4935e784",
+      "note": "対象U-ID表。91 L9 basic branchに固有U-ID、L5 4 public functionと26 failure_ruleの行別traceabilityを収録"
     },
     {
       "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
@@ -46,7 +46,8 @@
     "1 source reuse、7 primitive、1 typed carrier境界のIDと識別を保ち、fixture-only・not-executedを維持する。",
     "fixture digest、raw fixture、inline mutated bytes、full return wholeをL8に再配置しない。残すhashはsource/authority bytes pinに限る。",
     "removed_materialsの6 key、DT-VT-105適用境界、L5 unit_case_refsとL7 test citationの未確認を保持する。",
-    "すべての結果をscaffold証拠として扱い、設計/実装ready、製品test、source qualification、要求承認、合格を生成しない。"
+    "すべての結果をscaffold証拠として扱い、設計/実装ready、製品test、source qualification、要求承認、合格を生成しない。",
+    "91 L9 basic branchへ固有U-IDを割当て、L5 4 public functionと26 failure_ruleを個々の固定source pointerへ照合する。L9 failure_reasonsが裏付ける24 ruleだけをcase U-IDへ接続し、証拠のない2 ruleは未充足・必要U-IDとして明示する。"
   ],
   "connections": {
     "consumers": [
