@@ -83,7 +83,7 @@
   },
   "operations": {
     "allowed": [
-      "Run validate_wr255_l5l8.py from the repository root.",
+      "Run validate_wr255_l5l8.py in read-only stdout mode; use --record only when a new immutable measurement artifact is explicitly needed.",
       "Run current design_verification_checker.py check-child through that validator.",
       "Review source hashes, row/class audit, positive source facts, and saved checker report.",
       "Apply and audit L8-only SCF-B-0209 consumer redirects in the WR255 L5/L8 V-pair worktree: 305 current canonical aliases with exact class field projection and three explicit fixed-R2 references; keep L9 in its separate V-pair.",

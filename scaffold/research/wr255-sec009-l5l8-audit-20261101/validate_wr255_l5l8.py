@@ -6,9 +6,11 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import os
 import re
 import subprocess
 import sys
+import time
 from collections import Counter
 from pathlib import Path
 from typing import Any
@@ -80,21 +82,21 @@ def git_text(*args: str) -> str:
     return subprocess.check_output(["git", *args], cwd=ROOT, text=True).strip()
 
 
-def write_immutable_json(path: Path, value: Any) -> None:
+def write_new_json(path: Path, value: Any) -> None:
     rendered = json.dumps(value, ensure_ascii=False, indent=2) + "\n"
-    if path.exists():
-        if path.read_text(encoding="utf-8") != rendered:
-            fail(f"append-only evidence path already exists with different bytes: {path.name}")
-        return
-    path.write_text(rendered, encoding="utf-8")
+    try:
+        with path.open("x", encoding="utf-8") as stream:
+            stream.write(rendered)
+    except FileExistsError:
+        fail(f"append-only evidence path already exists; refusing to overwrite: {path.name}")
 
 
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--audit-dir", type=Path, default=AUDIT_DIR)
+    parser.add_argument("--record", action="store_true", help="保存先へ新規の監査証拠を書き出す")
     args = parser.parse_args()
     audit_dir = args.audit_dir.resolve()
-    audit_dir.mkdir(parents=True, exist_ok=True)
 
     sources = {name: load_json(path) for name, path in FILES.items() if name != "checker"}
     l3b, l3f = sources["l3_business"], sources["l3_functional"]
@@ -330,8 +332,6 @@ def main() -> int:
         for layer in ("l4", "l5", "l8", "l9")
     )
     report_stem = pair_revision_stem
-    check_report_name = f"check-child-report-{report_stem}.json"
-    write_immutable_json(audit_dir / check_report_name, checker_report)
     negative = checker_report["negative_4way"]
     reasons = Counter(item.get("reason", "unknown") for item in negative.get("failures", []))
     expected_matched_case_count = 277
@@ -401,14 +401,30 @@ def main() -> int:
             "negative_4way_matched_case_count": negative.get("matched_case_count"),
             "negative_4way_failure_count": len(negative.get("failures", [])),
             "negative_4way_failure_reasons": dict(sorted(reasons.items())),
-            "full_report": check_report_name,
+            "full_report": None,
+            "full_report_sha256": hashlib.sha256(json.dumps(
+                checker_report, ensure_ascii=False, sort_keys=True, separators=(",", ":")
+            ).encode()).hexdigest(),
             "interpretation": "L4/L9 and L5/L8 pair checks pass, with 277 matched cases and zero 4-way checker failures. The eight positive rows remain contract-minimum designs, not observed fixture outcomes; this evidence does not claim runtime behavior or formal security verification.",
         },
     }
-    validator_hash = sha256("scaffold/research/wr255-sec009-l5l8-audit-20261101/validate_wr255_l5l8.py")[:8]
-    report_name = f"verification-summary-{report_stem}-validator-{validator_hash}.json"
-    write_immutable_json(audit_dir / report_name, report)
-    print(json.dumps({"passed": True, "summary": str(audit_dir / report_name), "check_child_failures": expected_failure_count}, ensure_ascii=False))
+    if args.record:
+        run_id = f"{time.time_ns()}-{os.getpid()}"
+        audit_dir.mkdir(parents=True, exist_ok=True)
+        check_report_name = f"check-child-report-{report_stem}-record-{run_id}.json"
+        validator_hash = sha256("scaffold/research/wr255-sec009-l5l8-audit-20261101/validate_wr255_l5l8.py")[:8]
+        report_name = f"verification-summary-{report_stem}-validator-{validator_hash}-record-{run_id}.json"
+        report["check_child"]["full_report"] = check_report_name
+        write_new_json(audit_dir / check_report_name, checker_report)
+        write_new_json(audit_dir / report_name, report)
+        print(json.dumps({
+            "passed": True,
+            "recorded": True,
+            "summary": str(audit_dir / report_name),
+            "check_child_report": str(audit_dir / check_report_name),
+        }, ensure_ascii=False))
+    else:
+        print(json.dumps({"passed": True, "recorded": False, "evidence": report}, ensure_ascii=False))
     return 0
 
 

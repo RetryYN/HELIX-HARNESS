@@ -10,6 +10,12 @@ repository rootから次を実行します。
 python3 scaffold/research/wr255-sec009-l5l8-audit-20261101/validate_wr255_l5l8.py
 ```
 
+通常実行はread-onlyで、測定summaryをstdoutへ出し、ファイルを作りません。証拠を保存する場合だけ `--record` を付けます。保存時は実行ごとの一意なpathをexclusive createし、既存pathを上書きしません。
+
+```sh
+python3 scaffold/research/wr255-sec009-l5l8-audit-20261101/validate_wr255_l5l8.py --record
+```
+
 初回測定はcommit `9dffee8c34` の `verification-summary.json` と `check-child-report.json` に固定してあります。validatorの再測定は過去記録を書き換えず、L4/L5/L8/L9それぞれのsource revisionとSHA-256を含む別名で追記します。positive最小期待の設計後の追補はsource revision `24d7f00bdca41c3dfb1f3137655ffdbe3674cfb3`、L8 SHA-256 `91da3af2c6ad997fdf265871f9776c5bed41f196fbccfc2276e1a41f42a267bb` に固定されています。commit前に同じbytesを測定した報告も削除せず、そのファイルではpathの最終commit `cb44877e1db6` と作業tree SHA-256 `91da3af2` を別々に記録しています。L4/L5/L8/L9の32 class identity、L5 rule IDの保持、L4/L5 codeとownerの対応、L9 source caseに結びつく285件のU-IDを照合します。negative U-IDの `condition`、`expected`、`expected_preserved` はL4 classと比較します。positive 8件は契約最小期待を設計し、実測未観測としたうえで個別 `oracle_id` と `test_citation` がnullであることを確認します。
 
 ## U-ID表とsource参照
