@@ -6,7 +6,7 @@
   "product": "HELIX-HARNESS",
   "owner_candidate": "HELIX-HARNESS SEC006 L4/L9 source comparison owner",
   "state": "registered",
-  "reason": "SCF-B-0218はWR258のL4/L9 source-based class rows、行別対応、4層overlayのcompact実測をscaffold限定証拠として登録する。全文overlayは固定commitから一時worktreeで再構成し、repositoryには保存しない。L3/L10の意味、QA、L5/L8、runtime、authorityは変更しない。 PR #4007 R1 applies the reviewed partial L4/L9 marker transition, removes the local-only DEFERRED negative class, and adds 50 concise L9 system-oracle rows; L5/L8 and QA remain unchanged.",
+  "reason": "SCF-B-0218はWR258のL4/L9 source-based class rows、行別対応、4層overlayのcompact実測をscaffold限定証拠として登録する。全文overlayは固定commitから一時worktreeで再構成し、repositoryには保存しない。L3/L10の意味、QA、L5/L8、runtime、authorityは変更しない。 PR #4007 R1 applies the reviewed partial L4/L9 marker transition, removes the local-only DEFERRED negative class, and adds 50 concise L9 system-oracle rows; L5/L8 and QA remain unchanged. PR-B worktree rebinding of the L5/L8 upstream hashes records current bytes only; SCF-B-0218 remains the historical PR-A evidence lane, while the separately requested L5/L8 changes and evidence are scoped to SCF-B-0224.",
   "upstream": [
     {
       "path": "docs/helix-security/L3-requirements/functional-requirements.json",
@@ -45,13 +45,13 @@
     },
     {
       "path": "docs/helix-security/L5-detail-design/project-scope-isolation.json",
-      "sha256": "41c49bc0b62b415422067297bd9accf848e4f14e253fab9779e778c49c2e1edd",
-      "note": "一時overlayでL5 rule owner keyを投影。正本は未変更。"
+      "sha256": "e084e05c1569790509e2a096a45b04f340b3494e9afa9bdf6c4e967e83b59d66",
+      "note": "一時overlayでL5 rule owner keyを投影。正本は未変更。 WR258 PR-B current bytes rebound after merge of PR #4007 at 151713275e2c2aa65bb23a8fe38eb63c46d570c8; historical pin 41c49bc0b62b415422067297bd9accf848e4f14e253fab9779e778c49c2e1edd retained. PR-B candidate revision is recorded in SCF-B-0224."
     },
     {
       "path": "docs/helix-security/L8-unit-verification/project-scope-isolation.json",
-      "sha256": "6d093e482b013e733bc3eb5950aef5b8385b3288dc85bbcb9854bea92830900d",
-      "note": "52 unit rowsと入力projectionの候補比較に使用。正本は未変更。"
+      "sha256": "f280fbade1cd83acdf3c67c28718f7003e54e91548ea1a65e0c0c04c517d7371",
+      "note": "52 unit rowsと入力projectionの候補比較に使用。正本は未変更。 WR258 PR-B current bytes rebound after merge of PR #4007 at 151713275e2c2aa65bb23a8fe38eb63c46d570c8; historical pin 6d093e482b013e733bc3eb5950aef5b8385b3288dc85bbcb9854bea92830900d retained. PR-B candidate revision is recorded in SCF-B-0224."
     }
   ],
   "role": "WR258の行別L4 class、L9 class-key対応、4層候補overlayと残課題を保持する。",
@@ -81,7 +81,7 @@
       "SEC009 #3996 class-key precedent",
       "SCF-B-0201"
     ],
-    "boundary": "PR #4007 R1 expands this V-pair to L4/L9 source-derived system oracles and a measured L4/L9-only partial marker. L5/L8, QA, L3/L10, residual semantics, credentials, authorization settings and runtime remain outside mutation scope."
+    "boundary": "PR #4007 R1 expands this V-pair to L4/L9 source-derived system oracles and a measured L4/L9-only partial marker. L5/L8, QA, L3/L10, residual semantics, credentials, authorization settings and runtime remain outside mutation scope. L5/L8 remains outside PR-A; the current upstream pin may follow the explicitly requested, separately bound PR-B without merging its artifacts into this evidence lane."
   },
   "operations": {
     "allowed": [
@@ -89,14 +89,15 @@
       "Rebuild the four-marker overlay and run current check-child only in an ephemeral git worktree at the recorded fixed commit; persist compact reports only.",
       "Current scfctl validate and stale",
       "JSON, ID and case-row comparisons",
-      "Diff inspection and whitespace checks"
+      "Diff inspection and whitespace checks",
+      "Record current L5/L8 upstream hashes for stale detection after the separately requested PR-B; this binding remains PR-A evidence and does not absorb PR-B artifacts."
     ],
     "forbidden": [
       "Do not edit QA. PR #4007 R1 intentionally has explicit markers only on L4/L9; preserve the measured check-child failure and do not claim four-way PASS.",
-      "L5/L8 changes in this V-pair",
       "Old runtime, CLI, hook, test, workflow or CI execution",
       "Changing L3/L10 requirement/oracle meaning or L9 expected observations/residual rows",
-      "Treating static checker or binding pass as implementation, runtime, behavior, or completion evidence"
+      "Treating static checker or binding pass as implementation, runtime, behavior, or completion evidence",
+      "Do not place PR-B L5/L8 changes or evidence in this PR-A binding; the upstream hash refresh is only for current-source stale detection."
     ]
   },
   "artifacts": [

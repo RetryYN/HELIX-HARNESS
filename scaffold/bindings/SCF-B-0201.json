@@ -30,13 +30,13 @@
     },
     {
       "path": "docs/helix-security/L5-detail-design/project-scope-isolation.json",
-      "sha256": "41c49bc0b62b415422067297bd9accf848e4f14e253fab9779e778c49c2e1edd",
-      "note": "WR244固定base比較値 1b6e50cd2db88e86ae88723589e12170b0651650cf5dbb280b99c673180ea108 は時点証拠として保持。WR250候補追補の現行bytesへ再束縛。base 1b155cc648d589d32ca111efb3fbfcea1c4048b7."
+      "sha256": "e084e05c1569790509e2a096a45b04f340b3494e9afa9bdf6c4e967e83b59d66",
+      "note": "WR244固定base比較値 1b6e50cd2db88e86ae88723589e12170b0651650cf5dbb280b99c673180ea108 は時点証拠として保持。WR250候補追補の現行bytesへ再束縛。base 1b155cc648d589d32ca111efb3fbfcea1c4048b7. WR258 PR-B current bytes rebound after merge of PR #4007 at 151713275e2c2aa65bb23a8fe38eb63c46d570c8; historical pin 41c49bc0b62b415422067297bd9accf848e4f14e253fab9779e778c49c2e1edd retained. PR-B candidate revision is recorded in SCF-B-0224."
     },
     {
       "path": "docs/helix-security/L8-unit-verification/project-scope-isolation.json",
-      "sha256": "6d093e482b013e733bc3eb5950aef5b8385b3288dc85bbcb9854bea92830900d",
-      "note": "WR244固定base pin 45d9ae37cf4136aed05d548107a7bdc0c088e2753d36428fb4692c7078a65070は時点証拠として保持。WR250 PR #4000 R1追補を含む現行L8 bytesへ再束縛。base 1b155cc648d589d32ca111efb3fbfcea1c4048b7."
+      "sha256": "f280fbade1cd83acdf3c67c28718f7003e54e91548ea1a65e0c0c04c517d7371",
+      "note": "WR244固定base pin 45d9ae37cf4136aed05d548107a7bdc0c088e2753d36428fb4692c7078a65070は時点証拠として保持。WR250 PR #4000 R1追補を含む現行L8 bytesへ再束縛。base 1b155cc648d589d32ca111efb3fbfcea1c4048b7. WR258 PR-B current bytes rebound after merge of PR #4007 at 151713275e2c2aa65bb23a8fe38eb63c46d570c8; historical pin 6d093e482b013e733bc3eb5950aef5b8385b3288dc85bbcb9854bea92830900d retained. PR-B candidate revision is recorded in SCF-B-0224."
     },
     {
       "path": "docs/governance/design-verification-quality-assurance.md",
