@@ -1,0 +1,130 @@
+{
+  "schema_revision": 1,
+  "id": "SCF-B-0218",
+  "kind": "scaffold",
+  "title": "WR258 SEC006 project-scope-isolation staged L4/L9 classes and integration candidate",
+  "product": "HELIX-HARNESS",
+  "owner_candidate": "HELIX-HARNESS SEC006 L4/L9 source comparison owner",
+  "state": "registered",
+  "reason": "Register WR258 source-based L4/L9 class rows and the unresolved one-to-one integration candidate as scaffold-only evidence. This does not change L3/L10 meaning, QA, L5/L8, runtime behavior, or authority.",
+  "upstream": [
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+      "sha256": "e4eeb70cc303e44199c7d898281e91c22dba89b47666353b9c80a4c634e898b5",
+      "note": "SECURITY003 F01/F02 source obligations; fixed source revision preserved."
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.json",
+      "sha256": "e6da7eaff29a623b5d069801280c295d9dd7cc43b51d9cde25b12a8110e5072a",
+      "note": "SECURITY003 F01/F02 source oracles; not execution evidence."
+    },
+    {
+      "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+      "sha256": "2fdd1427779e4a848a12b23c4cdc1517d08578e3946f83823f10a57db8c49d98",
+      "note": "WR258 current L4 source classes; only L4↔L9 pair changed. Prior staged pre-parent-refinement current pin SHA-256 9be1999cce6dd72349d0f359f7ebb8f7dee3c18e8d408d4650ec7e5ba65e0e42 retained here."
+    },
+    {
+      "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
+      "sha256": "fb5895c299f3f14ecbc41fde01bdac605a20b98275e56cb6176b12693c12df72",
+      "note": "WR258 98 existing row class identities/projections; case IDs, expected observations, residual rows unchanged."
+    },
+    {
+      "path": "docs/governance/design-verification-quality-assurance.md",
+      "sha256": "f5751e236dc073fe67114c1fcb4b0f64b3d746290b25d75b61e60a08e3c99c85",
+      "note": "QA §3/58/82 one-to-one and all-four-layer explicit-marker contract; unchanged."
+    },
+    {
+      "path": "scaffold/research/wr250-sec006-psi-l5l8-20261031/pr4000-r1-addendum.json",
+      "sha256": "2114688c7ea3ef65b453b6d7eda2bd69f3659fac3b7a88c5e39f559753394a62",
+      "note": "R1 measured 9 no-class rows, six retained L9 primary fallback rows, 6 exact removed candidate duplicates, and baseline check-child 172 failures."
+    },
+    {
+      "path": "scaffold/research/wr250-sec006-psi-l5l8-20261031/validate_pr4000_r1.py",
+      "sha256": "9a779f23045ea41dd61ad455c250bcf58836c6475051dd59f50500d07919a1fe",
+      "note": "Read for R1 scope and frozen constraints; not executed."
+    }
+  ],
+  "role": "Hold WR258 rowwise source-derived L4 class and L9 class-key mapping, staged marker boundary, and unresolved L8/L9 caller-case correspondence.",
+  "obligations": [
+    "Read blind source from the specified base with git show and verify the preserved SHA-256; do not edit WR244 fixed artifacts.",
+    "Classify all nine no-receiving-L4-class L8 rows from L3/L10 and L4 source meaning; do not infer meaning from L9 expected observations.",
+    "Keep L4 code equal to expected_classification and preserve ordered expected_axis, ordered finding_codes, backflow owner, expected state, and side-effect count zero.",
+    "Add L9 row class references without changing case IDs, expected observations, L8/L9 counts, or the 16-row multi-contract residual.",
+    "Do not add an explicit marker until all four L4/L5/L8/L9 layers are complete in an admissible coordinated transition.",
+    "Record the six L9 primary-tree caller cases and the six exact candidate rows removed by PR #4000 R1; do not claim a one-to-one pairing or reintroduce duplicates as formal unit cases.",
+    "Measure current check-child, scfctl validate, and stale results. A four-way failure remains a measured incomplete state, not pass or completion.",
+    "Preserve historical source revision/hash evidence; keep the previous SCF-B-0201 L4/L9 hashes in binding notes."
+  ],
+  "connections": {
+    "consumers": [
+      "WR250 PR #4000 R1 and its rowwise evidence",
+      "QA §3 CHK-NEG-4WAY-MATCH",
+      "future SEC006 L5/L8 owner-qualified class transition"
+    ],
+    "dependencies": [
+      "SECURITY003 L3/L10 F01/F02",
+      "WR244 fixed blind source-only artifact",
+      "SEC009 #3996 class-key precedent",
+      "SCF-B-0201"
+    ],
+    "boundary": "Only SEC006 L4↔L9 V-pair and scaffold evidence. L5/L8, QA, L3/L10, L9 expected observations, residual data, credentials, authorization settings and runtime remain outside mutation scope."
+  },
+  "operations": {
+    "allowed": [
+      "Static source revision/hash and pointer checks",
+      "Current scaffold design_verification_checker.py check-child as a structural measurement",
+      "Current scfctl validate and stale",
+      "JSON, ID and case-row comparisons",
+      "Diff inspection and whitespace checks"
+    ],
+    "forbidden": [
+      "Partial explicit marker or QA text changes",
+      "L5/L8 changes in this V-pair",
+      "Old runtime, CLI, hook, test, workflow or CI execution",
+      "Changing L3/L10 requirement/oracle meaning or L9 expected observations/residual rows",
+      "Treating static checker or binding pass as implementation, runtime, behavior, or completion evidence"
+    ]
+  },
+  "artifacts": [
+    "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+    "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
+    "scaffold/research/wr258-sec006-psi-explicit-20261101/README.md",
+    "scaffold/research/wr258-sec006-psi-explicit-20261101/integration-candidate.json",
+    "scaffold/bindings/SCF-B-0218.json",
+    "scaffold/bindings/SCF-B-0201.json"
+  ],
+  "verification": {
+    "evidence_kind": "scaffold",
+    "scope": [
+      "schema_interface",
+      "source_revision_stale",
+      "negative_case",
+      "forbidden_write_scope"
+    ],
+    "oracles": [
+      "All nine previously unassigned L8 rows map to six source-derived L4 classes; none is dropped.",
+      "L4 top-level code equals expected_classification; each class has ordered expected.finding_codes and expected_axis, backflow owner, state, and side_effect_count=0.",
+      "L9 existing negative row count remains 98; each current row retains its ID and expectation; 16 residual negatives remain unchanged.",
+      "All six primary-tree L9 rows retain distinct IDs and share the same implicit-fallback class. Their one-to-one L8 pairing remains unresolved pending separate L5/L8 or source-level resolution.",
+      "No explicit marker is present; QA all-four-layer marker rule is respected.",
+      "check-child four-way result is reported from actual post-overlay execution; it is not converted to pass.",
+      "Historical blind and WR244/WR250 fixed evidence files remain byte-identical."
+    ],
+    "negative_cases": [
+      "L8 SIDE-UNKNOWN-SIDE and ASSET-UNKNOWN-KIND remain unknown with scope_input_unresolved and map to separate source-derived axes.",
+      "OS/INFRA/CONNECT stale owner material rows share one unresolved owner-material class without selecting a substitute owner or authority.",
+      "Unknown and explicit-null fallback remain unresolved; they are not merged with primary_tree or other_project fallback violations.",
+      "OPERATION-DEFER preserves its existing empty findings list and is not given a fabricated leaf finding.",
+      "Six distinct L9 primary-tree caller rows are not collapsed or counted as one-to-one L8 cases; the gap remains unresolved.",
+      "No partial explicit marker is present; all-four-layer activation remains deferred to complete L5/L8 work."
+    ]
+  },
+  "replacement": {
+    "role_target": "Complete SEC006 L5/L8 class-owner and L8↔L9 one-to-one case mapping; then activate explicit mode only in a complete all-four-layer revision.",
+    "formal_artifacts": [],
+    "issue": 3510,
+    "status": "pending"
+  },
+  "created": "2026-11-01",
+  "updated": "2026-11-01"
+}

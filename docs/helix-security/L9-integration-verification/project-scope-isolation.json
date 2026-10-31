@@ -1296,7 +1296,11 @@
                 "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
                 "pointer": "/cases/0/negative_cases/0/counterexample"
               }
-            ]
+            ],
+            "class_id": "SEC003-F01-IDENTITY-CONFLICT",
+            "expected_classification": "isolation_violation",
+            "expected_axis": "scope_identity",
+            "expected_state": "violation"
           }
         },
         {
@@ -1379,7 +1383,11 @@
                 "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
                 "pointer": "/cases/0/negative_cases/1/counterexample"
               }
-            ]
+            ],
+            "class_id": "SEC003-F01-IDENTITY-CONFLICT",
+            "expected_classification": "isolation_violation",
+            "expected_axis": "scope_identity",
+            "expected_state": "violation"
           }
         },
         {
@@ -1462,7 +1470,11 @@
                 "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
                 "pointer": "/cases/0/negative_cases/2/counterexample"
               }
-            ]
+            ],
+            "class_id": "SEC003-F01-IDENTITY-CONFLICT",
+            "expected_classification": "isolation_violation",
+            "expected_axis": "scope_identity",
+            "expected_state": "violation"
           }
         },
         {
@@ -1545,7 +1557,11 @@
                 "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
                 "pointer": "/cases/0/negative_cases/3/counterexample"
               }
-            ]
+            ],
+            "class_id": "SEC003-F01-IDENTITY-CONFLICT",
+            "expected_classification": "isolation_violation",
+            "expected_axis": "scope_identity",
+            "expected_state": "violation"
           }
         },
         {
@@ -1628,7 +1644,11 @@
                 "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
                 "pointer": "/cases/0/negative_cases/4/counterexample"
               }
-            ]
+            ],
+            "class_id": "SEC003-F01-IDENTITY-CONFLICT",
+            "expected_classification": "isolation_violation",
+            "expected_axis": "scope_identity",
+            "expected_state": "violation"
           }
         },
         {
@@ -1711,7 +1731,11 @@
                 "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
                 "pointer": "/cases/0/negative_cases/5/counterexample"
               }
-            ]
+            ],
+            "class_id": "SEC003-F01-IDENTITY-CONFLICT",
+            "expected_classification": "isolation_violation",
+            "expected_axis": "scope_identity",
+            "expected_state": "violation"
           }
         },
         {
@@ -1794,7 +1818,11 @@
                 "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
                 "pointer": "/cases/0/negative_cases/6/counterexample"
               }
-            ]
+            ],
+            "class_id": "SEC003-F01-IDENTITY-CONFLICT",
+            "expected_classification": "isolation_violation",
+            "expected_axis": "scope_identity",
+            "expected_state": "violation"
           }
         },
         {
@@ -1877,7 +1905,11 @@
                 "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
                 "pointer": "/cases/0/negative_cases/7/counterexample"
               }
-            ]
+            ],
+            "class_id": "SEC003-F01-IDENTITY-CONFLICT",
+            "expected_classification": "isolation_violation",
+            "expected_axis": "scope_identity",
+            "expected_state": "violation"
           }
         },
         {
@@ -1960,7 +1992,11 @@
                 "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
                 "pointer": "/cases/0/negative_cases/8/counterexample"
               }
-            ]
+            ],
+            "class_id": "SEC003-F01-IDENTITY-CONFLICT",
+            "expected_classification": "isolation_violation",
+            "expected_axis": "scope_identity",
+            "expected_state": "violation"
           }
         },
         {
@@ -2043,7 +2079,11 @@
                 "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
                 "pointer": "/cases/0/negative_cases/9/counterexample"
               }
-            ]
+            ],
+            "class_id": "SEC003-F01-IDENTITY-CONFLICT",
+            "expected_classification": "isolation_violation",
+            "expected_axis": "scope_identity",
+            "expected_state": "violation"
           }
         },
         {
@@ -2126,7 +2166,11 @@
                 "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
                 "pointer": "/cases/0/negative_cases/10/counterexample"
               }
-            ]
+            ],
+            "class_id": "SEC003-F01-IDENTITY-CONFLICT",
+            "expected_classification": "isolation_violation",
+            "expected_axis": "scope_identity",
+            "expected_state": "violation"
           }
         },
         {
@@ -2209,7 +2253,11 @@
                 "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
                 "pointer": "/cases/0/negative_cases/11/counterexample"
               }
-            ]
+            ],
+            "class_id": "SEC003-F01-IDENTITY-CONFLICT",
+            "expected_classification": "isolation_violation",
+            "expected_axis": "scope_identity",
+            "expected_state": "violation"
           }
         },
         {
@@ -2292,7 +2340,11 @@
                 "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
                 "pointer": "/cases/0/negative_cases/12/counterexample"
               }
-            ]
+            ],
+            "class_id": "SEC003-F01-IDENTITY-CONFLICT",
+            "expected_classification": "isolation_violation",
+            "expected_axis": "scope_identity",
+            "expected_state": "violation"
           }
         },
         {
@@ -2375,7 +2427,11 @@
                 "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
                 "pointer": "/cases/0/negative_cases/13/counterexample"
               }
-            ]
+            ],
+            "class_id": "SEC003-F01-IDENTITY-CONFLICT",
+            "expected_classification": "isolation_violation",
+            "expected_axis": "scope_identity",
+            "expected_state": "violation"
           }
         },
         {
@@ -2458,7 +2514,11 @@
                 "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
                 "pointer": "/cases/0/negative_cases/14/counterexample"
               }
-            ]
+            ],
+            "class_id": "SEC003-F01-IDENTITY-CONFLICT",
+            "expected_classification": "isolation_violation",
+            "expected_axis": "scope_identity",
+            "expected_state": "violation"
           }
         },
         {
@@ -2541,7 +2601,11 @@
                 "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
                 "pointer": "/cases/0/negative_cases/15/counterexample"
               }
-            ]
+            ],
+            "class_id": "SEC003-F01-IDENTITY-CONFLICT",
+            "expected_classification": "isolation_violation",
+            "expected_axis": "scope_identity",
+            "expected_state": "violation"
           }
         },
         {
@@ -2624,7 +2688,11 @@
                 "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
                 "pointer": "/cases/0/negative_cases/16/counterexample"
               }
-            ]
+            ],
+            "class_id": "SEC003-F01-IDENTITY-CONFLICT",
+            "expected_classification": "isolation_violation",
+            "expected_axis": "scope_identity",
+            "expected_state": "violation"
           }
         },
         {
@@ -2707,7 +2775,11 @@
                 "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
                 "pointer": "/cases/0/negative_cases/17/counterexample"
               }
-            ]
+            ],
+            "class_id": "SEC003-F01-IDENTITY-CONFLICT",
+            "expected_classification": "isolation_violation",
+            "expected_axis": "scope_identity",
+            "expected_state": "violation"
           }
         },
         {
@@ -2790,7 +2862,11 @@
                 "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
                 "pointer": "/cases/0/negative_cases/18/counterexample"
               }
-            ]
+            ],
+            "class_id": "SEC003-F01-IDENTITY-CONFLICT",
+            "expected_classification": "isolation_violation",
+            "expected_axis": "scope_identity",
+            "expected_state": "violation"
           }
         },
         {
@@ -2873,7 +2949,11 @@
                 "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
                 "pointer": "/cases/0/negative_cases/19/counterexample"
               }
-            ]
+            ],
+            "class_id": "SEC003-F01-IDENTITY-CONFLICT",
+            "expected_classification": "isolation_violation",
+            "expected_axis": "scope_identity",
+            "expected_state": "violation"
           }
         },
         {
@@ -2956,7 +3036,11 @@
                 "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
                 "pointer": "/cases/0/negative_cases/20/counterexample"
               }
-            ]
+            ],
+            "class_id": "SEC003-F01-IDENTITY-CONFLICT",
+            "expected_classification": "isolation_violation",
+            "expected_axis": "scope_identity",
+            "expected_state": "violation"
           }
         },
         {
@@ -3039,7 +3123,11 @@
                 "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
                 "pointer": "/cases/0/negative_cases/21/counterexample"
               }
-            ]
+            ],
+            "class_id": "SEC003-F01-IDENTITY-CONFLICT",
+            "expected_classification": "isolation_violation",
+            "expected_axis": "scope_identity",
+            "expected_state": "violation"
           }
         },
         {
@@ -3122,7 +3210,11 @@
                 "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
                 "pointer": "/cases/0/negative_cases/22/counterexample"
               }
-            ]
+            ],
+            "class_id": "SEC003-F01-IDENTITY-CONFLICT",
+            "expected_classification": "isolation_violation",
+            "expected_axis": "scope_identity",
+            "expected_state": "violation"
           }
         },
         {
@@ -3205,7 +3297,11 @@
                 "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
                 "pointer": "/cases/0/negative_cases/23/counterexample"
               }
-            ]
+            ],
+            "class_id": "SEC003-F01-IDENTITY-CONFLICT",
+            "expected_classification": "isolation_violation",
+            "expected_axis": "scope_identity",
+            "expected_state": "violation"
           }
         },
         {
@@ -3288,7 +3384,11 @@
                 "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
                 "pointer": "/cases/0/negative_cases/24/counterexample"
               }
-            ]
+            ],
+            "class_id": "SEC003-F01-IDENTITY-CONFLICT",
+            "expected_classification": "isolation_violation",
+            "expected_axis": "scope_identity",
+            "expected_state": "violation"
           }
         },
         {
@@ -3371,7 +3471,11 @@
                 "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
                 "pointer": "/cases/0/negative_cases/25/counterexample"
               }
-            ]
+            ],
+            "class_id": "SEC003-F01-IDENTITY-CONFLICT",
+            "expected_classification": "isolation_violation",
+            "expected_axis": "scope_identity",
+            "expected_state": "violation"
           }
         },
         {
@@ -3454,7 +3558,11 @@
                 "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
                 "pointer": "/cases/0/negative_cases/26/counterexample"
               }
-            ]
+            ],
+            "class_id": "SEC003-F01-IDENTITY-CONFLICT",
+            "expected_classification": "isolation_violation",
+            "expected_axis": "scope_identity",
+            "expected_state": "violation"
           }
         },
         {
@@ -3537,7 +3645,11 @@
                 "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
                 "pointer": "/cases/0/negative_cases/27/counterexample"
               }
-            ]
+            ],
+            "class_id": "SEC003-F01-IDENTITY-CONFLICT",
+            "expected_classification": "isolation_violation",
+            "expected_axis": "scope_identity",
+            "expected_state": "violation"
           }
         },
         {
@@ -3620,7 +3732,11 @@
                 "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
                 "pointer": "/cases/0/negative_cases/28/counterexample"
               }
-            ]
+            ],
+            "class_id": "SEC003-F01-IDENTITY-CONFLICT",
+            "expected_classification": "isolation_violation",
+            "expected_axis": "scope_identity",
+            "expected_state": "violation"
           }
         },
         {
@@ -3703,7 +3819,11 @@
                 "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
                 "pointer": "/cases/0/negative_cases/29/counterexample"
               }
-            ]
+            ],
+            "class_id": "SEC003-F01-IDENTITY-CONFLICT",
+            "expected_classification": "isolation_violation",
+            "expected_axis": "scope_identity",
+            "expected_state": "violation"
           }
         },
         {
@@ -3786,7 +3906,11 @@
                 "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
                 "pointer": "/cases/0/negative_cases/30/counterexample"
               }
-            ]
+            ],
+            "class_id": "SEC003-F01-IDENTITY-CONFLICT",
+            "expected_classification": "isolation_violation",
+            "expected_axis": "scope_identity",
+            "expected_state": "violation"
           }
         },
         {
@@ -3869,7 +3993,11 @@
                 "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
                 "pointer": "/cases/0/negative_cases/31/counterexample"
               }
-            ]
+            ],
+            "class_id": "SEC003-F01-IDENTITY-CONFLICT",
+            "expected_classification": "isolation_violation",
+            "expected_axis": "scope_identity",
+            "expected_state": "violation"
           }
         },
         {
@@ -3952,7 +4080,11 @@
                 "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
                 "pointer": "/cases/0/negative_cases/32/counterexample"
               }
-            ]
+            ],
+            "class_id": "SEC003-F01-IDENTITY-CONFLICT",
+            "expected_classification": "isolation_violation",
+            "expected_axis": "scope_identity",
+            "expected_state": "violation"
           }
         },
         {
@@ -4035,7 +4167,11 @@
                 "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
                 "pointer": "/cases/0/negative_cases/33/counterexample"
               }
-            ]
+            ],
+            "class_id": "SEC003-F01-IDENTITY-CONFLICT",
+            "expected_classification": "isolation_violation",
+            "expected_axis": "scope_identity",
+            "expected_state": "violation"
           }
         },
         {
@@ -4118,7 +4254,11 @@
                 "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
                 "pointer": "/cases/0/negative_cases/34/counterexample"
               }
-            ]
+            ],
+            "class_id": "SEC003-F01-IDENTITY-CONFLICT",
+            "expected_classification": "isolation_violation",
+            "expected_axis": "scope_identity",
+            "expected_state": "violation"
           }
         },
         {
@@ -4201,7 +4341,11 @@
                 "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
                 "pointer": "/cases/0/negative_cases/35/counterexample"
               }
-            ]
+            ],
+            "class_id": "SEC003-F01-IDENTITY-CONFLICT",
+            "expected_classification": "isolation_violation",
+            "expected_axis": "scope_identity",
+            "expected_state": "violation"
           }
         },
         {
@@ -4284,7 +4428,11 @@
                 "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
                 "pointer": "/cases/0/negative_cases/36/counterexample"
               }
-            ]
+            ],
+            "class_id": "SEC003-F01-IDENTITY-CONFLICT",
+            "expected_classification": "isolation_violation",
+            "expected_axis": "scope_identity",
+            "expected_state": "violation"
           }
         },
         {
@@ -4367,7 +4515,11 @@
                 "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
                 "pointer": "/cases/0/negative_cases/37/counterexample"
               }
-            ]
+            ],
+            "class_id": "SEC003-F01-IDENTITY-CONFLICT",
+            "expected_classification": "isolation_violation",
+            "expected_axis": "scope_identity",
+            "expected_state": "violation"
           }
         },
         {
@@ -4450,7 +4602,11 @@
                 "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
                 "pointer": "/cases/0/negative_cases/38/counterexample"
               }
-            ]
+            ],
+            "class_id": "SEC003-F01-IDENTITY-CONFLICT",
+            "expected_classification": "isolation_violation",
+            "expected_axis": "scope_identity",
+            "expected_state": "violation"
           }
         },
         {
@@ -4533,7 +4689,11 @@
                 "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
                 "pointer": "/cases/0/negative_cases/39/counterexample"
               }
-            ]
+            ],
+            "class_id": "SEC003-F01-IDENTITY-CONFLICT",
+            "expected_classification": "isolation_violation",
+            "expected_axis": "scope_identity",
+            "expected_state": "violation"
           }
         },
         {
@@ -4616,7 +4776,11 @@
                 "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
                 "pointer": "/cases/0/negative_cases/40/counterexample"
               }
-            ]
+            ],
+            "class_id": "SEC003-F01-IDENTITY-CONFLICT",
+            "expected_classification": "isolation_violation",
+            "expected_axis": "scope_identity",
+            "expected_state": "violation"
           }
         },
         {
@@ -4699,7 +4863,11 @@
                 "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
                 "pointer": "/cases/0/negative_cases/41/counterexample"
               }
-            ]
+            ],
+            "class_id": "SEC003-F01-IDENTITY-CONFLICT",
+            "expected_classification": "isolation_violation",
+            "expected_axis": "scope_identity",
+            "expected_state": "violation"
           }
         },
         {
@@ -4782,7 +4950,11 @@
                 "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
                 "pointer": "/cases/0/negative_cases/42/counterexample"
               }
-            ]
+            ],
+            "class_id": "SEC003-F01-IDENTITY-CONFLICT",
+            "expected_classification": "isolation_violation",
+            "expected_axis": "scope_identity",
+            "expected_state": "violation"
           }
         },
         {
@@ -4865,7 +5037,11 @@
                 "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
                 "pointer": "/cases/0/negative_cases/43/counterexample"
               }
-            ]
+            ],
+            "class_id": "SEC003-F01-IDENTITY-CONFLICT",
+            "expected_classification": "isolation_violation",
+            "expected_axis": "scope_identity",
+            "expected_state": "violation"
           }
         },
         {
@@ -4948,7 +5124,11 @@
                 "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
                 "pointer": "/cases/0/negative_cases/44/counterexample"
               }
-            ]
+            ],
+            "class_id": "SEC003-F01-IDENTITY-CONFLICT",
+            "expected_classification": "isolation_violation",
+            "expected_axis": "scope_identity",
+            "expected_state": "violation"
           }
         },
         {
@@ -5031,7 +5211,11 @@
                 "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
                 "pointer": "/cases/0/negative_cases/45/counterexample"
               }
-            ]
+            ],
+            "class_id": "SEC003-F01-IDENTITY-CONFLICT",
+            "expected_classification": "isolation_violation",
+            "expected_axis": "scope_identity",
+            "expected_state": "violation"
           }
         },
         {
@@ -5114,7 +5298,11 @@
                 "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
                 "pointer": "/cases/0/negative_cases/46/counterexample"
               }
-            ]
+            ],
+            "class_id": "SEC003-F01-IDENTITY-CONFLICT",
+            "expected_classification": "isolation_violation",
+            "expected_axis": "scope_identity",
+            "expected_state": "violation"
           }
         },
         {
@@ -5197,7 +5385,11 @@
                 "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
                 "pointer": "/cases/0/negative_cases/47/counterexample"
               }
-            ]
+            ],
+            "class_id": "SEC003-F01-IDENTITY-CONFLICT",
+            "expected_classification": "isolation_violation",
+            "expected_axis": "scope_identity",
+            "expected_state": "violation"
           }
         },
         {
@@ -5275,7 +5467,11 @@
                 "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
                 "pointer": "/cases/0/negative_cases/48/counterexample"
               }
-            ]
+            ],
+            "class_id": "SEC003-F01-IDENTITY-MISSING",
+            "expected_classification": "scope_unresolved",
+            "expected_axis": "scope_identity",
+            "expected_state": "unknown"
           }
         },
         {
@@ -5353,7 +5549,11 @@
                 "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
                 "pointer": "/cases/0/negative_cases/49/counterexample"
               }
-            ]
+            ],
+            "class_id": "SEC003-F01-IDENTITY-MISSING",
+            "expected_classification": "scope_unresolved",
+            "expected_axis": "scope_identity",
+            "expected_state": "unknown"
           }
         },
         {
@@ -5431,7 +5631,11 @@
                 "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
                 "pointer": "/cases/0/negative_cases/50/counterexample"
               }
-            ]
+            ],
+            "class_id": "SEC003-F01-IDENTITY-MISSING",
+            "expected_classification": "scope_unresolved",
+            "expected_axis": "scope_identity",
+            "expected_state": "unknown"
           }
         },
         {
@@ -5509,7 +5713,11 @@
                 "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
                 "pointer": "/cases/0/negative_cases/51/counterexample"
               }
-            ]
+            ],
+            "class_id": "SEC003-F01-IDENTITY-MISSING",
+            "expected_classification": "scope_unresolved",
+            "expected_axis": "scope_identity",
+            "expected_state": "unknown"
           }
         },
         {
@@ -5587,7 +5795,11 @@
                 "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
                 "pointer": "/cases/0/negative_cases/52/counterexample"
               }
-            ]
+            ],
+            "class_id": "SEC003-F01-IDENTITY-MISSING",
+            "expected_classification": "scope_unresolved",
+            "expected_axis": "scope_identity",
+            "expected_state": "unknown"
           }
         },
         {
@@ -5665,7 +5877,11 @@
                 "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
                 "pointer": "/cases/0/negative_cases/53/counterexample"
               }
-            ]
+            ],
+            "class_id": "SEC003-F01-IDENTITY-MISSING",
+            "expected_classification": "scope_unresolved",
+            "expected_axis": "scope_identity",
+            "expected_state": "unknown"
           }
         },
         {
@@ -5743,7 +5959,11 @@
                 "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
                 "pointer": "/cases/0/negative_cases/54/counterexample"
               }
-            ]
+            ],
+            "class_id": "SEC003-F01-TENANT-INVENTED",
+            "expected_classification": "isolation_violation",
+            "expected_axis": "tenant_applicability",
+            "expected_state": "violation"
           }
         },
         {
@@ -5816,7 +6036,11 @@
                 "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
                 "pointer": "/cases/0/negative_cases/55/counterexample"
               }
-            ]
+            ],
+            "class_id": "SEC003-F01-TENANT-APPLICABILITY-UNRESOLVED",
+            "expected_classification": "scope_unresolved",
+            "expected_axis": "tenant_applicability",
+            "expected_state": "unknown"
           }
         },
         {
@@ -5894,7 +6118,11 @@
                 "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
                 "pointer": "/cases/0/negative_cases/56/counterexample"
               }
-            ]
+            ],
+            "class_id": "SEC003-F01-IDENTITY-MISSING",
+            "expected_classification": "scope_unresolved",
+            "expected_axis": "scope_identity",
+            "expected_state": "unknown"
           }
         },
         {
@@ -5972,7 +6200,11 @@
                 "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
                 "pointer": "/cases/0/negative_cases/57/counterexample"
               }
-            ]
+            ],
+            "class_id": "SEC003-F01-IDENTITY-MISSING",
+            "expected_classification": "scope_unresolved",
+            "expected_axis": "scope_identity",
+            "expected_state": "unknown"
           }
         },
         {
@@ -6050,7 +6282,11 @@
                 "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
                 "pointer": "/cases/0/negative_cases/58/counterexample"
               }
-            ]
+            ],
+            "class_id": "SEC003-F01-IDENTITY-MISSING",
+            "expected_classification": "scope_unresolved",
+            "expected_axis": "scope_identity",
+            "expected_state": "unknown"
           }
         },
         {
@@ -6128,7 +6364,11 @@
                 "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
                 "pointer": "/cases/0/negative_cases/59/counterexample"
               }
-            ]
+            ],
+            "class_id": "SEC003-F01-IDENTITY-MISSING",
+            "expected_classification": "scope_unresolved",
+            "expected_axis": "scope_identity",
+            "expected_state": "unknown"
           }
         },
         {
@@ -6206,7 +6446,11 @@
                 "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
                 "pointer": "/cases/0/negative_cases/60/counterexample"
               }
-            ]
+            ],
+            "class_id": "SEC003-F01-IDENTITY-MISSING",
+            "expected_classification": "scope_unresolved",
+            "expected_axis": "scope_identity",
+            "expected_state": "unknown"
           }
         },
         {
@@ -6284,7 +6528,11 @@
                 "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
                 "pointer": "/cases/0/negative_cases/61/counterexample"
               }
-            ]
+            ],
+            "class_id": "SEC003-F01-IDENTITY-MISSING",
+            "expected_classification": "scope_unresolved",
+            "expected_axis": "scope_identity",
+            "expected_state": "unknown"
           }
         },
         {
@@ -6363,7 +6611,11 @@
                 "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
                 "pointer": "/cases/0/negative_cases/62/counterexample"
               }
-            ]
+            ],
+            "class_id": "SEC003-F01-TENANT-APPLICABILITY-UNRESOLVED",
+            "expected_classification": "scope_unresolved",
+            "expected_axis": "tenant_applicability",
+            "expected_state": "unknown"
           }
         },
         {
@@ -6445,7 +6697,11 @@
                 "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
                 "pointer": "/cases/0/negative_cases/63/counterexample"
               }
-            ]
+            ],
+            "class_id": "SEC003-F01-TENANT-APPLICABILITY-UNRESOLVED",
+            "expected_classification": "scope_unresolved",
+            "expected_axis": "tenant_applicability",
+            "expected_state": "unknown"
           }
         }
       ],
@@ -7405,7 +7661,11 @@
                 "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
                 "pointer": "/cases/1/negative_cases/0/counterexample"
               }
-            ]
+            ],
+            "class_id": "SEC003-F02-EXPLICIT-CONNECTION-ABSENT",
+            "expected_classification": "isolation_violation",
+            "expected_axis": "explicit_connection",
+            "expected_state": "violation"
           }
         },
         {
@@ -7476,7 +7736,11 @@
                 "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
                 "pointer": "/cases/1/negative_cases/1/counterexample"
               }
-            ]
+            ],
+            "class_id": "SEC003-F02-EXPLICIT-CONNECTION-ABSENT",
+            "expected_classification": "isolation_violation",
+            "expected_axis": "explicit_connection",
+            "expected_state": "violation"
           }
         },
         {
@@ -7547,7 +7811,11 @@
                 "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
                 "pointer": "/cases/1/negative_cases/2/counterexample"
               }
-            ]
+            ],
+            "class_id": "SEC003-F02-EXPLICIT-CONNECTION-ABSENT",
+            "expected_classification": "isolation_violation",
+            "expected_axis": "explicit_connection",
+            "expected_state": "violation"
           }
         },
         {
@@ -7618,7 +7886,11 @@
                 "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
                 "pointer": "/cases/1/negative_cases/3/counterexample"
               }
-            ]
+            ],
+            "class_id": "SEC003-F02-EXPLICIT-CONNECTION-ABSENT",
+            "expected_classification": "isolation_violation",
+            "expected_axis": "explicit_connection",
+            "expected_state": "violation"
           }
         },
         {
@@ -7689,7 +7961,11 @@
                 "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
                 "pointer": "/cases/1/negative_cases/4/counterexample"
               }
-            ]
+            ],
+            "class_id": "SEC003-F02-EXPLICIT-CONNECTION-ABSENT",
+            "expected_classification": "isolation_violation",
+            "expected_axis": "explicit_connection",
+            "expected_state": "violation"
           }
         },
         {
@@ -7760,7 +8036,11 @@
                 "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
                 "pointer": "/cases/1/negative_cases/5/counterexample"
               }
-            ]
+            ],
+            "class_id": "SEC003-F02-EXPLICIT-CONNECTION-ABSENT",
+            "expected_classification": "isolation_violation",
+            "expected_axis": "explicit_connection",
+            "expected_state": "violation"
           }
         },
         {
@@ -7831,7 +8111,11 @@
                 "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
                 "pointer": "/cases/1/negative_cases/6/counterexample"
               }
-            ]
+            ],
+            "class_id": "SEC003-F02-EXPLICIT-CONNECTION-ABSENT",
+            "expected_classification": "isolation_violation",
+            "expected_axis": "explicit_connection",
+            "expected_state": "violation"
           }
         },
         {
@@ -7902,7 +8186,11 @@
                 "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
                 "pointer": "/cases/1/negative_cases/7/counterexample"
               }
-            ]
+            ],
+            "class_id": "SEC003-F02-IMPLICIT-FALLBACK",
+            "expected_classification": "isolation_violation",
+            "expected_axis": "explicit_connection",
+            "expected_state": "violation"
           }
         },
         {
@@ -7973,7 +8261,11 @@
                 "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
                 "pointer": "/cases/1/negative_cases/8/counterexample"
               }
-            ]
+            ],
+            "class_id": "SEC003-F02-IMPLICIT-FALLBACK",
+            "expected_classification": "isolation_violation",
+            "expected_axis": "explicit_connection",
+            "expected_state": "violation"
           }
         },
         {
@@ -8052,7 +8344,11 @@
                 "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
                 "pointer": "/cases/1/negative_cases/9/counterexample"
               }
-            ]
+            ],
+            "class_id": "SEC003-F02-FOREIGN-LATEST",
+            "expected_classification": "isolation_violation",
+            "expected_axis": "asset_state_scope",
+            "expected_state": "violation"
           }
         },
         {
@@ -8170,7 +8466,11 @@
                 "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
                 "pointer": "/cases/1/negative_cases/10/counterexample"
               }
-            ]
+            ],
+            "class_id": "SEC003-F02-CONNECTION-MATERIAL-CONFLICT",
+            "expected_classification": "isolation_violation",
+            "expected_axis": "explicit_connection",
+            "expected_state": "violation"
           }
         },
         {
@@ -8241,7 +8541,11 @@
                 "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
                 "pointer": "/cases/1/negative_cases/11/counterexample"
               }
-            ]
+            ],
+            "class_id": "SEC003-F02-CONNECTION-MATERIAL-UNRESOLVED",
+            "expected_classification": "scope_unresolved",
+            "expected_axis": "explicit_connection",
+            "expected_state": "unknown"
           }
         },
         {
@@ -8323,7 +8627,11 @@
                 "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
                 "pointer": "/cases/1/negative_cases/12/counterexample"
               }
-            ]
+            ],
+            "class_id": "SEC003-F02-OPERATION-SCOPE",
+            "expected_classification": "isolation_violation",
+            "expected_axis": "operation_scope",
+            "expected_state": "violation"
           }
         },
         {
@@ -8405,7 +8713,11 @@
                 "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
                 "pointer": "/cases/1/negative_cases/13/counterexample"
               }
-            ]
+            ],
+            "class_id": "SEC003-F02-OPERATION-SCOPE",
+            "expected_classification": "isolation_violation",
+            "expected_axis": "operation_scope",
+            "expected_state": "violation"
           }
         },
         {
@@ -8487,7 +8799,11 @@
                 "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
                 "pointer": "/cases/1/negative_cases/14/counterexample"
               }
-            ]
+            ],
+            "class_id": "SEC003-F02-OPERATION-SCOPE",
+            "expected_classification": "isolation_violation",
+            "expected_axis": "operation_scope",
+            "expected_state": "violation"
           }
         },
         {
@@ -8569,7 +8885,11 @@
                 "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
                 "pointer": "/cases/1/negative_cases/15/counterexample"
               }
-            ]
+            ],
+            "class_id": "SEC003-F02-OPERATION-SCOPE",
+            "expected_classification": "isolation_violation",
+            "expected_axis": "operation_scope",
+            "expected_state": "violation"
           }
         },
         {
@@ -8651,7 +8971,11 @@
                 "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
                 "pointer": "/cases/1/negative_cases/16/counterexample"
               }
-            ]
+            ],
+            "class_id": "SEC003-F02-OPERATION-SCOPE",
+            "expected_classification": "isolation_violation",
+            "expected_axis": "operation_scope",
+            "expected_state": "violation"
           }
         },
         {
@@ -8733,7 +9057,11 @@
                 "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
                 "pointer": "/cases/1/negative_cases/17/counterexample"
               }
-            ]
+            ],
+            "class_id": "SEC003-F02-OPERATION-SCOPE",
+            "expected_classification": "isolation_violation",
+            "expected_axis": "operation_scope",
+            "expected_state": "violation"
           }
         },
         {
@@ -8804,7 +9132,11 @@
                 "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
                 "pointer": "/cases/1/negative_cases/18/counterexample"
               }
-            ]
+            ],
+            "class_id": "SEC003-F02-EXPLICIT-CONNECTION-ABSENT",
+            "expected_classification": "isolation_violation",
+            "expected_axis": "explicit_connection",
+            "expected_state": "violation"
           }
         },
         {
@@ -8875,7 +9207,11 @@
                 "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
                 "pointer": "/cases/1/negative_cases/19/counterexample"
               }
-            ]
+            ],
+            "class_id": "SEC003-F02-IMPLICIT-FALLBACK",
+            "expected_classification": "isolation_violation",
+            "expected_axis": "explicit_connection",
+            "expected_state": "violation"
           }
         },
         {
@@ -8954,7 +9290,11 @@
                 "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
                 "pointer": "/cases/1/negative_cases/20/counterexample"
               }
-            ]
+            ],
+            "class_id": "SEC003-F02-FOREIGN-LATEST",
+            "expected_classification": "isolation_violation",
+            "expected_axis": "asset_state_scope",
+            "expected_state": "violation"
           }
         },
         {
@@ -9036,7 +9376,11 @@
                 "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
                 "pointer": "/cases/1/negative_cases/21/counterexample"
               }
-            ]
+            ],
+            "class_id": "SEC003-F02-OPERATION-SCOPE",
+            "expected_classification": "isolation_violation",
+            "expected_axis": "operation_scope",
+            "expected_state": "violation"
           }
         },
         {
@@ -9107,7 +9451,11 @@
                 "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
                 "pointer": "/cases/1/negative_cases/22/counterexample"
               }
-            ]
+            ],
+            "class_id": "SEC003-F02-IMPLICIT-FALLBACK",
+            "expected_classification": "isolation_violation",
+            "expected_axis": "explicit_connection",
+            "expected_state": "violation"
           }
         },
         {
@@ -9186,7 +9534,11 @@
                 "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
                 "pointer": "/cases/1/negative_cases/23/counterexample"
               }
-            ]
+            ],
+            "class_id": "SEC003-F02-FOREIGN-LATEST",
+            "expected_classification": "isolation_violation",
+            "expected_axis": "asset_state_scope",
+            "expected_state": "violation"
           }
         },
         {
@@ -9268,7 +9620,11 @@
                 "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
                 "pointer": "/cases/1/negative_cases/24/counterexample"
               }
-            ]
+            ],
+            "class_id": "SEC003-F02-OPERATION-SCOPE",
+            "expected_classification": "isolation_violation",
+            "expected_axis": "operation_scope",
+            "expected_state": "violation"
           }
         },
         {
@@ -9339,7 +9695,11 @@
                 "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
                 "pointer": "/cases/1/negative_cases/25/counterexample"
               }
-            ]
+            ],
+            "class_id": "SEC003-F02-IMPLICIT-FALLBACK",
+            "expected_classification": "isolation_violation",
+            "expected_axis": "explicit_connection",
+            "expected_state": "violation"
           }
         },
         {
@@ -9418,7 +9778,11 @@
                 "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
                 "pointer": "/cases/1/negative_cases/26/counterexample"
               }
-            ]
+            ],
+            "class_id": "SEC003-F02-FOREIGN-LATEST",
+            "expected_classification": "isolation_violation",
+            "expected_axis": "asset_state_scope",
+            "expected_state": "violation"
           }
         },
         {
@@ -9500,7 +9864,11 @@
                 "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
                 "pointer": "/cases/1/negative_cases/27/counterexample"
               }
-            ]
+            ],
+            "class_id": "SEC003-F02-OPERATION-SCOPE",
+            "expected_classification": "isolation_violation",
+            "expected_axis": "operation_scope",
+            "expected_state": "violation"
           }
         },
         {
@@ -9571,7 +9939,11 @@
                 "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
                 "pointer": "/cases/1/negative_cases/28/counterexample"
               }
-            ]
+            ],
+            "class_id": "SEC003-F02-IMPLICIT-FALLBACK",
+            "expected_classification": "isolation_violation",
+            "expected_axis": "explicit_connection",
+            "expected_state": "violation"
           }
         },
         {
@@ -9650,7 +10022,11 @@
                 "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
                 "pointer": "/cases/1/negative_cases/29/counterexample"
               }
-            ]
+            ],
+            "class_id": "SEC003-F02-FOREIGN-LATEST",
+            "expected_classification": "isolation_violation",
+            "expected_axis": "asset_state_scope",
+            "expected_state": "violation"
           }
         },
         {
@@ -9732,7 +10108,11 @@
                 "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
                 "pointer": "/cases/1/negative_cases/30/counterexample"
               }
-            ]
+            ],
+            "class_id": "SEC003-F02-OPERATION-SCOPE",
+            "expected_classification": "isolation_violation",
+            "expected_axis": "operation_scope",
+            "expected_state": "violation"
           }
         },
         {
@@ -9803,7 +10183,11 @@
                 "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
                 "pointer": "/cases/1/negative_cases/31/counterexample"
               }
-            ]
+            ],
+            "class_id": "SEC003-F02-IMPLICIT-FALLBACK",
+            "expected_classification": "isolation_violation",
+            "expected_axis": "explicit_connection",
+            "expected_state": "violation"
           }
         },
         {
@@ -9882,7 +10266,11 @@
                 "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
                 "pointer": "/cases/1/negative_cases/32/counterexample"
               }
-            ]
+            ],
+            "class_id": "SEC003-F02-FOREIGN-LATEST",
+            "expected_classification": "isolation_violation",
+            "expected_axis": "asset_state_scope",
+            "expected_state": "violation"
           }
         },
         {
@@ -9964,7 +10352,11 @@
                 "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
                 "pointer": "/cases/1/negative_cases/33/counterexample"
               }
-            ]
+            ],
+            "class_id": "SEC003-F02-OPERATION-SCOPE",
+            "expected_classification": "isolation_violation",
+            "expected_axis": "operation_scope",
+            "expected_state": "violation"
           }
         }
       ],
