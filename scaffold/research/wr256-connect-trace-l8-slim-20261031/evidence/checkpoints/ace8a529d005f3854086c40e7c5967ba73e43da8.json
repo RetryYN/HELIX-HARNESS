@@ -1,0 +1,40 @@
+{
+  "schema": "wr256-evidence-checkpoint.v1",
+  "evidence_kind": "scaffold",
+  "authority_effect": "none",
+  "revision": "ace8a529d005f3854086c40e7c5967ba73e43da8",
+  "artifacts": {
+    "verification-summary": {
+      "historical_path": "scaffold/research/wr256-connect-trace-l8-slim-20261031/verification-summary.json",
+      "git_blob": "2806ddab15f7add64fbf084812652b7436fb3e86",
+      "sha256": "5bcb9707ecbc5376a3933a1bd3f04b21df2917d0212dc65c31ab5e1316970568",
+      "bytes": 2555,
+      "observations": {
+        "passed": true,
+        "rows": {
+          "before": {
+            "l9_cases": 90,
+            "local_domain_probes": 61,
+            "independent_semantic_probes": 68,
+            "independent_cross_field_probes": 5,
+            "u_id_total": 224
+          },
+          "after": {
+            "l9_basic_branches": 90,
+            "local_domain_probes": 61,
+            "independent_semantic_probes": 68,
+            "independent_cross_field_probes": 5,
+            "u_id_total": 224
+          }
+        },
+        "l5": {
+          "public_functions": 3,
+          "failure_rules": 27,
+          "unmapped_failure_rules": 0
+        },
+        "failure_rule_semantic_audit": null,
+        "source_semantic_audit": null
+      }
+    }
+  }
+}
