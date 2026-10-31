@@ -56,7 +56,7 @@
   ],
   "role": "WR257のL8行対応、source/oracle参照、意味境界、未検証状態の静的な保全証拠とvalidatorを保持する",
   "obligations": [
-    "91件のL9 source ID/順序とconsumer互換配列形を維持し、各case objectのU-ID、L9 source/expected pointer、system oracle、basis、fixture-only・not-executed状態を対応づける。L5 unit_case_refsは存在しないと記録し、対応を捏造しない。",
+    "91件のL9 source ID/順序とconsumer互換配列形を維持し、各case objectのU-ID、L9 source/expected pointer、system oracle、basis、fixture-only・not-executed状態を対応づける。source pointerは由来・意味参照であり、decode指定や実行引数bindingとして使わない。L5 unit_case_refsは存在しないと記録し、対応を捏造しない。",
     "27 local probeのID、function role、source case/pointer、短い固有反例・期待判断・未実行状態を保持する。変更操作列や返却差分値はL8に置かず、固定基準revisionとの静的比較だけでrule根拠を検証する。",
     "1 source reuse、7 primitive、1 typed carrier境界のIDと識別を保ち、fixture-only・not-executedを維持する。",
     "fixture digest、raw fixture、inline変異bytes、返却全体をL8に複製しない。残すhashはsource/authority bytes pinに限る。",

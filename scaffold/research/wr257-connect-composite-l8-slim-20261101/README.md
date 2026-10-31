@@ -10,7 +10,7 @@ request: `WR257-CONNECT-COMPOSITE-L8-SLIM` / Issue #3510
 
 `docs/helix-connect/L8-unit-verification/composite-edge-terminal.json`に、既存source IDを保持したU-ID対応を記録した。HELIX-CONNECTは機構であり、HELIX-HARNESSの製品数には含めない。要求、L4/L5/L9/L3/L10の意味、authority、実行状態は変更しない。
 
-宣言数はL9由来source case 91件、局所probe 27件、source再照合1件、primitive 7件、typed carrier境界1件の計127件である。91件のL9 source IDは`cases`配列に維持し、各case objectに固有U-ID、L5 function/rule refs、短い行別期待を結んだ。U-ID表現をconsumerが読む配列形は維持している。`l5_unit_traceability`は各source caseと固定L9 pointer、L5公開関数4件、failure_rule 26件の対応を示す。
+宣言数はL9由来source case 91件、局所probe 27件、source再照合1件、primitive 7件、typed carrier境界1件の計127件である。91件のL9 source IDは`cases`配列に維持し、各case objectに固有U-ID、L5 function/rule refs、短い行別期待を結んだ。U-ID表現をconsumerが読む配列形は維持している。`source_packet_ref`は所在・由来の意味参照だけで、decode指定や実行引数bindingを持たない。`l5_unit_traceability`は各source caseと固定L9 pointer、L5公開関数4件、failure_rule 26件の対応を示す。
 
 各caseの期待はL3/L10/L4/L5の契約とL9の対象条件から独立に短く導出し、L9 full expectedは固定pointerで参照する。正常系3件・反例系88件を区別し、全件`not_executed`とする。11群60件に同じ対象・期待が重複していた状態を解消し、edge/field/状態、対象、行別判断を区別した。rule本文やowner routeは行へ複製せず、固定L5 refsへ寄せた。
 

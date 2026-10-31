@@ -337,11 +337,13 @@ def main() -> None:
     l5, l4, l9 = load(L5), load(L4), load(L9)
     l8_sha = sha((ROOT / L8).read_bytes())
     assert '固有の反例・期待判断' in current['method']['rule'] and 'patch path' not in current['method']['rule']
+    assert 'decode指示' in current['method']['rule'] and 'fixture再構成' in current['method']['rule']
     assert '固定基準revision' in current['local_probe_contract']['expectation'] and '現行L8には' in current['local_probe_contract']['expectation'] and '保持しない' in current['local_probe_contract']['expectation']
     assert '固定基準revision' in current['local_probe_contract']['expectation']
     assert 'DT-VT-105' in current['local_probe_contract']['boundary'] and '未実行' in current['local_probe_contract']['boundary']
     assert 'source_ref values' not in current['common_expectation_boundary']['oracle_role']
     assert '短い反例・期待判断' in current['common_expectation_boundary']['oracle_role'] and 'source_ref values' not in current['common_expectation_boundary']['oracle_role']
+    assert 'decode指示' in current['common_expectation_boundary']['oracle_role'] and '実行引数binding' in current['common_expectation_boundary']['oracle_role']
     assert '全返却期待' not in json.dumps(current['pure_primitive_cases'], ensure_ascii=False)
     assert isinstance(current['coverage_limit'], str) and '宣言' in current['coverage_limit'] and '未検証' in current['coverage_limit'] and 'coverage' not in current['coverage_limit']
     assert 'coverage' not in current['l5_unit_traceability']['coverage_boundary']
@@ -398,9 +400,11 @@ def main() -> None:
     case_rows = []
     for case in current['cases']:
         packet_ref = case['source_packet_ref']
+        assert 'typed_arguments' not in case and 'raw_pointer_suffix' not in packet_ref
+        assert packet_ref['document'] == L9 and packet_ref['pointer'].endswith('/independent_source_packet/raw_utf8')
         case_rows.append([
             case['id'], case['function_ref'], case['requirement_ref'], case['l4_ref'], case['l9_ref'],
-            case['system_oracle_ref'], packet_ref['pointer'] + packet_ref.get('raw_pointer_suffix', ''),
+            case['system_oracle_ref'], packet_ref['pointer'],
             case['expected_oracle_ref']['pointer'], case['scenario_basis'], case['boundary'],
             case['execution_state'], case['qualification'], case['u_id'], case['l5_function_ref'],
             case['l5_failure_rule_refs'], case['expected'],

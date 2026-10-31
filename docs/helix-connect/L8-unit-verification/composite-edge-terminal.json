@@ -222,7 +222,7 @@
   "integration_ref": "HELIXCONNECT-L9-007",
   "method": {
     "kind": "static_u_id_oracle_index",
-    "rule": "91件のsource caseは固定L9 case ID・basis・source pointer・独立expected pointerへ結ぶ。各caseのU-IDにはL5 function/rule参照と短い行別期待を付ける。局所probeはsource case/pointer、固有の反例・期待判断、未実行境界を記す。固定基準revisionはvalidatorによる由来・failure_rule被覆の静的比較に限り、変更指示や返却差分全体を再現しない。raw fixture、返却全体、L7 test fixture/caseはここへ複製しない。",
+    "rule": "91件のsource caseは固定L9 case ID・basis・source pointer・独立expected pointerへ結ぶ。source pointerは由来・意味の参照だけであり、decode指示、実行引数binding、fixture再構成を示さない。各caseのU-IDにはL5 function/rule参照と短い行別期待を付ける。局所probeはsource case/pointer、固有の反例・期待判断、未実行境界を記す。固定基準revisionはvalidatorによる由来・failure_rule被覆の静的比較に限り、変更指示や返却差分全体を再現しない。raw fixture、返却全体、L7 test fixture/caseはここへ複製しない。",
     "execution_state": "not_executed_static_index_only_not_product_execution"
   },
   "cases": [
@@ -237,25 +237,11 @@
       "function_ref": "FN-C007-01",
       "source_packet_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-        "pointer": "/verification_obligations/0/concrete_cases/0/independent_source_packet",
-        "raw_pointer_suffix": "/raw_utf8"
+        "pointer": "/verification_obligations/0/concrete_cases/0/independent_source_packet/raw_utf8"
       },
       "expected_oracle_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
         "pointer": "/verification_obligations/0/concrete_cases/0/expected_material"
-      },
-      "typed_arguments": {
-        "input": {
-          "raw_packet": {
-            "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-            "pointer": "/verification_obligations/0/concrete_cases/0/independent_source_packet/raw_utf8",
-            "decode_as": "F01Raw"
-          },
-          "contract_view": {
-            "document": "docs/helix-connect/L5-detail-design/composite-edge-terminal.json",
-            "pointer": "/contract_views/F01"
-          }
-        }
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
@@ -291,25 +277,11 @@
       "function_ref": "FN-C007-01",
       "source_packet_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-        "pointer": "/verification_obligations/0/concrete_cases/1/independent_source_packet",
-        "raw_pointer_suffix": "/raw_utf8"
+        "pointer": "/verification_obligations/0/concrete_cases/1/independent_source_packet/raw_utf8"
       },
       "expected_oracle_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
         "pointer": "/verification_obligations/0/concrete_cases/1/expected_material"
-      },
-      "typed_arguments": {
-        "input": {
-          "raw_packet": {
-            "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-            "pointer": "/verification_obligations/0/concrete_cases/1/independent_source_packet/raw_utf8",
-            "decode_as": "F01Raw"
-          },
-          "contract_view": {
-            "document": "docs/helix-connect/L5-detail-design/composite-edge-terminal.json",
-            "pointer": "/contract_views/F01"
-          }
-        }
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
@@ -357,25 +329,11 @@
       "function_ref": "FN-C007-01",
       "source_packet_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-        "pointer": "/verification_obligations/0/concrete_cases/2/independent_source_packet",
-        "raw_pointer_suffix": "/raw_utf8"
+        "pointer": "/verification_obligations/0/concrete_cases/2/independent_source_packet/raw_utf8"
       },
       "expected_oracle_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
         "pointer": "/verification_obligations/0/concrete_cases/2/expected_material"
-      },
-      "typed_arguments": {
-        "input": {
-          "raw_packet": {
-            "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-            "pointer": "/verification_obligations/0/concrete_cases/2/independent_source_packet/raw_utf8",
-            "decode_as": "F01Raw"
-          },
-          "contract_view": {
-            "document": "docs/helix-connect/L5-detail-design/composite-edge-terminal.json",
-            "pointer": "/contract_views/F01"
-          }
-        }
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
@@ -423,25 +381,11 @@
       "function_ref": "FN-C007-01",
       "source_packet_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-        "pointer": "/verification_obligations/0/concrete_cases/3/independent_source_packet",
-        "raw_pointer_suffix": "/raw_utf8"
+        "pointer": "/verification_obligations/0/concrete_cases/3/independent_source_packet/raw_utf8"
       },
       "expected_oracle_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
         "pointer": "/verification_obligations/0/concrete_cases/3/expected_material"
-      },
-      "typed_arguments": {
-        "input": {
-          "raw_packet": {
-            "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-            "pointer": "/verification_obligations/0/concrete_cases/3/independent_source_packet/raw_utf8",
-            "decode_as": "F01Raw"
-          },
-          "contract_view": {
-            "document": "docs/helix-connect/L5-detail-design/composite-edge-terminal.json",
-            "pointer": "/contract_views/F01"
-          }
-        }
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
@@ -489,25 +433,11 @@
       "function_ref": "FN-C007-01",
       "source_packet_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-        "pointer": "/verification_obligations/0/concrete_cases/4/independent_source_packet",
-        "raw_pointer_suffix": "/raw_utf8"
+        "pointer": "/verification_obligations/0/concrete_cases/4/independent_source_packet/raw_utf8"
       },
       "expected_oracle_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
         "pointer": "/verification_obligations/0/concrete_cases/4/expected_material"
-      },
-      "typed_arguments": {
-        "input": {
-          "raw_packet": {
-            "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-            "pointer": "/verification_obligations/0/concrete_cases/4/independent_source_packet/raw_utf8",
-            "decode_as": "F01Raw"
-          },
-          "contract_view": {
-            "document": "docs/helix-connect/L5-detail-design/composite-edge-terminal.json",
-            "pointer": "/contract_views/F01"
-          }
-        }
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
@@ -545,25 +475,11 @@
       "function_ref": "FN-C007-01",
       "source_packet_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-        "pointer": "/verification_obligations/0/concrete_cases/5/independent_source_packet",
-        "raw_pointer_suffix": "/raw_utf8"
+        "pointer": "/verification_obligations/0/concrete_cases/5/independent_source_packet/raw_utf8"
       },
       "expected_oracle_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
         "pointer": "/verification_obligations/0/concrete_cases/5/expected_material"
-      },
-      "typed_arguments": {
-        "input": {
-          "raw_packet": {
-            "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-            "pointer": "/verification_obligations/0/concrete_cases/5/independent_source_packet/raw_utf8",
-            "decode_as": "F01Raw"
-          },
-          "contract_view": {
-            "document": "docs/helix-connect/L5-detail-design/composite-edge-terminal.json",
-            "pointer": "/contract_views/F01"
-          }
-        }
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
@@ -601,25 +517,11 @@
       "function_ref": "FN-C007-01",
       "source_packet_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-        "pointer": "/verification_obligations/0/concrete_cases/6/independent_source_packet",
-        "raw_pointer_suffix": "/raw_utf8"
+        "pointer": "/verification_obligations/0/concrete_cases/6/independent_source_packet/raw_utf8"
       },
       "expected_oracle_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
         "pointer": "/verification_obligations/0/concrete_cases/6/expected_material"
-      },
-      "typed_arguments": {
-        "input": {
-          "raw_packet": {
-            "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-            "pointer": "/verification_obligations/0/concrete_cases/6/independent_source_packet/raw_utf8",
-            "decode_as": "F01Raw"
-          },
-          "contract_view": {
-            "document": "docs/helix-connect/L5-detail-design/composite-edge-terminal.json",
-            "pointer": "/contract_views/F01"
-          }
-        }
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
@@ -657,25 +559,11 @@
       "function_ref": "FN-C007-01",
       "source_packet_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-        "pointer": "/verification_obligations/0/concrete_cases/7/independent_source_packet",
-        "raw_pointer_suffix": "/raw_utf8"
+        "pointer": "/verification_obligations/0/concrete_cases/7/independent_source_packet/raw_utf8"
       },
       "expected_oracle_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
         "pointer": "/verification_obligations/0/concrete_cases/7/expected_material"
-      },
-      "typed_arguments": {
-        "input": {
-          "raw_packet": {
-            "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-            "pointer": "/verification_obligations/0/concrete_cases/7/independent_source_packet/raw_utf8",
-            "decode_as": "F01Raw"
-          },
-          "contract_view": {
-            "document": "docs/helix-connect/L5-detail-design/composite-edge-terminal.json",
-            "pointer": "/contract_views/F01"
-          }
-        }
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
@@ -713,25 +601,11 @@
       "function_ref": "FN-C007-01",
       "source_packet_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-        "pointer": "/verification_obligations/0/concrete_cases/8/independent_source_packet",
-        "raw_pointer_suffix": "/raw_utf8"
+        "pointer": "/verification_obligations/0/concrete_cases/8/independent_source_packet/raw_utf8"
       },
       "expected_oracle_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
         "pointer": "/verification_obligations/0/concrete_cases/8/expected_material"
-      },
-      "typed_arguments": {
-        "input": {
-          "raw_packet": {
-            "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-            "pointer": "/verification_obligations/0/concrete_cases/8/independent_source_packet/raw_utf8",
-            "decode_as": "F01Raw"
-          },
-          "contract_view": {
-            "document": "docs/helix-connect/L5-detail-design/composite-edge-terminal.json",
-            "pointer": "/contract_views/F01"
-          }
-        }
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
@@ -769,25 +643,11 @@
       "function_ref": "FN-C007-01",
       "source_packet_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-        "pointer": "/verification_obligations/0/concrete_cases/9/independent_source_packet",
-        "raw_pointer_suffix": "/raw_utf8"
+        "pointer": "/verification_obligations/0/concrete_cases/9/independent_source_packet/raw_utf8"
       },
       "expected_oracle_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
         "pointer": "/verification_obligations/0/concrete_cases/9/expected_material"
-      },
-      "typed_arguments": {
-        "input": {
-          "raw_packet": {
-            "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-            "pointer": "/verification_obligations/0/concrete_cases/9/independent_source_packet/raw_utf8",
-            "decode_as": "F01Raw"
-          },
-          "contract_view": {
-            "document": "docs/helix-connect/L5-detail-design/composite-edge-terminal.json",
-            "pointer": "/contract_views/F01"
-          }
-        }
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
@@ -825,25 +685,11 @@
       "function_ref": "FN-C007-01",
       "source_packet_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-        "pointer": "/verification_obligations/0/concrete_cases/10/independent_source_packet",
-        "raw_pointer_suffix": "/raw_utf8"
+        "pointer": "/verification_obligations/0/concrete_cases/10/independent_source_packet/raw_utf8"
       },
       "expected_oracle_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
         "pointer": "/verification_obligations/0/concrete_cases/10/expected_material"
-      },
-      "typed_arguments": {
-        "input": {
-          "raw_packet": {
-            "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-            "pointer": "/verification_obligations/0/concrete_cases/10/independent_source_packet/raw_utf8",
-            "decode_as": "F01Raw"
-          },
-          "contract_view": {
-            "document": "docs/helix-connect/L5-detail-design/composite-edge-terminal.json",
-            "pointer": "/contract_views/F01"
-          }
-        }
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
@@ -881,25 +727,11 @@
       "function_ref": "FN-C007-01",
       "source_packet_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-        "pointer": "/verification_obligations/0/concrete_cases/11/independent_source_packet",
-        "raw_pointer_suffix": "/raw_utf8"
+        "pointer": "/verification_obligations/0/concrete_cases/11/independent_source_packet/raw_utf8"
       },
       "expected_oracle_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
         "pointer": "/verification_obligations/0/concrete_cases/11/expected_material"
-      },
-      "typed_arguments": {
-        "input": {
-          "raw_packet": {
-            "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-            "pointer": "/verification_obligations/0/concrete_cases/11/independent_source_packet/raw_utf8",
-            "decode_as": "F01Raw"
-          },
-          "contract_view": {
-            "document": "docs/helix-connect/L5-detail-design/composite-edge-terminal.json",
-            "pointer": "/contract_views/F01"
-          }
-        }
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
@@ -937,25 +769,11 @@
       "function_ref": "FN-C007-01",
       "source_packet_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-        "pointer": "/verification_obligations/0/concrete_cases/12/independent_source_packet",
-        "raw_pointer_suffix": "/raw_utf8"
+        "pointer": "/verification_obligations/0/concrete_cases/12/independent_source_packet/raw_utf8"
       },
       "expected_oracle_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
         "pointer": "/verification_obligations/0/concrete_cases/12/expected_material"
-      },
-      "typed_arguments": {
-        "input": {
-          "raw_packet": {
-            "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-            "pointer": "/verification_obligations/0/concrete_cases/12/independent_source_packet/raw_utf8",
-            "decode_as": "F01Raw"
-          },
-          "contract_view": {
-            "document": "docs/helix-connect/L5-detail-design/composite-edge-terminal.json",
-            "pointer": "/contract_views/F01"
-          }
-        }
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
@@ -993,25 +811,11 @@
       "function_ref": "FN-C007-01",
       "source_packet_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-        "pointer": "/verification_obligations/0/concrete_cases/13/independent_source_packet",
-        "raw_pointer_suffix": "/raw_utf8"
+        "pointer": "/verification_obligations/0/concrete_cases/13/independent_source_packet/raw_utf8"
       },
       "expected_oracle_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
         "pointer": "/verification_obligations/0/concrete_cases/13/expected_material"
-      },
-      "typed_arguments": {
-        "input": {
-          "raw_packet": {
-            "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-            "pointer": "/verification_obligations/0/concrete_cases/13/independent_source_packet/raw_utf8",
-            "decode_as": "F01Raw"
-          },
-          "contract_view": {
-            "document": "docs/helix-connect/L5-detail-design/composite-edge-terminal.json",
-            "pointer": "/contract_views/F01"
-          }
-        }
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
@@ -1049,25 +853,11 @@
       "function_ref": "FN-C007-01",
       "source_packet_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-        "pointer": "/verification_obligations/0/concrete_cases/14/independent_source_packet",
-        "raw_pointer_suffix": "/raw_utf8"
+        "pointer": "/verification_obligations/0/concrete_cases/14/independent_source_packet/raw_utf8"
       },
       "expected_oracle_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
         "pointer": "/verification_obligations/0/concrete_cases/14/expected_material"
-      },
-      "typed_arguments": {
-        "input": {
-          "raw_packet": {
-            "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-            "pointer": "/verification_obligations/0/concrete_cases/14/independent_source_packet/raw_utf8",
-            "decode_as": "F01Raw"
-          },
-          "contract_view": {
-            "document": "docs/helix-connect/L5-detail-design/composite-edge-terminal.json",
-            "pointer": "/contract_views/F01"
-          }
-        }
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
@@ -1105,25 +895,11 @@
       "function_ref": "FN-C007-01",
       "source_packet_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-        "pointer": "/verification_obligations/0/concrete_cases/15/independent_source_packet",
-        "raw_pointer_suffix": "/raw_utf8"
+        "pointer": "/verification_obligations/0/concrete_cases/15/independent_source_packet/raw_utf8"
       },
       "expected_oracle_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
         "pointer": "/verification_obligations/0/concrete_cases/15/expected_material"
-      },
-      "typed_arguments": {
-        "input": {
-          "raw_packet": {
-            "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-            "pointer": "/verification_obligations/0/concrete_cases/15/independent_source_packet/raw_utf8",
-            "decode_as": "F01Raw"
-          },
-          "contract_view": {
-            "document": "docs/helix-connect/L5-detail-design/composite-edge-terminal.json",
-            "pointer": "/contract_views/F01"
-          }
-        }
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
@@ -1161,25 +937,11 @@
       "function_ref": "FN-C007-01",
       "source_packet_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-        "pointer": "/verification_obligations/0/concrete_cases/16/independent_source_packet",
-        "raw_pointer_suffix": "/raw_utf8"
+        "pointer": "/verification_obligations/0/concrete_cases/16/independent_source_packet/raw_utf8"
       },
       "expected_oracle_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
         "pointer": "/verification_obligations/0/concrete_cases/16/expected_material"
-      },
-      "typed_arguments": {
-        "input": {
-          "raw_packet": {
-            "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-            "pointer": "/verification_obligations/0/concrete_cases/16/independent_source_packet/raw_utf8",
-            "decode_as": "F01Raw"
-          },
-          "contract_view": {
-            "document": "docs/helix-connect/L5-detail-design/composite-edge-terminal.json",
-            "pointer": "/contract_views/F01"
-          }
-        }
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
@@ -1217,25 +979,11 @@
       "function_ref": "FN-C007-01",
       "source_packet_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-        "pointer": "/verification_obligations/0/concrete_cases/17/independent_source_packet",
-        "raw_pointer_suffix": "/raw_utf8"
+        "pointer": "/verification_obligations/0/concrete_cases/17/independent_source_packet/raw_utf8"
       },
       "expected_oracle_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
         "pointer": "/verification_obligations/0/concrete_cases/17/expected_material"
-      },
-      "typed_arguments": {
-        "input": {
-          "raw_packet": {
-            "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-            "pointer": "/verification_obligations/0/concrete_cases/17/independent_source_packet/raw_utf8",
-            "decode_as": "F01Raw"
-          },
-          "contract_view": {
-            "document": "docs/helix-connect/L5-detail-design/composite-edge-terminal.json",
-            "pointer": "/contract_views/F01"
-          }
-        }
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
@@ -1273,25 +1021,11 @@
       "function_ref": "FN-C007-01",
       "source_packet_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-        "pointer": "/verification_obligations/0/concrete_cases/18/independent_source_packet",
-        "raw_pointer_suffix": "/raw_utf8"
+        "pointer": "/verification_obligations/0/concrete_cases/18/independent_source_packet/raw_utf8"
       },
       "expected_oracle_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
         "pointer": "/verification_obligations/0/concrete_cases/18/expected_material"
-      },
-      "typed_arguments": {
-        "input": {
-          "raw_packet": {
-            "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-            "pointer": "/verification_obligations/0/concrete_cases/18/independent_source_packet/raw_utf8",
-            "decode_as": "F01Raw"
-          },
-          "contract_view": {
-            "document": "docs/helix-connect/L5-detail-design/composite-edge-terminal.json",
-            "pointer": "/contract_views/F01"
-          }
-        }
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
@@ -1329,25 +1063,11 @@
       "function_ref": "FN-C007-01",
       "source_packet_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-        "pointer": "/verification_obligations/0/concrete_cases/19/independent_source_packet",
-        "raw_pointer_suffix": "/raw_utf8"
+        "pointer": "/verification_obligations/0/concrete_cases/19/independent_source_packet/raw_utf8"
       },
       "expected_oracle_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
         "pointer": "/verification_obligations/0/concrete_cases/19/expected_material"
-      },
-      "typed_arguments": {
-        "input": {
-          "raw_packet": {
-            "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-            "pointer": "/verification_obligations/0/concrete_cases/19/independent_source_packet/raw_utf8",
-            "decode_as": "F01Raw"
-          },
-          "contract_view": {
-            "document": "docs/helix-connect/L5-detail-design/composite-edge-terminal.json",
-            "pointer": "/contract_views/F01"
-          }
-        }
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
@@ -1385,25 +1105,11 @@
       "function_ref": "FN-C007-01",
       "source_packet_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-        "pointer": "/verification_obligations/0/concrete_cases/20/independent_source_packet",
-        "raw_pointer_suffix": "/raw_utf8"
+        "pointer": "/verification_obligations/0/concrete_cases/20/independent_source_packet/raw_utf8"
       },
       "expected_oracle_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
         "pointer": "/verification_obligations/0/concrete_cases/20/expected_material"
-      },
-      "typed_arguments": {
-        "input": {
-          "raw_packet": {
-            "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-            "pointer": "/verification_obligations/0/concrete_cases/20/independent_source_packet/raw_utf8",
-            "decode_as": "F01Raw"
-          },
-          "contract_view": {
-            "document": "docs/helix-connect/L5-detail-design/composite-edge-terminal.json",
-            "pointer": "/contract_views/F01"
-          }
-        }
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
@@ -1441,25 +1147,11 @@
       "function_ref": "FN-C007-01",
       "source_packet_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-        "pointer": "/verification_obligations/0/concrete_cases/21/independent_source_packet",
-        "raw_pointer_suffix": "/raw_utf8"
+        "pointer": "/verification_obligations/0/concrete_cases/21/independent_source_packet/raw_utf8"
       },
       "expected_oracle_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
         "pointer": "/verification_obligations/0/concrete_cases/21/expected_material"
-      },
-      "typed_arguments": {
-        "input": {
-          "raw_packet": {
-            "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-            "pointer": "/verification_obligations/0/concrete_cases/21/independent_source_packet/raw_utf8",
-            "decode_as": "F01Raw"
-          },
-          "contract_view": {
-            "document": "docs/helix-connect/L5-detail-design/composite-edge-terminal.json",
-            "pointer": "/contract_views/F01"
-          }
-        }
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
@@ -1497,25 +1189,11 @@
       "function_ref": "FN-C007-01",
       "source_packet_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-        "pointer": "/verification_obligations/0/concrete_cases/22/independent_source_packet",
-        "raw_pointer_suffix": "/raw_utf8"
+        "pointer": "/verification_obligations/0/concrete_cases/22/independent_source_packet/raw_utf8"
       },
       "expected_oracle_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
         "pointer": "/verification_obligations/0/concrete_cases/22/expected_material"
-      },
-      "typed_arguments": {
-        "input": {
-          "raw_packet": {
-            "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-            "pointer": "/verification_obligations/0/concrete_cases/22/independent_source_packet/raw_utf8",
-            "decode_as": "F01Raw"
-          },
-          "contract_view": {
-            "document": "docs/helix-connect/L5-detail-design/composite-edge-terminal.json",
-            "pointer": "/contract_views/F01"
-          }
-        }
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
@@ -1553,25 +1231,11 @@
       "function_ref": "FN-C007-01",
       "source_packet_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-        "pointer": "/verification_obligations/0/concrete_cases/23/independent_source_packet",
-        "raw_pointer_suffix": "/raw_utf8"
+        "pointer": "/verification_obligations/0/concrete_cases/23/independent_source_packet/raw_utf8"
       },
       "expected_oracle_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
         "pointer": "/verification_obligations/0/concrete_cases/23/expected_material"
-      },
-      "typed_arguments": {
-        "input": {
-          "raw_packet": {
-            "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-            "pointer": "/verification_obligations/0/concrete_cases/23/independent_source_packet/raw_utf8",
-            "decode_as": "F01Raw"
-          },
-          "contract_view": {
-            "document": "docs/helix-connect/L5-detail-design/composite-edge-terminal.json",
-            "pointer": "/contract_views/F01"
-          }
-        }
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
@@ -1609,25 +1273,11 @@
       "function_ref": "FN-C007-01",
       "source_packet_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-        "pointer": "/verification_obligations/0/concrete_cases/24/independent_source_packet",
-        "raw_pointer_suffix": "/raw_utf8"
+        "pointer": "/verification_obligations/0/concrete_cases/24/independent_source_packet/raw_utf8"
       },
       "expected_oracle_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
         "pointer": "/verification_obligations/0/concrete_cases/24/expected_material"
-      },
-      "typed_arguments": {
-        "input": {
-          "raw_packet": {
-            "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-            "pointer": "/verification_obligations/0/concrete_cases/24/independent_source_packet/raw_utf8",
-            "decode_as": "F01Raw"
-          },
-          "contract_view": {
-            "document": "docs/helix-connect/L5-detail-design/composite-edge-terminal.json",
-            "pointer": "/contract_views/F01"
-          }
-        }
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
@@ -1665,25 +1315,11 @@
       "function_ref": "FN-C007-01",
       "source_packet_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-        "pointer": "/verification_obligations/0/concrete_cases/25/independent_source_packet",
-        "raw_pointer_suffix": "/raw_utf8"
+        "pointer": "/verification_obligations/0/concrete_cases/25/independent_source_packet/raw_utf8"
       },
       "expected_oracle_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
         "pointer": "/verification_obligations/0/concrete_cases/25/expected_material"
-      },
-      "typed_arguments": {
-        "input": {
-          "raw_packet": {
-            "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-            "pointer": "/verification_obligations/0/concrete_cases/25/independent_source_packet/raw_utf8",
-            "decode_as": "F01Raw"
-          },
-          "contract_view": {
-            "document": "docs/helix-connect/L5-detail-design/composite-edge-terminal.json",
-            "pointer": "/contract_views/F01"
-          }
-        }
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
@@ -1721,25 +1357,11 @@
       "function_ref": "FN-C007-01",
       "source_packet_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-        "pointer": "/verification_obligations/0/concrete_cases/26/independent_source_packet",
-        "raw_pointer_suffix": "/raw_utf8"
+        "pointer": "/verification_obligations/0/concrete_cases/26/independent_source_packet/raw_utf8"
       },
       "expected_oracle_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
         "pointer": "/verification_obligations/0/concrete_cases/26/expected_material"
-      },
-      "typed_arguments": {
-        "input": {
-          "raw_packet": {
-            "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-            "pointer": "/verification_obligations/0/concrete_cases/26/independent_source_packet/raw_utf8",
-            "decode_as": "F01Raw"
-          },
-          "contract_view": {
-            "document": "docs/helix-connect/L5-detail-design/composite-edge-terminal.json",
-            "pointer": "/contract_views/F01"
-          }
-        }
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
@@ -1777,25 +1399,11 @@
       "function_ref": "FN-C007-01",
       "source_packet_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-        "pointer": "/verification_obligations/0/concrete_cases/27/independent_source_packet",
-        "raw_pointer_suffix": "/raw_utf8"
+        "pointer": "/verification_obligations/0/concrete_cases/27/independent_source_packet/raw_utf8"
       },
       "expected_oracle_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
         "pointer": "/verification_obligations/0/concrete_cases/27/expected_material"
-      },
-      "typed_arguments": {
-        "input": {
-          "raw_packet": {
-            "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-            "pointer": "/verification_obligations/0/concrete_cases/27/independent_source_packet/raw_utf8",
-            "decode_as": "F01Raw"
-          },
-          "contract_view": {
-            "document": "docs/helix-connect/L5-detail-design/composite-edge-terminal.json",
-            "pointer": "/contract_views/F01"
-          }
-        }
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
@@ -1833,25 +1441,11 @@
       "function_ref": "FN-C007-01",
       "source_packet_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-        "pointer": "/verification_obligations/0/concrete_cases/28/independent_source_packet",
-        "raw_pointer_suffix": "/raw_utf8"
+        "pointer": "/verification_obligations/0/concrete_cases/28/independent_source_packet/raw_utf8"
       },
       "expected_oracle_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
         "pointer": "/verification_obligations/0/concrete_cases/28/expected_material"
-      },
-      "typed_arguments": {
-        "input": {
-          "raw_packet": {
-            "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-            "pointer": "/verification_obligations/0/concrete_cases/28/independent_source_packet/raw_utf8",
-            "decode_as": "F01Raw"
-          },
-          "contract_view": {
-            "document": "docs/helix-connect/L5-detail-design/composite-edge-terminal.json",
-            "pointer": "/contract_views/F01"
-          }
-        }
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
@@ -1889,25 +1483,11 @@
       "function_ref": "FN-C007-01",
       "source_packet_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-        "pointer": "/verification_obligations/0/concrete_cases/29/independent_source_packet",
-        "raw_pointer_suffix": "/raw_utf8"
+        "pointer": "/verification_obligations/0/concrete_cases/29/independent_source_packet/raw_utf8"
       },
       "expected_oracle_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
         "pointer": "/verification_obligations/0/concrete_cases/29/expected_material"
-      },
-      "typed_arguments": {
-        "input": {
-          "raw_packet": {
-            "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-            "pointer": "/verification_obligations/0/concrete_cases/29/independent_source_packet/raw_utf8",
-            "decode_as": "F01Raw"
-          },
-          "contract_view": {
-            "document": "docs/helix-connect/L5-detail-design/composite-edge-terminal.json",
-            "pointer": "/contract_views/F01"
-          }
-        }
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
@@ -1949,25 +1529,11 @@
       "function_ref": "FN-C007-01",
       "source_packet_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-        "pointer": "/verification_obligations/0/concrete_cases/30/independent_source_packet",
-        "raw_pointer_suffix": "/raw_utf8"
+        "pointer": "/verification_obligations/0/concrete_cases/30/independent_source_packet/raw_utf8"
       },
       "expected_oracle_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
         "pointer": "/verification_obligations/0/concrete_cases/30/expected_material"
-      },
-      "typed_arguments": {
-        "input": {
-          "raw_packet": {
-            "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-            "pointer": "/verification_obligations/0/concrete_cases/30/independent_source_packet/raw_utf8",
-            "decode_as": "F01Raw"
-          },
-          "contract_view": {
-            "document": "docs/helix-connect/L5-detail-design/composite-edge-terminal.json",
-            "pointer": "/contract_views/F01"
-          }
-        }
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
@@ -2005,25 +1571,11 @@
       "function_ref": "FN-C007-01",
       "source_packet_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-        "pointer": "/verification_obligations/0/concrete_cases/31/independent_source_packet",
-        "raw_pointer_suffix": "/raw_utf8"
+        "pointer": "/verification_obligations/0/concrete_cases/31/independent_source_packet/raw_utf8"
       },
       "expected_oracle_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
         "pointer": "/verification_obligations/0/concrete_cases/31/expected_material"
-      },
-      "typed_arguments": {
-        "input": {
-          "raw_packet": {
-            "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-            "pointer": "/verification_obligations/0/concrete_cases/31/independent_source_packet/raw_utf8",
-            "decode_as": "F01Raw"
-          },
-          "contract_view": {
-            "document": "docs/helix-connect/L5-detail-design/composite-edge-terminal.json",
-            "pointer": "/contract_views/F01"
-          }
-        }
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
@@ -2063,25 +1615,11 @@
       "function_ref": "FN-C007-01",
       "source_packet_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-        "pointer": "/verification_obligations/0/concrete_cases/32/independent_source_packet",
-        "raw_pointer_suffix": "/raw_utf8"
+        "pointer": "/verification_obligations/0/concrete_cases/32/independent_source_packet/raw_utf8"
       },
       "expected_oracle_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
         "pointer": "/verification_obligations/0/concrete_cases/32/expected_material"
-      },
-      "typed_arguments": {
-        "input": {
-          "raw_packet": {
-            "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-            "pointer": "/verification_obligations/0/concrete_cases/32/independent_source_packet/raw_utf8",
-            "decode_as": "F01Raw"
-          },
-          "contract_view": {
-            "document": "docs/helix-connect/L5-detail-design/composite-edge-terminal.json",
-            "pointer": "/contract_views/F01"
-          }
-        }
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
@@ -2119,25 +1657,11 @@
       "function_ref": "FN-C007-01",
       "source_packet_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-        "pointer": "/verification_obligations/0/concrete_cases/33/independent_source_packet",
-        "raw_pointer_suffix": "/raw_utf8"
+        "pointer": "/verification_obligations/0/concrete_cases/33/independent_source_packet/raw_utf8"
       },
       "expected_oracle_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
         "pointer": "/verification_obligations/0/concrete_cases/33/expected_material"
-      },
-      "typed_arguments": {
-        "input": {
-          "raw_packet": {
-            "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-            "pointer": "/verification_obligations/0/concrete_cases/33/independent_source_packet/raw_utf8",
-            "decode_as": "F01Raw"
-          },
-          "contract_view": {
-            "document": "docs/helix-connect/L5-detail-design/composite-edge-terminal.json",
-            "pointer": "/contract_views/F01"
-          }
-        }
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
@@ -2175,25 +1699,11 @@
       "function_ref": "FN-C007-01",
       "source_packet_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-        "pointer": "/verification_obligations/0/concrete_cases/34/independent_source_packet",
-        "raw_pointer_suffix": "/raw_utf8"
+        "pointer": "/verification_obligations/0/concrete_cases/34/independent_source_packet/raw_utf8"
       },
       "expected_oracle_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
         "pointer": "/verification_obligations/0/concrete_cases/34/expected_material"
-      },
-      "typed_arguments": {
-        "input": {
-          "raw_packet": {
-            "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-            "pointer": "/verification_obligations/0/concrete_cases/34/independent_source_packet/raw_utf8",
-            "decode_as": "F01Raw"
-          },
-          "contract_view": {
-            "document": "docs/helix-connect/L5-detail-design/composite-edge-terminal.json",
-            "pointer": "/contract_views/F01"
-          }
-        }
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
@@ -2233,25 +1743,11 @@
       "function_ref": "FN-C007-01",
       "source_packet_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-        "pointer": "/verification_obligations/0/concrete_cases/35/independent_source_packet",
-        "raw_pointer_suffix": "/raw_utf8"
+        "pointer": "/verification_obligations/0/concrete_cases/35/independent_source_packet/raw_utf8"
       },
       "expected_oracle_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
         "pointer": "/verification_obligations/0/concrete_cases/35/expected_material"
-      },
-      "typed_arguments": {
-        "input": {
-          "raw_packet": {
-            "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-            "pointer": "/verification_obligations/0/concrete_cases/35/independent_source_packet/raw_utf8",
-            "decode_as": "F01Raw"
-          },
-          "contract_view": {
-            "document": "docs/helix-connect/L5-detail-design/composite-edge-terminal.json",
-            "pointer": "/contract_views/F01"
-          }
-        }
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
@@ -2291,25 +1787,11 @@
       "function_ref": "FN-C007-01",
       "source_packet_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-        "pointer": "/verification_obligations/0/concrete_cases/36/independent_source_packet",
-        "raw_pointer_suffix": "/raw_utf8"
+        "pointer": "/verification_obligations/0/concrete_cases/36/independent_source_packet/raw_utf8"
       },
       "expected_oracle_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
         "pointer": "/verification_obligations/0/concrete_cases/36/expected_material"
-      },
-      "typed_arguments": {
-        "input": {
-          "raw_packet": {
-            "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-            "pointer": "/verification_obligations/0/concrete_cases/36/independent_source_packet/raw_utf8",
-            "decode_as": "F01Raw"
-          },
-          "contract_view": {
-            "document": "docs/helix-connect/L5-detail-design/composite-edge-terminal.json",
-            "pointer": "/contract_views/F01"
-          }
-        }
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
@@ -2357,25 +1839,11 @@
       "function_ref": "FN-C007-01",
       "source_packet_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-        "pointer": "/verification_obligations/0/concrete_cases/37/independent_source_packet",
-        "raw_pointer_suffix": "/raw_utf8"
+        "pointer": "/verification_obligations/0/concrete_cases/37/independent_source_packet/raw_utf8"
       },
       "expected_oracle_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
         "pointer": "/verification_obligations/0/concrete_cases/37/expected_material"
-      },
-      "typed_arguments": {
-        "input": {
-          "raw_packet": {
-            "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-            "pointer": "/verification_obligations/0/concrete_cases/37/independent_source_packet/raw_utf8",
-            "decode_as": "F01Raw"
-          },
-          "contract_view": {
-            "document": "docs/helix-connect/L5-detail-design/composite-edge-terminal.json",
-            "pointer": "/contract_views/F01"
-          }
-        }
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
@@ -2423,25 +1891,11 @@
       "function_ref": "FN-C007-01",
       "source_packet_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-        "pointer": "/verification_obligations/0/concrete_cases/38/independent_source_packet",
-        "raw_pointer_suffix": "/raw_utf8"
+        "pointer": "/verification_obligations/0/concrete_cases/38/independent_source_packet/raw_utf8"
       },
       "expected_oracle_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
         "pointer": "/verification_obligations/0/concrete_cases/38/expected_material"
-      },
-      "typed_arguments": {
-        "input": {
-          "raw_packet": {
-            "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-            "pointer": "/verification_obligations/0/concrete_cases/38/independent_source_packet/raw_utf8",
-            "decode_as": "F01Raw"
-          },
-          "contract_view": {
-            "document": "docs/helix-connect/L5-detail-design/composite-edge-terminal.json",
-            "pointer": "/contract_views/F01"
-          }
-        }
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
@@ -2481,25 +1935,11 @@
       "function_ref": "FN-C007-02",
       "source_packet_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-        "pointer": "/verification_obligations/1/concrete_cases/0/independent_source_packet",
-        "raw_pointer_suffix": "/raw_utf8"
+        "pointer": "/verification_obligations/1/concrete_cases/0/independent_source_packet/raw_utf8"
       },
       "expected_oracle_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
         "pointer": "/verification_obligations/1/concrete_cases/0/expected_material"
-      },
-      "typed_arguments": {
-        "input": {
-          "raw_packet": {
-            "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-            "pointer": "/verification_obligations/1/concrete_cases/0/independent_source_packet/raw_utf8",
-            "decode_as": "F02Raw"
-          },
-          "contract_view": {
-            "document": "docs/helix-connect/L5-detail-design/composite-edge-terminal.json",
-            "pointer": "/contract_views/F02"
-          }
-        }
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
@@ -2535,25 +1975,11 @@
       "function_ref": "FN-C007-02",
       "source_packet_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-        "pointer": "/verification_obligations/1/concrete_cases/1/independent_source_packet",
-        "raw_pointer_suffix": "/raw_utf8"
+        "pointer": "/verification_obligations/1/concrete_cases/1/independent_source_packet/raw_utf8"
       },
       "expected_oracle_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
         "pointer": "/verification_obligations/1/concrete_cases/1/expected_material"
-      },
-      "typed_arguments": {
-        "input": {
-          "raw_packet": {
-            "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-            "pointer": "/verification_obligations/1/concrete_cases/1/independent_source_packet/raw_utf8",
-            "decode_as": "F02Raw"
-          },
-          "contract_view": {
-            "document": "docs/helix-connect/L5-detail-design/composite-edge-terminal.json",
-            "pointer": "/contract_views/F02"
-          }
-        }
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
@@ -2589,25 +2015,11 @@
       "function_ref": "FN-C007-02",
       "source_packet_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-        "pointer": "/verification_obligations/1/concrete_cases/2/independent_source_packet",
-        "raw_pointer_suffix": "/raw_utf8"
+        "pointer": "/verification_obligations/1/concrete_cases/2/independent_source_packet/raw_utf8"
       },
       "expected_oracle_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
         "pointer": "/verification_obligations/1/concrete_cases/2/expected_material"
-      },
-      "typed_arguments": {
-        "input": {
-          "raw_packet": {
-            "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-            "pointer": "/verification_obligations/1/concrete_cases/2/independent_source_packet/raw_utf8",
-            "decode_as": "F02Raw"
-          },
-          "contract_view": {
-            "document": "docs/helix-connect/L5-detail-design/composite-edge-terminal.json",
-            "pointer": "/contract_views/F02"
-          }
-        }
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
@@ -2643,25 +2055,11 @@
       "function_ref": "FN-C007-02",
       "source_packet_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-        "pointer": "/verification_obligations/1/concrete_cases/3/independent_source_packet",
-        "raw_pointer_suffix": "/raw_utf8"
+        "pointer": "/verification_obligations/1/concrete_cases/3/independent_source_packet/raw_utf8"
       },
       "expected_oracle_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
         "pointer": "/verification_obligations/1/concrete_cases/3/expected_material"
-      },
-      "typed_arguments": {
-        "input": {
-          "raw_packet": {
-            "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-            "pointer": "/verification_obligations/1/concrete_cases/3/independent_source_packet/raw_utf8",
-            "decode_as": "F02Raw"
-          },
-          "contract_view": {
-            "document": "docs/helix-connect/L5-detail-design/composite-edge-terminal.json",
-            "pointer": "/contract_views/F02"
-          }
-        }
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
@@ -2697,25 +2095,11 @@
       "function_ref": "FN-C007-02",
       "source_packet_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-        "pointer": "/verification_obligations/1/concrete_cases/4/independent_source_packet",
-        "raw_pointer_suffix": "/raw_utf8"
+        "pointer": "/verification_obligations/1/concrete_cases/4/independent_source_packet/raw_utf8"
       },
       "expected_oracle_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
         "pointer": "/verification_obligations/1/concrete_cases/4/expected_material"
-      },
-      "typed_arguments": {
-        "input": {
-          "raw_packet": {
-            "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-            "pointer": "/verification_obligations/1/concrete_cases/4/independent_source_packet/raw_utf8",
-            "decode_as": "F02Raw"
-          },
-          "contract_view": {
-            "document": "docs/helix-connect/L5-detail-design/composite-edge-terminal.json",
-            "pointer": "/contract_views/F02"
-          }
-        }
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
@@ -2751,25 +2135,11 @@
       "function_ref": "FN-C007-02",
       "source_packet_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-        "pointer": "/verification_obligations/1/concrete_cases/5/independent_source_packet",
-        "raw_pointer_suffix": "/raw_utf8"
+        "pointer": "/verification_obligations/1/concrete_cases/5/independent_source_packet/raw_utf8"
       },
       "expected_oracle_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
         "pointer": "/verification_obligations/1/concrete_cases/5/expected_material"
-      },
-      "typed_arguments": {
-        "input": {
-          "raw_packet": {
-            "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-            "pointer": "/verification_obligations/1/concrete_cases/5/independent_source_packet/raw_utf8",
-            "decode_as": "F02Raw"
-          },
-          "contract_view": {
-            "document": "docs/helix-connect/L5-detail-design/composite-edge-terminal.json",
-            "pointer": "/contract_views/F02"
-          }
-        }
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
@@ -2805,25 +2175,11 @@
       "function_ref": "FN-C007-02",
       "source_packet_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-        "pointer": "/verification_obligations/1/concrete_cases/6/independent_source_packet",
-        "raw_pointer_suffix": "/raw_utf8"
+        "pointer": "/verification_obligations/1/concrete_cases/6/independent_source_packet/raw_utf8"
       },
       "expected_oracle_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
         "pointer": "/verification_obligations/1/concrete_cases/6/expected_material"
-      },
-      "typed_arguments": {
-        "input": {
-          "raw_packet": {
-            "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-            "pointer": "/verification_obligations/1/concrete_cases/6/independent_source_packet/raw_utf8",
-            "decode_as": "F02Raw"
-          },
-          "contract_view": {
-            "document": "docs/helix-connect/L5-detail-design/composite-edge-terminal.json",
-            "pointer": "/contract_views/F02"
-          }
-        }
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
@@ -2859,25 +2215,11 @@
       "function_ref": "FN-C007-02",
       "source_packet_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-        "pointer": "/verification_obligations/1/concrete_cases/7/independent_source_packet",
-        "raw_pointer_suffix": "/raw_utf8"
+        "pointer": "/verification_obligations/1/concrete_cases/7/independent_source_packet/raw_utf8"
       },
       "expected_oracle_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
         "pointer": "/verification_obligations/1/concrete_cases/7/expected_material"
-      },
-      "typed_arguments": {
-        "input": {
-          "raw_packet": {
-            "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-            "pointer": "/verification_obligations/1/concrete_cases/7/independent_source_packet/raw_utf8",
-            "decode_as": "F02Raw"
-          },
-          "contract_view": {
-            "document": "docs/helix-connect/L5-detail-design/composite-edge-terminal.json",
-            "pointer": "/contract_views/F02"
-          }
-        }
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
@@ -2913,25 +2255,11 @@
       "function_ref": "FN-C007-02",
       "source_packet_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-        "pointer": "/verification_obligations/1/concrete_cases/8/independent_source_packet",
-        "raw_pointer_suffix": "/raw_utf8"
+        "pointer": "/verification_obligations/1/concrete_cases/8/independent_source_packet/raw_utf8"
       },
       "expected_oracle_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
         "pointer": "/verification_obligations/1/concrete_cases/8/expected_material"
-      },
-      "typed_arguments": {
-        "input": {
-          "raw_packet": {
-            "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-            "pointer": "/verification_obligations/1/concrete_cases/8/independent_source_packet/raw_utf8",
-            "decode_as": "F02Raw"
-          },
-          "contract_view": {
-            "document": "docs/helix-connect/L5-detail-design/composite-edge-terminal.json",
-            "pointer": "/contract_views/F02"
-          }
-        }
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
@@ -2969,25 +2297,11 @@
       "function_ref": "FN-C007-02",
       "source_packet_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-        "pointer": "/verification_obligations/1/concrete_cases/9/independent_source_packet",
-        "raw_pointer_suffix": "/raw_utf8"
+        "pointer": "/verification_obligations/1/concrete_cases/9/independent_source_packet/raw_utf8"
       },
       "expected_oracle_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
         "pointer": "/verification_obligations/1/concrete_cases/9/expected_material"
-      },
-      "typed_arguments": {
-        "input": {
-          "raw_packet": {
-            "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-            "pointer": "/verification_obligations/1/concrete_cases/9/independent_source_packet/raw_utf8",
-            "decode_as": "F02Raw"
-          },
-          "contract_view": {
-            "document": "docs/helix-connect/L5-detail-design/composite-edge-terminal.json",
-            "pointer": "/contract_views/F02"
-          }
-        }
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
@@ -3025,25 +2339,11 @@
       "function_ref": "FN-C007-02",
       "source_packet_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-        "pointer": "/verification_obligations/1/concrete_cases/10/independent_source_packet",
-        "raw_pointer_suffix": "/raw_utf8"
+        "pointer": "/verification_obligations/1/concrete_cases/10/independent_source_packet/raw_utf8"
       },
       "expected_oracle_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
         "pointer": "/verification_obligations/1/concrete_cases/10/expected_material"
-      },
-      "typed_arguments": {
-        "input": {
-          "raw_packet": {
-            "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-            "pointer": "/verification_obligations/1/concrete_cases/10/independent_source_packet/raw_utf8",
-            "decode_as": "F02Raw"
-          },
-          "contract_view": {
-            "document": "docs/helix-connect/L5-detail-design/composite-edge-terminal.json",
-            "pointer": "/contract_views/F02"
-          }
-        }
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
@@ -3081,25 +2381,11 @@
       "function_ref": "FN-C007-02",
       "source_packet_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-        "pointer": "/verification_obligations/1/concrete_cases/11/independent_source_packet",
-        "raw_pointer_suffix": "/raw_utf8"
+        "pointer": "/verification_obligations/1/concrete_cases/11/independent_source_packet/raw_utf8"
       },
       "expected_oracle_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
         "pointer": "/verification_obligations/1/concrete_cases/11/expected_material"
-      },
-      "typed_arguments": {
-        "input": {
-          "raw_packet": {
-            "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-            "pointer": "/verification_obligations/1/concrete_cases/11/independent_source_packet/raw_utf8",
-            "decode_as": "F02Raw"
-          },
-          "contract_view": {
-            "document": "docs/helix-connect/L5-detail-design/composite-edge-terminal.json",
-            "pointer": "/contract_views/F02"
-          }
-        }
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
@@ -3137,25 +2423,11 @@
       "function_ref": "FN-C007-02",
       "source_packet_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-        "pointer": "/verification_obligations/1/concrete_cases/12/independent_source_packet",
-        "raw_pointer_suffix": "/raw_utf8"
+        "pointer": "/verification_obligations/1/concrete_cases/12/independent_source_packet/raw_utf8"
       },
       "expected_oracle_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
         "pointer": "/verification_obligations/1/concrete_cases/12/expected_material"
-      },
-      "typed_arguments": {
-        "input": {
-          "raw_packet": {
-            "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-            "pointer": "/verification_obligations/1/concrete_cases/12/independent_source_packet/raw_utf8",
-            "decode_as": "F02Raw"
-          },
-          "contract_view": {
-            "document": "docs/helix-connect/L5-detail-design/composite-edge-terminal.json",
-            "pointer": "/contract_views/F02"
-          }
-        }
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
@@ -3193,25 +2465,11 @@
       "function_ref": "FN-C007-02",
       "source_packet_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-        "pointer": "/verification_obligations/1/concrete_cases/13/independent_source_packet",
-        "raw_pointer_suffix": "/raw_utf8"
+        "pointer": "/verification_obligations/1/concrete_cases/13/independent_source_packet/raw_utf8"
       },
       "expected_oracle_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
         "pointer": "/verification_obligations/1/concrete_cases/13/expected_material"
-      },
-      "typed_arguments": {
-        "input": {
-          "raw_packet": {
-            "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-            "pointer": "/verification_obligations/1/concrete_cases/13/independent_source_packet/raw_utf8",
-            "decode_as": "F02Raw"
-          },
-          "contract_view": {
-            "document": "docs/helix-connect/L5-detail-design/composite-edge-terminal.json",
-            "pointer": "/contract_views/F02"
-          }
-        }
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
@@ -3249,25 +2507,11 @@
       "function_ref": "FN-C007-02",
       "source_packet_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-        "pointer": "/verification_obligations/1/concrete_cases/14/independent_source_packet",
-        "raw_pointer_suffix": "/raw_utf8"
+        "pointer": "/verification_obligations/1/concrete_cases/14/independent_source_packet/raw_utf8"
       },
       "expected_oracle_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
         "pointer": "/verification_obligations/1/concrete_cases/14/expected_material"
-      },
-      "typed_arguments": {
-        "input": {
-          "raw_packet": {
-            "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-            "pointer": "/verification_obligations/1/concrete_cases/14/independent_source_packet/raw_utf8",
-            "decode_as": "F02Raw"
-          },
-          "contract_view": {
-            "document": "docs/helix-connect/L5-detail-design/composite-edge-terminal.json",
-            "pointer": "/contract_views/F02"
-          }
-        }
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
@@ -3305,25 +2549,11 @@
       "function_ref": "FN-C007-02",
       "source_packet_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-        "pointer": "/verification_obligations/1/concrete_cases/15/independent_source_packet",
-        "raw_pointer_suffix": "/raw_utf8"
+        "pointer": "/verification_obligations/1/concrete_cases/15/independent_source_packet/raw_utf8"
       },
       "expected_oracle_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
         "pointer": "/verification_obligations/1/concrete_cases/15/expected_material"
-      },
-      "typed_arguments": {
-        "input": {
-          "raw_packet": {
-            "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-            "pointer": "/verification_obligations/1/concrete_cases/15/independent_source_packet/raw_utf8",
-            "decode_as": "F02Raw"
-          },
-          "contract_view": {
-            "document": "docs/helix-connect/L5-detail-design/composite-edge-terminal.json",
-            "pointer": "/contract_views/F02"
-          }
-        }
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
@@ -3361,25 +2591,11 @@
       "function_ref": "FN-C007-02",
       "source_packet_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-        "pointer": "/verification_obligations/1/concrete_cases/16/independent_source_packet",
-        "raw_pointer_suffix": "/raw_utf8"
+        "pointer": "/verification_obligations/1/concrete_cases/16/independent_source_packet/raw_utf8"
       },
       "expected_oracle_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
         "pointer": "/verification_obligations/1/concrete_cases/16/expected_material"
-      },
-      "typed_arguments": {
-        "input": {
-          "raw_packet": {
-            "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-            "pointer": "/verification_obligations/1/concrete_cases/16/independent_source_packet/raw_utf8",
-            "decode_as": "F02Raw"
-          },
-          "contract_view": {
-            "document": "docs/helix-connect/L5-detail-design/composite-edge-terminal.json",
-            "pointer": "/contract_views/F02"
-          }
-        }
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
@@ -3417,25 +2633,11 @@
       "function_ref": "FN-C007-02",
       "source_packet_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-        "pointer": "/verification_obligations/1/concrete_cases/17/independent_source_packet",
-        "raw_pointer_suffix": "/raw_utf8"
+        "pointer": "/verification_obligations/1/concrete_cases/17/independent_source_packet/raw_utf8"
       },
       "expected_oracle_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
         "pointer": "/verification_obligations/1/concrete_cases/17/expected_material"
-      },
-      "typed_arguments": {
-        "input": {
-          "raw_packet": {
-            "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-            "pointer": "/verification_obligations/1/concrete_cases/17/independent_source_packet/raw_utf8",
-            "decode_as": "F02Raw"
-          },
-          "contract_view": {
-            "document": "docs/helix-connect/L5-detail-design/composite-edge-terminal.json",
-            "pointer": "/contract_views/F02"
-          }
-        }
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
@@ -3473,25 +2675,11 @@
       "function_ref": "FN-C007-02",
       "source_packet_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-        "pointer": "/verification_obligations/1/concrete_cases/18/independent_source_packet",
-        "raw_pointer_suffix": "/raw_utf8"
+        "pointer": "/verification_obligations/1/concrete_cases/18/independent_source_packet/raw_utf8"
       },
       "expected_oracle_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
         "pointer": "/verification_obligations/1/concrete_cases/18/expected_material"
-      },
-      "typed_arguments": {
-        "input": {
-          "raw_packet": {
-            "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-            "pointer": "/verification_obligations/1/concrete_cases/18/independent_source_packet/raw_utf8",
-            "decode_as": "F02Raw"
-          },
-          "contract_view": {
-            "document": "docs/helix-connect/L5-detail-design/composite-edge-terminal.json",
-            "pointer": "/contract_views/F02"
-          }
-        }
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
@@ -3529,25 +2717,11 @@
       "function_ref": "FN-C007-02",
       "source_packet_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-        "pointer": "/verification_obligations/1/concrete_cases/19/independent_source_packet",
-        "raw_pointer_suffix": "/raw_utf8"
+        "pointer": "/verification_obligations/1/concrete_cases/19/independent_source_packet/raw_utf8"
       },
       "expected_oracle_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
         "pointer": "/verification_obligations/1/concrete_cases/19/expected_material"
-      },
-      "typed_arguments": {
-        "input": {
-          "raw_packet": {
-            "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-            "pointer": "/verification_obligations/1/concrete_cases/19/independent_source_packet/raw_utf8",
-            "decode_as": "F02Raw"
-          },
-          "contract_view": {
-            "document": "docs/helix-connect/L5-detail-design/composite-edge-terminal.json",
-            "pointer": "/contract_views/F02"
-          }
-        }
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
@@ -3585,25 +2759,11 @@
       "function_ref": "FN-C007-02",
       "source_packet_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-        "pointer": "/verification_obligations/1/concrete_cases/20/independent_source_packet",
-        "raw_pointer_suffix": "/raw_utf8"
+        "pointer": "/verification_obligations/1/concrete_cases/20/independent_source_packet/raw_utf8"
       },
       "expected_oracle_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
         "pointer": "/verification_obligations/1/concrete_cases/20/expected_material"
-      },
-      "typed_arguments": {
-        "input": {
-          "raw_packet": {
-            "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-            "pointer": "/verification_obligations/1/concrete_cases/20/independent_source_packet/raw_utf8",
-            "decode_as": "F02Raw"
-          },
-          "contract_view": {
-            "document": "docs/helix-connect/L5-detail-design/composite-edge-terminal.json",
-            "pointer": "/contract_views/F02"
-          }
-        }
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
@@ -3641,25 +2801,11 @@
       "function_ref": "FN-C007-02",
       "source_packet_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-        "pointer": "/verification_obligations/1/concrete_cases/21/independent_source_packet",
-        "raw_pointer_suffix": "/raw_utf8"
+        "pointer": "/verification_obligations/1/concrete_cases/21/independent_source_packet/raw_utf8"
       },
       "expected_oracle_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
         "pointer": "/verification_obligations/1/concrete_cases/21/expected_material"
-      },
-      "typed_arguments": {
-        "input": {
-          "raw_packet": {
-            "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-            "pointer": "/verification_obligations/1/concrete_cases/21/independent_source_packet/raw_utf8",
-            "decode_as": "F02Raw"
-          },
-          "contract_view": {
-            "document": "docs/helix-connect/L5-detail-design/composite-edge-terminal.json",
-            "pointer": "/contract_views/F02"
-          }
-        }
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
@@ -3697,25 +2843,11 @@
       "function_ref": "FN-C007-02",
       "source_packet_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-        "pointer": "/verification_obligations/1/concrete_cases/22/independent_source_packet",
-        "raw_pointer_suffix": "/raw_utf8"
+        "pointer": "/verification_obligations/1/concrete_cases/22/independent_source_packet/raw_utf8"
       },
       "expected_oracle_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
         "pointer": "/verification_obligations/1/concrete_cases/22/expected_material"
-      },
-      "typed_arguments": {
-        "input": {
-          "raw_packet": {
-            "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-            "pointer": "/verification_obligations/1/concrete_cases/22/independent_source_packet/raw_utf8",
-            "decode_as": "F02Raw"
-          },
-          "contract_view": {
-            "document": "docs/helix-connect/L5-detail-design/composite-edge-terminal.json",
-            "pointer": "/contract_views/F02"
-          }
-        }
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
@@ -3753,25 +2885,11 @@
       "function_ref": "FN-C007-02",
       "source_packet_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-        "pointer": "/verification_obligations/1/concrete_cases/23/independent_source_packet",
-        "raw_pointer_suffix": "/raw_utf8"
+        "pointer": "/verification_obligations/1/concrete_cases/23/independent_source_packet/raw_utf8"
       },
       "expected_oracle_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
         "pointer": "/verification_obligations/1/concrete_cases/23/expected_material"
-      },
-      "typed_arguments": {
-        "input": {
-          "raw_packet": {
-            "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-            "pointer": "/verification_obligations/1/concrete_cases/23/independent_source_packet/raw_utf8",
-            "decode_as": "F02Raw"
-          },
-          "contract_view": {
-            "document": "docs/helix-connect/L5-detail-design/composite-edge-terminal.json",
-            "pointer": "/contract_views/F02"
-          }
-        }
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
@@ -3809,25 +2927,11 @@
       "function_ref": "FN-C007-02",
       "source_packet_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-        "pointer": "/verification_obligations/1/concrete_cases/24/independent_source_packet",
-        "raw_pointer_suffix": "/raw_utf8"
+        "pointer": "/verification_obligations/1/concrete_cases/24/independent_source_packet/raw_utf8"
       },
       "expected_oracle_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
         "pointer": "/verification_obligations/1/concrete_cases/24/expected_material"
-      },
-      "typed_arguments": {
-        "input": {
-          "raw_packet": {
-            "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-            "pointer": "/verification_obligations/1/concrete_cases/24/independent_source_packet/raw_utf8",
-            "decode_as": "F02Raw"
-          },
-          "contract_view": {
-            "document": "docs/helix-connect/L5-detail-design/composite-edge-terminal.json",
-            "pointer": "/contract_views/F02"
-          }
-        }
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
@@ -3867,25 +2971,11 @@
       "function_ref": "FN-C007-03",
       "source_packet_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-        "pointer": "/verification_obligations/2/concrete_cases/0/independent_source_packet",
-        "raw_pointer_suffix": "/raw_utf8"
+        "pointer": "/verification_obligations/2/concrete_cases/0/independent_source_packet/raw_utf8"
       },
       "expected_oracle_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
         "pointer": "/verification_obligations/2/concrete_cases/0/expected_material"
-      },
-      "typed_arguments": {
-        "input": {
-          "raw_packet": {
-            "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-            "pointer": "/verification_obligations/2/concrete_cases/0/independent_source_packet/raw_utf8",
-            "decode_as": "N01Raw"
-          },
-          "contract_view": {
-            "document": "docs/helix-connect/L5-detail-design/composite-edge-terminal.json",
-            "pointer": "/contract_views/N01"
-          }
-        }
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
@@ -3921,25 +3011,11 @@
       "function_ref": "FN-C007-03",
       "source_packet_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-        "pointer": "/verification_obligations/2/concrete_cases/1/independent_source_packet",
-        "raw_pointer_suffix": "/raw_utf8"
+        "pointer": "/verification_obligations/2/concrete_cases/1/independent_source_packet/raw_utf8"
       },
       "expected_oracle_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
         "pointer": "/verification_obligations/2/concrete_cases/1/expected_material"
-      },
-      "typed_arguments": {
-        "input": {
-          "raw_packet": {
-            "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-            "pointer": "/verification_obligations/2/concrete_cases/1/independent_source_packet/raw_utf8",
-            "decode_as": "N01Raw"
-          },
-          "contract_view": {
-            "document": "docs/helix-connect/L5-detail-design/composite-edge-terminal.json",
-            "pointer": "/contract_views/N01"
-          }
-        }
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
@@ -3977,25 +3053,11 @@
       "function_ref": "FN-C007-03",
       "source_packet_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-        "pointer": "/verification_obligations/2/concrete_cases/2/independent_source_packet",
-        "raw_pointer_suffix": "/raw_utf8"
+        "pointer": "/verification_obligations/2/concrete_cases/2/independent_source_packet/raw_utf8"
       },
       "expected_oracle_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
         "pointer": "/verification_obligations/2/concrete_cases/2/expected_material"
-      },
-      "typed_arguments": {
-        "input": {
-          "raw_packet": {
-            "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-            "pointer": "/verification_obligations/2/concrete_cases/2/independent_source_packet/raw_utf8",
-            "decode_as": "N01Raw"
-          },
-          "contract_view": {
-            "document": "docs/helix-connect/L5-detail-design/composite-edge-terminal.json",
-            "pointer": "/contract_views/N01"
-          }
-        }
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
@@ -4033,25 +3095,11 @@
       "function_ref": "FN-C007-03",
       "source_packet_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-        "pointer": "/verification_obligations/2/concrete_cases/3/independent_source_packet",
-        "raw_pointer_suffix": "/raw_utf8"
+        "pointer": "/verification_obligations/2/concrete_cases/3/independent_source_packet/raw_utf8"
       },
       "expected_oracle_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
         "pointer": "/verification_obligations/2/concrete_cases/3/expected_material"
-      },
-      "typed_arguments": {
-        "input": {
-          "raw_packet": {
-            "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-            "pointer": "/verification_obligations/2/concrete_cases/3/independent_source_packet/raw_utf8",
-            "decode_as": "N01Raw"
-          },
-          "contract_view": {
-            "document": "docs/helix-connect/L5-detail-design/composite-edge-terminal.json",
-            "pointer": "/contract_views/N01"
-          }
-        }
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
@@ -4089,25 +3137,11 @@
       "function_ref": "FN-C007-03",
       "source_packet_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-        "pointer": "/verification_obligations/2/concrete_cases/4/independent_source_packet",
-        "raw_pointer_suffix": "/raw_utf8"
+        "pointer": "/verification_obligations/2/concrete_cases/4/independent_source_packet/raw_utf8"
       },
       "expected_oracle_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
         "pointer": "/verification_obligations/2/concrete_cases/4/expected_material"
-      },
-      "typed_arguments": {
-        "input": {
-          "raw_packet": {
-            "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-            "pointer": "/verification_obligations/2/concrete_cases/4/independent_source_packet/raw_utf8",
-            "decode_as": "N01Raw"
-          },
-          "contract_view": {
-            "document": "docs/helix-connect/L5-detail-design/composite-edge-terminal.json",
-            "pointer": "/contract_views/N01"
-          }
-        }
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
@@ -4145,25 +3179,11 @@
       "function_ref": "FN-C007-03",
       "source_packet_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-        "pointer": "/verification_obligations/2/concrete_cases/5/independent_source_packet",
-        "raw_pointer_suffix": "/raw_utf8"
+        "pointer": "/verification_obligations/2/concrete_cases/5/independent_source_packet/raw_utf8"
       },
       "expected_oracle_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
         "pointer": "/verification_obligations/2/concrete_cases/5/expected_material"
-      },
-      "typed_arguments": {
-        "input": {
-          "raw_packet": {
-            "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-            "pointer": "/verification_obligations/2/concrete_cases/5/independent_source_packet/raw_utf8",
-            "decode_as": "N01Raw"
-          },
-          "contract_view": {
-            "document": "docs/helix-connect/L5-detail-design/composite-edge-terminal.json",
-            "pointer": "/contract_views/N01"
-          }
-        }
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
@@ -4201,25 +3221,11 @@
       "function_ref": "FN-C007-03",
       "source_packet_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-        "pointer": "/verification_obligations/2/concrete_cases/6/independent_source_packet",
-        "raw_pointer_suffix": "/raw_utf8"
+        "pointer": "/verification_obligations/2/concrete_cases/6/independent_source_packet/raw_utf8"
       },
       "expected_oracle_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
         "pointer": "/verification_obligations/2/concrete_cases/6/expected_material"
-      },
-      "typed_arguments": {
-        "input": {
-          "raw_packet": {
-            "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-            "pointer": "/verification_obligations/2/concrete_cases/6/independent_source_packet/raw_utf8",
-            "decode_as": "N01Raw"
-          },
-          "contract_view": {
-            "document": "docs/helix-connect/L5-detail-design/composite-edge-terminal.json",
-            "pointer": "/contract_views/N01"
-          }
-        }
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
@@ -4257,25 +3263,11 @@
       "function_ref": "FN-C007-03",
       "source_packet_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-        "pointer": "/verification_obligations/2/concrete_cases/7/independent_source_packet",
-        "raw_pointer_suffix": "/raw_utf8"
+        "pointer": "/verification_obligations/2/concrete_cases/7/independent_source_packet/raw_utf8"
       },
       "expected_oracle_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
         "pointer": "/verification_obligations/2/concrete_cases/7/expected_material"
-      },
-      "typed_arguments": {
-        "input": {
-          "raw_packet": {
-            "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-            "pointer": "/verification_obligations/2/concrete_cases/7/independent_source_packet/raw_utf8",
-            "decode_as": "N01Raw"
-          },
-          "contract_view": {
-            "document": "docs/helix-connect/L5-detail-design/composite-edge-terminal.json",
-            "pointer": "/contract_views/N01"
-          }
-        }
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
@@ -4313,25 +3305,11 @@
       "function_ref": "FN-C007-03",
       "source_packet_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-        "pointer": "/verification_obligations/2/concrete_cases/8/independent_source_packet",
-        "raw_pointer_suffix": "/raw_utf8"
+        "pointer": "/verification_obligations/2/concrete_cases/8/independent_source_packet/raw_utf8"
       },
       "expected_oracle_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
         "pointer": "/verification_obligations/2/concrete_cases/8/expected_material"
-      },
-      "typed_arguments": {
-        "input": {
-          "raw_packet": {
-            "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-            "pointer": "/verification_obligations/2/concrete_cases/8/independent_source_packet/raw_utf8",
-            "decode_as": "N01Raw"
-          },
-          "contract_view": {
-            "document": "docs/helix-connect/L5-detail-design/composite-edge-terminal.json",
-            "pointer": "/contract_views/N01"
-          }
-        }
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
@@ -4369,25 +3347,11 @@
       "function_ref": "FN-C007-03",
       "source_packet_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-        "pointer": "/verification_obligations/2/concrete_cases/9/independent_source_packet",
-        "raw_pointer_suffix": "/raw_utf8"
+        "pointer": "/verification_obligations/2/concrete_cases/9/independent_source_packet/raw_utf8"
       },
       "expected_oracle_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
         "pointer": "/verification_obligations/2/concrete_cases/9/expected_material"
-      },
-      "typed_arguments": {
-        "input": {
-          "raw_packet": {
-            "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-            "pointer": "/verification_obligations/2/concrete_cases/9/independent_source_packet/raw_utf8",
-            "decode_as": "N01Raw"
-          },
-          "contract_view": {
-            "document": "docs/helix-connect/L5-detail-design/composite-edge-terminal.json",
-            "pointer": "/contract_views/N01"
-          }
-        }
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
@@ -4425,25 +3389,11 @@
       "function_ref": "FN-C007-03",
       "source_packet_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-        "pointer": "/verification_obligations/2/concrete_cases/10/independent_source_packet",
-        "raw_pointer_suffix": "/raw_utf8"
+        "pointer": "/verification_obligations/2/concrete_cases/10/independent_source_packet/raw_utf8"
       },
       "expected_oracle_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
         "pointer": "/verification_obligations/2/concrete_cases/10/expected_material"
-      },
-      "typed_arguments": {
-        "input": {
-          "raw_packet": {
-            "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-            "pointer": "/verification_obligations/2/concrete_cases/10/independent_source_packet/raw_utf8",
-            "decode_as": "N01Raw"
-          },
-          "contract_view": {
-            "document": "docs/helix-connect/L5-detail-design/composite-edge-terminal.json",
-            "pointer": "/contract_views/N01"
-          }
-        }
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
@@ -4481,25 +3431,11 @@
       "function_ref": "FN-C007-03",
       "source_packet_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-        "pointer": "/verification_obligations/2/concrete_cases/11/independent_source_packet",
-        "raw_pointer_suffix": "/raw_utf8"
+        "pointer": "/verification_obligations/2/concrete_cases/11/independent_source_packet/raw_utf8"
       },
       "expected_oracle_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
         "pointer": "/verification_obligations/2/concrete_cases/11/expected_material"
-      },
-      "typed_arguments": {
-        "input": {
-          "raw_packet": {
-            "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-            "pointer": "/verification_obligations/2/concrete_cases/11/independent_source_packet/raw_utf8",
-            "decode_as": "N01Raw"
-          },
-          "contract_view": {
-            "document": "docs/helix-connect/L5-detail-design/composite-edge-terminal.json",
-            "pointer": "/contract_views/N01"
-          }
-        }
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
@@ -4537,25 +3473,11 @@
       "function_ref": "FN-C007-03",
       "source_packet_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-        "pointer": "/verification_obligations/2/concrete_cases/12/independent_source_packet",
-        "raw_pointer_suffix": "/raw_utf8"
+        "pointer": "/verification_obligations/2/concrete_cases/12/independent_source_packet/raw_utf8"
       },
       "expected_oracle_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
         "pointer": "/verification_obligations/2/concrete_cases/12/expected_material"
-      },
-      "typed_arguments": {
-        "input": {
-          "raw_packet": {
-            "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-            "pointer": "/verification_obligations/2/concrete_cases/12/independent_source_packet/raw_utf8",
-            "decode_as": "N01Raw"
-          },
-          "contract_view": {
-            "document": "docs/helix-connect/L5-detail-design/composite-edge-terminal.json",
-            "pointer": "/contract_views/N01"
-          }
-        }
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
@@ -4593,25 +3515,11 @@
       "function_ref": "FN-C007-03",
       "source_packet_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-        "pointer": "/verification_obligations/2/concrete_cases/13/independent_source_packet",
-        "raw_pointer_suffix": "/raw_utf8"
+        "pointer": "/verification_obligations/2/concrete_cases/13/independent_source_packet/raw_utf8"
       },
       "expected_oracle_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
         "pointer": "/verification_obligations/2/concrete_cases/13/expected_material"
-      },
-      "typed_arguments": {
-        "input": {
-          "raw_packet": {
-            "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-            "pointer": "/verification_obligations/2/concrete_cases/13/independent_source_packet/raw_utf8",
-            "decode_as": "N01Raw"
-          },
-          "contract_view": {
-            "document": "docs/helix-connect/L5-detail-design/composite-edge-terminal.json",
-            "pointer": "/contract_views/N01"
-          }
-        }
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
@@ -4649,25 +3557,11 @@
       "function_ref": "FN-C007-03",
       "source_packet_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-        "pointer": "/verification_obligations/2/concrete_cases/14/independent_source_packet",
-        "raw_pointer_suffix": "/raw_utf8"
+        "pointer": "/verification_obligations/2/concrete_cases/14/independent_source_packet/raw_utf8"
       },
       "expected_oracle_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
         "pointer": "/verification_obligations/2/concrete_cases/14/expected_material"
-      },
-      "typed_arguments": {
-        "input": {
-          "raw_packet": {
-            "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-            "pointer": "/verification_obligations/2/concrete_cases/14/independent_source_packet/raw_utf8",
-            "decode_as": "N01Raw"
-          },
-          "contract_view": {
-            "document": "docs/helix-connect/L5-detail-design/composite-edge-terminal.json",
-            "pointer": "/contract_views/N01"
-          }
-        }
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
@@ -4705,25 +3599,11 @@
       "function_ref": "FN-C007-03",
       "source_packet_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-        "pointer": "/verification_obligations/2/concrete_cases/15/independent_source_packet",
-        "raw_pointer_suffix": "/raw_utf8"
+        "pointer": "/verification_obligations/2/concrete_cases/15/independent_source_packet/raw_utf8"
       },
       "expected_oracle_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
         "pointer": "/verification_obligations/2/concrete_cases/15/expected_material"
-      },
-      "typed_arguments": {
-        "input": {
-          "raw_packet": {
-            "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-            "pointer": "/verification_obligations/2/concrete_cases/15/independent_source_packet/raw_utf8",
-            "decode_as": "N01Raw"
-          },
-          "contract_view": {
-            "document": "docs/helix-connect/L5-detail-design/composite-edge-terminal.json",
-            "pointer": "/contract_views/N01"
-          }
-        }
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
@@ -4759,25 +3639,11 @@
       "function_ref": "FN-C007-04",
       "source_packet_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-        "pointer": "/verification_obligations/3/concrete_cases/0/independent_source_packet",
-        "raw_pointer_suffix": "/raw_utf8"
+        "pointer": "/verification_obligations/3/concrete_cases/0/independent_source_packet/raw_utf8"
       },
       "expected_oracle_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
         "pointer": "/verification_obligations/3/concrete_cases/0/expected_material"
-      },
-      "typed_arguments": {
-        "input": {
-          "raw_packet": {
-            "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-            "pointer": "/verification_obligations/3/concrete_cases/0/independent_source_packet/raw_utf8",
-            "decode_as": "B01Raw"
-          },
-          "contract_view": {
-            "document": "docs/helix-connect/L5-detail-design/composite-edge-terminal.json",
-            "pointer": "/contract_views/B01"
-          }
-        }
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
@@ -4813,25 +3679,11 @@
       "function_ref": "FN-C007-04",
       "source_packet_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-        "pointer": "/verification_obligations/3/concrete_cases/1/independent_source_packet",
-        "raw_pointer_suffix": "/raw_utf8"
+        "pointer": "/verification_obligations/3/concrete_cases/1/independent_source_packet/raw_utf8"
       },
       "expected_oracle_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
         "pointer": "/verification_obligations/3/concrete_cases/1/expected_material"
-      },
-      "typed_arguments": {
-        "input": {
-          "raw_packet": {
-            "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-            "pointer": "/verification_obligations/3/concrete_cases/1/independent_source_packet/raw_utf8",
-            "decode_as": "B01Raw"
-          },
-          "contract_view": {
-            "document": "docs/helix-connect/L5-detail-design/composite-edge-terminal.json",
-            "pointer": "/contract_views/B01"
-          }
-        }
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
@@ -4869,25 +3721,11 @@
       "function_ref": "FN-C007-04",
       "source_packet_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-        "pointer": "/verification_obligations/3/concrete_cases/2/independent_source_packet",
-        "raw_pointer_suffix": "/raw_utf8"
+        "pointer": "/verification_obligations/3/concrete_cases/2/independent_source_packet/raw_utf8"
       },
       "expected_oracle_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
         "pointer": "/verification_obligations/3/concrete_cases/2/expected_material"
-      },
-      "typed_arguments": {
-        "input": {
-          "raw_packet": {
-            "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-            "pointer": "/verification_obligations/3/concrete_cases/2/independent_source_packet/raw_utf8",
-            "decode_as": "B01Raw"
-          },
-          "contract_view": {
-            "document": "docs/helix-connect/L5-detail-design/composite-edge-terminal.json",
-            "pointer": "/contract_views/B01"
-          }
-        }
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
@@ -4925,25 +3763,11 @@
       "function_ref": "FN-C007-04",
       "source_packet_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-        "pointer": "/verification_obligations/3/concrete_cases/3/independent_source_packet",
-        "raw_pointer_suffix": "/raw_utf8"
+        "pointer": "/verification_obligations/3/concrete_cases/3/independent_source_packet/raw_utf8"
       },
       "expected_oracle_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
         "pointer": "/verification_obligations/3/concrete_cases/3/expected_material"
-      },
-      "typed_arguments": {
-        "input": {
-          "raw_packet": {
-            "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-            "pointer": "/verification_obligations/3/concrete_cases/3/independent_source_packet/raw_utf8",
-            "decode_as": "B01Raw"
-          },
-          "contract_view": {
-            "document": "docs/helix-connect/L5-detail-design/composite-edge-terminal.json",
-            "pointer": "/contract_views/B01"
-          }
-        }
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
@@ -4981,25 +3805,11 @@
       "function_ref": "FN-C007-04",
       "source_packet_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-        "pointer": "/verification_obligations/3/concrete_cases/4/independent_source_packet",
-        "raw_pointer_suffix": "/raw_utf8"
+        "pointer": "/verification_obligations/3/concrete_cases/4/independent_source_packet/raw_utf8"
       },
       "expected_oracle_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
         "pointer": "/verification_obligations/3/concrete_cases/4/expected_material"
-      },
-      "typed_arguments": {
-        "input": {
-          "raw_packet": {
-            "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-            "pointer": "/verification_obligations/3/concrete_cases/4/independent_source_packet/raw_utf8",
-            "decode_as": "B01Raw"
-          },
-          "contract_view": {
-            "document": "docs/helix-connect/L5-detail-design/composite-edge-terminal.json",
-            "pointer": "/contract_views/B01"
-          }
-        }
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
@@ -5037,25 +3847,11 @@
       "function_ref": "FN-C007-04",
       "source_packet_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-        "pointer": "/verification_obligations/3/concrete_cases/5/independent_source_packet",
-        "raw_pointer_suffix": "/raw_utf8"
+        "pointer": "/verification_obligations/3/concrete_cases/5/independent_source_packet/raw_utf8"
       },
       "expected_oracle_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
         "pointer": "/verification_obligations/3/concrete_cases/5/expected_material"
-      },
-      "typed_arguments": {
-        "input": {
-          "raw_packet": {
-            "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-            "pointer": "/verification_obligations/3/concrete_cases/5/independent_source_packet/raw_utf8",
-            "decode_as": "B01Raw"
-          },
-          "contract_view": {
-            "document": "docs/helix-connect/L5-detail-design/composite-edge-terminal.json",
-            "pointer": "/contract_views/B01"
-          }
-        }
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
@@ -5093,25 +3889,11 @@
       "function_ref": "FN-C007-04",
       "source_packet_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-        "pointer": "/verification_obligations/3/concrete_cases/6/independent_source_packet",
-        "raw_pointer_suffix": "/raw_utf8"
+        "pointer": "/verification_obligations/3/concrete_cases/6/independent_source_packet/raw_utf8"
       },
       "expected_oracle_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
         "pointer": "/verification_obligations/3/concrete_cases/6/expected_material"
-      },
-      "typed_arguments": {
-        "input": {
-          "raw_packet": {
-            "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-            "pointer": "/verification_obligations/3/concrete_cases/6/independent_source_packet/raw_utf8",
-            "decode_as": "B01Raw"
-          },
-          "contract_view": {
-            "document": "docs/helix-connect/L5-detail-design/composite-edge-terminal.json",
-            "pointer": "/contract_views/B01"
-          }
-        }
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
@@ -5149,25 +3931,11 @@
       "function_ref": "FN-C007-04",
       "source_packet_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-        "pointer": "/verification_obligations/3/concrete_cases/7/independent_source_packet",
-        "raw_pointer_suffix": "/raw_utf8"
+        "pointer": "/verification_obligations/3/concrete_cases/7/independent_source_packet/raw_utf8"
       },
       "expected_oracle_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
         "pointer": "/verification_obligations/3/concrete_cases/7/expected_material"
-      },
-      "typed_arguments": {
-        "input": {
-          "raw_packet": {
-            "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-            "pointer": "/verification_obligations/3/concrete_cases/7/independent_source_packet/raw_utf8",
-            "decode_as": "B01Raw"
-          },
-          "contract_view": {
-            "document": "docs/helix-connect/L5-detail-design/composite-edge-terminal.json",
-            "pointer": "/contract_views/B01"
-          }
-        }
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
@@ -5205,25 +3973,11 @@
       "function_ref": "FN-C007-04",
       "source_packet_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-        "pointer": "/verification_obligations/3/concrete_cases/8/independent_source_packet",
-        "raw_pointer_suffix": "/raw_utf8"
+        "pointer": "/verification_obligations/3/concrete_cases/8/independent_source_packet/raw_utf8"
       },
       "expected_oracle_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
         "pointer": "/verification_obligations/3/concrete_cases/8/expected_material"
-      },
-      "typed_arguments": {
-        "input": {
-          "raw_packet": {
-            "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-            "pointer": "/verification_obligations/3/concrete_cases/8/independent_source_packet/raw_utf8",
-            "decode_as": "B01Raw"
-          },
-          "contract_view": {
-            "document": "docs/helix-connect/L5-detail-design/composite-edge-terminal.json",
-            "pointer": "/contract_views/B01"
-          }
-        }
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
@@ -5261,25 +4015,11 @@
       "function_ref": "FN-C007-04",
       "source_packet_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-        "pointer": "/verification_obligations/3/concrete_cases/9/independent_source_packet",
-        "raw_pointer_suffix": "/raw_utf8"
+        "pointer": "/verification_obligations/3/concrete_cases/9/independent_source_packet/raw_utf8"
       },
       "expected_oracle_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
         "pointer": "/verification_obligations/3/concrete_cases/9/expected_material"
-      },
-      "typed_arguments": {
-        "input": {
-          "raw_packet": {
-            "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-            "pointer": "/verification_obligations/3/concrete_cases/9/independent_source_packet/raw_utf8",
-            "decode_as": "B01Raw"
-          },
-          "contract_view": {
-            "document": "docs/helix-connect/L5-detail-design/composite-edge-terminal.json",
-            "pointer": "/contract_views/B01"
-          }
-        }
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
@@ -5317,25 +4057,11 @@
       "function_ref": "FN-C007-04",
       "source_packet_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-        "pointer": "/verification_obligations/3/concrete_cases/10/independent_source_packet",
-        "raw_pointer_suffix": "/raw_utf8"
+        "pointer": "/verification_obligations/3/concrete_cases/10/independent_source_packet/raw_utf8"
       },
       "expected_oracle_ref": {
         "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
         "pointer": "/verification_obligations/3/concrete_cases/10/expected_material"
-      },
-      "typed_arguments": {
-        "input": {
-          "raw_packet": {
-            "document": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-            "pointer": "/verification_obligations/3/concrete_cases/10/independent_source_packet/raw_utf8",
-            "decode_as": "B01Raw"
-          },
-          "contract_view": {
-            "document": "docs/helix-connect/L5-detail-design/composite-edge-terminal.json",
-            "pointer": "/contract_views/B01"
-          }
-        }
       },
       "execution_state": "not_executed",
       "qualification": "synthetic_fixture_only",
@@ -5819,7 +4545,7 @@
     "l7_test_citation": "not_found_in_source_materials; no citation fabricated"
   },
   "common_expectation_boundary": {
-    "oracle_role": "91件のsource caseはL9 expected_materialを独立した全返却期待の照合元として固定revision/pointerで参照する。局所probeはID、source参照、短い反例・期待判断だけを持つ。固定履歴はvalidatorの由来・failure_rule被覆の静的比較に使うだけで、現行L8のprobe値・変更指示・oracle生成材料として扱わず、L7 test fixture/caseも追加しない。",
+    "oracle_role": "91件のsource caseはL9 expected_materialを独立した全返却期待の照合元として固定revision/pointerで参照する。source_packet_ref等のsource pointerは由来・意味参照だけで、decode指示、実行引数binding、fixture再構成を示さない。局所probeはID、source参照、短い反例・期待判断だけを持つ。固定履歴はvalidatorの由来・failure_rule被覆の静的比較に使うだけで、現行L8のprobe値・変更指示・oracle生成材料として扱わず、L7 test fixture/caseも追加しない。",
     "shared_state": "全case/probeは未実行であり、合成fixtureに限る静的照合である。実source/owner適格性、通信、権限、受信側効果、業務受入、正式schema/codec、全domain閉包を成立させない。",
     "unverified": "全非等価mutation family、全graph/edge/scope/owner combinations、および実行時挙動は未検証。"
   },
