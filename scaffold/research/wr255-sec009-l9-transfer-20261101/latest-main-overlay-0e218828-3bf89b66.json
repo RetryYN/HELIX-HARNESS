@@ -1,0 +1,37 @@
+{
+  "schema": "wr255-l4-l9-l5-l8-overlay-verification.v1",
+  "evidence_kind": "scaffold",
+  "authority_effect": "none",
+  "main_revision": "0e218828fbb3b487eff1469cd57ead8e3dfa7b67",
+  "remote_main_at_measurement": "0e218828fbb3b487eff1469cd57ead8e3dfa7b67",
+  "candidate_revision": "3bf89b66e73e55cec5d4652a7b8b42bb50fb37f2",
+  "overlay_tree": "d86b0edd7b39ec402afab5da097cbbbadacfd354",
+  "merge": "detached worktree at origin/main; git merge --no-commit --no-ff candidate revision",
+  "source_sha256": {
+    "L4": "00376c402930e1287e9e0e896804b1de8a20390f8abbea8377b70712f868b9da",
+    "L5": "13f16113cafb4b27b6f03c6a79797a260776c022c48f75ebaaf0220b8830baec",
+    "L8": "49875dcdb4bcec85ebffbad678127e90a61db329c9cccae96f0090cd260f698d",
+    "L9": "bfcdd2c297c08458043b7a78dd483faf7c87873774d3b0c321e65ca6cf1f5a6c"
+  },
+  "results": {
+    "L9_nested_retirement_validator": "PASS",
+    "L5_L8_independent_validator": "PASS",
+    "class_rows_per_layer": 32,
+    "L8_unit_ids": 285,
+    "L9_integration_case_ids": 285,
+    "L4_L9_pair": "PASS",
+    "L5_L8_pair": "PASS",
+    "negative_4way_matched": 277,
+    "negative_4way_failures": 0,
+    "scfctl_bindings": 210,
+    "scfctl_validate_failures": 0,
+    "scfctl_stale": 0,
+    "validator_worktree_status_changed": false
+  },
+  "limits": [
+    "positive 8 rows are contract-minimum designs and remain unobserved",
+    "individual oracle_id and test_citation remain null",
+    "static source/pointer verification only; no runtime security behavior is claimed",
+    "SCF-B-0209 remains pending because fixed R2 history references and L4 nested payload remain"
+  ]
+}
