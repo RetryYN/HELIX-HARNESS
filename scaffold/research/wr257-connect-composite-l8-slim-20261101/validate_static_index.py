@@ -674,8 +674,15 @@ def main() -> None:
         binding = load(BINDING)
         measurement_paths = [path for path in binding.get('artifacts', []) if 'static-evidence-measurement-' in path]
         matching = [(path, load(path)) for path in measurement_paths if load(path).get('target_sha256') == payload['target_sha256']]
-        assert len(matching) == 1, 'binding must point to exactly one measurement appendix for the current L8 bytes'
-        latest_path, appendix = matching[0]
+        assert matching, 'binding must point to a measurement appendix for the current L8 bytes'
+        head = subprocess.check_output(['git', 'rev-parse', 'HEAD'], cwd=ROOT, text=True).strip()
+        at_head = [(path, item) for path, item in matching if item.get('recorded_against_revision') == head]
+        if at_head:
+            assert len(at_head) == 1, 'binding must have exactly one measurement appendix recorded against current HEAD'
+            latest_path, appendix = at_head[0]
+        else:
+            assert len(matching) == 1, 'multiple matching appendices require one recorded against current HEAD'
+            latest_path, appendix = matching[0]
         assert appendix['schema'] == 'wr257-static-evidence-appendix.v1'
         appendix_body = dict(appendix)
         recorded_appendix_hash = appendix_body.pop('appendix_sha256')
