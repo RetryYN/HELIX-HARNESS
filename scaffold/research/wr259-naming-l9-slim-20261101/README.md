@@ -3,31 +3,30 @@
 status: scaffold（静的な文書整理。要求・承認・実行結果を生成しない）
 authority_effect: none
 
-## 変更
+## 保持した内容
 
-L9の59件の合成caseを、QAのL9責務である「L4契約に沿う実行境界と番号付きsystem oracle一覧」へ整理した。各行には、連番`L9-SYSTEM-ORACLE-01..59`、case IDと順序、元IDから機械導出したcode、条件、oracle property、期待観測、axis、state、戻し先、L3/L4/L10参照、`execution_state=not_executed`を残した。5件のL4契約と5件の承認済みL10 system oracle、親のsource pins 10件、legacy comparison、全goal scope、未検証範囲は維持した。
+固定base `fe79e0004d8164bffc4be7c8c31dd9e14da2ead3` のL9 `concrete_cases` 59件を、QAのL4契約と番号付きsystem oracleを参照する短い実行境界allowlistへ整理した。case IDと順序、既存L3/L4/L10参照、元`basis`が示す性質、未実行状態、短い条件・期待観測・元sourceに明記された返却先を行ごとに照合する。
 
-59個の`independent_source_packet`（raw UTF-8 fixture payload・hashを含む）と59個の`expected_material`全返却構造・副作用内訳を削除した。行別の短いconditionとexpected observationは、同一ID・同順序のL8 U-ID行と照合している。L9は194,059 bytesから83,557 bytesへ110,502 bytes（56.94%）縮小した。6-key `removed_materials`は撤去前のL9をbase commit `fe79e0004d8164bffc4be7c8c31dd9e14da2ead3`で固定し、用途境界にDT-VT-105を記録する。
+元の59 caseにはtop-level `code`、`condition`、`axis`、`state`、`backflow_owner`が存在しない。従って、これらのsource fieldの差分保持は主張しない。新しいcode/axis/state/backflow ownerも生成していない。現行の`condition`は固定L9のraw packet間の差分（通常行は元packetの意味）から再導出し、`expected_observation`は元`expected_material`の期待値を短く表した。`oracle_property`は元`basis`を保持する。L3/L4契約と固定L10 system oracleは参照・返却境界の照合に用いる。L8はID・requirement・oracle参照の照合に限り、短い条件や期待観測の生成元ではない。
 
-`axis`はcase IDと元のexpected materialが示す対象軸（例：signature inputs、exception、authority boundary）を名前付けしたもの。`state`は元のexpected material内の結果状態を短く表したもの。`backflow_owner`は元のcaseまたは承認済みL10 oracleで明示された場合だけ記録し、F02のようにowner割当が明示されない場合は`null`を保つ。実行状態は全59件で未実行である。
+各branchに重複していた承認済みL10オブジェクト5件は削除し、既存`system_oracle_ref`と数値JSON Pointerへ置換した。validatorはpointer先がbase固定L10の対象ID、requirement、`not_executed`に一致することを確認する。10件のauthority `source_pins`、legacy comparison、goal scopeは固定baseと値一致する。
+
+59件の`independent_source_packet`（raw UTF-8 fixture・hashを含む）と`expected_material`の詳細な返却・副作用構造を削除した。`removed_materials`は固定baseのold materialを6 keyで指し、DT-VT-105の用途、撤去内容、sourceにないfieldを明示する。変更後は194,059 bytesから約83,557 bytesへ半分以上縮小している。
 
 ## consumerと固定参照
 
-L5の37個のL9 literal/output source pointerを全件調べた。これらはすでに`source_revision=b52ad0e1e954790ebe57b2d87da46ea6712a07d9`を持ち、その固定revisionの元L9で値canonical hashが一致する。現行のraw fixture nodeを参照するものは、撤去後のallowlistからfixtureが復元できるような誤解を生まないため、既存の固定revision参照を維持した。L8正本はL9へのJSON Pointerを持たず、現行L8行の条件・期待観測をL9 allowlistとの照合sourceにした。
+L5の37個のL9 literal/output pointerは全て調査した。各pointerは既存の`source_revision=b52ad0e1e954790ebe57b2d87da46ea6712a07d9`で解決し、canonical value hashが固定revisionの値に一致する。これらの意味と固定source参照は保持した。L8に直接のL9 pointerはない。
 
-WR251の`SCF-B-0211`は、過去の時点証拠を変更せずに保持しつつ、現行L9 upstream hashへrebindした。元のhashと固定baseをnoteへ追記した。監査本文やcheck-childの過去snapshotは上書きしていない。
+WR251の`SCF-B-0211`は過去の時点証拠を変更せず、現行L9 upstream hashへのrebind情報を追記した。SCF-B-0222には各追補証拠を登録する。過去の監査・測定snapshotを上書きせず、今回の追補を別ファイルに記録する。
 
 ## 旧sourceと失敗起点
 
-旧sourceは`LEGACY-ASSET-719D5EC9C06FC4AAD0FF`、`archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:130,204`（HIL-FR-40、HIL-NFR-24）である。object identity・role・consumer・canonical term・symbol/oracleの独立edge、文字列類似だけでrenameしないこと、signature・behavior・rollbackの照合を保持する。旧のlayer/gateや実行材料は移していない。現行`legacy_comparison`の17 clause spanは固定source bytesとの比較記録として一切変更していない。
+旧sourceは`LEGACY-ASSET-719D5EC9C06FC4AAD0FF`、`archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:130,204`（HIL-FR-40、HIL-NFR-24）である。object identity・role・consumer・canonical term・symbol/oracleの独立edge、文字列類似だけでrenameしないこと、signature・behavior・rollbackの照合を保持する。旧のlayer/gateや実行材料は移していない。現行`legacy_comparison`の17 clause spanは固定source bytesとの比較記録として変更していない。
 
-失敗起点は#4005 R1 F1（hash field撤去だけでfixture本体が残り、L9が0.5%しか縮まなかった）と、その解消内容を独立確認したR2 no_findingsである。cap/hash件数だけで完了を示さず、caseの本文、固定参照、consumer、禁止材料の残留を実測した。#4005のコメントは本PRのwork-requestに従い参照した。
+失敗起点は#4005 R1 F1（hash field撤去だけではfixture本体が残り、L9が0.5%しか縮まらなかった）と、その解消内容を独立確認したR2 no_findingsである。fixture/raw/full return/hash・変異のbefore/after残留と参照切れを確認する。
 
-## 検証
+## 検証と境界
 
-`validate_l9_slim.py`は固定baseの元bytesとのID・順序・参照・property・state・承認済みoracle一致、およびL5 37 pointerの固定revisionとcanonical hashを検査する。`scfctl validate`、`scfctl stale`、`design_verification_checker.py check-child`も実行する。check-childの未評価pairや既存の4way negative failureは成功へ読み替えず、測定snapshotとREADMEへ結果を記録する。
+`validate_l9_slim.py`は固定baseの元caseから59件を行別に再導出し、ID・順序・basis・raw差分・期待観測・返却先・source field不在、L3/L4/L10参照、L10数値pointer、L8の限定的crosscheck、L5の37固定revision pointerを検査する。初回・追補測定を上書きせず、`validation-results-r5.json`と`merge-overlay-check-child-r4.json`へ現行結果を追加した。
 
-上流整理の静的照合のみを行い、旧runtime/test/CI、L4/L5 algorithm、製品testは実行しない。L7 test citation、fixture、実観測、formal verification、承認、実装ready、完了状態を生成しない。
-
-
-`evidence/validation-results-r1.json`はoracle_number明示化前の作業時点を、`evidence/validation-results-r2.json`は連番01..59を入れた最終overlayを記録する。両方とも各時点のappend-only記録として残す。
+`scfctl validate`、`scfctl stale`、`design_verification_checker.py check-child`はmerge overlayで実測する。check-childの`not_evaluated`や既存negative結果を成功へ読み替えない。上流整理の静的照合だけを行い、旧runtime/test/CI、L4/L5 algorithm、製品testは実行しない。実fixture、実観測、formal verification、承認、実装ready、完了状態を生成しない。

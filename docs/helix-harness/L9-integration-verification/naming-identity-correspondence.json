@@ -411,1009 +411,878 @@
       "l4_ref": "HARNESS-L4-048-F01",
       "requirement_ref": "HARNESS-L3-048-F01",
       "system_oracle_ref": "HARNESS-L10-048-F01",
-      "approved_l10": {
-        "id": "HARNESS-L10-048-F01",
-        "parent": "HARNESS-L2-048",
-        "title": "対象と役割からの命名",
-        "requirement_ref": "HARNESS-L3-048-F01",
-        "positive_input": "同じ名称で役割が異なる対象、曖昧名称で根拠あり/なしを比較する。",
-        "expected_observation": "対象と宣言役割の意味が辿れ、曖昧名の理由/例外を確認できる。",
-        "negative_input": "文字列類似で役割推測、Managerを無根拠許可。",
-        "failure_observation": "根拠不足を対象作成側へ返し、語彙の存在を命名decisionにしない。",
-        "execution_state": "not_executed"
-      },
       "connection_scope": "独立原内容→当該pure照合→対象別結果/候補/返却。実BRAIN/製品resolver/OS運転は未binding。",
       "execution_state": "not_executed",
       "effect": "none",
       "system_oracle_allowlist": [
         {
+          "oracle_number": "L9-SYSTEM-ORACLE-01",
           "id": "H048-F01-SAME-NAME-DIFFERENT-ROLE",
           "requirement_ref": "HARNESS-L3-048-F01",
           "system_oracle_ref": "HARNESS-L10-048-F01",
           "l4_ref": "HARNESS-L4-048-F01",
-          "code": "F01-SAME-NAME-DIFFERENT-ROLE",
-          "condition": "OBJ-PとOBJ-Rは同名lookupだが、OBJ-PはQuery (consumer C1)、OBJ-RはRepository (consumer C2)の別対象。",
-          "axis": "role_and_name",
-          "state": "OBJ-P=candidate_only:Query;OBJ-R=candidate_only:Repository",
-          "backflow_owner": "対象作成側",
+          "condition": "baseline: 同じ文字列を同じ役割へ統合せず、宣言/原意味を使う。",
           "oracle_property": "同じ文字列を同じ役割へ統合せず、宣言/原意味を使う。",
-          "execution_state": "not_executed",
-          "expected_observation": "OBJ-P: candidate_only:Query；OBJ-R: candidate_only:Repository",
-          "oracle_number": "L9-SYSTEM-ORACLE-01"
+          "expected_observation": "OBJ-P=candidate_only:Query; OBJ-R=candidate_only:Repository; canonical_decided_here=false; unaffected_Q=original_Q.",
+          "return_targets": [],
+          "execution_state": "not_executed"
         },
         {
+          "oracle_number": "L9-SYSTEM-ORACLE-02",
           "id": "H048-F01-LEXICAL-GUESS",
           "requirement_ref": "HARNESS-L3-048-F01",
           "system_oracle_ref": "HARNESS-L10-048-F01",
           "l4_ref": "HARNESS-L4-048-F01",
-          "code": "F01-LEXICAL-GUESS",
-          "condition": "OBJ-Pの宣言role=null。OBJ-Pの名称=Manager。",
-          "axis": "role_and_name",
-          "state": "OBJ-P=unknown_role;OBJ-R=candidate_only:Repository",
-          "backflow_owner": "対象作成側",
+          "condition": "/targets/0/declared_role: Query → null; /targets/0/name: lookup → Manager",
           "oracle_property": "対象Pだけを作成側へ返す。Rの別役割候補は保持。",
-          "execution_state": "not_executed",
-          "expected_observation": "OBJ-P: unknown_role；OBJ-R: candidate_only:Repository",
-          "oracle_number": "L9-SYSTEM-ORACLE-02"
+          "expected_observation": "OBJ-P=unknown_role; OBJ-R=candidate_only:Repository; canonical_decided_here=false; unaffected_Q=original_Q.",
+          "return_targets": [
+            "対象作成側"
+          ],
+          "execution_state": "not_executed"
         },
         {
+          "oracle_number": "L9-SYSTEM-ORACLE-03",
           "id": "H048-F01-NO-BASIS-MANAGER",
           "requirement_ref": "HARNESS-L3-048-F01",
           "system_oracle_ref": "HARNESS-L10-048-F01",
           "l4_ref": "HARNESS-L4-048-F01",
-          "code": "F01-NO-BASIS-MANAGER",
-          "condition": "OBJ-Pの名称=Manager。OBJ-Pのrole basis=null。",
-          "axis": "role_and_name",
-          "state": "OBJ-P=missing_basis;OBJ-R=candidate_only:Repository",
-          "backflow_owner": "対象作成側",
+          "condition": "/targets/0/name: lookup → Manager; /targets/0/role_basis: 読み取り操作 → null",
           "oracle_property": "対象Pだけを作成側へ返す。Rの別役割候補は保持。",
-          "execution_state": "not_executed",
-          "expected_observation": "OBJ-P: missing_basis；OBJ-R: candidate_only:Repository",
-          "oracle_number": "L9-SYSTEM-ORACLE-03"
+          "expected_observation": "OBJ-P=missing_basis; OBJ-R=candidate_only:Repository; canonical_decided_here=false; unaffected_Q=original_Q.",
+          "return_targets": [
+            "対象作成側"
+          ],
+          "execution_state": "not_executed"
         },
         {
+          "oracle_number": "L9-SYSTEM-ORACLE-04",
           "id": "H048-F01-NO-CONSUMER",
           "requirement_ref": "HARNESS-L3-048-F01",
           "system_oracle_ref": "HARNESS-L10-048-F01",
           "l4_ref": "HARNESS-L4-048-F01",
-          "code": "F01-NO-CONSUMER",
-          "condition": "OBJ-Pのconsumer=空。OBJ-Pの名称=Manager。",
-          "axis": "role_and_name",
-          "state": "OBJ-P=missing_consumer;OBJ-R=candidate_only:Repository",
-          "backflow_owner": "対象作成側",
+          "condition": "/targets/0/consumers: [\"C1\"] → []; /targets/0/name: lookup → Manager",
           "oracle_property": "対象Pだけを作成側へ返す。Rの別役割候補は保持。",
-          "execution_state": "not_executed",
-          "expected_observation": "OBJ-P: missing_consumer；OBJ-R: candidate_only:Repository",
-          "oracle_number": "L9-SYSTEM-ORACLE-04"
+          "expected_observation": "OBJ-P=missing_consumer; OBJ-R=candidate_only:Repository; canonical_decided_here=false; unaffected_Q=original_Q.",
+          "return_targets": [
+            "対象作成側"
+          ],
+          "execution_state": "not_executed"
         },
         {
+          "oracle_number": "L9-SYSTEM-ORACLE-05",
           "id": "H048-F01-MANAGER-REASONED-EXCEPTION",
           "requirement_ref": "HARNESS-L3-048-F01",
           "system_oracle_ref": "HARNESS-L10-048-F01",
           "l4_ref": "HARNESS-L4-048-F01",
-          "code": "F01-MANAGER-REASONED-EXCEPTION",
-          "condition": "OBJ-Pの例外 期限=2030-02-01。OBJ-Pの例外 owner=PRODUCT-P-owner。OBJ-Pの例外 理由=既存利用者への段階移行。OBJ-Pの例外 scope=PRODUCT-P。OBJ-Pの名称=Manager。",
-          "axis": "role_and_name",
-          "state": "OBJ-P=candidate_only:Query_with_scoped_exception;OBJ-R=candidate_only:Repository",
-          "backflow_owner": "対象作成側",
+          "condition": "/targets/0/exception: null → {\"expiry\":\"2030-02-01\",\"owner\":\"PRODUCT-P-owner\",\"reason\":\"既存利用者への段階移行\",\"scope\":\"PRODUCT-P\"}; /targets/0/name: lookup → Manager",
           "oracle_property": "根拠/consumerと有効な期限付き例外を照合。",
-          "execution_state": "not_executed",
-          "expected_observation": "OBJ-P: candidate_only:Query_with_scoped_exception；OBJ-R: candidate_only:Repository",
-          "oracle_number": "L9-SYSTEM-ORACLE-05"
+          "expected_observation": "OBJ-P=candidate_only:Query_with_scoped_exception; OBJ-R=candidate_only:Repository; canonical_decided_here=false; unaffected_Q=original_Q.",
+          "return_targets": [],
+          "execution_state": "not_executed"
         },
         {
+          "oracle_number": "L9-SYSTEM-ORACLE-06",
           "id": "H048-F01-MANAGER-NO-EXCEPTION",
           "requirement_ref": "HARNESS-L3-048-F01",
           "system_oracle_ref": "HARNESS-L10-048-F01",
           "l4_ref": "HARNESS-L4-048-F01",
-          "code": "F01-MANAGER-NO-EXCEPTION",
-          "condition": "OBJ-Pの名称=Manager。",
-          "axis": "role_and_name",
-          "state": "OBJ-P=missing_scoped_exception;OBJ-R=candidate_only:Repository",
-          "backflow_owner": "対象作成側",
+          "condition": "/targets/0/name: lookup → Manager",
           "oracle_property": "語彙に役割があるだけでは曖昧名の例外を作らない。",
-          "execution_state": "not_executed",
-          "expected_observation": "OBJ-P: missing_scoped_exception；OBJ-R: candidate_only:Repository",
-          "oracle_number": "L9-SYSTEM-ORACLE-06"
+          "expected_observation": "OBJ-P=missing_scoped_exception; OBJ-R=candidate_only:Repository; canonical_decided_here=false; unaffected_Q=original_Q.",
+          "return_targets": [
+            "対象作成側"
+          ],
+          "execution_state": "not_executed"
         }
-      ]
+      ],
+      "system_oracle_pointer": "docs/helix-harness/L10-verification/functional-verification.json#/cases/47"
     },
     {
       "id": "HARNESS-L9-048-F02",
       "l4_ref": "HARNESS-L4-048-F02",
       "requirement_ref": "HARNESS-L3-048-F02",
       "system_oracle_ref": "HARNESS-L10-048-F02",
-      "approved_l10": {
-        "id": "HARNESS-L10-048-F02",
-        "parent": "HARNESS-L2-048",
-        "title": "identity・symbol・oracleの独立対応",
-        "requirement_ref": "HARNESS-L3-048-F02",
-        "positive_input": "同objectのbefore/after symbolとdomain operation/oracle対応を照合する。",
-        "expected_observation": "object ID/oracle IDが保持されsymbolだけの差分と区別できる。",
-        "negative_input": "private名だけのoracle、名前変更でID更新、symbol/oracle edge欠落、別対象へpair付替。",
-        "failure_observation": "切れたedgeと影響対象を示し、命名適合を不成立にする。",
-        "execution_state": "not_executed"
-      },
       "connection_scope": "独立原内容→当該pure照合→対象別結果/候補/返却。実BRAIN/製品resolver/OS運転は未binding。",
       "execution_state": "not_executed",
       "effect": "none",
       "system_oracle_allowlist": [
         {
+          "oracle_number": "L9-SYSTEM-ORACLE-07",
           "id": "H048-F02-NORMAL",
           "requirement_ref": "HARNESS-L3-048-F02",
           "system_oracle_ref": "HARNESS-L10-048-F02",
           "l4_ref": "HARNESS-L4-048-F02",
-          "code": "F02-NORMAL",
-          "condition": "OBJ-P/readのsymbolはoldLookupからreadValueへの候補変更。object=OBJ-P、oracle=ORACLE-Pを保ち、symbol/oracle edgeとrequirement/verification pairが同じ対象に結ぶ。",
-          "axis": "object_oracle_identity_and_edges",
-          "state": "all_edges_held;symbol_change=candidate_only",
-          "backflow_owner": null,
+          "condition": "baseline: symbol候補の差分でも独立IDとpairは不変。",
           "oracle_property": "symbol候補の差分でも独立IDとpairは不変。",
-          "execution_state": "not_executed",
-          "expected_observation": "全identity/edge対応を保持。symbol変更は候補のみ。",
-          "oracle_number": "L9-SYSTEM-ORACLE-07"
+          "expected_observation": "object_identity=held; oracle_identity=held; symbol_edge=bound; oracle_edge=bound; pair=same_object; symbol_change=candidate_only; unaffected_Q=original_Q.",
+          "return_targets": [
+            "切れたedgeと影響対象を示し、命名適合を不成立にする。"
+          ],
+          "execution_state": "not_executed"
         },
         {
+          "oracle_number": "L9-SYSTEM-ORACLE-08",
           "id": "H048-F02-OBJECT-ID-CHANGED",
           "requirement_ref": "HARNESS-L3-048-F02",
           "system_oracle_ref": "HARNESS-L10-048-F02",
           "l4_ref": "HARNESS-L4-048-F02",
-          "code": "F02-OBJECT-ID-CHANGED",
-          "condition": "変更後 object=OBJ-X。",
-          "axis": "object_oracle_identity_and_edges",
-          "state": "object_identity=conflict",
-          "backflow_owner": null,
+          "condition": "/after/object: OBJ-P → OBJ-X",
           "oracle_property": "変更前独立IDとの不一致を局所保持。",
-          "execution_state": "not_executed",
-          "expected_observation": "object_identity: conflict",
-          "oracle_number": "L9-SYSTEM-ORACLE-08"
+          "expected_observation": "object_identity=conflict; oracle_identity=held; symbol_edge=bound; oracle_edge=bound; pair=same_object; symbol_change=candidate_only; unaffected_Q=original_Q.",
+          "return_targets": [
+            "切れたedgeと影響対象を示し、命名適合を不成立にする。"
+          ],
+          "execution_state": "not_executed"
         },
         {
+          "oracle_number": "L9-SYSTEM-ORACLE-09",
           "id": "H048-F02-ORACLE-ID-CHANGED",
           "requirement_ref": "HARNESS-L3-048-F02",
           "system_oracle_ref": "HARNESS-L10-048-F02",
           "l4_ref": "HARNESS-L4-048-F02",
-          "code": "F02-ORACLE-ID-CHANGED",
-          "condition": "変更後 oracle=ORACLE-X。",
-          "axis": "object_oracle_identity_and_edges",
-          "state": "oracle_identity=conflict",
-          "backflow_owner": null,
+          "condition": "/after/oracle: ORACLE-P → ORACLE-X",
           "oracle_property": "変更前独立IDとの不一致を局所保持。",
-          "execution_state": "not_executed",
-          "expected_observation": "oracle_identity: conflict",
-          "oracle_number": "L9-SYSTEM-ORACLE-09"
+          "expected_observation": "object_identity=held; oracle_identity=conflict; symbol_edge=bound; oracle_edge=bound; pair=same_object; symbol_change=candidate_only; unaffected_Q=original_Q.",
+          "return_targets": [
+            "切れたedgeと影響対象を示し、命名適合を不成立にする。"
+          ],
+          "execution_state": "not_executed"
         },
         {
+          "oracle_number": "L9-SYSTEM-ORACLE-10",
           "id": "H048-F02-SYMBOL-EDGE-MISSING",
           "requirement_ref": "HARNESS-L3-048-F02",
           "system_oracle_ref": "HARNESS-L10-048-F02",
           "l4_ref": "HARNESS-L4-048-F02",
-          "code": "F02-SYMBOL-EDGE-MISSING",
-          "condition": "symbol edge=null。",
-          "axis": "object_oracle_identity_and_edges",
-          "state": "symbol_edge=missing",
-          "backflow_owner": null,
+          "condition": "/symbol_edge: {\"object\":\"OBJ-P\",\"operation\":\"read\",\"symbol\":\"readValue\"} → null",
           "oracle_property": "名前が存在してもedgeを推測で補わない。",
-          "execution_state": "not_executed",
-          "expected_observation": "symbol_edge: missing",
-          "oracle_number": "L9-SYSTEM-ORACLE-10"
+          "expected_observation": "object_identity=held; oracle_identity=held; symbol_edge=missing; oracle_edge=bound; pair=same_object; symbol_change=candidate_only; unaffected_Q=original_Q.",
+          "return_targets": [
+            "切れたedgeと影響対象を示し、命名適合を不成立にする。"
+          ],
+          "execution_state": "not_executed"
         },
         {
+          "oracle_number": "L9-SYSTEM-ORACLE-11",
           "id": "H048-F02-ORACLE-EDGE-MISSING",
           "requirement_ref": "HARNESS-L3-048-F02",
           "system_oracle_ref": "HARNESS-L10-048-F02",
           "l4_ref": "HARNESS-L4-048-F02",
-          "code": "F02-ORACLE-EDGE-MISSING",
-          "condition": "oracle edge=null。",
-          "axis": "object_oracle_identity_and_edges",
-          "state": "oracle_edge=missing",
-          "backflow_owner": null,
+          "condition": "/oracle_edge: {\"object\":\"OBJ-P\",\"operation\":\"read\",\"oracle\":\"ORACLE-P\"} → null",
           "oracle_property": "名前が存在してもedgeを推測で補わない。",
-          "execution_state": "not_executed",
-          "expected_observation": "oracle_edge: missing",
-          "oracle_number": "L9-SYSTEM-ORACLE-11"
+          "expected_observation": "object_identity=held; oracle_identity=held; symbol_edge=bound; oracle_edge=missing; pair=same_object; symbol_change=candidate_only; unaffected_Q=original_Q.",
+          "return_targets": [
+            "切れたedgeと影響対象を示し、命名適合を不成立にする。"
+          ],
+          "execution_state": "not_executed"
         },
         {
+          "oracle_number": "L9-SYSTEM-ORACLE-12",
           "id": "H048-F02-PRIVATE-ONLY-ORACLE",
           "requirement_ref": "HARNESS-L3-048-F02",
           "system_oracle_ref": "HARNESS-L10-048-F02",
           "l4_ref": "HARNESS-L4-048-F02",
-          "code": "F02-PRIVATE-ONLY-ORACLE",
-          "condition": "oracle edge objectが未提示。oracle edge operationが未提示。oracle edge oracleが未提示。oracle edge private symbol=readValue。",
-          "axis": "object_oracle_identity_and_edges",
-          "state": "oracle_edge=private_only_rejected",
-          "backflow_owner": null,
+          "condition": "/oracle_edge/object: OBJ-P → absent; /oracle_edge/operation: read → absent; /oracle_edge/oracle: ORACLE-P → absent; /oracle_edge/private_symbol: absent → readValue",
           "oracle_property": "domain object/operation/oracle IDを持たないbindingを拒否。",
-          "execution_state": "not_executed",
-          "expected_observation": "oracle_edge: private_only_rejected",
-          "oracle_number": "L9-SYSTEM-ORACLE-12"
+          "expected_observation": "object_identity=held; oracle_identity=held; symbol_edge=bound; oracle_edge=private_only_rejected; pair=same_object; symbol_change=candidate_only; unaffected_Q=original_Q.",
+          "return_targets": [
+            "切れたedgeと影響対象を示し、命名適合を不成立にする。"
+          ],
+          "execution_state": "not_executed"
         },
         {
+          "oracle_number": "L9-SYSTEM-ORACLE-13",
           "id": "H048-F02-FOREIGN-OBJECT-PAIR",
           "requirement_ref": "HARNESS-L3-048-F02",
           "system_oracle_ref": "HARNESS-L10-048-F02",
           "l4_ref": "HARNESS-L4-048-F02",
-          "code": "F02-FOREIGN-OBJECT-PAIR",
-          "condition": "pair verification object=OBJ-X。",
-          "axis": "object_oracle_identity_and_edges",
-          "state": "pair=conflict",
-          "backflow_owner": null,
+          "condition": "/pair/verification_object: OBJ-P → OBJ-X",
           "oracle_property": "別objectの対検証を名称一致で接続しない。",
-          "execution_state": "not_executed",
-          "expected_observation": "pair: conflict",
-          "oracle_number": "L9-SYSTEM-ORACLE-13"
+          "expected_observation": "object_identity=held; oracle_identity=held; symbol_edge=bound; oracle_edge=bound; pair=conflict; symbol_change=candidate_only; unaffected_Q=original_Q.",
+          "return_targets": [
+            "切れたedgeと影響対象を示し、命名適合を不成立にする。"
+          ],
+          "execution_state": "not_executed"
         }
-      ]
+      ],
+      "system_oracle_pointer": "docs/helix-harness/L10-verification/functional-verification.json#/cases/48"
     },
     {
       "id": "HARNESS-L9-048-F03",
       "l4_ref": "HARNESS-L4-048-F03",
       "requirement_ref": "HARNESS-L3-048-F03",
       "system_oracle_ref": "HARNESS-L10-048-F03",
-      "approved_l10": {
-        "id": "HARNESS-L10-048-F03",
-        "parent": "HARNESS-L2-048",
-        "title": "自動修正候補の全条件",
-        "requirement_ref": "HARNESS-L3-048-F03",
-        "positive_input": "全条件が揃う候補と一条件ずつ欠く候補を照合する。",
-        "expected_observation": "提示可能な候補と不足条件を区別し、実変更/承認/mergeが未成立と辿れる。",
-        "negative_input": "文字列だけの統合、consumer一部だけ、署名不明、rollback無し、候補から実renameを実行。",
-        "failure_observation": "不足条件の自動修正候補を拒否し、対象作成側へ理由付きfindingを返す。",
-        "execution_state": "not_executed"
-      },
       "connection_scope": "独立原内容→当該pure照合→対象別結果/候補/返却。実BRAIN/製品resolver/OS運転は未binding。",
       "execution_state": "not_executed",
       "effect": "none",
       "system_oracle_allowlist": [
         {
+          "oracle_number": "L9-SYSTEM-ORACLE-14",
           "id": "H048-F03-NORMAL",
           "requirement_ref": "HARNESS-L3-048-F03",
           "system_oracle_ref": "HARNESS-L10-048-F03",
           "l4_ref": "HARNESS-L4-048-F03",
-          "code": "F03-NORMAL",
-          "condition": "OBJ-Pのinternal readValue候補。canonical owner=PRODUCT-P-owner / decision-P@r1、必須・観測consumer=C1,C2、before/after signature一致、ORACLE-Pの値/failure/effects不変、rollbackはoldLookupへ戻す。",
-          "axis": "candidate_admissibility",
-          "state": "candidate_presentable",
-          "backflow_owner": "対象作成側",
+          "condition": "baseline: 全条件の内容が揃う合成候補。実rename/PR/receipt作成は未実行。",
           "oracle_property": "全条件の内容が揃う合成候補。実rename/PR/receipt作成は未実行。",
-          "execution_state": "not_executed",
-          "expected_observation": "全条件supported（合成条件）、candidate_presentable=true。",
-          "oracle_number": "L9-SYSTEM-ORACLE-14"
+          "expected_observation": "candidate_presentable=true; all 15 named conditions=supported_synthetic_condition.",
+          "return_targets": [],
+          "execution_state": "not_executed"
         },
         {
+          "oracle_number": "L9-SYSTEM-ORACLE-15",
           "id": "H048-F03-CANONICAL-MISSING",
           "requirement_ref": "HARNESS-L3-048-F03",
           "system_oracle_ref": "HARNESS-L10-048-F03",
           "l4_ref": "HARNESS-L4-048-F03",
-          "code": "F03-CANONICAL-MISSING",
-          "condition": "canonical決定=null。",
-          "axis": "canonical",
-          "state": "not_presentable;canonical=missing",
-          "backflow_owner": "対象作成側",
+          "condition": "/canonical_decision: {\"name\":\"readValue\",\"owner\":\"PRODUCT-P-owner\",\"revision\":\"decision-P@r1\"} → null",
           "oracle_property": "一条件の不足/越境で当該候補を拒否。他条件を保持。",
-          "execution_state": "not_executed",
-          "expected_observation": "提示不可。canonical: missing",
-          "oracle_number": "L9-SYSTEM-ORACLE-15"
+          "expected_observation": "candidate_presentable=false; canonical=missing; remaining 14 conditions=supported_synthetic_condition.",
+          "return_targets": [
+            "対象作成側"
+          ],
+          "execution_state": "not_executed"
         },
         {
+          "oracle_number": "L9-SYSTEM-ORACLE-16",
           "id": "H048-F03-PUBLIC-SURFACE",
           "requirement_ref": "HARNESS-L3-048-F03",
           "system_oracle_ref": "HARNESS-L10-048-F03",
           "l4_ref": "HARNESS-L4-048-F03",
-          "code": "F03-PUBLIC-SURFACE",
-          "condition": "visibility=public_API。",
-          "axis": "internal",
-          "state": "not_presentable;internal=rejected",
-          "backflow_owner": "対象作成側",
+          "condition": "/visibility: internal → public_API",
           "oracle_property": "一条件の不足/越境で当該候補を拒否。他条件を保持。",
-          "execution_state": "not_executed",
-          "expected_observation": "提示不可。internal: rejected",
-          "oracle_number": "L9-SYSTEM-ORACLE-16"
+          "expected_observation": "candidate_presentable=false; internal=rejected; remaining 14 conditions=supported_synthetic_condition.",
+          "return_targets": [
+            "対象作成側"
+          ],
+          "execution_state": "not_executed"
         },
         {
+          "oracle_number": "L9-SYSTEM-ORACLE-17",
           "id": "H048-F03-CONSUMER-PARTIAL",
           "requirement_ref": "HARNESS-L3-048-F03",
           "system_oracle_ref": "HARNESS-L10-048-F03",
           "l4_ref": "HARNESS-L4-048-F03",
-          "code": "F03-CONSUMER-PARTIAL",
-          "condition": "観測consumer=C1。",
-          "axis": "consumers",
-          "state": "not_presentable;consumers=missing",
-          "backflow_owner": "対象作成側",
+          "condition": "/observed_consumers: [\"C1\",\"C2\"] → [\"C1\"]",
           "oracle_property": "一条件の不足/越境で当該候補を拒否。他条件を保持。",
-          "execution_state": "not_executed",
-          "expected_observation": "提示不可。consumers: missing",
-          "oracle_number": "L9-SYSTEM-ORACLE-17"
+          "expected_observation": "candidate_presentable=false; consumers=missing; remaining 14 conditions=supported_synthetic_condition.",
+          "return_targets": [
+            "対象作成側"
+          ],
+          "execution_state": "not_executed"
         },
         {
+          "oracle_number": "L9-SYSTEM-ORACLE-18",
           "id": "H048-F03-CONSUMER-SAME-COUNT-FOREIGN",
           "requirement_ref": "HARNESS-L3-048-F03",
           "system_oracle_ref": "HARNESS-L10-048-F03",
           "l4_ref": "HARNESS-L4-048-F03",
-          "code": "F03-CONSUMER-SAME-COUNT-FOREIGN",
-          "condition": "観測consumer=C1・CX。",
-          "axis": "consumers",
-          "state": "not_presentable;consumers=conflict",
-          "backflow_owner": "対象作成側",
+          "condition": "/observed_consumers/1: C2 → CX",
           "oracle_property": "一条件の不足/越境で当該候補を拒否。他条件を保持。",
-          "execution_state": "not_executed",
-          "expected_observation": "提示不可。consumers: conflict",
-          "oracle_number": "L9-SYSTEM-ORACLE-18"
+          "expected_observation": "candidate_presentable=false; consumers=conflict; remaining 14 conditions=supported_synthetic_condition.",
+          "return_targets": [
+            "対象作成側"
+          ],
+          "execution_state": "not_executed"
         },
         {
+          "oracle_number": "L9-SYSTEM-ORACLE-19",
           "id": "H048-F03-INVARIANT-MISSING",
           "requirement_ref": "HARNESS-L3-048-F03",
           "system_oracle_ref": "HARNESS-L10-048-F03",
           "l4_ref": "HARNESS-L4-048-F03",
-          "code": "F03-INVARIANT-MISSING",
-          "condition": "behavior invariant=null。",
-          "axis": "behavior_invariant",
-          "state": "not_presentable;behavior_invariant=missing",
-          "backflow_owner": "対象作成側",
+          "condition": "/behavior_invariant: {\"expected\":\"same value/failure/effects\",\"oracle\":\"ORACLE-P\"} → null",
           "oracle_property": "一条件の不足/越境で当該候補を拒否。他条件を保持。",
-          "execution_state": "not_executed",
-          "expected_observation": "提示不可。behavior_invariant: missing",
-          "oracle_number": "L9-SYSTEM-ORACLE-19"
+          "expected_observation": "candidate_presentable=false; behavior_invariant=missing; remaining 14 conditions=supported_synthetic_condition.",
+          "return_targets": [
+            "対象作成側"
+          ],
+          "execution_state": "not_executed"
         },
         {
+          "oracle_number": "L9-SYSTEM-ORACLE-20",
           "id": "H048-F03-MINIMUM-MISSING",
           "requirement_ref": "HARNESS-L3-048-F03",
           "system_oracle_ref": "HARNESS-L10-048-F03",
           "l4_ref": "HARNESS-L4-048-F03",
-          "code": "F03-MINIMUM-MISSING",
-          "condition": "minimum transform=null。",
-          "axis": "minimum_transform",
-          "state": "not_presentable;minimum_transform=missing",
-          "backflow_owner": "対象作成側",
+          "condition": "/minimum_transform: {\"changes\":[\"symbol edge only\"]} → null",
           "oracle_property": "一条件の不足/越境で当該候補を拒否。他条件を保持。",
-          "execution_state": "not_executed",
-          "expected_observation": "提示不可。minimum_transform: missing",
-          "oracle_number": "L9-SYSTEM-ORACLE-20"
+          "expected_observation": "candidate_presentable=false; minimum_transform=missing; remaining 14 conditions=supported_synthetic_condition.",
+          "return_targets": [
+            "対象作成側"
+          ],
+          "execution_state": "not_executed"
         },
         {
+          "oracle_number": "L9-SYSTEM-ORACLE-21",
           "id": "H048-F03-ROLLBACK-MISSING",
           "requirement_ref": "HARNESS-L3-048-F03",
           "system_oracle_ref": "HARNESS-L10-048-F03",
           "l4_ref": "HARNESS-L4-048-F03",
-          "code": "F03-ROLLBACK-MISSING",
-          "condition": "rollback=null。",
-          "axis": "rollback",
-          "state": "not_presentable;rollback=missing",
-          "backflow_owner": "対象作成側",
+          "condition": "/rollback: {\"preserve_object\":\"OBJ-P\",\"preserve_oracle\":\"ORACLE-P\",\"restore_symbol\":\"oldLookup\"} → null",
           "oracle_property": "一条件の不足/越境で当該候補を拒否。他条件を保持。",
-          "execution_state": "not_executed",
-          "expected_observation": "提示不可。rollback: missing",
-          "oracle_number": "L9-SYSTEM-ORACLE-21"
+          "expected_observation": "candidate_presentable=false; rollback=missing; remaining 14 conditions=supported_synthetic_condition.",
+          "return_targets": [
+            "対象作成側"
+          ],
+          "execution_state": "not_executed"
         },
         {
+          "oracle_number": "L9-SYSTEM-ORACLE-22",
           "id": "H048-F03-LEXICAL-ONLY",
           "requirement_ref": "HARNESS-L3-048-F03",
           "system_oracle_ref": "HARNESS-L10-048-F03",
           "l4_ref": "HARNESS-L4-048-F03",
-          "code": "F03-LEXICAL-ONLY",
-          "condition": "根拠=lexical_only。",
-          "axis": "semantic_basis",
-          "state": "not_presentable;semantic_basis=rejected",
-          "backflow_owner": "対象作成側",
+          "condition": "/evidence_basis: content → lexical_only",
           "oracle_property": "一条件の不足/越境で当該候補を拒否。他条件を保持。",
-          "execution_state": "not_executed",
-          "expected_observation": "提示不可。semantic_basis: rejected",
-          "oracle_number": "L9-SYSTEM-ORACLE-22"
+          "expected_observation": "candidate_presentable=false; semantic_basis=rejected; remaining 14 conditions=supported_synthetic_condition.",
+          "return_targets": [
+            "対象作成側"
+          ],
+          "execution_state": "not_executed"
         },
         {
+          "oracle_number": "L9-SYSTEM-ORACLE-23",
           "id": "H048-F03-REAL-RENAME-REQUEST",
           "requirement_ref": "HARNESS-L3-048-F03",
           "system_oracle_ref": "HARNESS-L10-048-F03",
           "l4_ref": "HARNESS-L4-048-F03",
-          "code": "F03-REAL-RENAME-REQUEST",
-          "condition": "要求effect=execute_rename。",
-          "axis": "operation_boundary",
-          "state": "not_presentable;operation_boundary=rejected",
-          "backflow_owner": "対象作成側",
+          "condition": "/requested_effect: candidate_only → execute_rename",
           "oracle_property": "一条件の不足/越境で当該候補を拒否。他条件を保持。",
-          "execution_state": "not_executed",
-          "expected_observation": "提示不可。operation_boundary: rejected",
-          "oracle_number": "L9-SYSTEM-ORACLE-23"
+          "expected_observation": "candidate_presentable=false; operation_boundary=rejected; remaining 14 conditions=supported_synthetic_condition.",
+          "return_targets": [
+            "対象作成側"
+          ],
+          "execution_state": "not_executed"
         },
         {
+          "oracle_number": "L9-SYSTEM-ORACLE-24",
           "id": "H048-F03-SIGNATURE-INPUTS-MISSING",
           "requirement_ref": "HARNESS-L3-048-F03",
           "system_oracle_ref": "HARNESS-L10-048-F03",
           "l4_ref": "HARNESS-L4-048-F03",
-          "code": "F03-SIGNATURE-INPUTS-MISSING",
-          "condition": "変更後signature inputs=null。",
-          "axis": "signature:inputs",
-          "state": "not_presentable;signature:inputs=missing",
-          "backflow_owner": "対象作成側",
+          "condition": "/signature_after/inputs: [\"value_id\"] → null",
           "oracle_property": "署名六軸を個別原内容比較し、他軸で補完しない。",
-          "execution_state": "not_executed",
-          "expected_observation": "提示不可。signature:inputs: missing",
-          "oracle_number": "L9-SYSTEM-ORACLE-24"
+          "expected_observation": "candidate_presentable=false; signature:inputs=missing; remaining 14 conditions=supported_synthetic_condition.",
+          "return_targets": [
+            "対象作成側"
+          ],
+          "execution_state": "not_executed"
         },
         {
+          "oracle_number": "L9-SYSTEM-ORACLE-25",
           "id": "H048-F03-SIGNATURE-INPUTS-MISMATCH",
           "requirement_ref": "HARNESS-L3-048-F03",
           "system_oracle_ref": "HARNESS-L10-048-F03",
           "l4_ref": "HARNESS-L4-048-F03",
-          "code": "F03-SIGNATURE-INPUTS-MISMATCH",
-          "condition": "変更後signature inputs=foreign-signature-value。",
-          "axis": "signature:inputs",
-          "state": "not_presentable;signature:inputs=conflict",
-          "backflow_owner": "対象作成側",
+          "condition": "/signature_after/inputs: [\"value_id\"] → foreign-signature-value",
           "oracle_property": "署名六軸を個別原内容比較し、他軸で補完しない。",
-          "execution_state": "not_executed",
-          "expected_observation": "提示不可。signature:inputs: conflict",
-          "oracle_number": "L9-SYSTEM-ORACLE-25"
+          "expected_observation": "candidate_presentable=false; signature:inputs=conflict; remaining 14 conditions=supported_synthetic_condition.",
+          "return_targets": [
+            "対象作成側"
+          ],
+          "execution_state": "not_executed"
         },
         {
+          "oracle_number": "L9-SYSTEM-ORACLE-26",
           "id": "H048-F03-SIGNATURE-OUTPUTS-MISSING",
           "requirement_ref": "HARNESS-L3-048-F03",
           "system_oracle_ref": "HARNESS-L10-048-F03",
           "l4_ref": "HARNESS-L4-048-F03",
-          "code": "F03-SIGNATURE-OUTPUTS-MISSING",
-          "condition": "変更後signature outputs=null。",
-          "axis": "signature:outputs",
-          "state": "not_presentable;signature:outputs=missing",
-          "backflow_owner": "対象作成側",
+          "condition": "/signature_after/outputs: [\"value\"] → null",
           "oracle_property": "署名六軸を個別原内容比較し、他軸で補完しない。",
-          "execution_state": "not_executed",
-          "expected_observation": "提示不可。signature:outputs: missing",
-          "oracle_number": "L9-SYSTEM-ORACLE-26"
+          "expected_observation": "candidate_presentable=false; signature:outputs=missing; remaining 14 conditions=supported_synthetic_condition.",
+          "return_targets": [
+            "対象作成側"
+          ],
+          "execution_state": "not_executed"
         },
         {
+          "oracle_number": "L9-SYSTEM-ORACLE-27",
           "id": "H048-F03-SIGNATURE-OUTPUTS-MISMATCH",
           "requirement_ref": "HARNESS-L3-048-F03",
           "system_oracle_ref": "HARNESS-L10-048-F03",
           "l4_ref": "HARNESS-L4-048-F03",
-          "code": "F03-SIGNATURE-OUTPUTS-MISMATCH",
-          "condition": "変更後signature outputs=foreign-signature-value。",
-          "axis": "signature:outputs",
-          "state": "not_presentable;signature:outputs=conflict",
-          "backflow_owner": "対象作成側",
+          "condition": "/signature_after/outputs: [\"value\"] → foreign-signature-value",
           "oracle_property": "署名六軸を個別原内容比較し、他軸で補完しない。",
-          "execution_state": "not_executed",
-          "expected_observation": "提示不可。signature:outputs: conflict",
-          "oracle_number": "L9-SYSTEM-ORACLE-27"
+          "expected_observation": "candidate_presentable=false; signature:outputs=conflict; remaining 14 conditions=supported_synthetic_condition.",
+          "return_targets": [
+            "対象作成側"
+          ],
+          "execution_state": "not_executed"
         },
         {
+          "oracle_number": "L9-SYSTEM-ORACLE-28",
           "id": "H048-F03-SIGNATURE-EFFECTS-MISSING",
           "requirement_ref": "HARNESS-L3-048-F03",
           "system_oracle_ref": "HARNESS-L10-048-F03",
           "l4_ref": "HARNESS-L4-048-F03",
-          "code": "F03-SIGNATURE-EFFECTS-MISSING",
-          "condition": "変更後signature effects=null。",
-          "axis": "signature:effects",
-          "state": "not_presentable;signature:effects=missing",
-          "backflow_owner": "対象作成側",
+          "condition": "/signature_after/effects: [] → null",
           "oracle_property": "署名六軸を個別原内容比較し、他軸で補完しない。",
-          "execution_state": "not_executed",
-          "expected_observation": "提示不可。signature:effects: missing",
-          "oracle_number": "L9-SYSTEM-ORACLE-28"
+          "expected_observation": "candidate_presentable=false; signature:effects=missing; remaining 14 conditions=supported_synthetic_condition.",
+          "return_targets": [
+            "対象作成側"
+          ],
+          "execution_state": "not_executed"
         },
         {
+          "oracle_number": "L9-SYSTEM-ORACLE-29",
           "id": "H048-F03-SIGNATURE-EFFECTS-MISMATCH",
           "requirement_ref": "HARNESS-L3-048-F03",
           "system_oracle_ref": "HARNESS-L10-048-F03",
           "l4_ref": "HARNESS-L4-048-F03",
-          "code": "F03-SIGNATURE-EFFECTS-MISMATCH",
-          "condition": "変更後signature effects=foreign-signature-value。",
-          "axis": "signature:effects",
-          "state": "not_presentable;signature:effects=conflict",
-          "backflow_owner": "対象作成側",
+          "condition": "/signature_after/effects: [] → foreign-signature-value",
           "oracle_property": "署名六軸を個別原内容比較し、他軸で補完しない。",
-          "execution_state": "not_executed",
-          "expected_observation": "提示不可。signature:effects: conflict",
-          "oracle_number": "L9-SYSTEM-ORACLE-29"
+          "expected_observation": "candidate_presentable=false; signature:effects=conflict; remaining 14 conditions=supported_synthetic_condition.",
+          "return_targets": [
+            "対象作成側"
+          ],
+          "execution_state": "not_executed"
         },
         {
+          "oracle_number": "L9-SYSTEM-ORACLE-30",
           "id": "H048-F03-SIGNATURE-FAILURE-MISSING",
           "requirement_ref": "HARNESS-L3-048-F03",
           "system_oracle_ref": "HARNESS-L10-048-F03",
           "l4_ref": "HARNESS-L4-048-F03",
-          "code": "F03-SIGNATURE-FAILURE-MISSING",
-          "condition": "変更後signature failure=null。",
-          "axis": "signature:failure",
-          "state": "not_presentable;signature:failure=missing",
-          "backflow_owner": "対象作成側",
+          "condition": "/signature_after/failure: [\"not_found\"] → null",
           "oracle_property": "署名六軸を個別原内容比較し、他軸で補完しない。",
-          "execution_state": "not_executed",
-          "expected_observation": "提示不可。signature:failure: missing",
-          "oracle_number": "L9-SYSTEM-ORACLE-30"
+          "expected_observation": "candidate_presentable=false; signature:failure=missing; remaining 14 conditions=supported_synthetic_condition.",
+          "return_targets": [
+            "対象作成側"
+          ],
+          "execution_state": "not_executed"
         },
         {
+          "oracle_number": "L9-SYSTEM-ORACLE-31",
           "id": "H048-F03-SIGNATURE-FAILURE-MISMATCH",
           "requirement_ref": "HARNESS-L3-048-F03",
           "system_oracle_ref": "HARNESS-L10-048-F03",
           "l4_ref": "HARNESS-L4-048-F03",
-          "code": "F03-SIGNATURE-FAILURE-MISMATCH",
-          "condition": "変更後signature failure=foreign-signature-value。",
-          "axis": "signature:failure",
-          "state": "not_presentable;signature:failure=conflict",
-          "backflow_owner": "対象作成側",
+          "condition": "/signature_after/failure: [\"not_found\"] → foreign-signature-value",
           "oracle_property": "署名六軸を個別原内容比較し、他軸で補完しない。",
-          "execution_state": "not_executed",
-          "expected_observation": "提示不可。signature:failure: conflict",
-          "oracle_number": "L9-SYSTEM-ORACLE-31"
+          "expected_observation": "candidate_presentable=false; signature:failure=conflict; remaining 14 conditions=supported_synthetic_condition.",
+          "return_targets": [
+            "対象作成側"
+          ],
+          "execution_state": "not_executed"
         },
         {
+          "oracle_number": "L9-SYSTEM-ORACLE-32",
           "id": "H048-F03-SIGNATURE-STATE_TRANSITION-MISSING",
           "requirement_ref": "HARNESS-L3-048-F03",
           "system_oracle_ref": "HARNESS-L10-048-F03",
           "l4_ref": "HARNESS-L4-048-F03",
-          "code": "F03-SIGNATURE-STATE_TRANSITION-MISSING",
-          "condition": "変更後signature state transition=null。",
-          "axis": "signature:state_transition",
-          "state": "not_presentable;signature:state_transition=missing",
-          "backflow_owner": "対象作成側",
+          "condition": "/signature_after/state_transition: unchanged → null",
           "oracle_property": "署名六軸を個別原内容比較し、他軸で補完しない。",
-          "execution_state": "not_executed",
-          "expected_observation": "提示不可。signature:state_transition: missing",
-          "oracle_number": "L9-SYSTEM-ORACLE-32"
+          "expected_observation": "candidate_presentable=false; signature:state_transition=missing; remaining 14 conditions=supported_synthetic_condition.",
+          "return_targets": [
+            "対象作成側"
+          ],
+          "execution_state": "not_executed"
         },
         {
+          "oracle_number": "L9-SYSTEM-ORACLE-33",
           "id": "H048-F03-SIGNATURE-STATE_TRANSITION-MISMATCH",
           "requirement_ref": "HARNESS-L3-048-F03",
           "system_oracle_ref": "HARNESS-L10-048-F03",
           "l4_ref": "HARNESS-L4-048-F03",
-          "code": "F03-SIGNATURE-STATE_TRANSITION-MISMATCH",
-          "condition": "変更後signature state transition=foreign-signature-value。",
-          "axis": "signature:state_transition",
-          "state": "not_presentable;signature:state_transition=conflict",
-          "backflow_owner": "対象作成側",
+          "condition": "/signature_after/state_transition: unchanged → foreign-signature-value",
           "oracle_property": "署名六軸を個別原内容比較し、他軸で補完しない。",
-          "execution_state": "not_executed",
-          "expected_observation": "提示不可。signature:state_transition: conflict",
-          "oracle_number": "L9-SYSTEM-ORACLE-33"
+          "expected_observation": "candidate_presentable=false; signature:state_transition=conflict; remaining 14 conditions=supported_synthetic_condition.",
+          "return_targets": [
+            "対象作成側"
+          ],
+          "execution_state": "not_executed"
         },
         {
+          "oracle_number": "L9-SYSTEM-ORACLE-34",
           "id": "H048-F03-SIGNATURE-CALL_GRAPH-MISSING",
           "requirement_ref": "HARNESS-L3-048-F03",
           "system_oracle_ref": "HARNESS-L10-048-F03",
           "l4_ref": "HARNESS-L4-048-F03",
-          "code": "F03-SIGNATURE-CALL_GRAPH-MISSING",
-          "condition": "変更後signature call graph=null。",
-          "axis": "signature:call_graph",
-          "state": "not_presentable;signature:call_graph=missing",
-          "backflow_owner": "対象作成側",
+          "condition": "/signature_after/call_graph: [\"port.read\"] → null",
           "oracle_property": "署名六軸を個別原内容比較し、他軸で補完しない。",
-          "execution_state": "not_executed",
-          "expected_observation": "提示不可。signature:call_graph: missing",
-          "oracle_number": "L9-SYSTEM-ORACLE-34"
+          "expected_observation": "candidate_presentable=false; signature:call_graph=missing; remaining 14 conditions=supported_synthetic_condition.",
+          "return_targets": [
+            "対象作成側"
+          ],
+          "execution_state": "not_executed"
         },
         {
+          "oracle_number": "L9-SYSTEM-ORACLE-35",
           "id": "H048-F03-SIGNATURE-CALL_GRAPH-MISMATCH",
           "requirement_ref": "HARNESS-L3-048-F03",
           "system_oracle_ref": "HARNESS-L10-048-F03",
           "l4_ref": "HARNESS-L4-048-F03",
-          "code": "F03-SIGNATURE-CALL_GRAPH-MISMATCH",
-          "condition": "変更後signature call graph=foreign-signature-value。",
-          "axis": "signature:call_graph",
-          "state": "not_presentable;signature:call_graph=conflict",
-          "backflow_owner": "対象作成側",
+          "condition": "/signature_after/call_graph: [\"port.read\"] → foreign-signature-value",
           "oracle_property": "署名六軸を個別原内容比較し、他軸で補完しない。",
-          "execution_state": "not_executed",
-          "expected_observation": "提示不可。signature:call_graph: conflict",
-          "oracle_number": "L9-SYSTEM-ORACLE-35"
+          "expected_observation": "candidate_presentable=false; signature:call_graph=conflict; remaining 14 conditions=supported_synthetic_condition.",
+          "return_targets": [
+            "対象作成側"
+          ],
+          "execution_state": "not_executed"
         },
         {
+          "oracle_number": "L9-SYSTEM-ORACLE-36",
           "id": "H048-F03-SIGNATURE-CONSUMER_CONTRACT-MISSING",
           "requirement_ref": "HARNESS-L3-048-F03",
           "system_oracle_ref": "HARNESS-L10-048-F03",
           "l4_ref": "HARNESS-L4-048-F03",
-          "code": "F03-SIGNATURE-CONSUMER_CONTRACT-MISSING",
-          "condition": "変更後signature consumer contract=null。",
-          "axis": "signature:consumer_contract",
-          "state": "not_presentable;signature:consumer_contract=missing",
-          "backflow_owner": "対象作成側",
+          "condition": "/signature_after/consumer_contract: {\"C1\":\"value-read@r1\",\"C2\":\"value-read@r1\"} → null",
           "oracle_property": "署名六軸を個別原内容比較し、他軸で補完しない。",
-          "execution_state": "not_executed",
-          "expected_observation": "提示不可。signature:consumer_contract: missing",
-          "oracle_number": "L9-SYSTEM-ORACLE-36"
+          "expected_observation": "candidate_presentable=false; signature:consumer_contract=missing; remaining 14 conditions=supported_synthetic_condition.",
+          "return_targets": [
+            "対象作成側"
+          ],
+          "execution_state": "not_executed"
         },
         {
+          "oracle_number": "L9-SYSTEM-ORACLE-37",
           "id": "H048-F03-SIGNATURE-CONSUMER_CONTRACT-MISMATCH",
           "requirement_ref": "HARNESS-L3-048-F03",
           "system_oracle_ref": "HARNESS-L10-048-F03",
           "l4_ref": "HARNESS-L4-048-F03",
-          "code": "F03-SIGNATURE-CONSUMER_CONTRACT-MISMATCH",
-          "condition": "変更後signature consumer contract=foreign-signature-value。",
-          "axis": "signature:consumer_contract",
-          "state": "not_presentable;signature:consumer_contract=conflict",
-          "backflow_owner": "対象作成側",
+          "condition": "/signature_after/consumer_contract: {\"C1\":\"value-read@r1\",\"C2\":\"value-read@r1\"} → foreign-signature-value",
           "oracle_property": "署名六軸を個別原内容比較し、他軸で補完しない。",
-          "execution_state": "not_executed",
-          "expected_observation": "提示不可。signature:consumer_contract: conflict",
-          "oracle_number": "L9-SYSTEM-ORACLE-37"
+          "expected_observation": "candidate_presentable=false; signature:consumer_contract=conflict; remaining 14 conditions=supported_synthetic_condition.",
+          "return_targets": [
+            "対象作成側"
+          ],
+          "execution_state": "not_executed"
         }
-      ]
+      ],
+      "system_oracle_pointer": "docs/helix-harness/L10-verification/functional-verification.json#/cases/49"
     },
     {
       "id": "HARNESS-L9-048-F04",
       "l4_ref": "HARNESS-L4-048-F04",
       "requirement_ref": "HARNESS-L3-048-F04",
       "system_oracle_ref": "HARNESS-L10-048-F04",
-      "approved_l10": {
-        "id": "HARNESS-L10-048-F04",
-        "parent": "HARNESS-L2-048",
-        "title": "返却と期限付き例外",
-        "requirement_ref": "HARNESS-L3-048-F04",
-        "positive_input": "対象境界別のfindingと有効/無期限/owner無し例外を照合する。",
-        "expected_observation": "自動修正拒否と理由付き例外の範囲を区別し、未解決の影響を残す。",
-        "negative_input": "public変更をinternal rename扱い、無期限/owner無し例外で通過、warningだけで全scope停止。",
-        "failure_observation": "対象の返却理由/例外不足を残し、他scopeの成立を失わせない。",
-        "execution_state": "not_executed"
-      },
       "connection_scope": "独立原内容→当該pure照合→対象別結果/候補/返却。実BRAIN/製品resolver/OS運転は未binding。",
       "execution_state": "not_executed",
       "effect": "none",
       "system_oracle_allowlist": [
         {
+          "oracle_number": "L9-SYSTEM-ORACLE-38",
           "id": "H048-F04-VALID-EXCEPTION",
           "requirement_ref": "HARNESS-L3-048-F04",
           "system_oracle_ref": "HARNESS-L10-048-F04",
           "l4_ref": "HARNESS-L4-048-F04",
-          "code": "F04-VALID-EXCEPTION",
-          "condition": "OBJ-Pのrole_unknown findingをinternal境界で扱う。PRODUCT-P-ownerの期限付き例外（役割確定まで既存利用を継続、2030-02-01、PRODUCT-P）。",
-          "axis": "exception",
-          "state": "valid_for_fixture_scope;local_continuation=true",
-          "backflow_owner": "product_author",
+          "condition": "baseline: 例外は局所継続のみ。自動rename拒否と影響を消さない。",
           "oracle_property": "例外は局所継続のみ。自動rename拒否と影響を消さない。",
-          "execution_state": "not_executed",
-          "expected_observation": "FIND-Pはproduct_authorへの返却候補。例外有効、local continuation。",
-          "oracle_number": "L9-SYSTEM-ORACLE-38"
+          "expected_observation": "auto_rename=rejected; return_candidate=product_author; finding_retained=FIND-P; exception_result=valid_for_fixture_scope; local_continuation=true; global_stop=false; unaffected_Q=original_Q.",
+          "return_targets": [
+            "product_author"
+          ],
+          "execution_state": "not_executed"
         },
         {
+          "oracle_number": "L9-SYSTEM-ORACLE-39",
           "id": "H048-F04-OWNER-MISSING",
           "requirement_ref": "HARNESS-L3-048-F04",
           "system_oracle_ref": "HARNESS-L10-048-F04",
           "l4_ref": "HARNESS-L4-048-F04",
-          "code": "F04-OWNER-MISSING",
-          "condition": "例外 owner=null。",
-          "axis": "exception",
-          "state": "missing_owner;local_continuation=false",
-          "backflow_owner": "product_author",
+          "condition": "/exception/owner: PRODUCT-P-owner → null",
           "oracle_property": "例外不足はPのみ。Qを停止しない。",
-          "execution_state": "not_executed",
-          "expected_observation": "例外: missing_owner；局所継続: false",
-          "oracle_number": "L9-SYSTEM-ORACLE-39"
+          "expected_observation": "auto_rename=rejected; return_candidate=product_author; finding_retained=FIND-P; exception_result=missing_owner; local_continuation=false; global_stop=false; unaffected_Q=original_Q.",
+          "return_targets": [
+            "product_author"
+          ],
+          "execution_state": "not_executed"
         },
         {
+          "oracle_number": "L9-SYSTEM-ORACLE-40",
           "id": "H048-F04-EXPIRY-MISSING",
           "requirement_ref": "HARNESS-L3-048-F04",
           "system_oracle_ref": "HARNESS-L10-048-F04",
           "l4_ref": "HARNESS-L4-048-F04",
-          "code": "F04-EXPIRY-MISSING",
-          "condition": "例外 期限=null。",
-          "axis": "exception",
-          "state": "missing_expiry;local_continuation=false",
-          "backflow_owner": "product_author",
+          "condition": "/exception/expiry: 2030-02-01 → null",
           "oracle_property": "例外不足はPのみ。Qを停止しない。",
-          "execution_state": "not_executed",
-          "expected_observation": "例外: missing_expiry；局所継続: false",
-          "oracle_number": "L9-SYSTEM-ORACLE-40"
+          "expected_observation": "auto_rename=rejected; return_candidate=product_author; finding_retained=FIND-P; exception_result=missing_expiry; local_continuation=false; global_stop=false; unaffected_Q=original_Q.",
+          "return_targets": [
+            "product_author"
+          ],
+          "execution_state": "not_executed"
         },
         {
+          "oracle_number": "L9-SYSTEM-ORACLE-41",
           "id": "H048-F04-EXPIRED",
           "requirement_ref": "HARNESS-L3-048-F04",
           "system_oracle_ref": "HARNESS-L10-048-F04",
           "l4_ref": "HARNESS-L4-048-F04",
-          "code": "F04-EXPIRED",
-          "condition": "例外 期限=2029-12-31。",
-          "axis": "exception",
-          "state": "expired;local_continuation=false",
-          "backflow_owner": "product_author",
+          "condition": "/exception/expiry: 2030-02-01 → 2029-12-31",
           "oracle_property": "例外不足はPのみ。Qを停止しない。",
-          "execution_state": "not_executed",
-          "expected_observation": "例外: expired；局所継続: false",
-          "oracle_number": "L9-SYSTEM-ORACLE-41"
+          "expected_observation": "auto_rename=rejected; return_candidate=product_author; finding_retained=FIND-P; exception_result=expired; local_continuation=false; global_stop=false; unaffected_Q=original_Q.",
+          "return_targets": [
+            "product_author"
+          ],
+          "execution_state": "not_executed"
         },
         {
+          "oracle_number": "L9-SYSTEM-ORACLE-42",
           "id": "H048-F04-REASON-MISSING",
           "requirement_ref": "HARNESS-L3-048-F04",
           "system_oracle_ref": "HARNESS-L10-048-F04",
           "l4_ref": "HARNESS-L4-048-F04",
-          "code": "F04-REASON-MISSING",
-          "condition": "例外 理由=null。",
-          "axis": "exception",
-          "state": "missing_reason;local_continuation=false",
-          "backflow_owner": "product_author",
+          "condition": "/exception/reason: 役割確定まで既存利用を継続 → null",
           "oracle_property": "例外不足はPのみ。Qを停止しない。",
-          "execution_state": "not_executed",
-          "expected_observation": "例外: missing_reason；局所継続: false",
-          "oracle_number": "L9-SYSTEM-ORACLE-42"
+          "expected_observation": "auto_rename=rejected; return_candidate=product_author; finding_retained=FIND-P; exception_result=missing_reason; local_continuation=false; global_stop=false; unaffected_Q=original_Q.",
+          "return_targets": [
+            "product_author"
+          ],
+          "execution_state": "not_executed"
         },
         {
+          "oracle_number": "L9-SYSTEM-ORACLE-43",
           "id": "H048-F04-FOREIGN-SCOPE",
           "requirement_ref": "HARNESS-L3-048-F04",
           "system_oracle_ref": "HARNESS-L10-048-F04",
           "l4_ref": "HARNESS-L4-048-F04",
-          "code": "F04-FOREIGN-SCOPE",
-          "condition": "例外 scope=PRODUCT-Q。",
-          "axis": "exception",
-          "state": "scope_conflict;local_continuation=false",
-          "backflow_owner": "product_author",
+          "condition": "/exception/scope: PRODUCT-P → PRODUCT-Q",
           "oracle_property": "例外不足はPのみ。Qを停止しない。",
-          "execution_state": "not_executed",
-          "expected_observation": "例外: scope_conflict；局所継続: false",
-          "oracle_number": "L9-SYSTEM-ORACLE-43"
+          "expected_observation": "auto_rename=rejected; return_candidate=product_author; finding_retained=FIND-P; exception_result=scope_conflict; local_continuation=false; global_stop=false; unaffected_Q=original_Q.",
+          "return_targets": [
+            "product_author"
+          ],
+          "execution_state": "not_executed"
         },
         {
+          "oracle_number": "L9-SYSTEM-ORACLE-44",
           "id": "H048-F04-PUBLIC_API",
           "requirement_ref": "HARNESS-L3-048-F04",
           "system_oracle_ref": "HARNESS-L10-048-F04",
           "l4_ref": "HARNESS-L4-048-F04",
-          "code": "F04-PUBLIC_API",
-          "condition": "境界=public_API。finding 理由=observable_contract_change。",
-          "axis": "compatibility_boundary",
-          "state": "valid_for_fixture_scope;local_continuation=true",
-          "backflow_owner": "Redesign_or_Retrofit_with_compatibility_migration",
+          "condition": "/boundary: internal → public_API; /finding/reason: role_unknown → observable_contract_change",
           "oracle_property": "public/persisted/configをinternalとして自動修正しない。",
-          "execution_state": "not_executed",
-          "expected_observation": "返却候補: Redesign_or_Retrofit_with_compatibility_migration",
-          "oracle_number": "L9-SYSTEM-ORACLE-44"
+          "expected_observation": "auto_rename=rejected; return_candidate=Redesign_or_Retrofit_with_compatibility_migration; finding_retained=FIND-P; exception_result=valid_for_fixture_scope; local_continuation=true; global_stop=false; unaffected_Q=original_Q.",
+          "return_targets": [
+            "Redesign_or_Retrofit_with_compatibility_migration"
+          ],
+          "execution_state": "not_executed"
         },
         {
+          "oracle_number": "L9-SYSTEM-ORACLE-45",
           "id": "H048-F04-PUBLIC_CLI",
           "requirement_ref": "HARNESS-L3-048-F04",
           "system_oracle_ref": "HARNESS-L10-048-F04",
           "l4_ref": "HARNESS-L4-048-F04",
-          "code": "F04-PUBLIC_CLI",
-          "condition": "境界=public_CLI。finding 理由=observable_contract_change。",
-          "axis": "compatibility_boundary",
-          "state": "valid_for_fixture_scope;local_continuation=true",
-          "backflow_owner": "Redesign_or_Retrofit_with_compatibility_migration",
+          "condition": "/boundary: internal → public_CLI; /finding/reason: role_unknown → observable_contract_change",
           "oracle_property": "public/persisted/configをinternalとして自動修正しない。",
-          "execution_state": "not_executed",
-          "expected_observation": "返却候補: Redesign_or_Retrofit_with_compatibility_migration",
-          "oracle_number": "L9-SYSTEM-ORACLE-45"
+          "expected_observation": "auto_rename=rejected; return_candidate=Redesign_or_Retrofit_with_compatibility_migration; finding_retained=FIND-P; exception_result=valid_for_fixture_scope; local_continuation=true; global_stop=false; unaffected_Q=original_Q.",
+          "return_targets": [
+            "Redesign_or_Retrofit_with_compatibility_migration"
+          ],
+          "execution_state": "not_executed"
         },
         {
+          "oracle_number": "L9-SYSTEM-ORACLE-46",
           "id": "H048-F04-PERSISTED_FIELD",
           "requirement_ref": "HARNESS-L3-048-F04",
           "system_oracle_ref": "HARNESS-L10-048-F04",
           "l4_ref": "HARNESS-L4-048-F04",
-          "code": "F04-PERSISTED_FIELD",
-          "condition": "境界=persisted_field。finding 理由=observable_contract_change。",
-          "axis": "compatibility_boundary",
-          "state": "valid_for_fixture_scope;local_continuation=true",
-          "backflow_owner": "Redesign_or_Retrofit_with_compatibility_migration",
+          "condition": "/boundary: internal → persisted_field; /finding/reason: role_unknown → observable_contract_change",
           "oracle_property": "public/persisted/configをinternalとして自動修正しない。",
-          "execution_state": "not_executed",
-          "expected_observation": "返却候補: Redesign_or_Retrofit_with_compatibility_migration",
-          "oracle_number": "L9-SYSTEM-ORACLE-46"
+          "expected_observation": "auto_rename=rejected; return_candidate=Redesign_or_Retrofit_with_compatibility_migration; finding_retained=FIND-P; exception_result=valid_for_fixture_scope; local_continuation=true; global_stop=false; unaffected_Q=original_Q.",
+          "return_targets": [
+            "Redesign_or_Retrofit_with_compatibility_migration"
+          ],
+          "execution_state": "not_executed"
         },
         {
+          "oracle_number": "L9-SYSTEM-ORACLE-47",
           "id": "H048-F04-PERSISTED_EVENT",
           "requirement_ref": "HARNESS-L3-048-F04",
           "system_oracle_ref": "HARNESS-L10-048-F04",
           "l4_ref": "HARNESS-L4-048-F04",
-          "code": "F04-PERSISTED_EVENT",
-          "condition": "境界=persisted_event。finding 理由=observable_contract_change。",
-          "axis": "compatibility_boundary",
-          "state": "valid_for_fixture_scope;local_continuation=true",
-          "backflow_owner": "Redesign_or_Retrofit_with_compatibility_migration",
+          "condition": "/boundary: internal → persisted_event; /finding/reason: role_unknown → observable_contract_change",
           "oracle_property": "public/persisted/configをinternalとして自動修正しない。",
-          "execution_state": "not_executed",
-          "expected_observation": "返却候補: Redesign_or_Retrofit_with_compatibility_migration",
-          "oracle_number": "L9-SYSTEM-ORACLE-47"
+          "expected_observation": "auto_rename=rejected; return_candidate=Redesign_or_Retrofit_with_compatibility_migration; finding_retained=FIND-P; exception_result=valid_for_fixture_scope; local_continuation=true; global_stop=false; unaffected_Q=original_Q.",
+          "return_targets": [
+            "Redesign_or_Retrofit_with_compatibility_migration"
+          ],
+          "execution_state": "not_executed"
         },
         {
+          "oracle_number": "L9-SYSTEM-ORACLE-48",
           "id": "H048-F04-DIRECT_CONFIG_KEY",
           "requirement_ref": "HARNESS-L3-048-F04",
           "system_oracle_ref": "HARNESS-L10-048-F04",
           "l4_ref": "HARNESS-L4-048-F04",
-          "code": "F04-DIRECT_CONFIG_KEY",
-          "condition": "境界=direct_config_key。finding 理由=observable_contract_change。",
-          "axis": "compatibility_boundary",
-          "state": "valid_for_fixture_scope;local_continuation=true",
-          "backflow_owner": "Redesign_or_Retrofit_with_compatibility_migration",
+          "condition": "/boundary: internal → direct_config_key; /finding/reason: role_unknown → observable_contract_change",
           "oracle_property": "public/persisted/configをinternalとして自動修正しない。",
-          "execution_state": "not_executed",
-          "expected_observation": "返却候補: Redesign_or_Retrofit_with_compatibility_migration",
-          "oracle_number": "L9-SYSTEM-ORACLE-48"
+          "expected_observation": "auto_rename=rejected; return_candidate=Redesign_or_Retrofit_with_compatibility_migration; finding_retained=FIND-P; exception_result=valid_for_fixture_scope; local_continuation=true; global_stop=false; unaffected_Q=original_Q.",
+          "return_targets": [
+            "Redesign_or_Retrofit_with_compatibility_migration"
+          ],
+          "execution_state": "not_executed"
         },
         {
+          "oracle_number": "L9-SYSTEM-ORACLE-49",
           "id": "H048-F04-CONSUMER_INCOMPLETE",
           "requirement_ref": "HARNESS-L3-048-F04",
           "system_oracle_ref": "HARNESS-L10-048-F04",
           "l4_ref": "HARNESS-L4-048-F04",
-          "code": "F04-CONSUMER_INCOMPLETE",
-          "condition": "finding 理由=consumer_incomplete。",
-          "axis": "finding_return",
-          "state": "valid_for_fixture_scope;local_continuation=true",
-          "backflow_owner": "product_author",
+          "condition": "/finding/reason: role_unknown → consumer_incomplete",
           "oracle_property": "対象作成側へ理由/影響/ownerを保持して返す。",
-          "execution_state": "not_executed",
-          "expected_observation": "FIND-Pはproduct_authorへの返却候補。例外有効、local continuation。",
-          "oracle_number": "L9-SYSTEM-ORACLE-49"
+          "expected_observation": "auto_rename=rejected; return_candidate=product_author; finding_retained=FIND-P; exception_result=valid_for_fixture_scope; local_continuation=true; global_stop=false; unaffected_Q=original_Q.",
+          "return_targets": [
+            "product_author"
+          ],
+          "execution_state": "not_executed"
         },
         {
+          "oracle_number": "L9-SYSTEM-ORACLE-50",
           "id": "H048-F04-SIGNATURE_MISMATCH",
           "requirement_ref": "HARNESS-L3-048-F04",
           "system_oracle_ref": "HARNESS-L10-048-F04",
           "l4_ref": "HARNESS-L4-048-F04",
-          "code": "F04-SIGNATURE_MISMATCH",
-          "condition": "finding 理由=signature_mismatch。",
-          "axis": "finding_return",
-          "state": "valid_for_fixture_scope;local_continuation=true",
-          "backflow_owner": "product_author",
+          "condition": "/finding/reason: role_unknown → signature_mismatch",
           "oracle_property": "対象作成側へ理由/影響/ownerを保持して返す。",
-          "execution_state": "not_executed",
-          "expected_observation": "FIND-Pはproduct_authorへの返却候補。例外有効、local continuation。",
-          "oracle_number": "L9-SYSTEM-ORACLE-50"
+          "expected_observation": "auto_rename=rejected; return_candidate=product_author; finding_retained=FIND-P; exception_result=valid_for_fixture_scope; local_continuation=true; global_stop=false; unaffected_Q=original_Q.",
+          "return_targets": [
+            "product_author"
+          ],
+          "execution_state": "not_executed"
         },
         {
+          "oracle_number": "L9-SYSTEM-ORACLE-51",
           "id": "H048-F04-WARNING-GLOBAL-STOP-REJECTED",
           "requirement_ref": "HARNESS-L3-048-F04",
           "system_oracle_ref": "HARNESS-L10-048-F04",
           "l4_ref": "HARNESS-L4-048-F04",
-          "code": "F04-WARNING-GLOBAL-STOP-REJECTED",
-          "condition": "global stop要求=true。",
-          "axis": "global_scope",
-          "state": "valid_for_fixture_scope;local_continuation=true",
-          "backflow_owner": "product_author",
+          "condition": "/warning_requests_global_stop: False → True",
           "oracle_property": "warningの全scope停止要求を拒否し、P局所条件/Q成立を保持。",
-          "execution_state": "not_executed",
-          "expected_observation": "global stopは開始しない。例外は有効でlocal continuation。",
-          "oracle_number": "L9-SYSTEM-ORACLE-51"
+          "expected_observation": "auto_rename=rejected; return_candidate=product_author; finding_retained=FIND-P; exception_result=valid_for_fixture_scope; local_continuation=true; global_stop=false; unaffected_Q=original_Q.",
+          "return_targets": [
+            "product_author"
+          ],
+          "execution_state": "not_executed"
         }
-      ]
+      ],
+      "system_oracle_pointer": "docs/helix-harness/L10-verification/functional-verification.json#/cases/50"
     },
     {
       "id": "HARNESS-L9-048-B01",
       "l4_ref": "HARNESS-L4-048-B01",
       "requirement_ref": "HARNESS-L3-048-B01",
       "system_oracle_ref": "HARNESS-L10-048-B01",
-      "approved_l10": {
-        "id": "HARNESS-L10-048-B01",
-        "parent": "HARNESS-L2-048",
-        "title": "命名知識と検査の権限境界",
-        "requirement_ref": "HARNESS-L3-048-B01",
-        "positive_input": "同じ命名候補を知識提示、規範照合、製品decision、CI候補として区別する。",
-        "expected_observation": "各ownerと権限不足を辿れ、知識/検査結果を採択や実装許可にしない。",
-        "negative_input": "BRAIN語彙で既決規範変更、CIで採択/自己merge、既存要求ID/機構責務名の変更。",
-        "failure_observation": "上書き/権限越境を拒否し、候補提示と実操作の成立を分ける。",
-        "execution_state": "not_executed"
-      },
       "connection_scope": "独立原内容→当該pure照合→対象別結果/候補/返却。実BRAIN/製品resolver/OS運転は未binding。",
       "execution_state": "not_executed",
       "effect": "none",
       "system_oracle_allowlist": [
         {
+          "oracle_number": "L9-SYSTEM-ORACLE-52",
           "id": "H048-B01-NORMAL",
           "requirement_ref": "HARNESS-L3-048-B01",
           "system_oracle_ref": "HARNESS-L10-048-B01",
           "l4_ref": "HARNESS-L4-048-B01",
-          "code": "B01-NORMAL",
-          "condition": "BRAINのQuery/read語彙、HARNESSのcandidate_and_findings_only、PRODUCT-P-ownerのreadValue決定。CI提案はfinding_only、REQ-P / OS / original本文を保持。",
-          "axis": "authority_and_owner_boundary",
-          "state": "all_boundaries_held_or_candidate_only",
-          "backflow_owner": null,
+          "condition": "baseline: 知識/規範/製品/CIを別入力で比較。知識から採択を生成しない。",
           "oracle_property": "知識/規範/製品/CIを別入力で比較。知識から採択を生成しない。",
-          "execution_state": "not_executed",
-          "expected_observation": "norm / product decision / protected requirement-mechanism-bodyは保持。CIはfinding candidateのみ、owner returnなし。",
-          "oracle_number": "L9-SYSTEM-ORACLE-52"
+          "expected_observation": "norm=held; product_decision=held; CI=candidate_only; requirement_id=held; mechanism_role=held; adopted_body=held; owner_return_candidates=none; unaffected_Q=original_Q.",
+          "return_targets": [],
+          "execution_state": "not_executed"
         },
         {
+          "oracle_number": "L9-SYSTEM-ORACLE-53",
           "id": "H048-B01-BRAIN-NORM-OVERRIDE",
           "requirement_ref": "HARNESS-L3-048-B01",
           "system_oracle_ref": "HARNESS-L10-048-B01",
           "l4_ref": "HARNESS-L4-048-B01",
-          "code": "B01-BRAIN-NORM-OVERRIDE",
-          "condition": "proposal norm content=knowledge_overrides_norm。",
-          "axis": "authority_and_owner_boundary",
-          "state": "norm=rejected",
-          "backflow_owner": [
+          "condition": "/proposal/norm_content: candidate_and_findings_only → knowledge_overrides_norm",
+          "oracle_property": "他ownerの原内容を上書きする提案/操作を拒否。",
+          "expected_observation": "norm=rejected; product_decision=held; CI=candidate_only; requirement_id=held; mechanism_role=held; adopted_body=held; owner_return_candidates=HARNESS-norm-owner; unaffected_Q=original_Q.",
+          "return_targets": [
             "HARNESS-norm-owner"
           ],
-          "oracle_property": "他ownerの原内容を上書きする提案/操作を拒否。",
-          "execution_state": "not_executed",
-          "expected_observation": "norm: rejected；owner return: HARNESS-norm-owner",
-          "oracle_number": "L9-SYSTEM-ORACLE-53"
+          "execution_state": "not_executed"
         },
         {
+          "oracle_number": "L9-SYSTEM-ORACLE-54",
           "id": "H048-B01-BRAIN-PRODUCT-OVERRIDE",
           "requirement_ref": "HARNESS-L3-048-B01",
           "system_oracle_ref": "HARNESS-L10-048-B01",
           "l4_ref": "HARNESS-L4-048-B01",
-          "code": "B01-BRAIN-PRODUCT-OVERRIDE",
-          "condition": "proposal product name=knowledgeChosenName。",
-          "axis": "authority_and_owner_boundary",
-          "state": "product_decision=rejected",
-          "backflow_owner": [
+          "condition": "/proposal/product_name: readValue → knowledgeChosenName",
+          "oracle_property": "他ownerの原内容を上書きする提案/操作を拒否。",
+          "expected_observation": "norm=held; product_decision=rejected; CI=candidate_only; requirement_id=held; mechanism_role=held; adopted_body=held; owner_return_candidates=product-design-owner; unaffected_Q=original_Q.",
+          "return_targets": [
             "product-design-owner"
           ],
-          "oracle_property": "他ownerの原内容を上書きする提案/操作を拒否。",
-          "execution_state": "not_executed",
-          "expected_observation": "product_decision: rejected；owner return: product-design-owner",
-          "oracle_number": "L9-SYSTEM-ORACLE-54"
+          "execution_state": "not_executed"
         },
         {
+          "oracle_number": "L9-SYSTEM-ORACLE-55",
           "id": "H048-B01-CI-ADOPTION",
           "requirement_ref": "HARNESS-L3-048-B01",
           "system_oracle_ref": "HARNESS-L10-048-B01",
           "l4_ref": "HARNESS-L4-048-B01",
-          "code": "B01-CI-ADOPTION",
-          "condition": "proposal CI effect=adopt。",
-          "axis": "authority_and_owner_boundary",
-          "state": "CI=rejected",
-          "backflow_owner": [
+          "condition": "/proposal/CI_effect: finding_only → adopt",
+          "oracle_property": "他ownerの原内容を上書きする提案/操作を拒否。",
+          "expected_observation": "norm=held; product_decision=held; CI=rejected; requirement_id=held; mechanism_role=held; adopted_body=held; owner_return_candidates=CI-boundary-owner; unaffected_Q=original_Q.",
+          "return_targets": [
             "CI-boundary-owner"
           ],
-          "oracle_property": "他ownerの原内容を上書きする提案/操作を拒否。",
-          "execution_state": "not_executed",
-          "expected_observation": "CI: rejected；owner return: CI-boundary-owner",
-          "oracle_number": "L9-SYSTEM-ORACLE-55"
+          "execution_state": "not_executed"
         },
         {
+          "oracle_number": "L9-SYSTEM-ORACLE-56",
           "id": "H048-B01-CI-SELF-MERGE",
           "requirement_ref": "HARNESS-L3-048-B01",
           "system_oracle_ref": "HARNESS-L10-048-B01",
           "l4_ref": "HARNESS-L4-048-B01",
-          "code": "B01-CI-SELF-MERGE",
-          "condition": "proposal CI effect=self_merge。",
-          "axis": "authority_and_owner_boundary",
-          "state": "CI=rejected",
-          "backflow_owner": [
+          "condition": "/proposal/CI_effect: finding_only → self_merge",
+          "oracle_property": "他ownerの原内容を上書きする提案/操作を拒否。",
+          "expected_observation": "norm=held; product_decision=held; CI=rejected; requirement_id=held; mechanism_role=held; adopted_body=held; owner_return_candidates=CI-boundary-owner; unaffected_Q=original_Q.",
+          "return_targets": [
             "CI-boundary-owner"
           ],
-          "oracle_property": "他ownerの原内容を上書きする提案/操作を拒否。",
-          "execution_state": "not_executed",
-          "expected_observation": "CI: rejected；owner return: CI-boundary-owner",
-          "oracle_number": "L9-SYSTEM-ORACLE-56"
+          "execution_state": "not_executed"
         },
         {
+          "oracle_number": "L9-SYSTEM-ORACLE-57",
           "id": "H048-B01-REQUIREMENT_ID-CHANGE",
           "requirement_ref": "HARNESS-L3-048-B01",
           "system_oracle_ref": "HARNESS-L10-048-B01",
           "l4_ref": "HARNESS-L4-048-B01",
-          "code": "B01-REQUIREMENT_ID-CHANGE",
-          "condition": "保護対象(after) requirement ID=changed。",
-          "axis": "authority_and_owner_boundary",
-          "state": "requirement_id=out_of_scope_change_rejected",
-          "backflow_owner": [
+          "condition": "/protected_after/requirement_id: REQ-P → changed",
+          "oracle_property": "既存ID/機構責務/採択本文変更を048へ混載しない。",
+          "expected_observation": "norm=held; product_decision=held; CI=candidate_only; requirement_id=out_of_scope_change_rejected; mechanism_role=held; adopted_body=held; owner_return_candidates=original-meaning-owner; unaffected_Q=original_Q.",
+          "return_targets": [
             "original-meaning-owner"
           ],
-          "oracle_property": "既存ID/機構責務/採択本文変更を048へ混載しない。",
-          "execution_state": "not_executed",
-          "expected_observation": "requirement_id: out_of_scope_change_rejected；owner return: original-meaning-owner",
-          "oracle_number": "L9-SYSTEM-ORACLE-57"
+          "execution_state": "not_executed"
         },
         {
+          "oracle_number": "L9-SYSTEM-ORACLE-58",
           "id": "H048-B01-MECHANISM_ROLE-CHANGE",
           "requirement_ref": "HARNESS-L3-048-B01",
           "system_oracle_ref": "HARNESS-L10-048-B01",
           "l4_ref": "HARNESS-L4-048-B01",
-          "code": "B01-MECHANISM_ROLE-CHANGE",
-          "condition": "保護対象(after) 機構role=changed。",
-          "axis": "authority_and_owner_boundary",
-          "state": "mechanism_role=out_of_scope_change_rejected",
-          "backflow_owner": [
+          "condition": "/protected_after/mechanism_role: OS → changed",
+          "oracle_property": "既存ID/機構責務/採択本文変更を048へ混載しない。",
+          "expected_observation": "norm=held; product_decision=held; CI=candidate_only; requirement_id=held; mechanism_role=out_of_scope_change_rejected; adopted_body=held; owner_return_candidates=original-meaning-owner; unaffected_Q=original_Q.",
+          "return_targets": [
             "original-meaning-owner"
           ],
-          "oracle_property": "既存ID/機構責務/採択本文変更を048へ混載しない。",
-          "execution_state": "not_executed",
-          "expected_observation": "mechanism_role: out_of_scope_change_rejected；owner return: original-meaning-owner",
-          "oracle_number": "L9-SYSTEM-ORACLE-58"
+          "execution_state": "not_executed"
         },
         {
+          "oracle_number": "L9-SYSTEM-ORACLE-59",
           "id": "H048-B01-ADOPTED_BODY-CHANGE",
           "requirement_ref": "HARNESS-L3-048-B01",
           "system_oracle_ref": "HARNESS-L10-048-B01",
           "l4_ref": "HARNESS-L4-048-B01",
-          "code": "B01-ADOPTED_BODY-CHANGE",
-          "condition": "保護対象(after) 採用本文=changed。",
-          "axis": "authority_and_owner_boundary",
-          "state": "adopted_body=out_of_scope_change_rejected",
-          "backflow_owner": [
+          "condition": "/protected_after/adopted_body: original → changed",
+          "oracle_property": "既存ID/機構責務/採択本文変更を048へ混載しない。",
+          "expected_observation": "norm=held; product_decision=held; CI=candidate_only; requirement_id=held; mechanism_role=held; adopted_body=out_of_scope_change_rejected; owner_return_candidates=original-meaning-owner; unaffected_Q=original_Q.",
+          "return_targets": [
             "original-meaning-owner"
           ],
-          "oracle_property": "既存ID/機構責務/採択本文変更を048へ混載しない。",
-          "execution_state": "not_executed",
-          "expected_observation": "adopted_body: out_of_scope_change_rejected；owner return: original-meaning-owner",
-          "oracle_number": "L9-SYSTEM-ORACLE-59"
+          "execution_state": "not_executed"
         }
-      ]
+      ],
+      "system_oracle_pointer": "docs/helix-harness/L10-verification/business-verification.json#/cases/9"
     }
   ],
   "completion": "初回合成例のみ。実source資格/組合せ/詳細設計/実観測は未成立。",
@@ -1432,8 +1301,27 @@
     "decision_ref": "GitHub #3510 comment 6447665479 / PR #4005 review R1 F1 and R2; WR259-HARNESS-NAMING-L9-SLIM",
     "git_commit": "fe79e0004d8164bffc4be7c8c31dd9e14da2ead3",
     "path": "docs/helix-harness/L9-integration-verification/naming-identity-correspondence.json",
-    "meaning": "撤去前は59件のfixture raw packet（raw_utf8、hashを含む）と全expected_material return詳細・副作用内訳を保持していた。各行の意味は、L8の同一ID・順序の短いcondition/expected observation、L9のoracle_property、L3/L4/L10参照、not_executed状態とbackflow先で現行allowlistに保持する。",
-    "removed_key_rule": "59件すべてのindependent_source_packet（ref/raw_utf8/hash/qualification）と全expected_materialの完全return構造・副作用内訳を撤去。具体値は現行L9へ再複製せず、撤去前の固定revisionのみから参照する。各system_oracle_allowlist行はid/requirement_ref/system_oracle_ref/l4_ref/code/condition/axis/state/expected_observation/backflow_owner/oracle_property/execution_stateを保持する。",
-    "use_boundary": "DT-VT-105（L5↔L8詳細設計との照合）。本allowlistはL4契約との実行境界・番号付きsystem oracleの候補でありfixture、raw入力、full return、test citation、実行結果ではない。旧資料・固定revisionは由来/静的比較だけに使い、runtime/test/CI/algorithmを実行・再利用しない。"
-  }
+    "meaning": "撤去前59 caseにはcode/condition/axis/state/backflow_owner fieldは存在しない。raw fixture packetとexpected_materialの具体returnから、id/order、basis、raw差分で導く条件、L4/L10に照らす期待観測、指定されたreturn targetを短く再構成した。元sourceにないcode等の差分保持は主張しない。",
+    "removed_key_rule": "59件すべてのindependent_source_packet（raw_utf8/hash等）およびexpected_materialの全返却/副作用詳細を撤去。値の再複製はせず固定revisionで辿る。行にはoracle番号、ID、既存参照、元basis、raw差分条件、expected_materialとL4/L10から導くexpected observation、明記されたreturn target、not_executedを保持する。元caseにないcode/axis/state/backflow_ownerは生成しない。",
+    "use_boundary": "DT-VT-105（L5↔L8詳細設計との照合）。現行allowlistはL4契約と番号付きsystem oracleの実行境界・短い観測だけで、fixture/raw/full return/実行結果ではない。L10 oracleはsource_pinsの固定bytesにあるsystem_oracle_pointerで参照する。"
+  },
+  "source_field_presence": {
+    "fixed_revision": "fe79e0004d8164bffc4be7c8c31dd9e14da2ead3",
+    "source_case_pointer": "/verification_obligations/*/concrete_cases/*",
+    "source_fields_absent": [
+      "code",
+      "condition",
+      "axis",
+      "state",
+      "backflow_owner"
+    ],
+    "projection_note": "不存在だったsource fieldの差分保持は主張しない。現在のcondition/expected_observationは元raw packetとexpected_material、およびL4/L10意味から短く導出した。"
+  },
+  "l4_contract_source": {
+    "path": "docs/helix-harness/L4-basic-design/naming-identity-correspondence.json",
+    "revision": "fe79e0004d8164bffc4be7c8c31dd9e14da2ead3",
+    "sha256": "45f8ca2ab75b9748994d913e46b2351ccdb9293e71201eb23887853bdb048eb7",
+    "note": "L4 HARNESS-048 contracts source for the five retained l4_ref values."
+  },
+  "non_generation_boundary": "All 59 cases remain synthetic and execution_state=not_executed. No actual rename, design refactor, CI, merge, authority, design completion, or acceptance is produced; unrelated Q remains original_Q."
 }

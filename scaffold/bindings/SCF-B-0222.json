@@ -30,8 +30,8 @@
     },
     {
       "path": "docs/helix-harness/L9-integration-verification/naming-identity-correspondence.json",
-      "sha256": "f64e87d6b5d78ed800b15caf54d6db66cfc93925a46177f6ded6c00e4f95ca3a",
-      "note": "WR259固定作業treeのsource/artifact bytes。"
+      "sha256": "8559894f0b6331b027f95e5e97b2e5b52e2e0457bf5f98708108bff5ad5d86a3",
+      "note": "WR259 follow-up final target bytes."
     },
     {
       "path": "docs/governance/design-verification-quality-assurance.md",
@@ -40,23 +40,23 @@
     },
     {
       "path": "scaffold/research/wr259-naming-l9-slim-20261101/README.md",
-      "sha256": "2435dec0640b129602c7fcf242d64953c17ce9b6128b66f4749df675336ec5d5",
+      "sha256": "bad8dbf6ab23878a54531951e2e9b0cf7b8b56bc7e23d83a8827919a87fbe117",
       "note": "WR259固定作業treeのsource/artifact bytes。"
     },
     {
       "path": "scaffold/research/wr259-naming-l9-slim-20261101/validate_l9_slim.py",
-      "sha256": "75db7fb591ec2b92d73816f139b370fbe65ad29f1d725660690cf780b1aa997f",
+      "sha256": "5d7ab9afdb18ea5df60db14cae4472b55c3b1bdcbbc3359b66257059f6a26bf1",
       "note": "WR259固定作業treeのsource/artifact bytes。"
     }
   ],
   "role": "Temporary static evidence for the HARNESS-048 L9 allowlist projection and its consumer/source reconciliation.",
   "obligations": [
-    "Keep the five L4 contract references and five approved L10 oracle rows; preserve all ten fixed authority source pins, legacy_comparison, full_goal_scope_preserved, and unverified scope from the fixed base.",
-    "Keep all 59 sequential oracle_number rows in the same obligation and row order. Each row carries code, condition, axis, state, oracle property, expected observation, backflow owner (null when the approved oracle does not assign one), source IDs, and execution_state=not_executed.",
-    "Remove all independent_source_packet fixture/raw/hash nodes and all expected_material full-return/effect detail from the current L9. Record the removed source through the six required removed_materials keys pinned to fixed pre-edit commit fe79e0004d8164bffc4be7c8c31dd9e14da2ead3 and name DT-VT-105 use boundary.",
-    "Resolve the 37 L5 L9 consumer source pointers at their existing fixed revision b52ad0e1e954790ebe57b2d87da46ea6712a07d9 and compare canonical hashes; inspect the L8 consumer and confirm it contains no direct L9 JSON pointers.",
-    "Keep historical WR251 evidence immutable; append current upstream rebind context to SCF-B-0211 and record this work in a new binding and new evidence files.",
-    "Run the slim allowlist validator, scfctl validate/stale, and design_verification_checker.py check-child. Preserve not_evaluated and existing failures as such; do not claim execution or formal verification."
+    "Keep all 59 sequential oracle_number rows in the same obligation and row order. Each row retains original ID, L3/L4/L10 references, original basis meaning, source-derived concise condition/expected observation, source-declared return target, and not_executed state. The fixed base has no top-level code, condition, axis, state, or backflow_owner; do not claim those absent source fields were retained or generate them.",
+    "Remove all independent_source_packet fixture/raw/hash nodes, full expected_material return/effect details, and five approved_l10 object copies. Resolve the compact system_oracle_ref plus numeric L10 JSON Pointer to the pinned object.",
+    "Preserve all ten fixed authority source pins, legacy_comparison, full_goal_scope_preserved, and unverified scope from the fixed base. Record removed material through the six required removed_materials keys pinned to fe79e0004d8164bffc4be7c8c31dd9e14da2ead3 and name DT-VT-105 use boundary.",
+    "Resolve all 37 L5 L9 consumer pointers at their existing fixed revision b52ad0e1e954790ebe57b2d87da46ea6712a07d9 and compare canonical hashes; inspect L8 and confirm no direct L9 JSON pointers. L8 is identity/reference crosscheck only.",
+    "Keep historical WR251 evidence immutable; append current upstream rebind context to SCF-B-0211 and record new corrections and measurements in new evidence files.",
+    "Run the rowwise source-derived validator, scfctl validate/stale, and design_verification_checker.py check-child. Preserve not_evaluated and existing failures as such; do not claim execution or formal verification."
   ],
   "connections": {
     "consumers": [
@@ -97,7 +97,13 @@
     "scaffold/bindings/SCF-B-0222.json",
     "scaffold/research/wr259-naming-l9-slim-20261101/evidence/validation-results-r2.json",
     "scaffold/research/wr259-naming-l9-slim-20261101/evidence/merge-overlay-check-child-r2.json",
-    "scaffold/research/wr259-naming-l9-slim-20261101/evidence/validation-results-r1.json"
+    "scaffold/research/wr259-naming-l9-slim-20261101/evidence/validation-results-r1.json",
+    "scaffold/research/wr259-naming-l9-slim-20261101/evidence/validation-results-r3.json",
+    "scaffold/research/wr259-naming-l9-slim-20261101/evidence/merge-overlay-check-child-r3.json",
+    "scaffold/research/wr259-naming-l9-slim-20261101/evidence/validation-results-r4.json",
+    "scaffold/research/wr259-naming-l9-slim-20261101/evidence/merge-overlay-check-child-r4.json",
+    "scaffold/research/wr259-naming-l9-slim-20261101/evidence/validation-results-r5.json",
+    "scaffold/research/wr259-naming-l9-slim-20261101/evidence/validation-results-r6.json"
   ],
   "verification": {
     "evidence_kind": "scaffold",
@@ -108,11 +114,11 @@
       "forbidden_write_scope"
     ],
     "oracles": [
-      "Fixed pre-edit target file at fe79e0004d8164bffc4be7c8c31dd9e14da2ead3 and byte count/hash recorded in evidence.",
-      "59 rows map in order to same-ID L8 counterexample/expected result and to same L9 L3/L4/L10 references and oracle_property.",
-      "All 37 L5 sources resolve at source_revision b52ad0e1e954790ebe57b2d87da46ea6712a07d9 and match their canonical value hash.",
-      "All ten fixed L9 source pins and the legacy comparison are byte/value unchanged.",
-      "scfctl validate/stale, ownership cap, and check-child result statuses are recorded in append-only evidence."
+      "The validator reads fixed-base L9 source bytes and audits all 59 rows for ID/order, retained basis semantics, raw packet delta condition, concise expected_material observation, return target, absent source fields, and not_executed status; L8 checks only IDs and references.",
+      "All five L10 numeric pointers resolve to their fixed-base L10 object matching system_oracle_ref, requirement, and not_executed state; all L3/L4 requirement/oracle links resolve.",
+      "All 37 L5 sources resolve at source_revision b52ad0e1e954790ebe57b2d87da46ea6712a07d9 and match canonical hashes.",
+      "All ten fixed L9 source pins and legacy comparison match fixed base.",
+      "scfctl validate/stale, ownership caps, pins, and check-child statuses are recorded in append-only evidence."
     ],
     "negative_cases": [
       "Do not infer test execution or product behavior from the L9 allowlist or check-child structural output.",
