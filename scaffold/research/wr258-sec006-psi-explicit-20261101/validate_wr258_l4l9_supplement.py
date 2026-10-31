@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import argparse
+import copy
 import hashlib
 import json
 import subprocess
@@ -10,14 +11,33 @@ from collections import Counter
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[3]
-BASE = "151713275e2c2aa65bb23a8fe38eb63c46d570c8"
+BASE = "0e218828fbb3b487eff1469cd57ead8e3dfa7b67"
 L3 = "docs/helix-security/L3-requirements/functional-requirements.json"
 L10 = "docs/helix-security/L10-verification/functional-verification.json"
 L4 = "docs/helix-security/L4-basic-design/project-scope-isolation.json"
+L5 = "docs/helix-security/L5-detail-design/project-scope-isolation.json"
+L8 = "docs/helix-security/L8-unit-verification/project-scope-isolation.json"
 L9 = "docs/helix-security/L9-integration-verification/project-scope-isolation.json"
 QA = "docs/governance/design-verification-quality-assurance.md"
 HISTORICAL_ORACLE_PREFIX = "SEC003-WR258-L9-ORACLE-"
 CURRENT_ORACLE_PREFIX = "SEC003-L9-ORACLE-"
+CLASS_MIGRATIONS = {
+    **{f"SEC003-L9-ORACLE-{n:03}": "SEC003-F01-SCOPE-IDENTITY-CONFLICT" for n in (2, 4, 6, 8, 10, 12)},
+    **{f"SEC003-L9-ORACLE-{n:03}": "SEC003-F02-CONNECTION-SCOPE-CONFLICT" for n in (36, 37)},
+}
+CLASS_EXPECTATIONS = {
+    "SEC003-F01-SCOPE-IDENTITY-CONFLICT": {
+        "axis": "scope_identity",
+        "finding_code": "scope_identity_conflict",
+        "source_class": "SEC003-F01-IDENTITY-CONFLICT",
+    },
+    "SEC003-F02-CONNECTION-SCOPE-CONFLICT": {
+        "axis": "explicit_connection",
+        "finding_code": "connection_scope_conflict",
+        "source_class": "SEC003-F02-CONNECTION-MATERIAL-CONFLICT",
+    },
+}
+ORACLE_048_CONDITION = 'request.operation="read"かつconnection.allowed_operations=["read",null]であり、不正itemを捨てて読取許可として扱わない。'
 
 
 def load(path: str | Path):
@@ -68,7 +88,7 @@ def derive_legacy_condition(row: dict) -> tuple[str, list[dict]]:
         facts.append({"path": path, "state": "omitted" if value == "__OMITTED__" else "explicit_null" if value is None else "present", "value": value if value != "__OMITTED__" else None})
         return value
 
-    if class_id == "SEC003-F01-IDENTITY-CONFLICT":
+    if class_id in ("SEC003-F01-IDENTITY-CONFLICT", "SEC003-F01-SCOPE-IDENTITY-CONFLICT"):
         axis = finding_pointer.rsplit("/", 1)[-1]
         actual = fact(f"/counterexample/request/asset_scope/{axis}", request.get("asset_scope", {}), axis)
         expected = fact(f"/counterexample/context/expected_target/{axis}", context.get("expected_target", {}), axis)
@@ -143,7 +163,7 @@ def derive_legacy_condition(row: dict) -> tuple[str, list[dict]]:
             raise ValueError(f"上流conditionと矛盾するforeign latest入力: {row['id']}")
         return f"{caller} callerのlatest claim={j(claim)}に対し、projectがrequest側={j(actual)}、expected_target側={j(expected)}で異なる。", facts
 
-    if class_id == "SEC003-F02-CONNECTION-MATERIAL-CONFLICT":
+    if class_id in ("SEC003-F02-CONNECTION-MATERIAL-CONFLICT", "SEC003-F02-CONNECTION-SCOPE-CONFLICT"):
         actual = fact("/counterexample/request/connection/revision", request.get("connection", {}), "revision")
         expected = fact("/counterexample/context/expected_connection/revision", context.get("expected_connection", {}), "revision")
         if actual in (None, "__OMITTED__") or expected in (None, "__OMITTED__") or actual == expected:
@@ -176,6 +196,7 @@ def main() -> int:
     parser.add_argument("--candidate-revision", help="比較に使うL8候補の固定commit")
     args = parser.parse_args()
     l3, l10, l4, l9 = (load(p) for p in (L3, L10, L4, L9))
+    l5, l8 = load(L5), load(L8)
     original_l9 = json.loads(subprocess.check_output(["git", "show", f"{BASE}:{L9}"], cwd=ROOT, text=True))
     original_l4 = json.loads(subprocess.check_output(["git", "show", f"{BASE}:{L4}"], cwd=ROOT, text=True))
     l3_by_id = {row["id"]: row for row in l3["requirements"]}
@@ -196,27 +217,94 @@ def main() -> int:
         if not ok:
             failures.append(label)
 
-    check(l4 == original_l4, "L4 source bytes/structure are unchanged from pinned main")
+    original_classes = {row["class_id"]: row for row in original_l4["failure_classifications"]}
+    current_classes = {row["class_id"]: row for row in l4["failure_classifications"]}
+    expected_class_ids = set(original_classes) | set(CLASS_EXPECTATIONS)
+    check(set(current_classes) == expected_class_ids and len(l4["failure_classifications"]) == 17, "L4 adds only the two scope-conflict classes")
+    check(all(current_classes.get(cid) == row for cid, row in original_classes.items()), "the original 15 L4 classes are byte-value preserved")
+    for class_id, details in CLASS_EXPECTATIONS.items():
+        cls = current_classes.get(class_id, {})
+        check(cls.get("expected_axis") == details["axis"], f"{class_id}: axis is explicit")
+        check(cls.get("expected", {}).get("finding_codes") == [details["finding_code"]], f"{class_id}: L4 expected code matches the distinct scope finding")
+        check(cls.get("expected_classification") == "isolation_violation" and cls.get("expected_state") == "violation", f"{class_id}: classification and state are violation")
+        check(cls.get("side_effect_count") == 0 and cls.get("backflow_owner") == "scope-binding-owner", f"{class_id}: owner and effect projection are complete")
+        check(cls.get("source_pointers") and all(source.get("path") in (L3, L10, L4) for source in cls.get("source_pointers", [])), f"{class_id}: sources stay within L3/L10/L4")
+    l5_functions = {row.get("id"): row for row in l5.get("functions", [])}
+    expected_l8_codes = {
+        **{f"SEC003-L8-SIDE-CONFLICT-{axis}": "scope_identity_conflict" for axis in ("PROJECT", "TENANT", "ENVIRONMENT", "ASSIGNMENT", "WORKTREE", "REVISION")},
+        "SEC003-L8-CONNECTION-JOIN-ORIGIN": "connection_scope_conflict",
+        "SEC003-L8-CONNECTION-JOIN-TARGET": "connection_scope_conflict",
+    }
+    l8_cases_by_id = {row.get("id"): row for group in l8.get("cases", []) for row in group.get("negative_cases", [])}
+    direct_case_failures = []
+    for case_id, finding_code in expected_l8_codes.items():
+        row = l8_cases_by_id.get(case_id, {})
+        findings = row.get("expected_result", {}).get("findings", [])
+        codes = [finding.get("code") for finding in findings]
+        expected_function = "HELIXSECURITY-L5-003-compare_scope_side" if case_id.startswith("SEC003-L8-SIDE-CONFLICT-") else "HELIXSECURITY-L5-003-compare_connection_content"
+        if row.get("function_ref") != expected_function or codes != [finding_code]:
+            direct_case_failures.append({"case_id": case_id, "function_ref": row.get("function_ref"), "finding_codes": codes, "expected_function": expected_function, "expected_finding_code": finding_code})
+    side_function = l5_functions.get("HELIXSECURITY-L5-003-compare_scope_side", {})
+    connection_function = l5_functions.get("HELIXSECURITY-L5-003-compare_connection_content", {})
+    compose_function = l5_functions.get("HELIXSECURITY-L5-003-compose_scope_proposal", {})
+    check("known差はscope_identity_conflict" in " ".join(side_function.get("pure_algorithm", [])), "L5 compare_scope_side declares the scope-identity conflict code")
+    check("known差はconnection_scope_conflict" in " ".join(connection_function.get("pure_algorithm", [])), "L5 compare_connection_content declares the connection-scope conflict code")
+    check("全findingを保持" in " ".join(compose_function.get("pure_algorithm", [])), "L5 compose_scope_proposal preserves part findings")
+    check(not direct_case_failures and len(expected_l8_codes) == 8, "eight L8 original local cases map to their corresponding L5 function findings")
+    residual_conflicts = []
+    for row in l9.get("multi_contract_residual", {}).get("negative_cases", []):
+        codes = [finding.get("code") for finding in row.get("expected_observation", {}).get("findings", [])]
+        if "scope_identity_conflict" in codes and "connection_scope_conflict" in codes:
+            residual_conflicts.append(row.get("id"))
+    check(len(residual_conflicts) == 12, "twelve L9 multi-contract residual cases already preserve both distinct conflict findings")
+    for index, original_contract in enumerate(original_l4["contracts"]):
+        current_contract = copy.deepcopy(l4["contracts"][index])
+        current_contract["negative_classifications"] = [row for row in current_contract["negative_classifications"] if row.get("code") not in {"SEC003_F01_SCOPE_IDENTITY_CONFLICT", "SEC003_F02_CONNECTION_SCOPE_CONFLICT"}]
+        current_contract["negative_class_refs"] = [ref for ref in current_contract["negative_class_refs"] if ref not in CLASS_EXPECTATIONS]
+        check(current_contract == original_contract, f"L4 contract {index} changes only by its added scope-conflict classification/ref")
+    l4_other = copy.deepcopy(l4)
+    original_l4_other = copy.deepcopy(original_l4)
+    for doc in (l4_other, original_l4_other):
+        del doc["failure_classifications"]
+        del doc["contracts"]
+    check(l4_other == original_l4_other, "all other L4 content remains unchanged")
     original_rows = {row["id"]: row for group in original_l9["cases"] for row in group["negative_cases"]}
     current_rows = {row["id"]: row for group in l9["cases"] for row in group["negative_cases"]}
     expected_rows = {}
+    class_indexes = {row["class_id"]: i for i, row in enumerate(l4["failure_classifications"])}
     for old_id, old_row in original_rows.items():
         new_id = old_id.replace(HISTORICAL_ORACLE_PREFIX, CURRENT_ORACLE_PREFIX, 1) if old_id.startswith(HISTORICAL_ORACLE_PREFIX) else old_id
         expected_row = dict(old_row)
         expected_row["id"] = new_id
+        new_class = CLASS_MIGRATIONS.get(new_id)
+        if new_class:
+            cls = current_classes[new_class]
+            expected_row["negative_class_ref"] = new_class
+            expected_row["expected_classification"] = cls["expected_classification"]
+            expected_row["expected"] = cls["expected"]
+            expected_row["expected_preserved"] = cls["expected_preserved"]
+            expected_row["expected_axis"] = cls["expected_axis"]
+            expected_row["expected_state"] = cls["expected_state"]
+            expected_row["side_effect_count"] = cls["side_effect_count"]
+            expected_row["source_pointers"] = [
+                dict(source, pointer=(f"/failure_classifications/{class_indexes[new_class]}" if source.get("pointer", "").startswith("/failure_classifications/") else source["pointer"]))
+                for source in expected_row.get("source_pointers", [])
+            ]
+        if new_id == "SEC003-L9-ORACLE-048":
+            expected_row["condition"] = ORACLE_048_CONDITION
         expected_rows[new_id] = expected_row
-    check(current_rows == expected_rows, "148 nested L9 rows are preserved except the reviewed 50 ID renames")
+    check(current_rows == expected_rows, "148 nested L9 rows are preserved except stable-ID renames and the eight reviewed class projections plus ORACLE-048 condition")
     check(not any(row_id.startswith(HISTORICAL_ORACLE_PREFIX) for row_id in current_rows), "no work-qualified oracle ID remains in canonical L9")
     check(l9["multi_contract_residual"] == original_l9["multi_contract_residual"], "L9 multi_contract_residual remains unchanged")
-    check(len(class_by_id) == 15 and len(l9.get("negative_equivalence_classes", [])) == 15, "L4/L9 each retain 15 class rows")
+    check(len(class_by_id) == 17 and len(l9.get("negative_equivalence_classes", [])) == 17, "L4/L9 each have 17 class rows after two distinct scope-conflict classes")
     check(l4.get("negative_equivalence_classes") == {"source_rows": "failure_classifications"}, "L4 explicit source marker is retained")
     l9_marker = l9.get("negative_equivalence_classes")
     l9_marker_by_id = {row.get("class_id"): row for row in l9_marker if isinstance(row, dict)} if isinstance(l9_marker, list) else {}
     l4_core = {row["class_id"]: {key: row.get(key) for key in ("expected_classification", "expected", "expected_axis", "expected_state", "backflow_owner", "side_effect_count")} for row in l4_rows}
-    l9_marker_matches = len(l9_marker_by_id) == 15 and set(l9_marker_by_id) == set(l4_core)
+    l9_marker_matches = len(l9_marker_by_id) == 17 and set(l9_marker_by_id) == set(l4_core)
     if l9_marker_matches:
         l9_marker_matches = all({key: l9_marker_by_id[cid].get(key) for key in l4_core[cid]} == l4_core[cid] for cid in l4_core)
-    check(l9_marker_matches, "L9 explicit source marker has the same 15 class rows and class keys as L4")
+    check(l9_marker_matches, "L9 explicit source marker has the same 17 class rows and class keys as L4")
     check(len(nested) == 148 and len(cases) == 148 if isinstance(cases, list) else False, "nested L9 rows and integration_cases each have 148 rows")
     case_by_id = {row.get("id"): row for row in cases} if isinstance(cases, list) else {}
     check(len(case_by_id) == 148, "L9 integration case IDs are unique")
@@ -375,7 +463,7 @@ def main() -> int:
         "evidence_kind": "scaffold",
         "authority_effect": "none",
         "source": {"base_revision": BASE, "l4_sha256": sha(L4), "l9_sha256": sha(L9), "l3_sha256": sha(L3), "l10_sha256": sha(L10), "qa_sha256": sha(QA)},
-        "static_validation": {"passed": not failures, "failure_count": len(failures), "failures": failures, "integration_case_count": len(cases) if isinstance(cases, list) else 0, "existing_98": len(old98), "added_50": len(new50), "class_rows": {"L4": len(l4_rows), "L9": len(l9.get("negative_equivalence_classes", []))}, "unique_condition_count": len(set(conditions)), "source_input_conflict_count": len(input_conflicts), "system_oracle_mismatch_count": len(oracle_mismatches), "compact_observation_mismatch_count": len(compact_mismatches), "unresolved_source_pointer_count": len(source_pointer_failures), "source_layer_failure_count": len(source_layer_failures), "l3_requirement_ids": sorted(l3_seen), "l10_oracle_ids": sorted(l10_seen)},
+        "static_validation": {"passed": not failures, "failure_count": len(failures), "failures": failures, "integration_case_count": len(cases) if isinstance(cases, list) else 0, "existing_98": len(old98), "added_50": len(new50), "class_rows": {"L4": len(l4_rows), "L9": len(l9.get("negative_equivalence_classes", []))}, "unique_condition_count": len(set(conditions)), "source_input_conflict_count": len(input_conflicts), "system_oracle_mismatch_count": len(oracle_mismatches), "compact_observation_mismatch_count": len(compact_mismatches), "unresolved_source_pointer_count": len(source_pointer_failures), "source_layer_failure_count": len(source_layer_failures), "l3_requirement_ids": sorted(l3_seen), "l10_oracle_ids": sorted(l10_seen), "direct_case_audit": {"l8_case_count": len(expected_l8_codes), "l8_case_mismatches": direct_case_failures, "l9_multi_contract_conflict_count": len(residual_conflicts), "l9_multi_contract_conflict_ids": residual_conflicts, "reviewed_l5_functions": ["HELIXSECURITY-L5-003-compare_scope_side", "HELIXSECURITY-L5-003-compare_connection_content", "HELIXSECURITY-L5-003-compose_scope_proposal"]}},
         "source_input_conflicts": input_conflicts,
         "l9_system_oracle_mismatches": oracle_mismatches,
         "compact_observation_mismatches": compact_mismatches,

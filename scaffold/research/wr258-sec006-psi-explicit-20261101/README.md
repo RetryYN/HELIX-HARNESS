@@ -4,7 +4,9 @@
 
 ## 現行のL4/L9
 
-L4の`failure_classifications`は15 class、L9のnegative caseは148行（F01 93、F02 55）。従前の98行はID、expected、expected_preserved、nested `negative_class_assignment`を維持し、R1で直接`negative_class_ref`を加えた。nested `classification`は`source_pointers`が指す旧`negative_classifications[].code`名を保持する履歴labelであり、明示modeの参照先はtop-level class tableと`negative_class_ref`である。現L4 nested rowには`id`/`class_id`がなく`code`だけで、統合overlayで二重定義FAILは0件だった。
+L4の`failure_classifications`は17 class、L9のnegative caseは148行（F01 93、F02 55）。従前の98行はID、expected、expected_preserved、nested `negative_class_assignment`を維持し、R1で直接`negative_class_ref`を加えた。nested `classification`は`source_pointers`が指す旧`negative_classifications[].code`名を保持する履歴labelであり、明示modeの参照先はtop-level class tableと`negative_class_ref`である。現L4 nested rowには`id`/`class_id`がなく`code`だけで、統合overlayで二重定義FAILは0件だった。
+
+PR #4023 R1のF1/F3追補では、L5の`compare_scope_side`が既知のidentity差に返す`scope_identity_conflict`と、`compare_connection_content`がrequest/connection同側差に返す`connection_scope_conflict`を、従来の資産identity・接続material差とは別のL4/L9 classとして追加した。L9 `ORACLE-002/004/006/008/010/012` と `ORACLE-036/037` のclass ref、expected、compact observationを対応classへ移し、L4のnegative classificationとL9 markerも17 classで照合する。L3/L10の要求意味、既存の他15 class、148行数は変更していない。`ORACLE-048`の条件はL8 counterexampleに沿って、operation=`read`、allowed_operationsにnull itemを含む不正入力を表す。F2/F4のL5/L8修正はこのPRの範囲外で、別V-pairに残す。
 
 L9に追加した50件はすべて`not_executed`であり、`condition`は各system oracleを区別する行固有の文章を保つ。50件でconditionは50種類ある。`expected`、`expected_preserved`、classification、axis、stateは対応L4 classと一致し、追加50件のL9 nested rowの`source_pointers`はL3/L10/L4だけを指し、integration rowは重複pointerを持たない。L9にはL8 case pointer、L8由来のcondition補助欄、PR作業番号を含むcase ID、重複する`expected_observation`を置かない。integration rowの共通source pointerはL4 classとL9 nested rowにある同じ根拠と重なるため持たず、`negative_class_ref`と既存nested row IDで参照する。戻し先ownerは参照classから得る。追加caseの期待・分類は実行済み挙動ではない。
 
@@ -26,7 +28,13 @@ L4/L9 pairの明示markerは維持され、L5/L8 markerとcase-arrayは未整備
 
 ## L9 casewise補足（別L4/L9 V-pair）
 
-PR #4007 merge後の基準mainは`151713275e2c2aa65bb23a8fe38eb63c46d570c8`。その時点でL9の既存98行はcasewise `condition`、`expected`、`expected_preserved`を持たず、top-level `integration_cases`もなかった。本補足はL9正本へ148件のcasewise rowを置き、各行のID・class refを現行negative caseへ対応させる。従前のnegative case 148行、15 class table、16件の`multi_contract_residual`は変更しない。
+PR #4007 merge後の基準mainは`151713275e2c2aa65bb23a8fe38eb63c46d570c8`。その時点でL9の既存98行はcasewise `condition`、`expected`、`expected_preserved`を持たず、top-level `integration_cases`もなかった。本補足はL9正本へ148件のcasewise rowを置き、各行のID・class refを現行negative caseへ対応させた。今回のF1/F3追補で、既存negative case 148行、16件の`multi_contract_residual`を維持したまま、class tableだけを15から17へ拡張した。
+
+## PR #4023 R1 F1/F3 追補
+
+レビュー指摘の根拠は、L5 `compare_scope_side` の「known差は`scope_identity_conflict`」、L5 `compare_connection_content` の「request sideとconnection同側のknown差は`connection_scope_conflict`」、L5 `compose_scope_proposal` の全finding保持、L8の6 identity軸・2 connection join case、およびL9 `multi_contract_residual` 12件の既存複合findingである。後者では2種類のfindingがすでに同時に保持されており、ここでは単独system oracleの旧集約分類だけを分離した。L3/L10のsourceは不変。
+
+検証validatorは、追加2 classのkey/expected、8 system oracleのclass refとexpected、他の139 integration rowと既存16 residualの保持、`ORACLE-048`条件、source pointer解決を検査する。残り1行（`ORACLE-048`）はclassを保ったままconditionだけ修正する。L8の正本は変更していないため、このV-pair単独では4層の全期待一致は主張しない。最新overlayの正式`check-child`が返すL4/L9・L5/L8 pair、4way結果、残る不一致は [`l4l9-supplement-current-overlay-r2.json`](l4l9-supplement-current-overlay-r2.json) に記録する。
 
 従前98行の`condition`は各L9 counterexampleのrequest/context、finding pointer、比較軸から日本語で個別に導出した。`expected`と`expected_preserved`は対応するL4 classの投影から作り、L9のsystem oracle条件・ordered finding codeと98/98一致を確認した。要求inputも各L4 classのsource条件と98/98整合し、上流意味との矛盾は0件だった。新規50行は既存L9 system-oracle conditionを保持し、`expected`/`expected_preserved`がL4 class投影と50/50一致することを確認した。L9の98 nested `classification`は旧nested taxonomy labelのまま保持し、新しい`negative_class_ref`だけを明示keyとして用いる。
 
