@@ -1,0 +1,129 @@
+{
+  "schema_revision": 1,
+  "id": "SCF-B-0198",
+  "kind": "scaffold",
+  "title": "WR216 SEC005 credential-value-boundary L4/L9 negative classifications and comparison audit (PR-A)",
+  "product": "HELIX-HARNESS",
+  "owner_candidate": "HELIX-SECURITY SEC005 L4/L9 design verification owner",
+  "state": "registered",
+  "reason": "SEC005 credential-value-boundaryのL4/L9負例分類（26分類・単一契約負例69件全件割当・未割当0件・4複数契約残余・除いた3系統のL4行き先明記）の比較前固定artifact（R2独立導出 blind-derivation-r2.json および R1履歴 blind-derivation.json）と比較後の変更順序・共有leaf一意化規則・L8/L9粒度差分類を保持する静的研究証拠。",
+  "upstream": [
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+      "sha256": "e4eeb70cc303e44199c7d898281e91c22dba89b47666353b9c80a4c634e898b5",
+      "note": "Pinned SEC005 L3 functional requirements (F01/F02)."
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/business-requirements.json",
+      "sha256": "f1668180a3daccb38da15f471ade0806c64f094a77b0d7a5cef25edc9b6ce901",
+      "note": "Pinned SEC005 L3 business requirements (B01)."
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.json",
+      "sha256": "e6da7eaff29a623b5d069801280c295d9dd7cc43b51d9cde25b12a8110e5072a",
+      "note": "Pinned SEC005 L10 functional verification oracles (F01/F02)."
+    },
+    {
+      "path": "docs/helix-security/L10-verification/business-verification.json",
+      "sha256": "c34b8f9a99f8f240558458dd63033acd0d756dfe61ad9cd3aac0e8e1c8193f42",
+      "note": "Pinned SEC005 L10 business verification oracle (B01)."
+    },
+    {
+      "path": "docs/helix-security/L4-basic-design/credential-value-boundary.json",
+      "sha256": "2bd0270ee97d7fc6383ba575dde18ac91ece483235a14d7e2ea4e82a16b19b9b",
+      "note": "Pinned SEC005 L4 basic design with composite_class_formation, ordered expected_axis arrays on composite classes, 26 negative_classifications / failure_classifications, and explicit unit_only / B01 dispositions."
+    },
+    {
+      "path": "docs/helix-security/L9-integration-verification/credential-value-boundary.json",
+      "sha256": "59c1d3dd3c03565ffdb7bc73b90333528d76670b0aeaabdf20bf42a7e1049634",
+      "note": "Pinned SEC005 L9 integration verification with 69 assigned cases (0 unassigned), composite_class_formation pointers, and negative_class_assignment_audit."
+    },
+    {
+      "path": "docs/helix-security/L5-detail-design/credential-value-boundary.json",
+      "sha256": "c9bdfe84204285cfbf9dae852f03de4a1b7ac402699950994e9a2d1569197aeb",
+      "note": "Pinned SEC005 L5 detail design (unmodified in PR-A; read-only comparison target)."
+    },
+    {
+      "path": "docs/helix-security/L8-unit-verification/credential-value-boundary.json",
+      "sha256": "4b3e85226e93535c1c51e6f3b2f285cba65c4c7dc99fce32f0da8c6cd3facab2",
+      "note": "Pinned SEC005 L8 unit verification (unmodified in PR-A; read-only granularity classification target)."
+    },
+    {
+      "path": "docs/governance/design-verification-quality-assurance.md",
+      "sha256": "f5751e236dc073fe67114c1fcb4b0f64b3d746290b25d75b61e60a08e3c99c85",
+      "note": "Pinned QA §3 CHK-NEG-4WAY-MATCH specification."
+    }
+  ],
+  "role": "WR216 SEC005 L4/L9 V-pair（PR-A）の比較前固定artifact（R2独立導出およびR1履歴）とsource-only比較・検証スクリプトを束縛する。",
+  "obligations": [
+    "比較前固定artifact（R2独立導出 blind-derivation-r2.json SHA-256 92670bdec0283d3700bb871751487c92f93ec025d2995eab002236cb8fadb85f および R1履歴 blind-derivation.json SHA-256 b18b662713eb94c3d6bc5a3443128c6c8112f61308886647d0d1f2372f754bf6）をbyte不変で保持し、R2 Step Aの先行固定（comment 6534537441, SHA-256 5945795304fd043dbfddea54322fc943ea8c1cca9b1a7d2aa3a9a6f120261f09, 17候補）と差し替え理由・全差分をcomparison.jsonとREADME.mdに保持する。",
+    "R2の24候補とR1 21分類・R2 26分類の根ごとの比較および6段階の変更順序をcomparison.jsonとREADME.mdに保持する。",
+    "共有leaf（/capability/tuple/<field>, /request/classification, /capability/tuple/expiry, /context/observed_time）の一意化規則とL8/L9件数差（F01 33/55, F02 9/14, B01 1/0）のsource-only分類、およびL9単一契約負例から除いた3系統のL4行き先・remaining・PR-Bでの扱いを保持する。",
+    "L9既存87ケースの期待値・oracle・要求意味を変えず、member 0のclass行・架空のsingleton・全件residualを作らない。",
+    "PR-Aではexplicit mode markerを追加せず、check-childのnegative_4wayが中間状態（L4=26, L9=69, L8=43, L5=0、141 failures）であることを明記する。",
+    "L4#/diagnostic_contract/composite_class_formation の複合class形成規則と、複数findingを持つ6複合classの順序付きexpected_axis配列を保持する。"
+  ],
+  "connections": {
+    "consumers": [
+      "WR216 SEC005 L4/L9 PR-A independent review",
+      "Subsequent WR216 SEC005 L5/L8 PR-B V-pair alignment"
+    ],
+    "dependencies": [
+      "QA §3 CHK-NEG-4WAY-MATCH",
+      "docs/helix-security/L4-basic-design/credential-value-boundary.json",
+      "docs/helix-security/L9-integration-verification/credential-value-boundary.json"
+    ],
+    "boundary": "研究証拠はscaffold/research/wr216-sec005-cvb-neg-4way-20261031に限定。L4/L5 algorithm実行、認証/認可設定、実credential操作、外部作用を行わない。"
+  },
+  "operations": {
+    "allowed": [
+      "read pinned source files and JSON Pointers",
+      "run validate_wr216_l4_l9.py for static verification",
+      "run design_verification_checker.py check-pair and check-child"
+    ],
+    "forbidden": [
+      "modify frozen blind-derivation.json or blind-derivation-r2.json",
+      "run L4/L5 algorithm, runtime, test, CI, or old workflow",
+      "change L9 expected_proposal, oracles, or requirement meanings",
+      "add partial negative_equivalence_classes marker in PR-A"
+    ]
+  },
+  "artifacts": [
+    "scaffold/research/wr216-sec005-cvb-neg-4way-20261031/blind-derivation.json",
+    "scaffold/research/wr216-sec005-cvb-neg-4way-20261031/blind-derivation-r2.json",
+    "scaffold/research/wr216-sec005-cvb-neg-4way-20261031/comparison.json",
+    "scaffold/research/wr216-sec005-cvb-neg-4way-20261031/validate_wr216_l4_l9.py",
+    "scaffold/research/wr216-sec005-cvb-neg-4way-20261031/README.md",
+    "scaffold/bindings/SCF-B-0198.json"
+  ],
+  "verification": {
+    "evidence_kind": "scaffold",
+    "scope": [
+      "source_revision_stale",
+      "negative_case"
+    ],
+    "oracles": [
+      "blind-derivation.json SHA-256 matches b18b662713eb94c3d6bc5a3443128c6c8112f61308886647d0d1f2372f754bf6 and blind-derivation-r2.json SHA-256 matches 92670bdec0283d3700bb871751487c92f93ec025d2995eab002236cb8fadb85f.",
+      "All 26 L4 classes have >= 1 assigned L9 cases (69 assigned, 0 unassigned, 0 zero-member classes).",
+      "All JSON Pointers in L4 and L9 resolve and L4 contains zero downward references to L5/L8/L9.",
+      "Existing L4 and L9 fields and all 87 L9 cases are preserved byte-for-byte outside added negative classification fields and remaining entries."
+    ],
+    "negative_cases": [
+      "Do not modify frozen blind-derivation.json or blind-derivation-r2.json.",
+      "Do not create zero-member class rows or fictitious singletons.",
+      "Do not add or remove L8/L9 cases to force counts to match.",
+      "Do not run L4/L5 algorithms or legacy runtime/tests/CI."
+    ]
+  },
+  "replacement": {
+    "role_target": "Formal SEC005 L4/L5/L8/L9 four-way negative classification equivalence after L5/L8 PR-B and checker N-to-M / function_refs support are completed.",
+    "formal_artifacts": [
+      "docs/helix-security/L4-basic-design/credential-value-boundary.json",
+      "docs/helix-security/L9-integration-verification/credential-value-boundary.json"
+    ],
+    "issue": 3510,
+    "status": "pending"
+  },
+  "created": "2026-10-31",
+  "updated": "2026-10-31"
+}
