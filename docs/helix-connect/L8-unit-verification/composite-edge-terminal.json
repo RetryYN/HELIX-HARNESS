@@ -264,13 +264,17 @@
         {
           "scenario_class": "normal",
           "condition": "四つの合成端点/別能力・版・scopeの三辺を、宣言順序とoperation対応/全辺receiptへ対照。実接続集合を採用しない。",
-          "decision": "宣言された各辺の定義・receipt一対一性・条件・mappingが揃う場合だけfixture terminal successとする。",
-          "findings": [],
           "l5_refs": [
             "/contract_views/F01/terminal_predicate"
           ],
           "verification_status": "unverified",
-          "source_basis": {"packet_pointer":"/original_edges","subject":"declared edge set","field":"基準宣言","baseline":{"value":["EDGE-P-1","EDGE-P-2","EDGE-P-3"]},"observed":{"value":["EDGE-P-1","EDGE-P-2","EDGE-P-3"]}}
+          "source_basis": {
+            "source_ptr": "/original_edges",
+            "subject": "declared edge set",
+            "field": "edge declaration",
+            "difference": "baseline_fixture"
+          },
+          "decision": "宣言済み三辺の必要条件が揃う範囲でfixture correspondenceを示す。"
         }
       ],
       [
@@ -299,15 +303,6 @@
         {
           "scenario_class": "negative",
           "condition": "一辺原receiptの欠落は他辺greenで相殺しない。",
-          "decision": "L5 receipt_cardinality_original@edge_failure,receipt_cardinality_submitted@edge_failure,receipt_content@edge_failure,edge_target@edge_failure,composite_target@composite_failure,edge_conditions@condition_failure_by_field: EDGE-P-1.original_receipts 欠落 EDGE-P-1 を失敗返却。success不可。",
-          "findings": [
-            "receipt_cardinality_original|original_receipt_set+edge_identity=missing_original_receipt@edge_failure",
-            "receipt_cardinality_submitted|submitted_receipt_set+edge_identity=missing_submitted_receipt@edge_failure",
-            "receipt_content|receipt_content+edge_identity=result_not_corresponding@edge_failure",
-            "edge_target|edge_target_{edge_identity}+field_name=field_result_not_corresponding@edge_failure",
-            "composite_target|composite_target_{edge_identity}+field_name=field_result_not_corresponding@composite_failure",
-            "edge_conditions|edge_condition_{edge_identity}+field_name_or_receipt=condition_not_matching@condition_failure_by_field"
-          ],
           "l5_refs": [
             "/contract_views/F01/failure_rules/2",
             "/contract_views/F01/failure_rules/3",
@@ -317,7 +312,13 @@
             "/contract_views/F01/failure_rules/7"
           ],
           "verification_status": "unverified",
-          "source_basis": {"packet_pointer":"/original_receipts","subject":"EDGE-P-1","field":"original_receipts 欠落 EDGE-P-1","baseline":{"members":["EDGE-P-1","EDGE-P-2","EDGE-P-3"]},"observed":{"members":["EDGE-P-2","EDGE-P-3"]}}
+          "source_basis": {
+            "source_ptr": "/original_receipts",
+            "subject": "EDGE-P-1",
+            "field": "original_receipts",
+            "difference": "missing_receipt"
+          },
+          "decision": "EDGE-P-1.original_receipts:missing_receipt。構成体をholdしterminal success不可。"
         }
       ],
       [
@@ -346,15 +347,6 @@
         {
           "scenario_class": "negative",
           "condition": "一辺原receiptの欠落は他辺greenで相殺しない。",
-          "decision": "L5 receipt_cardinality_original@edge_failure,receipt_cardinality_submitted@edge_failure,receipt_content@edge_failure,edge_target@edge_failure,composite_target@composite_failure,edge_conditions@condition_failure_by_field: EDGE-P-2.original_receipts 欠落 EDGE-P-2 を失敗返却。success不可。",
-          "findings": [
-            "receipt_cardinality_original|original_receipt_set+edge_identity=missing_original_receipt@edge_failure",
-            "receipt_cardinality_submitted|submitted_receipt_set+edge_identity=missing_submitted_receipt@edge_failure",
-            "receipt_content|receipt_content+edge_identity=result_not_corresponding@edge_failure",
-            "edge_target|edge_target_{edge_identity}+field_name=field_result_not_corresponding@edge_failure",
-            "composite_target|composite_target_{edge_identity}+field_name=field_result_not_corresponding@composite_failure",
-            "edge_conditions|edge_condition_{edge_identity}+field_name_or_receipt=condition_not_matching@condition_failure_by_field"
-          ],
           "l5_refs": [
             "/contract_views/F01/failure_rules/2",
             "/contract_views/F01/failure_rules/3",
@@ -364,7 +356,13 @@
             "/contract_views/F01/failure_rules/7"
           ],
           "verification_status": "unverified",
-          "source_basis": {"packet_pointer":"/original_receipts","subject":"EDGE-P-2","field":"original_receipts 欠落 EDGE-P-2","baseline":{"members":["EDGE-P-1","EDGE-P-2","EDGE-P-3"]},"observed":{"members":["EDGE-P-1","EDGE-P-3"]}}
+          "source_basis": {
+            "source_ptr": "/original_receipts",
+            "subject": "EDGE-P-2",
+            "field": "original_receipts",
+            "difference": "missing_receipt"
+          },
+          "decision": "EDGE-P-2.original_receipts:missing_receipt。構成体をholdしterminal success不可。"
         }
       ],
       [
@@ -393,15 +391,6 @@
         {
           "scenario_class": "negative",
           "condition": "一辺原receiptの欠落は他辺greenで相殺しない。",
-          "decision": "L5 receipt_cardinality_original@edge_failure,receipt_cardinality_submitted@edge_failure,receipt_content@edge_failure,edge_target@edge_failure,composite_target@composite_failure,edge_conditions@condition_failure_by_field: EDGE-P-3.original_receipts 欠落 EDGE-P-3 を失敗返却。success不可。",
-          "findings": [
-            "receipt_cardinality_original|original_receipt_set+edge_identity=missing_original_receipt@edge_failure",
-            "receipt_cardinality_submitted|submitted_receipt_set+edge_identity=missing_submitted_receipt@edge_failure",
-            "receipt_content|receipt_content+edge_identity=result_not_corresponding@edge_failure",
-            "edge_target|edge_target_{edge_identity}+field_name=field_result_not_corresponding@edge_failure",
-            "composite_target|composite_target_{edge_identity}+field_name=field_result_not_corresponding@composite_failure",
-            "edge_conditions|edge_condition_{edge_identity}+field_name_or_receipt=condition_not_matching@condition_failure_by_field"
-          ],
           "l5_refs": [
             "/contract_views/F01/failure_rules/2",
             "/contract_views/F01/failure_rules/3",
@@ -411,7 +400,13 @@
             "/contract_views/F01/failure_rules/7"
           ],
           "verification_status": "unverified",
-          "source_basis": {"packet_pointer":"/original_receipts","subject":"EDGE-P-3","field":"original_receipts 欠落 EDGE-P-3","baseline":{"members":["EDGE-P-1","EDGE-P-2","EDGE-P-3"]},"observed":{"members":["EDGE-P-1","EDGE-P-2"]}}
+          "source_basis": {
+            "source_ptr": "/original_receipts",
+            "subject": "EDGE-P-3",
+            "field": "original_receipts",
+            "difference": "missing_receipt"
+          },
+          "decision": "EDGE-P-3.original_receipts:missing_receipt。構成体をholdしterminal success不可。"
         }
       ],
       [
@@ -435,15 +430,17 @@
         {
           "scenario_class": "negative",
           "condition": "原/提出receiptが同値でも対象辺の契約/operation/attempt/scope等へ結ばれない場合は保留。",
-          "decision": "L5 edge_target@edge_failure: EDGE-P-2.connection_identity を失敗返却。success不可。",
-          "findings": [
-            "edge_target|edge_target_{edge_identity}+field_name=field_result_not_corresponding@edge_failure"
-          ],
           "l5_refs": [
             "/contract_views/F01/failure_rules/5"
           ],
           "verification_status": "unverified",
-          "source_basis": {"packet_pointer":"/original_receipts/1/edge_target/connection_identity","subject":"EDGE-P-2","field":"connection_identity","baseline":{"value":"CONNECTION-P-2"},"observed":{"value":"OTHER-connection_identity"}}
+          "source_basis": {
+            "source_ptr": "/original_receipts/1/edge_target/connection_identity",
+            "subject": "EDGE-P-2",
+            "field": "connection_identity",
+            "difference": "foreign_target"
+          },
+          "decision": "EDGE-P-2.connection_identity:foreign_target。構成体をholdしterminal success不可。"
         }
       ],
       [
@@ -467,15 +464,17 @@
         {
           "scenario_class": "negative",
           "condition": "原/提出receiptが同値でも対象辺の契約/operation/attempt/scope等へ結ばれない場合は保留。",
-          "decision": "L5 edge_target@edge_failure: EDGE-P-2.contract_revision を失敗返却。success不可。",
-          "findings": [
-            "edge_target|edge_target_{edge_identity}+field_name=field_result_not_corresponding@edge_failure"
-          ],
           "l5_refs": [
             "/contract_views/F01/failure_rules/5"
           ],
           "verification_status": "unverified",
-          "source_basis": {"packet_pointer":"/original_receipts/1/edge_target/contract_revision","subject":"EDGE-P-2","field":"contract_revision","baseline":{"value":"edge-2-r2"},"observed":{"value":"OTHER-contract_revision"}}
+          "source_basis": {
+            "source_ptr": "/original_receipts/1/edge_target/contract_revision",
+            "subject": "EDGE-P-2",
+            "field": "contract_revision",
+            "difference": "foreign_target"
+          },
+          "decision": "EDGE-P-2.contract_revision:foreign_target。構成体をholdしterminal success不可。"
         }
       ],
       [
@@ -499,15 +498,17 @@
         {
           "scenario_class": "negative",
           "condition": "原/提出receiptが同値でも対象辺の契約/operation/attempt/scope等へ結ばれない場合は保留。",
-          "decision": "L5 edge_target@edge_failure: EDGE-P-2.ability_ref を失敗返却。success不可。",
-          "findings": [
-            "edge_target|edge_target_{edge_identity}+field_name=field_result_not_corresponding@edge_failure"
-          ],
           "l5_refs": [
             "/contract_views/F01/failure_rules/5"
           ],
           "verification_status": "unverified",
-          "source_basis": {"packet_pointer":"/original_receipts/1/edge_target/ability_ref","subject":"EDGE-P-2","field":"ability_ref","baseline":{"value":"ABILITY-2@r2"},"observed":{"value":"OTHER-ability_ref"}}
+          "source_basis": {
+            "source_ptr": "/original_receipts/1/edge_target/ability_ref",
+            "subject": "EDGE-P-2",
+            "field": "ability_ref",
+            "difference": "foreign_target"
+          },
+          "decision": "EDGE-P-2.ability_ref:foreign_target。構成体をholdしterminal success不可。"
         }
       ],
       [
@@ -531,15 +532,17 @@
         {
           "scenario_class": "negative",
           "condition": "原/提出receiptが同値でも対象辺の契約/operation/attempt/scope等へ結ばれない場合は保留。",
-          "decision": "L5 edge_target@edge_failure: EDGE-P-2.scope を失敗返却。success不可。",
-          "findings": [
-            "edge_target|edge_target_{edge_identity}+field_name=field_result_not_corresponding@edge_failure"
-          ],
           "l5_refs": [
             "/contract_views/F01/failure_rules/5"
           ],
           "verification_status": "unverified",
-          "source_basis": {"packet_pointer":"/original_receipts/1/edge_target/scope","subject":"EDGE-P-2","field":"scope","baseline":{"value":"PRODUCT-P/edge-2"},"observed":{"value":"OTHER-scope"}}
+          "source_basis": {
+            "source_ptr": "/original_receipts/1/edge_target/scope",
+            "subject": "EDGE-P-2",
+            "field": "scope",
+            "difference": "foreign_target"
+          },
+          "decision": "EDGE-P-2.scope:foreign_target。構成体をholdしterminal success不可。"
         }
       ],
       [
@@ -563,15 +566,17 @@
         {
           "scenario_class": "negative",
           "condition": "原/提出receiptが同値でも対象辺の契約/operation/attempt/scope等へ結ばれない場合は保留。",
-          "decision": "L5 edge_target@edge_failure: EDGE-P-2.operation_identity を失敗返却。success不可。",
-          "findings": [
-            "edge_target|edge_target_{edge_identity}+field_name=field_result_not_corresponding@edge_failure"
-          ],
           "l5_refs": [
             "/contract_views/F01/failure_rules/5"
           ],
           "verification_status": "unverified",
-          "source_basis": {"packet_pointer":"/original_receipts/1/edge_target/operation_identity","subject":"EDGE-P-2","field":"operation_identity","baseline":{"value":"OPERATION-2"},"observed":{"value":"OTHER-operation_identity"}}
+          "source_basis": {
+            "source_ptr": "/original_receipts/1/edge_target/operation_identity",
+            "subject": "EDGE-P-2",
+            "field": "operation_identity",
+            "difference": "foreign_target"
+          },
+          "decision": "EDGE-P-2.operation_identity:foreign_target。構成体をholdしterminal success不可。"
         }
       ],
       [
@@ -595,15 +600,17 @@
         {
           "scenario_class": "negative",
           "condition": "原/提出receiptが同値でも対象辺の契約/operation/attempt/scope等へ結ばれない場合は保留。",
-          "decision": "L5 edge_target@edge_failure: EDGE-P-2.attempt_identity を失敗返却。success不可。",
-          "findings": [
-            "edge_target|edge_target_{edge_identity}+field_name=field_result_not_corresponding@edge_failure"
-          ],
           "l5_refs": [
             "/contract_views/F01/failure_rules/5"
           ],
           "verification_status": "unverified",
-          "source_basis": {"packet_pointer":"/original_receipts/1/edge_target/attempt_identity","subject":"EDGE-P-2","field":"attempt_identity","baseline":{"value":"ATTEMPT-2-1"},"observed":{"value":"OTHER-attempt_identity"}}
+          "source_basis": {
+            "source_ptr": "/original_receipts/1/edge_target/attempt_identity",
+            "subject": "EDGE-P-2",
+            "field": "attempt_identity",
+            "difference": "foreign_target"
+          },
+          "decision": "EDGE-P-2.attempt_identity:foreign_target。構成体をholdしterminal success不可。"
         }
       ],
       [
@@ -627,15 +634,17 @@
         {
           "scenario_class": "negative",
           "condition": "原/提出receiptが同値でも対象辺の契約/operation/attempt/scope等へ結ばれない場合は保留。",
-          "decision": "L5 edge_target@edge_failure: EDGE-P-2.correlation を失敗返却。success不可。",
-          "findings": [
-            "edge_target|edge_target_{edge_identity}+field_name=field_result_not_corresponding@edge_failure"
-          ],
           "l5_refs": [
             "/contract_views/F01/failure_rules/5"
           ],
           "verification_status": "unverified",
-          "source_basis": {"packet_pointer":"/original_receipts/1/edge_target/correlation","subject":"EDGE-P-2","field":"correlation","baseline":{"value":"CORRELATION-P"},"observed":{"value":"OTHER-correlation"}}
+          "source_basis": {
+            "source_ptr": "/original_receipts/1/edge_target/correlation",
+            "subject": "EDGE-P-2",
+            "field": "correlation",
+            "difference": "foreign_target"
+          },
+          "decision": "EDGE-P-2.correlation:foreign_target。構成体をholdしterminal success不可。"
         }
       ],
       [
@@ -659,15 +668,17 @@
         {
           "scenario_class": "negative",
           "condition": "原/提出receiptが同値でも対象辺の契約/operation/attempt/scope等へ結ばれない場合は保留。",
-          "decision": "L5 edge_target@edge_failure: EDGE-P-2.expiry_ref を失敗返却。success不可。",
-          "findings": [
-            "edge_target|edge_target_{edge_identity}+field_name=field_result_not_corresponding@edge_failure"
-          ],
           "l5_refs": [
             "/contract_views/F01/failure_rules/5"
           ],
           "verification_status": "unverified",
-          "source_basis": {"packet_pointer":"/original_receipts/1/edge_target/expiry_ref","subject":"EDGE-P-2","field":"expiry_ref","baseline":{"value":"EXPIRY-2@r1"},"observed":{"value":"OTHER-expiry_ref"}}
+          "source_basis": {
+            "source_ptr": "/original_receipts/1/edge_target/expiry_ref",
+            "subject": "EDGE-P-2",
+            "field": "expiry_ref",
+            "difference": "foreign_target"
+          },
+          "decision": "EDGE-P-2.expiry_ref:foreign_target。構成体をholdしterminal success不可。"
         }
       ],
       [
@@ -691,15 +702,17 @@
         {
           "scenario_class": "negative",
           "condition": "原/提出receiptが同値でも対象辺の契約/operation/attempt/scope等へ結ばれない場合は保留。",
-          "decision": "L5 edge_target@edge_failure: EDGE-P-2.permission_ref を失敗返却。success不可。",
-          "findings": [
-            "edge_target|edge_target_{edge_identity}+field_name=field_result_not_corresponding@edge_failure"
-          ],
           "l5_refs": [
             "/contract_views/F01/failure_rules/5"
           ],
           "verification_status": "unverified",
-          "source_basis": {"packet_pointer":"/original_receipts/1/edge_target/permission_ref","subject":"EDGE-P-2","field":"permission_ref","baseline":{"value":"PERMIT-2@r1"},"observed":{"value":"OTHER-permission_ref"}}
+          "source_basis": {
+            "source_ptr": "/original_receipts/1/edge_target/permission_ref",
+            "subject": "EDGE-P-2",
+            "field": "permission_ref",
+            "difference": "foreign_target"
+          },
+          "decision": "EDGE-P-2.permission_ref:foreign_target。構成体をholdしterminal success不可。"
         }
       ],
       [
@@ -723,15 +736,17 @@
         {
           "scenario_class": "negative",
           "condition": "原/提出receiptが同値でも対象辺の契約/operation/attempt/scope等へ結ばれない場合は保留。",
-          "decision": "L5 edge_target@edge_failure: EDGE-P-2.idempotency を失敗返却。success不可。",
-          "findings": [
-            "edge_target|edge_target_{edge_identity}+field_name=field_result_not_corresponding@edge_failure"
-          ],
           "l5_refs": [
             "/contract_views/F01/failure_rules/5"
           ],
           "verification_status": "unverified",
-          "source_basis": {"packet_pointer":"/original_receipts/1/edge_target/idempotency","subject":"EDGE-P-2","field":"idempotency","baseline":{"value":"KEY-2"},"observed":{"value":"OTHER-idempotency"}}
+          "source_basis": {
+            "source_ptr": "/original_receipts/1/edge_target/idempotency",
+            "subject": "EDGE-P-2",
+            "field": "idempotency",
+            "difference": "foreign_target"
+          },
+          "decision": "EDGE-P-2.idempotency:foreign_target。構成体をholdしterminal success不可。"
         }
       ],
       [
@@ -755,15 +770,17 @@
         {
           "scenario_class": "negative",
           "condition": "原/提出receiptが同値でも対象辺の契約/operation/attempt/scope等へ結ばれない場合は保留。",
-          "decision": "L5 edge_target@edge_failure: EDGE-P-2.content_digest を失敗返却。success不可。",
-          "findings": [
-            "edge_target|edge_target_{edge_identity}+field_name=field_result_not_corresponding@edge_failure"
-          ],
           "l5_refs": [
             "/contract_views/F01/failure_rules/5"
           ],
           "verification_status": "unverified",
-          "source_basis": {"packet_pointer":"/original_receipts/1/edge_target/content_digest","subject":"EDGE-P-2","field":"content_digest","baseline":{"value":"CONTENT-2-digest"},"observed":{"value":"OTHER-content_digest"}}
+          "source_basis": {
+            "source_ptr": "/original_receipts/1/edge_target/content_digest",
+            "subject": "EDGE-P-2",
+            "field": "content_digest",
+            "difference": "foreign_target"
+          },
+          "decision": "EDGE-P-2.content_digest:foreign_target。構成体をholdしterminal success不可。"
         }
       ],
       [
@@ -787,15 +804,17 @@
         {
           "scenario_class": "negative",
           "condition": "原/提出receiptが同値でも対象辺の契約/operation/attempt/scope等へ結ばれない場合は保留。",
-          "decision": "L5 edge_target@edge_failure: EDGE-P-2.registration_revision を失敗返却。success不可。",
-          "findings": [
-            "edge_target|edge_target_{edge_identity}+field_name=field_result_not_corresponding@edge_failure"
-          ],
           "l5_refs": [
             "/contract_views/F01/failure_rules/5"
           ],
           "verification_status": "unverified",
-          "source_basis": {"packet_pointer":"/original_receipts/1/edge_target/registration_revision","subject":"EDGE-P-2","field":"registration_revision","baseline":{"value":"registration-2-r1"},"observed":{"value":"OTHER-registration_revision"}}
+          "source_basis": {
+            "source_ptr": "/original_receipts/1/edge_target/registration_revision",
+            "subject": "EDGE-P-2",
+            "field": "registration_revision",
+            "difference": "foreign_target"
+          },
+          "decision": "EDGE-P-2.registration_revision:foreign_target。構成体をholdしterminal success不可。"
         }
       ],
       [
@@ -819,15 +838,17 @@
         {
           "scenario_class": "negative",
           "condition": "原/提出receiptが同値でも対象辺の契約/operation/attempt/scope等へ結ばれない場合は保留。",
-          "decision": "L5 edge_target@edge_failure: EDGE-P-2.recovery_ref を失敗返却。success不可。",
-          "findings": [
-            "edge_target|edge_target_{edge_identity}+field_name=field_result_not_corresponding@edge_failure"
-          ],
           "l5_refs": [
             "/contract_views/F01/failure_rules/5"
           ],
           "verification_status": "unverified",
-          "source_basis": {"packet_pointer":"/original_receipts/1/edge_target/recovery_ref","subject":"EDGE-P-2","field":"recovery_ref","baseline":{"value":"RECOVERY-2@r1"},"observed":{"value":"OTHER-recovery_ref"}}
+          "source_basis": {
+            "source_ptr": "/original_receipts/1/edge_target/recovery_ref",
+            "subject": "EDGE-P-2",
+            "field": "recovery_ref",
+            "difference": "foreign_target"
+          },
+          "decision": "EDGE-P-2.recovery_ref:foreign_target。構成体をholdしterminal success不可。"
         }
       ],
       [
@@ -851,15 +872,17 @@
         {
           "scenario_class": "negative",
           "condition": "別構成体revision/scope/要求/ownerの証拠を当該集合へ外挿しない。",
-          "decision": "L5 composite_target@composite_failure: COMPOSITE-P.identity を失敗返却。success不可。",
-          "findings": [
-            "composite_target|composite_target_{edge_identity}+field_name=field_result_not_corresponding@composite_failure"
-          ],
           "l5_refs": [
             "/contract_views/F01/failure_rules/6"
           ],
           "verification_status": "unverified",
-          "source_basis": {"packet_pointer":"/original_receipts/1/composite_target/identity","subject":"COMPOSITE-P","field":"identity","baseline":{"value":"COMPOSITE-P"},"observed":{"value":"OTHER-identity"}}
+          "source_basis": {
+            "source_ptr": "/original_receipts/1/composite_target/identity",
+            "subject": "COMPOSITE-P",
+            "field": "identity",
+            "difference": "foreign_target"
+          },
+          "decision": "COMPOSITE-P.identity:foreign_target。構成体をholdしterminal success不可。"
         }
       ],
       [
@@ -883,15 +906,17 @@
         {
           "scenario_class": "negative",
           "condition": "別構成体revision/scope/要求/ownerの証拠を当該集合へ外挿しない。",
-          "decision": "L5 composite_target@composite_failure: COMPOSITE-P.revision を失敗返却。success不可。",
-          "findings": [
-            "composite_target|composite_target_{edge_identity}+field_name=field_result_not_corresponding@composite_failure"
-          ],
           "l5_refs": [
             "/contract_views/F01/failure_rules/6"
           ],
           "verification_status": "unverified",
-          "source_basis": {"packet_pointer":"/original_receipts/1/composite_target/revision","subject":"COMPOSITE-P","field":"revision","baseline":{"value":"composite-r2"},"observed":{"value":"OTHER-revision"}}
+          "source_basis": {
+            "source_ptr": "/original_receipts/1/composite_target/revision",
+            "subject": "COMPOSITE-P",
+            "field": "revision",
+            "difference": "foreign_target"
+          },
+          "decision": "COMPOSITE-P.revision:foreign_target。構成体をholdしterminal success不可。"
         }
       ],
       [
@@ -915,15 +940,17 @@
         {
           "scenario_class": "negative",
           "condition": "別構成体revision/scope/要求/ownerの証拠を当該集合へ外挿しない。",
-          "decision": "L5 composite_target@composite_failure: COMPOSITE-P.scope を失敗返却。success不可。",
-          "findings": [
-            "composite_target|composite_target_{edge_identity}+field_name=field_result_not_corresponding@composite_failure"
-          ],
           "l5_refs": [
             "/contract_views/F01/failure_rules/6"
           ],
           "verification_status": "unverified",
-          "source_basis": {"packet_pointer":"/original_receipts/1/composite_target/scope","subject":"COMPOSITE-P","field":"scope","baseline":{"value":"PRODUCT-P/selected-flow"},"observed":{"value":"OTHER-scope"}}
+          "source_basis": {
+            "source_ptr": "/original_receipts/1/composite_target/scope",
+            "subject": "COMPOSITE-P",
+            "field": "scope",
+            "difference": "foreign_target"
+          },
+          "decision": "COMPOSITE-P.scope:foreign_target。構成体をholdしterminal success不可。"
         }
       ],
       [
@@ -947,15 +974,17 @@
         {
           "scenario_class": "negative",
           "condition": "別構成体revision/scope/要求/ownerの証拠を当該集合へ外挿しない。",
-          "decision": "L5 composite_target@composite_failure: COMPOSITE-P.requirement_revision を失敗返却。success不可。",
-          "findings": [
-            "composite_target|composite_target_{edge_identity}+field_name=field_result_not_corresponding@composite_failure"
-          ],
           "l5_refs": [
             "/contract_views/F01/failure_rules/6"
           ],
           "verification_status": "unverified",
-          "source_basis": {"packet_pointer":"/original_receipts/1/composite_target/requirement_revision","subject":"COMPOSITE-P","field":"requirement_revision","baseline":{"value":"requirement-r2"},"observed":{"value":"OTHER-requirement_revision"}}
+          "source_basis": {
+            "source_ptr": "/original_receipts/1/composite_target/requirement_revision",
+            "subject": "COMPOSITE-P",
+            "field": "requirement_revision",
+            "difference": "foreign_target"
+          },
+          "decision": "COMPOSITE-P.requirement_revision:foreign_target。構成体をholdしterminal success不可。"
         }
       ],
       [
@@ -979,15 +1008,17 @@
         {
           "scenario_class": "negative",
           "condition": "別構成体revision/scope/要求/ownerの証拠を当該集合へ外挿しない。",
-          "decision": "L5 composite_target@composite_failure: COMPOSITE-P.correlation を失敗返却。success不可。",
-          "findings": [
-            "composite_target|composite_target_{edge_identity}+field_name=field_result_not_corresponding@composite_failure"
-          ],
           "l5_refs": [
             "/contract_views/F01/failure_rules/6"
           ],
           "verification_status": "unverified",
-          "source_basis": {"packet_pointer":"/original_receipts/1/composite_target/correlation","subject":"COMPOSITE-P","field":"correlation","baseline":{"value":"CORRELATION-P"},"observed":{"value":"OTHER-correlation"}}
+          "source_basis": {
+            "source_ptr": "/original_receipts/1/composite_target/correlation",
+            "subject": "COMPOSITE-P",
+            "field": "correlation",
+            "difference": "foreign_target"
+          },
+          "decision": "COMPOSITE-P.correlation:foreign_target。構成体をholdしterminal success不可。"
         }
       ],
       [
@@ -1011,15 +1042,17 @@
         {
           "scenario_class": "negative",
           "condition": "別構成体revision/scope/要求/ownerの証拠を当該集合へ外挿しない。",
-          "decision": "L5 composite_target@composite_failure: COMPOSITE-P.owner を失敗返却。success不可。",
-          "findings": [
-            "composite_target|composite_target_{edge_identity}+field_name=field_result_not_corresponding@composite_failure"
-          ],
           "l5_refs": [
             "/contract_views/F01/failure_rules/6"
           ],
           "verification_status": "unverified",
-          "source_basis": {"packet_pointer":"/original_receipts/1/composite_target/owner","subject":"COMPOSITE-P","field":"owner","baseline":{"value":"composite-owner"},"observed":{"value":"OTHER-owner"}}
+          "source_basis": {
+            "source_ptr": "/original_receipts/1/composite_target/owner",
+            "subject": "COMPOSITE-P",
+            "field": "owner",
+            "difference": "foreign_target"
+          },
+          "decision": "COMPOSITE-P.owner:foreign_target。構成体をholdしterminal success不可。"
         }
       ],
       [
@@ -1043,15 +1076,17 @@
         {
           "scenario_class": "negative",
           "condition": "内容同値でも元観測の未成立/失効/stale/部分/効果未観測は全体終端にならない。",
-          "decision": "L5 edge_conditions@condition_failure_by_field: RECEIPT-2.registration_state を失敗返却。success不可。",
-          "findings": [
-            "edge_conditions|edge_condition_{edge_identity}+field_name_or_receipt=condition_not_matching@condition_failure_by_field"
-          ],
           "l5_refs": [
             "/contract_views/F01/failure_rules/7"
           ],
           "verification_status": "unverified",
-          "source_basis": {"packet_pointer":"/original_receipts/1/registration_state","subject":"RECEIPT-2","field":"registration_state","baseline":{"value":"registered_in_fixture_only"},"observed":{"value":"unknown"}}
+          "source_basis": {
+            "source_ptr": "/original_receipts/1/registration_state",
+            "subject": "RECEIPT-2",
+            "field": "registration_state",
+            "difference": "registration_unknown"
+          },
+          "decision": "RECEIPT-2.registration_state:registration_unknown。構成体をholdしterminal success不可。"
         }
       ],
       [
@@ -1075,15 +1110,17 @@
         {
           "scenario_class": "negative",
           "condition": "内容同値でも元観測の未成立/失効/stale/部分/効果未観測は全体終端にならない。",
-          "decision": "L5 edge_conditions@condition_failure_by_field: RECEIPT-2.compatibility_state を失敗返却。success不可。",
-          "findings": [
-            "edge_conditions|edge_condition_{edge_identity}+field_name_or_receipt=condition_not_matching@condition_failure_by_field"
-          ],
           "l5_refs": [
             "/contract_views/F01/failure_rules/7"
           ],
           "verification_status": "unverified",
-          "source_basis": {"packet_pointer":"/original_receipts/1/compatibility_state","subject":"RECEIPT-2","field":"compatibility_state","baseline":{"value":"current_compatible_in_fixture_only"},"observed":{"value":"stale"}}
+          "source_basis": {
+            "source_ptr": "/original_receipts/1/compatibility_state",
+            "subject": "RECEIPT-2",
+            "field": "compatibility_state",
+            "difference": "compatibility_stale"
+          },
+          "decision": "RECEIPT-2.compatibility_state:compatibility_stale。構成体をholdしterminal success不可。"
         }
       ],
       [
@@ -1107,15 +1144,17 @@
         {
           "scenario_class": "negative",
           "condition": "内容同値でも元観測の未成立/失効/stale/部分/効果未観測は全体終端にならない。",
-          "decision": "L5 edge_conditions@condition_failure_by_field: RECEIPT-2.expiry_state を失敗返却。success不可。",
-          "findings": [
-            "edge_conditions|edge_condition_{edge_identity}+field_name_or_receipt=condition_not_matching@condition_failure_by_field"
-          ],
           "l5_refs": [
             "/contract_views/F01/failure_rules/7"
           ],
           "verification_status": "unverified",
-          "source_basis": {"packet_pointer":"/original_receipts/1/expiry_state","subject":"RECEIPT-2","field":"expiry_state","baseline":{"value":"valid_in_fixture_only"},"observed":{"value":"expired"}}
+          "source_basis": {
+            "source_ptr": "/original_receipts/1/expiry_state",
+            "subject": "RECEIPT-2",
+            "field": "expiry_state",
+            "difference": "expiry_invalid"
+          },
+          "decision": "RECEIPT-2.expiry_state:expiry_invalid。構成体をholdしterminal success不可。"
         }
       ],
       [
@@ -1139,15 +1178,17 @@
         {
           "scenario_class": "negative",
           "condition": "内容同値でも元観測の未成立/失効/stale/部分/効果未観測は全体終端にならない。",
-          "decision": "L5 edge_conditions@condition_failure_by_field: RECEIPT-2.permission_state を失敗返却。success不可。",
-          "findings": [
-            "edge_conditions|edge_condition_{edge_identity}+field_name_or_receipt=condition_not_matching@condition_failure_by_field"
-          ],
           "l5_refs": [
             "/contract_views/F01/failure_rules/7"
           ],
           "verification_status": "unverified",
-          "source_basis": {"packet_pointer":"/original_receipts/1/permission_state","subject":"RECEIPT-2","field":"permission_state","baseline":{"value":"valid_in_fixture_only"},"observed":{"value":"revoked"}}
+          "source_basis": {
+            "source_ptr": "/original_receipts/1/permission_state",
+            "subject": "RECEIPT-2",
+            "field": "permission_state",
+            "difference": "permission_revoked"
+          },
+          "decision": "RECEIPT-2.permission_state:permission_revoked。構成体をholdしterminal success不可。"
         }
       ],
       [
@@ -1171,15 +1212,17 @@
         {
           "scenario_class": "negative",
           "condition": "内容同値でも元観測の未成立/失効/stale/部分/効果未観測は全体終端にならない。",
-          "decision": "L5 edge_conditions@condition_failure_by_field: RECEIPT-2.result_state を失敗返却。success不可。",
-          "findings": [
-            "edge_conditions|edge_condition_{edge_identity}+field_name_or_receipt=condition_not_matching@condition_failure_by_field"
-          ],
           "l5_refs": [
             "/contract_views/F01/failure_rules/7"
           ],
           "verification_status": "unverified",
-          "source_basis": {"packet_pointer":"/original_receipts/1/result_state","subject":"RECEIPT-2","field":"result_state","baseline":{"value":"technical_terminal_in_fixture_only"},"observed":{"value":"partial_success"}}
+          "source_basis": {
+            "source_ptr": "/original_receipts/1/result_state",
+            "subject": "RECEIPT-2",
+            "field": "result_state",
+            "difference": "result_partial"
+          },
+          "decision": "RECEIPT-2.result_state:result_partial。構成体をholdしterminal success不可。"
         }
       ],
       [
@@ -1203,15 +1246,17 @@
         {
           "scenario_class": "negative",
           "condition": "内容同値でも元観測の未成立/失効/stale/部分/効果未観測は全体終端にならない。",
-          "decision": "L5 edge_conditions@condition_failure_by_field: RECEIPT-2.receiver_effect_state を失敗返却。success不可。",
-          "findings": [
-            "edge_conditions|edge_condition_{edge_identity}+field_name_or_receipt=condition_not_matching@condition_failure_by_field"
-          ],
           "l5_refs": [
             "/contract_views/F01/failure_rules/7"
           ],
           "verification_status": "unverified",
-          "source_basis": {"packet_pointer":"/original_receipts/1/receiver_effect_state","subject":"RECEIPT-2","field":"receiver_effect_state","baseline":{"value":"observed_in_fixture_only"},"observed":{"value":"not_observed"}}
+          "source_basis": {
+            "source_ptr": "/original_receipts/1/receiver_effect_state",
+            "subject": "RECEIPT-2",
+            "field": "receiver_effect_state",
+            "difference": "receiver_effect_unobserved"
+          },
+          "decision": "RECEIPT-2.receiver_effect_state:receiver_effect_unobserved。構成体をholdしterminal success不可。"
         }
       ],
       [
@@ -1237,19 +1282,19 @@
         {
           "scenario_class": "negative",
           "condition": "宣言済み必須辺が未定義なら欠落/順序/mappingを推測で補わない。",
-          "decision": "L5 required_edge_set@composite_failure,operation_mapping@composite_failure,unselected_receipts@composite_failure: EDGE-P-2.original_edges 欠落 EDGE-P-2 を失敗返却。success不可。",
-          "findings": [
-            "required_edge_set|needed_edges+ordered_exact_set=result_not_corresponding@composite_failure",
-            "operation_mapping|handoff_mapping+edge_identity_and_mapping_axis=mapping_not_corresponding@composite_failure",
-            "unselected_receipts|receipt_set+outside_declared_edges=nonempty@composite_failure"
-          ],
           "l5_refs": [
             "/contract_views/F01/failure_rules/0",
             "/contract_views/F01/failure_rules/8",
             "/contract_views/F01/failure_rules/9"
           ],
           "verification_status": "unverified",
-          "source_basis": {"packet_pointer":"/original_edges","subject":"EDGE-P-2","field":"original_edges 欠落 EDGE-P-2","baseline":{"members":["EDGE-P-1","EDGE-P-2","EDGE-P-3"]},"observed":{"members":["EDGE-P-1","EDGE-P-3"]}}
+          "source_basis": {
+            "source_ptr": "/original_edges",
+            "subject": "EDGE-P-2",
+            "field": "original_edges",
+            "difference": "edge_definition_missing"
+          },
+          "decision": "EDGE-P-2.original_edges:edge_definition_missing。構成体をholdしterminal success不可。"
         }
       ],
       [
@@ -1273,15 +1318,17 @@
         {
           "scenario_class": "negative",
           "condition": "元構成体ownerの順序を提出順序で置換しない。",
-          "decision": "L5 edge_definition@composite_failure: 対象record.submitted_edges を失敗返却。success不可。",
-          "findings": [
-            "edge_definition|edge_definition+content=result_not_corresponding@composite_failure"
-          ],
           "l5_refs": [
             "/contract_views/F01/failure_rules/1"
           ],
           "verification_status": "unverified",
-          "source_basis": {"packet_pointer":"/submitted_edges","subject":"対象record","field":"submitted_edges","baseline":{"value":{"order":["EDGE-P-1","EDGE-P-2","EDGE-P-3"]}},"observed":{"value":{"order":["EDGE-P-3","EDGE-P-2","EDGE-P-1"]}}}
+          "source_basis": {
+            "source_ptr": "/submitted_edges",
+            "subject": "対象record",
+            "field": "submitted_edges",
+            "difference": "order_reversed"
+          },
+          "decision": "対象record.submitted_edges:order_reversed。構成体をholdしterminal success不可。"
         }
       ],
       [
@@ -1306,17 +1353,18 @@
         {
           "scenario_class": "negative",
           "condition": "元operation mappingの不明/別内容を原/提出同値で成立にしない。",
-          "decision": "L5 edge_target@edge_failure,operation_mapping@composite_failure: EDGE-P-2.source_operation を失敗返却。success不可。",
-          "findings": [
-            "edge_target|edge_target_{edge_identity}+field_name=field_result_not_corresponding@edge_failure",
-            "operation_mapping|handoff_mapping+edge_identity_and_mapping_axis=mapping_not_corresponding@composite_failure"
-          ],
           "l5_refs": [
             "/contract_views/F01/failure_rules/5",
             "/contract_views/F01/failure_rules/8"
           ],
           "verification_status": "unverified",
-          "source_basis": {"packet_pointer":"/original_edges/1/source_operation","subject":"EDGE-P-2","field":"source_operation","baseline":{"value":"ENDPOINT-OP-2"},"observed":{"value":null}}
+          "source_basis": {
+            "source_ptr": "/original_edges/1/source_operation",
+            "subject": "EDGE-P-2",
+            "field": "source_operation",
+            "difference": "target_missing"
+          },
+          "decision": "EDGE-P-2.source_operation:target_missing。構成体をholdしterminal success不可。"
         }
       ],
       [
@@ -1340,15 +1388,17 @@
         {
           "scenario_class": "negative",
           "condition": "元operation mappingの不明/別内容を原/提出同値で成立にしない。",
-          "decision": "L5 operation_mapping@composite_failure: EDGE-P-2.source_operation を失敗返却。success不可。",
-          "findings": [
-            "operation_mapping|handoff_mapping+edge_identity_and_mapping_axis=mapping_not_corresponding@composite_failure"
-          ],
           "l5_refs": [
             "/contract_views/F01/failure_rules/8"
           ],
           "verification_status": "unverified",
-          "source_basis": {"packet_pointer":"/original_edges/1/source_operation","subject":"EDGE-P-2","field":"source_operation","baseline":{"value":"ENDPOINT-OP-2"},"observed":{"value":"OTHER-OP"}}
+          "source_basis": {
+            "source_ptr": "/original_edges/1/source_operation",
+            "subject": "EDGE-P-2",
+            "field": "source_operation",
+            "difference": "foreign_target"
+          },
+          "decision": "EDGE-P-2.source_operation:foreign_target。構成体をholdしterminal success不可。"
         }
       ],
       [
@@ -1372,15 +1422,17 @@
         {
           "scenario_class": "negative",
           "condition": "元operation mappingの不明/別内容を原/提出同値で成立にしない。",
-          "decision": "L5 operation_mapping@composite_failure: EDGE-P-2.source_endpoint を失敗返却。success不可。",
-          "findings": [
-            "operation_mapping|handoff_mapping+edge_identity_and_mapping_axis=mapping_not_corresponding@composite_failure"
-          ],
           "l5_refs": [
             "/contract_views/F01/failure_rules/8"
           ],
           "verification_status": "unverified",
-          "source_basis": {"packet_pointer":"/original_edges/1/source_endpoint","subject":"EDGE-P-2","field":"source_endpoint","baseline":{"value":"MECHANISM-2"},"observed":{"value":"OTHER-ENDPOINT"}}
+          "source_basis": {
+            "source_ptr": "/original_edges/1/source_endpoint",
+            "subject": "EDGE-P-2",
+            "field": "source_endpoint",
+            "difference": "foreign_target"
+          },
+          "decision": "EDGE-P-2.source_endpoint:foreign_target。構成体をholdしterminal success不可。"
         }
       ],
       [
@@ -1405,17 +1457,18 @@
         {
           "scenario_class": "negative",
           "condition": "独立原receiptがあっても提出欠落は内容不足として保持。",
-          "decision": "L5 receipt_cardinality_submitted@edge_failure,receipt_content@edge_failure: EDGE-P-2.submitted_receipts 欠落 EDGE-P-2 を失敗返却。success不可。",
-          "findings": [
-            "receipt_cardinality_submitted|submitted_receipt_set+edge_identity=missing_submitted_receipt@edge_failure",
-            "receipt_content|receipt_content+edge_identity=result_not_corresponding@edge_failure"
-          ],
           "l5_refs": [
             "/contract_views/F01/failure_rules/3",
             "/contract_views/F01/failure_rules/4"
           ],
           "verification_status": "unverified",
-          "source_basis": {"packet_pointer":"/submitted_receipts","subject":"EDGE-P-2","field":"submitted_receipts 欠落 EDGE-P-2","baseline":{"members":["EDGE-P-1","EDGE-P-2","EDGE-P-3"]},"observed":{"members":["EDGE-P-1","EDGE-P-3"]}}
+          "source_basis": {
+            "source_ptr": "/submitted_receipts",
+            "subject": "EDGE-P-2",
+            "field": "submitted_receipts",
+            "difference": "missing_receipt"
+          },
+          "decision": "EDGE-P-2.submitted_receipts:missing_receipt。構成体をholdしterminal success不可。"
         }
       ],
       [
@@ -1440,17 +1493,18 @@
         {
           "scenario_class": "negative",
           "condition": "同辺receipt重複を欠落と混同せず、元と提出集合の個数を保持する。",
-          "decision": "L5 receipt_cardinality_submitted@edge_failure,receipt_content@edge_failure: 対象record.submitted_receipts 順序変更 を失敗返却。success不可。",
-          "findings": [
-            "receipt_cardinality_submitted|submitted_receipt_set+edge_identity=duplicate_submitted_receipt@edge_failure",
-            "receipt_content|receipt_content+edge_identity=result_not_corresponding@edge_failure"
-          ],
           "l5_refs": [
             "/contract_views/F01/failure_rules/3",
             "/contract_views/F01/failure_rules/4"
           ],
           "verification_status": "unverified",
-          "source_basis": {"packet_pointer":"/submitted_receipts","subject":"対象record","field":"submitted_receipts 順序変更","baseline":{"members":["EDGE-P-1","EDGE-P-2","EDGE-P-3"]},"observed":{"members":["EDGE-P-1","EDGE-P-2","EDGE-P-3","EDGE-P-2"]}}
+          "source_basis": {
+            "source_ptr": "/submitted_receipts",
+            "subject": "unselected connection",
+            "field": "submitted_receipts",
+            "difference": "duplicate_receipt"
+          },
+          "decision": "unselected connection.submitted_receipts:duplicate_receipt。構成体をholdしterminal success不可。"
         }
       ],
       [
@@ -1479,15 +1533,6 @@
         {
           "scenario_class": "negative",
           "condition": "一辺green/欠落辺/未定mappingで構成完了claimを拒否。",
-          "decision": "L5 receipt_cardinality_original@edge_failure,receipt_cardinality_submitted@edge_failure,receipt_content@edge_failure,edge_target@edge_failure,composite_target@composite_failure,edge_conditions@condition_failure_by_field: 対象集合.original_receipts 欠落 EDGE-P-2、EDGE-P-3 を失敗返却。success不可。",
-          "findings": [
-            "receipt_cardinality_original|original_receipt_set+edge_identity=count_not_one@edge_failure",
-            "receipt_cardinality_submitted|submitted_receipt_set+edge_identity=count_not_one@edge_failure",
-            "receipt_content|receipt_content+edge_identity=result_not_corresponding@edge_failure",
-            "edge_target|edge_target_{edge_identity}+field_name=field_result_not_corresponding@edge_failure",
-            "composite_target|composite_target_{edge_identity}+field_name=field_result_not_corresponding@composite_failure",
-            "edge_conditions|edge_condition_{edge_identity}+field_name_or_receipt=condition_not_matching@condition_failure_by_field"
-          ],
           "l5_refs": [
             "/contract_views/F01/failure_rules/2",
             "/contract_views/F01/failure_rules/3",
@@ -1497,7 +1542,13 @@
             "/contract_views/F01/failure_rules/7"
           ],
           "verification_status": "unverified",
-          "source_basis": {"packet_pointer":"/original_receipts","subject":"対象集合","field":"original_receipts 欠落 EDGE-P-2、EDGE-P-3","baseline":{"members":["EDGE-P-1","EDGE-P-2","EDGE-P-3"]},"observed":{"members":["EDGE-P-1"]}}
+          "source_basis": {
+            "source_ptr": "/original_receipts",
+            "subject": "EDGE-P-2+EDGE-P-3",
+            "field": "original_receipts",
+            "difference": "missing_receipt"
+          },
+          "decision": "EDGE-P-2+EDGE-P-3.original_receipts:missing_receipt。構成体をholdしterminal success不可。"
         }
       ],
       [
@@ -1526,15 +1577,6 @@
         {
           "scenario_class": "negative",
           "condition": "一辺green/欠落辺/未定mappingで構成完了claimを拒否。",
-          "decision": "L5 receipt_cardinality_original@edge_failure,receipt_cardinality_submitted@edge_failure,receipt_content@edge_failure,edge_target@edge_failure,composite_target@composite_failure,edge_conditions@condition_failure_by_field: EDGE-P-2.original_receipts 欠落 EDGE-P-2 を失敗返却。success不可。",
-          "findings": [
-            "receipt_cardinality_original|original_receipt_set+edge_identity=missing_original_receipt@edge_failure",
-            "receipt_cardinality_submitted|submitted_receipt_set+edge_identity=missing_submitted_receipt@edge_failure",
-            "receipt_content|receipt_content+edge_identity=result_not_corresponding@edge_failure",
-            "edge_target|edge_target_{edge_identity}+field_name=field_result_not_corresponding@edge_failure",
-            "composite_target|composite_target_{edge_identity}+field_name=field_result_not_corresponding@composite_failure",
-            "edge_conditions|edge_condition_{edge_identity}+field_name_or_receipt=condition_not_matching@condition_failure_by_field"
-          ],
           "l5_refs": [
             "/contract_views/F01/failure_rules/2",
             "/contract_views/F01/failure_rules/3",
@@ -1544,7 +1586,13 @@
             "/contract_views/F01/failure_rules/7"
           ],
           "verification_status": "unverified",
-          "source_basis": {"packet_pointer":"/original_receipts","subject":"EDGE-P-2","field":"original_receipts 欠落 EDGE-P-2","baseline":{"members":["EDGE-P-1","EDGE-P-2","EDGE-P-3"]},"observed":{"members":["EDGE-P-1","EDGE-P-3"]}}
+          "source_basis": {
+            "source_ptr": "/original_receipts",
+            "subject": "EDGE-P-2",
+            "field": "original_receipts",
+            "difference": "missing_receipt"
+          },
+          "decision": "EDGE-P-2.original_receipts:missing_receipt。構成体をholdしterminal success不可。"
         }
       ],
       [
@@ -1569,17 +1617,18 @@
         {
           "scenario_class": "negative",
           "condition": "一辺green/欠落辺/未定mappingで構成完了claimを拒否。",
-          "decision": "L5 edge_target@edge_failure,operation_mapping@composite_failure: EDGE-P-2.source_operation を失敗返却。success不可。",
-          "findings": [
-            "edge_target|edge_target_{edge_identity}+field_name=field_result_not_corresponding@edge_failure",
-            "operation_mapping|handoff_mapping+edge_identity_and_mapping_axis=mapping_not_corresponding@composite_failure"
-          ],
           "l5_refs": [
             "/contract_views/F01/failure_rules/5",
             "/contract_views/F01/failure_rules/8"
           ],
           "verification_status": "unverified",
-          "source_basis": {"packet_pointer":"/original_edges/1/source_operation","subject":"EDGE-P-2","field":"source_operation","baseline":{"value":"ENDPOINT-OP-2"},"observed":{"value":null}}
+          "source_basis": {
+            "source_ptr": "/original_edges/1/source_operation",
+            "subject": "EDGE-P-2",
+            "field": "source_operation",
+            "difference": "target_missing"
+          },
+          "decision": "EDGE-P-2.source_operation:target_missing。構成体をholdしterminal success不可。"
         }
       ],
       [
@@ -1601,13 +1650,17 @@
         {
           "scenario_class": "negative",
           "condition": "中間staleは先行成功/局所ownerと未完/後続未実行を保持し全体成功にしない。",
-          "decision": "中間故障を停止位置として保持し、先行成功と未完義務/ownerを残し、後続attemptを実行済みにしない。",
-          "findings": [],
           "l5_refs": [
             "/contract_views/F02"
           ],
           "verification_status": "unverified",
-          "source_basis": {"packet_pointer":"/original_trace","subject":"stop trace","field":"基準宣言","baseline":{"value":"failure/stop trace"},"observed":{"value":"failure/stop trace"}}
+          "source_basis": {
+            "source_ptr": "/original_stop",
+            "subject": "middle stop",
+            "field": "cause",
+            "difference": "stale_middle_stop"
+          },
+          "decision": "middle stop.cause:stale_middle_stop。停止位置・先行成功・未完・ownerを残し、後続未実行。"
         }
       ],
       [
@@ -1629,13 +1682,17 @@
         {
           "scenario_class": "negative",
           "condition": "中間故障を個別保持。後続実行を捏造せず業務再計画は元ownerへ残す。",
-          "decision": "EDGE-P-2 cause=timeout: 停止位置を保持し、先行成功・未完義務・ownerを残して後続attemptを実行済みにしない。",
-          "findings": [],
           "l5_refs": [
             "/contract_views/F02"
           ],
           "verification_status": "unverified",
-          "source_basis": {"packet_pointer":"/original_stop/cause","subject":"EDGE-P-2","field":"cause","baseline":{"value":"stale"},"observed":{"value":"timeout"}}
+          "source_basis": {
+            "source_ptr": "/original_stop/cause",
+            "subject": "EDGE-P-2",
+            "field": "cause",
+            "difference": "failure_cause_timeout"
+          },
+          "decision": "EDGE-P-2.cause:failure_cause_timeout。停止位置・先行成功・未完・ownerを残し、後続未実行。"
         }
       ],
       [
@@ -1657,13 +1714,17 @@
         {
           "scenario_class": "negative",
           "condition": "中間故障を個別保持。後続実行を捏造せず業務再計画は元ownerへ残す。",
-          "decision": "EDGE-P-2 cause=digest_conflict: 停止位置を保持し、先行成功・未完義務・ownerを残して後続attemptを実行済みにしない。",
-          "findings": [],
           "l5_refs": [
             "/contract_views/F02"
           ],
           "verification_status": "unverified",
-          "source_basis": {"packet_pointer":"/original_stop/cause","subject":"EDGE-P-2","field":"cause","baseline":{"value":"stale"},"observed":{"value":"digest_conflict"}}
+          "source_basis": {
+            "source_ptr": "/original_stop/cause",
+            "subject": "EDGE-P-2",
+            "field": "cause",
+            "difference": "failure_cause_digest_conflict"
+          },
+          "decision": "EDGE-P-2.cause:failure_cause_digest_conflict。停止位置・先行成功・未完・ownerを残し、後続未実行。"
         }
       ],
       [
@@ -1685,13 +1746,17 @@
         {
           "scenario_class": "negative",
           "condition": "中間故障を個別保持。後続実行を捏造せず業務再計画は元ownerへ残す。",
-          "decision": "EDGE-P-2 cause=expiry: 停止位置を保持し、先行成功・未完義務・ownerを残して後続attemptを実行済みにしない。",
-          "findings": [],
           "l5_refs": [
             "/contract_views/F02"
           ],
           "verification_status": "unverified",
-          "source_basis": {"packet_pointer":"/original_stop/cause","subject":"EDGE-P-2","field":"cause","baseline":{"value":"stale"},"observed":{"value":"expiry"}}
+          "source_basis": {
+            "source_ptr": "/original_stop/cause",
+            "subject": "EDGE-P-2",
+            "field": "cause",
+            "difference": "failure_cause_expiry"
+          },
+          "decision": "EDGE-P-2.cause:failure_cause_expiry。停止位置・先行成功・未完・ownerを残し、後続未実行。"
         }
       ],
       [
@@ -1713,13 +1778,17 @@
         {
           "scenario_class": "negative",
           "condition": "中間故障を個別保持。後続実行を捏造せず業務再計画は元ownerへ残す。",
-          "decision": "EDGE-P-2 cause=cancelled: 停止位置を保持し、先行成功・未完義務・ownerを残して後続attemptを実行済みにしない。",
-          "findings": [],
           "l5_refs": [
             "/contract_views/F02"
           ],
           "verification_status": "unverified",
-          "source_basis": {"packet_pointer":"/original_stop/cause","subject":"EDGE-P-2","field":"cause","baseline":{"value":"stale"},"observed":{"value":"cancelled"}}
+          "source_basis": {
+            "source_ptr": "/original_stop/cause",
+            "subject": "EDGE-P-2",
+            "field": "cause",
+            "difference": "failure_cause_cancelled"
+          },
+          "decision": "EDGE-P-2.cause:failure_cause_cancelled。停止位置・先行成功・未完・ownerを残し、後続未実行。"
         }
       ],
       [
@@ -1741,13 +1810,17 @@
         {
           "scenario_class": "negative",
           "condition": "中間故障を個別保持。後続実行を捏造せず業務再計画は元ownerへ残す。",
-          "decision": "EDGE-P-2 cause=permission_revoked: 停止位置を保持し、先行成功・未完義務・ownerを残して後続attemptを実行済みにしない。",
-          "findings": [],
           "l5_refs": [
             "/contract_views/F02"
           ],
           "verification_status": "unverified",
-          "source_basis": {"packet_pointer":"/original_stop/cause","subject":"EDGE-P-2","field":"cause","baseline":{"value":"stale"},"observed":{"value":"permission_revoked"}}
+          "source_basis": {
+            "source_ptr": "/original_stop/cause",
+            "subject": "EDGE-P-2",
+            "field": "cause",
+            "difference": "failure_cause_permission_revoked"
+          },
+          "decision": "EDGE-P-2.cause:failure_cause_permission_revoked。停止位置・先行成功・未完・ownerを残し、後続未実行。"
         }
       ],
       [
@@ -1769,13 +1842,17 @@
         {
           "scenario_class": "negative",
           "condition": "中間故障を個別保持。後続実行を捏造せず業務再計画は元ownerへ残す。",
-          "decision": "EDGE-P-2 cause=partial_success: 停止位置を保持し、先行成功・未完義務・ownerを残して後続attemptを実行済みにしない。",
-          "findings": [],
           "l5_refs": [
             "/contract_views/F02"
           ],
           "verification_status": "unverified",
-          "source_basis": {"packet_pointer":"/original_stop/cause","subject":"EDGE-P-2","field":"cause","baseline":{"value":"stale"},"observed":{"value":"partial_success"}}
+          "source_basis": {
+            "source_ptr": "/original_stop/cause",
+            "subject": "EDGE-P-2",
+            "field": "cause",
+            "difference": "failure_cause_partial_success"
+          },
+          "decision": "EDGE-P-2.cause:failure_cause_partial_success。停止位置・先行成功・未完・ownerを残し、後続未実行。"
         }
       ],
       [
@@ -1797,13 +1874,17 @@
         {
           "scenario_class": "negative",
           "condition": "中間故障を個別保持。後続実行を捏造せず業務再計画は元ownerへ残す。",
-          "decision": "EDGE-P-2 cause=unknown: 停止位置を保持し、先行成功・未完義務・ownerを残して後続attemptを実行済みにしない。",
-          "findings": [],
           "l5_refs": [
             "/contract_views/F02"
           ],
           "verification_status": "unverified",
-          "source_basis": {"packet_pointer":"/original_stop/cause","subject":"EDGE-P-2","field":"cause","baseline":{"value":"stale"},"observed":{"value":"unknown"}}
+          "source_basis": {
+            "source_ptr": "/original_stop/cause",
+            "subject": "EDGE-P-2",
+            "field": "cause",
+            "difference": "failure_cause_unknown"
+          },
+          "decision": "EDGE-P-2.cause:failure_cause_unknown。停止位置・先行成功・未完・ownerを残し、後続未実行。"
         }
       ],
       [
@@ -1827,15 +1908,17 @@
         {
           "scenario_class": "negative",
           "condition": "失敗で先行成功/元未完を消去しない。",
-          "decision": "L5 prior_successes@trace_failure: EDGE-P-1.submitted_prior_successes 欠落 EDGE-P-1 を失敗返却。success不可。",
-          "findings": [
-            "prior_successes|prior_successes_content+record=result_not_corresponding@trace_failure"
-          ],
           "l5_refs": [
             "/contract_views/F02/failure_rules/1"
           ],
           "verification_status": "unverified",
-          "source_basis": {"packet_pointer":"/submitted_prior_successes","subject":"EDGE-P-1","field":"submitted_prior_successes 欠落 EDGE-P-1","baseline":{"members":["EDGE-P-1"]},"observed":{"members":[]}}
+          "source_basis": {
+            "source_ptr": "/submitted_prior_successes",
+            "subject": "EDGE-P-1",
+            "field": "submitted_prior_successes",
+            "difference": "trace_entry_erased"
+          },
+          "decision": "EDGE-P-1.submitted_prior_successes:trace_entry_erased。停止位置・先行成功・未完・ownerを残し、後続未実行。"
         }
       ],
       [
@@ -1859,15 +1942,17 @@
         {
           "scenario_class": "negative",
           "condition": "失敗で先行成功/元未完を消去しない。",
-          "decision": "L5 unfinished@trace_failure: 対象集合.submitted_unfinished 欠落 EDGE-P-2、EDGE-P-3 を失敗返却。success不可。",
-          "findings": [
-            "unfinished|unfinished_content+record=field_result_not_corresponding@trace_failure"
-          ],
           "l5_refs": [
             "/contract_views/F02/failure_rules/2"
           ],
           "verification_status": "unverified",
-          "source_basis": {"packet_pointer":"/submitted_unfinished","subject":"対象集合","field":"submitted_unfinished 欠落 EDGE-P-2、EDGE-P-3","baseline":{"members":["EDGE-P-2","EDGE-P-3"]},"observed":{"members":[]}}
+          "source_basis": {
+            "source_ptr": "/submitted_unfinished",
+            "subject": "EDGE-P-2+EDGE-P-3",
+            "field": "submitted_unfinished",
+            "difference": "trace_entry_erased"
+          },
+          "decision": "EDGE-P-2+EDGE-P-3.submitted_unfinished:trace_entry_erased。停止位置・先行成功・未完・ownerを残し、後続未実行。"
         }
       ],
       [
@@ -1891,15 +1976,17 @@
         {
           "scenario_class": "negative",
           "condition": "未観測/未許可の後続を実行済みにしない。",
-          "decision": "L5 downstream_attempts@trace_failure: submitted_downstream_attempts.EDGE-P-3 を失敗返却。success不可。",
-          "findings": [
-            "downstream_attempts|downstream_attempts_content+record=original_submitted_content_not_corresponding@trace_failure"
-          ],
           "l5_refs": [
             "/contract_views/F02/failure_rules/3"
           ],
           "verification_status": "unverified",
-          "source_basis": {"packet_pointer":"/submitted_downstream_attempts/EDGE-P-3","subject":"submitted_downstream_attempts","field":"EDGE-P-3","baseline":{"value":0},"observed":{"value":1}}
+          "source_basis": {
+            "source_ptr": "/submitted_downstream_attempts/EDGE-P-3",
+            "subject": "EDGE-P-3",
+            "field": "EDGE-P-3",
+            "difference": "unauthorized_attempt_present"
+          },
+          "decision": "EDGE-P-3.EDGE-P-3:unauthorized_attempt_present。停止位置・先行成功・未完・ownerを残し、後続未実行。"
         }
       ],
       [
@@ -1923,15 +2010,17 @@
         {
           "scenario_class": "negative",
           "condition": "原/提出同値でも先行条件なし後続attemptを許容せず保留。",
-          "decision": "L5 unauthorized_attempt@trace_failure: original_downstream_attempts.EDGE-P-3 を失敗返却。success不可。",
-          "findings": [
-            "unauthorized_attempt|downstream_authority+attempts=original_downstream_result_not_corresponding_to_zero@trace_failure"
-          ],
           "l5_refs": [
             "/contract_views/F02/failure_rules/5"
           ],
           "verification_status": "unverified",
-          "source_basis": {"packet_pointer":"/original_downstream_attempts/EDGE-P-3","subject":"original_downstream_attempts","field":"EDGE-P-3","baseline":{"value":0},"observed":{"value":1}}
+          "source_basis": {
+            "source_ptr": "/original_downstream_attempts/EDGE-P-3",
+            "subject": "EDGE-P-3",
+            "field": "EDGE-P-3",
+            "difference": "unauthorized_attempt_present"
+          },
+          "decision": "EDGE-P-3.EDGE-P-3:unauthorized_attempt_present。停止位置・先行成功・未完・ownerを残し、後続未実行。"
         }
       ],
       [
@@ -1955,15 +2044,17 @@
         {
           "scenario_class": "negative",
           "condition": "停止の発生辺/operation/attempt/owner/recoveryを変えない。",
-          "decision": "L5 stop_content@edge_failure: EDGE-P-2.owner を失敗返却。success不可。",
-          "findings": [
-            "stop_content|stop_content+record=result_not_corresponding@edge_failure"
-          ],
           "l5_refs": [
             "/contract_views/F02/failure_rules/6"
           ],
           "verification_status": "unverified",
-          "source_basis": {"packet_pointer":"/submitted_stop/owner","subject":"EDGE-P-2","field":"owner","baseline":{"value":"connection-owner-2"},"observed":{"value":"OTHER-owner"}}
+          "source_basis": {
+            "source_ptr": "/submitted_stop/owner",
+            "subject": "EDGE-P-2",
+            "field": "owner",
+            "difference": "foreign_target"
+          },
+          "decision": "EDGE-P-2.owner:foreign_target。停止位置・先行成功・未完・ownerを残し、後続未実行。"
         }
       ],
       [
@@ -1987,15 +2078,17 @@
         {
           "scenario_class": "negative",
           "condition": "停止の発生辺/operation/attempt/owner/recoveryを変えない。",
-          "decision": "L5 stop_content@edge_failure: EDGE-P-2.recovery_ref を失敗返却。success不可。",
-          "findings": [
-            "stop_content|stop_content+record=result_not_corresponding@edge_failure"
-          ],
           "l5_refs": [
             "/contract_views/F02/failure_rules/6"
           ],
           "verification_status": "unverified",
-          "source_basis": {"packet_pointer":"/submitted_stop/recovery_ref","subject":"EDGE-P-2","field":"recovery_ref","baseline":{"value":"RECOVERY-2@r1"},"observed":{"value":"OTHER-recovery_ref"}}
+          "source_basis": {
+            "source_ptr": "/submitted_stop/recovery_ref",
+            "subject": "EDGE-P-2",
+            "field": "recovery_ref",
+            "difference": "foreign_target"
+          },
+          "decision": "EDGE-P-2.recovery_ref:foreign_target。停止位置・先行成功・未完・ownerを残し、後続未実行。"
         }
       ],
       [
@@ -2019,15 +2112,17 @@
         {
           "scenario_class": "negative",
           "condition": "停止の発生辺/operation/attempt/owner/recoveryを変えない。",
-          "decision": "L5 stop_content@edge_failure: EDGE-P-2.edge_identity を失敗返却。success不可。",
-          "findings": [
-            "stop_content|stop_content+record=result_not_corresponding@edge_failure"
-          ],
           "l5_refs": [
             "/contract_views/F02/failure_rules/6"
           ],
           "verification_status": "unverified",
-          "source_basis": {"packet_pointer":"/submitted_stop/edge_identity","subject":"EDGE-P-2","field":"edge_identity","baseline":{"value":"EDGE-P-2"},"observed":{"value":"OTHER-edge_identity"}}
+          "source_basis": {
+            "source_ptr": "/submitted_stop/edge_identity",
+            "subject": "EDGE-P-2",
+            "field": "edge_identity",
+            "difference": "foreign_target"
+          },
+          "decision": "EDGE-P-2.edge_identity:foreign_target。停止位置・先行成功・未完・ownerを残し、後続未実行。"
         }
       ],
       [
@@ -2051,15 +2146,17 @@
         {
           "scenario_class": "negative",
           "condition": "停止の発生辺/operation/attempt/owner/recoveryを変えない。",
-          "decision": "L5 stop_content@edge_failure: EDGE-P-2.operation_identity を失敗返却。success不可。",
-          "findings": [
-            "stop_content|stop_content+record=result_not_corresponding@edge_failure"
-          ],
           "l5_refs": [
             "/contract_views/F02/failure_rules/6"
           ],
           "verification_status": "unverified",
-          "source_basis": {"packet_pointer":"/submitted_stop/operation_identity","subject":"EDGE-P-2","field":"operation_identity","baseline":{"value":"OPERATION-2"},"observed":{"value":"OTHER-operation_identity"}}
+          "source_basis": {
+            "source_ptr": "/submitted_stop/operation_identity",
+            "subject": "EDGE-P-2",
+            "field": "operation_identity",
+            "difference": "foreign_target"
+          },
+          "decision": "EDGE-P-2.operation_identity:foreign_target。停止位置・先行成功・未完・ownerを残し、後続未実行。"
         }
       ],
       [
@@ -2083,15 +2180,17 @@
         {
           "scenario_class": "negative",
           "condition": "停止の発生辺/operation/attempt/owner/recoveryを変えない。",
-          "decision": "L5 stop_content@edge_failure: EDGE-P-2.attempt_identity を失敗返却。success不可。",
-          "findings": [
-            "stop_content|stop_content+record=result_not_corresponding@edge_failure"
-          ],
           "l5_refs": [
             "/contract_views/F02/failure_rules/6"
           ],
           "verification_status": "unverified",
-          "source_basis": {"packet_pointer":"/submitted_stop/attempt_identity","subject":"EDGE-P-2","field":"attempt_identity","baseline":{"value":"ATTEMPT-2-1"},"observed":{"value":"OTHER-attempt_identity"}}
+          "source_basis": {
+            "source_ptr": "/submitted_stop/attempt_identity",
+            "subject": "EDGE-P-2",
+            "field": "attempt_identity",
+            "difference": "foreign_target"
+          },
+          "decision": "EDGE-P-2.attempt_identity:foreign_target。停止位置・先行成功・未完・ownerを残し、後続未実行。"
         }
       ],
       [
@@ -2115,15 +2214,17 @@
         {
           "scenario_class": "negative",
           "condition": "別構成scopeのhandoffで元未完を引継ぎ済みにしない。",
-          "decision": "L5 handoff_target@trace_failure: COMPOSITE-P.scope を失敗返却。success不可。",
-          "findings": [
-            "handoff_target|handoff_composite_target+field_name=field_result_not_corresponding@trace_failure"
-          ],
           "l5_refs": [
             "/contract_views/F02/failure_rules/4"
           ],
           "verification_status": "unverified",
-          "source_basis": {"packet_pointer":"/original_handoff/composite_target/scope","subject":"COMPOSITE-P","field":"scope","baseline":{"value":"PRODUCT-P/selected-flow"},"observed":{"value":"OTHER-SCOPE"}}
+          "source_basis": {
+            "source_ptr": "/original_handoff/composite_target/scope",
+            "subject": "COMPOSITE-P",
+            "field": "scope",
+            "difference": "foreign_target"
+          },
+          "decision": "COMPOSITE-P.scope:foreign_target。停止位置・先行成功・未完・ownerを残し、後続未実行。"
         }
       ],
       [
@@ -2147,15 +2248,17 @@
         {
           "scenario_class": "negative",
           "condition": "原/提出停止記録が同値でも元辺owner/operation/attempt/recoveryを照合する。",
-          "decision": "L5 stop_binding@trace_failure: EDGE-P-2.owner を失敗返却。success不可。",
-          "findings": [
-            "stop_binding|stop_edge_binding+field_name=field_result_not_corresponding@trace_failure"
-          ],
           "l5_refs": [
             "/contract_views/F02/failure_rules/0"
           ],
           "verification_status": "unverified",
-          "source_basis": {"packet_pointer":"/original_stop/owner","subject":"EDGE-P-2","field":"owner","baseline":{"value":"connection-owner-2"},"observed":{"value":"OTHER-owner"}}
+          "source_basis": {
+            "source_ptr": "/original_stop/owner",
+            "subject": "EDGE-P-2",
+            "field": "owner",
+            "difference": "foreign_target"
+          },
+          "decision": "EDGE-P-2.owner:foreign_target。停止位置・先行成功・未完・ownerを残し、後続未実行。"
         }
       ],
       [
@@ -2179,15 +2282,17 @@
         {
           "scenario_class": "negative",
           "condition": "原/提出停止記録が同値でも元辺owner/operation/attempt/recoveryを照合する。",
-          "decision": "L5 stop_binding@trace_failure: EDGE-P-2.recovery_ref を失敗返却。success不可。",
-          "findings": [
-            "stop_binding|stop_edge_binding+field_name=field_result_not_corresponding@trace_failure"
-          ],
           "l5_refs": [
             "/contract_views/F02/failure_rules/0"
           ],
           "verification_status": "unverified",
-          "source_basis": {"packet_pointer":"/original_stop/recovery_ref","subject":"EDGE-P-2","field":"recovery_ref","baseline":{"value":"RECOVERY-2@r1"},"observed":{"value":"OTHER-recovery_ref"}}
+          "source_basis": {
+            "source_ptr": "/original_stop/recovery_ref",
+            "subject": "EDGE-P-2",
+            "field": "recovery_ref",
+            "difference": "foreign_target"
+          },
+          "decision": "EDGE-P-2.recovery_ref:foreign_target。停止位置・先行成功・未完・ownerを残し、後続未実行。"
         }
       ],
       [
@@ -2211,15 +2316,17 @@
         {
           "scenario_class": "negative",
           "condition": "原/提出停止記録が同値でも元辺owner/operation/attempt/recoveryを照合する。",
-          "decision": "L5 stop_binding@trace_failure: EDGE-P-2.operation_identity を失敗返却。success不可。",
-          "findings": [
-            "stop_binding|stop_edge_binding+field_name=field_result_not_corresponding@trace_failure"
-          ],
           "l5_refs": [
             "/contract_views/F02/failure_rules/0"
           ],
           "verification_status": "unverified",
-          "source_basis": {"packet_pointer":"/original_stop/operation_identity","subject":"EDGE-P-2","field":"operation_identity","baseline":{"value":"OPERATION-2"},"observed":{"value":"OTHER-operation_identity"}}
+          "source_basis": {
+            "source_ptr": "/original_stop/operation_identity",
+            "subject": "EDGE-P-2",
+            "field": "operation_identity",
+            "difference": "foreign_target"
+          },
+          "decision": "EDGE-P-2.operation_identity:foreign_target。停止位置・先行成功・未完・ownerを残し、後続未実行。"
         }
       ],
       [
@@ -2243,15 +2350,17 @@
         {
           "scenario_class": "negative",
           "condition": "原/提出停止記録が同値でも元辺owner/operation/attempt/recoveryを照合する。",
-          "decision": "L5 stop_binding@trace_failure: EDGE-P-2.attempt_identity を失敗返却。success不可。",
-          "findings": [
-            "stop_binding|stop_edge_binding+field_name=field_result_not_corresponding@trace_failure"
-          ],
           "l5_refs": [
             "/contract_views/F02/failure_rules/0"
           ],
           "verification_status": "unverified",
-          "source_basis": {"packet_pointer":"/original_stop/attempt_identity","subject":"EDGE-P-2","field":"attempt_identity","baseline":{"value":"ATTEMPT-2-1"},"observed":{"value":"OTHER-attempt_identity"}}
+          "source_basis": {
+            "source_ptr": "/original_stop/attempt_identity",
+            "subject": "EDGE-P-2",
+            "field": "attempt_identity",
+            "difference": "foreign_target"
+          },
+          "decision": "EDGE-P-2.attempt_identity:foreign_target。停止位置・先行成功・未完・ownerを残し、後続未実行。"
         }
       ],
       [
@@ -2275,15 +2384,17 @@
         {
           "scenario_class": "negative",
           "condition": "後続無許可再送/別辺green相殺/全trace消去claimを拒否。",
-          "decision": "L5 downstream_attempts@trace_failure: claims.unauthorized_downstream_retry を失敗返却。success不可。",
-          "findings": [
-            "downstream_attempts|downstream_attempts_content+record=original_submitted_content_not_corresponding@trace_failure"
-          ],
           "l5_refs": [
             "/contract_views/F02/failure_rules/3"
           ],
           "verification_status": "unverified",
-          "source_basis": {"packet_pointer":"/claims/unauthorized_downstream_retry","subject":"claims","field":"unauthorized_downstream_retry","baseline":{"value":false},"observed":{"value":true}}
+          "source_basis": {
+            "source_ptr": "/claims/unauthorized_downstream_retry",
+            "subject": "claims",
+            "field": "unauthorized_downstream_retry",
+            "difference": "unsupported_claim_asserted"
+          },
+          "decision": "claims.unauthorized_downstream_retry:unsupported_claim_asserted。停止位置・先行成功・未完・ownerを残し、後続未実行。"
         }
       ],
       [
@@ -2307,15 +2418,17 @@
         {
           "scenario_class": "negative",
           "condition": "後続無許可再送/別辺green相殺/全trace消去claimを拒否。",
-          "decision": "L5 stop_content@edge_failure: EDGE-P-2.cause を失敗返却。success不可。",
-          "findings": [
-            "stop_content|stop_content+record=result_not_corresponding@edge_failure"
-          ],
           "l5_refs": [
             "/contract_views/F02/failure_rules/6"
           ],
           "verification_status": "unverified",
-          "source_basis": {"packet_pointer":"/submitted_stop/cause","subject":"EDGE-P-2","field":"cause","baseline":{"value":"stale"},"observed":{"value":"success"}}
+          "source_basis": {
+            "source_ptr": "/submitted_stop/cause",
+            "subject": "EDGE-P-2",
+            "field": "cause",
+            "difference": "failure_cause_changed"
+          },
+          "decision": "EDGE-P-2.cause:failure_cause_changed。停止位置・先行成功・未完・ownerを残し、後続未実行。"
         }
       ],
       [
@@ -2340,17 +2453,18 @@
         {
           "scenario_class": "negative",
           "condition": "後続無許可再送/別辺green相殺/全trace消去claimを拒否。",
-          "decision": "L5 prior_successes@trace_failure,unfinished@trace_failure: claims.erase_full_trace を失敗返却。success不可。",
-          "findings": [
-            "prior_successes|prior_successes_content+record=result_not_corresponding@trace_failure",
-            "unfinished|unfinished_content+record=field_result_not_corresponding@trace_failure"
-          ],
           "l5_refs": [
             "/contract_views/F02/failure_rules/1",
             "/contract_views/F02/failure_rules/2"
           ],
           "verification_status": "unverified",
-          "source_basis": {"packet_pointer":"/claims/erase_full_trace","subject":"claims","field":"erase_full_trace","baseline":{"value":false},"observed":{"value":true}}
+          "source_basis": {
+            "source_ptr": "/claims/erase_full_trace",
+            "subject": "claims",
+            "field": "erase_full_trace",
+            "difference": "unsupported_claim_asserted"
+          },
+          "decision": "claims.erase_full_trace:unsupported_claim_asserted。停止位置・先行成功・未完・ownerを残し、後続未実行。"
         }
       ],
       [
@@ -2372,13 +2486,17 @@
         {
           "scenario_class": "normal",
           "condition": "要求revision/構成/選択connection集合/登録/operation/attempt/効果停止への同対象結合。実source資格は未成立。",
-          "decision": "宣言された対象scopeの必要evidenceと同対象の境界情報が揃う場合だけfixture correspondenceとする。",
-          "findings": [],
           "l5_refs": [
             "/contract_views/N01/evidence_predicate"
           ],
           "verification_status": "unverified",
-          "source_basis": {"packet_pointer":"/original_evidence","subject":"declared evidence set","field":"基準宣言","baseline":{"value":["EVIDENCE-EDGE-1","EVIDENCE-EDGE-2","EVIDENCE-EDGE-3"]},"observed":{"value":["EVIDENCE-EDGE-1","EVIDENCE-EDGE-2","EVIDENCE-EDGE-3"]}}
+          "source_basis": {
+            "source_ptr": "/original_evidence",
+            "subject": "declared evidence set",
+            "field": "evidence declaration",
+            "difference": "baseline_fixture"
+          },
+          "decision": "宣言済み三辺の必要条件が揃う範囲でfixture correspondenceを示す。"
         }
       ],
       [
@@ -2402,15 +2520,17 @@
         {
           "scenario_class": "negative",
           "condition": "未見版/別scope/connection集合/登録/operation/attempt/効果停止証拠を外挿しない。",
-          "decision": "L5 evidence_target@evidence_failure: EDGE-P-2.composite_identity を失敗返却。success不可。",
-          "findings": [
-            "evidence_target|evidence_target_{identity}+field_name=field_result_not_corresponding@evidence_failure"
-          ],
           "l5_refs": [
             "/contract_views/N01/failure_rules/1"
           ],
           "verification_status": "unverified",
-          "source_basis": {"packet_pointer":"/original_evidence/1/target/composite_identity","subject":"EDGE-P-2","field":"composite_identity","baseline":{"value":"COMPOSITE-P"},"observed":{"value":"UNSEEN-composite_identity"}}
+          "source_basis": {
+            "source_ptr": "/original_evidence/1/target/composite_identity",
+            "subject": "EDGE-P-2",
+            "field": "composite_identity",
+            "difference": "foreign_target"
+          },
+          "decision": "EDGE-P-2.composite_identity:foreign_target。evidenceをholdしscope外挿・実作用なし。"
         }
       ],
       [
@@ -2434,15 +2554,17 @@
         {
           "scenario_class": "negative",
           "condition": "未見版/別scope/connection集合/登録/operation/attempt/効果停止証拠を外挿しない。",
-          "decision": "L5 evidence_target@evidence_failure: EDGE-P-2.composite_revision を失敗返却。success不可。",
-          "findings": [
-            "evidence_target|evidence_target_{identity}+field_name=field_result_not_corresponding@evidence_failure"
-          ],
           "l5_refs": [
             "/contract_views/N01/failure_rules/1"
           ],
           "verification_status": "unverified",
-          "source_basis": {"packet_pointer":"/original_evidence/1/target/composite_revision","subject":"EDGE-P-2","field":"composite_revision","baseline":{"value":"composite-r2"},"observed":{"value":"UNSEEN-composite_revision"}}
+          "source_basis": {
+            "source_ptr": "/original_evidence/1/target/composite_revision",
+            "subject": "EDGE-P-2",
+            "field": "composite_revision",
+            "difference": "foreign_target"
+          },
+          "decision": "EDGE-P-2.composite_revision:foreign_target。evidenceをholdしscope外挿・実作用なし。"
         }
       ],
       [
@@ -2466,15 +2588,17 @@
         {
           "scenario_class": "negative",
           "condition": "未見版/別scope/connection集合/登録/operation/attempt/効果停止証拠を外挿しない。",
-          "decision": "L5 evidence_target@evidence_failure: EDGE-P-2.requirement_revision を失敗返却。success不可。",
-          "findings": [
-            "evidence_target|evidence_target_{identity}+field_name=field_result_not_corresponding@evidence_failure"
-          ],
           "l5_refs": [
             "/contract_views/N01/failure_rules/1"
           ],
           "verification_status": "unverified",
-          "source_basis": {"packet_pointer":"/original_evidence/1/target/requirement_revision","subject":"EDGE-P-2","field":"requirement_revision","baseline":{"value":"requirement-r2"},"observed":{"value":"UNSEEN-requirement_revision"}}
+          "source_basis": {
+            "source_ptr": "/original_evidence/1/target/requirement_revision",
+            "subject": "EDGE-P-2",
+            "field": "requirement_revision",
+            "difference": "foreign_target"
+          },
+          "decision": "EDGE-P-2.requirement_revision:foreign_target。evidenceをholdしscope外挿・実作用なし。"
         }
       ],
       [
@@ -2498,15 +2622,17 @@
         {
           "scenario_class": "negative",
           "condition": "未見版/別scope/connection集合/登録/operation/attempt/効果停止証拠を外挿しない。",
-          "decision": "L5 evidence_target@evidence_failure: EDGE-P-2.scope を失敗返却。success不可。",
-          "findings": [
-            "evidence_target|evidence_target_{identity}+field_name=field_result_not_corresponding@evidence_failure"
-          ],
           "l5_refs": [
             "/contract_views/N01/failure_rules/1"
           ],
           "verification_status": "unverified",
-          "source_basis": {"packet_pointer":"/original_evidence/1/target/scope","subject":"EDGE-P-2","field":"scope","baseline":{"value":"PRODUCT-P/selected-flow"},"observed":{"value":"UNSEEN-scope"}}
+          "source_basis": {
+            "source_ptr": "/original_evidence/1/target/scope",
+            "subject": "EDGE-P-2",
+            "field": "scope",
+            "difference": "foreign_target"
+          },
+          "decision": "EDGE-P-2.scope:foreign_target。evidenceをholdしscope外挿・実作用なし。"
         }
       ],
       [
@@ -2530,15 +2656,17 @@
         {
           "scenario_class": "negative",
           "condition": "未見版/別scope/connection集合/登録/operation/attempt/効果停止証拠を外挿しない。",
-          "decision": "L5 evidence_target@evidence_failure: EDGE-P-2.connection_exact_set を失敗返却。success不可。",
-          "findings": [
-            "evidence_target|evidence_target_{identity}+field_name=field_result_not_corresponding@evidence_failure"
-          ],
           "l5_refs": [
             "/contract_views/N01/failure_rules/1"
           ],
           "verification_status": "unverified",
-          "source_basis": {"packet_pointer":"/original_evidence/1/target/connection_exact_set","subject":"EDGE-P-2","field":"connection_exact_set","baseline":{"value":["CONNECTION-P-1","CONNECTION-P-2","CONNECTION-P-3"]},"observed":{"value":"UNSEEN-connection_exact_set"}}
+          "source_basis": {
+            "source_ptr": "/original_evidence/1/target/connection_exact_set",
+            "subject": "EDGE-P-2",
+            "field": "connection_exact_set",
+            "difference": "foreign_target"
+          },
+          "decision": "EDGE-P-2.connection_exact_set:foreign_target。evidenceをholdしscope外挿・実作用なし。"
         }
       ],
       [
@@ -2562,15 +2690,17 @@
         {
           "scenario_class": "negative",
           "condition": "未見版/別scope/connection集合/登録/operation/attempt/効果停止証拠を外挿しない。",
-          "decision": "L5 evidence_target@evidence_failure: EDGE-P-2.endpoint_registration_revisions を失敗返却。success不可。",
-          "findings": [
-            "evidence_target|evidence_target_{identity}+field_name=field_result_not_corresponding@evidence_failure"
-          ],
           "l5_refs": [
             "/contract_views/N01/failure_rules/1"
           ],
           "verification_status": "unverified",
-          "source_basis": {"packet_pointer":"/original_evidence/1/target/endpoint_registration_revisions","subject":"EDGE-P-2","field":"endpoint_registration_revisions","baseline":{"value":["registration-1-r1","registration-2-r1","registration-3-r1"]},"observed":{"value":"UNSEEN-endpoint_registration_revisions"}}
+          "source_basis": {
+            "source_ptr": "/original_evidence/1/target/endpoint_registration_revisions",
+            "subject": "EDGE-P-2",
+            "field": "endpoint_registration_revisions",
+            "difference": "foreign_target"
+          },
+          "decision": "EDGE-P-2.endpoint_registration_revisions:foreign_target。evidenceをholdしscope外挿・実作用なし。"
         }
       ],
       [
@@ -2594,15 +2724,17 @@
         {
           "scenario_class": "negative",
           "condition": "未見版/別scope/connection集合/登録/operation/attempt/効果停止証拠を外挿しない。",
-          "decision": "L5 evidence_target@evidence_failure: EDGE-P-2.operation_attempts を失敗返却。success不可。",
-          "findings": [
-            "evidence_target|evidence_target_{identity}+field_name=field_result_not_corresponding@evidence_failure"
-          ],
           "l5_refs": [
             "/contract_views/N01/failure_rules/1"
           ],
           "verification_status": "unverified",
-          "source_basis": {"packet_pointer":"/original_evidence/1/target/operation_attempts","subject":"EDGE-P-2","field":"operation_attempts","baseline":{"value":[{"attempt":"ATTEMPT-1-1","operation":"OPERATION-1"},{"attempt":"ATTEMPT-2-1","operation":"OPERATION-2"},{"attempt":"ATTEMPT-3-1","operation":"OPERATION-3"}]},"observed":{"value":"UNSEEN-operation_attempts"}}
+          "source_basis": {
+            "source_ptr": "/original_evidence/1/target/operation_attempts",
+            "subject": "EDGE-P-2",
+            "field": "operation_attempts",
+            "difference": "foreign_target"
+          },
+          "decision": "EDGE-P-2.operation_attempts:foreign_target。evidenceをholdしscope外挿・実作用なし。"
         }
       ],
       [
@@ -2626,15 +2758,17 @@
         {
           "scenario_class": "negative",
           "condition": "未見版/別scope/connection集合/登録/operation/attempt/効果停止証拠を外挿しない。",
-          "decision": "L5 evidence_target@evidence_failure: EDGE-P-2.effect_stop_ref を失敗返却。success不可。",
-          "findings": [
-            "evidence_target|evidence_target_{identity}+field_name=field_result_not_corresponding@evidence_failure"
-          ],
           "l5_refs": [
             "/contract_views/N01/failure_rules/1"
           ],
           "verification_status": "unverified",
-          "source_basis": {"packet_pointer":"/original_evidence/1/target/effect_stop_ref","subject":"EDGE-P-2","field":"effect_stop_ref","baseline":{"value":"EFFECT-STOP-P@r2"},"observed":{"value":null}}
+          "source_basis": {
+            "source_ptr": "/original_evidence/1/target/effect_stop_ref",
+            "subject": "EDGE-P-2",
+            "field": "effect_stop_ref",
+            "difference": "target_missing"
+          },
+          "decision": "EDGE-P-2.effect_stop_ref:target_missing。evidenceをholdしscope外挿・実作用なし。"
         }
       ],
       [
@@ -2658,15 +2792,17 @@
         {
           "scenario_class": "negative",
           "condition": "必須証拠一件不足をfield存在や件数で埋めない。",
-          "decision": "L5 required_evidence_set@composite_failure: EDGE-P-2.original_evidence 欠落 EDGE-P-2 を失敗返却。success不可。",
-          "findings": [
-            "required_evidence_set|needed_evidence+exact_set=result_not_corresponding@composite_failure"
-          ],
           "l5_refs": [
             "/contract_views/N01/failure_rules/0"
           ],
           "verification_status": "unverified",
-          "source_basis": {"packet_pointer":"/original_evidence","subject":"EDGE-P-2","field":"original_evidence 欠落 EDGE-P-2","baseline":{"members":["EDGE-P-1","EDGE-P-2","EDGE-P-3"]},"observed":{"members":["EDGE-P-1","EDGE-P-3"]}}
+          "source_basis": {
+            "source_ptr": "/original_evidence",
+            "subject": "EDGE-P-2",
+            "field": "original_evidence",
+            "difference": "missing_evidence"
+          },
+          "decision": "EDGE-P-2.original_evidence:missing_evidence。evidenceをholdしscope外挿・実作用なし。"
         }
       ],
       [
@@ -2690,15 +2826,17 @@
         {
           "scenario_class": "negative",
           "condition": "未実行を実観測へ昇格させない。",
-          "decision": "L5 evidence_observation@evidence_failure: EDGE-P-2.observation_state を失敗返却。success不可。",
-          "findings": [
-            "evidence_observation|evidence_observation+identity=state_not_observed@evidence_failure"
-          ],
           "l5_refs": [
             "/contract_views/N01/failure_rules/3"
           ],
           "verification_status": "unverified",
-          "source_basis": {"packet_pointer":"/original_evidence/1/observation_state","subject":"EDGE-P-2","field":"observation_state","baseline":{"value":"observed_in_fixture_only"},"observed":{"value":"not_executed"}}
+          "source_basis": {
+            "source_ptr": "/original_evidence/1/observation_state",
+            "subject": "EDGE-P-2",
+            "field": "observation_state",
+            "difference": "observation_not_executed"
+          },
+          "decision": "EDGE-P-2.observation_state:observation_not_executed。evidenceをholdしscope外挿・実作用なし。"
         }
       ],
       [
@@ -2722,15 +2860,17 @@
         {
           "scenario_class": "negative",
           "condition": "原必要証拠と提出集合の差を保持。",
-          "decision": "L5 evidence_cardinality_or_content@evidence_failure: EDGE-P-2.submitted_evidence 欠落 EDGE-P-2 を失敗返却。success不可。",
-          "findings": [
-            "evidence_cardinality_or_content|evidence_content+records=result_not_corresponding@evidence_failure"
-          ],
           "l5_refs": [
             "/contract_views/N01/failure_rules/2"
           ],
           "verification_status": "unverified",
-          "source_basis": {"packet_pointer":"/submitted_evidence","subject":"EDGE-P-2","field":"submitted_evidence 欠落 EDGE-P-2","baseline":{"members":["EDGE-P-1","EDGE-P-2","EDGE-P-3"]},"observed":{"members":["EDGE-P-1","EDGE-P-3"]}}
+          "source_basis": {
+            "source_ptr": "/submitted_evidence",
+            "subject": "EDGE-P-2",
+            "field": "submitted_evidence",
+            "difference": "missing_evidence"
+          },
+          "decision": "EDGE-P-2.submitted_evidence:missing_evidence。evidenceをholdしscope外挿・実作用なし。"
         }
       ],
       [
@@ -2754,15 +2894,17 @@
         {
           "scenario_class": "negative",
           "condition": "証拠identityの元辺対応を独立mapへ結び、集合targetだけで別辺証拠を同じ辺にしない。",
-          "decision": "L5 edge_binding@evidence_failure: EDGE-P-2.edge_identity を失敗返却。success不可。",
-          "findings": [
-            "edge_binding|evidence_edge_binding+identity=result_not_corresponding@evidence_failure"
-          ],
           "l5_refs": [
             "/contract_views/N01/failure_rules/4"
           ],
           "verification_status": "unverified",
-          "source_basis": {"packet_pointer":"/original_evidence/1/edge_identity","subject":"EDGE-P-2","field":"edge_identity","baseline":{"value":"EDGE-P-2"},"observed":{"value":"OTHER-EDGE"}}
+          "source_basis": {
+            "source_ptr": "/original_evidence/1/edge_identity",
+            "subject": "EDGE-P-2",
+            "field": "edge_identity",
+            "difference": "foreign_target"
+          },
+          "decision": "EDGE-P-2.edge_identity:foreign_target。evidenceをholdしscope外挿・実作用なし。"
         }
       ],
       [
@@ -2786,15 +2928,17 @@
         {
           "scenario_class": "negative",
           "condition": "件数/別scope/fixtureだけで全構成完了claimを拒否。",
-          "decision": "L5 required_evidence_set@composite_failure: EDGE-P-2.original_evidence 欠落 EDGE-P-2 を失敗返却。success不可。",
-          "findings": [
-            "required_evidence_set|needed_evidence+exact_set=result_not_corresponding@composite_failure"
-          ],
           "l5_refs": [
             "/contract_views/N01/failure_rules/0"
           ],
           "verification_status": "unverified",
-          "source_basis": {"packet_pointer":"/original_evidence","subject":"EDGE-P-2","field":"original_evidence 欠落 EDGE-P-2","baseline":{"members":["EDGE-P-1","EDGE-P-2","EDGE-P-3"]},"observed":{"members":["EDGE-P-1","EDGE-P-3"]}}
+          "source_basis": {
+            "source_ptr": "/original_evidence",
+            "subject": "EDGE-P-2",
+            "field": "original_evidence",
+            "difference": "missing_evidence"
+          },
+          "decision": "EDGE-P-2.original_evidence:missing_evidence。evidenceをholdしscope外挿・実作用なし。"
         }
       ],
       [
@@ -2818,15 +2962,17 @@
         {
           "scenario_class": "negative",
           "condition": "件数/別scope/fixtureだけで全構成完了claimを拒否。",
-          "decision": "L5 evidence_target@evidence_failure: EDGE-P-2.scope を失敗返却。success不可。",
-          "findings": [
-            "evidence_target|evidence_target_{identity}+field_name=field_result_not_corresponding@evidence_failure"
-          ],
           "l5_refs": [
             "/contract_views/N01/failure_rules/1"
           ],
           "verification_status": "unverified",
-          "source_basis": {"packet_pointer":"/original_evidence/1/target/scope","subject":"EDGE-P-2","field":"scope","baseline":{"value":"PRODUCT-P/selected-flow"},"observed":{"value":"OTHER-SCOPE"}}
+          "source_basis": {
+            "source_ptr": "/original_evidence/1/target/scope",
+            "subject": "EDGE-P-2",
+            "field": "scope",
+            "difference": "foreign_target"
+          },
+          "decision": "EDGE-P-2.scope:foreign_target。evidenceをholdしscope外挿・実作用なし。"
         }
       ],
       [
@@ -2848,13 +2994,17 @@
         {
           "scenario_class": "negative",
           "condition": "件数/別scope/fixtureだけで全構成完了claimを拒否。",
-          "decision": "claims.fixture_all_connections_complete の対象外/未観測を保持し、scope外挿と実作用を認めない。",
-          "findings": [],
           "l5_refs": [
             "/contract_views/N01/evidence_predicate"
           ],
           "verification_status": "unverified",
-          "source_basis": {"packet_pointer":"/claims/fixture_all_connections_complete","subject":"claims","field":"fixture_all_connections_complete","baseline":{"value":false},"observed":{"value":true}}
+          "source_basis": {
+            "source_ptr": "/claims/fixture_all_connections_complete",
+            "subject": "claims",
+            "field": "fixture_all_connections_complete",
+            "difference": "unsupported_claim_asserted"
+          },
+          "decision": "claims.fixture_all_connections_complete:unsupported_claim_asserted。evidenceをholdしscope外挿・実作用なし。"
         }
       ],
       [
@@ -2876,13 +3026,17 @@
         {
           "scenario_class": "normal",
           "condition": "技術終端と元業務未受入/必要閉包/未選択交換を分ける。再送004は当該選択のみ。",
-          "decision": "技術終端と業務未受入を分け、元business record/ownerを保ち、Acceptedを生成しない。",
-          "findings": [],
           "l5_refs": [
             "/contract_views/B01/acceptance"
           ],
           "verification_status": "unverified",
-          "source_basis": {"packet_pointer":"/original_business_record","subject":"business record","field":"基準宣言","baseline":{"value":{"acceptance_ref":null,"owner":"original-business-owner","requirement_adoption":"not_generated","state":"not_accepted"}},"observed":{"value":{"acceptance_ref":null,"owner":"original-business-owner","requirement_adoption":"not_generated","state":"not_accepted"}}}
+          "source_basis": {
+            "source_ptr": "/original_business_record",
+            "subject": "business record",
+            "field": "acceptance state",
+            "difference": "business_not_accepted"
+          },
+          "decision": "技術終端と業務未受入を分け、Acceptedを生成せず元ownerの判断を残す。"
         }
       ],
       [
@@ -2906,15 +3060,17 @@
         {
           "scenario_class": "negative",
           "condition": "CONNECTが元業務判断/採否/受入を代筆しない。",
-          "decision": "L5 business_content@business_failure: submitted_business_record.owner を失敗返却。Accepted生成なし。",
-          "findings": [
-            "business_content|business_content+record=result_not_corresponding@business_failure"
-          ],
           "l5_refs": [
             "/contract_views/B01/failure_rules/1"
           ],
           "verification_status": "unverified",
-          "source_basis": {"packet_pointer":"/submitted_business_record/owner","subject":"submitted_business_record","field":"owner","baseline":{"value":"original-business-owner"},"observed":{"value":"CONNECT-GENERATED"}}
+          "source_basis": {
+            "source_ptr": "/submitted_business_record/owner",
+            "subject": "submitted_business_record",
+            "field": "owner",
+            "difference": "business_owner_overridden"
+          },
+          "decision": "submitted_business_record.owner:business_owner_overridden。元業務ownerへ返しAcceptedを生成しない。"
         }
       ],
       [
@@ -2938,15 +3094,17 @@
         {
           "scenario_class": "negative",
           "condition": "CONNECTが元業務判断/採否/受入を代筆しない。",
-          "decision": "L5 business_content@business_failure: submitted_business_record.state を失敗返却。Accepted生成なし。",
-          "findings": [
-            "business_content|business_content+record=result_not_corresponding@business_failure"
-          ],
           "l5_refs": [
             "/contract_views/B01/failure_rules/1"
           ],
           "verification_status": "unverified",
-          "source_basis": {"packet_pointer":"/submitted_business_record/state","subject":"submitted_business_record","field":"state","baseline":{"value":"not_accepted"},"observed":{"value":"CONNECT-GENERATED"}}
+          "source_basis": {
+            "source_ptr": "/submitted_business_record/state",
+            "subject": "submitted_business_record",
+            "field": "state",
+            "difference": "business_state_overridden"
+          },
+          "decision": "submitted_business_record.state:business_state_overridden。元業務ownerへ返しAcceptedを生成しない。"
         }
       ],
       [
@@ -2970,15 +3128,17 @@
         {
           "scenario_class": "negative",
           "condition": "CONNECTが元業務判断/採否/受入を代筆しない。",
-          "decision": "L5 business_content@business_failure: submitted_business_record.requirement_adoption を失敗返却。Accepted生成なし。",
-          "findings": [
-            "business_content|business_content+record=result_not_corresponding@business_failure"
-          ],
           "l5_refs": [
             "/contract_views/B01/failure_rules/1"
           ],
           "verification_status": "unverified",
-          "source_basis": {"packet_pointer":"/submitted_business_record/requirement_adoption","subject":"submitted_business_record","field":"requirement_adoption","baseline":{"value":"not_generated"},"observed":{"value":"CONNECT-GENERATED"}}
+          "source_basis": {
+            "source_ptr": "/submitted_business_record/requirement_adoption",
+            "subject": "submitted_business_record",
+            "field": "requirement_adoption",
+            "difference": "business_requirement_adoption_overridden"
+          },
+          "decision": "submitted_business_record.requirement_adoption:business_requirement_adoption_overridden。元業務ownerへ返しAcceptedを生成しない。"
         }
       ],
       [
@@ -3002,15 +3162,17 @@
         {
           "scenario_class": "negative",
           "condition": "CONNECTが元業務判断/採否/受入を代筆しない。",
-          "decision": "L5 business_content@business_failure: submitted_business_record.acceptance_ref を失敗返却。Accepted生成なし。",
-          "findings": [
-            "business_content|business_content+record=result_not_corresponding@business_failure"
-          ],
           "l5_refs": [
             "/contract_views/B01/failure_rules/1"
           ],
           "verification_status": "unverified",
-          "source_basis": {"packet_pointer":"/submitted_business_record/acceptance_ref","subject":"submitted_business_record","field":"acceptance_ref","baseline":{"value":null},"observed":{"value":"CONNECT-GENERATED"}}
+          "source_basis": {
+            "source_ptr": "/submitted_business_record/acceptance_ref",
+            "subject": "submitted_business_record",
+            "field": "acceptance_ref",
+            "difference": "business_acceptance_ref_overridden"
+          },
+          "decision": "submitted_business_record.acceptance_ref:business_acceptance_ref_overridden。元業務ownerへ返しAcceptedを生成しない。"
         }
       ],
       [
@@ -3034,15 +3196,17 @@
         {
           "scenario_class": "negative",
           "condition": "交換006は選択操作時に限る。",
-          "decision": "L5 dependency_content@dependency_failure: CONNECT006-unselected.required_contracts 追加 CONNECT006-unselected を失敗返却。Accepted生成なし。",
-          "findings": [
-            "dependency_content|dependency_content+record=result_not_corresponding@dependency_failure"
-          ],
           "l5_refs": [
             "/contract_views/B01/failure_rules/2"
           ],
           "verification_status": "unverified",
-          "source_basis": {"packet_pointer":"/submitted_dependency/required_contracts","subject":"CONNECT006-unselected","field":"required_contracts 追加 CONNECT006-unselected","baseline":{"members":["CONNECT001","CONNECT002","CONNECT003","CONNECT004-selected-retry","CONNECT005","HARNESS010","HARNESS011","endpoint-contracts","SEC-operation-contract"]},"observed":{"members":["CONNECT001","CONNECT002","CONNECT003","CONNECT004-selected-retry","CONNECT005","HARNESS010","HARNESS011","endpoint-contracts","SEC-operation-contract","CONNECT006-unselected"]}}
+          "source_basis": {
+            "source_ptr": "/submitted_dependency/required_contracts",
+            "subject": "unselected dependency",
+            "field": "required_contracts",
+            "difference": "unselected_requirement_added"
+          },
+          "decision": "unselected dependency.required_contracts:unselected_requirement_added。元業務ownerへ返しAcceptedを生成しない。"
         }
       ],
       [
@@ -3066,15 +3230,17 @@
         {
           "scenario_class": "negative",
           "condition": "未棚卸の全接続完成待ちを当該閉包へ追加しない。",
-          "decision": "L5 dependency_content@dependency_failure: UNSELECTED-Q.selected_edges 追加 UNSELECTED-Q を失敗返却。Accepted生成なし。",
-          "findings": [
-            "dependency_content|dependency_content+record=result_not_corresponding@dependency_failure"
-          ],
           "l5_refs": [
             "/contract_views/B01/failure_rules/2"
           ],
           "verification_status": "unverified",
-          "source_basis": {"packet_pointer":"/submitted_dependency/selected_edges","subject":"UNSELECTED-Q","field":"selected_edges 追加 UNSELECTED-Q","baseline":{"members":["EDGE-P-1","EDGE-P-2","EDGE-P-3"]},"observed":{"members":["EDGE-P-1","EDGE-P-2","EDGE-P-3","UNSELECTED-Q"]}}
+          "source_basis": {
+            "source_ptr": "/submitted_dependency/selected_edges",
+            "subject": "unselected connection",
+            "field": "selected_edges",
+            "difference": "unselected_connection_added"
+          },
+          "decision": "unselected connection.selected_edges:unselected_connection_added。元業務ownerへ返しAcceptedを生成しない。"
         }
       ],
       [
@@ -3098,15 +3264,17 @@
         {
           "scenario_class": "negative",
           "condition": "当該必要SEC境界を省いて成立にしない。",
-          "decision": "L5 dependency_content@dependency_failure: SEC-operation-contract.required_contracts 欠落 SEC-operation-contract を失敗返却。Accepted生成なし。",
-          "findings": [
-            "dependency_content|dependency_content+record=result_not_corresponding@dependency_failure"
-          ],
           "l5_refs": [
             "/contract_views/B01/failure_rules/2"
           ],
           "verification_status": "unverified",
-          "source_basis": {"packet_pointer":"/submitted_dependency/required_contracts","subject":"SEC-operation-contract","field":"required_contracts 欠落 SEC-operation-contract","baseline":{"members":["CONNECT001","CONNECT002","CONNECT003","CONNECT004-selected-retry","CONNECT005","HARNESS010","HARNESS011","endpoint-contracts","SEC-operation-contract"]},"observed":{"members":["CONNECT001","CONNECT002","CONNECT003","CONNECT004-selected-retry","CONNECT005","HARNESS010","HARNESS011","endpoint-contracts"]}}
+          "source_basis": {
+            "source_ptr": "/submitted_dependency/required_contracts",
+            "subject": "SEC-operation-contract",
+            "field": "required_contracts",
+            "difference": "required_contract_removed"
+          },
+          "decision": "SEC-operation-contract.required_contracts:required_contract_removed。元業務ownerへ返しAcceptedを生成しない。"
         }
       ],
       [
@@ -3130,15 +3298,17 @@
         {
           "scenario_class": "negative",
           "condition": "技術receiptでAccepted/全未棚卸接続完成待ち/未選択交換必須claimを拒否。",
-          "decision": "L5 business_content@business_failure: submitted_business_record.state を失敗返却。Accepted生成なし。",
-          "findings": [
-            "business_content|business_content+record=result_not_corresponding@business_failure"
-          ],
           "l5_refs": [
             "/contract_views/B01/failure_rules/1"
           ],
           "verification_status": "unverified",
-          "source_basis": {"packet_pointer":"/submitted_business_record/state","subject":"submitted_business_record","field":"state","baseline":{"value":"not_accepted"},"observed":{"value":"accepted"}}
+          "source_basis": {
+            "source_ptr": "/submitted_business_record/state",
+            "subject": "submitted_business_record",
+            "field": "state",
+            "difference": "business_state_overridden"
+          },
+          "decision": "submitted_business_record.state:business_state_overridden。元業務ownerへ返しAcceptedを生成しない。"
         }
       ],
       [
@@ -3162,15 +3332,17 @@
         {
           "scenario_class": "negative",
           "condition": "技術receiptでAccepted/全未棚卸接続完成待ち/未選択交換必須claimを拒否。",
-          "decision": "L5 dependency_content@dependency_failure: UNSELECTED-Q.selected_edges 追加 UNSELECTED-Q を失敗返却。Accepted生成なし。",
-          "findings": [
-            "dependency_content|dependency_content+record=result_not_corresponding@dependency_failure"
-          ],
           "l5_refs": [
             "/contract_views/B01/failure_rules/2"
           ],
           "verification_status": "unverified",
-          "source_basis": {"packet_pointer":"/submitted_dependency/selected_edges","subject":"UNSELECTED-Q","field":"selected_edges 追加 UNSELECTED-Q","baseline":{"members":["EDGE-P-1","EDGE-P-2","EDGE-P-3"]},"observed":{"members":["EDGE-P-1","EDGE-P-2","EDGE-P-3","UNSELECTED-Q"]}}
+          "source_basis": {
+            "source_ptr": "/submitted_dependency/selected_edges",
+            "subject": "unselected connection",
+            "field": "selected_edges",
+            "difference": "unselected_connection_added"
+          },
+          "decision": "unselected connection.selected_edges:unselected_connection_added。元業務ownerへ返しAcceptedを生成しない。"
         }
       ],
       [
@@ -3194,15 +3366,17 @@
         {
           "scenario_class": "negative",
           "condition": "技術receiptでAccepted/全未棚卸接続完成待ち/未選択交換必須claimを拒否。",
-          "decision": "L5 dependency_content@dependency_failure: CONNECT006-unselected.required_contracts 追加 CONNECT006-unselected を失敗返却。Accepted生成なし。",
-          "findings": [
-            "dependency_content|dependency_content+record=result_not_corresponding@dependency_failure"
-          ],
           "l5_refs": [
             "/contract_views/B01/failure_rules/2"
           ],
           "verification_status": "unverified",
-          "source_basis": {"packet_pointer":"/submitted_dependency/required_contracts","subject":"CONNECT006-unselected","field":"required_contracts 追加 CONNECT006-unselected","baseline":{"members":["CONNECT001","CONNECT002","CONNECT003","CONNECT004-selected-retry","CONNECT005","HARNESS010","HARNESS011","endpoint-contracts","SEC-operation-contract"]},"observed":{"members":["CONNECT001","CONNECT002","CONNECT003","CONNECT004-selected-retry","CONNECT005","HARNESS010","HARNESS011","endpoint-contracts","SEC-operation-contract","CONNECT006-unselected"]}}
+          "source_basis": {
+            "source_ptr": "/submitted_dependency/required_contracts",
+            "subject": "unselected dependency",
+            "field": "required_contracts",
+            "difference": "unselected_requirement_added"
+          },
+          "decision": "unselected dependency.required_contracts:unselected_requirement_added。元業務ownerへ返しAcceptedを生成しない。"
         }
       ]
     ],

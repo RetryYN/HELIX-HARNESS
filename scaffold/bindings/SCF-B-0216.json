@@ -25,8 +25,8 @@
     },
     {
       "path": "docs/helix-connect/L8-unit-verification/composite-edge-terminal.json",
-      "sha256": "eab8c07c187fe84da434f571f3a6faa5e0b393a84841089dc8d8c07082dcd950",
-      "note": "対象U-ID表。91行に固定L9 source差分・L5由来の行別期待を保持"
+      "sha256": "6e8b76ebf3d0d97807145fc9df08fbfc747d1907a0217f98793728789d62f13c",
+      "note": "対象U-ID表。91行に短い差分種別・対象・行別判断を保持し、before/after値とrule proseを再掲しない"
     },
     {
       "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
@@ -63,7 +63,7 @@
     "removed_materialsの6 key、DT-VT-105適用境界、L5 unit_case_refsとL7 test citationの未確認を保持する。",
     "すべての結果をscaffold証拠として扱い、設計/実装ready、製品test、source qualification、要求承認、合格を生成しない。",
     "91 L9 basic branchと既存27 local probeへ固有U-IDを割当て、L5 4 public functionと26 failure_ruleを個々の固定source pointerへ照合する。各ruleはL9 oracleおよび/または既存local expected deltaで根拠を確認し、uncovered=0をvalidatorで確かめる。probe U-IDは既存宣言のラベルであり総数127を変えない。",
-    "91行の期待には固定L9 source packet差分、対象field/edge/状態、基準/観測値、L5返却先を短く保持する。完全同一だった11群60行もsource差分により区別し、validatorが固定sourceから再導出する。"
+    "91行の期待には固定L9 source packet内pointer、対象field/edge/状態、短い差分種別、行別判断を保持する。baseline/observed実値やfixture配列全体をL8へ置かない。L5 rule本文とowner routeを繰り返さず固定L5 refsで照合し、expected.findingsを持たない。validatorは固定sourceからの意味再導出と11群60行の区別、およびfull material非保持を確かめる。"
   ],
   "connections": {
     "consumers": [
@@ -105,7 +105,8 @@
     "scaffold/research/wr257-connect-composite-l8-slim-20261101/evidence-history/4730e5a072b6.json",
     "scaffold/research/wr257-connect-composite-l8-slim-20261101/evidence-history/59a5371cab86.json",
     "scaffold/research/wr257-connect-composite-l8-slim-20261101/static-evidence-measurement-66c0ba8f0011.json",
-    "scaffold/research/wr257-connect-composite-l8-slim-20261101/static-evidence-measurement-eab8c07c187f.json"
+    "scaffold/research/wr257-connect-composite-l8-slim-20261101/static-evidence-measurement-eab8c07c187f.json",
+    "scaffold/research/wr257-connect-composite-l8-slim-20261101/static-evidence-measurement-6e8b76ebf3d0.json"
   ],
   "verification": {
     "evidence_kind": "scaffold",

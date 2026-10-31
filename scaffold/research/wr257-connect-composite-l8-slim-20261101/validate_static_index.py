@@ -4,8 +4,8 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
-import os
 import subprocess
+from collections import Counter
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[3]
@@ -44,30 +44,38 @@ def resolve(doc, pointer: str):
     return value
 
 
-def expectation_rule_label(case_id: str, tag: str, rule_id: str, l5_doc) -> str:
-    rule = next(rule for rule in l5_doc['contract_views'][tag]['failure_rules'] if rule['id'] == rule_id)
-    selector = rule.get('selector', {})
-    literal = selector.get('zero_literal') if 'MISSING' in case_id else selector.get('many_literal') if 'DUPLICATE' in case_id else None
-    trigger = literal or rule.get('when') or selector.get('kind', 'rule_trigger')
-    return f"{rule_id}|{rule.get('area')}+{rule.get('field')}={trigger}@{rule.get('owner_route')}"
-
-
 def derive_case_expectation(case_id: str, function_ref: str, rule_refs: list[str], scenario_basis: str, l5_doc) -> dict:
     if rule_refs:
         tag = case_id.split('-')[1]
         indexes = {rule['id']: i for i, rule in enumerate(l5_doc['contract_views'][tag]['failure_rules'])}
-        return {'scenario_class': 'negative', 'condition': scenario_basis, 'decision': '列挙したL5 findingを宣言routeへ返し、terminal successを認めない。', 'findings': [expectation_rule_label(case_id, tag, ref.split(':', 1)[1], l5_doc) for ref in rule_refs], 'l5_refs': [f'/contract_views/{tag}/failure_rules/{indexes[ref.split(":", 1)[1]]}' for ref in rule_refs], 'verification_status': 'unverified'}
+        return {'scenario_class': 'negative', 'condition': scenario_basis, 'l5_refs': [f'/contract_views/{tag}/failure_rules/{indexes[ref.split(":", 1)[1]]}' for ref in rule_refs], 'verification_status': 'unverified'}
     if function_ref == 'FN-C007-01':
-        return {'scenario_class': 'normal', 'condition': scenario_basis, 'decision': '宣言された各辺の定義・receipt一対一性・条件・mappingが揃う場合だけfixture terminal successとする。', 'findings': [], 'l5_refs': ['/contract_views/F01/terminal_predicate'], 'verification_status': 'unverified'}
+        return {'scenario_class': 'normal', 'condition': scenario_basis, 'l5_refs': ['/contract_views/F01/terminal_predicate'], 'verification_status': 'unverified'}
     if function_ref == 'FN-C007-02':
-        return {'scenario_class': 'negative', 'condition': scenario_basis, 'decision': '中間故障を停止位置として保持し、先行成功と未完義務/ownerを残し、後続attemptを実行済みにしない。', 'findings': [], 'l5_refs': ['/contract_views/F02'], 'verification_status': 'unverified'}
+        return {'scenario_class': 'negative', 'condition': scenario_basis, 'l5_refs': ['/contract_views/F02'], 'verification_status': 'unverified'}
     if function_ref == 'FN-C007-03' and 'EXACT-DECLARED-SCOPE' in case_id:
-        return {'scenario_class': 'normal', 'condition': scenario_basis, 'decision': '宣言された対象scopeの必要evidenceと同対象の境界情報が揃う場合だけfixture correspondenceとする。', 'findings': [], 'l5_refs': ['/contract_views/N01/evidence_predicate'], 'verification_status': 'unverified'}
+        return {'scenario_class': 'normal', 'condition': scenario_basis, 'l5_refs': ['/contract_views/N01/evidence_predicate'], 'verification_status': 'unverified'}
     if function_ref == 'FN-C007-03':
-        return {'scenario_class': 'negative', 'condition': scenario_basis, 'decision': 'fixture全体の完了を根拠に対象scopeを拡張せず、未選択対象や実source資格を成立させない。', 'findings': [], 'l5_refs': ['/contract_views/N01/evidence_predicate'], 'verification_status': 'unverified'}
+        return {'scenario_class': 'negative', 'condition': scenario_basis, 'l5_refs': ['/contract_views/N01/evidence_predicate'], 'verification_status': 'unverified'}
     if function_ref == 'FN-C007-04':
-        return {'scenario_class': 'normal', 'condition': scenario_basis, 'decision': '技術終端と業務未受入を分け、元business record/ownerを保ち、Acceptedを生成しない。', 'findings': [], 'l5_refs': ['/contract_views/B01/acceptance'], 'verification_status': 'unverified'}
+        return {'scenario_class': 'normal', 'condition': scenario_basis, 'l5_refs': ['/contract_views/B01/acceptance'], 'verification_status': 'unverified'}
     raise AssertionError((case_id, function_ref, rule_refs))
+
+
+def historical_expectation_group_key(case_id: str, expected: dict, rule_refs: list[str], l5_doc) -> str:
+    """Reconstruct earlier identical expectations without storing repeated rule prose in L8."""
+    tag = case_id.split('-')[1]
+    prior_findings = []
+    for ref in rule_refs:
+        rule_id = ref.split(':', 1)[1]
+        rule = next(item for item in l5_doc['contract_views'][tag]['failure_rules'] if item['id'] == rule_id)
+        selector = rule.get('selector', {})
+        literal = selector.get('zero_literal') if 'MISSING' in case_id else selector.get('many_literal') if 'DUPLICATE' in case_id else None
+        trigger = literal or rule.get('when') or selector.get('kind', 'rule_trigger')
+        prior_findings.append(f"{rule_id}|{rule.get('area')}+{rule.get('field')}={trigger}@{rule.get('owner_route')}")
+    key = {name: expected[name] for name in ('scenario_class', 'condition', 'l5_refs', 'verification_status')}
+    key['prior_derived_rule_labels'] = prior_findings
+    return json.dumps(key, ensure_ascii=False, sort_keys=True)
 
 
 def _identity(item):
@@ -110,18 +118,63 @@ def _source_changes(before, after, pointer=''):
     return [] if before == after else [(pointer, before, after)]
 
 
-def _compact(value):
-    if isinstance(value, dict):
-        if set(value) == {'value'}:
-            return _compact(value['value'])
-        if set(value) == {'order'}:
-            return '順序[' + '、'.join(value['order']) + ']'
-        if set(value) == {'members'}:
-            return '[' + '、'.join(value['members']) + ']'
-        return '{…}'
-    if isinstance(value, list):
-        return '[' + '、'.join(map(str, value)) + ']'
-    return str(value)
+def _semantic_difference(pointer: str, before, after) -> str:
+    tokens = pointer.strip('/').split('/') if pointer else []
+    field = tokens[-1] if tokens else 'declaration'
+    if isinstance(before, dict) and set(before) == {'order'}:
+        return 'order_reversed'
+    if isinstance(before, dict) and set(before) == {'members'}:
+        left, right = Counter(before['members']), Counter(after['members'])
+        removed, added = list((left - right).elements()), list((right - left).elements())
+        if 'original_receipts' in tokens or 'submitted_receipts' in tokens:
+            if removed and not added:
+                return 'missing_receipt'
+            if added and not removed:
+                return 'duplicate_receipt' if any(right[x] > 1 for x in added) else 'unexpected_receipt'
+        if 'original_evidence' in tokens or 'submitted_evidence' in tokens:
+            return 'missing_evidence' if removed else 'unexpected_evidence'
+        if field == 'original_edges':
+            return 'edge_definition_missing' if removed else 'unexpected_edge_definition'
+        if field == 'required_contracts':
+            return 'unselected_requirement_added' if added else 'required_contract_removed'
+        if field == 'selected_edges':
+            return 'unselected_connection_added' if added else 'selected_connection_removed'
+        if field in ('submitted_prior_successes', 'submitted_unfinished'):
+            return 'trace_entry_erased'
+        return 'item_missing' if removed else 'item_added'
+    if field == 'cause':
+        allowed = {'timeout', 'digest_conflict', 'expiry', 'cancelled', 'permission_revoked', 'partial_success', 'unknown'}
+        return f'failure_cause_{after}' if after in allowed else 'failure_cause_changed'
+    if 'claim' in field or tokens[:1] == ['claims']:
+        return 'unsupported_claim_asserted' if after is True else 'unsupported_claim_changed'
+    if after is None or after == '<absent>':
+        return 'target_missing'
+    if isinstance(after, str) and (after.startswith('OTHER-') or after.startswith('UNSEEN-')):
+        return 'foreign_target'
+    state_kinds = {
+        'registration_state': 'registration_unknown',
+        'compatibility_state': 'compatibility_stale',
+        'expiry_state': 'expiry_invalid',
+        'permission_state': 'permission_revoked',
+        'result_state': 'result_partial',
+        'receiver_effect_state': 'receiver_effect_unobserved',
+        'observation_state': 'observation_not_executed',
+    }
+    if field in state_kinds:
+        return state_kinds[field]
+    if field == 'source_operation' and after is None:
+        return 'operation_mapping_missing'
+    if field in ('source_operation', 'source_endpoint'):
+        return 'operation_mapping_foreign'
+    if field in ('owner', 'state', 'requirement_adoption', 'acceptance_ref') and tokens[:1] == ['submitted_business_record']:
+        return f'business_{field}_overridden'
+    if len(tokens) == 2 and tokens[0] in ('original_downstream_attempts', 'submitted_downstream_attempts') and after:
+        return 'unauthorized_attempt_present'
+    if field == 'scope' and isinstance(after, str) and after.startswith('OTHER-'):
+        return 'foreign_scope'
+    if field in ('composite_identity', 'composite_revision', 'requirement_revision', 'connection_exact_set', 'endpoint_registration_revisions', 'operation_attempts', 'effect_stop_ref'):
+        return 'foreign_evidence_target' if after is not None else 'evidence_target_missing'
+    return 'field_changed'
 
 
 def derive_case_focus(case_id: str, tag: str, packet: dict, baseline_packet: dict,
@@ -133,32 +186,38 @@ def derive_case_focus(case_id: str, tag: str, packet: dict, baseline_packet: dic
     ))
     if not changes:
         if tag == 'F01':
-            pointer, value, subject = '/original_edges', [x['edge_identity'] for x in packet.get('original_edges', [])], 'declared edge set'
+            pointer, subject, field, difference = '/original_edges', 'declared edge set', 'edge declaration', 'baseline_fixture'
         elif tag == 'F02':
-            pointer, value, subject = '/original_trace', 'failure/stop trace', 'stop trace'
+            pointer, subject, field, difference = '/original_stop', 'middle stop', 'cause', 'stale_middle_stop'
         elif tag == 'N01':
-            pointer, value, subject = '/original_evidence', [x['identity'] for x in packet.get('original_evidence', [])], 'declared evidence set'
+            pointer, subject, field, difference = '/original_evidence', 'declared evidence set', 'evidence declaration', 'baseline_fixture'
         else:
-            pointer, value, subject = '/original_business_record', packet.get('original_business_record', {}), 'business record'
-        source_basis = {'packet_pointer': pointer, 'subject': subject, 'field': '基準宣言',
-                        'baseline': {'value': value}, 'observed': {'value': value}}
+            pointer, subject, field, difference = '/original_business_record', 'business record', 'acceptance state', 'business_not_accepted'
+        source_basis = {'source_ptr': pointer, 'subject': subject, 'field': field, 'difference': difference}
     else:
         pointer, before, after = changes[0]
         tokens = pointer.strip('/').split('/') if pointer else []
         subject = '対象record'
         if isinstance(before, dict) and set(before) == {'members'}:
-            old, new = set(before['members']), set(after['members'])
-            missing, added = sorted(old - new), sorted(new - old)
+            old, new = Counter(before['members']), Counter(after['members'])
+            missing, added = list((old - new).elements()), list((new - old).elements())
             if missing:
-                subject = missing[0] if len(missing) == 1 else '対象集合'
-                detail = '欠落 ' + '、'.join(missing)
+                if all(str(item).startswith('EDGE-') for item in missing):
+                    subject = '+'.join(sorted(set(map(str, missing))))
+                elif len(missing) == 1:
+                    subject = str(missing[0])
+                else:
+                    subject = '対象集合'
             elif added:
-                subject = added[0] if len(added) == 1 else '対象集合'
-                detail = '追加 ' + '、'.join(added)
-            else:
-                detail = '順序変更'
-            field = tokens[-1] + ' ' + detail
-            expected, observed = {'members': before['members']}, {'members': after['members']}
+                if tokens[-1] == 'selected_edges':
+                    subject = 'unselected connection'
+                elif len(added) == 1 and str(added[0]).startswith('EDGE-'):
+                    subject = 'unselected connection'
+                else:
+                    subject = 'unselected dependency'
+            if not missing and not added:
+                subject = 'declared order'
+            field = tokens[-1]
         else:
             if tokens and tokens[-1] in packet and isinstance(packet[tokens[-1]], dict):
                 subject = tokens[-1]
@@ -183,6 +242,8 @@ def derive_case_focus(case_id: str, tag: str, packet: dict, baseline_packet: dic
                             subject = packet[parent][int(token)].get('edge_identity', subject)
                         except (KeyError, IndexError, TypeError):
                             pass
+            if len(tokens) == 2 and tokens[0] in ('original_downstream_attempts', 'submitted_downstream_attempts'):
+                subject = tokens[1]
             for end in range(len(tokens) - 1, 0, -1):
                 try:
                     record = resolve(packet, '/' + '/'.join(tokens[:end]))
@@ -204,32 +265,21 @@ def derive_case_focus(case_id: str, tag: str, packet: dict, baseline_packet: dic
             if subject == '対象record' and tokens and tokens[0] in ('original_stop', 'submitted_stop'):
                 subject = '停止辺'
             field = tokens[-1] if tokens else 'record'
-            expected, observed = {'value': before}, {'value': after}
-        source_basis = {'packet_pointer': pointer, 'subject': str(subject), 'field': field,
-                        'baseline': expected, 'observed': observed}
+        difference = _semantic_difference(pointer, before, after)
+        source_basis = {'source_ptr': pointer, 'subject': str(subject), 'field': field, 'difference': difference}
 
-    if rule_refs:
-        rules = []
-        for ref in rule_refs:
-            rule_id = ref.split(':', 1)[1]
-            rule = next(item for item in l5_doc['contract_views'][tag]['failure_rules'] if item['id'] == rule_id)
-            rules.append(f"{rule_id}@{rule['owner_route']}")
-        outcome = 'Accepted生成なし' if tag == 'B01' else 'success不可'
-        judgment = f"L5 {','.join(rules)}: {source_basis['subject']}.{source_basis['field']} を失敗返却。{outcome}。"
+    if source_basis['difference'] == 'baseline_fixture':
+        judgment = '宣言済み三辺の必要条件が揃う範囲でfixture correspondenceを示す。'
+    elif source_basis['difference'] == 'business_not_accepted':
+        judgment = '技術終端と業務未受入を分け、Acceptedを生成せず元ownerの判断を残す。'
+    elif tag == 'F01':
+        judgment = f"{source_basis['subject']}.{source_basis['field']}:{source_basis['difference']}。構成体をholdしterminal success不可。"
+    elif tag == 'F02':
+        judgment = f"{source_basis['subject']}.{source_basis['field']}:{source_basis['difference']}。停止位置・先行成功・未完・ownerを残し、後続未実行。"
+    elif tag == 'N01':
+        judgment = f"{source_basis['subject']}.{source_basis['field']}:{source_basis['difference']}。evidenceをholdしscope外挿・実作用なし。"
     else:
-        if source_basis['field'] == '基準宣言':
-            judgment = derive_case_expectation(case_id, f'FN-C007-{["F01", "F02", "N01", "B01"].index(tag)+1:02d}', [], '', l5_doc)['decision']
-        elif tag == 'F02':
-            judgment = (f"{source_basis['subject']} cause={_compact(source_basis['observed'])}: 停止位置を保持し、"
-                        "先行成功・未完義務・ownerを残して後続attemptを実行済みにしない。")
-        elif tag == 'N01':
-            judgment = (f"{source_basis['subject']}.{source_basis['field']} の対象外/未観測を保持し、"
-                        "scope外挿と実作用を認めない。")
-        elif tag == 'B01':
-            judgment = (f"技術終端でも業務未受入を保ち、{source_basis['subject']}.{source_basis['field']} を"
-                        "業務ownerへ返し、Acceptedを生成しない。")
-        else:
-            judgment = derive_case_expectation(case_id, f'FN-C007-{["F01", "F02", "N01", "B01"].index(tag)+1:02d}', [], '', l5_doc)['decision']
+        judgment = f"{source_basis['subject']}.{source_basis['field']}:{source_basis['difference']}。元業務ownerへ返しAcceptedを生成しない。"
     return {'source_basis': source_basis, 'decision': judgment}
 
 
@@ -307,13 +357,44 @@ def main() -> None:
         assert fn in function_refs
         rows_by_uid[uid] = row
         derived = derive_case_expectation(row[0], fn, rule_refs, row[8], l5)
-        assert {key: value for key, value in expected.items() if key not in ('source_basis', 'decision')} == {key: value for key, value in derived.items() if key != 'decision'}
+        assert set(expected) == set(derived) | {'source_basis', 'decision'}
+        assert expected == {**derived, 'source_basis': expected.get('source_basis'), 'decision': expected.get('decision')}
         _, _, source_case = l9_by_id[row[0]]
         packet = json.loads(source_case['independent_source_packet']['raw_utf8'])
         focus = derive_case_focus(row[0], row[0].split('-')[1], packet,
                                   baseline_packet_by_tag[row[0].split('-')[1]], rule_refs, l5)
         assert expected['source_basis'] == focus['source_basis']
         assert expected['decision'] == focus['decision']
+        assert len(expected['decision']) <= 180
+        basis = expected['source_basis']
+        assert set(basis) == {'source_ptr', 'subject', 'field', 'difference'}
+        assert all(isinstance(value, str) for value in basis.values())
+        assert all(len(basis[key]) <= limit for key, limit in (('source_ptr', 180), ('subject', 80), ('field', 80), ('difference', 40)))
+        assert basis['difference'] in {
+            'baseline_fixture', 'stale_middle_stop', 'business_not_accepted', 'missing_receipt',
+            'duplicate_receipt', 'unexpected_receipt', 'missing_evidence', 'unexpected_evidence',
+            'edge_definition_missing', 'unexpected_edge_definition', 'unselected_requirement_added',
+            'required_contract_removed', 'unselected_connection_added', 'selected_connection_removed',
+            'trace_entry_erased', 'order_reversed', 'unsupported_claim_asserted',
+            'unsupported_claim_changed', 'target_missing', 'foreign_target', 'registration_unknown',
+            'compatibility_stale', 'expiry_invalid', 'permission_revoked', 'result_partial',
+            'receiver_effect_unobserved', 'observation_not_executed', 'operation_mapping_missing',
+            'operation_mapping_foreign', 'unauthorized_attempt_present', 'field_changed',
+            'failure_cause_timeout', 'failure_cause_digest_conflict', 'failure_cause_expiry',
+            'failure_cause_cancelled', 'failure_cause_permission_revoked',
+            'failure_cause_partial_success', 'failure_cause_unknown', 'failure_cause_changed',
+            'business_owner_overridden', 'business_state_overridden',
+            'business_requirement_adoption_overridden', 'business_acceptance_ref_overridden',
+            'item_missing', 'item_added',
+        }
+        try:
+            resolve(packet, basis['source_ptr'])
+        except (KeyError, IndexError, TypeError, ValueError):
+            raise AssertionError((row[0], basis['source_ptr']))
+        assert 'findings' not in expected
+        rule_objects = l5['contract_views'][row[0].split('-')[1]]['failure_rules']
+        assert '|' not in expected['decision'] and '@' not in expected['decision']
+        assert not any(rule.get('owner_route') and rule['owner_route'] in expected['decision'] for rule in rule_objects)
         assert expected['scenario_class'] in expected_class_counts
         expected_class_counts[expected['scenario_class']] += 1
         assert expected['verification_status'] == 'unverified'
@@ -321,7 +402,7 @@ def main() -> None:
         assert all(resolve(l5, pointer) is not None for pointer in expected['l5_refs'])
         assert expected['verification_status'] == 'unverified'
         branch_case_ids.append(row[0])
-        group_key = (row[8], json.dumps(derived, ensure_ascii=False, sort_keys=True))
+        group_key = (row[8], historical_expectation_group_key(row[0], derived, rule_refs, l5))
         duplicate_expectation_groups.setdefault(group_key, []).append((row[0], focus))
         tag = row[0].split('-')[1]
         ob_index = next(i for i, ob in enumerate(l9['verification_obligations']) if ob['id'].endswith('-' + tag))
@@ -515,7 +596,7 @@ def main() -> None:
             'all 27 local probe IDs, roles, source cases, patch paths and independent expected deltas match prior bytes; L4/L9 source_ref revision+pointer resolve against exact pins',
             '1 source reuse, 7 primitive cases and 1 typed carrier boundary retain identity and intended oracle boundary',
             '91 L9 branches and 27 predeclared local probes carry U-IDs without changing the 127 declaration count; each branch row has a short L5-derived expected decision, L5 citation, normal/negative class, and unverified state (3 normal, 88 negative)',
-            'all 91 branch expectations include source-packet field/target/baseline/observed values and a row-specific expected decision; 11 previously duplicated expectation groups (60 rows) are distinguished and validated against fixed L9 packet bytes and L5 return routes',
+            'all 91 branch expectations retain only source pointer, target, field and a bounded semantic difference category; 11 previously identical groups (60 rows) are distinguished without before/after values, full arrays or repeated L5 rule prose',
             'all four L5 public functions map by exact source refs; all 26 L5 failure rules are covered by fixed L9 oracle branches and/or predeclared local expected deltas',
             'L5 has no unit_case_refs; absence is recorded without synthetic references',
             'fixture hashes are absent from case/probe inventories; retained digests are source/authority pins',
