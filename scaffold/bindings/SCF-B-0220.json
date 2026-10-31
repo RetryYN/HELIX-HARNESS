@@ -30,8 +30,8 @@
     },
     {
       "path": "docs/helix-security/L8-unit-verification/revoke-quarantine-propagation.json",
-      "sha256": "27531334c998af878f98714b89878ca23c41f75cfd130bae13c817eee9d1ce2c",
-      "note": "Pinned source for static SEC009 L5/L8 ID, class, contract-source, or child-check comparison; no runtime semantics are executed. Current pin updated to a585b1c7ad53a6043caa9944aa41a804d026376d42a76e949c0c8f1a87061ba3 at source revision 2c8fdde45255e07794ce2cf3153bf696765258b4; previous pin 73f253a76363fe6f936c3f5707c8b3e43f46f75bec5483925fad96982740293c at source revision d8e48de751c04f4250326dd049763c08dce3eaac is retained. Counterexamples now state row-specific target/discrepancy plus L4 class meaning, and each negative U-ID has resolvable L4/L5 class source pointers; actual conflict values remain explicitly absent where L9 given does not provide them. Current pin updated to 32901b747531048246aa6149b2619dda0a478fff2037511a8c25ddfff4847f9a at source revision a5d6088b9c8cf1c7da543b75ba2f010c2a6db183; previous pin a585b1c7ad53a6043caa9944aa41a804d026376d42a76e949c0c8f1a87061ba3 at source revision 2c8fdde45255e07794ce2cf3153bf696765258b4 is retained. Explicit L8 U-ID rows retain function_ref matching their resolved L5 owner, as required by CHK-NEG-4WAY-MATCH. Current pin refreshed after translating all 277 negative row counterexamples into Japanese without changing their source-derived targets, discrepancies, class expectations, rule IDs, or unresolved concrete-value limits. Previous current pin sha256 32901b747531048246aa6149b2619dda0a478fff2037511a8c25ddfff4847f9a at source revision a5d6088b9c8cf1c7da543b75ba2f010c2a6db183 is retained here."
+      "sha256": "91da3af2c6ad997fdf265871f9776c5bed41f196fbccfc2276e1a41f42a267bb",
+      "note": "Pinned source for static SEC009 L5/L8 ID, class, contract-source, or child-check comparison; no runtime semantics are executed. Current pin updated to a585b1c7ad53a6043caa9944aa41a804d026376d42a76e949c0c8f1a87061ba3 at source revision 2c8fdde45255e07794ce2cf3153bf696765258b4; previous pin 73f253a76363fe6f936c3f5707c8b3e43f46f75bec5483925fad96982740293c at source revision d8e48de751c04f4250326dd049763c08dce3eaac is retained. Counterexamples now state row-specific target/discrepancy plus L4 class meaning, and each negative U-ID has resolvable L4/L5 class source pointers; actual conflict values remain explicitly absent where L9 given does not provide them. Current pin updated to 32901b747531048246aa6149b2619dda0a478fff2037511a8c25ddfff4847f9a at source revision a5d6088b9c8cf1c7da543b75ba2f010c2a6db183; previous pin a585b1c7ad53a6043caa9944aa41a804d026376d42a76e949c0c8f1a87061ba3 at source revision 2c8fdde45255e07794ce2cf3153bf696765258b4 is retained. Explicit L8 U-ID rows retain function_ref matching their resolved L5 owner, as required by CHK-NEG-4WAY-MATCH. Current pin refreshed after translating all 277 negative row counterexamples into Japanese without changing their source-derived targets, discrepancies, class expectations, rule IDs, or unresolved concrete-value limits. Previous current pin sha256 32901b747531048246aa6149b2619dda0a478fff2037511a8c25ddfff4847f9a at source revision a5d6088b9c8cf1c7da543b75ba2f010c2a6db183 is retained here. 現行pinはpositive 8件の契約最小期待・共有根拠表を追加したrevision 24d7f00bdca41c3dfb1f3137655ffdbe3674cfb3へ更新。旧revision cb44877e1db60a872f3fa3d241260487028fe159・SHA-256 27531334c998af878f98714b89878ca23c41f75cfd130bae13c817eee9d1ce2c を保持し、新SHA-256 91da3af2c6ad997fdf265871f9776c5bed41f196fbccfc2276e1a41f42a267bb を記録。期待は未観測で個別oracle/test citationはnull。"
     },
     {
       "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
@@ -59,7 +59,7 @@
       "note": "Pinned source for static SEC009 L5/L8 ID, class, contract-source, or child-check comparison; no runtime semantics are executed."
     }
   ],
-  "role": "Reproducible static audit evidence for the SEC009 L5/L8 V-pair, unique U-ID mapping, source-derived negative class projection, positive expectation gaps, and incomplete 4-way checker outcome.",
+  "role": "Reproducible static audit evidence for the SEC009 L5/L8 V-pair, unique U-ID mapping, source-derived negative classes, contract-minimum positive expectations not yet observed, and incomplete 4-way checker outcome.",
   "obligations": [
     "Preserve every existing SEC009 source case ID in L8 case_id and integration_case_ref while assigning a unique U-ID in each unit_cases.id.",
     "Resolve all 285 L8 U-IDs through the L8 shared source index to exactly 285 current L9 integration source IDs and pointers.",
@@ -103,7 +103,11 @@
     "scaffold/research/wr255-sec009-l5l8-audit-20261101/check-child-report.json",
     "scaffold/bindings/SCF-B-0220.json",
     "scaffold/research/wr255-sec009-l5l8-audit-20261101/verification-summary-cb44877e1db6-27531334.json",
-    "scaffold/research/wr255-sec009-l5l8-audit-20261101/check-child-report-cb44877e1db6-27531334.json"
+    "scaffold/research/wr255-sec009-l5l8-audit-20261101/check-child-report-cb44877e1db6-27531334.json",
+    "scaffold/research/wr255-sec009-l5l8-audit-20261101/verification-summary-24d7f00bdca4-91da3af2.json",
+    "scaffold/research/wr255-sec009-l5l8-audit-20261101/check-child-report-24d7f00bdca4-91da3af2.json",
+    "scaffold/research/wr255-sec009-l5l8-audit-20261101/verification-summary-cb44877e1db6-91da3af2.json",
+    "scaffold/research/wr255-sec009-l5l8-audit-20261101/check-child-report-cb44877e1db6-91da3af2.json"
   ],
   "verification": {
     "evidence_kind": "scaffold",

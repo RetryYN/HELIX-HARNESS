@@ -10,7 +10,7 @@ repository rootから次を実行します。
 python3 scaffold/research/wr255-sec009-l5l8-audit-20261101/validate_wr255_l5l8.py
 ```
 
-初回測定はcommit `9dffee8c34` の `verification-summary.json` と `check-child-report.json` に固定してあります。validatorの再測定はこの初回記録を書き換えず、L8 source revisionとSHA-256を含む別file名で追記します。追補には後続source revision `cb44877e1db6`、L8 SHA-256 `27531334c998af878f98714b89878ca23c41f75cfd130bae13c817eee9d1ce2c` の測定を記録します。L4/L5/L8/L9の32 class identity、L5 rule IDの保持、L4/L5 codeとownerの対応、L9 source caseに結びつく285件のU-IDを照合します。negative U-IDの `condition`、`expected`、`expected_preserved` はL4 classと比較します。positive 8件は未確定のまま、各行の `oracle_id` と `test_citation` はnullであることを確認します。
+初回測定はcommit `9dffee8c34` の `verification-summary.json` と `check-child-report.json` に固定してあります。validatorの再測定はこの初回記録を書き換えず、L8 source revisionとSHA-256を含む別file名で追記します。positive最小期待の設計後の追補はsource revision `24d7f00bdca41c3dfb1f3137655ffdbe3674cfb3`、L8 SHA-256 `91da3af2c6ad997fdf265871f9776c5bed41f196fbccfc2276e1a41f42a267bb` に固定されています。commit前に同じbytesを測定した報告も削除せず、そのファイルではpathの最終commit `cb44877e1db6` と作業tree SHA-256 `91da3af2` を別々に記録しています。L4/L5/L8/L9の32 class identity、L5 rule IDの保持、L4/L5 codeとownerの対応、L9 source caseに結びつく285件のU-IDを照合します。negative U-IDの `condition`、`expected`、`expected_preserved` はL4 classと比較します。positive 8件は契約最小期待を設計し、実測未観測としたうえで個別 `oracle_id` と `test_citation` がnullであることを確認します。
 
 ## U-ID表とsource参照
 
@@ -37,7 +37,7 @@ validatorはnegative 277行それぞれのL9 nested pointerを解決します。
 - L4/L9 pair: pass
 - L5/L8 pair: pass
 - 4層matched cases: 0
-- 4層のfailure: 2,235
+- 4層のfailure: 2,243（L9側のpositive期待未反映を含む）
 - positive最小期待の設計済み（実測未観測）: 8
 
-このpair単独の結果ではL9行のcondition/expected/expected_preservedとcompact observationが不足するため、negative行はmatchedになりません。L4/L9補足を組み合わせたoverlayは別の候補と検証結果として扱い、正式な4層検証やsecurity behaviorの証明とはしません。
+このpair単独の結果ではL9行のcondition/expected/expected_preservedとcompact observationが不足するため、行はmatchedになりません。positiveの契約最小期待もL5/L8とL4/L9で別々に起草し、このL5/L8だけの測定ではL9への反映を前提にしません。L4/L9補足を組み合わせたoverlayは別の候補と検証結果として扱い、正式な4層検証やsecurity behaviorの証明とはしません。
