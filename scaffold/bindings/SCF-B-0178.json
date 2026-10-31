@@ -15,7 +15,7 @@
     },
     {
       "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
-      "sha256": "17df9676bfcc82d8d4cd93cc14ae77b5d4b4df2c83d6e7cab015817126bc6103",
+      "sha256": "89ca51b288b5b6cbbdd0fb9b5898aa0dc06cf5059d10f72a8d1f9f28c050d3a6",
       "note": "#3939 merged L4 source: 47 classification classes, including C0584/C0585 composite keys."
     },
     {
@@ -35,7 +35,7 @@
     },
     {
       "path": "docs/helix-os/L9-integration-verification/management-authority-source-record.json",
-      "sha256": "5ee151eeb68209835cf08baa856c2443538e4dac2a46bc64b9e30427abaa99cc",
+      "sha256": "af59963e9bde1e41754bf12737c40448dcbc565f960e10d5aa8d5025f72f7a07",
       "note": "Pinned V-pair source bytes only; L9 expected is consulted only for post-derivation consistency comparison."
     }
   ],
