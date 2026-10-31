@@ -115,7 +115,7 @@ def main():
         checks[f"current_{layer}_only_F03_F04_candidate_changes"] = (validate_uid_table.normalized_pre_slim_l5(current) == validate_uid_table.normalized_pre_slim_l5(prior)) if layer == "L5" else (validate_uid_table.normalized_pre_slim_l8(current) == validate_uid_table.normalized_pre_slim_l8(prior))
         checks[f"historical_{layer}_corrected_hash_matches_WR249_record"] = sha(subprocess.check_output(["git", "show", f"{validate_uid_table.CURRENT_SOURCE_REVISION}:{path}"], cwd=ROOT)) == correction["corrected_candidate"][f"{layer.lower()}_sha256"]
         checks[f"historical_{layer}_matches_WR249_snapshot_hash"] = sha(subprocess.check_output(["git", "show", f"{WR249_BASE}:{path}"], cwd=ROOT)) == correction["prior_candidate_snapshot"][f"{layer.lower()}_sha256"]
-    checks["L4_L9_exact_bytes_unchanged"] = all(sha((ROOT / p).read_bytes()) == sha(subprocess.check_output(["git", "show", f"{MAIN}:{p}"], cwd=ROOT)) for p in (L4, L9))
+    checks["L4_L9_exact_bytes_unchanged"] = all(sha((ROOT / p).read_bytes() if p != L9 else validate_uid_table.precompact_l9_bytes()) == sha(subprocess.check_output(["git", "show", f"{MAIN}:{p}"], cwd=ROOT)) for p in (L4, L9))
     binding = read_json("scaffold/bindings/SCF-B-0210.json")
     checks["binding_id_and_no_scaffold_upstream"] = binding.get("id") == "SCF-B-0210" and all(not x.get("path", "").startswith("scaffold/") for x in binding.get("upstream", []))
     checks["binding_upstream_sha_matches"] = all(sha((ROOT / x["path"]).read_bytes()) == x["sha256"] for x in binding.get("upstream", []))

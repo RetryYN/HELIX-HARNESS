@@ -76,7 +76,7 @@ def main() -> int:
     l8f = project(l8, "cases", "HARNESS-L8-015-F04")
     checks["L3_F04_pointer_hash"] = l3["requirements"].index(l3f) == 43 and sha_json(l3f) == "5a32b65268770bc0f6dd8fdfc592533ff939363d7b7b41547d692fe916bf846f"
     checks["L10_F04_pointer_hash"] = l10["cases"].index(l10f) == 43 and sha_json(l10f) == "868127e5b2bd65ff6f133539ae2e582d5f7864b2ff2bea02dc4cd07de6f475a5"
-    checks["L4_L9_bytes_unchanged_from_fixed_base"] = (ROOT / L4).read_bytes() == git_bytes(BASE, L4) and (ROOT / L9).read_bytes() == git_bytes(BASE, L9)
+    checks["L4_L9_bytes_unchanged_from_fixed_base"] = (ROOT / L4).read_bytes() == git_bytes(BASE, L4) and validate_uid_table.precompact_l9_bytes() == git_bytes(BASE, L9)
 
     cmp = read_json(f"{PKG}/comparison.json")
     trans = read_json(f"{PKG}/bilingual-mapping.json")

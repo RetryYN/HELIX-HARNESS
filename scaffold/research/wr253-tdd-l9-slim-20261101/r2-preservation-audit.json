@@ -1,0 +1,27 @@
+{
+  "schema": "wr253-l9-r1-authority-preservation.v1",
+  "evidence_kind": "scaffold",
+  "authority_effect": "none",
+  "prior_revision": "2968299a71abd6367b0f66827fb9d00caed56a3e",
+  "prior_l9_sha256": "9e0f0b5efd45685d18c2a2b3a39785556a67963449df86907751da8516aa3931",
+  "current_l9_sha256": "fc9857ffab4effa638b32f95a11c0011a66d0f52d3dce32fec4d246171f6d19d",
+  "preserved_authority_source_pins": 14,
+  "current_total_source_pins": 15,
+  "legacy_comparison_count": 4,
+  "source_role_comparison_preserved": "原資料と提出変異の分離とmutation代替の境界を保持し、旧bytes配置説明を撤去後の構成に更新",
+  "validator_sha256": "f5bd5a6820e0ef46e5a00134de2bcf151065755d9e3e794ab07ef2e625bb15ca",
+  "check_child": {
+    "pair_L4_L9": "pass",
+    "pair_L5_L8": "pass",
+    "ownership_cap_failures": 0,
+    "pins_checked": [
+      15,
+      15,
+      25,
+      25
+    ],
+    "pin_failures": 0,
+    "negative_4way_failures": 35
+  },
+  "current_l9_bytes": 59179
+}

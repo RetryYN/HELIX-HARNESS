@@ -41,7 +41,7 @@ def main() -> int:
     checks.update({f"WR253_{k}": v for k, v in validate_uid_table.run_checks().items()})
     l3, l10, l4, l9, l5, l8 = (read(p) for p in (L3, L10, L4, L9, L5, L8))
     baseline_l4, baseline_l9 = git_bytes(L4), git_bytes(L9)
-    checks["L3_L10_L4_L9_bytes_unchanged"] = all((ROOT / p).read_bytes() == git_bytes(p) for p in (L3, L10, L4, L9))
+    checks["L3_L10_L4_L9_bytes_unchanged"] = all(((ROOT / p).read_bytes() if p != L9 else validate_uid_table.precompact_l9_bytes()) == git_bytes(p) for p in (L3, L10, L4, L9))
     blind_path = "scaffold/research/wr243-tdd-f03-l5-l8-20261031/source/wr243-tdd-clean-source-only.json"
     checks["fixed_blind_unchanged"] = (ROOT / blind_path).read_bytes() == git_bytes(blind_path)
     for pkg, files in {

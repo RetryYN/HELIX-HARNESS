@@ -232,45 +232,45 @@
       "unit_case_rows": [
         {
           "id": "HARNESS-L9-015-B01-NORMAL",
-          "source_trace_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/0/normal_fixture/source_packet",
+          "source_trace_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/0/normal_cases/0",
           "counterexample": "正常系: 同一契約を利用者CIへ渡す。",
           "expected": "同一契約の利用者CI利用を支援し、品質・C1・受入を分離。Provisional上限。",
-          "expected_source_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/0/expected_material"
+          "expected_source_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/0/normal_cases/0"
         },
         {
           "id": "HARNESS-L9-015-B01-OS-CI",
-          "source_trace_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/0/normal_variants/0/source_packet",
+          "source_trace_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/0/normal_variant_oracles/0",
           "counterexample": "正常系: 同一契約をOS CIへ渡す。",
           "expected": "同一契約のOS CI利用を支援し、品質・C1・受入を分離。Provisional上限。",
-          "expected_source_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/0/normal_variants/0/expected_material"
+          "expected_source_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/0/normal_variant_oracles/0"
         },
         {
           "id": "HARNESS-L9-015-B01-os_only",
-          "source_trace_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/0/negative_cases/0/source_packet",
+          "source_trace_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/0/negative_cases/0",
           "counterexample": "OS運転なしを理由に利用者CI単独利用を拒む。",
           "expected": "同一契約の利用者CI単独利用を許す。",
-          "expected_source_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/0/negative_cases/0/expected_partial_material"
+          "expected_source_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/0/negative_cases/0"
         },
         {
           "id": "HARNESS-L9-015-B01-cheap_quality_failure",
-          "source_trace_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/0/negative_cases/1/source_packet",
+          "source_trace_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/0/negative_cases/1",
           "counterexample": "必要品質未達を費用・時間改善で成功扱い。",
           "expected": "品質未達を保ち、計測改善から成功を作らない。",
-          "expected_source_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/0/negative_cases/1/expected_partial_material"
+          "expected_source_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/0/negative_cases/1"
         },
         {
           "id": "HARNESS-L9-015-B01-omission_erased",
-          "source_trace_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/0/negative_cases/2/source_packet",
+          "source_trace_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/0/negative_cases/2",
           "counterexample": "C1未回収を消去または回収済み扱い。",
           "expected": "C1未回収を残し、品質・受入へ算入しない。",
-          "expected_source_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/0/negative_cases/2/expected_partial_material"
+          "expected_source_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/0/negative_cases/2"
         },
         {
           "id": "HARNESS-L9-015-B01-metric_as_accepted",
-          "source_trace_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/0/negative_cases/3/source_packet",
+          "source_trace_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/0/negative_cases/3",
           "counterexample": "計測改善だけから利用者受入を生成。",
           "expected": "品質・受入を計測値から分離する。",
-          "expected_source_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/0/negative_cases/3/expected_partial_material"
+          "expected_source_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/0/negative_cases/3"
         }
       ]
     },
@@ -436,45 +436,45 @@
       "unit_case_rows": [
         {
           "id": "HARNESS-L9-015-F01-NORMAL",
-          "source_trace_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/1/normal_fixture/source_packet",
+          "source_trace_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/1/normal_cases/0",
           "counterexample": "対象・oracleのfreezeはあるが、実装前Redは未観測。",
           "expected": "対象freezeを保ち、Red・実装成功は未成立とする。",
-          "expected_source_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/1/expected_material"
+          "expected_source_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/1/normal_cases/0"
         },
         {
           "id": "HARNESS-L9-015-F01-freeze_missing",
-          "source_trace_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/1/negative_cases/0/source_packet",
+          "source_trace_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/1/negative_cases/0",
           "counterexample": "対象に結ぶ凍結根拠が欠落。",
           "expected": "freeze不足を保持し、成立扱いしない。",
-          "expected_source_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/1/negative_cases/0/expected_partial_material"
+          "expected_source_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/1/negative_cases/0"
         },
         {
           "id": "HARNESS-L9-015-F01-test_after_body",
-          "source_trace_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/1/negative_cases/1/source_packet",
+          "source_trace_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/1/negative_cases/1",
           "counterexample": "本体変更後にtest/oracleを凍結。",
           "expected": "後付けfreezeを拒み、順序不成立を残す。",
-          "expected_source_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/1/negative_cases/1/expected_partial_material"
+          "expected_source_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/1/negative_cases/1"
         },
         {
           "id": "HARNESS-L9-015-F01-foreign_oracle_revision",
-          "source_trace_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/1/negative_cases/2/source_packet",
+          "source_trace_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/1/negative_cases/2",
           "counterexample": "設計とoracleの対象revisionが不一致。",
           "expected": "revision不一致をstaleとして保つ。",
-          "expected_source_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/1/negative_cases/2/expected_partial_material"
+          "expected_source_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/1/negative_cases/2"
         },
         {
           "id": "HARNESS-L9-015-F01-freeze_as_red",
-          "source_trace_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/1/negative_cases/3/source_packet",
+          "source_trace_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/1/negative_cases/3",
           "counterexample": "定義freezeを実Red観測の代用にする。",
           "expected": "Red未観測を保ち、freezeをRedに数えない。",
-          "expected_source_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/1/negative_cases/3/expected_partial_material"
+          "expected_source_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/1/negative_cases/3"
         },
         {
           "id": "HARNESS-L9-015-F01-freeze_timestamp_only",
-          "source_trace_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/1/negative_cases/4/source_packet",
+          "source_trace_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/1/negative_cases/4",
           "counterexample": "時刻だけで事前freezeを証明。",
           "expected": "根拠不足を保ち、事前freezeとしない。",
-          "expected_source_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/1/negative_cases/4/expected_partial_material"
+          "expected_source_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/1/negative_cases/4"
         }
       ]
     },
@@ -650,52 +650,52 @@
       "unit_case_rows": [
         {
           "id": "HARNESS-L9-015-F02-NORMAL",
-          "source_trace_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/2/normal_fixture/source_packet",
+          "source_trace_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/2/normal_cases/0",
           "counterexample": "既存H0でduplicate debitが事前Redとなる系列。",
           "expected": "合成fixture上のH0 Red候補を保持。実Red・TDD成功は未成立。",
-          "expected_source_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/2/expected_material"
+          "expected_source_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/2/normal_cases/0"
         },
         {
           "id": "HARNESS-L9-015-F02-NEW-IMPLEMENTATION",
-          "source_trace_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/2/normal_variants/0/source_packet",
+          "source_trace_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/2/normal_variant_oracles/0",
           "counterexample": "未実装H0で必要behaviorが欠ける系列。",
           "expected": "合成fixture上のbehavior欠落Red候補を保持。実Red・TDD成功は未成立。",
-          "expected_source_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/2/normal_variants/0/expected_material"
+          "expected_source_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/2/normal_variant_oracles/0"
         },
         {
           "id": "HARNESS-L9-015-F02-after_body_red",
-          "source_trace_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/2/negative_cases/0/source_packet",
+          "source_trace_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/2/negative_cases/0",
           "counterexample": "実装後Redだけで順序要件を満たす扱い。",
           "expected": "本体前Redの欠落を保持する。",
-          "expected_source_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/2/negative_cases/0/expected_partial_material"
+          "expected_source_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/2/negative_cases/0"
         },
         {
           "id": "HARNESS-L9-015-F02-foreign_pre_body_head",
-          "source_trace_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/2/negative_cases/1/source_packet",
+          "source_trace_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/2/negative_cases/1",
           "counterexample": "別revisionのHeadを本体前H0として扱う。",
           "expected": "対象H0の不一致を拒む。",
-          "expected_source_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/2/negative_cases/1/expected_partial_material"
+          "expected_source_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/2/negative_cases/1"
         },
         {
           "id": "HARNESS-L9-015-F02-environment_error",
-          "source_trace_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/2/negative_cases/2/source_packet",
+          "source_trace_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/2/negative_cases/2",
           "counterexample": "環境障害による未観測をRed扱い。",
           "expected": "未観測のまま保持し、Redに数えない。",
-          "expected_source_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/2/negative_cases/2/expected_partial_material"
+          "expected_source_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/2/negative_cases/2"
         },
         {
           "id": "HARNESS-L9-015-F02-unexecuted_red",
-          "source_trace_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/2/negative_cases/3/source_packet",
+          "source_trace_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/2/negative_cases/3",
           "counterexample": "未実行のtestをRed観測扱い。",
           "expected": "未実行はRed観測にしない。",
-          "expected_source_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/2/negative_cases/3/expected_partial_material"
+          "expected_source_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/2/negative_cases/3"
         },
         {
           "id": "HARNESS-L9-015-F02-mutation_substitute",
-          "source_trace_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/2/negative_cases/4/source_packet",
+          "source_trace_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/2/negative_cases/4",
           "counterexample": "実装後H1のmutation検出を事前Redの代用にする。",
           "expected": "H0 Red欠落を保ち、H1証拠で補完しない。",
-          "expected_source_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/2/negative_cases/4/expected_partial_material"
+          "expected_source_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/2/negative_cases/4"
         }
       ]
     },
@@ -878,73 +878,73 @@
       "unit_case_rows": [
         {
           "id": "HARNESS-L9-015-F03-NORMAL",
-          "source_trace_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/3/normal_fixture/source_packet",
+          "source_trace_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/3/normal_cases/0",
           "counterexample": "同一oracleでfreeze→Red→最小body→Green→Refactor→原子CI。",
           "expected": "同一oracleのRed→Green(1件)順と意味を保ち、TDD未完了・Provisional上限。",
-          "expected_source_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/3/expected_material"
+          "expected_source_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/3/normal_cases/0"
         },
         {
           "id": "HARNESS-L9-015-F03-oracle_relaxed",
-          "source_trace_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/3/negative_cases/0/source_packet",
+          "source_trace_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/3/negative_cases/0",
           "counterexample": "Greenのため凍結oracleを弱める、または差替える。",
           "expected": "oracle不一致を保ち、Green完了に数えない。",
-          "expected_source_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/3/negative_cases/0/expected_partial_material"
+          "expected_source_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/3/negative_cases/0"
         },
         {
           "id": "HARNESS-L9-015-F03-body_before_red",
-          "source_trace_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/3/negative_cases/1/source_packet",
+          "source_trace_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/3/negative_cases/1",
           "counterexample": "実装本体変更が事前Redに先行。",
           "expected": "Red欠落を保ち、後続証拠で補完しない。",
-          "expected_source_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/3/negative_cases/1/expected_partial_material"
+          "expected_source_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/3/negative_cases/1"
         },
         {
           "id": "HARNESS-L9-015-F03-public_change",
-          "source_trace_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/3/negative_cases/2/source_packet",
+          "source_trace_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/3/negative_cases/2",
           "counterexample": "局所Refactorでpublic contractの意味を変更。",
           "expected": "局所変更に閉じず上流へ戻す。",
-          "expected_source_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/3/negative_cases/2/expected_partial_material"
+          "expected_source_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/3/negative_cases/2"
         },
         {
           "id": "HARNESS-L9-015-F03-architecture_change",
-          "source_trace_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/3/negative_cases/3/source_packet",
+          "source_trace_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/3/negative_cases/3",
           "counterexample": "局所Refactorでarchitectureの意味を変更。",
           "expected": "L4へ戻す。",
-          "expected_source_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/3/negative_cases/3/expected_partial_material"
+          "expected_source_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/3/negative_cases/3"
         },
         {
           "id": "HARNESS-L9-015-F03-state_change",
-          "source_trace_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/3/negative_cases/4/source_packet",
+          "source_trace_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/3/negative_cases/4",
           "counterexample": "局所Refactorでstateの意味を変更。",
           "expected": "対応する設計へ戻す。",
-          "expected_source_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/3/negative_cases/4/expected_partial_material"
+          "expected_source_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/3/negative_cases/4"
         },
         {
           "id": "HARNESS-L9-015-F03-ci_as_quality",
-          "source_trace_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/3/negative_cases/5/source_packet",
+          "source_trace_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/3/negative_cases/5",
           "counterexample": "原子CI成功だけで品質または受入成立とする。",
           "expected": "CIから品質・受入を生成しない。",
-          "expected_source_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/3/negative_cases/5/expected_partial_material"
+          "expected_source_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/3/negative_cases/5"
         },
         {
           "id": "HARNESS-L9-015-F03-requirement_change",
-          "source_trace_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/3/negative_cases/6/source_packet",
+          "source_trace_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/3/negative_cases/6",
           "counterexample": "局所Refactor中に要求の意味を変更。",
           "expected": "要求を局所変更にせず該当上流へ戻す。",
-          "expected_source_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/3/negative_cases/6/expected_partial_material"
+          "expected_source_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/3/negative_cases/6"
         },
         {
           "id": "HARNESS-L9-015-F03-minimal_body_scope_expansion",
-          "source_trace_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/3/negative_cases/7/source_packet",
+          "source_trace_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/3/negative_cases/7",
           "counterexample": "最小本体に契約範囲外のbehaviorを追加。",
           "expected": "範囲外を未解決に保ち、Greenで相殺しない。",
-          "expected_source_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/3/negative_cases/7/expected_partial_material"
+          "expected_source_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/3/negative_cases/7"
         },
         {
           "id": "HARNESS-L9-015-F03-green_wrong_behavior",
-          "source_trace_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/3/negative_cases/8/source_packet",
+          "source_trace_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/3/negative_cases/8",
           "counterexample": "期待debit 1に対しGreen観測は2。",
           "expected": "oracle不一致をfailureとして保持する。",
-          "expected_source_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/3/negative_cases/8/expected_partial_material"
+          "expected_source_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/3/negative_cases/8"
         },
         {
           "id": "AUDIT-015-F03-HEAD-normal",
@@ -1074,45 +1074,45 @@
       "unit_case_rows": [
         {
           "id": "HARNESS-L9-015-F04-NORMAL",
-          "source_trace_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/4/normal_fixture/source_packet",
+          "source_trace_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/4/normal_cases/0",
           "counterexample": "同一revisionの双方向traceがある。",
           "expected": "同revision双方向traceを保ち、Provisional上限。Integrated以降は未生成。",
-          "expected_source_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/4/expected_material"
+          "expected_source_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/4/normal_cases/0"
         },
         {
           "id": "HARNESS-L9-015-F04-reverse_trace_missing",
-          "source_trace_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/4/negative_cases/0/source_packet",
+          "source_trace_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/4/negative_cases/0",
           "counterexample": "design/test→code traceのみで逆traceがない。",
           "expected": "逆trace欠落を保ち、F04未完了とする。",
-          "expected_source_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/4/negative_cases/0/expected_partial_material"
+          "expected_source_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/4/negative_cases/0"
         },
         {
           "id": "HARNESS-L9-015-F04-foreign_trace_revision",
-          "source_trace_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/4/negative_cases/1/source_packet",
+          "source_trace_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/4/negative_cases/1",
           "counterexample": "traceの参照先revisionが対象と不一致。",
           "expected": "同一revisionの双方向traceと認めない。",
-          "expected_source_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/4/negative_cases/1/expected_partial_material"
+          "expected_source_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/4/negative_cases/1"
         },
         {
           "id": "HARNESS-L9-015-F04-development_as_integrated",
-          "source_trace_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/4/negative_cases/2/source_packet",
+          "source_trace_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/4/negative_cases/2",
           "counterexample": "開発単独出力からIntegrated成立を主張。",
           "expected": "022の根拠が揃うまでIntegratedを生成しない。",
-          "expected_source_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/4/negative_cases/2/expected_partial_material"
+          "expected_source_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/4/negative_cases/2"
         },
         {
           "id": "HARNESS-L9-015-F04-ci_as_accepted",
-          "source_trace_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/4/negative_cases/3/source_packet",
+          "source_trace_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/4/negative_cases/3",
           "counterexample": "原子CI GreenだけからAccepted成立を主張。",
           "expected": "022の根拠が揃うまでAcceptedを生成しない。",
-          "expected_source_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/4/negative_cases/3/expected_partial_material"
+          "expected_source_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/4/negative_cases/3"
         },
         {
           "id": "HARNESS-L9-015-F04-ci_as_release",
-          "source_trace_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/4/negative_cases/4/source_packet",
+          "source_trace_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/4/negative_cases/4",
           "counterexample": "原子CI GreenだけからRelease成立を主張。",
           "expected": "022の根拠が揃うまでReleaseを生成しない。",
-          "expected_source_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/4/negative_cases/4/expected_partial_material"
+          "expected_source_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/4/negative_cases/4"
         }
       ]
     }

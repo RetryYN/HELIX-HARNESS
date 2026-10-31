@@ -1,0 +1,60 @@
+{
+  "schema": "wr253-l9-validator-history.v1",
+  "evidence_kind": "scaffold",
+  "authority_effect": "none",
+  "l9_historical_revision": "6c1ceb0172c0dcb95b843739bee2c15905dd735f",
+  "l9_historical_sha256": "4f64977ee8b2900733a823d5b9755f567952caef8cf323036a9b0776202d2462",
+  "l9_current_sha256": "805ab74d9792775616e10af7b3da92a8be13002f66180e2a1862de17dbd597d3",
+  "removed_source_hash_count": 35,
+  "validators": [
+    {
+      "path": "scaffold/research/wr206-f02-l5-l8-pr-b-20261031/validate_static_candidate.py",
+      "historical_revision": "6c1ceb0172c0dcb95b843739bee2c15905dd735f",
+      "historical_sha256": "469ec3aaa975700c0646d4091edacf1fd12bd442edbcaa3252884bf88a328ab5",
+      "current_sha256": "e3c0a1e15a7a5a73ad8ebd3ccca236581316bed33020207babc2e80cecb3f218",
+      "reason": "固定revisionの過去比較を維持し、現行L9の35 hash除去以外不変を別に確認"
+    },
+    {
+      "path": "scaffold/research/wr223-f01-l5-l8-20261031/validate_static_candidate.py",
+      "historical_revision": "6c1ceb0172c0dcb95b843739bee2c15905dd735f",
+      "historical_sha256": "a7d82eb2267bf2fffd1740ad57591229971079deb95e9d246b9b9a402990461f",
+      "current_sha256": "50e09444344e188cecfc9e43a2735d9669a1150872c41d5499a9d840e999a4f5",
+      "reason": "固定revisionの過去比較を維持し、現行L9の35 hash除去以外不変を別に確認"
+    },
+    {
+      "path": "scaffold/research/wr243-tdd-b01-l5-l8-20261031/validate_b01_candidate.py",
+      "historical_revision": "6c1ceb0172c0dcb95b843739bee2c15905dd735f",
+      "historical_sha256": "70745d44d0cdb09d465423ca8980f69cf8646f729a45b7dd1638a371492aab78",
+      "current_sha256": "781c3afa937299a18b9be40bece72ecf0297775b1dedb0893e201ff562c87b36",
+      "reason": "固定revisionの過去比較を維持し、現行L9の35 hash除去以外不変を別に確認"
+    },
+    {
+      "path": "scaffold/research/wr243-tdd-f03-l5-l8-20261031/validate_static_candidate.py",
+      "historical_revision": "6c1ceb0172c0dcb95b843739bee2c15905dd735f",
+      "historical_sha256": "e99e53f7825fb53717f937e9b4ef29cddf197f49807347900329f6e4f41c2d98",
+      "current_sha256": "29cfea19816f39dc816179b80cb4097152da5acd9416e7fbbbce5c940d828542",
+      "reason": "固定revisionの過去比較を維持し、現行L9の35 hash除去以外不変を別に確認"
+    },
+    {
+      "path": "scaffold/research/wr243-tdd-f04-l5-l8-20261031/validate_f04_candidate.py",
+      "historical_revision": "6c1ceb0172c0dcb95b843739bee2c15905dd735f",
+      "historical_sha256": "070ac546a881ba0f5e0a2782ae8cf7b644c1cd3ce3e62950b289fd360b143f11",
+      "current_sha256": "ec10c9b40dae46b799c4bf0bb05c49cf64c13c303bb1215947ebd1522d9ebc8e",
+      "reason": "固定revisionの過去比較を維持し、現行L9の35 hash除去以外不変を別に確認"
+    },
+    {
+      "path": "scaffold/research/wr249-tdd-f03-f04-uid-split-20261031/validate_uid_split.py",
+      "historical_revision": "6c1ceb0172c0dcb95b843739bee2c15905dd735f",
+      "historical_sha256": "48f62c682c518ab9bd6d0bbf7b08e7a1877134ea6d492bdc51e584f72821d5fb",
+      "current_sha256": "36bc52ab434709102bbd7f3e7ecfd51246967edb468e889f60923216cf68af68",
+      "reason": "固定revisionの過去比較を維持し、現行L9の35 hash除去以外不変を別に確認"
+    },
+    {
+      "path": "scaffold/research/wr253-tdd-l8-slim-20261031/validate_uid_table.py",
+      "historical_revision": "6c1ceb0172c0dcb95b843739bee2c15905dd735f",
+      "historical_sha256": "3d0c33341a9d22e60db35a5a03dfd5499daea42879947abeab90aa4afdfb28ca",
+      "current_sha256": "a4f2b1f528685be8251ffe7ce12adb0282c9ff4d5e5d0c6f5557cb48027e54b8",
+      "reason": "固定revisionの過去比較を維持し、現行L9の35 hash除去以外不変を別に確認"
+    }
+  ]
+}
