@@ -1,0 +1,32 @@
+{
+  "schema": "sec009-nested-pointer-consumer-audit.v1",
+  "layers": {
+    "L8": {
+      "direct_raw_pointer_fields": 308,
+      "full_path_pointer_wrappers": 275,
+      "total_string_occurrences": 583,
+      "unique_old_targets": 31,
+      "direct_class_pointer_rows": 307,
+      "direct_collection_pointer_rows": 1,
+      "wrapper_class_rows": 275,
+      "wrapper_collection_rows": 0
+    },
+    "L9": {
+      "direct_raw_pointer_fields": 308,
+      "full_path_pointer_wrappers": 275,
+      "total_string_occurrences": 583,
+      "unique_old_targets": 31,
+      "direct_class_pointer_rows": 307,
+      "direct_collection_pointer_rows": 1,
+      "wrapper_class_rows": 275,
+      "wrapper_collection_rows": 0
+    }
+  },
+  "consumer_row_file": "pointer-consumer-audit-d646a09e-e7dd88b8-00376c40.jsonl",
+  "consumer_row_count": 1166,
+  "migration_blockers": {
+    "FIELD_AWARE_REDIRECT_REQUIRED": "代替top-level classは一意だが、旧expected_textに同値のfieldがなく、class fieldのaliasをconsumer側で扱う移行と再照合が必要。",
+    "COLLECTION_FAN_OUT_REQUIRED": "旧contract内subsetを指す単一top-level JSON Pointerがない。順序付きclass pointer列へのconsumer変更と再照合が必要。"
+  },
+  "retirement_result": "退役条件未成立。consumer移行は実施しておらず、field mappingを伴うclass参照の更新とcollection pointerの一対多変換、各consumerの再照合が必要。"
+}

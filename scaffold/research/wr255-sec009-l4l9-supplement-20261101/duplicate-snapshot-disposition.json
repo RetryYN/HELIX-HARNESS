@@ -1,0 +1,26 @@
+{
+  "schema": "wr255-sec009-duplicate-snapshot-disposition.v1",
+  "evidence_kind": "scaffold",
+  "authority_effect": "none",
+  "original_snapshot_commit": "f30d55ed475ba237886e55dcf9fcd690275a2a98",
+  "original_l4_l9_base_revision": "c14adddf2678c7a69d76420c451df3f05b1251ab",
+  "original_l5_l8_candidate_revision": "6768e40d44ece49260a27d799c33bae24ca2d798",
+  "snapshots": [
+    {
+      "path": "scaffold/research/wr255-sec009-l4l9-supplement-20261101/overlay/l5-candidate.json",
+      "sha256": "1aefb9b64fb52abc8cf6eec7d32312bfcb9a07359d7406c2ca4e9fa9717fa190",
+      "source_snapshot_sha256": "1aefb9b64fb52abc8cf6eec7d32312bfcb9a07359d7406c2ca4e9fa9717fa190"
+    },
+    {
+      "path": "scaffold/research/wr255-sec009-l4l9-supplement-20261101/overlay/l8-candidate.json",
+      "sha256": "32901b747531048246aa6149b2619dda0a478fff2037511a8c25ddfff4847f9a",
+      "source_snapshot_sha256": "32901b747531048246aa6149b2619dda0a478fff2037511a8c25ddfff4847f9a"
+    },
+    {
+      "path": "scaffold/research/wr255-sec009-l4l9-supplement-20261101/overlay/l9-proposed.json",
+      "sha256": "1ef45013e26e7c4e44ae942af60cf348fa17069ca3bdbf2498db7666bb62bad2",
+      "source_snapshot_sha256": "1ef45013e26e7c4e44ae942af60cf348fa17069ca3bdbf2498db7666bb62bad2"
+    }
+  ],
+  "decision": "The duplicate canonical JSON snapshots are preserved by the original Git commit and its content hashes. A follow-up replaces committed copies with a validator that reads the fixed L5/L8 Git revision and current canonical L4/L9 source, uses temporary files only for checker input, and records 285 row and 1,166 consumer rows in revision/hash-named append-only artifacts. Original evidence files at their initial paths are restored from the original commit; new measurements use separate filenames."
+}

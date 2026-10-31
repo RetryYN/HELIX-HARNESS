@@ -6,7 +6,7 @@
   "product": "HELIX-HARNESS",
   "owner_candidate": "HELIX-SECURITY SEC009 L4/L9 source projection evidence owner",
   "state": "registered",
-  "reason": "Separate L4/L9 V-pair supplement: project negative L9 row expectations from L4 classes, retain positive rows unresolved where case inputs are absent, and audit old L4 nested pointer consumers. L5/L8 is included only as a fixed overlay snapshot for measured checker alignment; this binding does not combine the V-pairs.",
+  "reason": "Separate L4/L9 V-pair supplement: project negative L9 row expectations from L4 classes, retain positive rows unresolved where case inputs are absent, and audit old L4 nested pointer consumers. L5/L8 is read from a pinned Git revision only as a checker overlay input; no duplicate layer JSON is stored in scaffold.",
   "upstream": [
     {
       "path": "docs/helix-security/L3-requirements/business-requirements.json",
@@ -31,7 +31,7 @@
     {
       "path": "docs/helix-security/L8-unit-verification/revoke-quarantine-propagation.json",
       "sha256": "ebfb5a50360fbcf4c0df262a4c31c87870b963b9d4e557888d63aef74699c777",
-      "note": "Current L8 source and consumer pointers; candidate layer is fixed separately under overlay/."
+      "note": "Current L8 source and consumer pointers at the L4/L9 branch base. The independent L5/L8 candidate checker inputs are read by git show from fixed revision e7dd88b8f987de4cb5af6707489ea356a0c4c79a and are not duplicated under scaffold/."
     },
     {
       "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
@@ -62,10 +62,10 @@
   "role": "Scaffold-only evidence for 285 L9 row input/expectation source review, independent L4-derived negative projection, positive source gaps, 4way overlay measurement, and 308-consumer audit per L8/L9.",
   "obligations": [
     "Preserve all 285 SEC009 L9 case IDs and all 71 multi-contract residuals; do not use L9 expected_proposal as an expected-value source.",
-    "Derive negative condition/expected/expected_preserved only from the referenced L4 failure_classifications and record row-specific L9/L4 pointers and hashes.",
+    "Derive negative condition/expected/expected_preserved only from the referenced L4 failure_classifications and record row-specific L9/L4 pointers and hashes in l9-row-audit.jsonl.",
     "Keep all 8 positive expectations null because nested L9 given supplies no case-specific inputs; distinguish L10 contract oracle from any individual-row oracle/test citation.",
-    "Keep L5/L8 candidate in a separate V-pair and use it only as a fixed checker overlay snapshot.",
-    "Audit all nested L4 pointer consumers, identify aliases and unsafe raw replacement, and do not retire SCF-B-0209 without completed consumer transfer and check-replacement."
+    "Keep L5/L8 candidate in a separate V-pair and read its exact bytes from the pinned Git commit using git show; do not add duplicate canonical JSON copies to scaffold.",
+    "Audit each L8/L9 nested pointer consumer, identify alternate targets and migration blockers, and do not retire SCF-B-0209 without completed consumer transfer and check-replacement."
   ],
   "connections": {
     "consumers": [
@@ -101,10 +101,26 @@
     "scaffold/research/wr255-sec009-l4l9-supplement-20261101/overlay-check-child.json",
     "scaffold/research/wr255-sec009-l4l9-supplement-20261101/positive-source-review.json",
     "scaffold/research/wr255-sec009-l4l9-supplement-20261101/pointer-consumer-audit.json",
-    "scaffold/research/wr255-sec009-l4l9-supplement-20261101/overlay/l5-candidate.json",
-    "scaffold/research/wr255-sec009-l4l9-supplement-20261101/overlay/l8-candidate.json",
-    "scaffold/research/wr255-sec009-l4l9-supplement-20261101/overlay/l9-proposed.json",
-    "scaffold/bindings/SCF-B-0221.json"
+    "scaffold/bindings/SCF-B-0221.json",
+    "scaffold/research/wr255-sec009-l4l9-supplement-20261101/duplicate-snapshot-disposition.json",
+    "scaffold/research/wr255-sec009-l4l9-supplement-20261101/l9-row-audit-d646a09e-cb6e085e-00376c40.jsonl",
+    "scaffold/research/wr255-sec009-l4l9-supplement-20261101/pointer-consumer-audit-d646a09e-cb6e085e-00376c40.json",
+    "scaffold/research/wr255-sec009-l4l9-supplement-20261101/pointer-consumer-audit-d646a09e-cb6e085e-00376c40.jsonl",
+    "scaffold/research/wr255-sec009-l4l9-supplement-20261101/positive-source-review-d646a09e-cb6e085e-00376c40.json",
+    "scaffold/research/wr255-sec009-l4l9-supplement-20261101/overlay-check-child-d646a09e-cb6e085e-00376c40.json",
+    "scaffold/research/wr255-sec009-l4l9-supplement-20261101/overlay-summary-d646a09e-cb6e085e-00376c40.json",
+    "scaffold/research/wr255-sec009-l4l9-supplement-20261101/l9-row-audit-d646a09e-e7dd88b8-00376c40.jsonl",
+    "scaffold/research/wr255-sec009-l4l9-supplement-20261101/pointer-consumer-audit-d646a09e-e7dd88b8-00376c40.json",
+    "scaffold/research/wr255-sec009-l4l9-supplement-20261101/pointer-consumer-audit-d646a09e-e7dd88b8-00376c40.jsonl",
+    "scaffold/research/wr255-sec009-l4l9-supplement-20261101/positive-source-review-d646a09e-e7dd88b8-00376c40.json",
+    "scaffold/research/wr255-sec009-l4l9-supplement-20261101/overlay-check-child-d646a09e-e7dd88b8-00376c40.json",
+    "scaffold/research/wr255-sec009-l4l9-supplement-20261101/overlay-summary-d646a09e-e7dd88b8-00376c40.json",
+    "scaffold/research/wr255-sec009-l4l9-supplement-20261101/l9-row-audit-d646a09e-e7dd88b8-00376c40-0dae5023.jsonl",
+    "scaffold/research/wr255-sec009-l4l9-supplement-20261101/pointer-consumer-audit-d646a09e-e7dd88b8-00376c40-0dae5023.json",
+    "scaffold/research/wr255-sec009-l4l9-supplement-20261101/pointer-consumer-audit-d646a09e-e7dd88b8-00376c40-0dae5023.jsonl",
+    "scaffold/research/wr255-sec009-l4l9-supplement-20261101/positive-source-review-d646a09e-e7dd88b8-00376c40-0dae5023.json",
+    "scaffold/research/wr255-sec009-l4l9-supplement-20261101/overlay-check-child-d646a09e-e7dd88b8-00376c40-0dae5023.json",
+    "scaffold/research/wr255-sec009-l4l9-supplement-20261101/overlay-summary-d646a09e-e7dd88b8-00376c40-0dae5023.json"
   ],
   "verification": {
     "evidence_kind": "scaffold",
@@ -116,7 +132,7 @@
     "oracles": [
       "L9 nested case ID/source pointer inventory and given SHA-256; negative expected-value hashes derived from L4 class pointers",
       "L3/L10 contract-level positive source facts recorded separately from individual row oracle/test citations",
-      "Static check-child over canonical L4/L9 and fixed L5/L8 candidate snapshots",
+      "Static check-child over canonical L4/L9 and L5/L8 candidate bytes read from pinned Git revision e7dd88b8f987de4cb5af6707489ea356a0c4c79a",
       "308 direct L4 nested pointer consumers plus 275 wrappers per L8/L9 layer, with per-consumer alternate target and safety analysis",
       "scfctl validate/stale and check-replacement results"
     ],

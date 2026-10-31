@@ -1,0 +1,144 @@
+{
+  "schema": "sec009-positive-minimum-meaning-review.v1",
+  "authority_effect": "none",
+  "source_facts": {
+    "L3_B01": {
+      "path": "docs/helix-security/L3-requirements/business-requirements.json",
+      "pointer": "/requirements/2",
+      "obligation": "009は初回scopeの005/008/024等が要求する失効/隔離の条件付き参照として限定著述する。SECがpolicy/発火条件、各recipientが自分のstate/実行を持つ。全recipient能力の実装や全機構完成を任意operationの開始条件にしない。"
+    },
+    "L3_F01": {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+      "pointer": "/requirements/21",
+      "obligation": "失効/scope drift/不明外部副作用/credential漏洩/異常通信/runtime逸脱をoperation/project/Worker/credential/connection/artifact identityへ結び、OS新規割当停止、実環境の実行停止/途中成果隔離、CONNECT通信停止、credential使用停止、artifact access停止の全該当先へ伝播する。"
+    },
+    "L3_F02": {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+      "pointer": "/requirements/22",
+      "obligation": "安全trigger/外部副作用のunknownを該当identityへ束縛し、無関係な一般文書の意味unknownを全操作停止へ広げない。復旧可能な前状態へ隔離し、受領と実適用・復旧は別に確認する。"
+    },
+    "L10_B01": {
+      "path": "docs/helix-security/L10-verification/business-verification.json",
+      "pointer": "/cases/2",
+      "positive_input": "対象operationと該当recipient、未選択の別経路を照合する。",
+      "expected_observation": "必要な停止閉包と未選択/未観測が別に示される。"
+    },
+    "L10_F02": {
+      "path": "docs/helix-security/L10-verification/functional-verification.json",
+      "pointer": "/cases/22",
+      "positive_input": "一対象の安全unknownと無関係scopeの有効作業、復旧不足を比較する。",
+      "expected_observation": "該当停止/隔離と不足を保持し、無関係な有効scopeを一律失効しない。"
+    },
+    "L4_B01": {
+      "path": "docs/helix-security/L4-basic-design/revoke-quarantine-propagation.json",
+      "pointer": "/contracts/0",
+      "output_meaning": "選択phaseの各recipient対応/不足、必要な局所保留の提案、隔離/復旧素材の別状態。実停止/実復旧/再開許可を生成しない。"
+    },
+    "L4_F02": {
+      "path": "docs/helix-security/L4-basic-design/revoke-quarantine-propagation.json",
+      "pointer": "/contracts/2",
+      "output_meaning": "選択phaseの各recipient対応/不足、必要な局所保留の提案、隔離/復旧素材の別状態。実停止/実復旧/再開許可を生成しない。"
+    }
+  },
+  "positive_rows": [
+    {
+      "case_id": "SEC009-ONLY-OS_ASSIGNMENT-UNSELECTED-ABSENT",
+      "l9_source_pointer": "/cases/0/positive_cases/0",
+      "given": {
+        "evidence_limit": "fixed synthetic identity/refs/stateのみ。原受領/適用/隔離/復旧labelは実観測や資格を証明しない。値・時刻/latency上限・実命令なし。"
+      },
+      "minimum_contract_meaning": "行別期待は未確定。下記のL3/L10契約文言は契約単位の根拠として記録し、行固有の結果には変換しない。"
+    },
+    {
+      "case_id": "SEC009-ONLY-WORKER_EXECUTION-UNSELECTED-ABSENT",
+      "l9_source_pointer": "/cases/0/positive_cases/1",
+      "given": {
+        "evidence_limit": "fixed synthetic identity/refs/stateのみ。原受領/適用/隔離/復旧labelは実観測や資格を証明しない。値・時刻/latency上限・実命令なし。"
+      },
+      "minimum_contract_meaning": "行別期待は未確定。下記のL3/L10契約文言は契約単位の根拠として記録し、行固有の結果には変換しない。"
+    },
+    {
+      "case_id": "SEC009-ONLY-CONNECT_COMMUNICATION-UNSELECTED-ABSENT",
+      "l9_source_pointer": "/cases/0/positive_cases/2",
+      "given": {
+        "evidence_limit": "fixed synthetic identity/refs/stateのみ。原受領/適用/隔離/復旧labelは実観測や資格を証明しない。値・時刻/latency上限・実命令なし。"
+      },
+      "minimum_contract_meaning": "行別期待は未確定。下記のL3/L10契約文言は契約単位の根拠として記録し、行固有の結果には変換しない。"
+    },
+    {
+      "case_id": "SEC009-ONLY-CREDENTIAL_USE-UNSELECTED-ABSENT",
+      "l9_source_pointer": "/cases/0/positive_cases/3",
+      "given": {
+        "evidence_limit": "fixed synthetic identity/refs/stateのみ。原受領/適用/隔離/復旧labelは実観測や資格を証明しない。値・時刻/latency上限・実命令なし。"
+      },
+      "minimum_contract_meaning": "行別期待は未確定。下記のL3/L10契約文言は契約単位の根拠として記録し、行固有の結果には変換しない。"
+    },
+    {
+      "case_id": "SEC009-ONLY-ARTIFACT_ACCESS-UNSELECTED-ABSENT",
+      "l9_source_pointer": "/cases/0/positive_cases/4",
+      "given": {
+        "evidence_limit": "fixed synthetic identity/refs/stateのみ。原受領/適用/隔離/復旧labelは実観測や資格を証明しない。値・時刻/latency上限・実命令なし。"
+      },
+      "minimum_contract_meaning": "行別期待は未確定。下記のL3/L10契約文言は契約単位の根拠として記録し、行固有の結果には変換しない。"
+    },
+    {
+      "case_id": "SEC009-EMPTY-RECIPIENT-SET",
+      "l9_source_pointer": "/cases/0/positive_cases/5",
+      "given": {
+        "evidence_limit": "fixed synthetic identity/refs/stateのみ。原受領/適用/隔離/復旧labelは実観測や資格を証明しない。値・時刻/latency上限・実命令なし。"
+      },
+      "minimum_contract_meaning": "行別期待は未確定。下記のL3/L10契約文言は契約単位の根拠として記録し、行固有の結果には変換しない。"
+    },
+    {
+      "case_id": "SEC009-OS-OFFLINE-INDEPENDENT-RECOVERY-SELECTION",
+      "l9_source_pointer": "/cases/0/positive_cases/6",
+      "given": {
+        "evidence_limit": "fixed synthetic identity/refs/stateのみ。原受領/適用/隔離/復旧labelは実観測や資格を証明しない。値・時刻/latency上限・実命令なし。"
+      },
+      "minimum_contract_meaning": "行別期待は未確定。下記のL3/L10契約文言は契約単位の根拠として記録し、行固有の結果には変換しない。"
+    },
+    {
+      "case_id": "SEC009-GENERAL-MEANING-UNKNOWN",
+      "l9_source_pointer": "/cases/2/positive_cases/0",
+      "given": {
+        "evidence_limit": "fixed synthetic identity/refs/stateのみ。原受領/適用/隔離/復旧labelは実観測や資格を証明しない。値・時刻/latency上限・実命令なし。"
+      },
+      "minimum_contract_meaning": "行別期待は未確定。下記のL3/L10契約文言は契約単位の根拠として記録し、行固有の結果には変換しない。"
+    }
+  ],
+  "minimum_meaning_findings": [
+    {
+      "case_id": "SEC009-ONLY-OS_ASSIGNMENT-UNSELECTED-ABSENT",
+      "minimum": "条件付きの意味のみ。case markerのunselected and absentをシナリオとして採る場合、L3 F01/L10 B01では当該recipientの不在を選択済みstop対象の欠落として数えない。selected setの入力がないため、具体的なexpected objectは作らない。(OS_ASSIGNMENT)"
+    },
+    {
+      "case_id": "SEC009-ONLY-WORKER_EXECUTION-UNSELECTED-ABSENT",
+      "minimum": "条件付きの意味のみ。case markerのunselected and absentをシナリオとして採る場合、L3 F01/L10 B01では当該recipientの不在を選択済みstop対象の欠落として数えない。selected setの入力がないため、具体的なexpected objectは作らない。(WORKER_EXECUTION)"
+    },
+    {
+      "case_id": "SEC009-ONLY-CONNECT_COMMUNICATION-UNSELECTED-ABSENT",
+      "minimum": "条件付きの意味のみ。case markerのunselected and absentをシナリオとして採る場合、L3 F01/L10 B01では当該recipientの不在を選択済みstop対象の欠落として数えない。selected setの入力がないため、具体的なexpected objectは作らない。(CONNECT_COMMUNICATION)"
+    },
+    {
+      "case_id": "SEC009-ONLY-CREDENTIAL_USE-UNSELECTED-ABSENT",
+      "minimum": "条件付きの意味のみ。case markerのunselected and absentをシナリオとして採る場合、L3 F01/L10 B01では当該recipientの不在を選択済みstop対象の欠落として数えない。selected setの入力がないため、具体的なexpected objectは作らない。(CREDENTIAL_USE)"
+    },
+    {
+      "case_id": "SEC009-ONLY-ARTIFACT_ACCESS-UNSELECTED-ABSENT",
+      "minimum": "条件付きの意味のみ。case markerのunselected and absentをシナリオとして採る場合、L3 F01/L10 B01では当該recipientの不在を選択済みstop対象の欠落として数えない。selected setの入力がないため、具体的なexpected objectは作らない。(ARTIFACT_ACCESS)"
+    },
+    {
+      "case_id": "SEC009-EMPTY-RECIPIENT-SET",
+      "minimum": "行別結果は導けない。empty-set markerだけでは適用対象のoperationやrecipientの有無が分からず、L3/L10の契約は条件付きのまま。"
+    },
+    {
+      "case_id": "SEC009-OS-OFFLINE-INDEPENDENT-RECOVERY-SELECTION",
+      "minimum": "行別のrecovery対象選択は導けない。L3 F02はidentity-bound isolation/recoveryを求めるが、L9 givenにidentityやstateの値がない。"
+    },
+    {
+      "case_id": "SEC009-GENERAL-MEANING-UNKNOWN",
+      "minimum": "L3 F02/L10 F02はgeneral-meaning unknownを無関係なglobal stopへ広げることを認めない。行のexpected category/scope入力がないため、positive期待全体は未確定。"
+    }
+  ],
+  "decision": "これらはsourceの解釈として記録するだけである。L9 expected_proposal、L8期待値、個別oracle ID、test citationは補わない。"
+}
