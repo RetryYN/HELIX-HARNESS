@@ -38,6 +38,8 @@ POSITIVE_RECIPIENT_CASES = {
     "SEC009-ONLY-CREDENTIAL_USE-UNSELECTED-ABSENT": "credential_use",
     "SEC009-ONLY-ARTIFACT_ACCESS-UNSELECTED-ABSENT": "artifact_access",
 }
+POINTER_AUDIT_MANIFEST = HERE / "pointer-consumer-audit-history.json"
+POINTER_AUDIT_ROWS = HERE / "pointer-consumer-audit-33973b4b762d.jsonl"
 
 
 def positive_minimum(case_id: str) -> dict[str, Any]:
@@ -51,7 +53,6 @@ def positive_minimum(case_id: str) -> dict[str, Any]:
     if case_id in POSITIVE_RECIPIENT_CASES:
         recipient = POSITIVE_RECIPIENT_CASES[case_id]
         return {
-            "positive_expectation_ref": "positive_expectation_basis/rules/B01_UNSELECTED_ABSENT",
             "oracle_id": None,
             "test_citation": None,
             "condition": {"scenario": "unselected_recipient_absent", "recipient": recipient, "premise_status": "case_marker_only_not_observed"},
@@ -63,7 +64,6 @@ def positive_minimum(case_id: str) -> dict[str, Any]:
         }
     if case_id == "SEC009-EMPTY-RECIPIENT-SET":
         return {
-            "positive_expectation_ref": "positive_expectation_basis/rules/B01_EMPTY_RECIPIENT_SET",
             "oracle_id": None,
             "test_citation": None,
             "condition": {"scenario": "empty_recipient_set", "premise": "独立期待集合とpolicy.selected_recipientsが空として解決する場合", "premise_status": "case_marker_only_not_observed"},
@@ -75,7 +75,6 @@ def positive_minimum(case_id: str) -> dict[str, Any]:
         }
     if case_id == "SEC009-OS-OFFLINE-INDEPENDENT-RECOVERY-SELECTION":
         return {
-            "positive_expectation_ref": "positive_expectation_basis/rules/B01_INDEPENDENT_RECOVERY",
             "oracle_id": None,
             "test_citation": None,
             "condition": {"scenario": "os_offline_independent_recovery_selection", "phase": "recovery", "premise_status": "case_marker_only_not_observed"},
@@ -88,7 +87,6 @@ def positive_minimum(case_id: str) -> dict[str, Any]:
         }
     if case_id == "SEC009-GENERAL-MEANING-UNKNOWN":
         return {
-            "positive_expectation_ref": "positive_expectation_basis/rules/F02_GENERAL_MEANING_UNKNOWN",
             "oracle_id": None,
             "test_citation": None,
             "condition": {"scenario": "general_document_meaning_unknown", "premise_status": "case_marker_only_not_observed"},
@@ -161,6 +159,46 @@ def resolve(root: Any, pointer: str) -> Any:
     return current
 
 
+def validate_positive_expectation_refs(document: Any, label: str) -> None:
+    """Require every remaining positive expectation reference to resolve locally."""
+    def visit(value: Any, at: str = "") -> None:
+        if isinstance(value, dict):
+            ref = value.get("positive_expectation_ref")
+            if ref is not None:
+                if not isinstance(ref, str):
+                    raise ValueError(f"{label} has a non-string positive expectation ref at {at}")
+                parts = ref.split("/")
+                if len(parts) < 3 or parts[0] != "positive_expectation_basis":
+                    raise ValueError(f"{label} has a non-local positive expectation ref at {at}: {ref}")
+                try:
+                    resolve(document[parts[0]], "/" + "/".join(parts[1:]))
+                except (KeyError, IndexError, TypeError, ValueError) as exc:
+                    raise ValueError(f"{label} has an unresolved positive expectation ref at {at}: {ref}") from exc
+            for key, item in value.items():
+                visit(item, f"{at}/{key}")
+        elif isinstance(value, list):
+            for index, item in enumerate(value):
+                visit(item, f"{at}/{index}")
+
+    visit(document)
+
+
+def validate_pointer_audit_manifest(consumer_rows: list[dict[str, Any]]) -> None:
+    manifest = read_json(POINTER_AUDIT_MANIFEST)
+    rendered = "".join(json.dumps(row, ensure_ascii=False, separators=(",", ":")) + "\n" for row in consumer_rows).encode()
+    if manifest.get("canonical_path") != POINTER_AUDIT_ROWS.name:
+        raise ValueError("pointer audit history manifest names a different canonical row file")
+    if manifest.get("canonical_sha256") != sha256_bytes(rendered):
+        raise ValueError("pointer audit rows differ from the consolidated history manifest")
+    if len(consumer_rows) != manifest.get("canonical_row_count"):
+        raise ValueError("pointer audit row count differs from the consolidated history manifest")
+    historical = manifest.get("identical_jsonl_measurements", [])
+    if len(historical) != 4 or len({row.get("content_sha256") for row in historical}) != 1:
+        raise ValueError("pointer audit history must enumerate four byte-identical prior JSONL measurements")
+    if any(row.get("content_sha256") != sha256_bytes(rendered) for row in historical):
+        raise ValueError("historical pointer audit JSONL digest differs from the canonical rows")
+
+
 def all_strings(root: Any, pointer: str = ""):
     if isinstance(root, dict):
         for key, value in root.items():
@@ -183,8 +221,8 @@ def main() -> int:
     validator_digest = sha256(HERE / "validate_l4_l9_supplement.py")
     output_stem = f"{l9_revision[:8]}-{l9_digest[:8]}-{L5_L8_CANDIDATE_REVISION[:8]}-{l4_digest[:8]}-{validator_digest[:8]}"
     row_audit_name = f"l9-row-audit-{output_stem}.jsonl"
-    pointer_summary_name = f"pointer-consumer-audit-{output_stem}.json"
-    pointer_rows_name = f"pointer-consumer-audit-{output_stem}.jsonl"
+    pointer_summary_name = f"pointer-consumer-audit-summary-{output_stem}.json"
+    pointer_rows_name = POINTER_AUDIT_ROWS.name
     positive_review_name = f"positive-source-review-{output_stem}.json"
     checker_report_name = f"overlay-check-child-{output_stem}.json"
     summary_name = f"overlay-summary-{output_stem}.json"
@@ -193,6 +231,8 @@ def main() -> int:
     l4 = load_repo_json(PATHS["l4"])
     l9_current = load_repo_json(PATHS["l9"])
     l9 = json.loads(subprocess.check_output(["git", "show", f"{BASE_REVISION}:{PATHS['l9']}"], cwd=ROOT, text=True))
+    validate_positive_expectation_refs(l9_current, "canonical L9")
+    validate_positive_expectation_refs(l9, "pinned L9 base")
     l10b = load_repo_json(PATHS["l10_business"])
     l10f = load_repo_json(PATHS["l10_functional"])
     l5_bytes = subprocess.check_output(["git", "show", f"{L5_L8_CANDIDATE_REVISION}:{PATHS['l5']}"], cwd=ROOT)
@@ -279,7 +319,6 @@ def main() -> int:
                 "population_state": "positive_contract_minimum_unobserved",
                 "l9_source_pointer": l9_case_pointer,
                 "l9_given_sha256": sha_value(given),
-                "positive_expectation_ref": minimum["positive_expectation_ref"],
                 "condition_sha256": sha_value(minimum["condition"]),
                 "expected_sha256": sha_value(minimum["expected"]),
                 "expected_preserved_sha256": sha_value(minimum["expected_preserved"]),
@@ -471,6 +510,7 @@ def main() -> int:
     }
     write_immutable_json(HERE / pointer_summary_name, pointer_summary)
     write_immutable_jsonl(HERE / pointer_rows_name, consumer_rows)
+    validate_pointer_audit_manifest(consumer_rows)
 
     # Design contract-minimum expectations from case markers and L3/L10/L4; do
     # not copy L9 expected_proposal or infer observed fixture values.
@@ -492,7 +532,7 @@ def main() -> int:
         },
         "positive_rows": positive_rows,
         "minimum_meaning_findings": [
-            {"case_id": row["case_id"], "expectation_ref": row["positive_expectation_ref"], "condition": row["condition"], "expected": row["expected"], "expected_preserved": row["expected_preserved"], "measurement_status": row["measurement_status"]}
+            {"case_id": row["case_id"], "condition": row["condition"], "expected": row["expected"], "expected_preserved": row["expected_preserved"], "measurement_status": row["measurement_status"]}
             for row in positive_rows
         ],
         "decision": "各行に契約最小期待を設計した。L9 expected_proposalを参照せず、具体fixture値・個別oracle ID・test citation・実観測は補っていない。givenには行別入力値がないため期待は未実測である。",

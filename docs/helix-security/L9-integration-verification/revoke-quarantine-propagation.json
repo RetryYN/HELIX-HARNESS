@@ -32994,7 +32994,6 @@
         "resume_authorized": false,
         "operation_effect": "none"
       },
-      "positive_expectation_ref": "positive_expectation_basis/rules/B01_UNSELECTED_ABSENT",
       "oracle_id": null,
       "test_citation": null
     },
@@ -33024,7 +33023,6 @@
         "resume_authorized": false,
         "operation_effect": "none"
       },
-      "positive_expectation_ref": "positive_expectation_basis/rules/B01_UNSELECTED_ABSENT",
       "oracle_id": null,
       "test_citation": null
     },
@@ -33054,7 +33052,6 @@
         "resume_authorized": false,
         "operation_effect": "none"
       },
-      "positive_expectation_ref": "positive_expectation_basis/rules/B01_UNSELECTED_ABSENT",
       "oracle_id": null,
       "test_citation": null
     },
@@ -33084,7 +33081,6 @@
         "resume_authorized": false,
         "operation_effect": "none"
       },
-      "positive_expectation_ref": "positive_expectation_basis/rules/B01_UNSELECTED_ABSENT",
       "oracle_id": null,
       "test_citation": null
     },
@@ -33114,7 +33110,6 @@
         "resume_authorized": false,
         "operation_effect": "none"
       },
-      "positive_expectation_ref": "positive_expectation_basis/rules/B01_UNSELECTED_ABSENT",
       "oracle_id": null,
       "test_citation": null
     },
@@ -33144,7 +33139,6 @@
         "resume_authorized": false,
         "operation_effect": "none"
       },
-      "positive_expectation_ref": "positive_expectation_basis/rules/B01_EMPTY_RECIPIENT_SET",
       "oracle_id": null,
       "test_citation": null
     },
@@ -33174,7 +33168,6 @@
         "resume_authorized": false,
         "operation_effect": "none"
       },
-      "positive_expectation_ref": "positive_expectation_basis/rules/B01_INDEPENDENT_RECOVERY",
       "oracle_id": null,
       "test_citation": null
     },
@@ -42057,7 +42050,6 @@
         "resume_authorized": false,
         "operation_effect": "none"
       },
-      "positive_expectation_ref": "positive_expectation_basis/rules/F02_GENERAL_MEANING_UNKNOWN",
       "oracle_id": null,
       "test_citation": null
     },

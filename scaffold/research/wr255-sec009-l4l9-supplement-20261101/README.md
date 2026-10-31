@@ -27,6 +27,8 @@ validatorは固定L5/L8 commitを `git show` で読み込み、canonical L4/L9�
 
 5件の `ONLY-…-UNSELECTED-ABSENT` は未選択recipientの能力不在を選択閉包の不足・任意operation開始条件にしない期待です。`EMPTY-RECIPIENT-SET` は、独立期待集合とpolicy選択集合が既知の空集合であるという設計条件の下で、recipient別空出力を期待します。この条件はgivenにある観測事実ではありません。OS offlineの独立復旧選択はOS/通常009応答を普遍的前提にせず、隔離と復旧素材を分けます。F02の一般文書meaning unknownは全操作・全scope停止へ拡張せず、unknownだけから安全trigger分類を作りません。これらの期待は未実測であり、実停止・実復旧・再開許可の生成を意味しません。
 
+正例8行の `positive_expectation_ref` は、L9本文に参照先のbasis節がないため削除しました。L9の `source_pointers`、`condition`、`expected`、`expected_preserved` は保持しています。validatorはL9本文に残る同名参照を走査し、L9内の `positive_expectation_basis` から解決できない参照があれば失敗します。
+
 negative givenは全行が共通 `evidence_limit` だけで、同一digestです。ケース固有の対象値・実際値・差分を裏付けないため、値を補っていません。positiveの契約レベル最小意味と行別に不足する入力は `positive-source-review.json` に分けて記録します。L10 oracleは契約単位であり、個別行のoracleとは区別しています。
 
 ## checker結果
@@ -35,13 +37,13 @@ negative givenは全行が共通 `evidence_limit` だけで、同一digestです
 
 ## consumer移行の行別監査
 
-`pointer-consumer-audit-d646a09e-e7dd88b8-00376c40-0dae5023.jsonl` にはL8とL9それぞれの直接pointer 308件とfull-path wrapper 275件を、一consumer一行で記録します。合計は直接pointer 616件とwrapper 550件です。各行に旧pointer、現行L4の代替top-level class pointerまたはcollection内class pointer一覧、移行可否と理由を記録します。
+`pointer-consumer-audit-33973b4b762d.jsonl` にはL8とL9それぞれの直接pointer 308件とfull-path wrapper 275件を、一consumer一行で記録します。合計は直接pointer 616件とwrapper 550件です。各行に旧pointer、現行L4の代替top-level class pointerまたはcollection内class pointer一覧、移行可否と理由を記録します。ファイル名は行JSONLの内容hashから固定しています。
 
 各層の直接pointer 308件中307件は行class、1件はcontract内の14-class collectionを指します。行classはtop-level classへ一意に対応し、8項目のalias比較は値・型とも一致します。ただし旧`expected_text`に同値のtop-level fieldがなく、`code`、`change`、`axis`、`state`等にfield名の対応もあります。consumerのfield-aware移行と再照合はまだ行っていないため、代替先候補があることを移行済みとは扱いません。
 
 collection consumerは同じ順序の14 class IDと代替pointer一覧まで照合しましたが、contract内のこのsubsetを指す単一top-level JSON Pointerはありません。一つのcollection pointerを複数class pointerへ展開するconsumer変更が要ります。現時点では全consumer移行が未成立なので、SCF-B-0209はpendingを維持します。`check-replacement` の `E_REPL: transfer（対応表）が無い` を確認し、退役していません。
 
-`pointer-consumer-audit-d646a09e-e7dd88b8-00376c40-0dae5023.json` は行別JSONLの集計です。L4/L9補足branchはL5/L8 pairから分離しています。
+[`pointer-consumer-audit-history.json`](pointer-consumer-audit-history.json) は、同じSHA-256 `33973b4b…` の過去4測定のsource revision、Git commit/blob、復元commandを列挙します。4つのJSONLは全行・重なる主要fieldを機械照合し、headには同じ内容hashのJSONLを1本だけ置きました。過去の1.6MB展開JSONは1166 consumer行のidentity・pointer・class/alternate target・field比較・移行blockerが正本JSONLと一致することを機械照合しました。過去artifactの全詳細はGit履歴から復元できるため、展開JSONと3つの重複summary JSONも現行treeから除きました。manifestには各artifactのcommit/blob/SHA-256と復元commandを記録しています。L4/L9補足branchはL5/L8 pairから分離しています。
 
 ## 同一bytesのcommit前後測定の整理
 

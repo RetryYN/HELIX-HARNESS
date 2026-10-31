@@ -22,7 +22,7 @@
       "wrapper_collection_rows": 0
     }
   },
-  "consumer_row_file": "pointer-consumer-audit-e22b5c96-57c0197c-24d7f00b-00376c40-e540f13f.jsonl",
+  "consumer_row_file": "pointer-consumer-audit-33973b4b762d.jsonl",
   "consumer_row_count": 1166,
   "migration_blockers": {
     "FIELD_AWARE_REDIRECT_REQUIRED": "代替top-level classは一意だが、旧expected_textに同値のfieldがなく、class fieldのaliasをconsumer側で扱う移行と再照合が必要。",
