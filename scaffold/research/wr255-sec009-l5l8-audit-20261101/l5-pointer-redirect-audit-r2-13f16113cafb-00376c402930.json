@@ -1,0 +1,43 @@
+{
+  "schema_revision": 1,
+  "evidence_kind": "source_pointer_redirect_static_audit",
+  "authority_effect": "none",
+  "base_revision": "ad2dfaf6f434fbb81cd34988d4bd76212380f3a5",
+  "base_sha256": {
+    "L4": "00376c402930e1287e9e0e896804b1de8a20390f8abbea8377b70712f868b9da",
+    "L5": "1aefb9b64fb52abc8cf6eec7d32312bfcb9a07359d7406c2ca4e9fa9717fa190",
+    "L8": "49875dcdb4bcec85ebffbad678127e90a61db329c9cccae96f0090cd260f698d"
+  },
+  "current_sha256": {
+    "L4": "00376c402930e1287e9e0e896804b1de8a20390f8abbea8377b70712f868b9da",
+    "L5": "13f16113cafb4b27b6f03c6a79797a260776c022c48f75ebaaf0220b8830baec",
+    "L8": "49875dcdb4bcec85ebffbad678127e90a61db329c9cccae96f0090cd260f698d"
+  },
+  "counts": {
+    "nested_classes_checked": 30,
+    "L5_rules_checked": 32,
+    "L5_nested_refs_removed": 30,
+    "L5_canonical_refs_retained": 30,
+    "L5_rules_with_only_pointer_redirect": 30,
+    "L5_nested_pointer_strings_before": 30,
+    "L5_nested_pointer_strings_after": 0,
+    "L4_bytes_unchanged": true,
+    "L8_bytes_unchanged": true
+  },
+  "field_projection": {
+    "code": "class_id",
+    "change": "condition",
+    "axis": "expected_axis",
+    "state": "expected_state",
+    "backflow_owner": "backflow_owner",
+    "expected": "expected",
+    "expected_preserved": "expected_preserved",
+    "expected_side_effect_count": "side_effect_count",
+    "source_pointers": "source_pointers"
+  },
+  "limitations": [
+    "固定L4 nested classと同class canonical aliasの型・値、および各L5参照配列の差分を照合した静的証拠。実行動作の証明ではない。",
+    "L9側の583 nested参照はこの変更の対象外で未移行。SCF-B-0209はregisteredのまま。",
+    "source classとの対応は固定baseで既に存在するL5の同class canonical pointerに基づく。"
+  ]
+}

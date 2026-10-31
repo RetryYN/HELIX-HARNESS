@@ -25,8 +25,8 @@
     },
     {
       "path": "docs/helix-security/L5-detail-design/revoke-quarantine-propagation.json",
-      "sha256": "1aefb9b64fb52abc8cf6eec7d32312bfcb9a07359d7406c2ca4e9fa9717fa190",
-      "note": "L5 function and rule declarations used by fixed L5/L8 overlay snapshot checker measurement. 旧pin revision 24d7f00bdca41c3dfb1f3137655ffdbe3674cfb3・SHA-256 90c3761e88ea76fefe1222372ffa1218afcf2fc8cb4dec666ca8b7ca98bd8734を変更前時点として保持。 WR255のL5/L8候補source bytesをcurrent pinに反映し、固定overlay入力revisionは既存noteで区別する。 新current SHA-256 1aefb9b64fb52abc8cf6eec7d32312bfcb9a07359d7406c2ca4e9fa9717fa190。"
+      "sha256": "13f16113cafb4b27b6f03c6a79797a260776c022c48f75ebaaf0220b8830baec",
+      "note": "L5 function and rule declarations used by fixed L5/L8 overlay snapshot checker measurement. 旧pin revision 24d7f00bdca41c3dfb1f3137655ffdbe3674cfb3・SHA-256 90c3761e88ea76fefe1222372ffa1218afcf2fc8cb4dec666ca8b7ca98bd8734を変更前時点として保持。 WR255のL5/L8候補source bytesをcurrent pinに反映し、固定overlay入力revisionは既存noteで区別する。 新current SHA-256 1aefb9b64fb52abc8cf6eec7d32312bfcb9a07359d7406c2ca4e9fa9717fa190。 WR255 SEC009 L5 pointer redirect at fixed base ad2dfaf6f434fbb81cd34988d4bd76212380f3a5; prior pin SHA-256 1aefb9b64fb52abc8cf6eec7d32312bfcb9a07359d7406c2ca4e9fa9717fa190 retained as history. The 30 duplicate nested references were removed while all rule fields and other refs were preserved. Current SHA-256 13f16113cafb4b27b6f03c6a79797a260776c022c48f75ebaaf0220b8830baec."
     },
     {
       "path": "docs/helix-security/L8-unit-verification/revoke-quarantine-propagation.json",

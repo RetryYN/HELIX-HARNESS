@@ -36,7 +36,7 @@
       "content_sha256": "b1b5fca158a0bfa6353ff97b9226030bb1ae943e65e69b730bc8e5991e6848fc",
       "byte_length": 75671,
       "source_revision": "0451f67e4b94451b7258078f49df3cb34db36098",
-      "role": "R1後の全raw nested-pointer文字列の行別監査。L8削除275、固定履歴3、taxonomy alias30、L9 raw583、L5 raw30を区別。"
+      "role": "WR255 L5 redirect以前の固定stage監査。base時点でL5 nested refs=30を記録した旧時点証拠で、現行raw-pointer inventoryを表さない。validator/report bytesは変更せず保持。"
     }
   ],
   "historical_measurements_removed_from_head": [
@@ -457,5 +457,58 @@
       "positive_minimum_design_not_observed": 8,
       "individual_oracle_and_test_citation": "null"
     }
+  },
+  "l5_pointer_redirect_current_measurement": {
+    "path": "scaffold/research/wr255-sec009-l5l8-audit-20261101/l5-pointer-redirect-audit-r2-13f16113cafb-00376c402930.json",
+    "validator": "scaffold/research/wr255-sec009-l5l8-audit-20261101/validate_l5_pointer_redirect.py",
+    "base_revision": "ad2dfaf6f434fbb81cd34988d4bd76212380f3a5",
+    "base_L5_sha256": "1aefb9b64fb52abc8cf6eec7d32312bfcb9a07359d7406c2ca4e9fa9717fa190",
+    "current_L5_sha256": "13f16113cafb4b27b6f03c6a79797a260776c022c48f75ebaaf0220b8830baec",
+    "counts": {
+      "L5_nested_refs_before": 30,
+      "L5_nested_refs_after": 0,
+      "L5_canonical_refs_retained": 30,
+      "L4_nested_payloads_removed": 0,
+      "L9_nested_refs_remaining": 583
+    },
+    "historical_validator_policy": "validate_pointer_transfer.py and its report remain unchanged as the pre-redirect measurement; do not treat their hard-coded L5=30 check as current-state validation.",
+    "authority_effect": "none",
+    "report_sha256": "db35078d93b8a354414786d6abf07f3f7846a067c43f431aad0fe86a05c3d737"
+  },
+  "latest_main_overlay_read_only_validation_wr255_l5_redirect": {
+    "overlay_base_commit": "8ca99d8afcfcca2e5240afb992289ea8c80c41a6",
+    "feature_base_commit": "ad2dfaf6f434fbb81cd34988d4bd76212380f3a5",
+    "overlay_construction": "git fetch origin main; git merge --no-commit --no-ff origin/main; clean automatic merge. Validation ran against merged index/worktree without committing overlay first.",
+    "commands": [
+      "python3 scaffold/research/wr255-sec009-l5l8-audit-20261101/validate_l5_pointer_redirect.py",
+      "python3 scaffold/research/wr255-sec009-l5l8-audit-20261101/validate_wr255_l5l8.py",
+      "python3 scaffold/tools/design_verification_checker.py check-child --root . --l4 docs/helix-security/L4-basic-design/revoke-quarantine-propagation.json --l9 docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json --l5 docs/helix-security/L5-detail-design/revoke-quarantine-propagation.json --l8 docs/helix-security/L8-unit-verification/revoke-quarantine-propagation.json",
+      "python3 scaffold/tools/scfctl.py validate",
+      "python3 scaffold/tools/scfctl.py stale"
+    ],
+    "source_sha256": {
+      "L4": "00376c402930e1287e9e0e896804b1de8a20390f8abbea8377b70712f868b9da",
+      "L5": "13f16113cafb4b27b6f03c6a79797a260776c022c48f75ebaaf0220b8830baec",
+      "L8": "49875dcdb4bcec85ebffbad678127e90a61db329c9cccae96f0090cd260f698d",
+      "L9": "e918a289fe88446b3f84210577f0fe8094505d9dac9d9a8713cd074eb6776e5b"
+    },
+    "results": {
+      "redirect_validator": "pass",
+      "L5_L8_source_validator": "pass",
+      "L4_L9_pair": "pass",
+      "L5_L8_pair": "pass",
+      "negative_4way_matched": 277,
+      "negative_4way_failures": 0,
+      "scfctl_validate_bindings": 208,
+      "scfctl_validate_failures": 0,
+      "scfctl_stale": 0,
+      "SCF-B-0209": "registered; not retired",
+      "L9_nested_pointer_strings_remaining": 583
+    },
+    "current_redirect_report": {
+      "path": "scaffold/research/wr255-sec009-l5l8-audit-20261101/l5-pointer-redirect-audit-r2-13f16113cafb-00376c402930.json",
+      "content_sha256": "db35078d93b8a354414786d6abf07f3f7846a067c43f431aad0fe86a05c3d737"
+    },
+    "historical_validator_policy": "validate_pointer_transfer.py and its fixed pre-redirect report remain unchanged and are not counted as a current-state validator; its L5=30 expectation is historical."
   }
 }
