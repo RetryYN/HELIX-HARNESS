@@ -284,7 +284,7 @@ def verify_evidence_lineage(failures, verify_current=True):
     research = ROOT / "scaffold/research/wr256-connect-trace-l8-slim-20261031"
     evidence = research / "evidence"
     history = json.loads((evidence / "evidence-history.json").read_text(encoding="utf-8"))
-    addendum = json.loads((evidence / "evidence-history-addendum-20261101-r6.json").read_text(encoding="utf-8"))
+    addendum = json.loads((evidence / "evidence-history-addendum-20261101-r7.json").read_text(encoding="utf-8"))
     summary_path = "scaffold/research/wr256-connect-trace-l8-slim-20261031/verification-summary.json"
     audit_path = "scaffold/research/wr256-connect-trace-l8-slim-20261031/source-semantic-audit.json"
     expected = {
@@ -339,7 +339,8 @@ def verify_evidence_lineage(failures, verify_current=True):
             if hashlib.sha256(data).hexdigest() != artifact.get("sha256") or len(data) != artifact.get("bytes"):
                 failures.append({"check": "current_record_artifact_pin", "path": artifact["path"]})
 
-    dispositions = {entry["path"]: entry for entry in addendum.get("full_projection_copy_disposition", [])}
+    all_dispositions = addendum.get("full_projection_copy_disposition", []) + addendum.get("redundant_audit_copy_disposition", [])
+    dispositions = {entry["path"]: entry for entry in all_dispositions}
     prior_record = addendum.get("prior_r1_record_manifest", {})
     prior_manifest_path = research / prior_record.get("path", "")
     prior_manifest_bytes = prior_manifest_path.read_bytes()
@@ -356,7 +357,7 @@ def verify_evidence_lineage(failures, verify_current=True):
                 failures.append({"check": "record_artifact_pin", "label": label, "path": artifact["path"]})
             return
         disposition = dispositions.get(artifact["path"])
-        if not disposition or disposition.get("status") != "removed_redundant_full_projection_copy":
+        if not disposition or disposition.get("status") not in {"removed_redundant_full_projection_copy", "removed_redundant_audit_copy"}:
             failures.append({"check": "missing_record_artifact_without_disposition", "label": label, "path": artifact["path"]})
             return
         try:
@@ -364,9 +365,12 @@ def verify_evidence_lineage(failures, verify_current=True):
             restored_sha = hashlib.sha256(restored_bytes).hexdigest()
             if restored_sha != artifact.get("sha256") or restored_sha != disposition.get("sha256") or len(restored_bytes) != disposition.get("former_bytes"):
                 failures.append({"check": "disposed_record_artifact_recovery_pin", "label": label, "path": artifact["path"], "sha256": restored_sha})
-            blob = subprocess.check_output(["git", "rev-parse", f"b35c131639ba2f93fa764642497d0fa49d695275:{disposition['path']}"], cwd=ROOT, text=True).strip()
-            if blob != disposition.get("b35c_git_blob"):
-                failures.append({"check": "disposed_copy_git_blob_object_present", "label": label, "blob": disposition.get("b35c_git_blob")})
+            blob_revision = disposition.get("git_blob_revision", "b35c131639ba2f93fa764642497d0fa49d695275")
+            blob_path = disposition.get("git_blob_path", disposition["path"])
+            blob = subprocess.check_output(["git", "rev-parse", f"{blob_revision}:{blob_path}"], cwd=ROOT, text=True).strip()
+            expected_blob = disposition.get("git_blob", disposition.get("b35c_git_blob"))
+            if blob != expected_blob:
+                failures.append({"check": "disposed_copy_git_blob_object_present", "label": label, "expected": expected_blob, "actual": blob})
         except Exception as exc:
             failures.append({"check": "disposed_record_artifact_recovery", "label": label, "error": str(exc)})
 
@@ -397,9 +401,12 @@ def verify_evidence_lineage(failures, verify_current=True):
         if removed_path.exists():
             failures.append({"check": "redundant_full_projection_copy_absent", "path": disposition["path"]})
         try:
-            copy_bytes = subprocess.check_output(["git", "show", f"b35c131639ba2f93fa764642497d0fa49d695275:{disposition['path']}"], cwd=ROOT)
-            blob = subprocess.check_output(["git", "rev-parse", f"b35c131639ba2f93fa764642497d0fa49d695275:{disposition['path']}"], cwd=ROOT, text=True).strip()
-            if hashlib.sha256(copy_bytes).hexdigest() != disposition.get("sha256") or blob != disposition.get("b35c_git_blob"):
+            blob_revision = disposition.get("git_blob_revision", "b35c131639ba2f93fa764642497d0fa49d695275")
+            blob_path = disposition.get("git_blob_path", disposition["path"])
+            copy_bytes = subprocess.check_output(["git", "show", f"{blob_revision}:{blob_path}"], cwd=ROOT)
+            blob = subprocess.check_output(["git", "rev-parse", f"{blob_revision}:{blob_path}"], cwd=ROOT, text=True).strip()
+            expected_blob = disposition.get("git_blob", disposition.get("b35c_git_blob"))
+            if hashlib.sha256(copy_bytes).hexdigest() != disposition.get("sha256") or blob != expected_blob:
                 failures.append({"check": "removed_copy_disposition_git_pin", "path": disposition["path"]})
         except Exception as exc:
             failures.append({"check": "removed_copy_disposition_blob_resolution", "path": disposition.get("path"), "error": str(exc)})

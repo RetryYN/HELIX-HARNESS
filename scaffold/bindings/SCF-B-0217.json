@@ -99,27 +99,21 @@
     "scaffold/research/wr256-connect-trace-l8-slim-20261031/evidence/checkpoints/2cbadcd2d175560860fce632d12810f5d0101ef1.json",
     "scaffold/research/wr256-connect-trace-l8-slim-20261031/evidence/checkpoints/80e69e6f2ab1fe147ad132d0f76e5567b4b5d284.json",
     "scaffold/research/wr256-connect-trace-l8-slim-20261031/evidence/checkpoints/32794e1ca8ce4f4f7508533992b69fcff4e669b0.json",
-    "scaffold/research/wr256-connect-trace-l8-slim-20261031/evidence/records/wr256-pr4006-r1-20261101/source-semantic-audit.json",
     "scaffold/research/wr256-connect-trace-l8-slim-20261031/evidence/records/wr256-pr4006-r1-20261101/verification-summary.json",
     "scaffold/research/wr256-connect-trace-l8-slim-20261031/evidence/records/wr256-pr4006-r1-20261101/record.json",
     "scaffold/research/wr256-connect-trace-l8-slim-20261031/evidence/evidence-history-addendum-20261101-r2.json",
     "scaffold/research/wr256-connect-trace-l8-slim-20261031/evidence/evidence-history-addendum-20261101-r3.json",
-    "scaffold/research/wr256-connect-trace-l8-slim-20261031/evidence/records/wr256-pr4006-r1-20261101/record.json",
-    "scaffold/research/wr256-connect-trace-l8-slim-20261031/evidence/records/wr256-pr4006-r1-20261101/source-semantic-audit.json",
-    "scaffold/research/wr256-connect-trace-l8-slim-20261031/evidence/records/wr256-pr4006-r1-20261101/verification-summary.json",
     "scaffold/research/wr256-connect-trace-l8-slim-20261031/evidence/evidence-history-addendum-20261101-r4.json",
     "scaffold/research/wr256-connect-trace-l8-slim-20261031/evidence/records/wr256-pr4006-r1-r2-20261101/record.json",
-    "scaffold/research/wr256-connect-trace-l8-slim-20261031/evidence/records/wr256-pr4006-r1-r2-20261101/source-semantic-audit.json",
     "scaffold/research/wr256-connect-trace-l8-slim-20261031/evidence/records/wr256-pr4006-r1-r2-20261101/verification-summary.json",
     "scaffold/research/wr256-connect-trace-l8-slim-20261031/evidence/evidence-history-addendum-20261101-r5.json",
     "scaffold/research/wr256-connect-trace-l8-slim-20261031/evidence/records/wr256-pr4006-r1-r3-20261101/record.json",
-    "scaffold/research/wr256-connect-trace-l8-slim-20261031/evidence/records/wr256-pr4006-r1-r3-20261101/source-semantic-audit.json",
     "scaffold/research/wr256-connect-trace-l8-slim-20261031/evidence/records/wr256-pr4006-r1-r3-20261101/verification-summary.json",
     "scaffold/research/wr256-connect-trace-l8-slim-20261031/evidence/evidence-history-addendum-20261101-r6.json",
     "scaffold/research/wr256-connect-trace-l8-slim-20261031/evidence/records/wr256-pr4006-r1-r4-20261101/record.json",
     "scaffold/research/wr256-connect-trace-l8-slim-20261031/evidence/records/wr256-pr4006-r1-r4-20261101/source-semantic-audit.json",
     "scaffold/research/wr256-connect-trace-l8-slim-20261031/evidence/records/wr256-pr4006-r1-r4-20261101/verification-summary.json",
-    "scaffold/research/wr256-connect-trace-l8-slim-20261031/evidence/evidence-history-addendum-20261101-r6.json"
+    "scaffold/research/wr256-connect-trace-l8-slim-20261031/evidence/evidence-history-addendum-20261101-r7.json"
   ],
   "verification": {
     "evidence_kind": "scaffold",
@@ -134,7 +128,7 @@
       "All 224 formal concise expected_result values and shared F01/F02/N01 state/non-generation boundaries are checked against fixed L3/L4/L5/L10 sources and row projections in scaffold audit; all 5 cross-field type probes are checked for exact value/ref/expectation/unexecuted state. L8 stores only the L9 path/revision/file pin; 90 expected-material hashes are read from fixed historical L8 and verified against pinned L9 expected material by the validator.",
       "All unchanged top-level boundaries, revised method boundary, L3/L4/L5/L10 common contract outcomes, exact condition/emit matching for all 27 L5 failure rules against row-specific source expectations and local expected findings, L8 ownership cap, concise formal expectations, and source-audit row projection/delta counts and byte comparison to the immutable latest record; historical evidence lineage by commit/blob/SHA-256.",
       "scfctl validate/stale and generic check-child result captured without treating not_evaluated as pass.",
-      "Current compact immutable evidence pins are recorded in evidence-history-addendum-20261101-r6.json; R1 artifacts are append-only and earlier records/checkpoints are retained without rewriting."
+      "Current compact immutable evidence pins are recorded in evidence-history-addendum-20261101-r7.json. Earlier r1/r2/r3 semantic-audit copies were removed as redundant working-tree artifacts; their paths, 5f3f Git blobs, SHA-256 values, and recovery commands are pinned in r7. Prior record manifests and summaries remain append-only."
     ],
     "negative_cases": [
       "Row oracle and test citation are not found and are not invented.",
