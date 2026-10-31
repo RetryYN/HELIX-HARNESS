@@ -2,10 +2,10 @@
   "schema": "wr265-static-verification.v1",
   "evidence_kind": "scaffold",
   "authority_effect": "none",
-  "record_id": "WR265-RETRY-L8-CURRENT-STATIC-R5",
+  "record_id": "WR265-RETRY-L8-CURRENT-STATIC-R7",
   "target": "docs/helix-connect/L8-unit-verification/retry-deduplication-conflict.json",
-  "target_revision": "d3e88d6cd460af78aea342441009a3a3572f86f7",
-  "target_sha256": "93267225d6d69fda0f3d3d14ce214021a4e2c0558049b2d8b9c61bdc47bfea20",
+  "target_revision": "ad2dfaf6f434fbb81cd34988d4bd76212380f3a5",
+  "target_sha256": "a63e078673afe5ce4f6a32bfb9f620974ae2da2ba973b206f2f3f8e51e7b925b",
   "source_pins": {
     "docs/helix-connect/L3-requirements/functional-requirements.json": "fb04683632d92e5c51c46fdc2eecf388a58e406856f243b8105513e075a49421",
     "docs/helix-connect/L4-basic-design/retry-deduplication-conflict.json": "68e77bc1579a10470f2ea608010f0bd553c1c511a8a50992c9b8bd8d28ee92eb",
@@ -50,7 +50,7 @@
   ],
   "interpretation": "PASS_STATIC_ONLY is a static structure/source comparison only. It is not execution, approval, formal verification, or completion.",
   "latest_main_overlay": {
-    "revision": "d3e88d6cd460af78aea342441009a3a3572f86f7",
+    "revision": "ad2dfaf6f434fbb81cd34988d4bd76212380f3a5",
     "checks": {
       "scfctl_validate": {
         "command": "/usr/bin/python3 -B scaffold/tools/scfctl.py validate",

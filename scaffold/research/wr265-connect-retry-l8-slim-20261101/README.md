@@ -12,14 +12,14 @@ legacy referencesは参照のみ: `LEGACY-ASSET-C3DE79BA9451172F3E43` と `LEGAC
 
 ## 検証
 
-`validate_uid_table.py` は既定でread-only。固定baseからcase ID/順序/function_refを照合し、全U-IDの一意性、L5 consumer、raw input-only counterexample、L3/L4/L5から作るexpected/status/basis refs、L9 expected_materialとの比較状態、L4/L10 owner境界、required `removed_materials` 6 keysを確認する。L5 algorithmや製品testは実行しない。
+`validate_uid_table.py` は既定でread-only。固定baseからcase ID/順序/function_refを照合し、全U-IDの一意性、L5 consumer、raw input-only counterexampleの意味・入力値対応、L3/L4/L5から作るexpected/status/basis refs、L9 expected_materialとのarea/field/result/owner比較、L4/L10 owner境界、required `removed_materials` 6 keysを確認する。反例条件は「先頭caseと異なる」のみの汎用表現で済ませず、固定raw inputが示す未観測、identity重複、累積値減少などの意味を記す。L5 algorithmや製品testは実行しない。
 
 新しいimmutable recordが必要な場合だけ未使用pathを明示する:
 
 ```sh
-python3 -B scaffold/research/wr265-connect-retry-l8-slim-20261101/validate_uid_table.py --record-id WR265-RETRY-L8-CURRENT-STATIC-R5 --record scaffold/research/wr265-connect-retry-l8-slim-20261101/verification-summary-main-overlay-r5.json
+python3 -B scaffold/research/wr265-connect-retry-l8-slim-20261101/validate_uid_table.py --record-id WR265-RETRY-L8-CURRENT-STATIC-R7 --record scaffold/research/wr265-connect-retry-l8-slim-20261101/verification-summary-main-overlay-r7.json
 ```
 
-書込みはexclusive作成で、既存pathを拒否する。current summary R5はlatest `origin/main` overlay上の記録で、summary生成前validateとの循環を避けるためbinding artifact一覧には含めない。旧summary R1〜R4は `evidence-history.json` にcommit/blob/SHA-256と復元方法を保全する。履歴summaryは実行入力やexpected fallbackに使わない。
+書込みはexclusive作成で、既存pathを拒否する。current summary R7はlatest `origin/main` overlay上の記録で、summary生成前validateとの循環を避けるためbinding artifact一覧には含めない。旧summary R1〜R6は `evidence-history.json` に固定commitまたはoverlay revision、SHA-256、復元方法を保全する。履歴summaryは実行入力やexpected fallbackに使わない。
 
 latest `origin/main` merge overlayで `scfctl validate`, `scfctl stale`, 固有validator、`design_verification_checker.py check-child` を実測し、各結果をそのまま記録する。`not_evaluated` はpassではない。証拠は静的scaffold照合で、承認やformal L8 completionを示さない。

@@ -331,7 +331,7 @@
       "id": "C004-F01-ORIGINAL-DUPLICATE-RECEIVER-EFFECT",
       "u_id": "U-C004-015",
       "function_ref": "FN-C004-01",
-      "counterexample": "HELIXCONNECT-L3-004-F01 の固定L9 raw source入力条件: /original_effect_observation/after_retry 入力arrayの要素数区分は 複数；/submitted_effect_observation/after_retry 入力arrayの要素数区分は 複数。",
+      "counterexample": "HELIXCONNECT-L3-004-F01 の固定L9 raw source入力条件: /original_effect_observation の after_retry snapshotは複数の効果項目；/submitted_effect_observation の after_retry snapshotは複数の効果項目。",
       "counterexample_source_ref": {
         "document": "docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json",
         "pointer": "/verification_obligations/0/concrete_cases/14/independent_source_packet/raw_utf8",
@@ -352,7 +352,7 @@
       "id": "C004-F01-ORIGINAL-EFFECT-UNOBSERVED",
       "u_id": "U-C004-016",
       "function_ref": "FN-C004-01",
-      "counterexample": "HELIXCONNECT-L3-004-F01 の固定L9 raw source入力条件: 入力項目 /original_effect_observation/after_retry は同機能の先頭固定caseと異なる（値は複製しない）；入力項目 /original_effect_observation/state は同機能の先頭固定caseと異なる（値は複製しない）；入力項目 /submitted_effect_observation/after_retry は同機能の先頭固定caseと異なる（値は複製しない）；入力項目 /submitted_effect_observation/state は同機能の先頭固定caseと異なる（値は複製しない）。",
+      "counterexample": "HELIXCONNECT-L3-004-F01 の固定L9 raw source入力条件: 元effect observation stateはnot_observedでeffect未観測（after_retry欄はnull）；提出effect observation stateはnot_observedでeffect未観測（after_retry欄はnull）。",
       "counterexample_source_ref": {
         "document": "docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json",
         "pointer": "/verification_obligations/0/concrete_cases/15/independent_source_packet/raw_utf8",
@@ -396,7 +396,7 @@
       "id": "C004-F01-SUBMITTED-EFFECT-ERASED",
       "u_id": "U-C004-018",
       "function_ref": "FN-C004-01",
-      "counterexample": "HELIXCONNECT-L3-004-F01 の固定L9 raw source入力条件: /submitted_effect_observation/after_retry 入力arrayの要素数区分は 空。",
+      "counterexample": "HELIXCONNECT-L3-004-F01 の固定L9 raw source入力条件: /submitted_effect_observation の after_retry snapshotは空（効果項目なし）。",
       "counterexample_source_ref": {
         "document": "docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json",
         "pointer": "/verification_obligations/0/concrete_cases/17/independent_source_packet/raw_utf8",
@@ -418,7 +418,7 @@
       "id": "C004-F01-ATTEMPT-IDENTITY-NOT-DISTINCT",
       "u_id": "U-C004-019",
       "function_ref": "FN-C004-01",
-      "counterexample": "HELIXCONNECT-L3-004-F01 の固定L9 raw source入力条件: 入力項目 /original_attempts/1/identity は同機能の先頭固定caseと異なる（値は複製しない）；入力項目 /submitted_attempts/1/identity は同機能の先頭固定caseと異なる（値は複製しない）。",
+      "counterexample": "HELIXCONNECT-L3-004-F01 の固定L9 raw source入力条件: original_attempts の2件目は先行するattemptと同一identity（identity値は省略）；submitted_attempts の2件目は先行するattemptと同一identity（identity値は省略）。",
       "counterexample_source_ref": {
         "document": "docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json",
         "pointer": "/verification_obligations/0/concrete_cases/18/independent_source_packet/raw_utf8",
@@ -481,7 +481,7 @@
       "id": "C004-F01-ORIGINAL-MULTIPLE-EFFECTS-BEFORE-RETRY",
       "u_id": "U-C004-022",
       "function_ref": "FN-C004-01",
-      "counterexample": "HELIXCONNECT-L3-004-F01 の固定L9 raw source入力条件: /original_effect_observation/after_first 入力arrayの要素数区分は 複数；/original_effect_observation/after_retry 入力arrayの要素数区分は 複数；/original_effect_observation/before 入力arrayの要素数区分は 単一；/submitted_effect_observation/after_first 入力arrayの要素数区分は 複数；/submitted_effect_observation/after_retry 入力arrayの要素数区分は 複数；/submitted_effect_observation/before 入力arrayの要素数区分は 単一。",
+      "counterexample": "HELIXCONNECT-L3-004-F01 の固定L9 raw source入力条件: /original_effect_observation の after_first snapshotは複数の効果項目；/original_effect_observation の after_retry snapshotは複数の効果項目；/original_effect_observation の before snapshotは単一の効果項目；/submitted_effect_observation の after_first snapshotは複数の効果項目；/submitted_effect_observation の after_retry snapshotは複数の効果項目；/submitted_effect_observation の before snapshotは単一の効果項目。",
       "counterexample_source_ref": {
         "document": "docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json",
         "pointer": "/verification_obligations/0/concrete_cases/21/independent_source_packet/raw_utf8",
@@ -502,7 +502,7 @@
       "id": "C004-F01-SAME_CONTENT_DOUBLE_EFFECT",
       "u_id": "U-C004-023",
       "function_ref": "FN-C004-01",
-      "counterexample": "HELIXCONNECT-L3-004-F01 の固定L9 raw source入力条件: 入力 claim same_content_double_effect が主張されている；/original_effect_observation/after_retry 入力arrayの要素数区分は 複数；/submitted_effect_observation/after_retry 入力arrayの要素数区分は 複数。",
+      "counterexample": "HELIXCONNECT-L3-004-F01 の固定L9 raw source入力条件: 入力 claim same_content_double_effect が主張されている；/original_effect_observation の after_retry snapshotは複数の効果項目；/submitted_effect_observation の after_retry snapshotは複数の効果項目。",
       "counterexample_source_ref": {
         "document": "docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json",
         "pointer": "/verification_obligations/0/concrete_cases/22/independent_source_packet/raw_utf8",
@@ -544,7 +544,7 @@
       "id": "C004-F01-UNOBSERVED_IDEMPOTENT",
       "u_id": "U-C004-025",
       "function_ref": "FN-C004-01",
-      "counterexample": "HELIXCONNECT-L3-004-F01 の固定L9 raw source入力条件: 入力 claim unobserved_idempotent が主張されている；入力項目 /original_effect_observation/state は同機能の先頭固定caseと異なる（値は複製しない）；入力項目 /submitted_effect_observation/state は同機能の先頭固定caseと異なる（値は複製しない）。",
+      "counterexample": "HELIXCONNECT-L3-004-F01 の固定L9 raw source入力条件: 入力 claim unobserved_idempotent が主張されている；元effect observation stateはnot_observedでeffect未観測（after_retry欄には単一のeffect項目がある）；提出effect observation stateはnot_observedでeffect未観測（after_retry欄には単一のeffect項目がある）。",
       "counterexample_source_ref": {
         "document": "docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json",
         "pointer": "/verification_obligations/0/concrete_cases/24/independent_source_packet/raw_utf8",
@@ -717,7 +717,7 @@
       "id": "C004-F02-ORIGINAL-SIDE-EFFECT-AFTER-CONFLICT",
       "u_id": "U-C004-033",
       "function_ref": "FN-C004-02",
-      "counterexample": "HELIXCONNECT-L3-004-F02 の固定L9 raw source入力条件: /original_effect_after 入力arrayの要素数区分は 複数；original_incoming.digest は original_operationと異なる；/submitted_effect_after 入力arrayの要素数区分は 複数；submitted_incoming.digest は original_incomingと同じ。",
+      "counterexample": "HELIXCONNECT-L3-004-F02 の固定L9 raw source入力条件:  の original_effect_after snapshotは複数の効果項目；original_incoming.digest は original_operationと異なる； の submitted_effect_after snapshotは複数の効果項目；submitted_incoming.digest は original_incomingと同じ。",
       "counterexample_source_ref": {
         "document": "docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json",
         "pointer": "/verification_obligations/1/concrete_cases/7/independent_source_packet/raw_utf8",
@@ -739,7 +739,7 @@
       "id": "C004-F02-CONFLICT-EFFECT-UNOBSERVED",
       "u_id": "U-C004-034",
       "function_ref": "FN-C004-02",
-      "counterexample": "HELIXCONNECT-L3-004-F02 の固定L9 raw source入力条件: 入力項目 /original_effect_after は同機能の先頭固定caseと異なる（値は複製しない）；入力項目 /original_effect_state は同機能の先頭固定caseと異なる（値は複製しない）；original_incoming.digest は original_operationと異なる；入力項目 /submitted_effect_after は同機能の先頭固定caseと異なる（値は複製しない）；submitted_incoming.digest は original_incomingと同じ。",
+      "counterexample": "HELIXCONNECT-L3-004-F02 の固定L9 raw source入力条件: original_effect_after はnull/未提示；元effect observation stateはnot_observedでeffect未観測（after_retry欄は未提示）；original_incoming.digest は original_operationと異なる；submitted_effect_after はnull/未提示；submitted_incoming.digest は original_incomingと同じ。",
       "counterexample_source_ref": {
         "document": "docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json",
         "pointer": "/verification_obligations/1/concrete_cases/8/independent_source_packet/raw_utf8",
@@ -853,7 +853,7 @@
       "id": "C004-F02-ORIGINAL-EFFECT-BEFORE-UNKNOWN",
       "u_id": "U-C004-039",
       "function_ref": "FN-C004-02",
-      "counterexample": "HELIXCONNECT-L3-004-F02 の固定L9 raw source入力条件: 入力項目 /original_effect_before は同機能の先頭固定caseと異なる（値は複製しない）；original_incoming.digest は original_operationと異なる；submitted_incoming.digest は original_incomingと同じ。",
+      "counterexample": "HELIXCONNECT-L3-004-F02 の固定L9 raw source入力条件: original_effect_before はnull/未提示；original_incoming.digest は original_operationと異なる；submitted_incoming.digest は original_incomingと同じ。",
       "counterexample_source_ref": {
         "document": "docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json",
         "pointer": "/verification_obligations/1/concrete_cases/13/independent_source_packet/raw_utf8",
@@ -898,7 +898,7 @@
       "id": "C004-F02-CONFLICT_SIDE_EFFECT",
       "u_id": "U-C004-041",
       "function_ref": "FN-C004-02",
-      "counterexample": "HELIXCONNECT-L3-004-F02 の固定L9 raw source入力条件: 入力 claim conflict_side_effect が主張されている；/original_effect_after 入力arrayの要素数区分は 複数；original_incoming.digest は original_operationと異なる；/submitted_effect_after 入力arrayの要素数区分は 複数；submitted_incoming.digest は original_incomingと同じ。",
+      "counterexample": "HELIXCONNECT-L3-004-F02 の固定L9 raw source入力条件: 入力 claim conflict_side_effect が主張されている； の original_effect_after snapshotは複数の効果項目；original_incoming.digest は original_operationと異なる； の submitted_effect_after snapshotは複数の効果項目；submitted_incoming.digest は original_incomingと同じ。",
       "counterexample_source_ref": {
         "document": "docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json",
         "pointer": "/verification_obligations/1/concrete_cases/15/independent_source_packet/raw_utf8",
@@ -1322,7 +1322,7 @@
       "id": "C004-F03-SUBMITTED-BUDGET-RESET",
       "u_id": "U-C004-061",
       "function_ref": "FN-C004-03",
-      "counterexample": "HELIXCONNECT-L3-004-F03 の固定L9 raw source入力条件: submitted_cumulative_attempts 入力は提示され、もう一方と異なる（値は複製しない）。",
+      "counterexample": "HELIXCONNECT-L3-004-F03 の固定L9 raw source入力条件: submitted_cumulative_attempts は提示され、元の累積attempt数から減少しており、budget reset入力。",
       "counterexample_source_ref": {
         "document": "docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json",
         "pointer": "/verification_obligations/2/concrete_cases/18/independent_source_packet/raw_utf8",
@@ -1343,7 +1343,7 @@
       "id": "C004-F03-SUBMITTED-HISTORY-ERASED",
       "u_id": "U-C004-062",
       "function_ref": "FN-C004-03",
-      "counterexample": "HELIXCONNECT-L3-004-F03 の固定L9 raw source入力条件: /submitted_history 入力arrayの要素数区分は 空。",
+      "counterexample": "HELIXCONNECT-L3-004-F03 の固定L9 raw source入力条件: 提出historyが空で、元historyは提示されている。",
       "counterexample_source_ref": {
         "document": "docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json",
         "pointer": "/verification_obligations/2/concrete_cases/19/independent_source_packet/raw_utf8",
@@ -1364,7 +1364,7 @@
       "id": "C004-F03-SUBMITTED-UNFINISHED-ERASED",
       "u_id": "U-C004-063",
       "function_ref": "FN-C004-03",
-      "counterexample": "HELIXCONNECT-L3-004-F03 の固定L9 raw source入力条件: /submitted_unfinished 入力arrayの要素数区分は 空。",
+      "counterexample": "HELIXCONNECT-L3-004-F03 の固定L9 raw source入力条件: 提出unfinished/recovery入力が空で、元入力は提示されている。",
       "counterexample_source_ref": {
         "document": "docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json",
         "pointer": "/verification_obligations/2/concrete_cases/20/independent_source_packet/raw_utf8",
@@ -1427,7 +1427,7 @@
       "id": "C004-F03-BUDGET_RESET",
       "u_id": "U-C004-066",
       "function_ref": "FN-C004-03",
-      "counterexample": "HELIXCONNECT-L3-004-F03 の固定L9 raw source入力条件: 入力 claim budget_reset が主張されている；submitted_cumulative_attempts 入力は提示され、もう一方と異なる（値は複製しない）。",
+      "counterexample": "HELIXCONNECT-L3-004-F03 の固定L9 raw source入力条件: 入力 claim budget_reset が主張されている；submitted_cumulative_attempts は提示され、元の累積attempt数から減少しており、budget reset入力。",
       "counterexample_source_ref": {
         "document": "docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json",
         "pointer": "/verification_obligations/2/concrete_cases/23/independent_source_packet/raw_utf8",

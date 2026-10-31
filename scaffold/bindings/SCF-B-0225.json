@@ -11,37 +11,37 @@
     {
       "path": "docs/helix-connect/L3-requirements/functional-requirements.json",
       "sha256": "fb04683632d92e5c51c46fdc2eecf388a58e406856f243b8105513e075a49421",
-      "note": "Source bytes verified unchanged at latest origin/main d3e88d6cd460af78aea342441009a3a3572f86f7."
+      "note": "Source bytes verified unchanged at latest origin/main ad2dfaf6f434fbb81cd34988d4bd76212380f3a5."
     },
     {
       "path": "docs/helix-connect/L4-basic-design/retry-deduplication-conflict.json",
       "sha256": "68e77bc1579a10470f2ea608010f0bd553c1c511a8a50992c9b8bd8d28ee92eb",
-      "note": "Source bytes verified unchanged at latest origin/main d3e88d6cd460af78aea342441009a3a3572f86f7."
+      "note": "Source bytes verified unchanged at latest origin/main ad2dfaf6f434fbb81cd34988d4bd76212380f3a5."
     },
     {
       "path": "docs/helix-connect/L5-detail-design/retry-deduplication-conflict.json",
       "sha256": "ae83a4db64fb613ebbaa119e11ed3c83f23e1a77fad22a205375f0d6b3d9e19d",
-      "note": "Source bytes verified unchanged at latest origin/main d3e88d6cd460af78aea342441009a3a3572f86f7."
+      "note": "Source bytes verified unchanged at latest origin/main ad2dfaf6f434fbb81cd34988d4bd76212380f3a5."
     },
     {
       "path": "docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json",
       "sha256": "5cfea671da4e491a172590b6b6e404da9e37af230929d0e764eee1a7d7bcb465",
-      "note": "Source bytes verified unchanged at latest origin/main d3e88d6cd460af78aea342441009a3a3572f86f7."
+      "note": "Source bytes verified unchanged at latest origin/main ad2dfaf6f434fbb81cd34988d4bd76212380f3a5."
     },
     {
       "path": "docs/helix-connect/L10-verification/functional-verification.json",
       "sha256": "8728cf7c2730a29375f3c7dad75c77157a119d603e52b46f775ede8f1eae474d",
-      "note": "Source bytes verified unchanged at latest origin/main d3e88d6cd460af78aea342441009a3a3572f86f7."
+      "note": "Source bytes verified unchanged at latest origin/main ad2dfaf6f434fbb81cd34988d4bd76212380f3a5."
     },
     {
       "path": "scaffold/verification-test-template-seed-20261001/README.md",
       "sha256": "e754243381921e4a3317a66dc784c03905ef24ab740721bc7767851989162efd",
-      "note": "Source bytes verified unchanged at latest origin/main d3e88d6cd460af78aea342441009a3a3572f86f7."
+      "note": "Source bytes verified unchanged at latest origin/main ad2dfaf6f434fbb81cd34988d4bd76212380f3a5."
     },
     {
       "path": "docs/governance/design-verification-quality-assurance.md",
       "sha256": "f5751e236dc073fe67114c1fcb4b0f64b3d746290b25d75b61e60a08e3c99c85",
-      "note": "Source bytes verified unchanged at latest origin/main d3e88d6cd460af78aea342441009a3a3572f86f7."
+      "note": "Source bytes verified unchanged at latest origin/main ad2dfaf6f434fbb81cd34988d4bd76212380f3a5."
     }
   ],
   "role": "Temporary static source, case-identity, expectation and boundary evidence for the WR265 CONNECT004 L8 candidate.",
@@ -62,7 +62,7 @@
     ],
     "dependencies": [
       "Fixed base revision b3ddf6f1d0a6cf2009e5f81a90f21c4292300185 for original L8 identity/order and history recovery.",
-      "Latest origin/main d3e88d6cd460af78aea342441009a3a3572f86f7 L3/L4/L5/L9/L10/DT-VT-105/QA source bytes; all pinned hashes were rechecked unchanged.",
+      "Latest origin/main ad2dfaf6f434fbb81cd34988d4bd76212380f3a5 L3/L4/L5/L9/L10/DT-VT-105/QA source bytes; all pinned hashes were rechecked unchanged.",
       "Legacy source assets LEGACY-ASSET-C3DE79BA9451172F3E43 and LEGACY-ASSET-DD66C1B6B7BE234B37E6."
     ],
     "boundary": "Candidate L8 table normalization and static scaffold evidence only. No authority effect, approval, test execution, runtime/CI claim, invented row oracle/test citation, or completion effect."

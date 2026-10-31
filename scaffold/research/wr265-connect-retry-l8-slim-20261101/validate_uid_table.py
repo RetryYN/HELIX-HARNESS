@@ -6,6 +6,7 @@ import hashlib
 import json
 import os
 from pathlib import Path
+import re
 import subprocess
 import sys
 
@@ -97,8 +98,70 @@ def counterexample(case, raw, baseline, function_ref, requirement_ref):
             else:
                 other_key = "submitted_cumulative_attempts" if key == "original_cumulative_attempts" else "original_cumulative_attempts"
                 other = raw.get(other_key, MISSING)
-                relation = "もう一方と異なる" if other is MISSING or not same_json(value, other) else "もう一方と同じ"
-                conditions.append(f"{key} 入力は提示され、{relation}（値は複製しない）")
+                if other is MISSING or other is None:
+                    relation = "比較側の累積attempt数が未提示またはnull"
+                elif key == "submitted_cumulative_attempts" and type(value) is int and type(other) is int and value < other:
+                    relation = "元の累積attempt数から減少しており、budget reset入力"
+                elif key == "submitted_cumulative_attempts" and type(value) is int and type(other) is int and value > other:
+                    relation = "元の累積attempt数より増加"
+                elif same_json(value, other):
+                    relation = "元の累積attempt数を維持"
+                else:
+                    relation = "元の累積attempt数と異なる"
+                conditions.append(f"{key} は提示され、{relation}")
+            continue
+        if path in ("/original_effect_state", "/original_effect_observation/state", "/submitted_effect_observation/state"):
+            key = path.rsplit("/", 1)[1]
+            parent = raw
+            for part in path.strip("/").split("/")[:-1]:
+                parent = parent.get(part, {}) if isinstance(parent, dict) else {}
+            value = parent.get(key, MISSING) if isinstance(parent, dict) else MISSING
+            label = "元effect observation" if path.startswith("/original") else "提出effect observation"
+            if value == "not_observed":
+                after_retry = parent.get("after_retry", MISSING) if isinstance(parent, dict) else MISSING
+                if after_retry is MISSING:
+                    after_context = "after_retry欄は未提示"
+                elif after_retry is None:
+                    after_context = "after_retry欄はnull"
+                elif isinstance(after_retry, list):
+                    after_context = {0: "after_retry欄は空", 1: "after_retry欄には単一のeffect項目がある", 2: "after_retry欄には複数のeffect項目がある"}.get(min(len(after_retry), 2))
+                else:
+                    after_context = "after_retry欄は配列以外の値"
+                meaning = f"not_observedでeffect未観測（{after_context}）"
+            elif value == "observed_in_fixture_only":
+                meaning = "observed_in_fixture_onlyの範囲だけ観測"
+            else:
+                meaning = f"入力状態は {'未提示' if value is MISSING else 'null' if value is None else value}"
+            conditions.append(f"{label} stateは{meaning}")
+            continue
+        if path in ("/original_effect_before", "/original_effect_after", "/submitted_effect_after"):
+            value = raw.get(path[1:], MISSING)
+            label = path[1:]
+            if value is MISSING or value is None:
+                meaning = "null/未提示"
+            elif isinstance(value, list):
+                meaning = {0: "空配列", 1: "単一要素のみ", 2: "複数要素"}.get(min(len(value), 2), "複数要素")
+            else:
+                meaning = "配列以外の値"
+            conditions.append(f"{label} は{meaning}")
+            continue
+        if path in ("/original_effect_observation/after_retry", "/submitted_effect_observation/after_retry"):
+            observation_key = "original_effect_observation" if path.startswith("/original") else "submitted_effect_observation"
+            state_path = f"/{observation_key}/state"
+            if state_path in changes:
+                continue
+            value = raw.get(observation_key, {}).get("after_retry", MISSING)
+            meaning = "nullでretry後のeffect状態は未提示" if value is None else "未提示" if value is MISSING else "retry後effect snapshotが提示" if isinstance(value, list) else "配列以外の値"
+            conditions.append(f"{observation_key}.after_retry は{meaning}")
+            continue
+        attempt_identity = re.fullmatch(r"/(original|submitted)_attempts/(\d+)/identity", path)
+        if attempt_identity:
+            array_key, index = f"{attempt_identity.group(1)}_attempts", int(attempt_identity.group(2))
+            attempts = raw.get(array_key, [])
+            identity = attempts[index].get("identity", MISSING) if index < len(attempts) and isinstance(attempts[index], dict) else MISSING
+            duplicated = any(i != index and isinstance(item, dict) and same_json(item.get("identity", MISSING), identity) for i, item in enumerate(attempts)) if identity is not MISSING else False
+            ordinal = "先行するattemptと同一identity" if duplicated else "先行attemptと異なるidentity" if index and index < len(attempts) else "identity入力の差"
+            conditions.append(f"{array_key} の{index + 1}件目は{ordinal}（identity値は省略）")
             continue
         if path.startswith("/submitted_retry/"):
             field = path.split("/")[-1]
@@ -139,7 +202,29 @@ def counterexample(case, raw, baseline, function_ref, requirement_ref):
             for part in array_path.strip("/").split("/"):
                 value = value.get(part, MISSING) if isinstance(value, dict) else MISSING
             category = "未提示" if value is MISSING or not isinstance(value, list) else "空" if not value else "単一" if len(value) == 1 else "複数"
-            conditions.append(f"{array_path} 入力arrayの要素数区分は {category}")
+            if array_path in ("/original_effect_observation/before", "/original_effect_observation/after_first", "/original_effect_observation/after_retry", "/submitted_effect_observation/before", "/submitted_effect_observation/after_first", "/submitted_effect_observation/after_retry", "/original_effect_before", "/original_effect_after", "/submitted_effect_after"):
+                label = array_path.rsplit("/", 1)[-1]
+                if category == "空": meaning = "snapshotは空（効果項目なし）"
+                elif category == "単一": meaning = "snapshotは単一の効果項目"
+                elif category == "複数": meaning = "snapshotは複数の効果項目"
+                else: meaning = "snapshotは未提示または配列でない"
+                conditions.append(f"{array_path.rsplit('/', 1)[0]} の {label} {meaning}")
+            elif array_path == "/submitted_history":
+                original_history = raw.get("original_history", MISSING)
+                if category == "空" and isinstance(original_history, list) and original_history:
+                    meaning = "提出historyが空で、元historyは提示されている"
+                else:
+                    meaning = f"提出historyの件数区分は{category}"
+                conditions.append(meaning)
+            elif array_path == "/submitted_unfinished":
+                original_unfinished = raw.get("original_unfinished", MISSING)
+                if category == "空" and original_unfinished not in (MISSING, None, [], {}):
+                    meaning = "提出unfinished/recovery入力が空で、元入力は提示されている"
+                else:
+                    meaning = f"提出unfinished/recovery入力の件数区分は{category}"
+                conditions.append(meaning)
+            else:
+                conditions.append(f"{array_path} 入力arrayの要素数区分は {category}")
             continue
         if path in ("/original_result_state", "/original_expiry_state", "/original_permission_state", "/original_compatibility_state", "/original_ack_state"):
             key = path[1:]
@@ -588,6 +673,9 @@ def check():
         requirement_ref = l9["verification_obligations"][ob_index].get("requirement_ref", "")
         if row.get("counterexample") != counterexample(src, raw, baseline, row["function_ref"], requirement_ref):
             errors.append(f"{row['id']}: counterexample must contain only source-derived input conditions")
+        vague_counterexample_markers = ("同機能の先頭固定caseと異なる", "もう一方と異なる", "一方と異なる")
+        if any(marker in row.get("counterexample", "") for marker in vague_counterexample_markers):
+            errors.append(f"{row['id']}: counterexample omits the meaning of its fixed-source input difference")
         source_pointer = f"/verification_obligations/{ob_index}/concrete_cases/{case_index}/independent_source_packet/raw_utf8"
         baseline_case_index = 0
         baseline_pointer = f"/verification_obligations/{ob_index}/concrete_cases/{baseline_case_index}/independent_source_packet/raw_utf8"
