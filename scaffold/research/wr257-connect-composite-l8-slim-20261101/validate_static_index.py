@@ -676,12 +676,20 @@ def main() -> None:
         matching = [(path, load(path)) for path in measurement_paths if load(path).get('target_sha256') == payload['target_sha256']]
         assert matching, 'binding must point to a measurement appendix for the current L8 bytes'
         head = subprocess.check_output(['git', 'rev-parse', 'HEAD'], cwd=ROOT, text=True).strip()
-        at_head = [(path, item) for path, item in matching if item.get('recorded_against_revision') == head]
-        if at_head:
-            assert len(at_head) == 1, 'binding must have exactly one measurement appendix recorded against current HEAD'
-            latest_path, appendix = at_head[0]
+        applicable = []
+        for path, item in matching:
+            revision = item.get('recorded_against_revision', '')
+            is_ancestor = subprocess.run(['git', 'merge-base', '--is-ancestor', revision, head], cwd=ROOT, check=False).returncode == 0
+            if is_ancestor:
+                distance = int(subprocess.check_output(['git', 'rev-list', '--count', f'{revision}..{head}'], cwd=ROOT, text=True))
+                applicable.append((distance, path, item))
+        if applicable:
+            latest_distance = min(item[0] for item in applicable)
+            latest = [(path, item) for distance, path, item in applicable if distance == latest_distance]
+            assert len(latest) == 1, 'matching appendices at the same latest revision distance must be unique'
+            latest_path, appendix = latest[0]
         else:
-            assert len(matching) == 1, 'multiple matching appendices require one recorded against current HEAD'
+            assert len(matching) == 1, 'multiple matching appendices require an ancestor measurement for current HEAD'
             latest_path, appendix = matching[0]
         assert appendix['schema'] == 'wr257-static-evidence-appendix.v1'
         appendix_body = dict(appendix)
