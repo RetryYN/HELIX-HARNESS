@@ -110,5 +110,56 @@
     "scaffold/research/wr258-sec006-psi-explicit-20261101/pr4007-r2-static-validation.json",
     "scaffold/research/wr258-sec006-psi-explicit-20261101/pr4007-r2-latest-main-overlay.json",
     "scaffold/research/wr258-sec006-psi-explicit-20261101/pr-b-l8-integration-case-ref-candidate-r2.json"
+  ],
+  "retired_current_tools": [
+    {
+      "path": "scaffold/research/wr258-sec006-psi-explicit-20261101/validate_pr4007_r1_oracle_uniqueness.py",
+      "historical_revision": "d3b0b1777f3cf35d604d20ad18a177cc9f85caa3",
+      "git_blob": "7d96d37f12390bc0d94382c43f3b14b9a40df743",
+      "sha256": "a948b7cd383a7c9973aea6b3664db04747311a3ed272ae57b2b799f0b7ddbfa2",
+      "bytes": 11987,
+      "retirement_reason": "R1専用validatorはrowwise artifactを通常pathから読み込んでいた。R2でartifactを現行pathから退役したため、過去時点専用toolとして現行scaffoldから退役。",
+      "replacement_or_successor": "validate_pr4007_r2.py と PR-B compact mapping validator",
+      "restore_exact_bytes": "git show d3b0b1777f3cf35d604d20ad18a177cc9f85caa3:scaffold/research/wr258-sec006-psi-explicit-20261101/validate_pr4007_r1_oracle_uniqueness.py > scaffold/research/wr258-sec006-psi-explicit-20261101/validate_pr4007_r1_oracle_uniqueness.py",
+      "execution_scope": "過去時点の再現に限る。現行treeへ単独で復元して実行しない。"
+    },
+    {
+      "path": "scaffold/research/wr258-sec006-psi-explicit-20261101/build_rowwise_design.py",
+      "historical_revision": "d3b0b1777f3cf35d604d20ad18a177cc9f85caa3",
+      "git_blob": "5307366f82e0108885374b5643be80251e54e80b",
+      "sha256": "3bfa9914ea45ef57a5c08873e4b5d55a55fe927d0267eaa37f3f45983415ae1e",
+      "bytes": 21459,
+      "retirement_reason": "現行L4/L9を入力に巨大rowwise artifactを作るbuilderを現行scaffoldから退役。byte-identical再構成は固定f328 worktree内のbuilderでのみ行う。",
+      "replacement_or_successor": "固定f328 commitからの一時worktree再構成とR2固定Git blob検証",
+      "restore_exact_bytes": "git show d3b0b1777f3cf35d604d20ad18a177cc9f85caa3:scaffold/research/wr258-sec006-psi-explicit-20261101/build_rowwise_design.py > scaffold/research/wr258-sec006-psi-explicit-20261101/build_rowwise_design.py",
+      "execution_scope": "過去時点の再現に限る。現行treeへ単独で復元して実行しない。"
+    }
+  ],
+  "retained_historical_path_references": [
+    {
+      "path": "scaffold/research/wr258-sec006-psi-explicit-20261101/integration-overlay-measurement.json",
+      "field": "rowwise_design",
+      "kind": "時点測定記録中のpath label。実行時consumerではない。対応blob/SHAはretired_filesのrowwise artifact entryに記録。"
+    },
+    {
+      "path": "scaffold/research/wr258-sec006-psi-explicit-20261101/post-f328-followup-r1.json",
+      "field": "files",
+      "kind": "f328後の履歴調査で使った入力一覧。実行時consumerではない。"
+    },
+    {
+      "path": "scaffold/research/wr258-sec006-psi-explicit-20261101/operation-defer-and-pr-split-candidate-r1.json",
+      "field": "additional_50 / rowwise-integration-design.json hash",
+      "kind": "R1時点の候補記録とその時点hash。現在のoracleではない。"
+    },
+    {
+      "path": "scaffold/research/wr258-sec006-psi-explicit-20261101/f328-overlay-disposition.json",
+      "field": "path",
+      "kind": "f328固定時点の旧出力blob記録。復元・照合経路を表し、通常pathで読むconsumerではない。"
+    },
+    {
+      "path": "scaffold/research/wr258-sec006-psi-explicit-20261101/validate_pr4007_r2.py",
+      "field": "ROWWISE / git show",
+      "kind": "現行validatorは通常pathを読まず、固定commitのGit blobをhash検証し、現行path不存在を検査する。"
+    }
   ]
 }

@@ -13,6 +13,8 @@ L9='docs/helix-security/L9-integration-verification/project-scope-isolation.json
 BIND='scaffold/bindings/SCF-B-0218.json'
 MAPPING='scaffold/research/wr258-sec006-psi-explicit-20261101/pr-b-l8-integration-case-ref-candidate-r2.json'
 ROWWISE='scaffold/research/wr258-sec006-psi-explicit-20261101/rowwise-integration-design.json'
+RETIRED_R1_VALIDATOR='scaffold/research/wr258-sec006-psi-explicit-20261101/validate_pr4007_r1_oracle_uniqueness.py'
+RETIRED_ROWWISE_BUILDER='scaffold/research/wr258-sec006-psi-explicit-20261101/build_rowwise_design.py'
 ROWWISE_COMMIT='f32812ea08cc88545ea228e71146738553ae1e35'
 ROWWISE_SHA='567ba03eff6607c3603b10c9bb443bf06c890364c0aa2106299cc92a81583004'
 PRE_R1='cf983f81ff09cd90fb3f8f781bdb7c7445923ee6'
@@ -81,6 +83,9 @@ def main():
     # The large rowwise artifact is not checked in at current HEAD. Verify its fixed Git source and the compact PR-B candidate derived from it.
     blob=subprocess.check_output(['git','show',f'{ROWWISE_COMMIT}:{ROWWISE}'],cwd=ROOT)
     check(hashlib.sha256(blob).hexdigest()==ROWWISE_SHA,'f328 rowwise source blob hash matches disposition')
+    check(not (ROOT/ROWWISE).exists(),'large rowwise artifact is absent from current path')
+    check(not (ROOT/RETIRED_R1_VALIDATOR).exists(),'R1-only validator is retired from current tree')
+    check(not (ROOT/RETIRED_ROWWISE_BUILDER).exists(),'large-artifact builder is retired from current tree')
     historical=json.loads(blob)
     expected_pairs={x['candidate_id']:(x['intended_l8_case_ref'],f"SEC003-WR258-L9-ORACLE-{x['candidate_id'].rsplit('-',1)[1]}") for x in historical['candidate_l9_skeletons_for_50_unmatched_l8_rows']}
     mapped={x['candidate_id']:(x['l8_case_id'],x['l9_integration_case_ref']) for x in mapping.get('rows',[])}
@@ -95,7 +100,7 @@ def main():
     current_l9_sha=hashlib.sha256((ROOT/L9).read_bytes()).hexdigest()
     pin=next((x.get('sha256') for x in binding['upstream'] if x.get('path')==L9),None)
     check(pin==current_l9_sha,'SCF-B-0218 current L9 pin matches bytes')
-    result={'schema':'wr258-pr4007-r2-static-validation.v1','evidence_kind':'scaffold','authority_effect':'none','passed':not failures,'baseline_revisions':{'pre_r1':PRE_R1,'pre_r2':PRE_R2,'rowwise_fixed_commit':ROWWISE_COMMIT},'counts':{'l4_classes':len(l4classes),'l9_old_rows':len(oldrows),'l9_r1_additions':len(added),'l9_total_rows':len(l9rows),'unique_conditions':len(condition_set),'python_repr_occurrences':repr_count,'prb_candidate_rows':len(mapping.get('rows',[]))},'sha256':{p:hashlib.sha256((ROOT/p).read_bytes()).hexdigest() for p in (L3,L10,L4,L8,L9,MAPPING,BIND)},'rowwise_rebuild_source':{'git_blob':subprocess.check_output(['git','rev-parse',f'{ROWWISE_COMMIT}:{ROWWISE}'],cwd=ROOT,text=True).strip(),'sha256':ROWWISE_SHA,'current_path_absent':not (ROOT/ROWWISE).exists()},'failures':failures}
+    result={'schema':'wr258-pr4007-r2-static-validation.v1','evidence_kind':'scaffold','authority_effect':'none','passed':not failures,'baseline_revisions':{'pre_r1':PRE_R1,'pre_r2':PRE_R2,'rowwise_fixed_commit':ROWWISE_COMMIT},'counts':{'l4_classes':len(l4classes),'l9_old_rows':len(oldrows),'l9_r1_additions':len(added),'l9_total_rows':len(l9rows),'unique_conditions':len(condition_set),'python_repr_occurrences':repr_count,'prb_candidate_rows':len(mapping.get('rows',[]))},'sha256':{p:hashlib.sha256((ROOT/p).read_bytes()).hexdigest() for p in (L3,L10,L4,L8,L9,MAPPING,BIND)},'retired_r1_tools':[RETIRED_R1_VALIDATOR,RETIRED_ROWWISE_BUILDER],'rowwise_rebuild_source':{'git_blob':subprocess.check_output(['git','rev-parse',f'{ROWWISE_COMMIT}:{ROWWISE}'],cwd=ROOT,text=True).strip(),'sha256':ROWWISE_SHA,'current_path_absent':not (ROOT/ROWWISE).exists()},'failures':failures}
     encoded=json.dumps(result,ensure_ascii=False,indent=2)+'\n'
     if a.record:
         target=a.record if a.record.is_absolute() else ROOT/a.record

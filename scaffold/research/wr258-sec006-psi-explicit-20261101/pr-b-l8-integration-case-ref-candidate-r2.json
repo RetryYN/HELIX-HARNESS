@@ -4,11 +4,16 @@
   "authority_effect": "none",
   "source_basis": {
     "rowwise_design_fixed_commit": "f32812ea08cc88545ea228e71146738553ae1e35",
-    "rowwise_artifact_path": "scaffold/research/wr258-sec006-psi-explicit-20261101/rowwise-integration-design.json",
     "l8_path": "docs/helix-security/L8-unit-verification/project-scope-isolation.json",
-    "l9_path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json"
+    "l9_path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
+    "rowwise_artifact_at_fixed_commit": {
+      "commit": "f32812ea08cc88545ea228e71146738553ae1e35",
+      "path": "scaffold/research/wr258-sec006-psi-explicit-20261101/rowwise-integration-design.json",
+      "blob": "a29776ee2d054341a924bc2ad4bc44e33183319f",
+      "sha256": "567ba03eff6607c3603b10c9bb443bf06c890364c0aa2106299cc92a81583004"
+    }
   },
-  "rule": "PR-B mapping direction is L8.integration_case_ref -> L9.id. This candidate does not write either canonical layer.",
+  "rule": "この50行対応候補はL8.integration_case_refからL9.idへの未適用案。履歴rowwise入力は固定commitのGit objectで参照し、両正本は変更しない。",
   "counts": {
     "rows": 50,
     "unique_l8_ids": 50,
