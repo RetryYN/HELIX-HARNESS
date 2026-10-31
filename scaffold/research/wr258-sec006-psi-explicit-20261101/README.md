@@ -8,9 +8,9 @@ L4の`failure_classifications`は15 class、L9のnegative caseは148行（F01 93
 
 L9に追加した50件はすべて`not_executed`であり、`condition`は各system oracleを区別する行固有の文章を保つ。50件でconditionは50種類ある。`expected`、`expected_preserved`、classification、axis、stateは対応L4 classと一致し、追加50件のL9 nested rowの`source_pointers`はL3/L10/L4だけを指し、integration rowは重複pointerを持たない。L9にはL8 case pointer、L8由来のcondition補助欄、PR作業番号を含むcase ID、重複する`expected_observation`を置かない。integration rowの共通source pointerはL4 classとL9 nested rowにある同じ根拠と重なるため持たず、`negative_class_ref`と既存nested row IDで参照する。戻し先ownerは参照classから得る。追加caseの期待・分類は実行済み挙動ではない。
 
-PR-BでL8側に置く`integration_case_ref`案は [`pr-b-l8-integration-case-ref-candidate-r2.json`](pr-b-l8-integration-case-ref-candidate-r2.json) に保持する。これは固定f328 rowwise設計の50 candidate↔L8 ID対応から作った未適用の候補であり、L8 canonical caseとL9 IDの参照方向はL8→L9である。このPRではL8を変更せず、candidate JSONを正本として扱わない。
+PR-Aの検討時点では、L8側`integration_case_ref`の50件対応を[`pr-b-l8-integration-case-ref-candidate-r2.json`](pr-b-l8-integration-case-ref-candidate-r2.json)に未適用候補として保持し、PR-AではL8を変更しなかった。この固定mappingは後続PR-BのL8→L9参照を照合するsourceとして使う。現在のPR-B適用結果は本README末尾の別V-pair節に記録する。
 
-L9 `negative_class_assignment.classification`の旧nested codeとtop-level class codeは役割が異なる。R2では98旧行のnested labelを変更せず、50追加行のclass関係はdirect `negative_class_ref`とL4 class keyで表す。F02 operation-deferは局所L8のunknown/空finding、L9 system absentは`explicit_connection_absent`違反であり、両者を同じ観測にはしない。6つのprimary-tree callerもL5 `compare_fallback`上の投影は同じで、L8一対一候補は後続PR-Bで扱う。
+L9 `negative_class_assignment.classification`の旧nested codeとtop-level class codeは役割が異なる。R2では98旧行のnested labelを変更せず、50追加行のclass関係はdirect `negative_class_ref`とL4 class keyで表す。F02 operation-deferは局所L8のunknown/空finding、L9 system absentは`explicit_connection_absent`違反であり、両者を同じ観測にはしない。6つのprimary-tree callerもL5 `compare_fallback`上の投影は同じで、PR-A時点の一対一候補は後続PR-Bの別V-pairで扱う。
 
 ## 証拠と再構成
 
@@ -51,3 +51,14 @@ Claude R1で指摘された148件の`integration_cases[*].source_pointers`（約
 追加50件のL9 IDは`SEC003-L9-ORACLE-001..050`へ改名し、nested row、integration row、PR-B scaffold mapping、現在のvalidator期待を更新した。L9と同時に変更する必要があるPR-AだけでIDを更新し、canonical L5/L8はこのV-pairで変更していない。旧IDを含むR1前のL9、監査、overlay、mappingはcommit `902608f4f606d187e9a83dbf7bbc0c5951f3d674`のblob/hashから復元できるようdispositionへ記録した。
 
 R1最新main overlay（`ad2dfaf6f434fbb81cd34988d4bd76212380f3a5`）では、L4/L9 pairとL5/L8 pairはPASS、ownership capは4/4、pin検査は4組・計68件がPASS（失敗0）。explicit 4wayは0 matched・226 failuresで、L5/L8のmarker/class/case未整備と148 L9 caseのL8参照なしを実測した。`scfctl validate`は208 bindings・失敗0、`stale`は0。各validator 3本はPASS。L9は1,297,308 byteから1,055,315 byteへ241,993 byte減った。詳細は[`l4l9-supplement-current-overlay-r1.json`](l4l9-supplement-current-overlay-r1.json)に記録し、QA §58のL8 `change`/L9 `condition`文字列一致と、L8 `expected`の独立導出を明確に分ける。
+
+
+## PR-B（別L5/L8 V-pair、#4017 merge後）
+
+PR #4017のmerge commitは`8ca99d8afcfcca2e5240afb992289ea8c80c41a6`。PR-B branchをこの`origin/main`へrebaseし、L5/L8だけを更新した。L8 148 unit casesのうち追加50件の参照を`SEC003-L9-ORACLE-001..050`へ揃え、148件すべての`integration_case_ref`をL9 `integration_cases`と一対一にした。QA §58の比較対象であるL8 `condition`は対応L9 `condition`と全148件で完全一致する。canonical L8から`mapping_candidate_id`と不要な行別`input_condition_source`を除去した。
+
+L8の`expected`と`expected_preserved`は既存のL4 class projectionを保持し、L5 owner ruleの同じclass期待と148/148一致することを検証した。L9は独立に作成済みのcasewise oracleとの一致を導出後に確認する照合先としてのみ用いた。6 caller provenance行は別のL8来歴投影を保持し、L9 system expectationへcaller値を混ぜない。
+
+局所`SEC003-L8-OPERATION-DEFER`はunknown・空findingの単体観測で、negative unit-case inventory外のまま。system absentは別の`SEC003-L8-COMPOSE-READ-CONNECTION-ABSENT`として`SEC003-L9-ORACLE-046`および既存L4 class `SEC003-F02-EXPLICIT-CONNECTION-ABSENT`へ結ぶ。8-partの具体raw fixture値は未供給で、実行も未実施。二つを同一観測にしていない。
+
+最新main overlayの検証結果は[`prb-l5l8-current-measurement.json`](prb-l5l8-current-measurement.json)に記録する。PR-B専用validatorとPR-A R2 static validatorはPASS、L4/L9 pairとL5/L8 pairはPASS、formal 4wayは148/148 matched・failure 0、`scfctl validate`はbindings 209・失敗0、`stale`は0。PR-A R1 followup validatorはL5/L8 markerなしを確認する固定revisionの歴史的検査である。固定commit `8ca99d8afcfcca2e5240afb992289ea8c80c41a6`の一時worktreeで実行するとPASSする一方、PR-B後のcurrent treeではmarkerありの2 assertionが失敗する。固定commit、validator blob/SHA、復元・実行commandと両結果は[`prb-l5l8-measurement-disposition.json`](prb-l5l8-measurement-disposition.json)に記録した。現行PR-B validatorはその古いmarker前提を使わず、現在の148 row、casewise condition、L4/L5独立期待、caller、local defer/system absent、formal check-child、pin、scfctlを検査する。測定前の旧current recordはcommit/blob/SHAと復元方法を[`prb-l5l8-measurement-disposition.json`](prb-l5l8-measurement-disposition.json)に記録し、旧本文の現行コピーを残さない。

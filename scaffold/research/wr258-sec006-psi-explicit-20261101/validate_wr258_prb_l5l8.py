@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""WR258 PR-B: L5/L8 class, case source, and current structural measurements."""
+"""WR258 PR-B: L5/L8 classes, L8↔L9 cases, and current structural measurements."""
 from __future__ import annotations
 import argparse
 import hashlib
@@ -22,6 +22,7 @@ MAPPING = "scaffold/research/wr258-sec006-psi-explicit-20261101/pr-b-l8-integrat
 ROWWISE = "scaffold/research/wr250-sec006-psi-l5l8-20261031/rowwise-comparison-r1.json"
 R2_VALIDATOR = "scaffold/research/wr258-sec006-psi-explicit-20261101/validate_pr4007_r2.py"
 PRB_BINDING = "scaffold/bindings/SCF-B-0224.json"
+VALIDATOR = "scaffold/research/wr258-sec006-psi-explicit-20261101/validate_wr258_prb_l5l8.py"
 
 
 def load(path: str):
@@ -71,6 +72,7 @@ def main() -> int:
     l8_by_id = {row["id"]: row for group in l8["cases"] for row in group["negative_cases"]}
     l8_candidates = {row["id"]: row for row in l8["candidate_unit_cases"]}
     l9_rows = {row["id"]: row for group in l9["cases"] for row in group["negative_cases"]}
+    l9_integrations = {row["id"]: row for row in l9.get("integration_cases", [])}
     units = {row["case_id"]: row for row in l8.get("unit_cases", [])}
 
     check(len(l4_by_id) == 15, "L4 has 15 negative classes")
@@ -95,6 +97,12 @@ def main() -> int:
             note = pinrow.get("note", "")
             check("historical pin" in note or "旧pin" in note or "歴史的hash" in note,
                   f"{bind_path} retains prior {path.rsplit('/', 1)[-1]} pin")
+    for path in (L9, MAPPING):
+        pinrow = next((row for row in prb_binding.get("upstream", []) if row.get("path") == path), {})
+        check(pinrow.get("sha256") == sha(path), f"{PRB_BINDING} current {path.rsplit('/', 1)[-1]} pin resolves")
+        note = pinrow.get("note", "")
+        check(any(token in note for token in ("historical pin", "旧pin", "履歴")),
+              f"{PRB_BINDING} retains prior {path.rsplit('/', 1)[-1]} pin")
     check("scaffold/bindings/SCF-B-0224.json" in prb_binding.get("artifacts", []), "PR-B binding records itself")
     check("scaffold/research/wr258-sec006-psi-explicit-20261101/validate_wr258_prb_l5l8.py" in prb_binding.get("artifacts", []),
           "PR-B binding registers its current validator")
@@ -144,7 +152,7 @@ def main() -> int:
     for row in mapping_rows:
         cid, l8id, l9id = row["candidate_id"], row["l8_case_id"], row["l9_integration_case_ref"]
         source = l8_by_id.get(l8id)
-        target = l9_rows.get(l9id)
+        target = l9_integrations.get(l9id)
         check(source is not None, f"mapping L8 source resolves: {cid}")
         check(target is not None, f"mapping L9 target resolves: {cid}")
         if source:
@@ -155,7 +163,7 @@ def main() -> int:
                 check(False, f"mapping pointer resolves to row: {cid}")
         if target:
             check(target.get("negative_class_ref") == row.get("l4_class_id"), f"mapping class agrees with L9 target: {cid}")
-        unit = next((u for u in units.values() if u.get("mapping_candidate_id") == cid), None)
+        unit = units.get(l8id)
         if l8id == "SEC003-L8-OPERATION-DEFER":
             check(unit is None, "operation-defer mapping is not applied as a negative unit case")
             check(l8id not in units, "local operation-defer is outside explicit system-negative inventory")
@@ -164,9 +172,12 @@ def main() -> int:
         if unit:
             applied_mapping.add(cid)
             cls = l4_by_id[row["l4_class_id"]]
+            rule = l5_by_class[row["l4_class_id"]]
             check(unit.get("integration_case_ref") == l9id, f"unit case maps one-to-one to L9 row: {cid}")
-            check(unit.get("expected") == cls.get("expected"), f"L8 expected is sourced from L4: {cid}")
-            check(unit.get("expected_preserved") == cls.get("expected_preserved"), f"L8 preserved expectation is sourced from L4: {cid}")
+            check(unit.get("expected") == cls.get("expected") == rule.get("expected"), f"L8 expected agrees with independent L4/L5 projection: {cid}")
+            check(unit.get("expected_preserved") == cls.get("expected_preserved") == rule.get("expected_preserved"), f"L8 preserved expectation agrees with independent L4/L5 projection: {cid}")
+            if target:
+                check(unit.get("condition") == target.get("condition"), f"L8 condition exactly matches L9 condition: {cid}")
     check(len(applied_mapping) == 49, "49/50 R2 mapping rows are applied; local defer is separated")
     check(all(row.get("status") == "candidate_not_applied" for row in mapping_rows), "historical mapping artifact remains unchanged")
 
@@ -197,21 +208,43 @@ def main() -> int:
             check(unit.get("expected") == cls.get("expected"), f"retained candidate expectation derives from L4: {cid}")
             check(unit.get("expected_preserved") == cls.get("expected_preserved"), f"retained candidate preservation derives from L4: {cid}")
 
-    # Every explicit row references one unique existing L9 identity and an L4-derived class.
+    # Every explicit row has one unique L9 case reference and an L4/L5-derived oracle.
     check(len(units) == 148, "L8 explicit inventory has 148 rows")
     refs = [row.get("integration_case_ref") for row in units.values()]
     check(len(set(refs)) == 148, "L8 integration references are one-to-one")
-    check(set(refs) == set(l9_rows), "L8 unit inventory covers the current 148 L9 row identities")
+    check(set(refs) == set(l9_integrations), "L8 unit inventory covers the current 148 L9 integration identities")
+    check(sum(ref.startswith("SEC003-L9-ORACLE-") for ref in refs if isinstance(ref, str)) == 50,
+          "all 50 added L9 references use stable IDs")
+    check(not any("WR258-L9-ORACLE-" in ref for ref in refs if isinstance(ref, str)),
+          "no work-qualified L9 IDs remain in canonical L8")
+    extra_fields = {"mapping_candidate_id", "input_condition_source"}
+    check(not any(extra_fields.intersection(row) for row in units.values()),
+          "canonical L8 has no mapping work tokens or redundant per-row condition-source fields")
+    condition_match_count = 0
+    independent_expected_count = 0
     for row in units.values():
         cls = l4_by_id.get(row.get("negative_class_ref"))
-        target = l9_rows.get(row.get("integration_case_ref"))
+        rule = l5_by_class.get(row.get("negative_class_ref"))
+        target = l9_integrations.get(row.get("integration_case_ref"))
+        nested = l9_rows.get(row.get("integration_case_ref"))
         check(cls is not None, f"unit class resolves from L4: {row['case_id']}")
-        check(target is not None, f"unit integration ID resolves to nested L9 source: {row['case_id']}")
-        if cls:
-            check(row.get("expected") == cls.get("expected") and row.get("expected_preserved") == cls.get("expected_preserved"),
-                  f"unit expectations use L4 class projection: {row['case_id']}")
+        check(rule is not None, f"unit class owner resolves from L5: {row['case_id']}")
+        check(target is not None, f"unit integration ID resolves to L9 casewise row: {row['case_id']}")
+        check(nested is not None, f"unit integration ID resolves to L9 source counterexample: {row['case_id']}")
+        if cls and rule:
+            expectations_match = (
+                row.get("expected") == cls.get("expected") == rule.get("expected") and
+                row.get("expected_preserved") == cls.get("expected_preserved") == rule.get("expected_preserved")
+            )
+            check(expectations_match, f"L8 expectations derive from L4/L5, independently of L9: {row['case_id']}")
+            independent_expected_count += int(expectations_match)
         if target:
             check(target.get("negative_class_ref") == row.get("negative_class_ref"), f"unit and L9 source class agree: {row['case_id']}")
+            matched_condition = row.get("condition") == target.get("condition")
+            check(matched_condition, f"L8 condition exactly matches L9 under QA §58: {row['case_id']}")
+            condition_match_count += int(matched_condition)
+            check(row.get("expected") == target.get("expected"), f"independently derived L8 expected matches L9 oracle: {row['case_id']}")
+            check(row.get("expected_preserved") == target.get("expected_preserved"), f"independently derived L8 preservation matches L9 oracle: {row['case_id']}")
 
     # Six caller rows preserve provenance as a local projection, not as a fabricated L9 finding.
     expected_callers = {"Worker", "Agent", "Hook", "memory", "credential", "configuration"}
@@ -275,12 +308,16 @@ def main() -> int:
         check(row.get("local_only") is True and row.get("integration_case_ref") is None, f"unresolved caller row is not falsely linked to L9: {row.get('case_id')}")
         check(row.get("expected_local_result", {}).get("grade") == "unknown", f"unresolved caller stays unknown: {row.get('case_id')}")
 
-    # Existing 98 L9 rows lack all three QA casewise fields; these remain an explicit prerequisite.
-    legacy_l9 = [row for row in l9_rows.values() if not row["id"].startswith("SEC003-WR258-L9-ORACLE-")]
-    missing = {field: [row["id"] for row in legacy_l9 if field not in row] for field in ("condition", "expected", "expected_preserved")}
-    check(len(legacy_l9) == 98, "98 preexisting L9 rows remain in source")
-    check(all(len(values) == 98 for values in missing.values()), "all 98 old L9 rows still need all three QA casewise fields")
-    check(not isinstance(l9.get("integration_cases"), list), "L9 integration_cases array is still pending the separate L4/L9 supplement")
+    # L9's nested rows retain their source payload; casewise QA attributes live in integration_cases.
+    legacy_l9 = [row for row in l9_rows.values() if not row["id"].startswith("SEC003-L9-ORACLE-")]
+    added_l9 = [row for row in l9_integrations.values() if row["id"].startswith("SEC003-L9-ORACLE-")]
+    check(len(legacy_l9) == 98, "98 preexisting L9 source rows remain")
+    check(len(added_l9) == 50, "50 added L9 source rows use stable IDs")
+    check(len(l9_integrations) == 148, "L9 has 148 casewise integration rows")
+    check(all(all(field in row for field in ("condition", "expected", "expected_preserved")) for row in l9_integrations.values()),
+          "all L9 integration rows provide required casewise attributes")
+    check(all(row.get("negative_class_ref") in l4_by_id for row in l9_integrations.values()),
+          "all L9 integration rows resolve their L4 class")
 
     # The exact formal check-child and Scaffold measurements are recorded honestly.
     checker = run([sys.executable, "-B", "scaffold/tools/design_verification_checker.py", "check-child", "--root", ".", "--l4", L4, "--l5", L5, "--l8", L8, "--l9", L9])
@@ -291,6 +328,12 @@ def main() -> int:
     scf_stale = run([sys.executable, "-B", "scaffold/tools/scfctl.py", "stale"])
     validate_summary = scf_validate.stdout.strip().splitlines()[-1] if scf_validate.stdout.strip() else ""
     stale_summary = scf_stale.stdout.strip().splitlines()[-1] if scf_stale.stdout.strip() else ""
+    check(checker.returncode == 0 and checker_report.get("passed") is True,
+          "formal check-child passes all four layers")
+    check(scf_validate.returncode == 0 and validate_summary.endswith("fail=0"),
+          "scfctl validate passes current bindings")
+    check(scf_stale.returncode == 0 and stale_summary == "stale=0",
+          "scfctl stale reports no stale current pins")
 
     base = subprocess.check_output(["git", "merge-base", "HEAD", "origin/main"], cwd=ROOT, text=True).strip()
     head = subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=ROOT, text=True).strip()
@@ -302,10 +345,11 @@ def main() -> int:
         "static_checks": {"passed": not failures, "failure_count": len(failures), "failures": failures,
                           "class_rows": {"L4": len(l4_by_id), "L5": len(l5_by_class), "L8": len(l8.get("negative_equivalence_classes", [])), "L9": len(l9.get("negative_equivalence_classes", []))},
                           "unit_cases": len(units), "unique_l9_refs": len(set(refs)), "applied_fixed_mappings": len(applied_mapping), "retained_l8_candidates": len(candidate_units), "caller_rows": len(caller_units), "former_no_class_rows": {"mapped": resolved_count, "local_defer": 1},
-                          "legacy_l9_missing_casewise_fields": {k: len(v) for k, v in missing.items()}, "l9_integration_cases_present": isinstance(l9.get("integration_cases"), list)},
+                          "stable_added_l9_integration_rows": len(added_l9), "l9_integration_rows": len(l9_integrations),
+                          "case_conditions_exact_match": condition_match_count, "independent_l4_l5_expectations": independent_expected_count},
         "formal_check_child": {"exit": checker.returncode, "passed": checker_report.get("passed"), "pair_statuses": {"L4_L9": checker_report["L4_L9_pair"]["passed"], "L5_L8": checker_report["L5_L8_pair"]["passed"]}, "fourway_counts": four.get("counts"), "class_rows": four.get("class_row_counts"), "case_rows": four.get("case_row_counts"), "matched_case_count": four.get("matched_case_count"), "failure_count": len(four["failures"]), "failure_groups": dict(fail_groups)},
         "scfctl": {"validate_exit": scf_validate.returncode, "validate_summary": validate_summary, "stale_exit": scf_stale.returncode, "stale_summary": stale_summary},
-        "sha256": {path: sha(path) for path in (L3, L10, L4, L5, L8, L9, QA, MAPPING, ROWWISE)},
+        "sha256": {path: sha(path) for path in (L3, L10, L4, L5, L8, L9, QA, MAPPING, ROWWISE, PRB_BINDING, VALIDATOR)},
     }
     encoded = json.dumps(report, ensure_ascii=False, indent=2) + "\n"
     if record_target:

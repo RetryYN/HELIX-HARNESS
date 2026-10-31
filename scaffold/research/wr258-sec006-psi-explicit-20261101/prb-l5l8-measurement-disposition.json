@@ -1,0 +1,54 @@
+{
+  "schema": "wr258-prb-l5l8-measurement-disposition.v1",
+  "evidence_kind": "scaffold",
+  "authority_effect": "none",
+  "historical_measurement": {
+    "path": "scaffold/research/wr258-sec006-psi-explicit-20261101/prb-l5l8-current-measurement.json",
+    "commit": "b7ab84e02fea3cacaa30685184cbacd8211ab9b2",
+    "blob": "daa71e8efe3f13e8ab7cf330a8ee0eb444a90b9d",
+    "sha256": "5a6da4767533282e145afae22891a6b5e134b19ca22d9f4a36afb430e07fca48",
+    "bytes": 3166,
+    "origin_main": "151713275e2c2aa65bb23a8fe38eb63c46d570c8",
+    "reason": "#4017のL4/L9 integration_casesがmainへ入る前の測定で、L9 integration_cases欠落、0 matched・269 failuresを示す旧時点証拠。現行main overlay測定と同じcurrent pathに本文を重ねないため、SHA固定と復元方法のみをこのdispositionへ残す。",
+    "restore_command": "git show b7ab84e02fea3cacaa30685184cbacd8211ab9b2:scaffold/research/wr258-sec006-psi-explicit-20261101/prb-l5l8-current-measurement.json > scaffold/research/wr258-sec006-psi-explicit-20261101/prb-l5l8-current-measurement.json"
+  },
+  "current_measurement": {
+    "path": "scaffold/research/wr258-sec006-psi-explicit-20261101/prb-l5l8-current-measurement.json",
+    "latest_origin_main": "8ca99d8afcfcca2e5240afb992289ea8c80c41a6",
+    "current_l8_sha256": "623c93c59c18a78b0083ea98497ae3e778fc367e9423d9a3cc04d822d72cfe24",
+    "current_l9_sha256": "0d46617674373fb9b1677c02eac2766765aafb448192b5c6fc1674b4e7fa88da"
+  },
+  "restoration_semantics": "旧測定本文はcommit/blob/SHAによりGit履歴から復元できる。現行treeには最新main overlayのcurrent measurement 1本のみを置く。",
+  "historical_validator": {
+    "path": "scaffold/research/wr258-sec006-psi-explicit-20261101/validate_pr4007_r1_followup.py",
+    "fixed_commit": "8ca99d8afcfcca2e5240afb992289ea8c80c41a6",
+    "blob": "34353b7df05ee0cb4a10ff8cdcbe319839bd7d01",
+    "sha256": "79c9c2c44012215ff37307517eec5fec95a2c3d078fe8cf497351105e7f7ac8f",
+    "fixed_scope": "PR-A時点でL5/L8 markerなしを確認する静的validator。L5/L8が未整備のmain commitでのみこのassertionは成立する。",
+    "restore_and_run": [
+      "git worktree add --detach /tmp/wr258-prb-r1-validator-historical 8ca99d8afcfcca2e5240afb992289ea8c80c41a6",
+      "cd /tmp/wr258-prb-r1-validator-historical && python3 -B scaffold/research/wr258-sec006-psi-explicit-20261101/validate_pr4007_r1_followup.py",
+      "git worktree remove /tmp/wr258-prb-r1-validator-historical"
+    ],
+    "fixed_revision_result": {
+      "exit_code": 0,
+      "passed": true,
+      "assertion_failure_count": 0
+    },
+    "current_prb_tree_result": {
+      "source_head": "0a28f213aede6feaa97a361a60a402890d044dd9",
+      "exit_code": 1,
+      "failed_assertions": [
+        "L5 marker absent",
+        "L8 marker absent"
+      ],
+      "reason": "PR-B deliberately supplies the current L5/L8 markers; the old PR-A assumption is obsolete on this tree."
+    },
+    "current_replacement": "validate_wr258_prb_l5l8.py checks current L5/L8 owner/class projections, all 148 L8↔L9 IDs and exact conditions, independent L4/L5 expected projections, caller rows, local-defer/system-absent separation, source pins, formal check-child, scfctl validate/stale."
+  },
+  "current_validator": {
+    "path": "scaffold/research/wr258-sec006-psi-explicit-20261101/validate_wr258_prb_l5l8.py",
+    "sha256": "de3f12e043e09fa508e500165de984f88ee4c2c34560cd4aa7386a608969b452",
+    "scope": "PR-B current L5/L8 proof and formal check-child; 148 casewise pair checks. Runtime execution remains not performed by design."
+  }
+}
