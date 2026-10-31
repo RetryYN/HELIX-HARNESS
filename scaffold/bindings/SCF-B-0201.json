@@ -111,10 +111,10 @@
     "scaffold/research/wr250-sec006-psi-l5l8-20261031/overlay-validation-correction.json",
     "scaffold/research/wr258-sec006-psi-explicit-20261101/validate_pr4007_r1_followup.py",
     "scaffold/research/wr258-sec006-psi-explicit-20261101/pr-b-l8-integration-case-ref-candidate-r2.json",
-    "scaffold/research/wr258-sec006-psi-explicit-20261101/pr4007-r2-latest-main-overlay.json",
     "scaffold/research/wr258-sec006-psi-explicit-20261101/pr4007-r2-static-validation.json",
     "scaffold/research/wr258-sec006-psi-explicit-20261101/r2-evidence-disposition.json",
-    "scaffold/research/wr258-sec006-psi-explicit-20261101/validate_pr4007_r2.py"
+    "scaffold/research/wr258-sec006-psi-explicit-20261101/validate_pr4007_r2.py",
+    "scaffold/research/wr258-sec006-psi-explicit-20261101/pr4007-r2-final-overlay.json"
   ],
   "verification": {
     "evidence_kind": "scaffold",
@@ -143,7 +143,9 @@
       "WR250 R1 static validator passes: row counts, no-class/unique-reason classification, corrected function refs, function-read-field missing/null/present projections, 32 current L5 pins, L4/L9 unchanged, frozen evidence unchanged, and residual negative count 16.",
       "PR4000 overlay correction: R1 frozen evidence and L4/L9 compare against reviewed revision f9c64394d93d102324da9d02a39f7bbbff77f231, not ambient HEAD. Previous validator hash and observation are preserved in overlay-validation-correction.json.",
       "WR258 supplement: L4 has 16 top-level source classes with code=expected_classification; L9 keeps 98 row IDs/expected observations and 16 residual rows while recording class_id/key projections; L5/L8 and all-four-layer markers remain unchanged.",
-      "R2最新main overlay（origin/main cd4208605f2a4e77e85f8d34317ff44c7218ad41）: validate 203/0、stale 0。正式check-childはpair 2組pass・4way 0 matched/79 failures。生成統合候補は141/148 matched・10 failures。詳細はpr4007-r2-latest-main-overlay.json。"
+      "R2最新main overlay（origin/main 7d4145ac41ce8aa8d442b6fbb3981c7e83e338c6）: validate 204/0、stale 0。正式check-childはpair 2組pass・4way 0 matched/79 failures。生成統合候補は141/148 matched・10 failures。詳細はpr4007-r2-final-overlay.json。",
+      "同一origin/mainを対象としたR2初回overlay reportは履歴hashと固有SHA/pair内訳をr2-evidence-disposition.jsonへ保全し、現行bindingではvalidator測定を含むconsumer overlay 1本を参照する。",
+      "旧R2 overlay pathは同一mainの重複測定としてdispositionにhash/復元手順/固有情報を保全し、現行artifactは最終候補treeを検証するpr4007-r2-final-overlay.json一つとする。"
     ],
     "negative_cases": [
       "Do not treat source presentation order as normative when the L4 diagnostic sort does not apply.",

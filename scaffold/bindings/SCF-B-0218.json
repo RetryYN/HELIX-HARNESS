@@ -123,11 +123,10 @@
     "scaffold/research/wr258-sec006-psi-explicit-20261101/operation-defer-and-pr-split-candidate-r1.json",
     "scaffold/research/wr258-sec006-psi-explicit-20261101/validate_pr4007_r1_followup.py",
     "scaffold/research/wr258-sec006-psi-explicit-20261101/pr-b-l8-integration-case-ref-candidate-r2.json",
-    "scaffold/research/wr258-sec006-psi-explicit-20261101/pr4007-r2-latest-main-overlay.json",
     "scaffold/research/wr258-sec006-psi-explicit-20261101/pr4007-r2-static-validation.json",
     "scaffold/research/wr258-sec006-psi-explicit-20261101/r2-evidence-disposition.json",
     "scaffold/research/wr258-sec006-psi-explicit-20261101/validate_pr4007_r2.py",
-    "scaffold/research/wr258-sec006-psi-explicit-20261101/pr4007-r2-consumer-overlay.json"
+    "scaffold/research/wr258-sec006-psi-explicit-20261101/pr4007-r2-final-overlay.json"
   ],
   "verification": {
     "evidence_kind": "scaffold",
@@ -152,9 +151,11 @@
       "Exact post-commit d1983ee latest-main squash overlay was re-measured: main 3c2ea673, validate 202/0 and stale 0; formal partial-marker 0/79, integrated candidate 141/10. This measurement includes the exact R1 follow-up HEAD under review.",
       "PR #4007 R2では、L9追加50行の固有conditionを維持し、L8参照・candidate field・重複expected_observationを除去した。R2 validatorで既存98行、追加50行、15 class、Python reprなし、L3/L10/L4 pointer解決、未実行状態を確認。",
       "772941 byteのrowwise designを現行pathから除去する前に、固定f328 commitからbyte単位で再生成できることを確認した。blob/SHAと復元方法はr2-evidence-disposition.jsonに記録。PR-BのL8→L9 mappingは未適用の小さい候補として保持。",
-      "R2最新main overlay（origin/main cd4208605f2a4e77e85f8d34317ff44c7218ad41）: validate 203/0、stale 0。正式check-childはpair 2組pass・4way 0 matched/79 failures。生成統合候補は141/148 matched・10 failures。詳細はpr4007-r2-latest-main-overlay.json。",
+      "R2最新main overlay（origin/main 7d4145ac41ce8aa8d442b6fbb3981c7e83e338c6）: validate 204/0、stale 0。正式check-childはpair 2組pass・4way 0 matched/79 failures。生成統合候補は141/148 matched・10 failures。詳細はpr4007-r2-final-overlay.json。",
       "R1専用validatorと現行L4/L9を読み込んでrowwise出力するbuilderは現行artifactから退役。旧toolのblob/hash/復元手順をr2-evidence-disposition.jsonへ記録し、R2 validatorは固定f328 Git blobを検証、旧toolと巨大出力の現行path不在を検査する。",
-      "R2追補でR1 uniqueness validatorとrowwise builderのcurrent artifact登録を解除。固定f328 rowwise Git objectを使うR2 validatorとL3/L10/L4由来の追加50行は保持。現行validator・関連R1 followup validatorとlatest-main overlayの再測定はpr4007-r2-consumer-overlay.jsonに記録。"
+      "R2追補でR1 uniqueness validatorとrowwise builderのcurrent artifact登録を解除。固定f328 rowwise Git objectを使うR2 validatorとL3/L10/L4由来の追加50行は保持。現行validator・関連R1 followup validatorとlatest-main overlayの再測定はpr4007-r2-final-overlay.jsonに記録。",
+      "同一origin/mainを対象としたR2初回overlay reportは履歴hashと固有SHA/pair内訳をr2-evidence-disposition.jsonへ保全し、現行bindingではvalidator測定を含むconsumer overlay 1本を参照する。",
+      "旧R2 overlay pathは同一mainの重複測定としてdispositionにhash/復元手順/固有情報を保全し、現行artifactは最終候補treeを検証するpr4007-r2-final-overlay.json一つとする。"
     ],
     "negative_cases": [
       "L8 SIDE-UNKNOWN-SIDE and ASSET-UNKNOWN-KIND remain unknown with scope_input_unresolved and map to separate source-derived axes.",
