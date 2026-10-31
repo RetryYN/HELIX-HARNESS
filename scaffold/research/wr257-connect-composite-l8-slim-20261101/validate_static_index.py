@@ -338,7 +338,7 @@ def main() -> None:
     l8_sha = sha((ROOT / L8).read_bytes())
     assert '固有の反例・期待判断' in current['method']['rule'] and 'patch path' not in current['method']['rule']
     assert 'op/path/value' in current['local_probe_contract']['expectation'] and 'L8へ戻さない' in current['local_probe_contract']['expectation']
-    assert '固定基準revision' in current['local_probe_contract']['expectation']
+    assert '基準revisionの旧記録' in current['local_probe_contract']['expectation']
     assert 'DT-VT-105' in current['local_probe_contract']['boundary'] and 'not_executed' in current['local_probe_contract']['boundary']
     assert 'source_ref values' not in current['common_expectation_boundary']['oracle_role']
     assert '短い反例・期待判断' in current['common_expectation_boundary']['oracle_role']
