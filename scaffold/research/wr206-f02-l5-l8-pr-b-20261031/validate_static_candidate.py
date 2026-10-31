@@ -209,7 +209,7 @@ def main() -> None:
     assert sha(l4_base_bytes) == L4_BASE_SHA
     assert sha(l9_base_bytes) == L9_BASE_SHA
     l4_base, l9_base = json.loads(l4_base_bytes), json.loads(l9_base_bytes)
-    l4_current, l9_current = json.loads((ROOT / L4_PATH).read_bytes()), json.loads((ROOT / L9_PATH).read_bytes())
+    l4_current, l9_current = json.loads((ROOT / L4_PATH).read_bytes()), json.loads(validate_uid_table.precompact_l9_bytes())
     l4_f01 = one(l4_current["contracts"], "HARNESS-L4-015-F01")
     l9_f01 = one(l9_current["cases"], "HARNESS-L9-015-F01")
     assert {row.get("id") for row in l4_f01["negative_classifications"] if row.get("id") in WR231_IDS} == WR231_IDS

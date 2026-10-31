@@ -186,6 +186,7 @@ def verify_fact_record(record: dict, l9: dict):
 
 def main() -> None:
     l3, l10, l4, l5, l8, l9 = (read_json(path) for path in (L3, L10, L4, L5, L8, L9))
+    l9 = json.loads(validate_uid_table.precompact_l9_bytes())  # current compact L9 is checked by WR253
     l5_base = json.loads(git_bytes(BASE, L5))
     l8_base = json.loads(git_bytes(BASE, L8))
     l4_base_bytes, l9_base_bytes = git_bytes(BASE, L4), git_bytes(BASE, L9)
@@ -405,6 +406,7 @@ def main() -> None:
             continue
         path, expected = evidence_pin.removeprefix("candidate artifact SHA-256: ").split("=", 1)
         historical_revisions = {
+            ("scaffold/research/wr223-f01-l5-l8-20261031/validate_static_candidate.py", "a7d82eb2267bf2fffd1740ad57591229971079deb95e9d246b9b9a402990461f"): "6c1ceb0172c0dcb95b843739bee2c15905dd735f",
             (L5, L5_SHA): L5_REV,
             (L8, L8_SHA): L8_REV,
             (L5, "426a0b4299a76eaf7a097d33ab56e16244a69163c878ddb265f8bdc4b465b742"): "4c0e29b6d18a8943514ffd25a27cd4e83c11cff0",

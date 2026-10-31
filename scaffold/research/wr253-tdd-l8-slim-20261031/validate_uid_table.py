@@ -180,13 +180,20 @@ def normalized_pre_slim_l5(doc):
     return doc
 
 
+def precompact_l9_bytes():
+    """Fixed pre-removal bytes; current L9 is validated separately by run_checks."""
+    return subprocess.check_output(["git", "show", "6c1ceb0172c0dcb95b843739bee2c15905dd735f:" + L9], cwd=ROOT)
+
+
 def run_checks():
     current, historical, l9 = read(L8), git_json(BASE, L8), read(L9)
+    historical_l9 = git_json("6c1ceb0172c0dcb95b843739bee2c15905dd735f", L9)
+    compact_l9_check = subprocess.run(["python3", "-B", str(ROOT / "scaffold/research/wr253-tdd-l9-slim-20261101/validate_l9_slim.py")], cwd=ROOT, capture_output=True).returncode == 0
     historical_head = git_json(HEAD_ORACLE_SOURCE, L8)["f03_head_connection_oracles"]
     old_by_id = {row["id"]: row for row in historical["unit_cases"]}
     current_cases = {row["id"]: row for row in current["cases"]}
     old_cases = {row["id"]: row for row in historical["cases"]}
-    checks = {}
+    checks = {"L9_only_35_source_hashes_removed_and_historical_hashes_verified": compact_l9_check}
     current_ids = {r.get("id") for c in current["cases"] for r in c.get("unit_case_rows", [])}
     checks["historical_35_U_IDs_resolve_to_current_table"] = len(old_by_id) == 35 and set(old_by_id) <= current_ids
     checks["current_comparison_count_is_35_plus_3"] = sum(len(row.get("unit_case_rows", [])) for row in current["cases"]) == 38
@@ -280,6 +287,7 @@ def run_checks():
                 payload_ref = canonical_l9_ref(l9, oldrow["payload_source_pointer"])
                 expected_ref = canonical_l9_ref(l9, oldrow["expected_material_ref"])
                 source = pointer(l9, source_ref, L9)
+                historical_source = pointer(historical_l9, source_ref, L9)
                 payload = pointer(l9, payload_ref, L9)
                 expected = pointer(l9, expected_ref, L9)
                 l9_case = pointer(l9, source_ref.rsplit("/", 1)[0], L9)
@@ -295,7 +303,7 @@ def run_checks():
                     and expected_source_ref == expected_ref
                     and source.get("source_ref") == oldrow["source_packet_ref"]
                     and source.get("source_ref", {}).get("identity") == "SOURCE-" + uid
-                    and source.get("byte_sha256") == oldrow["source_packet_byte_sha256"]
+                    and historical_source.get("byte_sha256") == oldrow["source_packet_byte_sha256"]
                     and source.get("owner_material") == payload
                     and expected_hash == oldrow["expected_material_sha256"]
                     and issue_matches
