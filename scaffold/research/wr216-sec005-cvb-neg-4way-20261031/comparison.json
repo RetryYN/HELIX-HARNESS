@@ -1328,5 +1328,118 @@
         "l9_case_id": "SEC005-ACTOR-MISSING-OPERATION-CONFLICT"
       }
     ]
+  },
+  "pr_b_wr264_explicit_transition": {
+    "request_id": "WR264-SEC005-L5L8-EXPLICIT",
+    "base_sha": "b3ddf6f1d0a6cf2009e5f81a90f21c4292300185",
+    "pr3980_merge_sha": "7d4145ac4193c9fb1ef3663e85df39b171b2416f",
+    "commit_order": [
+      {
+        "step": 1,
+        "layer": "L4",
+        "path": "docs/helix-security/L4-basic-design/credential-value-boundary.json",
+        "commit": "d104d23e624804c5cec7a3e7be2000e94759aa35",
+        "sha256": "0d8b20911333683de76b4adc515663595078c69286b3621a90748f4e6824ffb0",
+        "bytes_before": 222017,
+        "bytes_after": 94917,
+        "bytes_delta": -127100,
+        "summary": "Folded contracts[0..2].negative_classifications into top-level failure_classifications (26 classes) with new_parent_link (design_ref + negative_class_refs), added negative_equivalence_classes marker, moved unit_only_negative_classifications to L5 unit_case_rows, removed L8 references and redundant source_pointers."
+      },
+      {
+        "step": 2,
+        "layer": "L9",
+        "path": "docs/helix-security/L9-integration-verification/credential-value-boundary.json",
+        "commit": "09237fd58514fb91dab1b4b9d4ead7d1c918e4d0",
+        "sha256": "38ec51dfda66025b96ba44c31088bfdde29e44004b08428a769cc159c7365bc4",
+        "bytes_before": 755453,
+        "bytes_after": 711197,
+        "bytes_delta": -44256,
+        "summary": "Added L4 pin to source_pins, added negative_equivalence_classes (26 rows) and integration_cases (69 rows), removed legacy negative_class_assignment / negative_class_assignment_audit / source_case_refs basis_pointers, and removed all L8 references."
+      },
+      {
+        "step": 3,
+        "layer": "L5",
+        "path": "docs/helix-security/L5-detail-design/credential-value-boundary.json",
+        "commit": "3fc4ed525f709d3eb967d403c391199d06aa1cb9",
+        "sha256": "c71016bc8142646a6cb8b05c7afde050f1da5aac3538373f971f36b9347a8b60",
+        "bytes_before": 88521,
+        "bytes_after": 185666,
+        "bytes_delta": 97145,
+        "summary": "Rebound L4 and L9 pins, added negative_equivalence_classes marker, failure_rules (26 rules), unit_case_rows (37 standalone U-ID rows including unit_only_negative_classifications), and functions[*].unit_case_refs (106 U-IDs)."
+      },
+      {
+        "step": 4,
+        "layer": "L8",
+        "path": "docs/helix-security/L8-unit-verification/credential-value-boundary.json",
+        "sha256": "8639f9383ad77e4ae1f83fbf8343baa27d122ef6e362fcaab08d46780fbc680a",
+        "bytes_before": 3310278,
+        "bytes_after": 350370,
+        "bytes_delta": -2959908,
+        "summary": "Rebound L4/L9/L5 pins, added negative_equivalence_classes (26 rows), unit_cases (69 U-ID rows U-SEC005-001..069 1:1 with L9 integration_cases), standalone_unit_cases (37 U-ID rows U-SEC005-070..106 1:1 with L5 unit_case_rows), derived expectations from L5 contracts (DT-VT-105), and removed literal_materialization_contract (closing L8 ownership cap failure), original_case_chains, multi_contract_residual, and raw/full-return blobs."
+      }
+    ],
+    "historical_evidence_disposition": {
+      "rule": "Current tree keeps 1 active evidence file per kind (comparison.json, validate_wr216_l4_l9.py, README.md, and frozen blind-derivation artifacts). Historical revisions and intermediate snapshots are recorded by commit and SHA-256 below (#4008 R2, #4009 R1).",
+      "records": [
+        {
+          "kind": "pr_a_r1_blind_derivation",
+          "path": "scaffold/research/wr216-sec005-cvb-neg-4way-20261031/blind-derivation.json",
+          "commit": "c10cf80477fdca4cb792bf2c920740dc64c11c12",
+          "sha256": "b18b662713eb94c3d6bc5a3443128c6c8112f61308886647d0d1f2372f754bf6"
+        },
+        {
+          "kind": "pr_a_r2_prior_step_a_freeze",
+          "issue_comment_url": "https://github.com/RetryYN/HELIX-HARNESS/issues/3510#issuecomment-6534537441",
+          "sha256": "5945795304fd043dbfddea54322fc943ea8c1cca9b1a7d2aa3a9a6f120261f09"
+        },
+        {
+          "kind": "pr_a_r2_blind_derivation",
+          "path": "scaffold/research/wr216-sec005-cvb-neg-4way-20261031/blind-derivation-r2.json",
+          "commit": "3bf112d7610134f56b4dc4935453c4850fd5e6a4",
+          "sha256": "92670bdec0283d3700bb871751487c92f93ec025d2995eab002236cb8fadb85f"
+        },
+        {
+          "kind": "pr3980_merged_l4_l9_snapshot",
+          "commit": "7d4145ac4193c9fb1ef3663e85df39b171b2416f",
+          "l4_sha256": "2bd0270ee97d7fc6383ba575dde18ac91ece483235a14d7e2ea4e82a16b19b9b",
+          "l4_bytes": 222017,
+          "l9_sha256": "59c1d3dd3c03565ffdb7bc73b90333528d76670b0aeaabdf20bf42a7e1049634",
+          "l9_bytes": 755453
+        }
+      ]
+    },
+    "check_child_verification": {
+      "comparison_mode": "explicit_negative_equivalence_classes",
+      "parent_link_mode": "new_parent_link",
+      "passed": true,
+      "L4_L9_pair_passed": true,
+      "L5_L8_pair_passed": true,
+      "negative_4way_failures": 0,
+      "class_counts": {
+        "L4": 26,
+        "L9": 26,
+        "L8": 26,
+        "L5": 26
+      },
+      "case_row_counts": {
+        "L8": 69,
+        "L9": 69
+      },
+      "matched_case_count": 69,
+      "standalone_u_id_count": 37,
+      "total_u_id_count": 106,
+      "ownership_cap_failures": {
+        "L4": 0,
+        "L9": 0,
+        "L5": 0,
+        "L8": 0
+      },
+      "pin_failures": {
+        "L4": 0,
+        "L9": 0,
+        "L5": 0,
+        "L8": 0
+      }
+    }
   }
 }
