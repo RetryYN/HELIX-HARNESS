@@ -4,8 +4,8 @@
   "authority_effect": "none",
   "main_revision": "0e218828fbb3b487eff1469cd57ead8e3dfa7b67",
   "remote_main_at_measurement": "0e218828fbb3b487eff1469cd57ead8e3dfa7b67",
-  "candidate_revision": "1ba440f84ca453c0c9b66f32d97add44bebb5f5d",
-  "overlay_tree": "29442050aae6a4c5bc93c1fe32419ad4d8ac3462",
+  "candidate_revision": "3bf89b66e73e55cec5d4652a7b8b42bb50fb37f2",
+  "overlay_tree": "d86b0edd7b39ec402afab5da097cbbbadacfd354",
   "merge": "detached worktree at origin/main; git merge --no-commit --no-ff candidate revision",
   "source_sha256": {
     "L4": "00376c402930e1287e9e0e896804b1de8a20390f8abbea8377b70712f868b9da",

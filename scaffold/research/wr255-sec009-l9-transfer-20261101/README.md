@@ -24,7 +24,7 @@ python3 -B scaffold/tools/scfctl.py validate
 python3 -B scaffold/tools/scfctl.py stale
 ```
 
-現行L9 retirement summaryは[l9-nested-retirement-audit-bfcdd2c297c08458.json](l9-nested-retirement-audit-bfcdd2c297c08458.json)、最新main overlayの現行測定は[overlay report](latest-main-overlay-0e218828-1ba440f8.json)です。最新overlayでは両pair PASS、4way 277 matched/0 failures、scfctl validate 210 bindings/0 failures、stale 0を確認します。これは静的source/pointer照合で、security runtimeの挙動は証明しません。
+現行L9 retirement summaryは[l9-nested-retirement-audit-bfcdd2c297c08458.json](l9-nested-retirement-audit-bfcdd2c297c08458.json)、最新main overlayの現行測定は[overlay report](latest-main-overlay-0e218828-3bf89b66.json)です。最新overlayでは両pair PASS、4way 277 matched/0 failures、scfctl validate 210 bindings/0 failures、stale 0を確認します。これは静的source/pointer照合で、security runtimeの挙動は証明しません。
 
 ## 固定履歴
 
