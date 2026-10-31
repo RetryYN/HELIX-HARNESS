@@ -45,7 +45,7 @@
     },
     {
       "path": "docs/helix-os/L8-unit-verification/log-feedback-memory-lineage.json",
-      "sha256": "696b61356d1fc6d0f41efe44553030c7af90281796740db690dfdf7c39088534",
+      "sha256": "0c9213ceafa606b034fb3d830d4bffa244122e4c232c134bb083dc013b3d5a67",
       "note": "OS007 L8 unit verification (951 unit_cases across 83 negative equivalence classes); WR261 aligned candidate_l5_binding to current L5 (ebbac453...) and added concise L5 standalone return root expectations (expected_function_output_projection) across the 77 L7-instantiated negative classes. Comparison baseline SHA-256 at WR233 Step B: 9444c45c9a4a3901812cf5edf251cfff2c43b509cc8256a248a88b20d2cdd0a3."
     },
     {
