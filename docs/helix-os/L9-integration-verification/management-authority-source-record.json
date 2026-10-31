@@ -2886,7 +2886,7 @@
           "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
           "pointer": "/contracts/1",
           "revision": "6eb6fcae9a3e6d09c990adf67958ce4122171a52",
-          "file_sha256": "b4ddae2bce581b9850f23d3926032e295bf1ed0b1fbd257761ad090f3234ff8a"
+          "file_sha256": "89ca51b288b5b6cbbdd0fb9b5898aa0dc06cf5059d10f72a8d1f9f28c050d3a6"
         },
         {
           "path": "docs/helix-os/L3-requirements/functional-requirements.json",
@@ -2984,7 +2984,7 @@
           "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
           "pointer": "/contracts/2",
           "revision": "6eb6fcae9a3e6d09c990adf67958ce4122171a52",
-          "file_sha256": "b4ddae2bce581b9850f23d3926032e295bf1ed0b1fbd257761ad090f3234ff8a"
+          "file_sha256": "89ca51b288b5b6cbbdd0fb9b5898aa0dc06cf5059d10f72a8d1f9f28c050d3a6"
         },
         {
           "path": "docs/helix-os/L3-requirements/functional-requirements.json",
@@ -3086,7 +3086,7 @@
           "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
           "pointer": "/contracts/2",
           "revision": "6eb6fcae9a3e6d09c990adf67958ce4122171a52",
-          "file_sha256": "b4ddae2bce581b9850f23d3926032e295bf1ed0b1fbd257761ad090f3234ff8a"
+          "file_sha256": "89ca51b288b5b6cbbdd0fb9b5898aa0dc06cf5059d10f72a8d1f9f28c050d3a6"
         },
         {
           "path": "docs/helix-os/L3-requirements/functional-requirements.json",
@@ -35852,7 +35852,7 @@
           "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
           "pointer": "/contracts/0",
           "revision": "6eb6fcae9a3e6d09c990adf67958ce4122171a52",
-          "file_sha256": "b4ddae2bce581b9850f23d3926032e295bf1ed0b1fbd257761ad090f3234ff8a"
+          "file_sha256": "89ca51b288b5b6cbbdd0fb9b5898aa0dc06cf5059d10f72a8d1f9f28c050d3a6"
         },
         {
           "path": "docs/helix-os/L3-requirements/business-requirements.json",
@@ -36994,7 +36994,7 @@
           "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
           "pointer": "/contracts/0",
           "revision": "6eb6fcae9a3e6d09c990adf67958ce4122171a52",
-          "file_sha256": "b4ddae2bce581b9850f23d3926032e295bf1ed0b1fbd257761ad090f3234ff8a"
+          "file_sha256": "89ca51b288b5b6cbbdd0fb9b5898aa0dc06cf5059d10f72a8d1f9f28c050d3a6"
         },
         {
           "path": "docs/helix-os/L3-requirements/business-requirements.json",
@@ -38144,7 +38144,7 @@
           "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
           "pointer": "/contracts/0",
           "revision": "6eb6fcae9a3e6d09c990adf67958ce4122171a52",
-          "file_sha256": "b4ddae2bce581b9850f23d3926032e295bf1ed0b1fbd257761ad090f3234ff8a"
+          "file_sha256": "89ca51b288b5b6cbbdd0fb9b5898aa0dc06cf5059d10f72a8d1f9f28c050d3a6"
         },
         {
           "path": "docs/helix-os/L3-requirements/business-requirements.json",
