@@ -50,5 +50,29 @@
     "path": "scaffold/research/wr258-sec006-psi-explicit-20261101/validate_wr258_prb_l5l8.py",
     "sha256": "de3f12e043e09fa508e500165de984f88ee4c2c34560cd4aa7386a608969b452",
     "scope": "PR-B current L5/L8 proof and formal check-child; 148 casewise pair checks. Runtime execution remains not performed by design."
+  },
+  "overlay_measurement": {
+    "origin_main": "8ca99d8afcfcca2e5240afb992289ea8c80c41a6",
+    "merge_base": "8ca99d8afcfcca2e5240afb992289ea8c80c41a6",
+    "candidate_tree": "2ff738cdb2551757da73463dc08d73e0cceab689",
+    "prb_validator": {
+      "exit_code": 0,
+      "passed": true,
+      "condition_matches": 148,
+      "independent_l4_l5_expectations": 148
+    },
+    "formal_check_child": {
+      "exit_code": 0,
+      "passed": true,
+      "matched_case_count": 148,
+      "failure_count": 0,
+      "L4_L9_pair": true,
+      "L5_L8_pair": true
+    },
+    "scfctl": {
+      "validate": "bindings=209 fail=0",
+      "stale": "stale=0"
+    },
+    "additional_validator": "validate_pr4007_r2.py passed; failures=0"
   }
 }
