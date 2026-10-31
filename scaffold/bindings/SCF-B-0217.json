@@ -1,0 +1,120 @@
+{
+  "schema_revision": 1,
+  "id": "SCF-B-0217",
+  "kind": "scaffold",
+  "title": "WR256 CONNECT005 L8 technical trace handoff custody U-ID evidence",
+  "product": "HELIX-HARNESS",
+  "owner_candidate": "CONNECT005 L8 technical trace, handoff, and custody U-ID responsibility owner candidate",
+  "state": "registered",
+  "reason": "Issue #3510 WR256: reduce CONNECT005 L8 to a reviewable U-ID table while preserving source row identity, row-specific expected semantics, contract oracle links, custody/handoff boundaries, and missing row oracle/test citations.",
+  "upstream": [
+    {
+      "path": "docs/helix-connect/L3-requirements/functional-requirements.json",
+      "sha256": "fb04683632d92e5c51c46fdc2eecf388a58e406856f243b8105513e075a49421",
+      "note": "L3 approved requirement source; base revision pinned."
+    },
+    {
+      "path": "docs/helix-connect/L4-basic-design/technical-trace-handoff-custody.json",
+      "sha256": "49064fb87d150fca5452d295b43a6b73a60ba242b93098b87e41328074c4f415",
+      "note": "L4 design boundary and trace targets; base revision pinned."
+    },
+    {
+      "path": "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json",
+      "sha256": "2d3740e4226efa6c2888a008cf4950e0d1267a1bb9bfdeb54e8b8a95c7033a53",
+      "note": "L5 public functions and failure-rule coverage; base revision pinned."
+    },
+    {
+      "path": "docs/helix-connect/L9-integration-verification/technical-trace-handoff-custody.json",
+      "sha256": "f1b9a869aa79ff49ef37d5c8a915505ab43fe0cba577f6eaa7e8780bb7c7f5c6",
+      "note": "90 retained whole verification branches and expected material; base revision pinned."
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.json",
+      "sha256": "8728cf7c2730a29375f3c7dad75c77157a119d603e52b46f775ede8f1eae474d",
+      "note": "L10 functional contract oracles; base revision pinned."
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/nfr-verification.json",
+      "sha256": "e9ef8fea59cfed03b96ff61e2f556fc22fa72279cf660fa47786c2b1f24fa877",
+      "note": "L10 NFR contract oracle; base revision pinned."
+    },
+    {
+      "path": "docs/governance/design-verification-quality-assurance.md",
+      "sha256": "f5751e236dc073fe67114c1fcb4b0f64b3d746290b25d75b61e60a08e3c99c85",
+      "note": "QA U-ID table, citation and ownership-cap boundaries."
+    },
+    {
+      "path": "scaffold/verification-test-template-seed-20261001/README.md",
+      "sha256": "e754243381921e4a3317a66dc784c03905ef24ab740721bc7767851989162efd",
+      "note": "DT-VT-105 source/test/oracle separation and fixture boundary."
+    }
+  ],
+  "role": "Temporary static source, identity, expectation, boundary, and ownership-cap evidence for the WR256 CONNECT005 L8 candidate.",
+  "obligations": [
+    "Preserve the 90 L9 whole branches, 61 local domain probes, 68 independent semantic probes, and five independent cross-field typed probes as 224 distinct rows with source ID/order/pointers.",
+    "Keep L10 contract oracle identity on each row; row oracle and test citation stay null because the fixed source does not provide them.",
+    "Keep all rows not_executed and preserve existing top-level boundary and unverified states; do not infer approval or completion.",
+    "Every expected_result must preserve source-derived row-specific result distinctions and must not use truncation or array-count-only placeholders; validator independently compares each row with its fixed source expectation.",
+    "Record L5 failure-rule coverage and L8 ownership cap; do not modify L3/L4/L5/L9/L10 or execute old runtime, CLI, hooks, tests, or CI.",
+    "Retain legacy comparison to LEGACY-ASSET-C3DE79BA9451172F3E43 and LEGACY-ASSET-DD66C1B6B7BE234B37E6, including preserved and changed points; legacy assets are read-only references."
+  ],
+  "connections": {
+    "consumers": [
+      "WR256 CONNECT005 L8 review for Issue #3510."
+    ],
+    "dependencies": [
+      "Fixed source revision c14adddf2678c7a69d76420c451df3f05b1251ab for L8/L9 crosswalk and expected semantics.",
+      "Approved CONNECT005 L3 requirements and L10 F01/F02/N01 contract oracle identities.",
+      "Legacy source assets LEGACY-ASSET-C3DE79BA9451172F3E43 and LEGACY-ASSET-DD66C1B6B7BE234B37E6."
+    ],
+    "boundary": "Candidate L8 U-ID normalization and static scaffold evidence only. No authority effect, approval, test execution, runtime/CI claim, row-oracle/test-citation fabrication, or completion effect."
+  },
+  "operations": {
+    "allowed": [
+      "Static JSON, source pointer, row identity, expectation, boundary, and ownership-cap checks.",
+      "scfctl validate and stale.",
+      "Generic check-child result recording as evaluated or not_evaluated."
+    ],
+    "forbidden": [
+      "Editing L3/L4/L5/L9/L10 formal sources.",
+      "Executing old runtime, CLI, hook, tests, CI, or L4/L5 algorithms.",
+      "Creating row oracle IDs, test citations, approvals, new gates, or formal verification claims."
+    ]
+  },
+  "artifacts": [
+    "docs/helix-connect/L8-unit-verification/technical-trace-handoff-custody.json",
+    "scaffold/research/wr256-connect-trace-l8-slim-20261031/README.md",
+    "scaffold/research/wr256-connect-trace-l8-slim-20261031/verification-summary.json",
+    "scaffold/research/wr256-connect-trace-l8-slim-20261031/validate_uid_table.py",
+    "scaffold/bindings/SCF-B-0217.json"
+  ],
+  "verification": {
+    "evidence_kind": "scaffold",
+    "scope": [
+      "schema_interface",
+      "source_revision_stale",
+      "negative_case"
+    ],
+    "oracles": [
+      "Fixed base c14adddf2678c7a69d76420c451df3f05b1251ab with source row IDs and pointers; L9 whole expected-material hashes retained.",
+      "L3/L4/L5/L9/L10 source boundary and L10 oracle mapping.",
+      "224 row-level expected summaries independently compared with fixed source semantics; all 5 cross-field type probes checked for exact value/ref/expectation/unexecuted state.",
+      "All 25 preserved top-level boundaries, L5 failure-rule coverage, L8 ownership cap, no-truncation/no-array-placeholder counts.",
+      "scfctl validate/stale and generic check-child result captured without treating not_evaluated as pass."
+    ],
+    "negative_cases": [
+      "Row oracle and test citation are not found and are not invented.",
+      "All candidate rows remain not_executed.",
+      "Do not interpret generic check-child false/not_evaluated as semantic failure or pass.",
+      "Do not treat scaffold static checks as approval or formal verification."
+    ]
+  },
+  "replacement": {
+    "role_target": "Formal CONNECT005 L8 unit-verification U-ID table and valid row-level source/test references.",
+    "formal_artifacts": [],
+    "issue": 3510,
+    "status": "pending"
+  },
+  "created": "2026-11-01",
+  "updated": "2026-11-01"
+}
