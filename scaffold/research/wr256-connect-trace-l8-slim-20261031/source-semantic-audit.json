@@ -72,6 +72,3524 @@
       }
     }
   },
+  "failure_rule_semantic_audit": [
+    {
+      "pointer": "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F01/failure_rules/0",
+      "when": "target field比較がcorrespondingではない。",
+      "emit": {
+        "area": "event_target_{index}",
+        "field": "{target_field}",
+        "result": "比較結果そのもの。",
+        "return_owner": "connection-operation-owner"
+      },
+      "fixed_source_candidate_u_ids": [
+        "U-CONNECT005-002",
+        "U-CONNECT005-003",
+        "U-CONNECT005-004",
+        "U-CONNECT005-005",
+        "U-CONNECT005-006",
+        "U-CONNECT005-007",
+        "U-CONNECT005-008",
+        "U-CONNECT005-009",
+        "U-CONNECT005-041"
+      ],
+      "observed_expected_emissions": [
+        {
+          "u_id": "U-CONNECT005-002",
+          "condition_witness": {
+            "failure_reasons": "failure_reasons=[event_target_2/connection_identity/content_conflict/owner=connection-operation-owner]"
+          },
+          "emitted_findings": [
+            {
+              "area": "event_target_2",
+              "field": "connection_identity",
+              "result": "content_conflict",
+              "owner": "connection-operation-owner"
+            }
+          ]
+        },
+        {
+          "u_id": "U-CONNECT005-003",
+          "condition_witness": {
+            "failure_reasons": "failure_reasons=[event_target_2/operation_identity/content_conflict/owner=connection-operation-owner]"
+          },
+          "emitted_findings": [
+            {
+              "area": "event_target_2",
+              "field": "operation_identity",
+              "result": "content_conflict",
+              "owner": "connection-operation-owner"
+            }
+          ]
+        },
+        {
+          "u_id": "U-CONNECT005-004",
+          "condition_witness": {
+            "failure_reasons": "failure_reasons=[event_target_2/contract_revision/content_conflict/owner=connection-operation-owner]"
+          },
+          "emitted_findings": [
+            {
+              "area": "event_target_2",
+              "field": "contract_revision",
+              "result": "content_conflict",
+              "owner": "connection-operation-owner"
+            }
+          ]
+        },
+        {
+          "u_id": "U-CONNECT005-005",
+          "condition_witness": {
+            "failure_reasons": "failure_reasons=[event_target_2/correlation/content_conflict/owner=connection-operation-owner]"
+          },
+          "emitted_findings": [
+            {
+              "area": "event_target_2",
+              "field": "correlation",
+              "result": "content_conflict",
+              "owner": "connection-operation-owner"
+            }
+          ]
+        },
+        {
+          "u_id": "U-CONNECT005-006",
+          "condition_witness": {
+            "failure_reasons": "failure_reasons=[event_target_2/scope/content_conflict/owner=connection-operation-owner]"
+          },
+          "emitted_findings": [
+            {
+              "area": "event_target_2",
+              "field": "scope",
+              "result": "content_conflict",
+              "owner": "connection-operation-owner"
+            }
+          ]
+        },
+        {
+          "u_id": "U-CONNECT005-007",
+          "condition_witness": {
+            "failure_reasons": "failure_reasons=[event_target_2/expiry/content_conflict/owner=connection-operation-owner]"
+          },
+          "emitted_findings": [
+            {
+              "area": "event_target_2",
+              "field": "expiry",
+              "result": "content_conflict",
+              "owner": "connection-operation-owner"
+            }
+          ]
+        },
+        {
+          "u_id": "U-CONNECT005-008",
+          "condition_witness": {
+            "failure_reasons": "failure_reasons=[event_target_2/permission_ref/content_conflict/owner=connection-operation-owner]"
+          },
+          "emitted_findings": [
+            {
+              "area": "event_target_2",
+              "field": "permission_ref",
+              "result": "content_conflict",
+              "owner": "connection-operation-owner"
+            }
+          ]
+        },
+        {
+          "u_id": "U-CONNECT005-009",
+          "condition_witness": {
+            "failure_reasons": "failure_reasons=[event_target_2/dependency_ref/content_conflict/owner=connection-operation-owner]"
+          },
+          "emitted_findings": [
+            {
+              "area": "event_target_2",
+              "field": "dependency_ref",
+              "result": "content_conflict",
+              "owner": "connection-operation-owner"
+            }
+          ]
+        },
+        {
+          "u_id": "U-CONNECT005-041",
+          "condition_witness": {
+            "failure_reasons": "failure_reasons=[event_target_3/contract_revision/content_conflict/owner=connection-operation-owner]"
+          },
+          "emitted_findings": [
+            {
+              "area": "event_target_3",
+              "field": "contract_revision",
+              "result": "content_conflict",
+              "owner": "connection-operation-owner"
+            }
+          ]
+        }
+      ],
+      "coverage_state": "semantically_supported_by_fixed_source",
+      "execution_state": "not_executed"
+    },
+    {
+      "pointer": "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F01/failure_rules/1",
+      "when": "event content field比較がmissing/conflict/unknown。",
+      "emit": {
+        "area": "event_content_{index}",
+        "field": "{event_field}",
+        "result": "比較結果そのもの。",
+        "return_owner": "connection-operation-owner"
+      },
+      "fixed_source_candidate_u_ids": [
+        "U-CONNECT005-010",
+        "U-CONNECT005-011",
+        "U-CONNECT005-012",
+        "U-CONNECT005-013",
+        "U-CONNECT005-014",
+        "U-CONNECT005-015",
+        "U-CONNECT005-016",
+        "U-CONNECT005-017",
+        "U-CONNECT005-019",
+        "U-CONNECT005-024",
+        "U-CONNECT005-039"
+      ],
+      "observed_expected_emissions": [
+        {
+          "u_id": "U-CONNECT005-010",
+          "condition_witness": {
+            "failure_reasons": "failure_reasons=[event_content_2/identity/missing/owner=connection-operation-owner; submitted_sequence/events/content_conflict/owner=connection-operation-owner]"
+          },
+          "emitted_findings": [
+            {
+              "area": "event_content_2",
+              "field": "identity",
+              "result": "missing",
+              "owner": "connection-operation-owner"
+            }
+          ]
+        },
+        {
+          "u_id": "U-CONNECT005-011",
+          "condition_witness": {
+            "failure_reasons": "failure_reasons=[event_content_2/ordinal/missing/owner=connection-operation-owner; submitted_sequence/events/content_conflict/owner=connection-operation-owner]"
+          },
+          "emitted_findings": [
+            {
+              "area": "event_content_2",
+              "field": "ordinal",
+              "result": "missing",
+              "owner": "connection-operation-owner"
+            }
+          ]
+        },
+        {
+          "u_id": "U-CONNECT005-012",
+          "condition_witness": {
+            "failure_reasons": "failure_reasons=[event_content_2/kind/missing/owner=connection-operation-owner; submitted_sequence/events/content_conflict/owner=connection-operation-owner]"
+          },
+          "emitted_findings": [
+            {
+              "area": "event_content_2",
+              "field": "kind",
+              "result": "missing",
+              "owner": "connection-operation-owner"
+            }
+          ]
+        },
+        {
+          "u_id": "U-CONNECT005-013",
+          "condition_witness": {
+            "failure_reasons": "failure_reasons=[event_content_2/attempt_identity/missing/owner=connection-operation-owner; submitted_sequence/events/content_conflict/owner=connection-operation-owner]"
+          },
+          "emitted_findings": [
+            {
+              "area": "event_content_2",
+              "field": "attempt_identity",
+              "result": "missing",
+              "owner": "connection-operation-owner"
+            }
+          ]
+        },
+        {
+          "u_id": "U-CONNECT005-014",
+          "condition_witness": {
+            "failure_reasons": "failure_reasons=[event_content_2/observed_endpoint/missing/owner=connection-operation-owner; submitted_sequence/events/content_conflict/owner=connection-operation-owner]"
+          },
+          "emitted_findings": [
+            {
+              "area": "event_content_2",
+              "field": "observed_endpoint",
+              "result": "missing",
+              "owner": "connection-operation-owner"
+            }
+          ]
+        },
+        {
+          "u_id": "U-CONNECT005-015",
+          "condition_witness": {
+            "failure_reasons": "failure_reasons=[event_content_2/result_state/missing/owner=connection-operation-owner; submitted_sequence/events/content_conflict/owner=connection-operation-owner]"
+          },
+          "emitted_findings": [
+            {
+              "area": "event_content_2",
+              "field": "result_state",
+              "result": "missing",
+              "owner": "connection-operation-owner"
+            }
+          ]
+        },
+        {
+          "u_id": "U-CONNECT005-016",
+          "condition_witness": {
+            "failure_reasons": "failure_reasons=[event_content_2/evidence_ref/missing/owner=connection-operation-owner; submitted_sequence/events/content_conflict/owner=connection-operation-owner]"
+          },
+          "emitted_findings": [
+            {
+              "area": "event_content_2",
+              "field": "evidence_ref",
+              "result": "missing",
+              "owner": "connection-operation-owner"
+            }
+          ]
+        },
+        {
+          "u_id": "U-CONNECT005-017",
+          "condition_witness": {
+            "failure_reasons": "failure_reasons=[event_content_2/permission_result_ref/missing/owner=connection-operation-owner; submitted_sequence/events/content_conflict/owner=connection-operation-owner]"
+          },
+          "emitted_findings": [
+            {
+              "area": "event_content_2",
+              "field": "permission_result_ref",
+              "result": "missing",
+              "owner": "connection-operation-owner"
+            }
+          ]
+        },
+        {
+          "u_id": "U-CONNECT005-019",
+          "condition_witness": {
+            "failure_reasons": "failure_reasons=[event_content_2/ordinal/unknown_original_information/owner=connection-operation-owner; event_order/ordinal_or_predecessor/unknown_or_conflicting_order/owner=connection-operation-owner]"
+          },
+          "emitted_findings": [
+            {
+              "area": "event_content_2",
+              "field": "ordinal",
+              "result": "unknown_original_information",
+              "owner": "connection-operation-owner"
+            }
+          ]
+        },
+        {
+          "u_id": "U-CONNECT005-024",
+          "condition_witness": {
+            "failure_reasons": "failure_reasons=[event_content_4/observed_endpoint/unknown_original_information/owner=connection-operation-owner; event_observation_4/endpoint/unknown_observation_location/owner=endpoint-owner]"
+          },
+          "emitted_findings": [
+            {
+              "area": "event_content_4",
+              "field": "observed_endpoint",
+              "result": "unknown_original_information",
+              "owner": "connection-operation-owner"
+            }
+          ]
+        },
+        {
+          "u_id": "U-CONNECT005-039",
+          "condition_witness": {
+            "failure_reasons": "failure_reasons=[event_content_0/result_state/content_conflict/owner=connection-operation-owner; submitted_sequence/events/content_conflict/owner=connection-operation-owner]"
+          },
+          "emitted_findings": [
+            {
+              "area": "event_content_0",
+              "field": "result_state",
+              "result": "content_conflict",
+              "owner": "connection-operation-owner"
+            }
+          ]
+        }
+      ],
+      "coverage_state": "semantically_supported_by_fixed_source",
+      "execution_state": "not_executed"
+    },
+    {
+      "pointer": "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F01/failure_rules/2",
+      "when": "missing_needed_event_idsが空でない。",
+      "emit": {
+        "area": "needed_events",
+        "field": "identities",
+        "result": "missing_original_events",
+        "return_owner": "connection-operation-owner"
+      },
+      "fixed_source_candidate_u_ids": [
+        "U-CONNECT005-018",
+        "U-CONNECT005-040"
+      ],
+      "observed_expected_emissions": [
+        {
+          "u_id": "U-CONNECT005-018",
+          "condition_witness": {
+            "missing_original_event_ids": {
+              "$array": {
+                "0": "EVENT-P-4"
+              }
+            }
+          },
+          "emitted_findings": [
+            {
+              "area": "needed_events",
+              "field": "identities",
+              "result": "missing_original_events",
+              "owner": "connection-operation-owner"
+            }
+          ]
+        },
+        {
+          "u_id": "U-CONNECT005-040",
+          "condition_witness": {
+            "missing_original_event_ids": {
+              "$array": {
+                "0": "EVENT-P-4"
+              }
+            }
+          },
+          "emitted_findings": [
+            {
+              "area": "needed_events",
+              "field": "identities",
+              "result": "missing_original_events",
+              "owner": "connection-operation-owner"
+            }
+          ]
+        }
+      ],
+      "coverage_state": "semantically_supported_by_fixed_source",
+      "execution_state": "not_executed"
+    },
+    {
+      "pointer": "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F01/failure_rules/3",
+      "when": "original_order_known_in_fixtureがfalse。",
+      "emit": {
+        "area": "event_order",
+        "field": "ordinal_or_predecessor",
+        "result": "unknown_or_conflicting_order",
+        "return_owner": "connection-operation-owner"
+      },
+      "fixed_source_candidate_u_ids": [
+        "U-CONNECT005-019",
+        "U-CONNECT005-020",
+        "U-CONNECT005-155"
+      ],
+      "observed_expected_emissions": [
+        {
+          "u_id": "U-CONNECT005-019",
+          "condition_witness": {
+            "original_order_known_in_fixture": false
+          },
+          "emitted_findings": [
+            {
+              "area": "event_order",
+              "field": "ordinal_or_predecessor",
+              "result": "unknown_or_conflicting_order",
+              "owner": "connection-operation-owner"
+            }
+          ]
+        },
+        {
+          "u_id": "U-CONNECT005-020",
+          "condition_witness": {
+            "original_order_known_in_fixture": false
+          },
+          "emitted_findings": [
+            {
+              "area": "event_order",
+              "field": "ordinal_or_predecessor",
+              "result": "unknown_or_conflicting_order",
+              "owner": "connection-operation-owner"
+            }
+          ]
+        },
+        {
+          "u_id": "U-CONNECT005-155",
+          "condition_witness": {
+            "original_order_known_in_fixture": false
+          },
+          "emitted_findings": [
+            {
+              "area": "event_order",
+              "field": "ordinal_or_predecessor",
+              "result": "unknown_or_conflicting_order",
+              "owner": "connection-operation-owner"
+            },
+            {
+              "area": "event_order",
+              "field": "ordinal_or_predecessor",
+              "result": "unknown_or_conflicting_order",
+              "owner": "connection-operation-owner"
+            }
+          ]
+        }
+      ],
+      "coverage_state": "semantically_supported_by_fixed_source",
+      "execution_state": "not_executed"
+    },
+    {
+      "pointer": "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F01/failure_rules/4",
+      "when": "original_predecessor_chain_correspondsがfalse。",
+      "emit": {
+        "area": "event_order",
+        "field": "ordinal_or_predecessor",
+        "result": "unknown_or_conflicting_order",
+        "return_owner": "connection-operation-owner"
+      },
+      "fixed_source_candidate_u_ids": [
+        "U-CONNECT005-018",
+        "U-CONNECT005-021",
+        "U-CONNECT005-040",
+        "U-CONNECT005-155",
+        "U-CONNECT005-177"
+      ],
+      "observed_expected_emissions": [
+        {
+          "u_id": "U-CONNECT005-018",
+          "condition_witness": {
+            "original_predecessor_chain_corresponds": false
+          },
+          "emitted_findings": [
+            {
+              "area": "event_order",
+              "field": "ordinal_or_predecessor",
+              "result": "unknown_or_conflicting_order",
+              "owner": "connection-operation-owner"
+            }
+          ]
+        },
+        {
+          "u_id": "U-CONNECT005-021",
+          "condition_witness": {
+            "original_predecessor_chain_corresponds": false
+          },
+          "emitted_findings": [
+            {
+              "area": "event_order",
+              "field": "ordinal_or_predecessor",
+              "result": "unknown_or_conflicting_order",
+              "owner": "connection-operation-owner"
+            }
+          ]
+        },
+        {
+          "u_id": "U-CONNECT005-040",
+          "condition_witness": {
+            "original_predecessor_chain_corresponds": false
+          },
+          "emitted_findings": [
+            {
+              "area": "event_order",
+              "field": "ordinal_or_predecessor",
+              "result": "unknown_or_conflicting_order",
+              "owner": "connection-operation-owner"
+            }
+          ]
+        },
+        {
+          "u_id": "U-CONNECT005-155",
+          "condition_witness": {
+            "original_predecessor_chain_corresponds": false
+          },
+          "emitted_findings": [
+            {
+              "area": "event_order",
+              "field": "ordinal_or_predecessor",
+              "result": "unknown_or_conflicting_order",
+              "owner": "connection-operation-owner"
+            },
+            {
+              "area": "event_order",
+              "field": "ordinal_or_predecessor",
+              "result": "unknown_or_conflicting_order",
+              "owner": "connection-operation-owner"
+            }
+          ]
+        },
+        {
+          "u_id": "U-CONNECT005-177",
+          "condition_witness": {
+            "original_predecessor_chain_corresponds": false
+          },
+          "emitted_findings": [
+            {
+              "area": "event_order",
+              "field": "ordinal_or_predecessor",
+              "result": "unknown_or_conflicting_order",
+              "owner": "connection-operation-owner"
+            }
+          ]
+        }
+      ],
+      "coverage_state": "semantically_supported_by_fixed_source",
+      "execution_state": "not_executed"
+    },
+    {
+      "pointer": "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F01/failure_rules/5",
+      "when": "submitted identityが先行するsubmitted identityと重複する。",
+      "emit": {
+        "area": "submitted_event_identity",
+        "field": "{identity}",
+        "result": "duplicate_event_identity",
+        "return_owner": "connection-operation-owner"
+      },
+      "fixed_source_candidate_u_ids": [
+        "U-CONNECT005-025"
+      ],
+      "observed_expected_emissions": [
+        {
+          "u_id": "U-CONNECT005-025",
+          "condition_witness": {
+            "failure_reasons": "failure_reasons=[submitted_event_identity/EVENT-P-3/duplicate_event_identity/owner=connection-operation-owner; submitted_sequence/events/content_conflict/owner=connection-operation-owner]"
+          },
+          "emitted_findings": [
+            {
+              "area": "submitted_event_identity",
+              "field": "EVENT-P-3",
+              "result": "duplicate_event_identity",
+              "owner": "connection-operation-owner"
+            }
+          ]
+        }
+      ],
+      "coverage_state": "semantically_supported_by_fixed_source",
+      "execution_state": "not_executed"
+    },
+    {
+      "pointer": "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F01/failure_rules/6",
+      "when": "submitted_sequence_resultがcorrespondingではない。",
+      "emit": {
+        "area": "submitted_sequence",
+        "field": "events",
+        "result": "content_conflict",
+        "return_owner": "connection-operation-owner"
+      },
+      "fixed_source_candidate_u_ids": [
+        "U-CONNECT005-010",
+        "U-CONNECT005-011",
+        "U-CONNECT005-012",
+        "U-CONNECT005-013",
+        "U-CONNECT005-014",
+        "U-CONNECT005-015",
+        "U-CONNECT005-016",
+        "U-CONNECT005-017",
+        "U-CONNECT005-022",
+        "U-CONNECT005-025",
+        "U-CONNECT005-039",
+        "U-CONNECT005-155"
+      ],
+      "observed_expected_emissions": [
+        {
+          "u_id": "U-CONNECT005-010",
+          "condition_witness": {
+            "submitted_sequence_result": "content_conflict"
+          },
+          "emitted_findings": [
+            {
+              "area": "submitted_sequence",
+              "field": "events",
+              "result": "content_conflict",
+              "owner": "connection-operation-owner"
+            }
+          ]
+        },
+        {
+          "u_id": "U-CONNECT005-011",
+          "condition_witness": {
+            "submitted_sequence_result": "content_conflict"
+          },
+          "emitted_findings": [
+            {
+              "area": "submitted_sequence",
+              "field": "events",
+              "result": "content_conflict",
+              "owner": "connection-operation-owner"
+            }
+          ]
+        },
+        {
+          "u_id": "U-CONNECT005-012",
+          "condition_witness": {
+            "submitted_sequence_result": "content_conflict"
+          },
+          "emitted_findings": [
+            {
+              "area": "submitted_sequence",
+              "field": "events",
+              "result": "content_conflict",
+              "owner": "connection-operation-owner"
+            }
+          ]
+        },
+        {
+          "u_id": "U-CONNECT005-013",
+          "condition_witness": {
+            "submitted_sequence_result": "content_conflict"
+          },
+          "emitted_findings": [
+            {
+              "area": "submitted_sequence",
+              "field": "events",
+              "result": "content_conflict",
+              "owner": "connection-operation-owner"
+            }
+          ]
+        },
+        {
+          "u_id": "U-CONNECT005-014",
+          "condition_witness": {
+            "submitted_sequence_result": "content_conflict"
+          },
+          "emitted_findings": [
+            {
+              "area": "submitted_sequence",
+              "field": "events",
+              "result": "content_conflict",
+              "owner": "connection-operation-owner"
+            }
+          ]
+        },
+        {
+          "u_id": "U-CONNECT005-015",
+          "condition_witness": {
+            "submitted_sequence_result": "content_conflict"
+          },
+          "emitted_findings": [
+            {
+              "area": "submitted_sequence",
+              "field": "events",
+              "result": "content_conflict",
+              "owner": "connection-operation-owner"
+            }
+          ]
+        },
+        {
+          "u_id": "U-CONNECT005-016",
+          "condition_witness": {
+            "submitted_sequence_result": "content_conflict"
+          },
+          "emitted_findings": [
+            {
+              "area": "submitted_sequence",
+              "field": "events",
+              "result": "content_conflict",
+              "owner": "connection-operation-owner"
+            }
+          ]
+        },
+        {
+          "u_id": "U-CONNECT005-017",
+          "condition_witness": {
+            "submitted_sequence_result": "content_conflict"
+          },
+          "emitted_findings": [
+            {
+              "area": "submitted_sequence",
+              "field": "events",
+              "result": "content_conflict",
+              "owner": "connection-operation-owner"
+            }
+          ]
+        },
+        {
+          "u_id": "U-CONNECT005-022",
+          "condition_witness": {
+            "submitted_sequence_result": "content_conflict"
+          },
+          "emitted_findings": [
+            {
+              "area": "submitted_sequence",
+              "field": "events",
+              "result": "content_conflict",
+              "owner": "connection-operation-owner"
+            }
+          ]
+        },
+        {
+          "u_id": "U-CONNECT005-025",
+          "condition_witness": {
+            "submitted_sequence_result": "content_conflict"
+          },
+          "emitted_findings": [
+            {
+              "area": "submitted_sequence",
+              "field": "events",
+              "result": "content_conflict",
+              "owner": "connection-operation-owner"
+            }
+          ]
+        },
+        {
+          "u_id": "U-CONNECT005-039",
+          "condition_witness": {
+            "submitted_sequence_result": "content_conflict"
+          },
+          "emitted_findings": [
+            {
+              "area": "submitted_sequence",
+              "field": "events",
+              "result": "content_conflict",
+              "owner": "connection-operation-owner"
+            }
+          ]
+        },
+        {
+          "u_id": "U-CONNECT005-155",
+          "condition_witness": {
+            "submitted_sequence_result": "content_conflict"
+          },
+          "emitted_findings": [
+            {
+              "area": "submitted_sequence",
+              "field": "events",
+              "result": "content_conflict",
+              "owner": "connection-operation-owner"
+            }
+          ]
+        }
+      ],
+      "coverage_state": "semantically_supported_by_fixed_source",
+      "execution_state": "not_executed"
+    },
+    {
+      "pointer": "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F01/failure_rules/7",
+      "when": "original event observed_endpointが明示null。",
+      "emit": {
+        "area": "event_observation_{index}",
+        "field": "endpoint",
+        "result": "unknown_observation_location",
+        "return_owner": "endpoint-owner"
+      },
+      "fixed_source_candidate_u_ids": [
+        "U-CONNECT005-024"
+      ],
+      "observed_expected_emissions": [
+        {
+          "u_id": "U-CONNECT005-024",
+          "condition_witness": {
+            "failure_reasons": "failure_reasons=[event_content_4/observed_endpoint/unknown_original_information/owner=connection-operation-owner; event_observation_4/endpoint/unknown_observation_location/owner=endpoint-owner]"
+          },
+          "emitted_findings": [
+            {
+              "area": "event_observation_4",
+              "field": "endpoint",
+              "result": "unknown_observation_location",
+              "owner": "endpoint-owner"
+            }
+          ]
+        }
+      ],
+      "coverage_state": "semantically_supported_by_fixed_source",
+      "execution_state": "not_executed"
+    },
+    {
+      "pointer": "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F01/failure_rules/8",
+      "when": "original_needed_event_idsまたはoriginal_eventsが配列でない。",
+      "emit": "missing_original_event_ids=nullを返し、fieldごとにAbsentならmissing、null/他JSON shapeならunknown_original_informationをarea=input_domainで返す。owner候補はconnection-operation-ownerであり資格を示さない。",
+      "fixed_source_candidate_u_ids": [
+        "U-CONNECT005-155",
+        "U-CONNECT005-157"
+      ],
+      "observed_expected_emissions": [
+        {
+          "u_id": "U-CONNECT005-155",
+          "condition_witness": {
+            "failure_reasons": "failure_reasons=[input_domain/original_events/unknown_original_information/owner=connection-operation-owner; event_order/ordinal_or_predecessor/unknown_or_conflicting_order/owner=connection-operation-owner; event_order/ordinal_or_predecessor/unknown_or_conflicting_order/owner=connection-operation-owner; submitted_sequence/events/content_conflict/owner=connection-operation-owner; history_prefix/events/unknown_original_information/owner=connection-operation-owner]"
+          },
+          "emitted_findings": [
+            {
+              "area": "input_domain",
+              "field": "original_events",
+              "result": "unknown_original_information",
+              "owner": "connection-operation-owner"
+            }
+          ]
+        },
+        {
+          "u_id": "U-CONNECT005-157",
+          "condition_witness": {
+            "failure_reasons": "failure_reasons=[input_domain/original_needed_event_ids/unknown_original_information/owner=connection-operation-owner]"
+          },
+          "emitted_findings": [
+            {
+              "area": "input_domain",
+              "field": "original_needed_event_ids",
+              "result": "unknown_original_information",
+              "owner": "connection-operation-owner"
+            }
+          ]
+        }
+      ],
+      "coverage_state": "semantically_supported_by_fixed_source",
+      "execution_state": "not_executed"
+    },
+    {
+      "pointer": "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F01/failure_rules/9",
+      "when": "history_prefix_resultがcontent_corresponding_in_fixture以外。",
+      "emit": "area=history_prefix、field=events、result=history_prefix_resultそのもの、owner=connection-operation-owner。unknownをconflictへ置換しない。",
+      "fixed_source_candidate_u_ids": [
+        "U-CONNECT005-023",
+        "U-CONNECT005-155",
+        "U-CONNECT005-156",
+        "U-CONNECT005-214",
+        "U-CONNECT005-215"
+      ],
+      "observed_expected_emissions": [
+        {
+          "u_id": "U-CONNECT005-023",
+          "condition_witness": {
+            "history_prefix_result": "content_conflict"
+          },
+          "emitted_findings": [
+            {
+              "area": "history_prefix",
+              "field": "events",
+              "result": "content_conflict",
+              "owner": "connection-operation-owner"
+            }
+          ]
+        },
+        {
+          "u_id": "U-CONNECT005-155",
+          "condition_witness": {
+            "history_prefix_result": "unknown_original_information"
+          },
+          "emitted_findings": [
+            {
+              "area": "history_prefix",
+              "field": "events",
+              "result": "unknown_original_information",
+              "owner": "connection-operation-owner"
+            }
+          ]
+        },
+        {
+          "u_id": "U-CONNECT005-156",
+          "condition_witness": {
+            "history_prefix_result": "unknown_original_information"
+          },
+          "emitted_findings": [
+            {
+              "area": "history_prefix",
+              "field": "events",
+              "result": "unknown_original_information",
+              "owner": "connection-operation-owner"
+            }
+          ]
+        },
+        {
+          "u_id": "U-CONNECT005-214",
+          "condition_witness": {
+            "history_prefix_result": "content_conflict"
+          },
+          "emitted_findings": [
+            {
+              "area": "history_prefix",
+              "field": "events",
+              "result": "content_conflict",
+              "owner": "connection-operation-owner"
+            }
+          ]
+        },
+        {
+          "u_id": "U-CONNECT005-215",
+          "condition_witness": {
+            "history_prefix_result": "content_conflict"
+          },
+          "emitted_findings": [
+            {
+              "area": "history_prefix",
+              "field": "events",
+              "result": "content_conflict",
+              "owner": "connection-operation-owner"
+            }
+          ]
+        }
+      ],
+      "coverage_state": "semantically_supported_by_fixed_source",
+      "execution_state": "not_executed"
+    },
+    {
+      "pointer": "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/0",
+      "when": "stop/prior_successes/unfinished/handoff/receipt/resolutionの型内record比較がcontent_corresponding_in_fixture以外。",
+      "emit": "各recordごとにその比較結果をfield=recordの1件として追加する。stop/prior_successes/unfinished/handoff/receiptはconnection-operation-owner、resolutionはconsumer-endpoint-owner候補へ返す。input_domain行と重ねない。",
+      "fixed_source_candidate_u_ids": [
+        "U-CONNECT005-049",
+        "U-CONNECT005-050",
+        "U-CONNECT005-051",
+        "U-CONNECT005-052",
+        "U-CONNECT005-053",
+        "U-CONNECT005-061",
+        "U-CONNECT005-062",
+        "U-CONNECT005-063",
+        "U-CONNECT005-064",
+        "U-CONNECT005-158",
+        "U-CONNECT005-159",
+        "U-CONNECT005-166",
+        "U-CONNECT005-167",
+        "U-CONNECT005-170",
+        "U-CONNECT005-171",
+        "U-CONNECT005-172",
+        "U-CONNECT005-173",
+        "U-CONNECT005-174",
+        "U-CONNECT005-175"
+      ],
+      "observed_expected_emissions": [
+        {
+          "u_id": "U-CONNECT005-049",
+          "condition_witness": {
+            "content_results": {
+              "stop": "content_corresponding_in_fixture",
+              "prior_successes": "content_conflict",
+              "unfinished": "content_corresponding_in_fixture",
+              "handoff": "content_corresponding_in_fixture",
+              "handoff_receipt": "content_corresponding_in_fixture",
+              "resolution": "content_corresponding_in_fixture"
+            },
+            "failure_reasons": "failure_reasons=[prior_successes_content/record/content_conflict/owner=connection-operation-owner]"
+          },
+          "emitted_findings": [
+            {
+              "area": "prior_successes_content",
+              "field": "record",
+              "result": "content_conflict",
+              "owner": "connection-operation-owner"
+            }
+          ]
+        },
+        {
+          "u_id": "U-CONNECT005-050",
+          "condition_witness": {
+            "content_results": {
+              "stop": "content_corresponding_in_fixture",
+              "prior_successes": "content_corresponding_in_fixture",
+              "unfinished": "content_conflict",
+              "handoff": "content_corresponding_in_fixture",
+              "handoff_receipt": "content_corresponding_in_fixture",
+              "resolution": "content_corresponding_in_fixture"
+            },
+            "failure_reasons": "failure_reasons=[unfinished_content/record/content_conflict/owner=connection-operation-owner]"
+          },
+          "emitted_findings": [
+            {
+              "area": "unfinished_content",
+              "field": "record",
+              "result": "content_conflict",
+              "owner": "connection-operation-owner"
+            }
+          ]
+        },
+        {
+          "u_id": "U-CONNECT005-051",
+          "condition_witness": {
+            "content_results": {
+              "stop": "content_corresponding_in_fixture",
+              "prior_successes": "content_corresponding_in_fixture",
+              "unfinished": "content_corresponding_in_fixture",
+              "handoff": "content_conflict",
+              "handoff_receipt": "content_corresponding_in_fixture",
+              "resolution": "content_corresponding_in_fixture"
+            },
+            "failure_reasons": "failure_reasons=[handoff_content/record/content_conflict/owner=connection-operation-owner]"
+          },
+          "emitted_findings": [
+            {
+              "area": "handoff_content",
+              "field": "record",
+              "result": "content_conflict",
+              "owner": "connection-operation-owner"
+            }
+          ]
+        },
+        {
+          "u_id": "U-CONNECT005-052",
+          "condition_witness": {
+            "content_results": {
+              "stop": "content_corresponding_in_fixture",
+              "prior_successes": "content_corresponding_in_fixture",
+              "unfinished": "content_corresponding_in_fixture",
+              "handoff": "content_conflict",
+              "handoff_receipt": "content_corresponding_in_fixture",
+              "resolution": "content_corresponding_in_fixture"
+            },
+            "failure_reasons": "failure_reasons=[handoff_content/record/content_conflict/owner=connection-operation-owner]"
+          },
+          "emitted_findings": [
+            {
+              "area": "handoff_content",
+              "field": "record",
+              "result": "content_conflict",
+              "owner": "connection-operation-owner"
+            }
+          ]
+        },
+        {
+          "u_id": "U-CONNECT005-053",
+          "condition_witness": {
+            "content_results": {
+              "stop": "content_corresponding_in_fixture",
+              "prior_successes": "content_corresponding_in_fixture",
+              "unfinished": "content_corresponding_in_fixture",
+              "handoff": "content_conflict",
+              "handoff_receipt": "content_corresponding_in_fixture",
+              "resolution": "content_corresponding_in_fixture"
+            },
+            "failure_reasons": "failure_reasons=[handoff_content/record/content_conflict/owner=connection-operation-owner]"
+          },
+          "emitted_findings": [
+            {
+              "area": "handoff_content",
+              "field": "record",
+              "result": "content_conflict",
+              "owner": "connection-operation-owner"
+            }
+          ]
+        },
+        {
+          "u_id": "U-CONNECT005-061",
+          "condition_witness": {
+            "content_results": {
+              "stop": "content_conflict",
+              "prior_successes": "content_corresponding_in_fixture",
+              "unfinished": "content_corresponding_in_fixture",
+              "handoff": "content_corresponding_in_fixture",
+              "handoff_receipt": "content_corresponding_in_fixture",
+              "resolution": "content_corresponding_in_fixture"
+            },
+            "failure_reasons": "failure_reasons=[stop_content/record/content_conflict/owner=connection-operation-owner]"
+          },
+          "emitted_findings": [
+            {
+              "area": "stop_content",
+              "field": "record",
+              "result": "content_conflict",
+              "owner": "connection-operation-owner"
+            }
+          ]
+        },
+        {
+          "u_id": "U-CONNECT005-062",
+          "condition_witness": {
+            "content_results": {
+              "stop": "content_conflict",
+              "prior_successes": "content_corresponding_in_fixture",
+              "unfinished": "content_corresponding_in_fixture",
+              "handoff": "content_corresponding_in_fixture",
+              "handoff_receipt": "content_corresponding_in_fixture",
+              "resolution": "content_corresponding_in_fixture"
+            },
+            "failure_reasons": "failure_reasons=[stop_content/record/content_conflict/owner=connection-operation-owner]"
+          },
+          "emitted_findings": [
+            {
+              "area": "stop_content",
+              "field": "record",
+              "result": "content_conflict",
+              "owner": "connection-operation-owner"
+            }
+          ]
+        },
+        {
+          "u_id": "U-CONNECT005-063",
+          "condition_witness": {
+            "content_results": {
+              "stop": "content_corresponding_in_fixture",
+              "prior_successes": "content_corresponding_in_fixture",
+              "unfinished": "content_conflict",
+              "handoff": "content_corresponding_in_fixture",
+              "handoff_receipt": "content_corresponding_in_fixture",
+              "resolution": "content_corresponding_in_fixture"
+            },
+            "failure_reasons": "failure_reasons=[unfinished_content/record/content_conflict/owner=connection-operation-owner]"
+          },
+          "emitted_findings": [
+            {
+              "area": "unfinished_content",
+              "field": "record",
+              "result": "content_conflict",
+              "owner": "connection-operation-owner"
+            }
+          ]
+        },
+        {
+          "u_id": "U-CONNECT005-064",
+          "condition_witness": {
+            "content_results": {
+              "stop": "content_corresponding_in_fixture",
+              "prior_successes": "content_corresponding_in_fixture",
+              "unfinished": "content_corresponding_in_fixture",
+              "handoff": "content_corresponding_in_fixture",
+              "handoff_receipt": "content_corresponding_in_fixture",
+              "resolution": "content_conflict"
+            },
+            "failure_reasons": "failure_reasons=[resolution_content/record/content_conflict/owner=consumer-endpoint-owner]"
+          },
+          "emitted_findings": [
+            {
+              "area": "resolution_content",
+              "field": "record",
+              "result": "content_conflict",
+              "owner": "consumer-endpoint-owner"
+            }
+          ]
+        },
+        {
+          "u_id": "U-CONNECT005-158",
+          "condition_witness": {
+            "content_results": {
+              "stop": "content_corresponding_in_fixture",
+              "prior_successes": "unknown_original_information",
+              "unfinished": "content_corresponding_in_fixture",
+              "handoff": "content_conflict",
+              "handoff_receipt": "content_corresponding_in_fixture",
+              "resolution": "content_corresponding_in_fixture"
+            },
+            "failure_reasons": "failure_reasons=[handoff_content/record/content_conflict/owner=connection-operation-owner; input_domain/original_prior_successes/unknown_original_information]"
+          },
+          "emitted_findings": [
+            {
+              "area": "handoff_content",
+              "field": "record",
+              "result": "content_conflict",
+              "owner": "connection-operation-owner"
+            }
+          ]
+        },
+        {
+          "u_id": "U-CONNECT005-159",
+          "condition_witness": {
+            "content_results": {
+              "stop": "content_corresponding_in_fixture",
+              "prior_successes": "unknown_original_information",
+              "unfinished": "content_corresponding_in_fixture",
+              "handoff": "content_conflict",
+              "handoff_receipt": "content_corresponding_in_fixture",
+              "resolution": "content_corresponding_in_fixture"
+            },
+            "failure_reasons": "failure_reasons=[handoff_content/record/content_conflict/owner=connection-operation-owner; input_domain/original_prior_successes/unknown_original_information]"
+          },
+          "emitted_findings": [
+            {
+              "area": "handoff_content",
+              "field": "record",
+              "result": "content_conflict",
+              "owner": "connection-operation-owner"
+            }
+          ]
+        },
+        {
+          "u_id": "U-CONNECT005-166",
+          "condition_witness": {
+            "content_results": {
+              "stop": "unknown_original_information",
+              "prior_successes": "content_corresponding_in_fixture",
+              "unfinished": "content_corresponding_in_fixture",
+              "handoff": "content_corresponding_in_fixture",
+              "handoff_receipt": "content_corresponding_in_fixture",
+              "resolution": "content_corresponding_in_fixture"
+            },
+            "failure_reasons": "failure_reasons=[stop_content/record/unknown_original_information/owner=connection-operation-owner; input_domain/original_stop/unknown_original_information/owner=connection-operation-owner]"
+          },
+          "emitted_findings": [
+            {
+              "area": "stop_content",
+              "field": "record",
+              "result": "unknown_original_information",
+              "owner": "connection-operation-owner"
+            }
+          ]
+        },
+        {
+          "u_id": "U-CONNECT005-167",
+          "condition_witness": {
+            "content_results": {
+              "stop": "unknown_original_information",
+              "prior_successes": "content_corresponding_in_fixture",
+              "unfinished": "content_corresponding_in_fixture",
+              "handoff": "content_corresponding_in_fixture",
+              "handoff_receipt": "content_corresponding_in_fixture",
+              "resolution": "content_corresponding_in_fixture"
+            },
+            "failure_reasons": "failure_reasons=[stop_content/record/unknown_original_information/owner=connection-operation-owner; input_domain/original_stop/unknown_original_information/owner=connection-operation-owner]"
+          },
+          "emitted_findings": [
+            {
+              "area": "stop_content",
+              "field": "record",
+              "result": "unknown_original_information",
+              "owner": "connection-operation-owner"
+            }
+          ]
+        },
+        {
+          "u_id": "U-CONNECT005-170",
+          "condition_witness": {
+            "content_results": {
+              "stop": "content_conflict",
+              "prior_successes": "content_corresponding_in_fixture",
+              "unfinished": "content_corresponding_in_fixture",
+              "handoff": "content_corresponding_in_fixture",
+              "handoff_receipt": "content_corresponding_in_fixture",
+              "resolution": "content_corresponding_in_fixture"
+            },
+            "failure_reasons": "failure_reasons=[stop_content/record/content_conflict/owner=connection-operation-owner; input_domain/original_stop/unknown_original_information/owner=connection-operation-owner]"
+          },
+          "emitted_findings": [
+            {
+              "area": "stop_content",
+              "field": "record",
+              "result": "content_conflict",
+              "owner": "connection-operation-owner"
+            }
+          ]
+        },
+        {
+          "u_id": "U-CONNECT005-171",
+          "condition_witness": {
+            "content_results": {
+              "stop": "content_conflict",
+              "prior_successes": "content_corresponding_in_fixture",
+              "unfinished": "content_corresponding_in_fixture",
+              "handoff": "content_corresponding_in_fixture",
+              "handoff_receipt": "content_corresponding_in_fixture",
+              "resolution": "content_corresponding_in_fixture"
+            },
+            "failure_reasons": "failure_reasons=[stop_content/record/content_conflict/owner=connection-operation-owner; input_domain/original_stop/unknown_original_information/owner=connection-operation-owner]"
+          },
+          "emitted_findings": [
+            {
+              "area": "stop_content",
+              "field": "record",
+              "result": "content_conflict",
+              "owner": "connection-operation-owner"
+            }
+          ]
+        },
+        {
+          "u_id": "U-CONNECT005-172",
+          "condition_witness": {
+            "content_results": {
+              "stop": "content_conflict",
+              "prior_successes": "content_corresponding_in_fixture",
+              "unfinished": "content_corresponding_in_fixture",
+              "handoff": "content_corresponding_in_fixture",
+              "handoff_receipt": "content_corresponding_in_fixture",
+              "resolution": "content_corresponding_in_fixture"
+            },
+            "failure_reasons": "failure_reasons=[stop_content/record/content_conflict/owner=connection-operation-owner; input_domain/original_stop/unknown_original_information/owner=connection-operation-owner]"
+          },
+          "emitted_findings": [
+            {
+              "area": "stop_content",
+              "field": "record",
+              "result": "content_conflict",
+              "owner": "connection-operation-owner"
+            }
+          ]
+        },
+        {
+          "u_id": "U-CONNECT005-173",
+          "condition_witness": {
+            "content_results": {
+              "stop": "content_conflict",
+              "prior_successes": "content_corresponding_in_fixture",
+              "unfinished": "content_corresponding_in_fixture",
+              "handoff": "content_corresponding_in_fixture",
+              "handoff_receipt": "content_corresponding_in_fixture",
+              "resolution": "content_corresponding_in_fixture"
+            },
+            "failure_reasons": "failure_reasons=[stop_content/record/content_conflict/owner=connection-operation-owner; input_domain/original_stop/unknown_original_information/owner=connection-operation-owner]"
+          },
+          "emitted_findings": [
+            {
+              "area": "stop_content",
+              "field": "record",
+              "result": "content_conflict",
+              "owner": "connection-operation-owner"
+            }
+          ]
+        },
+        {
+          "u_id": "U-CONNECT005-174",
+          "condition_witness": {
+            "content_results": {
+              "stop": "content_conflict",
+              "prior_successes": "content_corresponding_in_fixture",
+              "unfinished": "content_corresponding_in_fixture",
+              "handoff": "content_corresponding_in_fixture",
+              "handoff_receipt": "content_corresponding_in_fixture",
+              "resolution": "content_corresponding_in_fixture"
+            },
+            "failure_reasons": "failure_reasons=[stop_content/record/content_conflict/owner=connection-operation-owner; input_domain/original_stop/unknown_original_information/owner=connection-operation-owner]"
+          },
+          "emitted_findings": [
+            {
+              "area": "stop_content",
+              "field": "record",
+              "result": "content_conflict",
+              "owner": "connection-operation-owner"
+            }
+          ]
+        },
+        {
+          "u_id": "U-CONNECT005-175",
+          "condition_witness": {
+            "content_results": {
+              "stop": "content_conflict",
+              "prior_successes": "content_corresponding_in_fixture",
+              "unfinished": "content_corresponding_in_fixture",
+              "handoff": "content_corresponding_in_fixture",
+              "handoff_receipt": "content_corresponding_in_fixture",
+              "resolution": "content_corresponding_in_fixture"
+            },
+            "failure_reasons": "failure_reasons=[stop_content/record/content_conflict/owner=connection-operation-owner; input_domain/original_stop/unknown_original_information/owner=connection-operation-owner]"
+          },
+          "emitted_findings": [
+            {
+              "area": "stop_content",
+              "field": "record",
+              "result": "content_conflict",
+              "owner": "connection-operation-owner"
+            }
+          ]
+        }
+      ],
+      "coverage_state": "semantically_supported_by_fixed_source",
+      "execution_state": "not_executed"
+    },
+    {
+      "pointer": "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/1",
+      "when": "handoff_target_resultsのfieldがcontent_corresponding_in_fixture以外。",
+      "emit": "handoff_target_fields順にarea=handoff_target、field=当該field、result=当該比較値、return_owner=connection-operation-ownerを追加する。",
+      "fixed_source_candidate_u_ids": [
+        "U-CONNECT005-054",
+        "U-CONNECT005-055",
+        "U-CONNECT005-056"
+      ],
+      "observed_expected_emissions": [
+        {
+          "u_id": "U-CONNECT005-054",
+          "condition_witness": {
+            "handoff_target_results": {
+              "connection_identity": "content_corresponding_in_fixture",
+              "operation_identity": "content_corresponding_in_fixture",
+              "contract_revision": "content_corresponding_in_fixture",
+              "correlation": "content_corresponding_in_fixture",
+              "scope": "content_conflict",
+              "expiry": "content_corresponding_in_fixture",
+              "permission_ref": "content_corresponding_in_fixture",
+              "dependency_ref": "content_corresponding_in_fixture"
+            }
+          },
+          "emitted_findings": [
+            {
+              "area": "handoff_target",
+              "field": "scope",
+              "result": "content_conflict",
+              "owner": "connection-operation-owner"
+            }
+          ]
+        },
+        {
+          "u_id": "U-CONNECT005-055",
+          "condition_witness": {
+            "handoff_target_results": {
+              "connection_identity": "content_corresponding_in_fixture",
+              "operation_identity": "content_conflict",
+              "contract_revision": "content_corresponding_in_fixture",
+              "correlation": "content_corresponding_in_fixture",
+              "scope": "content_corresponding_in_fixture",
+              "expiry": "content_corresponding_in_fixture",
+              "permission_ref": "content_corresponding_in_fixture",
+              "dependency_ref": "content_corresponding_in_fixture"
+            }
+          },
+          "emitted_findings": [
+            {
+              "area": "handoff_target",
+              "field": "operation_identity",
+              "result": "content_conflict",
+              "owner": "connection-operation-owner"
+            }
+          ]
+        },
+        {
+          "u_id": "U-CONNECT005-056",
+          "condition_witness": {
+            "handoff_target_results": {
+              "connection_identity": "content_corresponding_in_fixture",
+              "operation_identity": "content_corresponding_in_fixture",
+              "contract_revision": "content_conflict",
+              "correlation": "content_corresponding_in_fixture",
+              "scope": "content_corresponding_in_fixture",
+              "expiry": "content_corresponding_in_fixture",
+              "permission_ref": "content_corresponding_in_fixture",
+              "dependency_ref": "content_corresponding_in_fixture"
+            }
+          },
+          "emitted_findings": [
+            {
+              "area": "handoff_target",
+              "field": "contract_revision",
+              "result": "content_conflict",
+              "owner": "connection-operation-owner"
+            }
+          ]
+        }
+      ],
+      "coverage_state": "semantically_supported_by_fixed_source",
+      "execution_state": "not_executed"
+    },
+    {
+      "pointer": "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/2",
+      "when": "unfinished_target_resultsのfieldがcontent_corresponding_in_fixture以外。",
+      "emit": "原配列index順・target field順にarea=unfinished_target_{index}、field=当該field、result=比較値を追加する。",
+      "fixed_source_candidate_u_ids": [
+        "U-CONNECT005-213"
+      ],
+      "observed_expected_emissions": [
+        {
+          "u_id": "U-CONNECT005-213",
+          "condition_witness": {
+            "unfinished_target_results": {
+              "$array": {
+                "0": {
+                  "connection_identity": "content_corresponding_in_fixture",
+                  "operation_identity": "content_corresponding_in_fixture",
+                  "contract_revision": "content_corresponding_in_fixture",
+                  "correlation": "content_corresponding_in_fixture",
+                  "scope": "content_conflict",
+                  "expiry": "content_corresponding_in_fixture",
+                  "permission_ref": "content_corresponding_in_fixture",
+                  "dependency_ref": "content_corresponding_in_fixture"
+                }
+              }
+            }
+          },
+          "emitted_findings": [
+            {
+              "area": "unfinished_target_0",
+              "field": "scope",
+              "result": "content_conflict",
+              "owner": "connection-operation-owner"
+            }
+          ]
+        }
+      ],
+      "coverage_state": "semantically_supported_by_fixed_source",
+      "execution_state": "not_executed"
+    },
+    {
+      "pointer": "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/3",
+      "when": "original_prior_successesがarrayでoriginal_stopがobjectのとき、stop_link_resultがcontent_corresponding_in_fixtureでも、既知empty priorと明示null refのnot_observed_before_first_successでもない。",
+      "emit": "object形状のstopに含まれる欠落または未解決のstop_event_refをarea=stop_linkとして返す。prior_successes自体がAbsent/array以外、またはstop自体がAbsent/非objectなら、そのinput_domain/stop_content findingを返しstop_link failureを重複させない。既知empty priorと明示null refだけはnot_observed_before_first_successとして観測限界を保ち、解決/成功にしない。",
+      "fixed_source_candidate_u_ids": [
+        "U-CONNECT005-152",
+        "U-CONNECT005-182",
+        "U-CONNECT005-183",
+        "U-CONNECT005-184"
+      ],
+      "observed_expected_emissions": [
+        {
+          "u_id": "U-CONNECT005-152",
+          "condition_witness": {
+            "stop_link_result": "missing"
+          },
+          "emitted_findings": [
+            {
+              "area": "stop_link",
+              "field": "stop_event_ref",
+              "result": "missing",
+              "owner": "connection-operation-owner"
+            }
+          ]
+        },
+        {
+          "u_id": "U-CONNECT005-182",
+          "condition_witness": {
+            "stop_link_result": "unknown_original_information"
+          },
+          "emitted_findings": [
+            {
+              "area": "stop_link",
+              "field": "stop_event_ref",
+              "result": "unknown_original_information",
+              "owner": "connection-operation-owner"
+            }
+          ]
+        },
+        {
+          "u_id": "U-CONNECT005-183",
+          "condition_witness": {
+            "stop_link_result": "unknown_original_information"
+          },
+          "emitted_findings": [
+            {
+              "area": "stop_link",
+              "field": "stop_event_ref",
+              "result": "unknown_original_information",
+              "owner": "connection-operation-owner"
+            }
+          ]
+        },
+        {
+          "u_id": "U-CONNECT005-184",
+          "condition_witness": {
+            "stop_link_result": "unknown_original_information"
+          },
+          "emitted_findings": [
+            {
+              "area": "stop_link",
+              "field": "stop_event_ref",
+              "result": "unknown_original_information",
+              "owner": "connection-operation-owner"
+            }
+          ]
+        }
+      ],
+      "coverage_state": "semantically_supported_by_fixed_source",
+      "execution_state": "not_executed"
+    },
+    {
+      "pointer": "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/4",
+      "when": "unfinished_link_resultがcorresponding以外で、handoff/unfinished sourceを型内比較できる。",
+      "emit": "area=unfinished_linkのfailure rowを追加する。",
+      "fixed_source_candidate_u_ids": [
+        "U-CONNECT005-153",
+        "U-CONNECT005-179"
+      ],
+      "observed_expected_emissions": [
+        {
+          "u_id": "U-CONNECT005-153",
+          "condition_witness": {
+            "unfinished_link_result": "content_conflict"
+          },
+          "emitted_findings": [
+            {
+              "area": "unfinished_link",
+              "field": "unfinished",
+              "result": "content_conflict",
+              "owner": "connection-operation-owner"
+            }
+          ]
+        },
+        {
+          "u_id": "U-CONNECT005-179",
+          "condition_witness": {
+            "unfinished_link_result": "content_conflict"
+          },
+          "emitted_findings": [
+            {
+              "area": "unfinished_link",
+              "field": "unfinished",
+              "result": "content_conflict",
+              "owner": "connection-operation-owner"
+            }
+          ]
+        }
+      ],
+      "coverage_state": "semantically_supported_by_fixed_source",
+      "execution_state": "not_executed"
+    },
+    {
+      "pointer": "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/5",
+      "when": "receipt_link_resultまたはresolution_link_resultがcorresponding以外で、必要なhandoff参照が型内比較可能。",
+      "emit": "個別linkのfailure rowを追加する。receiptはresolutionを成立させない。",
+      "fixed_source_candidate_u_ids": [
+        "U-CONNECT005-057",
+        "U-CONNECT005-058"
+      ],
+      "observed_expected_emissions": [
+        {
+          "u_id": "U-CONNECT005-057",
+          "condition_witness": {
+            "receipt_link_result": "content_conflict",
+            "resolution_link_result": "content_corresponding_in_fixture"
+          },
+          "emitted_findings": [
+            {
+              "area": "receipt_link",
+              "field": "target",
+              "result": "content_conflict",
+              "owner": "connection-operation-owner"
+            }
+          ]
+        },
+        {
+          "u_id": "U-CONNECT005-058",
+          "condition_witness": {
+            "receipt_link_result": "content_corresponding_in_fixture",
+            "resolution_link_result": "content_conflict"
+          },
+          "emitted_findings": [
+            {
+              "area": "resolution_link",
+              "field": "target",
+              "result": "content_conflict",
+              "owner": "connection-operation-owner"
+            }
+          ]
+        }
+      ],
+      "coverage_state": "semantically_supported_by_fixed_source",
+      "execution_state": "not_executed"
+    },
+    {
+      "pointer": "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/6",
+      "when": "入力recordが必要shapeでない、またはresult_state/causeが有限型比較に入らない。",
+      "emit": "field別のmissingまたはunknown_original_informationをinput_domainへ返し、rawをretained outputに保持する。",
+      "fixed_source_candidate_u_ids": [
+        "U-CONNECT005-099",
+        "U-CONNECT005-100",
+        "U-CONNECT005-101",
+        "U-CONNECT005-102",
+        "U-CONNECT005-103",
+        "U-CONNECT005-104",
+        "U-CONNECT005-105",
+        "U-CONNECT005-106",
+        "U-CONNECT005-107",
+        "U-CONNECT005-108",
+        "U-CONNECT005-109",
+        "U-CONNECT005-110",
+        "U-CONNECT005-111",
+        "U-CONNECT005-112",
+        "U-CONNECT005-113",
+        "U-CONNECT005-114",
+        "U-CONNECT005-115",
+        "U-CONNECT005-116",
+        "U-CONNECT005-117",
+        "U-CONNECT005-118",
+        "U-CONNECT005-119",
+        "U-CONNECT005-120",
+        "U-CONNECT005-129",
+        "U-CONNECT005-130",
+        "U-CONNECT005-131",
+        "U-CONNECT005-132",
+        "U-CONNECT005-133",
+        "U-CONNECT005-134",
+        "U-CONNECT005-135",
+        "U-CONNECT005-136",
+        "U-CONNECT005-137",
+        "U-CONNECT005-138",
+        "U-CONNECT005-139",
+        "U-CONNECT005-140",
+        "U-CONNECT005-141",
+        "U-CONNECT005-142",
+        "U-CONNECT005-143",
+        "U-CONNECT005-144",
+        "U-CONNECT005-146",
+        "U-CONNECT005-147",
+        "U-CONNECT005-148",
+        "U-CONNECT005-150",
+        "U-CONNECT005-151",
+        "U-CONNECT005-155",
+        "U-CONNECT005-157",
+        "U-CONNECT005-158",
+        "U-CONNECT005-159",
+        "U-CONNECT005-160",
+        "U-CONNECT005-161",
+        "U-CONNECT005-166",
+        "U-CONNECT005-167",
+        "U-CONNECT005-170",
+        "U-CONNECT005-171",
+        "U-CONNECT005-172",
+        "U-CONNECT005-173",
+        "U-CONNECT005-174",
+        "U-CONNECT005-175"
+      ],
+      "observed_expected_emissions": [
+        {
+          "u_id": "U-CONNECT005-099",
+          "condition_witness": {
+            "failure_reasons": "failure_reasons=[input_domain/original_handoff/unknown_original_information/owner=connection-operation-owner]"
+          },
+          "emitted_findings": [
+            {
+              "area": "input_domain",
+              "field": "original_handoff",
+              "result": "unknown_original_information",
+              "owner": "connection-operation-owner"
+            }
+          ]
+        },
+        {
+          "u_id": "U-CONNECT005-100",
+          "condition_witness": {
+            "failure_reasons": "failure_reasons=[input_domain/original_handoff/unknown_original_information/owner=connection-operation-owner]"
+          },
+          "emitted_findings": [
+            {
+              "area": "input_domain",
+              "field": "original_handoff",
+              "result": "unknown_original_information",
+              "owner": "connection-operation-owner"
+            }
+          ]
+        },
+        {
+          "u_id": "U-CONNECT005-101",
+          "condition_witness": {
+            "failure_reasons": "failure_reasons=[input_domain/original_handoff/unknown_original_information/owner=connection-operation-owner]"
+          },
+          "emitted_findings": [
+            {
+              "area": "input_domain",
+              "field": "original_handoff",
+              "result": "unknown_original_information",
+              "owner": "connection-operation-owner"
+            }
+          ]
+        },
+        {
+          "u_id": "U-CONNECT005-102",
+          "condition_witness": {
+            "failure_reasons": "failure_reasons=[input_domain/original_handoff/unknown_original_information/owner=connection-operation-owner]"
+          },
+          "emitted_findings": [
+            {
+              "area": "input_domain",
+              "field": "original_handoff",
+              "result": "unknown_original_information",
+              "owner": "connection-operation-owner"
+            }
+          ]
+        },
+        {
+          "u_id": "U-CONNECT005-103",
+          "condition_witness": {
+            "failure_reasons": "failure_reasons=[input_domain/original_handoff/unknown_original_information/owner=connection-operation-owner]"
+          },
+          "emitted_findings": [
+            {
+              "area": "input_domain",
+              "field": "original_handoff",
+              "result": "unknown_original_information",
+              "owner": "connection-operation-owner"
+            }
+          ]
+        },
+        {
+          "u_id": "U-CONNECT005-104",
+          "condition_witness": {
+            "failure_reasons": "failure_reasons=[input_domain/original_handoff/unknown_original_information/owner=connection-operation-owner]"
+          },
+          "emitted_findings": [
+            {
+              "area": "input_domain",
+              "field": "original_handoff",
+              "result": "unknown_original_information",
+              "owner": "connection-operation-owner"
+            }
+          ]
+        },
+        {
+          "u_id": "U-CONNECT005-105",
+          "condition_witness": {
+            "failure_reasons": "failure_reasons=[input_domain/original_handoff/unknown_original_information/owner=connection-operation-owner]"
+          },
+          "emitted_findings": [
+            {
+              "area": "input_domain",
+              "field": "original_handoff",
+              "result": "unknown_original_information",
+              "owner": "connection-operation-owner"
+            }
+          ]
+        },
+        {
+          "u_id": "U-CONNECT005-106",
+          "condition_witness": {
+            "failure_reasons": "failure_reasons=[input_domain/original_handoff/unknown_original_information/owner=connection-operation-owner]"
+          },
+          "emitted_findings": [
+            {
+              "area": "input_domain",
+              "field": "original_handoff",
+              "result": "unknown_original_information",
+              "owner": "connection-operation-owner"
+            }
+          ]
+        },
+        {
+          "u_id": "U-CONNECT005-107",
+          "condition_witness": {
+            "failure_reasons": "failure_reasons=[input_domain/original_handoff/unknown_original_information/owner=connection-operation-owner]"
+          },
+          "emitted_findings": [
+            {
+              "area": "input_domain",
+              "field": "original_handoff",
+              "result": "unknown_original_information",
+              "owner": "connection-operation-owner"
+            }
+          ]
+        },
+        {
+          "u_id": "U-CONNECT005-108",
+          "condition_witness": {
+            "failure_reasons": "failure_reasons=[input_domain/original_prior_successes/unknown_original_information/owner=connection-operation-owner]"
+          },
+          "emitted_findings": [
+            {
+              "area": "input_domain",
+              "field": "original_prior_successes",
+              "result": "unknown_original_information",
+              "owner": "connection-operation-owner"
+            }
+          ]
+        },
+        {
+          "u_id": "U-CONNECT005-109",
+          "condition_witness": {
+            "failure_reasons": "failure_reasons=[input_domain/original_prior_successes/unknown_original_information/owner=connection-operation-owner]"
+          },
+          "emitted_findings": [
+            {
+              "area": "input_domain",
+              "field": "original_prior_successes",
+              "result": "unknown_original_information",
+              "owner": "connection-operation-owner"
+            }
+          ]
+        },
+        {
+          "u_id": "U-CONNECT005-110",
+          "condition_witness": {
+            "failure_reasons": "failure_reasons=[input_domain/original_prior_successes/unknown_original_information/owner=connection-operation-owner]"
+          },
+          "emitted_findings": [
+            {
+              "area": "input_domain",
+              "field": "original_prior_successes",
+              "result": "unknown_original_information",
+              "owner": "connection-operation-owner"
+            }
+          ]
+        },
+        {
+          "u_id": "U-CONNECT005-111",
+          "condition_witness": {
+            "failure_reasons": "failure_reasons=[input_domain/original_prior_successes/unknown_original_information/owner=connection-operation-owner]"
+          },
+          "emitted_findings": [
+            {
+              "area": "input_domain",
+              "field": "original_prior_successes",
+              "result": "unknown_original_information",
+              "owner": "connection-operation-owner"
+            }
+          ]
+        },
+        {
+          "u_id": "U-CONNECT005-112",
+          "condition_witness": {
+            "failure_reasons": "failure_reasons=[input_domain/original_prior_successes/unknown_original_information/owner=connection-operation-owner]"
+          },
+          "emitted_findings": [
+            {
+              "area": "input_domain",
+              "field": "original_prior_successes",
+              "result": "unknown_original_information",
+              "owner": "connection-operation-owner"
+            }
+          ]
+        },
+        {
+          "u_id": "U-CONNECT005-113",
+          "condition_witness": {
+            "failure_reasons": "failure_reasons=[input_domain/original_unfinished/unknown_original_information/owner=connection-operation-owner]"
+          },
+          "emitted_findings": [
+            {
+              "area": "input_domain",
+              "field": "original_unfinished",
+              "result": "unknown_original_information",
+              "owner": "connection-operation-owner"
+            }
+          ]
+        },
+        {
+          "u_id": "U-CONNECT005-114",
+          "condition_witness": {
+            "failure_reasons": "failure_reasons=[input_domain/original_unfinished/unknown_original_information/owner=connection-operation-owner]"
+          },
+          "emitted_findings": [
+            {
+              "area": "input_domain",
+              "field": "original_unfinished",
+              "result": "unknown_original_information",
+              "owner": "connection-operation-owner"
+            }
+          ]
+        },
+        {
+          "u_id": "U-CONNECT005-115",
+          "condition_witness": {
+            "failure_reasons": "failure_reasons=[input_domain/original_unfinished/unknown_original_information/owner=connection-operation-owner]"
+          },
+          "emitted_findings": [
+            {
+              "area": "input_domain",
+              "field": "original_unfinished",
+              "result": "unknown_original_information",
+              "owner": "connection-operation-owner"
+            }
+          ]
+        },
+        {
+          "u_id": "U-CONNECT005-116",
+          "condition_witness": {
+            "failure_reasons": "failure_reasons=[input_domain/original_unfinished/unknown_original_information/owner=connection-operation-owner]"
+          },
+          "emitted_findings": [
+            {
+              "area": "input_domain",
+              "field": "original_unfinished",
+              "result": "unknown_original_information",
+              "owner": "connection-operation-owner"
+            }
+          ]
+        },
+        {
+          "u_id": "U-CONNECT005-117",
+          "condition_witness": {
+            "failure_reasons": "failure_reasons=[input_domain/original_unfinished/unknown_original_information/owner=connection-operation-owner]"
+          },
+          "emitted_findings": [
+            {
+              "area": "input_domain",
+              "field": "original_unfinished",
+              "result": "unknown_original_information",
+              "owner": "connection-operation-owner"
+            }
+          ]
+        },
+        {
+          "u_id": "U-CONNECT005-118",
+          "condition_witness": {
+            "failure_reasons": "failure_reasons=[input_domain/original_unfinished/unknown_original_information/owner=connection-operation-owner]"
+          },
+          "emitted_findings": [
+            {
+              "area": "input_domain",
+              "field": "original_unfinished",
+              "result": "unknown_original_information",
+              "owner": "connection-operation-owner"
+            }
+          ]
+        },
+        {
+          "u_id": "U-CONNECT005-119",
+          "condition_witness": {
+            "failure_reasons": "failure_reasons=[input_domain/original_unfinished/unknown_original_information/owner=connection-operation-owner]"
+          },
+          "emitted_findings": [
+            {
+              "area": "input_domain",
+              "field": "original_unfinished",
+              "result": "unknown_original_information",
+              "owner": "connection-operation-owner"
+            }
+          ]
+        },
+        {
+          "u_id": "U-CONNECT005-120",
+          "condition_witness": {
+            "failure_reasons": "failure_reasons=[input_domain/original_unfinished/unknown_original_information/owner=connection-operation-owner]"
+          },
+          "emitted_findings": [
+            {
+              "area": "input_domain",
+              "field": "original_unfinished",
+              "result": "unknown_original_information",
+              "owner": "connection-operation-owner"
+            }
+          ]
+        },
+        {
+          "u_id": "U-CONNECT005-129",
+          "condition_witness": {
+            "failure_reasons": "failure_reasons=[input_domain/original_allowed_trace_fields/unknown_original_information/owner=source-owner]"
+          },
+          "emitted_findings": [
+            {
+              "area": "input_domain",
+              "field": "original_allowed_trace_fields",
+              "result": "unknown_original_information",
+              "owner": "source-owner"
+            }
+          ]
+        },
+        {
+          "u_id": "U-CONNECT005-130",
+          "condition_witness": {
+            "failure_reasons": "failure_reasons=[input_domain/original_allowed_trace_fields/unknown_original_information/owner=source-owner]"
+          },
+          "emitted_findings": [
+            {
+              "area": "input_domain",
+              "field": "original_allowed_trace_fields",
+              "result": "unknown_original_information",
+              "owner": "source-owner"
+            }
+          ]
+        },
+        {
+          "u_id": "U-CONNECT005-131",
+          "condition_witness": {
+            "failure_reasons": "failure_reasons=[input_domain/original_allowed_trace_fields/unknown_original_information/owner=source-owner]"
+          },
+          "emitted_findings": [
+            {
+              "area": "input_domain",
+              "field": "original_allowed_trace_fields",
+              "result": "unknown_original_information",
+              "owner": "source-owner"
+            }
+          ]
+        },
+        {
+          "u_id": "U-CONNECT005-132",
+          "condition_witness": {
+            "failure_reasons": "failure_reasons=[input_domain/original_allowed_trace_fields/unknown_original_information/owner=source-owner]"
+          },
+          "emitted_findings": [
+            {
+              "area": "input_domain",
+              "field": "original_allowed_trace_fields",
+              "result": "unknown_original_information",
+              "owner": "source-owner"
+            }
+          ]
+        },
+        {
+          "u_id": "U-CONNECT005-133",
+          "condition_witness": {
+            "failure_reasons": "failure_reasons=[input_domain/original_allowed_trace_fields/unknown_original_information/owner=source-owner]"
+          },
+          "emitted_findings": [
+            {
+              "area": "input_domain",
+              "field": "original_allowed_trace_fields",
+              "result": "unknown_original_information",
+              "owner": "source-owner"
+            }
+          ]
+        },
+        {
+          "u_id": "U-CONNECT005-134",
+          "condition_witness": {
+            "failure_reasons": "failure_reasons=[input_domain/original_allowed_trace_fields/unknown_original_information/owner=source-owner]"
+          },
+          "emitted_findings": [
+            {
+              "area": "input_domain",
+              "field": "original_allowed_trace_fields",
+              "result": "unknown_original_information",
+              "owner": "source-owner"
+            }
+          ]
+        },
+        {
+          "u_id": "U-CONNECT005-135",
+          "condition_witness": {
+            "failure_reasons": "failure_reasons=[input_domain/original_allowed_trace_fields/unknown_original_information/owner=source-owner]"
+          },
+          "emitted_findings": [
+            {
+              "area": "input_domain",
+              "field": "original_allowed_trace_fields",
+              "result": "unknown_original_information",
+              "owner": "source-owner"
+            }
+          ]
+        },
+        {
+          "u_id": "U-CONNECT005-136",
+          "condition_witness": {
+            "failure_reasons": "failure_reasons=[input_domain/original_allowed_trace_fields/unknown_original_information/owner=source-owner]"
+          },
+          "emitted_findings": [
+            {
+              "area": "input_domain",
+              "field": "original_allowed_trace_fields",
+              "result": "unknown_original_information",
+              "owner": "source-owner"
+            }
+          ]
+        },
+        {
+          "u_id": "U-CONNECT005-137",
+          "condition_witness": {
+            "failure_reasons": "failure_reasons=[input_domain/requested_trace_fields/unknown_original_information/owner=consumer-owner]"
+          },
+          "emitted_findings": [
+            {
+              "area": "input_domain",
+              "field": "requested_trace_fields",
+              "result": "unknown_original_information",
+              "owner": "consumer-owner"
+            }
+          ]
+        },
+        {
+          "u_id": "U-CONNECT005-138",
+          "condition_witness": {
+            "failure_reasons": "failure_reasons=[input_domain/requested_trace_fields/unknown_original_information/owner=consumer-owner]"
+          },
+          "emitted_findings": [
+            {
+              "area": "input_domain",
+              "field": "requested_trace_fields",
+              "result": "unknown_original_information",
+              "owner": "consumer-owner"
+            }
+          ]
+        },
+        {
+          "u_id": "U-CONNECT005-139",
+          "condition_witness": {
+            "failure_reasons": "failure_reasons=[input_domain/requested_trace_fields/unknown_original_information/owner=consumer-owner]"
+          },
+          "emitted_findings": [
+            {
+              "area": "input_domain",
+              "field": "requested_trace_fields",
+              "result": "unknown_original_information",
+              "owner": "consumer-owner"
+            }
+          ]
+        },
+        {
+          "u_id": "U-CONNECT005-140",
+          "condition_witness": {
+            "failure_reasons": "failure_reasons=[input_domain/requested_trace_fields/unknown_original_information/owner=consumer-owner]"
+          },
+          "emitted_findings": [
+            {
+              "area": "input_domain",
+              "field": "requested_trace_fields",
+              "result": "unknown_original_information",
+              "owner": "consumer-owner"
+            }
+          ]
+        },
+        {
+          "u_id": "U-CONNECT005-141",
+          "condition_witness": {
+            "failure_reasons": "failure_reasons=[input_domain/requested_trace_fields/unknown_original_information/owner=consumer-owner]"
+          },
+          "emitted_findings": [
+            {
+              "area": "input_domain",
+              "field": "requested_trace_fields",
+              "result": "unknown_original_information",
+              "owner": "consumer-owner"
+            }
+          ]
+        },
+        {
+          "u_id": "U-CONNECT005-142",
+          "condition_witness": {
+            "failure_reasons": "failure_reasons=[input_domain/requested_trace_fields/unknown_original_information/owner=consumer-owner]"
+          },
+          "emitted_findings": [
+            {
+              "area": "input_domain",
+              "field": "requested_trace_fields",
+              "result": "unknown_original_information",
+              "owner": "consumer-owner"
+            }
+          ]
+        },
+        {
+          "u_id": "U-CONNECT005-143",
+          "condition_witness": {
+            "failure_reasons": "failure_reasons=[input_domain/requested_trace_fields/unknown_original_information/owner=consumer-owner]"
+          },
+          "emitted_findings": [
+            {
+              "area": "input_domain",
+              "field": "requested_trace_fields",
+              "result": "unknown_original_information",
+              "owner": "consumer-owner"
+            }
+          ]
+        },
+        {
+          "u_id": "U-CONNECT005-144",
+          "condition_witness": {
+            "failure_reasons": "failure_reasons=[input_domain/requested_trace_fields/unknown_original_information/owner=consumer-owner]"
+          },
+          "emitted_findings": [
+            {
+              "area": "input_domain",
+              "field": "requested_trace_fields",
+              "result": "unknown_original_information",
+              "owner": "consumer-owner"
+            }
+          ]
+        },
+        {
+          "u_id": "U-CONNECT005-146",
+          "condition_witness": {
+            "failure_reasons": "failure_reasons=[input_domain/original_handoff/missing/owner=connection-operation-owner]"
+          },
+          "emitted_findings": [
+            {
+              "area": "input_domain",
+              "field": "original_handoff",
+              "result": "missing",
+              "owner": "connection-operation-owner"
+            }
+          ]
+        },
+        {
+          "u_id": "U-CONNECT005-147",
+          "condition_witness": {
+            "failure_reasons": "failure_reasons=[input_domain/original_prior_successes/missing/owner=connection-operation-owner]"
+          },
+          "emitted_findings": [
+            {
+              "area": "input_domain",
+              "field": "original_prior_successes",
+              "result": "missing",
+              "owner": "connection-operation-owner"
+            }
+          ]
+        },
+        {
+          "u_id": "U-CONNECT005-148",
+          "condition_witness": {
+            "failure_reasons": "failure_reasons=[input_domain/original_unfinished/missing/owner=connection-operation-owner]"
+          },
+          "emitted_findings": [
+            {
+              "area": "input_domain",
+              "field": "original_unfinished",
+              "result": "missing",
+              "owner": "connection-operation-owner"
+            }
+          ]
+        },
+        {
+          "u_id": "U-CONNECT005-150",
+          "condition_witness": {
+            "failure_reasons": "failure_reasons=[input_domain/original_allowed_trace_fields/missing/owner=source-owner]"
+          },
+          "emitted_findings": [
+            {
+              "area": "input_domain",
+              "field": "original_allowed_trace_fields",
+              "result": "missing",
+              "owner": "source-owner"
+            }
+          ]
+        },
+        {
+          "u_id": "U-CONNECT005-151",
+          "condition_witness": {
+            "failure_reasons": "failure_reasons=[input_domain/requested_trace_fields/missing/owner=consumer-owner]"
+          },
+          "emitted_findings": [
+            {
+              "area": "input_domain",
+              "field": "requested_trace_fields",
+              "result": "missing",
+              "owner": "consumer-owner"
+            }
+          ]
+        },
+        {
+          "u_id": "U-CONNECT005-155",
+          "condition_witness": {
+            "failure_reasons": "failure_reasons=[input_domain/original_events/unknown_original_information/owner=connection-operation-owner; event_order/ordinal_or_predecessor/unknown_or_conflicting_order/owner=connection-operation-owner; event_order/ordinal_or_predecessor/unknown_or_conflicting_order/owner=connection-operation-owner; submitted_sequence/events/content_conflict/owner=connection-operation-owner; history_prefix/events/unknown_original_information/owner=connection-operation-owner]"
+          },
+          "emitted_findings": [
+            {
+              "area": "input_domain",
+              "field": "original_events",
+              "result": "unknown_original_information",
+              "owner": "connection-operation-owner"
+            }
+          ]
+        },
+        {
+          "u_id": "U-CONNECT005-157",
+          "condition_witness": {
+            "failure_reasons": "failure_reasons=[input_domain/original_needed_event_ids/unknown_original_information/owner=connection-operation-owner]"
+          },
+          "emitted_findings": [
+            {
+              "area": "input_domain",
+              "field": "original_needed_event_ids",
+              "result": "unknown_original_information",
+              "owner": "connection-operation-owner"
+            }
+          ]
+        },
+        {
+          "u_id": "U-CONNECT005-158",
+          "condition_witness": {
+            "failure_reasons": "failure_reasons=[handoff_content/record/content_conflict/owner=connection-operation-owner; input_domain/original_prior_successes/unknown_original_information]"
+          },
+          "emitted_findings": [
+            {
+              "area": "input_domain",
+              "field": "original_prior_successes",
+              "result": "unknown_original_information",
+              "owner": null
+            }
+          ]
+        },
+        {
+          "u_id": "U-CONNECT005-159",
+          "condition_witness": {
+            "failure_reasons": "failure_reasons=[handoff_content/record/content_conflict/owner=connection-operation-owner; input_domain/original_prior_successes/unknown_original_information]"
+          },
+          "emitted_findings": [
+            {
+              "area": "input_domain",
+              "field": "original_prior_successes",
+              "result": "unknown_original_information",
+              "owner": null
+            }
+          ]
+        },
+        {
+          "u_id": "U-CONNECT005-160",
+          "condition_witness": {
+            "failure_reasons": "failure_reasons=[custody_reference_content/source_owner/content_conflict/owner=source-consumer-owner/HELIX-SECURITY; input_domain/original_allowed_trace_fields/unknown_original_information]"
+          },
+          "emitted_findings": [
+            {
+              "area": "input_domain",
+              "field": "original_allowed_trace_fields",
+              "result": "unknown_original_information",
+              "owner": null
+            }
+          ]
+        },
+        {
+          "u_id": "U-CONNECT005-161",
+          "condition_witness": {
+            "failure_reasons": "failure_reasons=[custody_reference_content/source_owner/content_conflict/owner=source-consumer-owner/HELIX-SECURITY; input_domain/original_allowed_trace_fields/unknown_original_information]"
+          },
+          "emitted_findings": [
+            {
+              "area": "input_domain",
+              "field": "original_allowed_trace_fields",
+              "result": "unknown_original_information",
+              "owner": null
+            }
+          ]
+        },
+        {
+          "u_id": "U-CONNECT005-166",
+          "condition_witness": {
+            "failure_reasons": "failure_reasons=[stop_content/record/unknown_original_information/owner=connection-operation-owner; input_domain/original_stop/unknown_original_information/owner=connection-operation-owner]"
+          },
+          "emitted_findings": [
+            {
+              "area": "input_domain",
+              "field": "original_stop",
+              "result": "unknown_original_information",
+              "owner": "connection-operation-owner"
+            }
+          ]
+        },
+        {
+          "u_id": "U-CONNECT005-167",
+          "condition_witness": {
+            "failure_reasons": "failure_reasons=[stop_content/record/unknown_original_information/owner=connection-operation-owner; input_domain/original_stop/unknown_original_information/owner=connection-operation-owner]"
+          },
+          "emitted_findings": [
+            {
+              "area": "input_domain",
+              "field": "original_stop",
+              "result": "unknown_original_information",
+              "owner": "connection-operation-owner"
+            }
+          ]
+        },
+        {
+          "u_id": "U-CONNECT005-170",
+          "condition_witness": {
+            "failure_reasons": "failure_reasons=[stop_content/record/content_conflict/owner=connection-operation-owner; input_domain/original_stop/unknown_original_information/owner=connection-operation-owner]"
+          },
+          "emitted_findings": [
+            {
+              "area": "input_domain",
+              "field": "original_stop",
+              "result": "unknown_original_information",
+              "owner": "connection-operation-owner"
+            }
+          ]
+        },
+        {
+          "u_id": "U-CONNECT005-171",
+          "condition_witness": {
+            "failure_reasons": "failure_reasons=[stop_content/record/content_conflict/owner=connection-operation-owner; input_domain/original_stop/unknown_original_information/owner=connection-operation-owner]"
+          },
+          "emitted_findings": [
+            {
+              "area": "input_domain",
+              "field": "original_stop",
+              "result": "unknown_original_information",
+              "owner": "connection-operation-owner"
+            }
+          ]
+        },
+        {
+          "u_id": "U-CONNECT005-172",
+          "condition_witness": {
+            "failure_reasons": "failure_reasons=[stop_content/record/content_conflict/owner=connection-operation-owner; input_domain/original_stop/unknown_original_information/owner=connection-operation-owner]"
+          },
+          "emitted_findings": [
+            {
+              "area": "input_domain",
+              "field": "original_stop",
+              "result": "unknown_original_information",
+              "owner": "connection-operation-owner"
+            }
+          ]
+        },
+        {
+          "u_id": "U-CONNECT005-173",
+          "condition_witness": {
+            "failure_reasons": "failure_reasons=[stop_content/record/content_conflict/owner=connection-operation-owner; input_domain/original_stop/unknown_original_information/owner=connection-operation-owner]"
+          },
+          "emitted_findings": [
+            {
+              "area": "input_domain",
+              "field": "original_stop",
+              "result": "unknown_original_information",
+              "owner": "connection-operation-owner"
+            }
+          ]
+        },
+        {
+          "u_id": "U-CONNECT005-174",
+          "condition_witness": {
+            "failure_reasons": "failure_reasons=[stop_content/record/content_conflict/owner=connection-operation-owner; input_domain/original_stop/unknown_original_information/owner=connection-operation-owner]"
+          },
+          "emitted_findings": [
+            {
+              "area": "input_domain",
+              "field": "original_stop",
+              "result": "unknown_original_information",
+              "owner": "connection-operation-owner"
+            }
+          ]
+        },
+        {
+          "u_id": "U-CONNECT005-175",
+          "condition_witness": {
+            "failure_reasons": "failure_reasons=[stop_content/record/content_conflict/owner=connection-operation-owner; input_domain/original_stop/unknown_original_information/owner=connection-operation-owner]"
+          },
+          "emitted_findings": [
+            {
+              "area": "input_domain",
+              "field": "original_stop",
+              "result": "unknown_original_information",
+              "owner": "connection-operation-owner"
+            }
+          ]
+        }
+      ],
+      "coverage_state": "semantically_supported_by_fixed_source",
+      "execution_state": "not_executed"
+    },
+    {
+      "pointer": "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/7",
+      "when": "original_stopはobject、current_state=success、causeがack_absent/sent_result_uncollected/partial_success/cancelled/expiry/permission_revokedのいずれか。",
+      "emit": "area=stop_state、field=current_state、result=unsupported_completion_for_stop、return_owner=connection-operation-owner。",
+      "fixed_source_candidate_u_ids": [
+        "U-CONNECT005-059",
+        "U-CONNECT005-180",
+        "U-CONNECT005-198",
+        "U-CONNECT005-199",
+        "U-CONNECT005-200",
+        "U-CONNECT005-201",
+        "U-CONNECT005-202"
+      ],
+      "observed_expected_emissions": [
+        {
+          "u_id": "U-CONNECT005-059",
+          "condition_witness": {
+            "candidate_handoff_state": "held_with_original_unfinished",
+            "failure_reasons": "failure_reasons=[stop_state/current_state/unsupported_completion_for_stop/owner=connection-operation-owner]"
+          },
+          "emitted_findings": [
+            {
+              "area": "stop_state",
+              "field": "current_state",
+              "result": "unsupported_completion_for_stop",
+              "owner": "connection-operation-owner"
+            }
+          ]
+        },
+        {
+          "u_id": "U-CONNECT005-180",
+          "condition_witness": {
+            "candidate_handoff_state": "held_with_original_unfinished",
+            "failure_reasons": "failure_reasons=[stop_state/current_state/unsupported_completion_for_stop/owner=connection-operation-owner]"
+          },
+          "emitted_findings": [
+            {
+              "area": "stop_state",
+              "field": "current_state",
+              "result": "unsupported_completion_for_stop",
+              "owner": "connection-operation-owner"
+            }
+          ]
+        },
+        {
+          "u_id": "U-CONNECT005-198",
+          "condition_witness": {
+            "candidate_handoff_state": "held_with_original_unfinished",
+            "failure_reasons": "failure_reasons=[stop_state/current_state/unsupported_completion_for_stop/owner=connection-operation-owner]"
+          },
+          "emitted_findings": [
+            {
+              "area": "stop_state",
+              "field": "current_state",
+              "result": "unsupported_completion_for_stop",
+              "owner": "connection-operation-owner"
+            }
+          ]
+        },
+        {
+          "u_id": "U-CONNECT005-199",
+          "condition_witness": {
+            "candidate_handoff_state": "held_with_original_unfinished",
+            "failure_reasons": "failure_reasons=[stop_state/current_state/unsupported_completion_for_stop/owner=connection-operation-owner]"
+          },
+          "emitted_findings": [
+            {
+              "area": "stop_state",
+              "field": "current_state",
+              "result": "unsupported_completion_for_stop",
+              "owner": "connection-operation-owner"
+            }
+          ]
+        },
+        {
+          "u_id": "U-CONNECT005-200",
+          "condition_witness": {
+            "candidate_handoff_state": "held_with_original_unfinished",
+            "failure_reasons": "failure_reasons=[stop_state/current_state/unsupported_completion_for_stop/owner=connection-operation-owner]"
+          },
+          "emitted_findings": [
+            {
+              "area": "stop_state",
+              "field": "current_state",
+              "result": "unsupported_completion_for_stop",
+              "owner": "connection-operation-owner"
+            }
+          ]
+        },
+        {
+          "u_id": "U-CONNECT005-201",
+          "condition_witness": {
+            "candidate_handoff_state": "held_with_original_unfinished",
+            "failure_reasons": "failure_reasons=[stop_state/current_state/unsupported_completion_for_stop/owner=connection-operation-owner]"
+          },
+          "emitted_findings": [
+            {
+              "area": "stop_state",
+              "field": "current_state",
+              "result": "unsupported_completion_for_stop",
+              "owner": "connection-operation-owner"
+            }
+          ]
+        },
+        {
+          "u_id": "U-CONNECT005-202",
+          "condition_witness": {
+            "candidate_handoff_state": "held_with_original_unfinished",
+            "failure_reasons": "failure_reasons=[stop_state/current_state/unsupported_completion_for_stop/owner=connection-operation-owner]"
+          },
+          "emitted_findings": [
+            {
+              "area": "stop_state",
+              "field": "current_state",
+              "result": "unsupported_completion_for_stop",
+              "owner": "connection-operation-owner"
+            }
+          ]
+        }
+      ],
+      "coverage_state": "semantically_supported_by_fixed_source",
+      "execution_state": "not_executed"
+    },
+    {
+      "pointer": "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/8",
+      "when": "original_stopはobject、current_state=success、causeが上の有限fixture由来の列挙外。",
+      "emit": "area=stop_state、field=cause、result=unknown_original_information、return_owner=connection-operation-owner。未知causeを成功または既知中断へ分類しない。",
+      "fixed_source_candidate_u_ids": [
+        "U-CONNECT005-178"
+      ],
+      "observed_expected_emissions": [
+        {
+          "u_id": "U-CONNECT005-178",
+          "condition_witness": {
+            "candidate_handoff_state": "held_with_original_unfinished",
+            "failure_reasons": "failure_reasons=[stop_state/cause/unknown_original_information/owner=connection-operation-owner]"
+          },
+          "emitted_findings": [
+            {
+              "area": "stop_state",
+              "field": "cause",
+              "result": "unknown_original_information",
+              "owner": "connection-operation-owner"
+            }
+          ]
+        }
+      ],
+      "coverage_state": "semantically_supported_by_fixed_source",
+      "execution_state": "not_executed"
+    },
+    {
+      "pointer": "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/9",
+      "when": "original_unfinishedが配列で空、かつoriginal_stop.causeが上の既知中断cause。",
+      "emit": "area=unfinished_required_by_stop、field=unfinished、result=missing、return_owner=connection-operation-owner。元sourceの未完集合が空である入力条件を失敗として可視化する。",
+      "fixed_source_candidate_u_ids": [
+        "U-CONNECT005-179"
+      ],
+      "observed_expected_emissions": [
+        {
+          "u_id": "U-CONNECT005-179",
+          "condition_witness": {
+            "unfinished_target_results": {
+              "$array": {}
+            },
+            "failure_reasons": "failure_reasons=[unfinished_link/unfinished/content_conflict/owner=connection-operation-owner; unfinished_required_by_stop/unfinished/missing/owner=connection-operation-owner]"
+          },
+          "emitted_findings": [
+            {
+              "area": "unfinished_required_by_stop",
+              "field": "unfinished",
+              "result": "missing",
+              "owner": "connection-operation-owner"
+            }
+          ]
+        }
+      ],
+      "coverage_state": "semantically_supported_by_fixed_source",
+      "execution_state": "not_executed"
+    },
+    {
+      "pointer": "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/N01/failure_rules/0",
+      "when": "trace target比較が不一致。",
+      "emit": "area=trace_target、field=target_field、owner=connection-operation-ownerとして返す。",
+      "fixed_source_candidate_u_ids": [
+        "U-CONNECT005-066",
+        "U-CONNECT005-067",
+        "U-CONNECT005-068"
+      ],
+      "observed_expected_emissions": [
+        {
+          "u_id": "U-CONNECT005-066",
+          "condition_witness": {
+            "trace_target_results": {
+              "connection_identity": "content_corresponding_in_fixture",
+              "operation_identity": "content_conflict",
+              "contract_revision": "content_corresponding_in_fixture",
+              "correlation": "content_corresponding_in_fixture",
+              "scope": "content_corresponding_in_fixture",
+              "expiry": "content_corresponding_in_fixture",
+              "permission_ref": "content_corresponding_in_fixture",
+              "dependency_ref": "content_corresponding_in_fixture"
+            }
+          },
+          "emitted_findings": [
+            {
+              "area": "trace_target",
+              "field": "operation_identity",
+              "result": "content_conflict",
+              "owner": "connection-operation-owner"
+            }
+          ]
+        },
+        {
+          "u_id": "U-CONNECT005-067",
+          "condition_witness": {
+            "trace_target_results": {
+              "connection_identity": "content_corresponding_in_fixture",
+              "operation_identity": "content_corresponding_in_fixture",
+              "contract_revision": "content_corresponding_in_fixture",
+              "correlation": "content_corresponding_in_fixture",
+              "scope": "content_conflict",
+              "expiry": "content_corresponding_in_fixture",
+              "permission_ref": "content_corresponding_in_fixture",
+              "dependency_ref": "content_corresponding_in_fixture"
+            }
+          },
+          "emitted_findings": [
+            {
+              "area": "trace_target",
+              "field": "scope",
+              "result": "content_conflict",
+              "owner": "connection-operation-owner"
+            }
+          ]
+        },
+        {
+          "u_id": "U-CONNECT005-068",
+          "condition_witness": {
+            "trace_target_results": {
+              "connection_identity": "content_corresponding_in_fixture",
+              "operation_identity": "content_corresponding_in_fixture",
+              "contract_revision": "content_conflict",
+              "correlation": "content_corresponding_in_fixture",
+              "scope": "content_corresponding_in_fixture",
+              "expiry": "content_corresponding_in_fixture",
+              "permission_ref": "content_corresponding_in_fixture",
+              "dependency_ref": "content_corresponding_in_fixture"
+            }
+          },
+          "emitted_findings": [
+            {
+              "area": "trace_target",
+              "field": "contract_revision",
+              "result": "content_conflict",
+              "owner": "connection-operation-owner"
+            }
+          ]
+        }
+      ],
+      "coverage_state": "semantically_supported_by_fixed_source",
+      "execution_state": "not_executed"
+    },
+    {
+      "pointer": "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/N01/failure_rules/1",
+      "when": "custody比較がmissing/unknown/conflict。",
+      "emit": "area=custody_reference_content、field=custody_field、owner=source-consumer-owner/HELIX-SECURITYとして返す。",
+      "fixed_source_candidate_u_ids": [
+        "U-CONNECT005-070",
+        "U-CONNECT005-071",
+        "U-CONNECT005-072",
+        "U-CONNECT005-073",
+        "U-CONNECT005-074",
+        "U-CONNECT005-075",
+        "U-CONNECT005-076",
+        "U-CONNECT005-077",
+        "U-CONNECT005-078",
+        "U-CONNECT005-079",
+        "U-CONNECT005-089",
+        "U-CONNECT005-090",
+        "U-CONNECT005-160",
+        "U-CONNECT005-161"
+      ],
+      "observed_expected_emissions": [
+        {
+          "u_id": "U-CONNECT005-070",
+          "condition_witness": {
+            "custody_reference_results": {
+              "source_owner": "missing",
+              "consumer_owner": "content_corresponding_in_fixture",
+              "security_policy_ref": "content_corresponding_in_fixture",
+              "data_use_ref": "content_corresponding_in_fixture",
+              "retention_decision_ref": "content_corresponding_in_fixture",
+              "deletion_decision_ref": "content_corresponding_in_fixture"
+            }
+          },
+          "emitted_findings": [
+            {
+              "area": "custody_reference_content",
+              "field": "source_owner",
+              "result": "missing",
+              "owner": "source-consumer-owner/HELIX-SECURITY"
+            }
+          ]
+        },
+        {
+          "u_id": "U-CONNECT005-071",
+          "condition_witness": {
+            "custody_reference_results": {
+              "source_owner": "content_corresponding_in_fixture",
+              "consumer_owner": "missing",
+              "security_policy_ref": "content_corresponding_in_fixture",
+              "data_use_ref": "content_corresponding_in_fixture",
+              "retention_decision_ref": "content_corresponding_in_fixture",
+              "deletion_decision_ref": "content_corresponding_in_fixture"
+            }
+          },
+          "emitted_findings": [
+            {
+              "area": "custody_reference_content",
+              "field": "consumer_owner",
+              "result": "missing",
+              "owner": "source-consumer-owner/HELIX-SECURITY"
+            }
+          ]
+        },
+        {
+          "u_id": "U-CONNECT005-072",
+          "condition_witness": {
+            "custody_reference_results": {
+              "source_owner": "content_corresponding_in_fixture",
+              "consumer_owner": "content_corresponding_in_fixture",
+              "security_policy_ref": "missing",
+              "data_use_ref": "content_corresponding_in_fixture",
+              "retention_decision_ref": "content_corresponding_in_fixture",
+              "deletion_decision_ref": "content_corresponding_in_fixture"
+            }
+          },
+          "emitted_findings": [
+            {
+              "area": "custody_reference_content",
+              "field": "security_policy_ref",
+              "result": "missing",
+              "owner": "source-consumer-owner/HELIX-SECURITY"
+            }
+          ]
+        },
+        {
+          "u_id": "U-CONNECT005-073",
+          "condition_witness": {
+            "custody_reference_results": {
+              "source_owner": "content_corresponding_in_fixture",
+              "consumer_owner": "content_corresponding_in_fixture",
+              "security_policy_ref": "content_corresponding_in_fixture",
+              "data_use_ref": "missing",
+              "retention_decision_ref": "content_corresponding_in_fixture",
+              "deletion_decision_ref": "content_corresponding_in_fixture"
+            }
+          },
+          "emitted_findings": [
+            {
+              "area": "custody_reference_content",
+              "field": "data_use_ref",
+              "result": "missing",
+              "owner": "source-consumer-owner/HELIX-SECURITY"
+            }
+          ]
+        },
+        {
+          "u_id": "U-CONNECT005-074",
+          "condition_witness": {
+            "custody_reference_results": {
+              "source_owner": "content_corresponding_in_fixture",
+              "consumer_owner": "content_corresponding_in_fixture",
+              "security_policy_ref": "content_corresponding_in_fixture",
+              "data_use_ref": "content_corresponding_in_fixture",
+              "retention_decision_ref": "missing",
+              "deletion_decision_ref": "content_corresponding_in_fixture"
+            }
+          },
+          "emitted_findings": [
+            {
+              "area": "custody_reference_content",
+              "field": "retention_decision_ref",
+              "result": "missing",
+              "owner": "source-consumer-owner/HELIX-SECURITY"
+            }
+          ]
+        },
+        {
+          "u_id": "U-CONNECT005-075",
+          "condition_witness": {
+            "custody_reference_results": {
+              "source_owner": "content_corresponding_in_fixture",
+              "consumer_owner": "content_corresponding_in_fixture",
+              "security_policy_ref": "content_corresponding_in_fixture",
+              "data_use_ref": "content_corresponding_in_fixture",
+              "retention_decision_ref": "content_corresponding_in_fixture",
+              "deletion_decision_ref": "missing"
+            }
+          },
+          "emitted_findings": [
+            {
+              "area": "custody_reference_content",
+              "field": "deletion_decision_ref",
+              "result": "missing",
+              "owner": "source-consumer-owner/HELIX-SECURITY"
+            }
+          ]
+        },
+        {
+          "u_id": "U-CONNECT005-076",
+          "condition_witness": {
+            "custody_reference_results": {
+              "source_owner": "unknown_original_information",
+              "consumer_owner": "content_corresponding_in_fixture",
+              "security_policy_ref": "content_corresponding_in_fixture",
+              "data_use_ref": "content_corresponding_in_fixture",
+              "retention_decision_ref": "content_corresponding_in_fixture",
+              "deletion_decision_ref": "content_corresponding_in_fixture"
+            }
+          },
+          "emitted_findings": [
+            {
+              "area": "custody_reference_content",
+              "field": "source_owner",
+              "result": "unknown_original_information",
+              "owner": "source-consumer-owner/HELIX-SECURITY"
+            }
+          ]
+        },
+        {
+          "u_id": "U-CONNECT005-077",
+          "condition_witness": {
+            "custody_reference_results": {
+              "source_owner": "content_corresponding_in_fixture",
+              "consumer_owner": "content_corresponding_in_fixture",
+              "security_policy_ref": "unknown_original_information",
+              "data_use_ref": "content_corresponding_in_fixture",
+              "retention_decision_ref": "content_corresponding_in_fixture",
+              "deletion_decision_ref": "content_corresponding_in_fixture"
+            }
+          },
+          "emitted_findings": [
+            {
+              "area": "custody_reference_content",
+              "field": "security_policy_ref",
+              "result": "unknown_original_information",
+              "owner": "source-consumer-owner/HELIX-SECURITY"
+            }
+          ]
+        },
+        {
+          "u_id": "U-CONNECT005-078",
+          "condition_witness": {
+            "custody_reference_results": {
+              "source_owner": "content_corresponding_in_fixture",
+              "consumer_owner": "content_corresponding_in_fixture",
+              "security_policy_ref": "content_corresponding_in_fixture",
+              "data_use_ref": "unknown_original_information",
+              "retention_decision_ref": "content_corresponding_in_fixture",
+              "deletion_decision_ref": "content_corresponding_in_fixture"
+            }
+          },
+          "emitted_findings": [
+            {
+              "area": "custody_reference_content",
+              "field": "data_use_ref",
+              "result": "unknown_original_information",
+              "owner": "source-consumer-owner/HELIX-SECURITY"
+            }
+          ]
+        },
+        {
+          "u_id": "U-CONNECT005-079",
+          "condition_witness": {
+            "custody_reference_results": {
+              "source_owner": "content_corresponding_in_fixture",
+              "consumer_owner": "content_corresponding_in_fixture",
+              "security_policy_ref": "content_corresponding_in_fixture",
+              "data_use_ref": "content_corresponding_in_fixture",
+              "retention_decision_ref": "unknown_original_information",
+              "deletion_decision_ref": "content_corresponding_in_fixture"
+            }
+          },
+          "emitted_findings": [
+            {
+              "area": "custody_reference_content",
+              "field": "retention_decision_ref",
+              "result": "unknown_original_information",
+              "owner": "source-consumer-owner/HELIX-SECURITY"
+            }
+          ]
+        },
+        {
+          "u_id": "U-CONNECT005-089",
+          "condition_witness": {
+            "custody_reference_results": {
+              "source_owner": "content_corresponding_in_fixture",
+              "consumer_owner": "content_corresponding_in_fixture",
+              "security_policy_ref": "content_corresponding_in_fixture",
+              "data_use_ref": "content_corresponding_in_fixture",
+              "retention_decision_ref": "content_conflict",
+              "deletion_decision_ref": "content_corresponding_in_fixture"
+            }
+          },
+          "emitted_findings": [
+            {
+              "area": "custody_reference_content",
+              "field": "retention_decision_ref",
+              "result": "content_conflict",
+              "owner": "source-consumer-owner/HELIX-SECURITY"
+            }
+          ]
+        },
+        {
+          "u_id": "U-CONNECT005-090",
+          "condition_witness": {
+            "custody_reference_results": {
+              "source_owner": "content_corresponding_in_fixture",
+              "consumer_owner": "content_corresponding_in_fixture",
+              "security_policy_ref": "content_corresponding_in_fixture",
+              "data_use_ref": "content_conflict",
+              "retention_decision_ref": "content_corresponding_in_fixture",
+              "deletion_decision_ref": "content_corresponding_in_fixture"
+            }
+          },
+          "emitted_findings": [
+            {
+              "area": "custody_reference_content",
+              "field": "data_use_ref",
+              "result": "content_conflict",
+              "owner": "source-consumer-owner/HELIX-SECURITY"
+            }
+          ]
+        },
+        {
+          "u_id": "U-CONNECT005-160",
+          "condition_witness": {
+            "custody_reference_results": {
+              "source_owner": "content_conflict",
+              "consumer_owner": "content_corresponding_in_fixture",
+              "security_policy_ref": "content_corresponding_in_fixture",
+              "data_use_ref": "content_corresponding_in_fixture",
+              "retention_decision_ref": "content_corresponding_in_fixture",
+              "deletion_decision_ref": "content_corresponding_in_fixture"
+            }
+          },
+          "emitted_findings": [
+            {
+              "area": "custody_reference_content",
+              "field": "source_owner",
+              "result": "content_conflict",
+              "owner": "source-consumer-owner/HELIX-SECURITY"
+            }
+          ]
+        },
+        {
+          "u_id": "U-CONNECT005-161",
+          "condition_witness": {
+            "custody_reference_results": {
+              "source_owner": "content_conflict",
+              "consumer_owner": "content_corresponding_in_fixture",
+              "security_policy_ref": "content_corresponding_in_fixture",
+              "data_use_ref": "content_corresponding_in_fixture",
+              "retention_decision_ref": "content_corresponding_in_fixture",
+              "deletion_decision_ref": "content_corresponding_in_fixture"
+            }
+          },
+          "emitted_findings": [
+            {
+              "area": "custody_reference_content",
+              "field": "source_owner",
+              "result": "content_conflict",
+              "owner": "source-consumer-owner/HELIX-SECURITY"
+            }
+          ]
+        }
+      ],
+      "coverage_state": "semantically_supported_by_fixed_source",
+      "execution_state": "not_executed"
+    },
+    {
+      "pointer": "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/N01/failure_rules/2",
+      "when": "traceのdata-use bindingが不一致またはunknown。",
+      "emit": "area=trace_custody_binding、field=data_use_ref、owner=source-consumer-owner/HELIX-SECURITYとして返す。",
+      "fixed_source_candidate_u_ids": [
+        "U-CONNECT005-069",
+        "U-CONNECT005-078"
+      ],
+      "observed_expected_emissions": [
+        {
+          "u_id": "U-CONNECT005-069",
+          "condition_witness": {
+            "trace_custody_data_use_result": "content_conflict"
+          },
+          "emitted_findings": [
+            {
+              "area": "trace_custody_binding",
+              "field": "data_use_ref",
+              "result": "content_conflict",
+              "owner": "source-consumer-owner/HELIX-SECURITY"
+            }
+          ]
+        },
+        {
+          "u_id": "U-CONNECT005-078",
+          "condition_witness": {
+            "trace_custody_data_use_result": "unknown_original_information"
+          },
+          "emitted_findings": [
+            {
+              "area": "trace_custody_binding",
+              "field": "data_use_ref",
+              "result": "unknown_original_information",
+              "owner": "source-consumer-owner/HELIX-SECURITY"
+            }
+          ]
+        }
+      ],
+      "coverage_state": "semantically_supported_by_fixed_source",
+      "execution_state": "not_executed"
+    },
+    {
+      "pointer": "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/N01/failure_rules/3",
+      "when": "trace reference比較がmissing/conflict。",
+      "emit": "area=trace_reference_content、field=trace_field、owner=connection-operation-ownerとして返す。",
+      "fixed_source_candidate_u_ids": [
+        "U-CONNECT005-080",
+        "U-CONNECT005-081",
+        "U-CONNECT005-082"
+      ],
+      "observed_expected_emissions": [
+        {
+          "u_id": "U-CONNECT005-080",
+          "condition_witness": {
+            "trace_reference_results": {
+              "identity": "content_corresponding_in_fixture",
+              "revision": "content_corresponding_in_fixture",
+              "target": "content_corresponding_in_fixture",
+              "evidence_ref": "content_corresponding_in_fixture",
+              "data_use_ref": "content_conflict",
+              "permission_result_ref": "content_corresponding_in_fixture"
+            }
+          },
+          "emitted_findings": [
+            {
+              "area": "trace_reference_content",
+              "field": "data_use_ref",
+              "result": "content_conflict",
+              "owner": "connection-operation-owner"
+            }
+          ]
+        },
+        {
+          "u_id": "U-CONNECT005-081",
+          "condition_witness": {
+            "trace_reference_results": {
+              "identity": "content_corresponding_in_fixture",
+              "revision": "content_corresponding_in_fixture",
+              "target": "content_corresponding_in_fixture",
+              "evidence_ref": "content_corresponding_in_fixture",
+              "data_use_ref": "content_corresponding_in_fixture",
+              "permission_result_ref": "content_conflict"
+            }
+          },
+          "emitted_findings": [
+            {
+              "area": "trace_reference_content",
+              "field": "permission_result_ref",
+              "result": "content_conflict",
+              "owner": "connection-operation-owner"
+            }
+          ]
+        },
+        {
+          "u_id": "U-CONNECT005-082",
+          "condition_witness": {
+            "trace_reference_results": {
+              "identity": "content_corresponding_in_fixture",
+              "revision": "content_corresponding_in_fixture",
+              "target": "content_corresponding_in_fixture",
+              "evidence_ref": "content_conflict",
+              "data_use_ref": "content_corresponding_in_fixture",
+              "permission_result_ref": "content_corresponding_in_fixture"
+            }
+          },
+          "emitted_findings": [
+            {
+              "area": "trace_reference_content",
+              "field": "evidence_ref",
+              "result": "content_conflict",
+              "owner": "connection-operation-owner"
+            }
+          ]
+        }
+      ],
+      "coverage_state": "semantically_supported_by_fixed_source",
+      "execution_state": "not_executed"
+    },
+    {
+      "pointer": "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/N01/failure_rules/4",
+      "when": "outside field名が存在する。",
+      "emit": "area=trace_fields、result=outside_value_free_reference_contract、owner=source-consumer-owner/HELIX-SECURITYとして返す。",
+      "fixed_source_candidate_u_ids": [
+        "U-CONNECT005-083",
+        "U-CONNECT005-084",
+        "U-CONNECT005-085",
+        "U-CONNECT005-088"
+      ],
+      "observed_expected_emissions": [
+        {
+          "u_id": "U-CONNECT005-083",
+          "condition_witness": {
+            "outside_reference_fields": {
+              "$array": {
+                "0": "raw_payload_value"
+              }
+            }
+          },
+          "emitted_findings": [
+            {
+              "area": "trace_fields",
+              "field": "raw_payload_value",
+              "result": "outside_value_free_reference_contract",
+              "owner": "source-consumer-owner/HELIX-SECURITY"
+            }
+          ]
+        },
+        {
+          "u_id": "U-CONNECT005-084",
+          "condition_witness": {
+            "outside_reference_fields": {
+              "$array": {
+                "0": "secret_value"
+              }
+            }
+          },
+          "emitted_findings": [
+            {
+              "area": "trace_fields",
+              "field": "secret_value",
+              "result": "outside_value_free_reference_contract",
+              "owner": "source-consumer-owner/HELIX-SECURITY"
+            }
+          ]
+        },
+        {
+          "u_id": "U-CONNECT005-085",
+          "condition_witness": {
+            "outside_reference_fields": {
+              "$array": {
+                "0": "credential_value"
+              }
+            }
+          },
+          "emitted_findings": [
+            {
+              "area": "trace_fields",
+              "field": "credential_value",
+              "result": "outside_value_free_reference_contract",
+              "owner": "source-consumer-owner/HELIX-SECURITY"
+            }
+          ]
+        },
+        {
+          "u_id": "U-CONNECT005-088",
+          "condition_witness": {
+            "outside_reference_fields": {
+              "$array": {
+                "0": "raw_payload_value"
+              }
+            }
+          },
+          "emitted_findings": [
+            {
+              "area": "trace_fields",
+              "field": "raw_payload_value",
+              "result": "outside_value_free_reference_contract",
+              "owner": "source-consumer-owner/HELIX-SECURITY"
+            }
+          ]
+        }
+      ],
+      "coverage_state": "semantically_supported_by_fixed_source",
+      "execution_state": "not_executed"
+    },
+    {
+      "pointer": "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/N01/failure_rules/5",
+      "when": "requested_payload_persistence_requiredがtrue。",
+      "emit": "area=payload_persistence、field=required、result=not_a_trace_requirement、owner=source-consumer-owner/HELIX-SECURITYとして返す。",
+      "fixed_source_candidate_u_ids": [
+        "U-CONNECT005-086",
+        "U-CONNECT005-087"
+      ],
+      "observed_expected_emissions": [
+        {
+          "u_id": "U-CONNECT005-086",
+          "condition_witness": {
+            "payload_persistence_required_for_trace": false
+          },
+          "emitted_findings": [
+            {
+              "area": "payload_persistence",
+              "field": "required",
+              "result": "not_a_trace_requirement",
+              "owner": "source-consumer-owner/HELIX-SECURITY"
+            }
+          ]
+        },
+        {
+          "u_id": "U-CONNECT005-087",
+          "condition_witness": {
+            "payload_persistence_required_for_trace": false
+          },
+          "emitted_findings": [
+            {
+              "area": "payload_persistence",
+              "field": "required",
+              "result": "not_a_trace_requirement",
+              "owner": "source-consumer-owner/HELIX-SECURITY"
+            }
+          ]
+        }
+      ],
+      "coverage_state": "semantically_supported_by_fixed_source",
+      "execution_state": "not_executed"
+    },
+    {
+      "pointer": "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/N01/failure_rules/6",
+      "when": "requested_trace_fields内にforbidden_value_field_namesがある。",
+      "emit": "area=trace_values、field=forbidden literal、result=nonpublic_value_field_forbidden、owner=source-consumer-owner/HELIX-SECURITY。allowed listの自己申告で免除しない。",
+      "fixed_source_candidate_u_ids": [
+        "U-CONNECT005-083",
+        "U-CONNECT005-084",
+        "U-CONNECT005-085",
+        "U-CONNECT005-088",
+        "U-CONNECT005-154",
+        "U-CONNECT005-203",
+        "U-CONNECT005-204",
+        "U-CONNECT005-205"
+      ],
+      "observed_expected_emissions": [
+        {
+          "u_id": "U-CONNECT005-083",
+          "condition_witness": {
+            "forbidden_value_field_names": {
+              "$array": {
+                "0": "raw_payload_value"
+              }
+            }
+          },
+          "emitted_findings": [
+            {
+              "area": "trace_values",
+              "field": "raw_payload_value",
+              "result": "nonpublic_value_field_forbidden",
+              "owner": "source-consumer-owner/HELIX-SECURITY"
+            }
+          ]
+        },
+        {
+          "u_id": "U-CONNECT005-084",
+          "condition_witness": {
+            "forbidden_value_field_names": {
+              "$array": {
+                "0": "secret_value"
+              }
+            }
+          },
+          "emitted_findings": [
+            {
+              "area": "trace_values",
+              "field": "secret_value",
+              "result": "nonpublic_value_field_forbidden",
+              "owner": "source-consumer-owner/HELIX-SECURITY"
+            }
+          ]
+        },
+        {
+          "u_id": "U-CONNECT005-085",
+          "condition_witness": {
+            "forbidden_value_field_names": {
+              "$array": {
+                "0": "credential_value"
+              }
+            }
+          },
+          "emitted_findings": [
+            {
+              "area": "trace_values",
+              "field": "credential_value",
+              "result": "nonpublic_value_field_forbidden",
+              "owner": "source-consumer-owner/HELIX-SECURITY"
+            }
+          ]
+        },
+        {
+          "u_id": "U-CONNECT005-088",
+          "condition_witness": {
+            "forbidden_value_field_names": {
+              "$array": {
+                "0": "raw_payload_value"
+              }
+            }
+          },
+          "emitted_findings": [
+            {
+              "area": "trace_values",
+              "field": "raw_payload_value",
+              "result": "nonpublic_value_field_forbidden",
+              "owner": "source-consumer-owner/HELIX-SECURITY"
+            }
+          ]
+        },
+        {
+          "u_id": "U-CONNECT005-154",
+          "condition_witness": {
+            "forbidden_value_field_names": {
+              "$array": {
+                "0": "raw_payload_value"
+              }
+            }
+          },
+          "emitted_findings": [
+            {
+              "area": "trace_values",
+              "field": "raw_payload_value",
+              "result": "nonpublic_value_field_forbidden",
+              "owner": "source-consumer-owner/HELIX-SECURITY"
+            }
+          ]
+        },
+        {
+          "u_id": "U-CONNECT005-203",
+          "condition_witness": {
+            "forbidden_value_field_names": {
+              "$array": {
+                "0": "raw_payload_value"
+              }
+            }
+          },
+          "emitted_findings": [
+            {
+              "area": "trace_values",
+              "field": "raw_payload_value",
+              "result": "nonpublic_value_field_forbidden",
+              "owner": "source-consumer-owner/HELIX-SECURITY"
+            }
+          ]
+        },
+        {
+          "u_id": "U-CONNECT005-204",
+          "condition_witness": {
+            "forbidden_value_field_names": {
+              "$array": {
+                "0": "secret_value"
+              }
+            }
+          },
+          "emitted_findings": [
+            {
+              "area": "trace_values",
+              "field": "secret_value",
+              "result": "nonpublic_value_field_forbidden",
+              "owner": "source-consumer-owner/HELIX-SECURITY"
+            }
+          ]
+        },
+        {
+          "u_id": "U-CONNECT005-205",
+          "condition_witness": {
+            "forbidden_value_field_names": {
+              "$array": {
+                "0": "credential_value"
+              }
+            }
+          },
+          "emitted_findings": [
+            {
+              "area": "trace_values",
+              "field": "credential_value",
+              "result": "nonpublic_value_field_forbidden",
+              "owner": "source-consumer-owner/HELIX-SECURITY"
+            }
+          ]
+        }
+      ],
+      "coverage_state": "semantically_supported_by_fixed_source",
+      "execution_state": "not_executed"
+    }
+  ],
   "groups": {
     "F01": {
       "row_count": 69,

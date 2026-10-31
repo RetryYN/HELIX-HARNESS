@@ -4,7 +4,7 @@
 
 Issue #3510 の依頼 WR256-CONNECT-TRACE-L8-SLIMに基づき、CONNECT005 のL8正本を候補U-ID表へ縮約する。変更対象は `docs/helix-connect/L8-unit-verification/technical-trace-handoff-custody.json` だけ。対象revisionはmain `c14adddf2678c7a69d76420c451df3f05b1251ab`。
 
-L5の公開関数3本とfailure_rules 27行、L9の基本枝90件、既存L8追加probeのlocal 61件・independent 68件に、独立したcross-field制約5件を加え、元のID・順序・対象・短い行固有反例と期待・契約oracle・固定source pointer付きで224行へ対応づけた。cross-field 5件はL9の90 wholeとは別系列の条件probeとして個別行に保持する。L5の27 rule pointerは候補行の参照として保持する。row oracleとtest citationは元資料に存在しないためnullとし、未作成を明記した。全行のexecution_stateは`not_executed`を維持し、新しいcaseの実行・承認状態は生成しない。
+L5の公開関数3本とfailure_rules 27行、L9の基本枝90件、既存L8追加probeのlocal 61件・independent 68件に、独立したcross-field制約5件を加え、元のID・順序・対象・短い行固有反例と期待・契約oracle・固定source pointer付きで224行へ対応づけた。cross-field 5件はL9の90 wholeとは別系列の条件probeとして個別行に保持する。L5の27 ruleは固定sourceの期待failure emissionとarea/field/result/owner・when条件の証拠が一致する行だけを候補参照として保持する。candidate linksは224行中184件で、正常例へfailure ruleを結ばない。row oracleとtest citationは元資料に存在しないためnullとし、未作成を明記した。全行のexecution_stateは`not_executed`を維持し、新しいcaseの実行・承認状態は生成しない。
 
 L8のmethodは固定sourceとの候補U-ID対応を説明し、L5 AST評価・test実行・pass/fail判定をしない。各L8行はsource条件に対応する短い固有期待だけを記し、共通の責務・未検証・副作用境界は文書上部で一度だけ示す。L3/L4/L5/L10から導いたF01/F02/N01の主要状態・非生成境界も一度だけ記す（F01のgap/conflictはtrace unknown、F02のhandoffは未完保持かつbusiness completionなし、N01は値なし参照とcustody権限をCONNECTが作らない）。5つのtyped cross-field枝は共通のno-exception/unknown-stop-link条件を一度記し、各行は型別の非強制変換期待を記す。行別の詳細source projection、期待差分、hash、L8短文との対応は `source-semantic-audit.json` に置き、validatorは固定sourceから再生成して各U-IDの意味を照合する。L8へfull returnや再構成baselineを残さない。
 
@@ -24,6 +24,6 @@ main HEADで固定対象pathを検索し、直接の文書参照はCONNECT監査
 
 全照合は文書bytes、ID、JSON Pointer、責務・参照境界に限る。行の意味の独立reviewは残る。L9の90件と追加probe134件は意味を統合・削除せず、source順・IDごとに別行で記録した。旧候補で欠けていたcross-field probe 5 IDも連番U-IDへ割り当て、型別入力差（`null`、`false`、`0`、空文字、空object）、`stop_event_ref=null`、例外なし、`stop_link_result=unknown_original_information`、未実行を照合する。
 
-対象固有照合は224行、L5 failure rule 27件、L10 contract oracle ID、固定source pointer、method境界、L3/L4/L5/L10契約状態、各rowの短い期待とscaffold側行別projection/hash、capを機械確認する。scaffold監査の比較用projectionは4 groupで計110 baseline path値と834 row差分（最大14件/行）。L8本文の期待文字列は最大159文字。cross-field 5型枝は各型入力差をcounterexampleと固有期待に残す。`design_verification_checker.py check-child` も試行したが、L5/L8 pairと4-wayは `empty_pair_entities` / 0件で `not_evaluated` となった。この汎用validatorのfalse結果は合格にも意味上の所見にもせず、未検証として残す。validatorが理解するpairは既存のL5/L8文書形と異なる。L9全体のcap違反も同コマンドに出るが、本作業のL9は変更しておらず、L8候補のcap判定は対象固有照合で独立に0件を確認した。
+対象固有照合は224行、L5 failure rule 27件についてwhen/emitと候補行ごとのsource condition witness・局所期待failure emission・owner等を突合する。現行固定sourceで対応が確認できたのは27/27 rule、184 row-ruleリンク。U-CONNECT005-001にはfailure emissionがないためrule 3/9を結ばない。validatorはL8のrow refsとrule coverageの両方がこの全量照合結果に一致することを検査する。L10 contract oracle ID、固定source pointer、method境界、L3/L4/L5/L10契約状態、各rowの短い期待とscaffold側行別projection/hash、capも機械確認する。scaffold監査の比較用projectionは4 groupで計110 baseline path値と834 row差分（最大14件/行）。L8本文の期待文字列は最大159文字。cross-field 5型枝は各型入力差をcounterexampleと固有期待に残す。`design_verification_checker.py check-child` も試行したが、L5/L8 pairと4-wayは `empty_pair_entities` / 0件で `not_evaluated` となった。この汎用validatorのfalse結果は合格にも意味上の所見にもせず、未検証として残す。ruleの静的対応はsource期待の照合に限り、L5条件の実装動作を実行・証明しない。validatorが理解するpairは既存のL5/L8文書形と異なる。L9全体のcap違反も同コマンドに出るが、本作業のL9は変更しておらず、L8候補のcap判定は対象固有照合で独立に0件を確認した。
 
 候補L8の承認、L5/L8意味整合、L7 test/oracle、実行、CI、L11受入や設計閉包は生成しない。

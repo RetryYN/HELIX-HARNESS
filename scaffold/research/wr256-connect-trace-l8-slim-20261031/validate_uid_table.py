@@ -180,9 +180,98 @@ def concise_expected_label(group, sets, removes):
     return "期待: " + "; ".join(labels) + "."
 
 
+def failure_rule_condition_witness(function_name, rule_index, projection):
+    field_groups = {
+        "F01": {
+            0: ("failure_reasons",), 1: ("failure_reasons",), 2: ("missing_original_event_ids",),
+            3: ("original_order_known_in_fixture",), 4: ("original_predecessor_chain_corresponds",),
+            5: ("failure_reasons",), 6: ("submitted_sequence_result",), 7: ("failure_reasons",),
+            8: ("failure_reasons",), 9: ("history_prefix_result",),
+        },
+        "F02": {
+            0: ("content_results", "failure_reasons"), 1: ("handoff_target_results",),
+            2: ("unfinished_target_results",), 3: ("stop_link_result",), 4: ("unfinished_link_result",),
+            5: ("receipt_link_result", "resolution_link_result"), 6: ("failure_reasons",),
+            7: ("candidate_handoff_state", "failure_reasons"), 8: ("candidate_handoff_state", "failure_reasons"),
+            9: ("unfinished_target_results", "failure_reasons"),
+        },
+        "N01": {
+            0: ("trace_target_results",), 1: ("custody_reference_results",), 2: ("trace_custody_data_use_result",),
+            3: ("trace_reference_results",), 4: ("outside_reference_fields",),
+            5: ("payload_persistence_required_for_trace",), 6: ("forbidden_value_field_names",),
+        },
+    }
+    names = field_groups[function_name][rule_index]
+    return {name: projection[name] for name in names if name in projection}
+
+
 def cross_field_expected_label(value):
     literal = json.dumps(value, ensure_ascii=False, separators=(",", ":"))
     return f"期待: original_prior_successes={literal}を空配列へ強制変換しない。"
+
+
+def parse_failure_reason_projection(projection):
+    """Decode the compact source audit failure list without inferring execution."""
+    encoded = projection.get("failure_reasons", "failure_reasons=[]")
+    if encoded == "failure_reasons=[]":
+        return []
+    body = encoded.removeprefix("failure_reasons=[").removesuffix("]")
+    results = []
+    for item in body.split("; "):
+        parts = item.split("/")
+        if len(parts) < 3:
+            raise ValueError(f"malformed source failure reason: {item}")
+        results.append({
+            "area": parts[0], "field": parts[1], "result": parts[2],
+            "owner": "/".join(parts[3:]).removeprefix("owner=") if len(parts) > 3 else None,
+        })
+    return results
+
+
+def failure_rule_emissions(function_name, rule_index, projection):
+    """Return source-expected emissions that demonstrate a fixed L5 rule branch.
+
+    This is a static semantic correspondence check: the source expected material
+    supplies the observed finding; L5 when and emit text remain the authority. It
+    does not evaluate the L4/L5 implementation or claim the case was executed.
+    """
+    emissions = parse_failure_reason_projection(projection)
+    matches = {
+        "F01": {
+            0: lambda x: x["area"].startswith("event_target_") and x["result"] in {"missing", "unknown_original_information", "content_conflict"},
+            1: lambda x: x["area"].startswith("event_content_") and x["result"] in {"missing", "unknown_original_information", "content_conflict"},
+            2: lambda x: x["area"] == "needed_events" and x["field"] == "identities" and x["result"] == "missing_original_events",
+            3: lambda x: x["area"] == "event_order" and x["result"] == "unknown_or_conflicting_order" and projection.get("original_order_known_in_fixture") is False,
+            4: lambda x: x["area"] == "event_order" and x["result"] == "unknown_or_conflicting_order" and projection.get("original_predecessor_chain_corresponds") is False,
+            5: lambda x: x["area"] == "submitted_event_identity" and x["result"] == "duplicate_event_identity",
+            6: lambda x: x["area"] == "submitted_sequence" and x["result"] == "content_conflict" and projection.get("submitted_sequence_result") not in {None, "content_corresponding_in_fixture"},
+            7: lambda x: x["area"].startswith("event_observation_") and x["field"] == "endpoint" and x["result"] == "unknown_observation_location",
+            8: lambda x: x["area"] == "input_domain" and x["result"] == "unknown_original_information" and x["field"] in {"original_events", "original_needed_event_ids"},
+            9: lambda x: x["area"] == "history_prefix" and x["field"] == "events" and x["result"] in {"content_conflict", "unknown_original_information"} and projection.get("history_prefix_result") not in {None, "content_corresponding_in_fixture"},
+        },
+        "F02": {
+            0: lambda x: x["area"] in {"stop_content", "prior_successes_content", "unfinished_content", "handoff_content", "receipt_content", "resolution_content"} and x["field"] == "record" and x["result"] in {"missing", "unknown_original_information", "content_conflict"},
+            1: lambda x: x["area"] == "handoff_target" and x["result"] != "content_corresponding_in_fixture",
+            2: lambda x: x["area"].startswith("unfinished_target_") and x["result"] != "content_corresponding_in_fixture",
+            3: lambda x: x["area"] == "stop_link" and x["result"] != "content_corresponding_in_fixture",
+            4: lambda x: x["area"] == "unfinished_link" and x["result"] != "content_corresponding_in_fixture",
+            5: lambda x: x["area"] in {"receipt_link", "resolution_link"} and x["result"] != "content_corresponding_in_fixture",
+            6: lambda x: x["area"] == "input_domain" and x["result"] in {"missing", "unknown_original_information"},
+            7: lambda x: x["area"] == "stop_state" and x["field"] == "current_state" and x["result"] == "unsupported_completion_for_stop",
+            8: lambda x: x["area"] == "stop_state" and x["field"] == "cause" and x["result"] == "unknown_original_information",
+            9: lambda x: x["area"] == "unfinished_required_by_stop" and x["field"] == "unfinished" and x["result"] == "missing",
+        },
+        "N01": {
+            0: lambda x: x["area"] == "trace_target" and x["owner"] == "connection-operation-owner",
+            1: lambda x: x["area"] == "custody_reference_content" and x["owner"] == "source-consumer-owner/HELIX-SECURITY",
+            2: lambda x: x["area"] == "trace_custody_binding" and x["field"] == "data_use_ref" and x["owner"] == "source-consumer-owner/HELIX-SECURITY",
+            3: lambda x: x["area"] == "trace_reference_content" and x["owner"] == "connection-operation-owner",
+            4: lambda x: x["area"] == "trace_fields" and x["result"] == "outside_value_free_reference_contract" and x["owner"] == "source-consumer-owner/HELIX-SECURITY",
+            5: lambda x: x["area"] == "payload_persistence" and x["field"] == "required" and x["result"] == "not_a_trace_requirement" and x["owner"] == "source-consumer-owner/HELIX-SECURITY",
+            6: lambda x: x["area"] == "trace_values" and x["result"] == "nonpublic_value_field_forbidden" and x["owner"] == "source-consumer-owner/HELIX-SECURITY",
+        },
+    }
+    return [item for item in emissions if matches[function_name][rule_index](item)]
 
 
 def main() -> int:
@@ -436,17 +525,43 @@ def main() -> int:
     if covered_functions != expected_functions:
         failures.append({"check": "l5_public_function_coverage", "expected": expected_functions, "actual": covered_functions})
     all_rules = 0
+    failure_rule_semantic_audit = []
+    rule_candidate_refs = {row["u_id"]: [] for row in rows}
     for fn in expected_functions:
         name = fn[-3:]
         rules = l5["branch_tables"][name]["failure_rules"]
         all_rules += len(rules)
-        for i, _rule in enumerate(rules):
+        for i, rule in enumerate(rules):
             ref = f"{L5}#/branch_tables/{name}/failure_rules/{i}"
             coverage = current.get("l5_coverage", {}).get("failure_rule_coverage", {}).get(ref, {})
-            if not coverage.get("candidate_u_ids"):
-                failures.append({"check": "l5_failure_rule_coverage", "pointer": ref})
-            if any(uid not in {r["u_id"] for r in rows} for uid in coverage.get("candidate_u_ids", [])):
-                failures.append({"check": "l5_failure_rule_candidate_resolves", "pointer": ref})
+            actual_ids = [row["u_id"] for row in rows if source_projections.get(row["u_id"]) and failure_rule_emissions(name, i, source_projections[row["u_id"]][1])]
+            declared_ids = coverage.get("candidate_u_ids", [])
+            if declared_ids != actual_ids:
+                failures.append({"check": "l5_failure_rule_semantic_candidate_mapping", "pointer": ref, "expected_u_ids": actual_ids, "actual_u_ids": declared_ids})
+            expected_state = "semantically_supported_by_fixed_source" if actual_ids else "no_fixed_source_case_demonstrates_rule"
+            if coverage.get("coverage_state") != expected_state:
+                failures.append({"check": "l5_failure_rule_semantic_coverage_state", "pointer": ref, "expected": expected_state, "actual": coverage.get("coverage_state")})
+            for uid in actual_ids:
+                rule_candidate_refs[uid].append(ref)
+            failure_rule_semantic_audit.append({
+                "pointer": ref,
+                "when": rule["when"],
+                "emit": rule["emit"],
+                "fixed_source_candidate_u_ids": actual_ids,
+                "observed_expected_emissions": [
+                    {
+                        "u_id": row["u_id"],
+                        "condition_witness": failure_rule_condition_witness(name, i, source_projections[row["u_id"]][1]),
+                        "emitted_findings": failure_rule_emissions(name, i, source_projections[row["u_id"]][1]),
+                    }
+                    for row in rows if row["u_id"] in actual_ids
+                ],
+                "coverage_state": expected_state,
+                "execution_state": "not_executed",
+            })
+    for row in rows:
+        if row.get("l5_failure_rule_refs", []) != rule_candidate_refs[row["u_id"]]:
+            failures.append({"check": "row_l5_failure_rule_refs_match_semantic_emissions", "u_id": row["u_id"], "expected": rule_candidate_refs[row["u_id"]], "actual": row.get("l5_failure_rule_refs", [])})
     if all_rules != 27:
         failures.append({"check": "declared_l5_failure_rule_count", "expected": 27, "actual": all_rules})
 
@@ -500,6 +615,7 @@ def main() -> int:
         "authority_effect": "none",
         "base_revision": BASE,
         "contract_outcome_boundaries": expected_contract_outcomes,
+        "failure_rule_semantic_audit": failure_rule_semantic_audit,
         "groups": {group: {"row_count": len(items), "modal_source_projection": expected_baselines[group]} for group, items in sorted(grouped.items())},
         "rows": source_audit_rows,
         "limits": ["This is a fixed-source semantic audit projection, not an executed oracle or full-return fixture."],
@@ -513,7 +629,8 @@ def main() -> int:
         "authority_effect": "none",
         "base_revision": BASE,
         "rows": {"before": {"l9_cases": 90, "local_domain_probes": 61, "independent_semantic_probes": 68, "independent_cross_field_probes": 5, "u_id_total": 224}, "after": {"l9_basic_branches": observed["L9_basic_branch"], "local_domain_probes": observed["local_domain_probe"], "independent_semantic_probes": observed["independent_semantic_probe"], "independent_cross_field_probes": observed["independent_cross_field_probe"], "u_id_total": len(rows)}},
-        "l5": {"public_functions": len(expected_functions), "failure_rules": all_rules, "unmapped_failure_rules": 0 if not any(x.get("check") == "l5_failure_rule_coverage" for x in failures) else None},
+        "l5": {"public_functions": len(expected_functions), "failure_rules": all_rules, "rules_with_fixed_source_emissions": sum(bool(item["fixed_source_candidate_u_ids"]) for item in failure_rule_semantic_audit), "rules_without_fixed_source_emission": [item["pointer"] for item in failure_rule_semantic_audit if not item["fixed_source_candidate_u_ids"]]},
+        "failure_rule_semantic_audit": {"rule_count": len(failure_rule_semantic_audit), "candidate_row_links": sum(len(item["fixed_source_candidate_u_ids"]) for item in failure_rule_semantic_audit), "unsupported_links": sum(item.get("check") == "l5_failure_rule_semantic_candidate_mapping" for item in failures), "unexecuted": True},
         "source_pointers_resolved": sum(1 for r in rows if r.get("source_ref")),
         "preserved_l9_whole_oracle": {"expected_count": 90, "recorded_count": len(expected_whole_hashes), "mismatch_count": len(whole_hash_mismatches)},
         "l10_contract_oracles": {

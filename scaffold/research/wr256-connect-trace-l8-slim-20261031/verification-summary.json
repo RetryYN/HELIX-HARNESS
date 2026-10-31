@@ -22,7 +22,14 @@
   "l5": {
     "public_functions": 3,
     "failure_rules": 27,
-    "unmapped_failure_rules": 0
+    "rules_with_fixed_source_emissions": 27,
+    "rules_without_fixed_source_emission": []
+  },
+  "failure_rule_semantic_audit": {
+    "rule_count": 27,
+    "candidate_row_links": 184,
+    "unsupported_links": 0,
+    "unexecuted": true
   },
   "source_pointers_resolved": 224,
   "preserved_l9_whole_oracle": {
@@ -63,7 +70,7 @@
   "source_semantic_audit": {
     "path": "scaffold/research/wr256-connect-trace-l8-slim-20261031/source-semantic-audit.json",
     "row_count": 224,
-    "sha256": "40b125ea10565ca902425de4d86bf3758c38985ad42b3d081dfd847a85cce546"
+    "sha256": "7b113b55c3d54676e759bc6acc3448b56dd4386dceafaa336695b73b8754e7ab"
   },
   "contract_outcome_boundary_count": 14,
   "expected_result_audit": {

@@ -362,10 +362,7 @@
         "revision": "c14adddf2678c7a69d76420c451df3f05b1251ab",
         "pointer": "/verification_obligations/0/concrete_cases/0/expected_material"
       },
-      "l5_failure_rule_refs": [
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F01/failure_rules/3",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F01/failure_rules/9"
-      ],
+      "l5_failure_rule_refs": [],
       "execution_state": "not_executed",
       "u_id": "U-CONNECT005-001"
     },
@@ -643,7 +640,8 @@
         "pointer": "/verification_obligations/0/concrete_cases/9/expected_material"
       },
       "l5_failure_rule_refs": [
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F01/failure_rules/1"
+        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F01/failure_rules/1",
+        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F01/failure_rules/6"
       ],
       "execution_state": "not_executed",
       "u_id": "U-CONNECT005-010"
@@ -675,7 +673,7 @@
       },
       "l5_failure_rule_refs": [
         "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F01/failure_rules/1",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F01/failure_rules/3"
+        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F01/failure_rules/6"
       ],
       "execution_state": "not_executed",
       "u_id": "U-CONNECT005-011"
@@ -706,7 +704,8 @@
         "pointer": "/verification_obligations/0/concrete_cases/11/expected_material"
       },
       "l5_failure_rule_refs": [
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F01/failure_rules/1"
+        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F01/failure_rules/1",
+        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F01/failure_rules/6"
       ],
       "execution_state": "not_executed",
       "u_id": "U-CONNECT005-012"
@@ -737,7 +736,8 @@
         "pointer": "/verification_obligations/0/concrete_cases/12/expected_material"
       },
       "l5_failure_rule_refs": [
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F01/failure_rules/1"
+        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F01/failure_rules/1",
+        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F01/failure_rules/6"
       ],
       "execution_state": "not_executed",
       "u_id": "U-CONNECT005-013"
@@ -769,7 +769,7 @@
       },
       "l5_failure_rule_refs": [
         "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F01/failure_rules/1",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F01/failure_rules/7"
+        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F01/failure_rules/6"
       ],
       "execution_state": "not_executed",
       "u_id": "U-CONNECT005-014"
@@ -800,7 +800,8 @@
         "pointer": "/verification_obligations/0/concrete_cases/14/expected_material"
       },
       "l5_failure_rule_refs": [
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F01/failure_rules/1"
+        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F01/failure_rules/1",
+        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F01/failure_rules/6"
       ],
       "execution_state": "not_executed",
       "u_id": "U-CONNECT005-015"
@@ -831,7 +832,8 @@
         "pointer": "/verification_obligations/0/concrete_cases/15/expected_material"
       },
       "l5_failure_rule_refs": [
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F01/failure_rules/1"
+        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F01/failure_rules/1",
+        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F01/failure_rules/6"
       ],
       "execution_state": "not_executed",
       "u_id": "U-CONNECT005-016"
@@ -862,7 +864,8 @@
         "pointer": "/verification_obligations/0/concrete_cases/16/expected_material"
       },
       "l5_failure_rule_refs": [
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F01/failure_rules/1"
+        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F01/failure_rules/1",
+        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F01/failure_rules/6"
       ],
       "execution_state": "not_executed",
       "u_id": "U-CONNECT005-017"
@@ -894,9 +897,7 @@
       },
       "l5_failure_rule_refs": [
         "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F01/failure_rules/2",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F01/failure_rules/3",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F01/failure_rules/4",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F01/failure_rules/8"
+        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F01/failure_rules/4"
       ],
       "execution_state": "not_executed",
       "u_id": "U-CONNECT005-018"
@@ -927,8 +928,8 @@
         "pointer": "/verification_obligations/0/concrete_cases/18/expected_material"
       },
       "l5_failure_rule_refs": [
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F01/failure_rules/3",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F01/failure_rules/4"
+        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F01/failure_rules/1",
+        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F01/failure_rules/3"
       ],
       "execution_state": "not_executed",
       "u_id": "U-CONNECT005-019"
@@ -959,8 +960,7 @@
         "pointer": "/verification_obligations/0/concrete_cases/19/expected_material"
       },
       "l5_failure_rule_refs": [
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F01/failure_rules/3",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F01/failure_rules/4"
+        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F01/failure_rules/3"
       ],
       "execution_state": "not_executed",
       "u_id": "U-CONNECT005-020"
@@ -991,7 +991,6 @@
         "pointer": "/verification_obligations/0/concrete_cases/20/expected_material"
       },
       "l5_failure_rule_refs": [
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F01/failure_rules/3",
         "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F01/failure_rules/4"
       ],
       "execution_state": "not_executed",
@@ -1023,7 +1022,7 @@
         "pointer": "/verification_obligations/0/concrete_cases/21/expected_material"
       },
       "l5_failure_rule_refs": [
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F01/failure_rules/3"
+        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F01/failure_rules/6"
       ],
       "execution_state": "not_executed",
       "u_id": "U-CONNECT005-022"
@@ -1085,6 +1084,7 @@
         "pointer": "/verification_obligations/0/concrete_cases/23/expected_material"
       },
       "l5_failure_rule_refs": [
+        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F01/failure_rules/1",
         "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F01/failure_rules/7"
       ],
       "execution_state": "not_executed",
@@ -1116,7 +1116,8 @@
         "pointer": "/verification_obligations/0/concrete_cases/24/expected_material"
       },
       "l5_failure_rule_refs": [
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F01/failure_rules/5"
+        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F01/failure_rules/5",
+        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F01/failure_rules/6"
       ],
       "execution_state": "not_executed",
       "u_id": "U-CONNECT005-025"
@@ -1146,9 +1147,7 @@
         "revision": "c14adddf2678c7a69d76420c451df3f05b1251ab",
         "pointer": "/verification_obligations/0/concrete_cases/25/expected_material"
       },
-      "l5_failure_rule_refs": [
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F01/failure_rules/9"
-      ],
+      "l5_failure_rule_refs": [],
       "execution_state": "not_executed",
       "u_id": "U-CONNECT005-026"
     },
@@ -1177,9 +1176,7 @@
         "revision": "c14adddf2678c7a69d76420c451df3f05b1251ab",
         "pointer": "/verification_obligations/0/concrete_cases/26/expected_material"
       },
-      "l5_failure_rule_refs": [
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F01/failure_rules/9"
-      ],
+      "l5_failure_rule_refs": [],
       "execution_state": "not_executed",
       "u_id": "U-CONNECT005-027"
     },
@@ -1208,9 +1205,7 @@
         "revision": "c14adddf2678c7a69d76420c451df3f05b1251ab",
         "pointer": "/verification_obligations/0/concrete_cases/27/expected_material"
       },
-      "l5_failure_rule_refs": [
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F01/failure_rules/9"
-      ],
+      "l5_failure_rule_refs": [],
       "execution_state": "not_executed",
       "u_id": "U-CONNECT005-028"
     },
@@ -1239,9 +1234,7 @@
         "revision": "c14adddf2678c7a69d76420c451df3f05b1251ab",
         "pointer": "/verification_obligations/0/concrete_cases/28/expected_material"
       },
-      "l5_failure_rule_refs": [
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F01/failure_rules/9"
-      ],
+      "l5_failure_rule_refs": [],
       "execution_state": "not_executed",
       "u_id": "U-CONNECT005-029"
     },
@@ -1270,9 +1263,7 @@
         "revision": "c14adddf2678c7a69d76420c451df3f05b1251ab",
         "pointer": "/verification_obligations/0/concrete_cases/29/expected_material"
       },
-      "l5_failure_rule_refs": [
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F01/failure_rules/9"
-      ],
+      "l5_failure_rule_refs": [],
       "execution_state": "not_executed",
       "u_id": "U-CONNECT005-030"
     },
@@ -1301,9 +1292,7 @@
         "revision": "c14adddf2678c7a69d76420c451df3f05b1251ab",
         "pointer": "/verification_obligations/0/concrete_cases/30/expected_material"
       },
-      "l5_failure_rule_refs": [
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F01/failure_rules/9"
-      ],
+      "l5_failure_rule_refs": [],
       "execution_state": "not_executed",
       "u_id": "U-CONNECT005-031"
     },
@@ -1332,9 +1321,7 @@
         "revision": "c14adddf2678c7a69d76420c451df3f05b1251ab",
         "pointer": "/verification_obligations/0/concrete_cases/31/expected_material"
       },
-      "l5_failure_rule_refs": [
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F01/failure_rules/9"
-      ],
+      "l5_failure_rule_refs": [],
       "execution_state": "not_executed",
       "u_id": "U-CONNECT005-032"
     },
@@ -1363,9 +1350,7 @@
         "revision": "c14adddf2678c7a69d76420c451df3f05b1251ab",
         "pointer": "/verification_obligations/0/concrete_cases/32/expected_material"
       },
-      "l5_failure_rule_refs": [
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F01/failure_rules/9"
-      ],
+      "l5_failure_rule_refs": [],
       "execution_state": "not_executed",
       "u_id": "U-CONNECT005-033"
     },
@@ -1394,9 +1379,7 @@
         "revision": "c14adddf2678c7a69d76420c451df3f05b1251ab",
         "pointer": "/verification_obligations/0/concrete_cases/33/expected_material"
       },
-      "l5_failure_rule_refs": [
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F01/failure_rules/9"
-      ],
+      "l5_failure_rule_refs": [],
       "execution_state": "not_executed",
       "u_id": "U-CONNECT005-034"
     },
@@ -1425,9 +1408,7 @@
         "revision": "c14adddf2678c7a69d76420c451df3f05b1251ab",
         "pointer": "/verification_obligations/0/concrete_cases/34/expected_material"
       },
-      "l5_failure_rule_refs": [
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F01/failure_rules/9"
-      ],
+      "l5_failure_rule_refs": [],
       "execution_state": "not_executed",
       "u_id": "U-CONNECT005-035"
     },
@@ -1456,10 +1437,7 @@
         "revision": "c14adddf2678c7a69d76420c451df3f05b1251ab",
         "pointer": "/verification_obligations/0/concrete_cases/35/expected_material"
       },
-      "l5_failure_rule_refs": [
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F01/failure_rules/5",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F01/failure_rules/9"
-      ],
+      "l5_failure_rule_refs": [],
       "execution_state": "not_executed",
       "u_id": "U-CONNECT005-036"
     },
@@ -1488,9 +1466,7 @@
         "revision": "c14adddf2678c7a69d76420c451df3f05b1251ab",
         "pointer": "/verification_obligations/0/concrete_cases/36/expected_material"
       },
-      "l5_failure_rule_refs": [
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F01/failure_rules/9"
-      ],
+      "l5_failure_rule_refs": [],
       "execution_state": "not_executed",
       "u_id": "U-CONNECT005-037"
     },
@@ -1519,9 +1495,7 @@
         "revision": "c14adddf2678c7a69d76420c451df3f05b1251ab",
         "pointer": "/verification_obligations/0/concrete_cases/37/expected_material"
       },
-      "l5_failure_rule_refs": [
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F01/failure_rules/9"
-      ],
+      "l5_failure_rule_refs": [],
       "execution_state": "not_executed",
       "u_id": "U-CONNECT005-038"
     },
@@ -1551,6 +1525,7 @@
         "pointer": "/verification_obligations/0/concrete_cases/38/expected_material"
       },
       "l5_failure_rule_refs": [
+        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F01/failure_rules/1",
         "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F01/failure_rules/6"
       ],
       "execution_state": "not_executed",
@@ -1583,9 +1558,7 @@
       },
       "l5_failure_rule_refs": [
         "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F01/failure_rules/2",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F01/failure_rules/3",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F01/failure_rules/4",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F01/failure_rules/8"
+        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F01/failure_rules/4"
       ],
       "execution_state": "not_executed",
       "u_id": "U-CONNECT005-040"
@@ -1615,7 +1588,9 @@
         "revision": "c14adddf2678c7a69d76420c451df3f05b1251ab",
         "pointer": "/verification_obligations/0/concrete_cases/40/expected_material"
       },
-      "l5_failure_rule_refs": [],
+      "l5_failure_rule_refs": [
+        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F01/failure_rules/0"
+      ],
       "execution_state": "not_executed",
       "u_id": "U-CONNECT005-041"
     },
@@ -1644,9 +1619,7 @@
         "revision": "c14adddf2678c7a69d76420c451df3f05b1251ab",
         "pointer": "/verification_obligations/0/concrete_cases/41/expected_material"
       },
-      "l5_failure_rule_refs": [
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F01/failure_rules/9"
-      ],
+      "l5_failure_rule_refs": [],
       "execution_state": "not_executed",
       "u_id": "U-CONNECT005-042"
     },
@@ -1675,12 +1648,7 @@
         "revision": "c14adddf2678c7a69d76420c451df3f05b1251ab",
         "pointer": "/verification_obligations/1/concrete_cases/0/expected_material"
       },
-      "l5_failure_rule_refs": [
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/3",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/4",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/5",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/7"
-      ],
+      "l5_failure_rule_refs": [],
       "execution_state": "not_executed",
       "u_id": "U-CONNECT005-043"
     },
@@ -1709,11 +1677,7 @@
         "revision": "c14adddf2678c7a69d76420c451df3f05b1251ab",
         "pointer": "/verification_obligations/1/concrete_cases/1/expected_material"
       },
-      "l5_failure_rule_refs": [
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/3",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/4",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/5"
-      ],
+      "l5_failure_rule_refs": [],
       "execution_state": "not_executed",
       "u_id": "U-CONNECT005-044"
     },
@@ -1742,11 +1706,7 @@
         "revision": "c14adddf2678c7a69d76420c451df3f05b1251ab",
         "pointer": "/verification_obligations/1/concrete_cases/2/expected_material"
       },
-      "l5_failure_rule_refs": [
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/3",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/4",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/5"
-      ],
+      "l5_failure_rule_refs": [],
       "execution_state": "not_executed",
       "u_id": "U-CONNECT005-045"
     },
@@ -1775,11 +1735,7 @@
         "revision": "c14adddf2678c7a69d76420c451df3f05b1251ab",
         "pointer": "/verification_obligations/1/concrete_cases/3/expected_material"
       },
-      "l5_failure_rule_refs": [
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/3",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/4",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/5"
-      ],
+      "l5_failure_rule_refs": [],
       "execution_state": "not_executed",
       "u_id": "U-CONNECT005-046"
     },
@@ -1808,11 +1764,7 @@
         "revision": "c14adddf2678c7a69d76420c451df3f05b1251ab",
         "pointer": "/verification_obligations/1/concrete_cases/4/expected_material"
       },
-      "l5_failure_rule_refs": [
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/3",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/4",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/5"
-      ],
+      "l5_failure_rule_refs": [],
       "execution_state": "not_executed",
       "u_id": "U-CONNECT005-047"
     },
@@ -1841,12 +1793,7 @@
         "revision": "c14adddf2678c7a69d76420c451df3f05b1251ab",
         "pointer": "/verification_obligations/1/concrete_cases/5/expected_material"
       },
-      "l5_failure_rule_refs": [
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/3",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/4",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/5",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/7"
-      ],
+      "l5_failure_rule_refs": [],
       "execution_state": "not_executed",
       "u_id": "U-CONNECT005-048"
     },
@@ -1876,9 +1823,7 @@
         "pointer": "/verification_obligations/1/concrete_cases/6/expected_material"
       },
       "l5_failure_rule_refs": [
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/0",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/6",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/7"
+        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/0"
       ],
       "execution_state": "not_executed",
       "u_id": "U-CONNECT005-049"
@@ -2218,11 +2163,7 @@
         "revision": "c14adddf2678c7a69d76420c451df3f05b1251ab",
         "pointer": "/verification_obligations/1/concrete_cases/17/expected_material"
       },
-      "l5_failure_rule_refs": [
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/3",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/4",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/5"
-      ],
+      "l5_failure_rule_refs": [],
       "execution_state": "not_executed",
       "u_id": "U-CONNECT005-060"
     },
@@ -2283,8 +2224,7 @@
         "pointer": "/verification_obligations/1/concrete_cases/19/expected_material"
       },
       "l5_failure_rule_refs": [
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/0",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/7"
+        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/0"
       ],
       "execution_state": "not_executed",
       "u_id": "U-CONNECT005-062"
@@ -2499,7 +2439,6 @@
         "pointer": "/verification_obligations/2/concrete_cases/4/expected_material"
       },
       "l5_failure_rule_refs": [
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/N01/failure_rules/1",
         "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/N01/failure_rules/2"
       ],
       "execution_state": "not_executed",
@@ -2531,8 +2470,7 @@
         "pointer": "/verification_obligations/2/concrete_cases/5/expected_material"
       },
       "l5_failure_rule_refs": [
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/N01/failure_rules/1",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/N01/failure_rules/2"
+        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/N01/failure_rules/1"
       ],
       "execution_state": "not_executed",
       "u_id": "U-CONNECT005-070"
@@ -2563,8 +2501,7 @@
         "pointer": "/verification_obligations/2/concrete_cases/6/expected_material"
       },
       "l5_failure_rule_refs": [
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/N01/failure_rules/1",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/N01/failure_rules/2"
+        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/N01/failure_rules/1"
       ],
       "execution_state": "not_executed",
       "u_id": "U-CONNECT005-071"
@@ -2595,8 +2532,7 @@
         "pointer": "/verification_obligations/2/concrete_cases/7/expected_material"
       },
       "l5_failure_rule_refs": [
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/N01/failure_rules/1",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/N01/failure_rules/2"
+        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/N01/failure_rules/1"
       ],
       "execution_state": "not_executed",
       "u_id": "U-CONNECT005-072"
@@ -2627,8 +2563,7 @@
         "pointer": "/verification_obligations/2/concrete_cases/8/expected_material"
       },
       "l5_failure_rule_refs": [
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/N01/failure_rules/1",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/N01/failure_rules/2"
+        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/N01/failure_rules/1"
       ],
       "execution_state": "not_executed",
       "u_id": "U-CONNECT005-073"
@@ -2659,8 +2594,7 @@
         "pointer": "/verification_obligations/2/concrete_cases/9/expected_material"
       },
       "l5_failure_rule_refs": [
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/N01/failure_rules/1",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/N01/failure_rules/2"
+        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/N01/failure_rules/1"
       ],
       "execution_state": "not_executed",
       "u_id": "U-CONNECT005-074"
@@ -2691,8 +2625,7 @@
         "pointer": "/verification_obligations/2/concrete_cases/10/expected_material"
       },
       "l5_failure_rule_refs": [
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/N01/failure_rules/1",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/N01/failure_rules/2"
+        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/N01/failure_rules/1"
       ],
       "execution_state": "not_executed",
       "u_id": "U-CONNECT005-075"
@@ -2940,7 +2873,10 @@
         "revision": "c14adddf2678c7a69d76420c451df3f05b1251ab",
         "pointer": "/verification_obligations/2/concrete_cases/18/expected_material"
       },
-      "l5_failure_rule_refs": [],
+      "l5_failure_rule_refs": [
+        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/N01/failure_rules/4",
+        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/N01/failure_rules/6"
+      ],
       "execution_state": "not_executed",
       "u_id": "U-CONNECT005-083"
     },
@@ -2969,7 +2905,10 @@
         "revision": "c14adddf2678c7a69d76420c451df3f05b1251ab",
         "pointer": "/verification_obligations/2/concrete_cases/19/expected_material"
       },
-      "l5_failure_rule_refs": [],
+      "l5_failure_rule_refs": [
+        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/N01/failure_rules/4",
+        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/N01/failure_rules/6"
+      ],
       "execution_state": "not_executed",
       "u_id": "U-CONNECT005-084"
     },
@@ -2998,7 +2937,10 @@
         "revision": "c14adddf2678c7a69d76420c451df3f05b1251ab",
         "pointer": "/verification_obligations/2/concrete_cases/20/expected_material"
       },
-      "l5_failure_rule_refs": [],
+      "l5_failure_rule_refs": [
+        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/N01/failure_rules/4",
+        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/N01/failure_rules/6"
+      ],
       "execution_state": "not_executed",
       "u_id": "U-CONNECT005-085"
     },
@@ -3090,6 +3032,7 @@
         "pointer": "/verification_obligations/2/concrete_cases/23/expected_material"
       },
       "l5_failure_rule_refs": [
+        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/N01/failure_rules/4",
         "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/N01/failure_rules/6"
       ],
       "execution_state": "not_executed",
@@ -3182,9 +3125,7 @@
         "revision": "c14adddf2678c7a69d76420c451df3f05b1251ab",
         "pointer": "/local_domain_probes/cases/0/expected_whole_overlay"
       },
-      "l5_failure_rule_refs": [
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/6"
-      ],
+      "l5_failure_rule_refs": [],
       "execution_state": "not_executed",
       "u_id": "U-CONNECT005-091"
     },
@@ -3213,9 +3154,7 @@
         "revision": "c14adddf2678c7a69d76420c451df3f05b1251ab",
         "pointer": "/local_domain_probes/cases/1/expected_whole_overlay"
       },
-      "l5_failure_rule_refs": [
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/6"
-      ],
+      "l5_failure_rule_refs": [],
       "execution_state": "not_executed",
       "u_id": "U-CONNECT005-092"
     },
@@ -3244,9 +3183,7 @@
         "revision": "c14adddf2678c7a69d76420c451df3f05b1251ab",
         "pointer": "/local_domain_probes/cases/2/expected_whole_overlay"
       },
-      "l5_failure_rule_refs": [
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/6"
-      ],
+      "l5_failure_rule_refs": [],
       "execution_state": "not_executed",
       "u_id": "U-CONNECT005-093"
     },
@@ -3275,9 +3212,7 @@
         "revision": "c14adddf2678c7a69d76420c451df3f05b1251ab",
         "pointer": "/local_domain_probes/cases/3/expected_whole_overlay"
       },
-      "l5_failure_rule_refs": [
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/6"
-      ],
+      "l5_failure_rule_refs": [],
       "execution_state": "not_executed",
       "u_id": "U-CONNECT005-094"
     },
@@ -3306,9 +3241,7 @@
         "revision": "c14adddf2678c7a69d76420c451df3f05b1251ab",
         "pointer": "/local_domain_probes/cases/4/expected_whole_overlay"
       },
-      "l5_failure_rule_refs": [
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/6"
-      ],
+      "l5_failure_rule_refs": [],
       "execution_state": "not_executed",
       "u_id": "U-CONNECT005-095"
     },
@@ -3337,9 +3270,7 @@
         "revision": "c14adddf2678c7a69d76420c451df3f05b1251ab",
         "pointer": "/local_domain_probes/cases/5/expected_whole_overlay"
       },
-      "l5_failure_rule_refs": [
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/6"
-      ],
+      "l5_failure_rule_refs": [],
       "execution_state": "not_executed",
       "u_id": "U-CONNECT005-096"
     },
@@ -3368,9 +3299,7 @@
         "revision": "c14adddf2678c7a69d76420c451df3f05b1251ab",
         "pointer": "/local_domain_probes/cases/6/expected_whole_overlay"
       },
-      "l5_failure_rule_refs": [
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/6"
-      ],
+      "l5_failure_rule_refs": [],
       "execution_state": "not_executed",
       "u_id": "U-CONNECT005-097"
     },
@@ -3399,9 +3328,7 @@
         "revision": "c14adddf2678c7a69d76420c451df3f05b1251ab",
         "pointer": "/local_domain_probes/cases/7/expected_whole_overlay"
       },
-      "l5_failure_rule_refs": [
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/6"
-      ],
+      "l5_failure_rule_refs": [],
       "execution_state": "not_executed",
       "u_id": "U-CONNECT005-098"
     },
@@ -3431,10 +3358,6 @@
         "pointer": "/local_domain_probes/cases/8/expected_whole_overlay"
       },
       "l5_failure_rule_refs": [
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/0",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/1",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/4",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/5",
         "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/6"
       ],
       "execution_state": "not_executed",
@@ -3466,10 +3389,6 @@
         "pointer": "/local_domain_probes/cases/9/expected_whole_overlay"
       },
       "l5_failure_rule_refs": [
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/0",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/1",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/4",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/5",
         "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/6"
       ],
       "execution_state": "not_executed",
@@ -3501,10 +3420,6 @@
         "pointer": "/local_domain_probes/cases/10/expected_whole_overlay"
       },
       "l5_failure_rule_refs": [
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/0",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/1",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/4",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/5",
         "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/6"
       ],
       "execution_state": "not_executed",
@@ -3536,10 +3451,6 @@
         "pointer": "/local_domain_probes/cases/11/expected_whole_overlay"
       },
       "l5_failure_rule_refs": [
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/0",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/1",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/4",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/5",
         "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/6"
       ],
       "execution_state": "not_executed",
@@ -3571,10 +3482,6 @@
         "pointer": "/local_domain_probes/cases/12/expected_whole_overlay"
       },
       "l5_failure_rule_refs": [
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/0",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/1",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/4",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/5",
         "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/6"
       ],
       "execution_state": "not_executed",
@@ -3606,10 +3513,6 @@
         "pointer": "/local_domain_probes/cases/13/expected_whole_overlay"
       },
       "l5_failure_rule_refs": [
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/0",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/1",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/4",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/5",
         "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/6"
       ],
       "execution_state": "not_executed",
@@ -3641,10 +3544,6 @@
         "pointer": "/local_domain_probes/cases/14/expected_whole_overlay"
       },
       "l5_failure_rule_refs": [
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/0",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/1",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/4",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/5",
         "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/6"
       ],
       "execution_state": "not_executed",
@@ -3676,10 +3575,6 @@
         "pointer": "/local_domain_probes/cases/15/expected_whole_overlay"
       },
       "l5_failure_rule_refs": [
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/0",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/1",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/4",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/5",
         "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/6"
       ],
       "execution_state": "not_executed",
@@ -3711,10 +3606,6 @@
         "pointer": "/local_domain_probes/cases/16/expected_whole_overlay"
       },
       "l5_failure_rule_refs": [
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/0",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/1",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/4",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/5",
         "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/6"
       ],
       "execution_state": "not_executed",
@@ -3746,10 +3637,7 @@
         "pointer": "/local_domain_probes/cases/17/expected_whole_overlay"
       },
       "l5_failure_rule_refs": [
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/0",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/3",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/6",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/7"
+        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/6"
       ],
       "execution_state": "not_executed",
       "u_id": "U-CONNECT005-108"
@@ -3780,10 +3668,7 @@
         "pointer": "/local_domain_probes/cases/18/expected_whole_overlay"
       },
       "l5_failure_rule_refs": [
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/0",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/3",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/6",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/7"
+        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/6"
       ],
       "execution_state": "not_executed",
       "u_id": "U-CONNECT005-109"
@@ -3814,10 +3699,7 @@
         "pointer": "/local_domain_probes/cases/19/expected_whole_overlay"
       },
       "l5_failure_rule_refs": [
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/0",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/3",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/6",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/7"
+        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/6"
       ],
       "execution_state": "not_executed",
       "u_id": "U-CONNECT005-110"
@@ -3848,10 +3730,7 @@
         "pointer": "/local_domain_probes/cases/20/expected_whole_overlay"
       },
       "l5_failure_rule_refs": [
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/0",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/3",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/6",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/7"
+        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/6"
       ],
       "execution_state": "not_executed",
       "u_id": "U-CONNECT005-111"
@@ -3882,10 +3761,7 @@
         "pointer": "/local_domain_probes/cases/21/expected_whole_overlay"
       },
       "l5_failure_rule_refs": [
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/0",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/3",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/6",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/7"
+        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/6"
       ],
       "execution_state": "not_executed",
       "u_id": "U-CONNECT005-112"
@@ -3916,9 +3792,6 @@
         "pointer": "/local_domain_probes/cases/22/expected_whole_overlay"
       },
       "l5_failure_rule_refs": [
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/0",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/2",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/4",
         "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/6"
       ],
       "execution_state": "not_executed",
@@ -3950,9 +3823,6 @@
         "pointer": "/local_domain_probes/cases/23/expected_whole_overlay"
       },
       "l5_failure_rule_refs": [
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/0",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/2",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/4",
         "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/6"
       ],
       "execution_state": "not_executed",
@@ -3984,9 +3854,6 @@
         "pointer": "/local_domain_probes/cases/24/expected_whole_overlay"
       },
       "l5_failure_rule_refs": [
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/0",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/2",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/4",
         "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/6"
       ],
       "execution_state": "not_executed",
@@ -4018,9 +3885,6 @@
         "pointer": "/local_domain_probes/cases/25/expected_whole_overlay"
       },
       "l5_failure_rule_refs": [
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/0",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/2",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/4",
         "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/6"
       ],
       "execution_state": "not_executed",
@@ -4052,9 +3916,6 @@
         "pointer": "/local_domain_probes/cases/26/expected_whole_overlay"
       },
       "l5_failure_rule_refs": [
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/0",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/2",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/4",
         "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/6"
       ],
       "execution_state": "not_executed",
@@ -4086,9 +3947,6 @@
         "pointer": "/local_domain_probes/cases/27/expected_whole_overlay"
       },
       "l5_failure_rule_refs": [
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/0",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/2",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/4",
         "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/6"
       ],
       "execution_state": "not_executed",
@@ -4120,9 +3978,6 @@
         "pointer": "/local_domain_probes/cases/28/expected_whole_overlay"
       },
       "l5_failure_rule_refs": [
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/0",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/2",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/4",
         "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/6"
       ],
       "execution_state": "not_executed",
@@ -4154,9 +4009,6 @@
         "pointer": "/local_domain_probes/cases/29/expected_whole_overlay"
       },
       "l5_failure_rule_refs": [
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/0",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/2",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/4",
         "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/6"
       ],
       "execution_state": "not_executed",
@@ -4420,7 +4272,7 @@
         "pointer": "/local_domain_probes/cases/38/expected_whole_overlay"
       },
       "l5_failure_rule_refs": [
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/N01/failure_rules/4"
+        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/6"
       ],
       "execution_state": "not_executed",
       "u_id": "U-CONNECT005-129"
@@ -4451,7 +4303,7 @@
         "pointer": "/local_domain_probes/cases/39/expected_whole_overlay"
       },
       "l5_failure_rule_refs": [
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/N01/failure_rules/4"
+        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/6"
       ],
       "execution_state": "not_executed",
       "u_id": "U-CONNECT005-130"
@@ -4482,7 +4334,7 @@
         "pointer": "/local_domain_probes/cases/40/expected_whole_overlay"
       },
       "l5_failure_rule_refs": [
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/N01/failure_rules/4"
+        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/6"
       ],
       "execution_state": "not_executed",
       "u_id": "U-CONNECT005-131"
@@ -4513,7 +4365,7 @@
         "pointer": "/local_domain_probes/cases/41/expected_whole_overlay"
       },
       "l5_failure_rule_refs": [
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/N01/failure_rules/4"
+        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/6"
       ],
       "execution_state": "not_executed",
       "u_id": "U-CONNECT005-132"
@@ -4544,7 +4396,7 @@
         "pointer": "/local_domain_probes/cases/42/expected_whole_overlay"
       },
       "l5_failure_rule_refs": [
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/N01/failure_rules/4"
+        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/6"
       ],
       "execution_state": "not_executed",
       "u_id": "U-CONNECT005-133"
@@ -4575,7 +4427,7 @@
         "pointer": "/local_domain_probes/cases/43/expected_whole_overlay"
       },
       "l5_failure_rule_refs": [
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/N01/failure_rules/4"
+        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/6"
       ],
       "execution_state": "not_executed",
       "u_id": "U-CONNECT005-134"
@@ -4606,7 +4458,7 @@
         "pointer": "/local_domain_probes/cases/44/expected_whole_overlay"
       },
       "l5_failure_rule_refs": [
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/N01/failure_rules/4"
+        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/6"
       ],
       "execution_state": "not_executed",
       "u_id": "U-CONNECT005-135"
@@ -4637,7 +4489,7 @@
         "pointer": "/local_domain_probes/cases/45/expected_whole_overlay"
       },
       "l5_failure_rule_refs": [
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/N01/failure_rules/4"
+        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/6"
       ],
       "execution_state": "not_executed",
       "u_id": "U-CONNECT005-136"
@@ -4668,8 +4520,7 @@
         "pointer": "/local_domain_probes/cases/46/expected_whole_overlay"
       },
       "l5_failure_rule_refs": [
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/N01/failure_rules/4",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/N01/failure_rules/6"
+        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/6"
       ],
       "execution_state": "not_executed",
       "u_id": "U-CONNECT005-137"
@@ -4700,8 +4551,7 @@
         "pointer": "/local_domain_probes/cases/47/expected_whole_overlay"
       },
       "l5_failure_rule_refs": [
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/N01/failure_rules/4",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/N01/failure_rules/6"
+        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/6"
       ],
       "execution_state": "not_executed",
       "u_id": "U-CONNECT005-138"
@@ -4732,8 +4582,7 @@
         "pointer": "/local_domain_probes/cases/48/expected_whole_overlay"
       },
       "l5_failure_rule_refs": [
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/N01/failure_rules/4",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/N01/failure_rules/6"
+        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/6"
       ],
       "execution_state": "not_executed",
       "u_id": "U-CONNECT005-139"
@@ -4764,8 +4613,7 @@
         "pointer": "/local_domain_probes/cases/49/expected_whole_overlay"
       },
       "l5_failure_rule_refs": [
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/N01/failure_rules/4",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/N01/failure_rules/6"
+        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/6"
       ],
       "execution_state": "not_executed",
       "u_id": "U-CONNECT005-140"
@@ -4796,8 +4644,7 @@
         "pointer": "/local_domain_probes/cases/50/expected_whole_overlay"
       },
       "l5_failure_rule_refs": [
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/N01/failure_rules/4",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/N01/failure_rules/6"
+        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/6"
       ],
       "execution_state": "not_executed",
       "u_id": "U-CONNECT005-141"
@@ -4828,8 +4675,7 @@
         "pointer": "/local_domain_probes/cases/51/expected_whole_overlay"
       },
       "l5_failure_rule_refs": [
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/N01/failure_rules/4",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/N01/failure_rules/6"
+        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/6"
       ],
       "execution_state": "not_executed",
       "u_id": "U-CONNECT005-142"
@@ -4860,8 +4706,7 @@
         "pointer": "/local_domain_probes/cases/52/expected_whole_overlay"
       },
       "l5_failure_rule_refs": [
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/N01/failure_rules/4",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/N01/failure_rules/6"
+        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/6"
       ],
       "execution_state": "not_executed",
       "u_id": "U-CONNECT005-143"
@@ -4892,8 +4737,7 @@
         "pointer": "/local_domain_probes/cases/53/expected_whole_overlay"
       },
       "l5_failure_rule_refs": [
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/N01/failure_rules/4",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/N01/failure_rules/6"
+        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/6"
       ],
       "execution_state": "not_executed",
       "u_id": "U-CONNECT005-144"
@@ -4923,9 +4767,7 @@
         "revision": "c14adddf2678c7a69d76420c451df3f05b1251ab",
         "pointer": "/local_domain_probes/cases/54/expected_whole_overlay"
       },
-      "l5_failure_rule_refs": [
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/6"
-      ],
+      "l5_failure_rule_refs": [],
       "execution_state": "not_executed",
       "u_id": "U-CONNECT005-145"
     },
@@ -4955,10 +4797,6 @@
         "pointer": "/local_domain_probes/cases/55/expected_whole_overlay"
       },
       "l5_failure_rule_refs": [
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/0",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/1",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/4",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/5",
         "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/6"
       ],
       "execution_state": "not_executed",
@@ -4990,10 +4828,7 @@
         "pointer": "/local_domain_probes/cases/56/expected_whole_overlay"
       },
       "l5_failure_rule_refs": [
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/0",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/3",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/6",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/7"
+        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/6"
       ],
       "execution_state": "not_executed",
       "u_id": "U-CONNECT005-147"
@@ -5024,9 +4859,6 @@
         "pointer": "/local_domain_probes/cases/57/expected_whole_overlay"
       },
       "l5_failure_rule_refs": [
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/0",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/2",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/4",
         "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/6"
       ],
       "execution_state": "not_executed",
@@ -5087,7 +4919,7 @@
         "pointer": "/local_domain_probes/cases/59/expected_whole_overlay"
       },
       "l5_failure_rule_refs": [
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/N01/failure_rules/4"
+        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/6"
       ],
       "execution_state": "not_executed",
       "u_id": "U-CONNECT005-150"
@@ -5118,8 +4950,7 @@
         "pointer": "/local_domain_probes/cases/60/expected_whole_overlay"
       },
       "l5_failure_rule_refs": [
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/N01/failure_rules/4",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/N01/failure_rules/6"
+        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/6"
       ],
       "execution_state": "not_executed",
       "u_id": "U-CONNECT005-151"
@@ -5150,12 +4981,7 @@
         "pointer": "/independent_semantic_probes/0/expected_whole"
       },
       "l5_failure_rule_refs": [
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/0",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/3",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/4",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/5",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/6",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/7"
+        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/3"
       ],
       "execution_state": "not_executed",
       "u_id": "U-CONNECT005-152"
@@ -5186,10 +5012,7 @@
         "pointer": "/independent_semantic_probes/1/expected_whole"
       },
       "l5_failure_rule_refs": [
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/0",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/3",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/4",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/5"
+        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/4"
       ],
       "execution_state": "not_executed",
       "u_id": "U-CONNECT005-153"
@@ -5219,7 +5042,9 @@
         "revision": "c14adddf2678c7a69d76420c451df3f05b1251ab",
         "pointer": "/independent_semantic_probes/2/expected_whole"
       },
-      "l5_failure_rule_refs": [],
+      "l5_failure_rule_refs": [
+        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/N01/failure_rules/6"
+      ],
       "execution_state": "not_executed",
       "u_id": "U-CONNECT005-154"
     },
@@ -5249,8 +5074,12 @@
         "pointer": "/independent_semantic_probes/3/expected_whole"
       },
       "l5_failure_rule_refs": [
+        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F01/failure_rules/3",
+        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F01/failure_rules/4",
+        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F01/failure_rules/6",
         "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F01/failure_rules/8",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F01/failure_rules/9"
+        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F01/failure_rules/9",
+        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/6"
       ],
       "execution_state": "not_executed",
       "u_id": "U-CONNECT005-155"
@@ -5312,8 +5141,8 @@
         "pointer": "/independent_semantic_probes/5/expected_whole"
       },
       "l5_failure_rule_refs": [
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F01/failure_rules/2",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F01/failure_rules/9"
+        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F01/failure_rules/8",
+        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/6"
       ],
       "execution_state": "not_executed",
       "u_id": "U-CONNECT005-157"
@@ -5345,11 +5174,7 @@
       },
       "l5_failure_rule_refs": [
         "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/0",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/3",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/4",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/5",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/6",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/7"
+        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/6"
       ],
       "execution_state": "not_executed",
       "u_id": "U-CONNECT005-158"
@@ -5381,11 +5206,7 @@
       },
       "l5_failure_rule_refs": [
         "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/0",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/3",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/4",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/5",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/6",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/7"
+        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/6"
       ],
       "execution_state": "not_executed",
       "u_id": "U-CONNECT005-159"
@@ -5416,6 +5237,7 @@
         "pointer": "/independent_semantic_probes/8/expected_whole"
       },
       "l5_failure_rule_refs": [
+        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/6",
         "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/N01/failure_rules/1"
       ],
       "execution_state": "not_executed",
@@ -5447,6 +5269,7 @@
         "pointer": "/independent_semantic_probes/9/expected_whole"
       },
       "l5_failure_rule_refs": [
+        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/6",
         "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/N01/failure_rules/1"
       ],
       "execution_state": "not_executed",
@@ -5477,9 +5300,7 @@
         "revision": "c14adddf2678c7a69d76420c451df3f05b1251ab",
         "pointer": "/independent_semantic_probes/10/expected_whole"
       },
-      "l5_failure_rule_refs": [
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F01/failure_rules/9"
-      ],
+      "l5_failure_rule_refs": [],
       "execution_state": "not_executed",
       "u_id": "U-CONNECT005-162"
     },
@@ -5508,9 +5329,7 @@
         "revision": "c14adddf2678c7a69d76420c451df3f05b1251ab",
         "pointer": "/independent_semantic_probes/11/expected_whole"
       },
-      "l5_failure_rule_refs": [
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F01/failure_rules/9"
-      ],
+      "l5_failure_rule_refs": [],
       "execution_state": "not_executed",
       "u_id": "U-CONNECT005-163"
     },
@@ -5539,9 +5358,7 @@
         "revision": "c14adddf2678c7a69d76420c451df3f05b1251ab",
         "pointer": "/independent_semantic_probes/12/expected_whole"
       },
-      "l5_failure_rule_refs": [
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F01/failure_rules/9"
-      ],
+      "l5_failure_rule_refs": [],
       "execution_state": "not_executed",
       "u_id": "U-CONNECT005-164"
     },
@@ -5570,14 +5387,7 @@
         "revision": "c14adddf2678c7a69d76420c451df3f05b1251ab",
         "pointer": "/independent_semantic_probes/13/expected_whole"
       },
-      "l5_failure_rule_refs": [
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/0",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/3",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/4",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/5",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/6",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/7"
-      ],
+      "l5_failure_rule_refs": [],
       "execution_state": "not_executed",
       "u_id": "U-CONNECT005-165"
     },
@@ -5608,9 +5418,6 @@
       },
       "l5_failure_rule_refs": [
         "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/0",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/3",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/4",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/5",
         "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/6"
       ],
       "execution_state": "not_executed",
@@ -5643,9 +5450,6 @@
       },
       "l5_failure_rule_refs": [
         "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/0",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/3",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/4",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/5",
         "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/6"
       ],
       "execution_state": "not_executed",
@@ -5676,12 +5480,7 @@
         "revision": "c14adddf2678c7a69d76420c451df3f05b1251ab",
         "pointer": "/independent_semantic_probes/16/expected_whole"
       },
-      "l5_failure_rule_refs": [
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F01/failure_rules/2",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F01/failure_rules/4",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F01/failure_rules/8",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F01/failure_rules/9"
-      ],
+      "l5_failure_rule_refs": [],
       "execution_state": "not_executed",
       "u_id": "U-CONNECT005-168"
     },
@@ -5710,9 +5509,7 @@
         "revision": "c14adddf2678c7a69d76420c451df3f05b1251ab",
         "pointer": "/independent_semantic_probes/17/expected_whole"
       },
-      "l5_failure_rule_refs": [
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F01/failure_rules/9"
-      ],
+      "l5_failure_rule_refs": [],
       "execution_state": "not_executed",
       "u_id": "U-CONNECT005-169"
     },
@@ -5743,9 +5540,6 @@
       },
       "l5_failure_rule_refs": [
         "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/0",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/3",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/4",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/5",
         "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/6"
       ],
       "execution_state": "not_executed",
@@ -5778,9 +5572,6 @@
       },
       "l5_failure_rule_refs": [
         "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/0",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/3",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/4",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/5",
         "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/6"
       ],
       "execution_state": "not_executed",
@@ -5813,9 +5604,6 @@
       },
       "l5_failure_rule_refs": [
         "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/0",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/3",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/4",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/5",
         "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/6"
       ],
       "execution_state": "not_executed",
@@ -5848,9 +5636,6 @@
       },
       "l5_failure_rule_refs": [
         "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/0",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/3",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/4",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/5",
         "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/6"
       ],
       "execution_state": "not_executed",
@@ -5883,9 +5668,6 @@
       },
       "l5_failure_rule_refs": [
         "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/0",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/3",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/4",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/5",
         "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/6"
       ],
       "execution_state": "not_executed",
@@ -5918,9 +5700,6 @@
       },
       "l5_failure_rule_refs": [
         "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/0",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/3",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/4",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/5",
         "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/6"
       ],
       "execution_state": "not_executed",
@@ -5951,11 +5730,7 @@
         "revision": "c14adddf2678c7a69d76420c451df3f05b1251ab",
         "pointer": "/independent_semantic_probes/24/expected_whole"
       },
-      "l5_failure_rule_refs": [
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F01/failure_rules/4",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F01/failure_rules/8",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F01/failure_rules/9"
-      ],
+      "l5_failure_rule_refs": [],
       "execution_state": "not_executed",
       "u_id": "U-CONNECT005-176"
     },
@@ -5985,9 +5760,7 @@
         "pointer": "/independent_semantic_probes/25/expected_whole"
       },
       "l5_failure_rule_refs": [
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F01/failure_rules/4",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F01/failure_rules/8",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F01/failure_rules/9"
+        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F01/failure_rules/4"
       ],
       "execution_state": "not_executed",
       "u_id": "U-CONNECT005-177"
@@ -6018,12 +5791,6 @@
         "pointer": "/independent_semantic_probes/26/expected_whole"
       },
       "l5_failure_rule_refs": [
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/0",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/3",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/4",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/5",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/6",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/7",
         "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/8"
       ],
       "execution_state": "not_executed",
@@ -6055,10 +5822,7 @@
         "pointer": "/independent_semantic_probes/27/expected_whole"
       },
       "l5_failure_rule_refs": [
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/0",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/3",
         "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/4",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/5",
         "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/9"
       ],
       "execution_state": "not_executed",
@@ -6090,11 +5854,6 @@
         "pointer": "/independent_semantic_probes/28/expected_whole"
       },
       "l5_failure_rule_refs": [
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/0",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/3",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/4",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/5",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/6",
         "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/7"
       ],
       "execution_state": "not_executed",
@@ -6125,14 +5884,7 @@
         "revision": "c14adddf2678c7a69d76420c451df3f05b1251ab",
         "pointer": "/independent_semantic_probes/29/expected_whole"
       },
-      "l5_failure_rule_refs": [
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/0",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/3",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/4",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/5",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/6",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/7"
-      ],
+      "l5_failure_rule_refs": [],
       "execution_state": "not_executed",
       "u_id": "U-CONNECT005-181"
     },
@@ -6162,11 +5914,7 @@
         "pointer": "/independent_semantic_probes/30/expected_whole"
       },
       "l5_failure_rule_refs": [
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/0",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/3",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/4",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/5",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/6"
+        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/3"
       ],
       "execution_state": "not_executed",
       "u_id": "U-CONNECT005-182"
@@ -6197,12 +5945,7 @@
         "pointer": "/independent_semantic_probes/31/expected_whole"
       },
       "l5_failure_rule_refs": [
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/0",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/3",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/4",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/5",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/6",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/7"
+        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/3"
       ],
       "execution_state": "not_executed",
       "u_id": "U-CONNECT005-183"
@@ -6233,12 +5976,7 @@
         "pointer": "/independent_semantic_probes/32/expected_whole"
       },
       "l5_failure_rule_refs": [
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/0",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/3",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/4",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/5",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/6",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/7"
+        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/3"
       ],
       "execution_state": "not_executed",
       "u_id": "U-CONNECT005-184"
@@ -6268,11 +6006,7 @@
         "revision": "c14adddf2678c7a69d76420c451df3f05b1251ab",
         "pointer": "/independent_semantic_probes/33/expected_whole"
       },
-      "l5_failure_rule_refs": [
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F01/failure_rules/2",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F01/failure_rules/8",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F01/failure_rules/9"
-      ],
+      "l5_failure_rule_refs": [],
       "execution_state": "not_executed",
       "u_id": "U-CONNECT005-185"
     },
@@ -6301,9 +6035,7 @@
         "revision": "c14adddf2678c7a69d76420c451df3f05b1251ab",
         "pointer": "/independent_semantic_probes/34/expected_whole"
       },
-      "l5_failure_rule_refs": [
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F01/failure_rules/9"
-      ],
+      "l5_failure_rule_refs": [],
       "execution_state": "not_executed",
       "u_id": "U-CONNECT005-186"
     },
@@ -6332,9 +6064,7 @@
         "revision": "c14adddf2678c7a69d76420c451df3f05b1251ab",
         "pointer": "/independent_semantic_probes/35/expected_whole"
       },
-      "l5_failure_rule_refs": [
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F01/failure_rules/9"
-      ],
+      "l5_failure_rule_refs": [],
       "execution_state": "not_executed",
       "u_id": "U-CONNECT005-187"
     },
@@ -6363,10 +6093,7 @@
         "revision": "c14adddf2678c7a69d76420c451df3f05b1251ab",
         "pointer": "/independent_semantic_probes/36/expected_whole"
       },
-      "l5_failure_rule_refs": [
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F01/failure_rules/6",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F01/failure_rules/9"
-      ],
+      "l5_failure_rule_refs": [],
       "execution_state": "not_executed",
       "u_id": "U-CONNECT005-188"
     },
@@ -6395,9 +6122,7 @@
         "revision": "c14adddf2678c7a69d76420c451df3f05b1251ab",
         "pointer": "/independent_semantic_probes/37/expected_whole"
       },
-      "l5_failure_rule_refs": [
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F01/failure_rules/9"
-      ],
+      "l5_failure_rule_refs": [],
       "execution_state": "not_executed",
       "u_id": "U-CONNECT005-189"
     },
@@ -6426,11 +6151,7 @@
         "revision": "c14adddf2678c7a69d76420c451df3f05b1251ab",
         "pointer": "/independent_semantic_probes/38/expected_whole"
       },
-      "l5_failure_rule_refs": [
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/3",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/4",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/5"
-      ],
+      "l5_failure_rule_refs": [],
       "execution_state": "not_executed",
       "u_id": "U-CONNECT005-190"
     },
@@ -6459,11 +6180,7 @@
         "revision": "c14adddf2678c7a69d76420c451df3f05b1251ab",
         "pointer": "/independent_semantic_probes/39/expected_whole"
       },
-      "l5_failure_rule_refs": [
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/3",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/4",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/5"
-      ],
+      "l5_failure_rule_refs": [],
       "execution_state": "not_executed",
       "u_id": "U-CONNECT005-191"
     },
@@ -6492,12 +6209,7 @@
         "revision": "c14adddf2678c7a69d76420c451df3f05b1251ab",
         "pointer": "/independent_semantic_probes/40/expected_whole"
       },
-      "l5_failure_rule_refs": [
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/3",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/4",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/5",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/7"
-      ],
+      "l5_failure_rule_refs": [],
       "execution_state": "not_executed",
       "u_id": "U-CONNECT005-192"
     },
@@ -6526,11 +6238,7 @@
         "revision": "c14adddf2678c7a69d76420c451df3f05b1251ab",
         "pointer": "/independent_semantic_probes/41/expected_whole"
       },
-      "l5_failure_rule_refs": [
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/3",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/4",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/5"
-      ],
+      "l5_failure_rule_refs": [],
       "execution_state": "not_executed",
       "u_id": "U-CONNECT005-193"
     },
@@ -6646,9 +6354,7 @@
         "revision": "c14adddf2678c7a69d76420c451df3f05b1251ab",
         "pointer": "/independent_semantic_probes/45/expected_whole"
       },
-      "l5_failure_rule_refs": [
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/N01/failure_rules/6"
-      ],
+      "l5_failure_rule_refs": [],
       "execution_state": "not_executed",
       "u_id": "U-CONNECT005-197"
     },
@@ -6678,11 +6384,6 @@
         "pointer": "/independent_semantic_probes/46/expected_whole"
       },
       "l5_failure_rule_refs": [
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/0",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/3",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/4",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/5",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/6",
         "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/7"
       ],
       "execution_state": "not_executed",
@@ -6714,11 +6415,6 @@
         "pointer": "/independent_semantic_probes/47/expected_whole"
       },
       "l5_failure_rule_refs": [
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/0",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/3",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/4",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/5",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/6",
         "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/7"
       ],
       "execution_state": "not_executed",
@@ -6750,11 +6446,6 @@
         "pointer": "/independent_semantic_probes/48/expected_whole"
       },
       "l5_failure_rule_refs": [
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/0",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/3",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/4",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/5",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/6",
         "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/7"
       ],
       "execution_state": "not_executed",
@@ -6786,11 +6477,6 @@
         "pointer": "/independent_semantic_probes/49/expected_whole"
       },
       "l5_failure_rule_refs": [
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/0",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/3",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/4",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/5",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/6",
         "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/7"
       ],
       "execution_state": "not_executed",
@@ -6822,11 +6508,6 @@
         "pointer": "/independent_semantic_probes/50/expected_whole"
       },
       "l5_failure_rule_refs": [
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/0",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/3",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/4",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/5",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/6",
         "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/7"
       ],
       "execution_state": "not_executed",
@@ -6857,7 +6538,9 @@
         "revision": "c14adddf2678c7a69d76420c451df3f05b1251ab",
         "pointer": "/independent_semantic_probes/51/expected_whole"
       },
-      "l5_failure_rule_refs": [],
+      "l5_failure_rule_refs": [
+        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/N01/failure_rules/6"
+      ],
       "execution_state": "not_executed",
       "u_id": "U-CONNECT005-203"
     },
@@ -6886,7 +6569,9 @@
         "revision": "c14adddf2678c7a69d76420c451df3f05b1251ab",
         "pointer": "/independent_semantic_probes/52/expected_whole"
       },
-      "l5_failure_rule_refs": [],
+      "l5_failure_rule_refs": [
+        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/N01/failure_rules/6"
+      ],
       "execution_state": "not_executed",
       "u_id": "U-CONNECT005-204"
     },
@@ -6915,7 +6600,9 @@
         "revision": "c14adddf2678c7a69d76420c451df3f05b1251ab",
         "pointer": "/independent_semantic_probes/53/expected_whole"
       },
-      "l5_failure_rule_refs": [],
+      "l5_failure_rule_refs": [
+        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/N01/failure_rules/6"
+      ],
       "execution_state": "not_executed",
       "u_id": "U-CONNECT005-205"
     },
@@ -6944,12 +6631,7 @@
         "revision": "c14adddf2678c7a69d76420c451df3f05b1251ab",
         "pointer": "/independent_semantic_probes/54/expected_whole"
       },
-      "l5_failure_rule_refs": [
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/0",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/3",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/4",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/5"
-      ],
+      "l5_failure_rule_refs": [],
       "execution_state": "not_executed",
       "u_id": "U-CONNECT005-206"
     },
@@ -6978,9 +6660,7 @@
         "revision": "c14adddf2678c7a69d76420c451df3f05b1251ab",
         "pointer": "/independent_semantic_probes/55/expected_whole"
       },
-      "l5_failure_rule_refs": [
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F01/failure_rules/9"
-      ],
+      "l5_failure_rule_refs": [],
       "execution_state": "not_executed",
       "u_id": "U-CONNECT005-207"
     },
@@ -7009,9 +6689,7 @@
         "revision": "c14adddf2678c7a69d76420c451df3f05b1251ab",
         "pointer": "/independent_semantic_probes/56/expected_whole"
       },
-      "l5_failure_rule_refs": [
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F01/failure_rules/9"
-      ],
+      "l5_failure_rule_refs": [],
       "execution_state": "not_executed",
       "u_id": "U-CONNECT005-208"
     },
@@ -7040,9 +6718,7 @@
         "revision": "c14adddf2678c7a69d76420c451df3f05b1251ab",
         "pointer": "/independent_semantic_probes/57/expected_whole"
       },
-      "l5_failure_rule_refs": [
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F01/failure_rules/9"
-      ],
+      "l5_failure_rule_refs": [],
       "execution_state": "not_executed",
       "u_id": "U-CONNECT005-209"
     },
@@ -7071,9 +6747,7 @@
         "revision": "c14adddf2678c7a69d76420c451df3f05b1251ab",
         "pointer": "/independent_semantic_probes/58/expected_whole"
       },
-      "l5_failure_rule_refs": [
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F01/failure_rules/9"
-      ],
+      "l5_failure_rule_refs": [],
       "execution_state": "not_executed",
       "u_id": "U-CONNECT005-210"
     },
@@ -7102,9 +6776,7 @@
         "revision": "c14adddf2678c7a69d76420c451df3f05b1251ab",
         "pointer": "/independent_semantic_probes/59/expected_whole"
       },
-      "l5_failure_rule_refs": [
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F01/failure_rules/9"
-      ],
+      "l5_failure_rule_refs": [],
       "execution_state": "not_executed",
       "u_id": "U-CONNECT005-211"
     },
@@ -7133,9 +6805,7 @@
         "revision": "c14adddf2678c7a69d76420c451df3f05b1251ab",
         "pointer": "/independent_semantic_probes/60/expected_whole"
       },
-      "l5_failure_rule_refs": [
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F01/failure_rules/9"
-      ],
+      "l5_failure_rule_refs": [],
       "execution_state": "not_executed",
       "u_id": "U-CONNECT005-212"
     },
@@ -7165,10 +6835,7 @@
         "pointer": "/independent_semantic_probes/61/expected_whole"
       },
       "l5_failure_rule_refs": [
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/0",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/3",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/4",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/5"
+        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/2"
       ],
       "execution_state": "not_executed",
       "u_id": "U-CONNECT005-213"
@@ -7199,9 +6866,6 @@
         "pointer": "/independent_semantic_probes/62/expected_whole"
       },
       "l5_failure_rule_refs": [
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F01/failure_rules/3",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F01/failure_rules/4",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F01/failure_rules/8",
         "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F01/failure_rules/9"
       ],
       "execution_state": "not_executed",
@@ -7233,9 +6897,6 @@
         "pointer": "/independent_semantic_probes/63/expected_whole"
       },
       "l5_failure_rule_refs": [
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F01/failure_rules/3",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F01/failure_rules/4",
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F01/failure_rules/8",
         "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F01/failure_rules/9"
       ],
       "execution_state": "not_executed",
@@ -7266,9 +6927,7 @@
         "revision": "c14adddf2678c7a69d76420c451df3f05b1251ab",
         "pointer": "/independent_semantic_probes/64/expected_whole"
       },
-      "l5_failure_rule_refs": [
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F01/failure_rules/9"
-      ],
+      "l5_failure_rule_refs": [],
       "execution_state": "not_executed",
       "u_id": "U-CONNECT005-216"
     },
@@ -7297,9 +6956,7 @@
         "revision": "c14adddf2678c7a69d76420c451df3f05b1251ab",
         "pointer": "/independent_semantic_probes/65/expected_whole"
       },
-      "l5_failure_rule_refs": [
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F01/failure_rules/9"
-      ],
+      "l5_failure_rule_refs": [],
       "execution_state": "not_executed",
       "u_id": "U-CONNECT005-217"
     },
@@ -7328,9 +6985,7 @@
         "revision": "c14adddf2678c7a69d76420c451df3f05b1251ab",
         "pointer": "/independent_semantic_probes/66/expected_whole"
       },
-      "l5_failure_rule_refs": [
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F01/failure_rules/9"
-      ],
+      "l5_failure_rule_refs": [],
       "execution_state": "not_executed",
       "u_id": "U-CONNECT005-218"
     },
@@ -7359,9 +7014,7 @@
         "revision": "c14adddf2678c7a69d76420c451df3f05b1251ab",
         "pointer": "/independent_semantic_probes/67/expected_whole"
       },
-      "l5_failure_rule_refs": [
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F01/failure_rules/9"
-      ],
+      "l5_failure_rule_refs": [],
       "execution_state": "not_executed",
       "u_id": "U-CONNECT005-219"
     },
@@ -7390,9 +7043,7 @@
         "revision": "c14adddf2678c7a69d76420c451df3f05b1251ab",
         "pointer": "/cross_field_type_constraints/probes/0/expected_constraints"
       },
-      "l5_failure_rule_refs": [
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/6"
-      ],
+      "l5_failure_rule_refs": [],
       "execution_state": "not_executed",
       "u_id": "U-CONNECT005-220"
     },
@@ -7421,9 +7072,7 @@
         "revision": "c14adddf2678c7a69d76420c451df3f05b1251ab",
         "pointer": "/cross_field_type_constraints/probes/1/expected_constraints"
       },
-      "l5_failure_rule_refs": [
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/6"
-      ],
+      "l5_failure_rule_refs": [],
       "execution_state": "not_executed",
       "u_id": "U-CONNECT005-221"
     },
@@ -7452,9 +7101,7 @@
         "revision": "c14adddf2678c7a69d76420c451df3f05b1251ab",
         "pointer": "/cross_field_type_constraints/probes/2/expected_constraints"
       },
-      "l5_failure_rule_refs": [
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/6"
-      ],
+      "l5_failure_rule_refs": [],
       "execution_state": "not_executed",
       "u_id": "U-CONNECT005-222"
     },
@@ -7483,9 +7130,7 @@
         "revision": "c14adddf2678c7a69d76420c451df3f05b1251ab",
         "pointer": "/cross_field_type_constraints/probes/3/expected_constraints"
       },
-      "l5_failure_rule_refs": [
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/6"
-      ],
+      "l5_failure_rule_refs": [],
       "execution_state": "not_executed",
       "u_id": "U-CONNECT005-223"
     },
@@ -7514,9 +7159,7 @@
         "revision": "c14adddf2678c7a69d76420c451df3f05b1251ab",
         "pointer": "/cross_field_type_constraints/probes/4/expected_constraints"
       },
-      "l5_failure_rule_refs": [
-        "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/6"
-      ],
+      "l5_failure_rule_refs": [],
       "execution_state": "not_executed",
       "u_id": "U-CONNECT005-224"
     }
@@ -7539,9 +7182,10 @@
           "U-CONNECT005-006",
           "U-CONNECT005-007",
           "U-CONNECT005-008",
-          "U-CONNECT005-009"
+          "U-CONNECT005-009",
+          "U-CONNECT005-041"
         ],
-        "coverage_state": "candidate_rows_present"
+        "coverage_state": "semantically_supported_by_fixed_source"
       },
       "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F01/failure_rules/1": {
         "function_ref": "FN-CONNECT005-F01",
@@ -7554,148 +7198,99 @@
           "U-CONNECT005-014",
           "U-CONNECT005-015",
           "U-CONNECT005-016",
-          "U-CONNECT005-017"
+          "U-CONNECT005-017",
+          "U-CONNECT005-019",
+          "U-CONNECT005-024",
+          "U-CONNECT005-039"
         ],
-        "coverage_state": "candidate_rows_present"
+        "coverage_state": "semantically_supported_by_fixed_source"
       },
       "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F01/failure_rules/2": {
         "function_ref": "FN-CONNECT005-F01",
         "failure_rule_index": 2,
         "candidate_u_ids": [
           "U-CONNECT005-018",
-          "U-CONNECT005-040",
-          "U-CONNECT005-157",
-          "U-CONNECT005-168",
-          "U-CONNECT005-185"
+          "U-CONNECT005-040"
         ],
-        "coverage_state": "candidate_rows_present"
+        "coverage_state": "semantically_supported_by_fixed_source"
       },
       "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F01/failure_rules/3": {
         "function_ref": "FN-CONNECT005-F01",
         "failure_rule_index": 3,
         "candidate_u_ids": [
-          "U-CONNECT005-001",
-          "U-CONNECT005-011",
-          "U-CONNECT005-018",
           "U-CONNECT005-019",
           "U-CONNECT005-020",
-          "U-CONNECT005-021",
-          "U-CONNECT005-022",
-          "U-CONNECT005-040",
-          "U-CONNECT005-214",
-          "U-CONNECT005-215"
+          "U-CONNECT005-155"
         ],
-        "coverage_state": "candidate_rows_present"
+        "coverage_state": "semantically_supported_by_fixed_source"
       },
       "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F01/failure_rules/4": {
         "function_ref": "FN-CONNECT005-F01",
         "failure_rule_index": 4,
         "candidate_u_ids": [
           "U-CONNECT005-018",
-          "U-CONNECT005-019",
-          "U-CONNECT005-020",
           "U-CONNECT005-021",
           "U-CONNECT005-040",
-          "U-CONNECT005-168",
-          "U-CONNECT005-176",
-          "U-CONNECT005-177",
-          "U-CONNECT005-214",
-          "U-CONNECT005-215"
+          "U-CONNECT005-155",
+          "U-CONNECT005-177"
         ],
-        "coverage_state": "candidate_rows_present"
+        "coverage_state": "semantically_supported_by_fixed_source"
       },
       "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F01/failure_rules/5": {
         "function_ref": "FN-CONNECT005-F01",
         "failure_rule_index": 5,
         "candidate_u_ids": [
-          "U-CONNECT005-025",
-          "U-CONNECT005-036"
+          "U-CONNECT005-025"
         ],
-        "coverage_state": "candidate_rows_present"
+        "coverage_state": "semantically_supported_by_fixed_source"
       },
       "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F01/failure_rules/6": {
         "function_ref": "FN-CONNECT005-F01",
         "failure_rule_index": 6,
         "candidate_u_ids": [
+          "U-CONNECT005-010",
+          "U-CONNECT005-011",
+          "U-CONNECT005-012",
+          "U-CONNECT005-013",
+          "U-CONNECT005-014",
+          "U-CONNECT005-015",
+          "U-CONNECT005-016",
+          "U-CONNECT005-017",
+          "U-CONNECT005-022",
+          "U-CONNECT005-025",
           "U-CONNECT005-039",
-          "U-CONNECT005-188"
+          "U-CONNECT005-155"
         ],
-        "coverage_state": "candidate_rows_present"
+        "coverage_state": "semantically_supported_by_fixed_source"
       },
       "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F01/failure_rules/7": {
         "function_ref": "FN-CONNECT005-F01",
         "failure_rule_index": 7,
         "candidate_u_ids": [
-          "U-CONNECT005-014",
           "U-CONNECT005-024"
         ],
-        "coverage_state": "candidate_rows_present"
+        "coverage_state": "semantically_supported_by_fixed_source"
       },
       "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F01/failure_rules/8": {
         "function_ref": "FN-CONNECT005-F01",
         "failure_rule_index": 8,
         "candidate_u_ids": [
-          "U-CONNECT005-018",
-          "U-CONNECT005-040",
           "U-CONNECT005-155",
-          "U-CONNECT005-168",
-          "U-CONNECT005-176",
-          "U-CONNECT005-177",
-          "U-CONNECT005-185",
-          "U-CONNECT005-214",
-          "U-CONNECT005-215"
+          "U-CONNECT005-157"
         ],
-        "coverage_state": "candidate_rows_present"
+        "coverage_state": "semantically_supported_by_fixed_source"
       },
       "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F01/failure_rules/9": {
         "function_ref": "FN-CONNECT005-F01",
         "failure_rule_index": 9,
         "candidate_u_ids": [
-          "U-CONNECT005-001",
           "U-CONNECT005-023",
-          "U-CONNECT005-026",
-          "U-CONNECT005-027",
-          "U-CONNECT005-028",
-          "U-CONNECT005-029",
-          "U-CONNECT005-030",
-          "U-CONNECT005-031",
-          "U-CONNECT005-032",
-          "U-CONNECT005-033",
-          "U-CONNECT005-034",
-          "U-CONNECT005-035",
-          "U-CONNECT005-036",
-          "U-CONNECT005-037",
-          "U-CONNECT005-038",
-          "U-CONNECT005-042",
           "U-CONNECT005-155",
           "U-CONNECT005-156",
-          "U-CONNECT005-157",
-          "U-CONNECT005-162",
-          "U-CONNECT005-163",
-          "U-CONNECT005-164",
-          "U-CONNECT005-168",
-          "U-CONNECT005-169",
-          "U-CONNECT005-176",
-          "U-CONNECT005-177",
-          "U-CONNECT005-185",
-          "U-CONNECT005-186",
-          "U-CONNECT005-187",
-          "U-CONNECT005-188",
-          "U-CONNECT005-189",
-          "U-CONNECT005-207",
-          "U-CONNECT005-208",
-          "U-CONNECT005-209",
-          "U-CONNECT005-210",
-          "U-CONNECT005-211",
-          "U-CONNECT005-212",
           "U-CONNECT005-214",
-          "U-CONNECT005-215",
-          "U-CONNECT005-216",
-          "U-CONNECT005-217",
-          "U-CONNECT005-218",
-          "U-CONNECT005-219"
+          "U-CONNECT005-215"
         ],
-        "coverage_state": "candidate_rows_present"
+        "coverage_state": "semantically_supported_by_fixed_source"
       },
       "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/0": {
         "function_ref": "FN-CONNECT005-F02",
@@ -7710,36 +7305,8 @@
           "U-CONNECT005-062",
           "U-CONNECT005-063",
           "U-CONNECT005-064",
-          "U-CONNECT005-099",
-          "U-CONNECT005-100",
-          "U-CONNECT005-101",
-          "U-CONNECT005-102",
-          "U-CONNECT005-103",
-          "U-CONNECT005-104",
-          "U-CONNECT005-105",
-          "U-CONNECT005-106",
-          "U-CONNECT005-107",
-          "U-CONNECT005-108",
-          "U-CONNECT005-109",
-          "U-CONNECT005-110",
-          "U-CONNECT005-111",
-          "U-CONNECT005-112",
-          "U-CONNECT005-113",
-          "U-CONNECT005-114",
-          "U-CONNECT005-115",
-          "U-CONNECT005-116",
-          "U-CONNECT005-117",
-          "U-CONNECT005-118",
-          "U-CONNECT005-119",
-          "U-CONNECT005-120",
-          "U-CONNECT005-146",
-          "U-CONNECT005-147",
-          "U-CONNECT005-148",
-          "U-CONNECT005-152",
-          "U-CONNECT005-153",
           "U-CONNECT005-158",
           "U-CONNECT005-159",
-          "U-CONNECT005-165",
           "U-CONNECT005-166",
           "U-CONNECT005-167",
           "U-CONNECT005-170",
@@ -7747,23 +7314,9 @@
           "U-CONNECT005-172",
           "U-CONNECT005-173",
           "U-CONNECT005-174",
-          "U-CONNECT005-175",
-          "U-CONNECT005-178",
-          "U-CONNECT005-179",
-          "U-CONNECT005-180",
-          "U-CONNECT005-181",
-          "U-CONNECT005-182",
-          "U-CONNECT005-183",
-          "U-CONNECT005-184",
-          "U-CONNECT005-198",
-          "U-CONNECT005-199",
-          "U-CONNECT005-200",
-          "U-CONNECT005-201",
-          "U-CONNECT005-202",
-          "U-CONNECT005-206",
-          "U-CONNECT005-213"
+          "U-CONNECT005-175"
         ],
-        "coverage_state": "candidate_rows_present"
+        "coverage_state": "semantically_supported_by_fixed_source"
       },
       "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/1": {
         "function_ref": "FN-CONNECT005-F02",
@@ -7771,221 +7324,51 @@
         "candidate_u_ids": [
           "U-CONNECT005-054",
           "U-CONNECT005-055",
-          "U-CONNECT005-056",
-          "U-CONNECT005-099",
-          "U-CONNECT005-100",
-          "U-CONNECT005-101",
-          "U-CONNECT005-102",
-          "U-CONNECT005-103",
-          "U-CONNECT005-104",
-          "U-CONNECT005-105",
-          "U-CONNECT005-106",
-          "U-CONNECT005-107",
-          "U-CONNECT005-146"
+          "U-CONNECT005-056"
         ],
-        "coverage_state": "candidate_rows_present"
+        "coverage_state": "semantically_supported_by_fixed_source"
       },
       "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/2": {
         "function_ref": "FN-CONNECT005-F02",
         "failure_rule_index": 2,
         "candidate_u_ids": [
-          "U-CONNECT005-113",
-          "U-CONNECT005-114",
-          "U-CONNECT005-115",
-          "U-CONNECT005-116",
-          "U-CONNECT005-117",
-          "U-CONNECT005-118",
-          "U-CONNECT005-119",
-          "U-CONNECT005-120",
-          "U-CONNECT005-148"
+          "U-CONNECT005-213"
         ],
-        "coverage_state": "candidate_rows_present"
+        "coverage_state": "semantically_supported_by_fixed_source"
       },
       "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/3": {
         "function_ref": "FN-CONNECT005-F02",
         "failure_rule_index": 3,
         "candidate_u_ids": [
-          "U-CONNECT005-043",
-          "U-CONNECT005-044",
-          "U-CONNECT005-045",
-          "U-CONNECT005-046",
-          "U-CONNECT005-047",
-          "U-CONNECT005-048",
-          "U-CONNECT005-060",
-          "U-CONNECT005-108",
-          "U-CONNECT005-109",
-          "U-CONNECT005-110",
-          "U-CONNECT005-111",
-          "U-CONNECT005-112",
-          "U-CONNECT005-147",
           "U-CONNECT005-152",
-          "U-CONNECT005-153",
-          "U-CONNECT005-158",
-          "U-CONNECT005-159",
-          "U-CONNECT005-165",
-          "U-CONNECT005-166",
-          "U-CONNECT005-167",
-          "U-CONNECT005-170",
-          "U-CONNECT005-171",
-          "U-CONNECT005-172",
-          "U-CONNECT005-173",
-          "U-CONNECT005-174",
-          "U-CONNECT005-175",
-          "U-CONNECT005-178",
-          "U-CONNECT005-179",
-          "U-CONNECT005-180",
-          "U-CONNECT005-181",
           "U-CONNECT005-182",
           "U-CONNECT005-183",
-          "U-CONNECT005-184",
-          "U-CONNECT005-190",
-          "U-CONNECT005-191",
-          "U-CONNECT005-192",
-          "U-CONNECT005-193",
-          "U-CONNECT005-198",
-          "U-CONNECT005-199",
-          "U-CONNECT005-200",
-          "U-CONNECT005-201",
-          "U-CONNECT005-202",
-          "U-CONNECT005-206",
-          "U-CONNECT005-213"
+          "U-CONNECT005-184"
         ],
-        "coverage_state": "candidate_rows_present"
+        "coverage_state": "semantically_supported_by_fixed_source"
       },
       "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/4": {
         "function_ref": "FN-CONNECT005-F02",
         "failure_rule_index": 4,
         "candidate_u_ids": [
-          "U-CONNECT005-043",
-          "U-CONNECT005-044",
-          "U-CONNECT005-045",
-          "U-CONNECT005-046",
-          "U-CONNECT005-047",
-          "U-CONNECT005-048",
-          "U-CONNECT005-060",
-          "U-CONNECT005-099",
-          "U-CONNECT005-100",
-          "U-CONNECT005-101",
-          "U-CONNECT005-102",
-          "U-CONNECT005-103",
-          "U-CONNECT005-104",
-          "U-CONNECT005-105",
-          "U-CONNECT005-106",
-          "U-CONNECT005-107",
-          "U-CONNECT005-113",
-          "U-CONNECT005-114",
-          "U-CONNECT005-115",
-          "U-CONNECT005-116",
-          "U-CONNECT005-117",
-          "U-CONNECT005-118",
-          "U-CONNECT005-119",
-          "U-CONNECT005-120",
-          "U-CONNECT005-146",
-          "U-CONNECT005-148",
-          "U-CONNECT005-152",
           "U-CONNECT005-153",
-          "U-CONNECT005-158",
-          "U-CONNECT005-159",
-          "U-CONNECT005-165",
-          "U-CONNECT005-166",
-          "U-CONNECT005-167",
-          "U-CONNECT005-170",
-          "U-CONNECT005-171",
-          "U-CONNECT005-172",
-          "U-CONNECT005-173",
-          "U-CONNECT005-174",
-          "U-CONNECT005-175",
-          "U-CONNECT005-178",
-          "U-CONNECT005-179",
-          "U-CONNECT005-180",
-          "U-CONNECT005-181",
-          "U-CONNECT005-182",
-          "U-CONNECT005-183",
-          "U-CONNECT005-184",
-          "U-CONNECT005-190",
-          "U-CONNECT005-191",
-          "U-CONNECT005-192",
-          "U-CONNECT005-193",
-          "U-CONNECT005-198",
-          "U-CONNECT005-199",
-          "U-CONNECT005-200",
-          "U-CONNECT005-201",
-          "U-CONNECT005-202",
-          "U-CONNECT005-206",
-          "U-CONNECT005-213"
+          "U-CONNECT005-179"
         ],
-        "coverage_state": "candidate_rows_present"
+        "coverage_state": "semantically_supported_by_fixed_source"
       },
       "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/5": {
         "function_ref": "FN-CONNECT005-F02",
         "failure_rule_index": 5,
         "candidate_u_ids": [
-          "U-CONNECT005-043",
-          "U-CONNECT005-044",
-          "U-CONNECT005-045",
-          "U-CONNECT005-046",
-          "U-CONNECT005-047",
-          "U-CONNECT005-048",
           "U-CONNECT005-057",
-          "U-CONNECT005-058",
-          "U-CONNECT005-060",
-          "U-CONNECT005-099",
-          "U-CONNECT005-100",
-          "U-CONNECT005-101",
-          "U-CONNECT005-102",
-          "U-CONNECT005-103",
-          "U-CONNECT005-104",
-          "U-CONNECT005-105",
-          "U-CONNECT005-106",
-          "U-CONNECT005-107",
-          "U-CONNECT005-146",
-          "U-CONNECT005-152",
-          "U-CONNECT005-153",
-          "U-CONNECT005-158",
-          "U-CONNECT005-159",
-          "U-CONNECT005-165",
-          "U-CONNECT005-166",
-          "U-CONNECT005-167",
-          "U-CONNECT005-170",
-          "U-CONNECT005-171",
-          "U-CONNECT005-172",
-          "U-CONNECT005-173",
-          "U-CONNECT005-174",
-          "U-CONNECT005-175",
-          "U-CONNECT005-178",
-          "U-CONNECT005-179",
-          "U-CONNECT005-180",
-          "U-CONNECT005-181",
-          "U-CONNECT005-182",
-          "U-CONNECT005-183",
-          "U-CONNECT005-184",
-          "U-CONNECT005-190",
-          "U-CONNECT005-191",
-          "U-CONNECT005-192",
-          "U-CONNECT005-193",
-          "U-CONNECT005-198",
-          "U-CONNECT005-199",
-          "U-CONNECT005-200",
-          "U-CONNECT005-201",
-          "U-CONNECT005-202",
-          "U-CONNECT005-206",
-          "U-CONNECT005-213"
+          "U-CONNECT005-058"
         ],
-        "coverage_state": "candidate_rows_present"
+        "coverage_state": "semantically_supported_by_fixed_source"
       },
       "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/6": {
         "function_ref": "FN-CONNECT005-F02",
         "failure_rule_index": 6,
         "candidate_u_ids": [
-          "U-CONNECT005-049",
-          "U-CONNECT005-091",
-          "U-CONNECT005-092",
-          "U-CONNECT005-093",
-          "U-CONNECT005-094",
-          "U-CONNECT005-095",
-          "U-CONNECT005-096",
-          "U-CONNECT005-097",
-          "U-CONNECT005-098",
           "U-CONNECT005-099",
           "U-CONNECT005-100",
           "U-CONNECT005-101",
@@ -8008,151 +7391,6 @@
           "U-CONNECT005-118",
           "U-CONNECT005-119",
           "U-CONNECT005-120",
-          "U-CONNECT005-145",
-          "U-CONNECT005-146",
-          "U-CONNECT005-147",
-          "U-CONNECT005-148",
-          "U-CONNECT005-152",
-          "U-CONNECT005-158",
-          "U-CONNECT005-159",
-          "U-CONNECT005-165",
-          "U-CONNECT005-166",
-          "U-CONNECT005-167",
-          "U-CONNECT005-170",
-          "U-CONNECT005-171",
-          "U-CONNECT005-172",
-          "U-CONNECT005-173",
-          "U-CONNECT005-174",
-          "U-CONNECT005-175",
-          "U-CONNECT005-178",
-          "U-CONNECT005-180",
-          "U-CONNECT005-181",
-          "U-CONNECT005-182",
-          "U-CONNECT005-183",
-          "U-CONNECT005-184",
-          "U-CONNECT005-198",
-          "U-CONNECT005-199",
-          "U-CONNECT005-200",
-          "U-CONNECT005-201",
-          "U-CONNECT005-202",
-          "U-CONNECT005-220",
-          "U-CONNECT005-221",
-          "U-CONNECT005-222",
-          "U-CONNECT005-223",
-          "U-CONNECT005-224"
-        ],
-        "coverage_state": "candidate_rows_present"
-      },
-      "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/7": {
-        "function_ref": "FN-CONNECT005-F02",
-        "failure_rule_index": 7,
-        "candidate_u_ids": [
-          "U-CONNECT005-043",
-          "U-CONNECT005-048",
-          "U-CONNECT005-049",
-          "U-CONNECT005-059",
-          "U-CONNECT005-062",
-          "U-CONNECT005-108",
-          "U-CONNECT005-109",
-          "U-CONNECT005-110",
-          "U-CONNECT005-111",
-          "U-CONNECT005-112",
-          "U-CONNECT005-147",
-          "U-CONNECT005-152",
-          "U-CONNECT005-158",
-          "U-CONNECT005-159",
-          "U-CONNECT005-165",
-          "U-CONNECT005-178",
-          "U-CONNECT005-180",
-          "U-CONNECT005-181",
-          "U-CONNECT005-183",
-          "U-CONNECT005-184",
-          "U-CONNECT005-192",
-          "U-CONNECT005-198",
-          "U-CONNECT005-199",
-          "U-CONNECT005-200",
-          "U-CONNECT005-201",
-          "U-CONNECT005-202"
-        ],
-        "coverage_state": "candidate_rows_present"
-      },
-      "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/8": {
-        "function_ref": "FN-CONNECT005-F02",
-        "failure_rule_index": 8,
-        "candidate_u_ids": [
-          "U-CONNECT005-178"
-        ],
-        "coverage_state": "candidate_rows_present"
-      },
-      "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/9": {
-        "function_ref": "FN-CONNECT005-F02",
-        "failure_rule_index": 9,
-        "candidate_u_ids": [
-          "U-CONNECT005-179"
-        ],
-        "coverage_state": "candidate_rows_present"
-      },
-      "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/N01/failure_rules/0": {
-        "function_ref": "FN-CONNECT005-N01",
-        "failure_rule_index": 0,
-        "candidate_u_ids": [
-          "U-CONNECT005-066",
-          "U-CONNECT005-067",
-          "U-CONNECT005-068"
-        ],
-        "coverage_state": "candidate_rows_present"
-      },
-      "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/N01/failure_rules/1": {
-        "function_ref": "FN-CONNECT005-N01",
-        "failure_rule_index": 1,
-        "candidate_u_ids": [
-          "U-CONNECT005-069",
-          "U-CONNECT005-070",
-          "U-CONNECT005-071",
-          "U-CONNECT005-072",
-          "U-CONNECT005-073",
-          "U-CONNECT005-074",
-          "U-CONNECT005-075",
-          "U-CONNECT005-076",
-          "U-CONNECT005-077",
-          "U-CONNECT005-078",
-          "U-CONNECT005-079",
-          "U-CONNECT005-089",
-          "U-CONNECT005-090",
-          "U-CONNECT005-160",
-          "U-CONNECT005-161"
-        ],
-        "coverage_state": "candidate_rows_present"
-      },
-      "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/N01/failure_rules/2": {
-        "function_ref": "FN-CONNECT005-N01",
-        "failure_rule_index": 2,
-        "candidate_u_ids": [
-          "U-CONNECT005-069",
-          "U-CONNECT005-070",
-          "U-CONNECT005-071",
-          "U-CONNECT005-072",
-          "U-CONNECT005-073",
-          "U-CONNECT005-074",
-          "U-CONNECT005-075",
-          "U-CONNECT005-078"
-        ],
-        "coverage_state": "candidate_rows_present"
-      },
-      "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/N01/failure_rules/3": {
-        "function_ref": "FN-CONNECT005-N01",
-        "failure_rule_index": 3,
-        "candidate_u_ids": [
-          "U-CONNECT005-080",
-          "U-CONNECT005-081",
-          "U-CONNECT005-082"
-        ],
-        "coverage_state": "candidate_rows_present"
-      },
-      "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/N01/failure_rules/4": {
-        "function_ref": "FN-CONNECT005-N01",
-        "failure_rule_index": 4,
-        "candidate_u_ids": [
           "U-CONNECT005-129",
           "U-CONNECT005-130",
           "U-CONNECT005-131",
@@ -8169,10 +7407,118 @@
           "U-CONNECT005-142",
           "U-CONNECT005-143",
           "U-CONNECT005-144",
+          "U-CONNECT005-146",
+          "U-CONNECT005-147",
+          "U-CONNECT005-148",
           "U-CONNECT005-150",
-          "U-CONNECT005-151"
+          "U-CONNECT005-151",
+          "U-CONNECT005-155",
+          "U-CONNECT005-157",
+          "U-CONNECT005-158",
+          "U-CONNECT005-159",
+          "U-CONNECT005-160",
+          "U-CONNECT005-161",
+          "U-CONNECT005-166",
+          "U-CONNECT005-167",
+          "U-CONNECT005-170",
+          "U-CONNECT005-171",
+          "U-CONNECT005-172",
+          "U-CONNECT005-173",
+          "U-CONNECT005-174",
+          "U-CONNECT005-175"
         ],
-        "coverage_state": "candidate_rows_present"
+        "coverage_state": "semantically_supported_by_fixed_source"
+      },
+      "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/7": {
+        "function_ref": "FN-CONNECT005-F02",
+        "failure_rule_index": 7,
+        "candidate_u_ids": [
+          "U-CONNECT005-059",
+          "U-CONNECT005-180",
+          "U-CONNECT005-198",
+          "U-CONNECT005-199",
+          "U-CONNECT005-200",
+          "U-CONNECT005-201",
+          "U-CONNECT005-202"
+        ],
+        "coverage_state": "semantically_supported_by_fixed_source"
+      },
+      "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/8": {
+        "function_ref": "FN-CONNECT005-F02",
+        "failure_rule_index": 8,
+        "candidate_u_ids": [
+          "U-CONNECT005-178"
+        ],
+        "coverage_state": "semantically_supported_by_fixed_source"
+      },
+      "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/F02/failure_rules/9": {
+        "function_ref": "FN-CONNECT005-F02",
+        "failure_rule_index": 9,
+        "candidate_u_ids": [
+          "U-CONNECT005-179"
+        ],
+        "coverage_state": "semantically_supported_by_fixed_source"
+      },
+      "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/N01/failure_rules/0": {
+        "function_ref": "FN-CONNECT005-N01",
+        "failure_rule_index": 0,
+        "candidate_u_ids": [
+          "U-CONNECT005-066",
+          "U-CONNECT005-067",
+          "U-CONNECT005-068"
+        ],
+        "coverage_state": "semantically_supported_by_fixed_source"
+      },
+      "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/N01/failure_rules/1": {
+        "function_ref": "FN-CONNECT005-N01",
+        "failure_rule_index": 1,
+        "candidate_u_ids": [
+          "U-CONNECT005-070",
+          "U-CONNECT005-071",
+          "U-CONNECT005-072",
+          "U-CONNECT005-073",
+          "U-CONNECT005-074",
+          "U-CONNECT005-075",
+          "U-CONNECT005-076",
+          "U-CONNECT005-077",
+          "U-CONNECT005-078",
+          "U-CONNECT005-079",
+          "U-CONNECT005-089",
+          "U-CONNECT005-090",
+          "U-CONNECT005-160",
+          "U-CONNECT005-161"
+        ],
+        "coverage_state": "semantically_supported_by_fixed_source"
+      },
+      "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/N01/failure_rules/2": {
+        "function_ref": "FN-CONNECT005-N01",
+        "failure_rule_index": 2,
+        "candidate_u_ids": [
+          "U-CONNECT005-069",
+          "U-CONNECT005-078"
+        ],
+        "coverage_state": "semantically_supported_by_fixed_source"
+      },
+      "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/N01/failure_rules/3": {
+        "function_ref": "FN-CONNECT005-N01",
+        "failure_rule_index": 3,
+        "candidate_u_ids": [
+          "U-CONNECT005-080",
+          "U-CONNECT005-081",
+          "U-CONNECT005-082"
+        ],
+        "coverage_state": "semantically_supported_by_fixed_source"
+      },
+      "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/N01/failure_rules/4": {
+        "function_ref": "FN-CONNECT005-N01",
+        "failure_rule_index": 4,
+        "candidate_u_ids": [
+          "U-CONNECT005-083",
+          "U-CONNECT005-084",
+          "U-CONNECT005-085",
+          "U-CONNECT005-088"
+        ],
+        "coverage_state": "semantically_supported_by_fixed_source"
       },
       "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/N01/failure_rules/5": {
         "function_ref": "FN-CONNECT005-N01",
@@ -8181,25 +7527,22 @@
           "U-CONNECT005-086",
           "U-CONNECT005-087"
         ],
-        "coverage_state": "candidate_rows_present"
+        "coverage_state": "semantically_supported_by_fixed_source"
       },
       "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json#/branch_tables/N01/failure_rules/6": {
         "function_ref": "FN-CONNECT005-N01",
         "failure_rule_index": 6,
         "candidate_u_ids": [
+          "U-CONNECT005-083",
+          "U-CONNECT005-084",
+          "U-CONNECT005-085",
           "U-CONNECT005-088",
-          "U-CONNECT005-137",
-          "U-CONNECT005-138",
-          "U-CONNECT005-139",
-          "U-CONNECT005-140",
-          "U-CONNECT005-141",
-          "U-CONNECT005-142",
-          "U-CONNECT005-143",
-          "U-CONNECT005-144",
-          "U-CONNECT005-151",
-          "U-CONNECT005-197"
+          "U-CONNECT005-154",
+          "U-CONNECT005-203",
+          "U-CONNECT005-204",
+          "U-CONNECT005-205"
         ],
-        "coverage_state": "candidate_rows_present"
+        "coverage_state": "semantically_supported_by_fixed_source"
       }
     },
     "l9_declared_case_count_before": 90,

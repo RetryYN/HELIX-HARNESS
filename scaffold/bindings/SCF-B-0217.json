@@ -21,7 +21,7 @@
     {
       "path": "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json",
       "sha256": "2d3740e4226efa6c2888a008cf4950e0d1267a1bb9bfdeb54e8b8a95c7033a53",
-      "note": "L5 public functions and failure-rule coverage; base revision pinned."
+      "note": "L5 public functions and all 27 failure-rule when/emit definitions; candidate row links are admitted only when fixed-source expected findings match the rule condition witness and emitted area/field/result/owner; base revision pinned."
     },
     {
       "path": "docs/helix-connect/L9-integration-verification/technical-trace-handoff-custody.json",
@@ -55,7 +55,7 @@
     "Keep L10 contract oracle identity on each row; row oracle and test citation stay null because the fixed source does not provide them.",
     "Keep all rows not_executed and preserve existing top-level boundary and unverified states; do not infer approval or completion.",
     "Keep each formal L8 expected_result as a concise row-specific semantic statement; shared responsibility, key L3/L4/L5/L10 adjudication and non-generation states, unverified, and effect boundaries occur once. State in method that the table does not evaluate L5 AST, execute tests, or claim pass/fail. Store fixed-source row-by-row semantic projections, hashes, and comparison deltas in source-semantic-audit.json, generated and checked by the validator; no reconstructed baseline or full return remains in L8.",
-    "Record L5 failure-rule coverage and L8 ownership cap; do not modify L3/L4/L5/L9/L10 or execute old runtime, CLI, hooks, tests, or CI.",
+    "Record L5 failure-rule coverage only for row/source expectations whose condition witness and expected emission match the fixed L5 when/emit; mark rules without a fixed-source demonstration as unverified rather than inventing cases. Check all 27 rule definitions and exact row refs; do not modify L3/L4/L5/L9/L10 or execute old runtime, CLI, hooks, tests, or CI.",
     "Retain legacy comparison to LEGACY-ASSET-C3DE79BA9451172F3E43 and LEGACY-ASSET-DD66C1B6B7BE234B37E6, including preserved and changed points; legacy assets are read-only references."
   ],
   "connections": {
@@ -100,7 +100,7 @@
       "Fixed base c14adddf2678c7a69d76420c451df3f05b1251ab with source row IDs and pointers; L9 whole expected-material hashes retained.",
       "L3/L4/L5/L9/L10 source boundary and L10 oracle mapping.",
       "All 224 formal concise expected_result values and shared F01/F02/N01 state/non-generation boundaries are checked against fixed L3/L4/L5/L10 sources and row projections in scaffold audit; all 5 cross-field type probes are checked for exact value/ref/expectation/unexecuted state.",
-      "All unchanged top-level boundaries, revised method boundary, L3/L4/L5/L10 common contract outcomes, L5 failure-rule coverage, L8 ownership cap, concise formal expectations, and source-audit row projection/delta counts.",
+      "All unchanged top-level boundaries, revised method boundary, L3/L4/L5/L10 common contract outcomes, exact condition/emit matching for all 27 L5 failure rules against row-specific source expectations and local expected findings, L8 ownership cap, concise formal expectations, and source-audit row projection/delta counts.",
       "scfctl validate/stale and generic check-child result captured without treating not_evaluated as pass."
     ],
     "negative_cases": [
