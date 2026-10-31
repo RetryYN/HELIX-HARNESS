@@ -222,7 +222,7 @@
   "integration_ref": "HELIXCONNECT-L9-007",
   "method": {
     "kind": "static_u_id_oracle_index",
-    "rule": "各source caseは固定L9 case ID/basis/source pointer/独立expected pointerへ結ぶ。local probeはpatch pathと期待差分fieldを列挙し、L5/L9と独立oracle roleへ対応付ける。raw fixtureと全返却値は重複保存しない。",
+    "rule": "91件のsource caseは固定L9 case ID・basis・source pointer・独立expected pointerへ結ぶ。各caseのU-IDにはL5 function/rule参照と短い行別期待を付ける。local probeはsource case/pointer、固有の反例・期待判断、未実行境界を記す。固定基準revisionはvalidatorによる由来・rule coverageの静的比較に限り、patchや返却差分全体を再現しない。raw fixture、全返却値、L7 test fixture/caseはここへ複製しない。",
     "execution_state": "not_executed_static_index_only_not_product_execution"
   },
   "cases": [
@@ -5691,10 +5691,9 @@
     }
   ],
   "local_probe_contract": {
-    "source": "各local probeは指定L9 source caseに対する入力patchの局所比較。source pointerとbaseline oracle pointerは保持する。",
-    "expectation": "各局所probeの独立expected delta (op/path/value) とbasisを保持する。大きな値が固定L9/L4 source内と同値なら`source_ref`で参照し、それ以外の差分は値を保持する。baseline wholeはL9 pointer参照。raw fixture・fixture hashは保持しない。",
-    "boundary": "not_executed; synthetic fixture comparison only; no source qualification, authority, connection effect, CI, or Ready.",
-    "input_patch": "行にはop/pathだけを記し、large fixture valueを再複製しない。"
+    "source": "各局所probeは固定L9 source caseとpointerを示す。現行L8では入力変更列を保持せず、対象を識別できる短い反例と期待判断を記録する。",
+    "expectation": "probeの短い期待判断はL3/L4/L5契約と固定sourceの対象条件に照らす。基準revisionの旧記録は由来・rule coverageのvalidator比較だけに使い、op/path/valueのpatchやfull expected deltaをL8へ戻さない。元sourceのwhole oracleは91件のL9 expected pointerから参照する。",
+    "boundary": "全probeはnot_executed。DT-VT-105のL5↔L8照合候補としての静的索引に限り、source資格、実行、接続効果、authority、CI、Readyを成立させない。"
   },
   "local_probe_source_reuse": [
     {
@@ -5718,7 +5717,7 @@
         null,
         false
       ],
-      "boundary": "型付きJSON nullと欠落は別。unknown_null=falseの両nullは対応/片nullは不一致、trueは未観測。正式comp原契約の引数ごとの全返却期待を計算前固定。",
+      "boundary": "型付きJSON nullと欠落は別に扱う。comparison_outcomeはprimitive比較の関係（対応・相違・判定不能）を示し、関数全体の返却objectを表さない。unknown_null=falseでは両nullが対応し片nullは相違、true側の具体的境界は未検証。すべて未実行で、DT-VT-105の静的照合候補に限る。",
       "execution_state": "not_executed",
       "comparison_outcome": "corresponding"
     },
@@ -5730,7 +5729,7 @@
         "known",
         false
       ],
-      "boundary": "型付きJSON nullと欠落は別。unknown_null=falseの両nullは対応/片nullは不一致、trueは未観測。正式comp原契約の引数ごとの全返却期待を計算前固定。",
+      "boundary": "型付きJSON nullと欠落は別に扱う。comparison_outcomeはprimitive比較の関係（対応・相違・判定不能）を示し、関数全体の返却objectを表さない。unknown_null=falseでは両nullが対応し片nullは相違、true側の具体的境界は未検証。すべて未実行で、DT-VT-105の静的照合候補に限る。",
       "execution_state": "not_executed",
       "comparison_outcome": "different"
     },
@@ -5742,7 +5741,7 @@
         null,
         false
       ],
-      "boundary": "型付きJSON nullと欠落は別。unknown_null=falseの両nullは対応/片nullは不一致、trueは未観測。正式comp原契約の引数ごとの全返却期待を計算前固定。",
+      "boundary": "型付きJSON nullと欠落は別に扱う。comparison_outcomeはprimitive比較の関係（対応・相違・判定不能）を示し、関数全体の返却objectを表さない。unknown_null=falseでは両nullが対応し片nullは相違、true側の具体的境界は未検証。すべて未実行で、DT-VT-105の静的照合候補に限る。",
       "execution_state": "not_executed",
       "comparison_outcome": "different"
     },
@@ -5754,7 +5753,7 @@
         null,
         true
       ],
-      "boundary": "型付きJSON nullと欠落は別。unknown_null=falseの両nullは対応/片nullは不一致、trueは未観測。正式comp原契約の引数ごとの全返却期待を計算前固定。",
+      "boundary": "型付きJSON nullと欠落は別に扱う。comparison_outcomeはprimitive比較の関係（対応・相違・判定不能）を示し、関数全体の返却objectを表さない。unknown_null=falseでは両nullが対応し片nullは相違、true側の具体的境界は未検証。すべて未実行で、DT-VT-105の静的照合候補に限る。",
       "execution_state": "not_executed",
       "comparison_outcome": "undetermined"
     },
@@ -5766,7 +5765,7 @@
         "known",
         true
       ],
-      "boundary": "型付きJSON nullと欠落は別。unknown_null=falseの両nullは対応/片nullは不一致、trueは未観測。正式comp原契約の引数ごとの全返却期待を計算前固定。",
+      "boundary": "型付きJSON nullと欠落は別に扱う。comparison_outcomeはprimitive比較の関係（対応・相違・判定不能）を示し、関数全体の返却objectを表さない。unknown_null=falseでは両nullが対応し片nullは相違、true側の具体的境界は未検証。すべて未実行で、DT-VT-105の静的照合候補に限る。",
       "execution_state": "not_executed",
       "comparison_outcome": "undetermined"
     },
@@ -5778,7 +5777,7 @@
         null,
         true
       ],
-      "boundary": "型付きJSON nullと欠落は別。unknown_null=falseの両nullは対応/片nullは不一致、trueは未観測。正式comp原契約の引数ごとの全返却期待を計算前固定。",
+      "boundary": "型付きJSON nullと欠落は別に扱う。comparison_outcomeはprimitive比較の関係（対応・相違・判定不能）を示し、関数全体の返却objectを表さない。unknown_null=falseでは両nullが対応し片nullは相違、true側の具体的境界は未検証。すべて未実行で、DT-VT-105の静的照合候補に限る。",
       "execution_state": "not_executed",
       "comparison_outcome": "undetermined"
     },
@@ -5789,7 +5788,7 @@
         null,
         null
       ],
-      "boundary": "型付きJSON nullと欠落は別。unknown_null=falseの両nullは対応/片nullは不一致、trueは未観測。正式comp原契約の引数ごとの全返却期待を計算前固定。",
+      "boundary": "型付きJSON nullと欠落は別に扱う。comparison_outcomeはprimitive比較の関係（対応・相違・判定不能）を示し、関数全体の返却objectを表さない。unknown_null=falseでは両nullが対応し片nullは相違、true側の具体的境界は未検証。すべて未実行で、DT-VT-105の静的照合候補に限る。",
       "execution_state": "not_executed",
       "comparison_outcome": "corresponding"
     }
@@ -5812,7 +5811,7 @@
       "execution_state": "not_executed"
     }
   ],
-  "coverage_limit": "91 source IDs + 27 local probe IDs + 1 same-source reuse + 7 primitive IDs + 1 typed-carrier ID are indexed. Non-equivalent mutation families, general domains, source qualification, runtime behavior, and full coverage remain unverified.",
+  "coverage_limit": "91 source ID、27 local probe ID、同一source再照合1件、primitive ID 7件、typed carrier ID 1件の合計127宣言を索引化した。ID数はcoverageや完了を示さない。非等価mutation family、一般domain、source資格、runtime挙動、全量coverageは未検証。",
   "traceability_boundary": {
     "l5_path": "docs/helix-connect/L5-detail-design/composite-edge-terminal.json",
     "l5_unit_case_refs": "absent_in_source_document",
@@ -5820,8 +5819,8 @@
     "l7_test_citation": "not_found_in_source_materials; no citation fabricated"
   },
   "common_expectation_boundary": {
-    "oracle_role": "L9 expected_material is the independent whole-return oracle; probe source_ref values bind to exact L4/L9 revisions and JSON Pointers. They index existing material only; they do not add L7 test fixtures/cases or generate oracle values.",
-    "shared_state": "全case/probeはnot_executed、synthetic fixture-only。実source/owner qualification、通信、permission、receiver effect、業務Accepted、正式schema/codec、全domain closureを成立させない。",
+    "oracle_role": "91件のsource caseはL9 expected_materialを独立whole oracleとして固定revision/pointerで参照する。局所probeはID、source参照、短い反例・期待判断だけを持つ。固定履歴はvalidatorの由来・coverage静的比較に使うだけで、現行L8のprobe値・patch・oracle生成材料として扱わず、L7 test fixture/caseも追加しない。",
+    "shared_state": "全case/probeはnot_executed、合成fixtureに限る静的照合である。実source/owner資格、通信、permission、receiver effect、業務Accepted、正式schema/codec、全domain closureを成立させない。",
     "unverified": "全非等価mutation family、全graph/edge/scope/owner combinations、および実runtime behaviorは未検証。"
   },
   "removed_materials": {
@@ -7837,7 +7836,7 @@
         "fixture_only": true
       }
     ],
-    "coverage_boundary": "All 91 L9 branches and 27 predeclared local probes are the same retained inventory (91+27+1+7+1=127); U-IDs are labels on those declarations, not additional cases. Rule evidence is attached only when its fixed L9 oracle or an already-recorded local expected_delta names the matching failure area. Unavailable expected source values are not synthesized.",
+    "coverage_boundary": "91件のL9分岐と27件の事前宣言probeは、既存127宣言の内訳であり、U-IDは各宣言に付けたラベルで追加件数ではない。failure_ruleは固定L9 oracleまたは固定基準revisionに残るprobe由来の根拠に対応するときだけ被覆に数える。sourceに期待根拠がない値は補わない。",
     "local_probe_rule_derivations": [
       {
         "rule_ref": "F02:stop_position",
@@ -7871,8 +7870,8 @@
             "pointer": "/contract_views/F02/failure_rules/7"
           }
         ],
-        "expected_delta_source": "pre-existing expected_delta in the pinned base L8; static validator compares every delta byte-equivalent after source_ref expansion",
-        "boundary": "synthetic mutation only; not executed; no behavior qualification or effect"
+        "expected_delta_source": "固定基準revisionに保存された既存probe記録を由来・rule coverageの静的比較にのみ使う。操作列や全返却差分値は現行L8に保持しない。",
+        "boundary": "合成fixtureの静的な対応確認だけであり、未実行。DT-VT-105の照合候補を越える挙動資格・効果・authorityを成立させない。"
       },
       {
         "rule_ref": "B01:technical_content",
@@ -7904,8 +7903,8 @@
             "pointer": "/contract_views/B01/failure_rules/0"
           }
         ],
-        "expected_delta_source": "pre-existing expected_delta in the pinned base L8; static validator compares every delta byte-equivalent after source_ref expansion",
-        "boundary": "synthetic mutation only; not executed; no behavior qualification or effect"
+        "expected_delta_source": "固定基準revisionに保存された既存probe記録を由来・rule coverageの静的比較にのみ使う。操作列や全返却差分値は現行L8に保持しない。",
+        "boundary": "合成fixtureの静的な対応確認だけであり、未実行。DT-VT-105の照合候補を越える挙動資格・効果・authorityを成立させない。"
       }
     ]
   }
