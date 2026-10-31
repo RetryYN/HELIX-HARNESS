@@ -1,0 +1,44 @@
+{
+  "schema": "wr265-static-verification.v1",
+  "evidence_kind": "scaffold",
+  "authority_effect": "none",
+  "record_id": "WR265-RETRY-L8-CURRENT-STATIC-R1",
+  "target": "docs/helix-connect/L8-unit-verification/retry-deduplication-conflict.json",
+  "target_revision": "b3ddf6f1d0a6cf2009e5f81a90f21c4292300185",
+  "target_sha256": "7bbd87eba7d60318a57702919e73cd57fde056990415e72d01bae66457d25c67",
+  "source_pins": {
+    "docs/helix-connect/L5-detail-design/retry-deduplication-conflict.json": "ae83a4db64fb613ebbaa119e11ed3c83f23e1a77fad22a205375f0d6b3d9e19d",
+    "docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json": "5cfea671da4e491a172590b6b6e404da9e37af230929d0e764eee1a7d7bcb465"
+  },
+  "historical_source": {
+    "commit": "b3ddf6f1d0a6cf2009e5f81a90f21c4292300185",
+    "blob": "0a10d9378bd684b5b5c1bf6bd58ca93b10c6b8ef",
+    "sha256": "5ecda5612925ba482e43b51a2e89ee1d06413c0d4533af199d1284c5d5fa6d42",
+    "bytes": 344669,
+    "restore_command": "git show b3ddf6f1d0a6cf2009e5f81a90f21c4292300185:docs/helix-connect/L8-unit-verification/retry-deduplication-conflict.json > docs/helix-connect/L8-unit-verification/retry-deduplication-conflict.json"
+  },
+  "before_after": {
+    "before_bytes": 344669,
+    "after_bytes": 48271,
+    "reduction_bytes": 296398,
+    "case_count_before": 69,
+    "case_count_after": 69
+  },
+  "checks": {
+    "case_identity_order": "evaluated",
+    "case_oracle_and_expected": "evaluated",
+    "L5_function_and_owner_links": "evaluated",
+    "removed_materials_and_forbidden_material": "evaluated"
+  },
+  "rows_checked": 69,
+  "result": "PASS_STATIC_ONLY",
+  "errors": [],
+  "not_evaluated": [
+    "L5 algorithm execution",
+    "product test",
+    "real receiver effect",
+    "approval or formal L8 completion",
+    "design_verification_checker child semantics"
+  ],
+  "interpretation": "PASS_STATIC_ONLY is a static structure/source comparison only. It is not execution, approval, formal verification, or completion."
+}

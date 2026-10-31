@@ -1,0 +1,120 @@
+{
+  "schema_revision": 1,
+  "id": "SCF-B-0225",
+  "kind": "scaffold",
+  "title": "WR265 CONNECT004 retry-deduplication-conflict L8 U-ID slim evidence",
+  "product": "HELIX-HARNESS",
+  "owner_candidate": "CONNECT004 L8 retry/deduplication/conflict unit-verification responsibility owner candidate",
+  "state": "registered",
+  "reason": "Issue #3510 WR265: reduce CONNECT004 L8 to a reviewable U-ID table, preserving all 69 IDs/order, row-specific counterexamples and expected outcomes, L9 expected-material pointers, existing L5 function/branch meaning, and the execution/effect boundary. Avoid duplicating raw packet/fixture/full-return/hash material already held in L9/L5 sources.",
+  "upstream": [
+    {
+      "path": "docs/helix-connect/L3-requirements/functional-requirements.json",
+      "sha256": "fb04683632d92e5c51c46fdc2eecf388a58e406856f243b8105513e075a49421",
+      "note": "origin/main 151713275e2c2aa65bb23a8fe38eb63c46d570c8 source bytes."
+    },
+    {
+      "path": "docs/helix-connect/L4-basic-design/retry-deduplication-conflict.json",
+      "sha256": "68e77bc1579a10470f2ea608010f0bd553c1c511a8a50992c9b8bd8d28ee92eb",
+      "note": "origin/main 151713275e2c2aa65bb23a8fe38eb63c46d570c8 source bytes."
+    },
+    {
+      "path": "docs/helix-connect/L5-detail-design/retry-deduplication-conflict.json",
+      "sha256": "ae83a4db64fb613ebbaa119e11ed3c83f23e1a77fad22a205375f0d6b3d9e19d",
+      "note": "origin/main 151713275e2c2aa65bb23a8fe38eb63c46d570c8 source bytes."
+    },
+    {
+      "path": "docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json",
+      "sha256": "5cfea671da4e491a172590b6b6e404da9e37af230929d0e764eee1a7d7bcb465",
+      "note": "origin/main 151713275e2c2aa65bb23a8fe38eb63c46d570c8 source bytes."
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.json",
+      "sha256": "8728cf7c2730a29375f3c7dad75c77157a119d603e52b46f775ede8f1eae474d",
+      "note": "origin/main 151713275e2c2aa65bb23a8fe38eb63c46d570c8 source bytes."
+    },
+    {
+      "path": "scaffold/verification-test-template-seed-20261001/README.md",
+      "sha256": "e754243381921e4a3317a66dc784c03905ef24ab740721bc7767851989162efd",
+      "note": "origin/main 151713275e2c2aa65bb23a8fe38eb63c46d570c8 source bytes."
+    },
+    {
+      "path": "docs/governance/design-verification-quality-assurance.md",
+      "sha256": "f5751e236dc073fe67114c1fcb4b0f64b3d746290b25d75b61e60a08e3c99c85",
+      "note": "origin/main 151713275e2c2aa65bb23a8fe38eb63c46d570c8 source bytes."
+    }
+  ],
+  "role": "Temporary static source, case-identity, expectation and boundary evidence for the WR265 CONNECT004 L8 candidate.",
+  "obligations": [
+    "Preserve the original 69 case IDs and order, each row counterexample/expected difference, and exact L9 expected_material path/pointer; rows remain not_executed.",
+    "Keep L5 function/calculation/branch rule definitions in the existing design_ref. Do not add duplicate l5_function_ref or l9_basic_branches tables; common function role and candidate boundaries are described once.",
+    "Do not retain raw source_packet_ref, fixture, typed arguments, full returns, COPY, hash maps, mutation steps, or per-row repeated L3/L4/L9/function IDs. Preserve the L9 expected oracle pointer; note that future L9 slimming must migrate raw packet pointer consumers.",
+    "Keep authority_effect and operation_effect none, implementation readiness not_ready, no actual retry/receiver effect/receipt/policy/result or product test claim.",
+    "Legacy comparison is reference-only: preserve retry identity/dedup/conflict/finite-budget boundaries; do not migrate old cursor codec, database, runtime, or old execution paths.",
+    "Validator defaults to read-only. --record accepts an explicit new path only and creates it exclusively; no existing evidence path may be replaced.",
+    "Generic design_verification_checker check-child outcomes are recorded as pass/fail/not_evaluated as returned; not_evaluated is never reported as pass.",
+    "Check scfctl validate/stale and static validator in a latest origin/main merge overlay before handing off."
+  ],
+  "connections": {
+    "consumers": [
+      "WR265 CONNECT004 L8 slim review for Issue #3510"
+    ],
+    "dependencies": [
+      "Fixed base revision b3ddf6f1d0a6cf2009e5f81a90f21c4292300185 for original L8 identity/order and history recovery.",
+      "Latest origin/main fdf7539d33543707649e970a199f064c43940d93 L3/L4/L5/L9/L10/DT-VT-105/QA source bytes.",
+      "Legacy source assets LEGACY-ASSET-C3DE79BA9451172F3E43 and LEGACY-ASSET-DD66C1B6B7BE234B37E6."
+    ],
+    "boundary": "Candidate L8 table normalization and static scaffold evidence only. No authority effect, approval, test execution, runtime/CI claim, invented row oracle/test citation, or completion effect."
+  },
+  "operations": {
+    "allowed": [
+      "Static JSON, source pointer, case identity/order, expected-summary, boundary and owner-link checks.",
+      "scfctl validate and stale.",
+      "design_verification_checker check-child with actual status retained, including not_evaluated.",
+      "Create new immutable validator evidence only with --record NEW_PATH and exclusive file creation."
+    ],
+    "forbidden": [
+      "Editing formal L3/L4/L5/L9/L10 sources.",
+      "Executing L5 algorithm, product test, old runtime, CLI, hooks, tests, or CI.",
+      "Creating new authority, policy, gate, test citation, approval, or formal verification claims.",
+      "Replacing prior evidence records or presenting not_evaluated as pass."
+    ]
+  },
+  "artifacts": [
+    "docs/helix-connect/L8-unit-verification/retry-deduplication-conflict.json",
+    "scaffold/research/wr265-connect-retry-l8-slim-20261101/README.md",
+    "scaffold/research/wr265-connect-retry-l8-slim-20261101/validate_uid_table.py",
+    "scaffold/research/wr265-connect-retry-l8-slim-20261101/verification-summary.json",
+    "scaffold/research/wr265-connect-retry-l8-slim-20261101/evidence-history.json",
+    "scaffold/bindings/SCF-B-0225.json"
+  ],
+  "verification": {
+    "evidence_kind": "scaffold",
+    "scope": [
+      "schema_interface",
+      "source_revision_stale",
+      "negative_case"
+    ],
+    "oracles": [
+      "Original case identity/order from fixed base b3ddf6f1d0a6cf2009e5f81a90f21c4292300185; original file bytes recoverable by commit/path/blob/SHA-256 and restore command in evidence-history.json.",
+      "L9 expected_material and basis pointers for each retained row; summaries checked without copying raw input/full return.",
+      "L5 existing calculation_program, branch_tables owner mapping, and conditional retryable-result owner rule.",
+      "Current static verification summary; generic check-child result is recorded independently and not used as product completion proof.",
+      "scfctl validate/stale in latest-main merge overlay."
+    ],
+    "negative_cases": [
+      "Raw packet pointer, L5 function ID duplicate key, and L9 branch table are not added to the compact case table.",
+      "All 69 cases remain not_executed; actual operation/receiver effects are not evaluated.",
+      "Do not treat generic check-child not_evaluated as pass.",
+      "Static evidence does not establish approval or formal L8 completion."
+    ]
+  },
+  "replacement": {
+    "role_target": "Formal CONNECT004 L8 unit-verification U-ID table and valid row-level source/test references.",
+    "formal_artifacts": [],
+    "issue": 3510,
+    "status": "pending"
+  },
+  "created": "2026-11-01",
+  "updated": "2026-11-01"
+}
