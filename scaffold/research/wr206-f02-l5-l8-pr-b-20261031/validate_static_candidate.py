@@ -8,9 +8,12 @@ from __future__ import annotations
 import hashlib
 import json
 import subprocess
+import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[3]
+sys.path.insert(0, str(ROOT / "scaffold/research/wr253-tdd-l8-slim-20261031"))
+import validate_uid_table
 BASE = "fa3d2d515ce8df79c0a74d5360a4d1254863a6f1"
 BLIND_SHA = "7adbbee23d54e79773c5c7462c14250b6640c0afb4707495275aab069fb46152"
 L5_PATH = "docs/helix-harness/L5-detail-design/tdd-development-flow.json"
@@ -37,6 +40,7 @@ WR223_L5_REV = "87e5d15cdb909e88fd5d132ae7ad1d32c14b71d5"
 WR223_L5_SHA = "fce881931580d26381df12721dc740a82b685e29c2039a5e1ff838475824c176"
 WR223_L8_REV = "07b3462402992d51337b583f9f3d1f895c82e7c8"
 WR223_L8_SHA = "ee1648c067009e819d41f869733290042e103c39e41c0980d29dcdb46c107392"
+WR253_HISTORY_NOTE = "Historical L8 whole-file SHA-256 9f52fe3f90769cdacee9d147dceb0fabb2c36386839f39fdcb2d4039086ed6b7 is fixed evidence at revision 92cb38ffb792151ddd8029d654ca700126d02681, not the current L8 bytes. Current compact table has 35 existing L9-mapped rows plus 3 concise F03 head-comparison rows; candidate values and all 38 comparisons are checked by WR253 validator under SCF-B-0215."
 
 
 def read_json(path: str) -> dict:
@@ -109,6 +113,14 @@ def at_pointer(document: dict, pointer: str):
     return value
 
 
+
+def without_candidate_annotations(document: dict, collection: str, field: str, record_ids: set[str]) -> dict:
+    stripped = json.loads(json.dumps(document))
+    for row in stripped.get(collection, []):
+        if row.get("id") in record_ids:
+            row.pop(field, None)
+    return stripped
+
 def one(rows: list[dict], identity: str) -> dict:
     matches = [row for row in rows if row.get("id") == identity]
     assert len(matches) == 1, f"expected one {identity}, found {len(matches)}"
@@ -142,6 +154,11 @@ def verify_binding_upstream_scope() -> None:
         if path == "scaffold/bindings/SCF-B-0185.json":
             validator_path = "scaffold/research/wr206-f02-l5-l8-pr-b-20261031/validate_static_candidate.py"
             assert f"candidate artifact SHA-256: {validator_path}={sha((ROOT / validator_path).read_bytes())}" in pins
+    binding_0185 = read_json("scaffold/bindings/SCF-B-0185.json")
+    assert WR253_HISTORY_NOTE in binding_0185["verification"]["oracles"]
+    binding_0215 = read_json("scaffold/bindings/SCF-B-0215.json")
+    l8_pin = next(row for row in binding_0215["upstream"] if row["path"] == L8_PATH)
+    assert l8_pin["sha256"] == sha((ROOT / L8_PATH).read_bytes())
 
 
 def main() -> None:
@@ -166,25 +183,27 @@ def main() -> None:
 
     f8 = one(l8["cases"], "HARNESS-L8-015-F02")
     candidate_l8 = f8["candidate_unit_design"]
-    l8_f01_current = one(l8["cases"], "HARNESS-L8-015-F01")
+    # Keep WR206/WR223 whole-file hashes and expanded unit_cases as historical git evidence.
+    # Current L8 has a compact table; its row meaning and all five candidate values are checked by WR253.
+    l8_wr206_fixed = json.loads(revision_bytes(WR206_L8_REV, L8_PATH))
+    l5_wr206_fixed = json.loads(revision_bytes(WR206_L5_REV, L5_PATH))
     l8_wr223_fixed = json.loads(revision_bytes(WR223_L8_REV, L8_PATH))
+    l5_wr223_fixed = json.loads(revision_bytes(WR223_L5_REV, L5_PATH))
     l8_f01_wr223_fixed = one(l8_wr223_fixed["cases"], "HARNESS-L8-015-F01")
+    l8_f01_current = one(l8["cases"], "HARNESS-L8-015-F01")
+    l8_f02_wr206_fixed = one(l8_wr206_fixed["cases"], "HARNESS-L8-015-F02")
+    l5_f02_wr206_fixed = one(l5_wr206_fixed["contracts"], "HARNESS-L5-015-F02")
     assert l8_f01_current["candidate_unit_design"] == l8_f01_wr223_fixed["candidate_unit_design"]
-    assert (ROOT / L8_PATH).read_bytes() == revision_bytes(WR223_L8_REV, L8_PATH)
-    assert (ROOT / L5_PATH).read_bytes() == revision_bytes(WR223_L5_REV, L5_PATH)
-    assert l8["unit_cases"] == l8_base["unit_cases"]
-    for old_case in l8_base["cases"]:
-        new_case = one(l8["cases"], old_case["id"])
-        if old_case["id"] == "HARNESS-L8-015-F02":
-            assert {key: value for key, value in new_case.items() if key != "candidate_unit_design"} == old_case
-        elif old_case["id"] == "HARNESS-L8-015-F01":
-            # Later WR223 adds only a candidate design field to F01; retain every BASE row field.
-            assert {key: value for key, value in new_case.items() if key != "candidate_unit_design"} == old_case
-            candidate_f01 = new_case.get("candidate_unit_design")
-            assert candidate_f01["status"] == "scaffold_candidate_only_not_approved_or_executed"
-            assert candidate_f01["fixed_artifact"]["sha256"] == "fa047d5d871913b696ba5e01d9227ce13a68bc827ff6e8c66cc29d8e69d7e647"
-        else:
-            assert new_case == old_case
+    assert candidate_l8 == l8_f02_wr206_fixed["candidate_unit_design"]
+    assert candidate_l5 == l5_f02_wr206_fixed["candidate_classification_design"]
+    assert l8_base["unit_cases"] == l8_wr206_fixed["unit_cases"] == l8_wr223_fixed["unit_cases"]
+    later_l5 = {"HARNESS-L5-015-B01", "HARNESS-L5-015-F03", "HARNESS-L5-015-F04"}
+    later_l8 = {"HARNESS-L8-015-B01", "HARNESS-L8-015-F03", "HARNESS-L8-015-F04"}
+    current_l5_without_later = without_candidate_annotations(l5, "contracts", "candidate_classification_design", later_l5)
+    current_l8_without_later = without_candidate_annotations(l8, "cases", "candidate_unit_design", later_l8)
+    assert validate_uid_table.normalized_pre_slim_l5(current_l5_without_later) == validate_uid_table.normalized_pre_slim_l5(l5_wr223_fixed)
+    assert validate_uid_table.normalized_pre_slim_l8(current_l8_without_later) == validate_uid_table.normalized_pre_slim_l8(l8_wr223_fixed)
+    assert all(validate_uid_table.run_checks().values()), "current compact U-ID table/candidate validation failed"
 
     l4_base_bytes, l9_base_bytes = base_bytes(L4_PATH), base_bytes(L9_PATH)
     assert sha(l4_base_bytes) == L4_BASE_SHA
@@ -223,9 +242,8 @@ def main() -> None:
     for path, digest in ((L5_PATH, WR206_L5_SHA), (L8_PATH, WR206_L8_SHA)):
         assert f"candidate artifact SHA-256: {path}={digest}" in binding_hash_notes, f"historical WR206 candidate hash missing: {path}"
     for path, revision, digest in ((L5_PATH, WR223_L5_REV, WR223_L5_SHA), (L8_PATH, WR223_L8_REV, WR223_L8_SHA)):
-        current_bytes = (ROOT / path).read_bytes()
-        assert current_bytes == revision_bytes(revision, path), f"WR223 fixed source bytes drift: {path}@{revision}"
-        assert sha(current_bytes) == digest
+        historical_bytes = revision_bytes(revision, path)
+        assert sha(historical_bytes) == digest, f"WR223 historical source hash drift: {path}@{revision}"
         assert f"candidate artifact SHA-256: {path}={digest}" in read_json("scaffold/bindings/SCF-B-0192.json")["verification"]["oracles"]
     facts_digest = sha((ROOT / INPUT_FACTS_PATH).read_bytes())
     assert f"candidate artifact SHA-256: {INPUT_FACTS_PATH}={facts_digest}" in binding_hash_notes, f"binding candidate artifact hash missing/mismatched: {INPUT_FACTS_PATH}"
@@ -328,11 +346,11 @@ def main() -> None:
     print("static candidate validation: PASS")
     print(f"blind artifact sha256: {BLIND_SHA}")
     print("L5 F02 pre-existing contract: unchanged")
-    print(f"L8 existing unit cases: unchanged ({len(l8_base['unit_cases'])})")
+    print(f"L8 historical unit cases: unchanged at WR206/WR223 revisions ({len(l8_base['unit_cases'])}); current table checked by WR253")
     print("L8 F02 candidate: only case/input refs and small semantic projections; synthetic input packet lives in scaffold research")
     print("L4/L9 fixed BASE hashes verified; only two WR231 witness rows are stripped for full-document comparison")
-    print("WR206 historical L5/L8 hashes verified at their fixed revisions; current WR223 L5/L8 hashes/bytes verified at fixed revisions")
-    print("WR223 L8 F01 candidate_unit_design equals the exact fixed revision candidate bytes; other F01 row fields equal BASE")
+    print("WR206 and WR223 L5/L8 whole-file hashes verified only at their fixed historical revisions; current compact L8 is structurally compared and row-validated by WR253")
+    print("WR223 F01 and WR206 F02 candidate values equal their fixed revisions; compact current U-ID table checked by WR253")
     print("SCF-B-0185/0192/0193 upstream arrays contain no scaffold paths; moved artifact SHA oracles verified")
     print("source pins: exact revision/blob SHA match; L8 F02 historical L5 pin remains at its exact WR206 revision; reviewed L3/L10 F02 rows equal current rows")
     print("candidate cases: positives=2 negatives=7 unique negative classes=5")

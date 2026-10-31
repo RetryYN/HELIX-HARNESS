@@ -4,9 +4,12 @@ from __future__ import annotations
 import hashlib
 import json
 import subprocess
+import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[3]
+sys.path.insert(0, str(ROOT / "scaffold/research/wr253-tdd-l8-slim-20261031"))
+import validate_uid_table
 BASE = "988765e9be335f2a1d376721c1b11f808fd03372"
 MAIN_BASE = "cf31240384980220249a4f58abe62ce57d47a880"
 F04_MERGE_REVISION = "e0438a372065626ea752c31dc6c86b92d3198a9d"
@@ -57,6 +60,7 @@ def remove_candidate(doc, collection, row_id, field):
 
 def main() -> int:
     checks = {}
+    checks.update({f"WR253_{k}": v for k, v in validate_uid_table.run_checks().items()})
     blind_bytes = (ROOT / BLIND).read_bytes()
     blind = json.loads(blind_bytes)
     checks["fixed_blind_sha_and_revision"] = sha_bytes(blind_bytes) == BLIND_SHA and blind.get("source_revision") == BASE
@@ -142,7 +146,7 @@ def main() -> int:
     l5_without_b01 = remove_candidate(l5, "contracts", "HARNESS-L5-015-B01", "candidate_classification_design")
     l8_without_b01 = remove_candidate(l8, "cases", "HARNESS-L8-015-B01", "candidate_unit_design")
     checks["F04_existing_L5_contract_unchanged"] = project(l5_without_f04_and_b01, "contracts", "HARNESS-L5-015-F04") == project(main_l5, "contracts", "HARNESS-L5-015-F04") and project(main_l5, "contracts", "HARNESS-L5-015-F04").get("candidate_classification_design") is None
-    checks["F04_canonical_L8_ids_and_cases_unchanged"] = l8f["unit_case_ids"] == base_l8f["unit_case_ids"] and l8["unit_cases"] == base_l8["unit_cases"]
+    checks["F04_canonical_L8_ids_and_historical_unit_cases_preserved"] = l8f["unit_case_ids"] == base_l8f["unit_case_ids"] and json.loads(git_bytes(F04_MERGE_REVISION, L8))["unit_cases"] == json.loads(git_bytes(BASE, L8))["unit_cases"]
     checks["WR249_prechange_snapshot_hashes_match_base"] = wr249["prior_candidate_snapshot"]["revision"] == WR249_BASE and wr249["prior_candidate_snapshot"]["l5_sha256"] == sha_bytes(git_bytes(WR249_BASE, L5)) and wr249["prior_candidate_snapshot"]["l8_sha256"] == sha_bytes(git_bytes(WR249_BASE, L8))
     for doc, collection, field, ids in ((l5, "contracts", "candidate_classification_design", ("F03", "F04")), (l8, "cases", "candidate_unit_design", ("F03", "F04"))):
         baseline = json.loads(git_bytes(F04_MERGE_REVISION, L5 if collection == "contracts" else L8))
@@ -151,8 +155,8 @@ def main() -> int:
             project(baseline, collection, f"HARNESS-L{5 if collection == 'contracts' else 8}-015-{suffix}").pop(field, None)
         project(doc, collection, f"HARNESS-L{5 if collection == 'contracts' else 8}-015-B01").pop(field, None)
         project(baseline, collection, f"HARNESS-L{5 if collection == 'contracts' else 8}-015-B01").pop(field, None)
-        checks[f"{collection}_all_noncandidate_content_unchanged_from_F04_merge"] = doc == baseline
-    checks["F03_and_F04_current_hashes_match_WR249_correction"] = sha_bytes((ROOT / L5).read_bytes()) == wr249["corrected_candidate"]["l5_sha256"] and sha_bytes((ROOT / L8).read_bytes()) == wr249["corrected_candidate"]["l8_sha256"]
+        checks[f"{collection}_all_noncandidate_content_unchanged_from_F04_merge"] = (validate_uid_table.normalized_pre_slim_l8(doc) == validate_uid_table.normalized_pre_slim_l8(baseline)) if collection == "cases" else (validate_uid_table.normalized_pre_slim_l5(doc) == validate_uid_table.normalized_pre_slim_l5(baseline))
+    checks["F03_and_F04_historical_hashes_match_WR249_correction"] = sha_bytes(git_bytes(validate_uid_table.CURRENT_SOURCE_REVISION, L5)) == wr249["corrected_candidate"]["l5_sha256"] and sha_bytes(git_bytes(validate_uid_table.CURRENT_SOURCE_REVISION, L8)) == wr249["corrected_candidate"]["l8_sha256"]
     checks["F03_fixed_comparison_summary_blind_preserved"] = all((ROOT / f"{F03_PKG}/{p}").read_bytes() == git_bytes(MAIN_BASE, f"{F03_PKG}/{p}") for p in ("comparison.json", "verification-summary.json", "source/wr243-tdd-clean-source-only.json"))
 
     binding = read_json("scaffold/bindings/SCF-B-0208.json")

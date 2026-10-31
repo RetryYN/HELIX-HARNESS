@@ -1,0 +1,72 @@
+{
+  "schema": "wr253-r1-f03-head-validation.v1",
+  "evidence_kind": "scaffold",
+  "authority_effect": "none",
+  "correction_artifact": "scaffold/research/wr253-tdd-l8-slim-20261031/r1-f03-head-connection-correction-20261031.json",
+  "verification_summary_boundary": "scaffold/research/wr253-tdd-l8-slim-20261031/verification-summary.json is a fixed point-in-time artifact and was not edited.",
+  "static_checks": {
+    "historical_35_l9_mapped_rows_preserved": true,
+    "three_f03_head_ids_and_meanings_match_fixed_git_revision": true,
+    "boundary_rules_count": 3,
+    "unverified_input_branches": [
+      "required_head_absent",
+      "required_head_null",
+      "required_head_wrong_type"
+    ],
+    "comparison_count": {
+      "historical_l9_mapped": 35,
+      "additional_f03_head": 3,
+      "total": 38
+    },
+    "candidate_unit_design_values_unchanged": true,
+    "row_oracle_id": null,
+    "test_citation": null,
+    "execution_state": "not_executed",
+    "validators": [
+      "wr206-f02-l5-l8-pr-b-20261031/validate_static_candidate.py: PASS",
+      "wr223-f01-l5-l8-20261031/validate_static_candidate.py: PASS",
+      "wr243-tdd-f03-l5-l8-20261031/validate_static_candidate.py: PASS",
+      "wr243-tdd-f04-l5-l8-20261031/validate_f04_candidate.py: PASS",
+      "wr243-tdd-b01-l5-l8-20261031/validate_b01_candidate.py: PASS",
+      "wr249-tdd-f03-f04-uid-split-20261031/validate_uid_split.py: PASS",
+      "wr253-tdd-l8-slim-20261031/validate_uid_table.py: PASS"
+    ],
+    "scfctl_validate": "195 bindings, fail=0",
+    "scfctl_stale": "stale=0",
+    "git_diff_check": "PASS",
+    "historical_source_trace_refs_resolve_at_fixed_revision": true,
+    "l5_oracle_location_resolves_to_current_f03_unit_case_rows": true
+  },
+  "check_child": {
+    "overall": "FAIL (pre-existing residuals)",
+    "L4_L9_pair": "PASS",
+    "L5_L8_pair": "PASS",
+    "pins": "PASS",
+    "L8_ownership_cap": "PASS, 0 failures",
+    "L9_ownership_cap": "FAIL, 35 forbidden byte_sha256 keys (pre-existing)",
+    "negative_4way": {
+      "status": "FAIL, pre-existing legacy comparison residuals",
+      "counts": {
+        "L4": 30,
+        "L9": 30,
+        "L8": 0,
+        "L5": 0
+      },
+      "failures": 35
+    },
+    "baseline_evidence_ref": "scaffold/research/wr253-tdd-l8-slim-20261031/verification-summary.json#/check_child_after_followup"
+  },
+  "not_run": [
+    "old runtime",
+    "old test suite",
+    "old CI",
+    "new runtime",
+    "new test suite",
+    "new CI",
+    "algorithm"
+  ],
+  "commit_created": false,
+  "push_performed": false,
+  "canonical_case_definition": "The three case IDs, counterexamples, and expected statuses are defined only in current L8 cases[3].unit_case_rows; unit_case_contract contains references to their IDs plus shared boundary and unverified branches.",
+  "source_trace_boundary": "Each added row source_trace_ref and expected_source_ref resolve in fixed historical L8 revision 1a09e8670706c211c3fcb4ef6aa1f2a45a9dc3f5. They preserve origin only; the active L5 oracle pointer resolves to the current F03 unit_case_rows."
+}

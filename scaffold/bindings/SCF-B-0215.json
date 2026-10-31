@@ -1,0 +1,148 @@
+{
+  "schema_revision": 1,
+  "id": "SCF-B-0215",
+  "kind": "scaffold",
+  "title": "WR253 HARNESS-015 L8 TDD軽量化の候補証拠と撤去元束縛",
+  "product": "HELIX-HARNESS",
+  "owner_candidate": "HARNESS-015 L8軽量化候補の責務owner候補",
+  "state": "registered",
+  "reason": "Issue #3510 comment 6447665479とPR #3988/#3911/#3924/#3929/#3930の形を起点に、HARNESS-015 L8の展開fixture/full return/hash/COPY等を撤去。既存35 U-IDにF03 head比較3件を加え（L9対応35件＋追加3件、計38比較）、全5 candidate_unit_design、25 source pin、小反例/期待を維持し、撤去元はremoved_materialsとgit履歴に束縛する。L9は編集しない。 ID allocation: 0211/0212 reserved; 0213 already exists on WR233 branch; 0214 already exists on WR218 branch; 0215 is the first unused ID across all refs and known worktrees at authoring.",
+  "upstream": [
+    {
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "sha256": "e755aa99f9d8b7add908974ca6254d048fe614e58463c01178a3538e6ce3df13",
+      "note": "L2-015 meaning source pinned at 286695409fcea78e2441d5aa85b008f7a8ad2e1f."
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+      "sha256": "a3b907cdc316117d4684632f9a1cbf36125eb6e6172f9cfc286060617583d7be",
+      "note": "Approved L3-015 F01..F04 requirement source; no meaning change."
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/functional-verification.json",
+      "sha256": "fc58ad2268746d7924ac9be33e8f3f75e6d3c2cc619e27fbc1ddc34edd065cb2",
+      "note": "Approved L10-015 F01..F04 oracle source; no meaning change."
+    },
+    {
+      "path": "docs/helix-harness/L4-basic-design/tdd-development-flow.json",
+      "sha256": "347bfd83b7685b52c45f62b5ee6f336fd74338ee65e67327e6e810d6eb489a16",
+      "note": "Paired L4 source, fixed at 286695409fcea78e2441d5aa85b008f7a8ad2e1f; not edited."
+    },
+    {
+      "path": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json",
+      "sha256": "4f64977ee8b2900733a823d5b9755f567952caef8cf323036a9b0776202d2462",
+      "note": "35 source packet and expected-material pointers; not edited."
+    },
+    {
+      "path": "docs/helix-harness/L5-detail-design/tdd-development-flow.json",
+      "sha256": "2b47ca5684c0b2e11233296ca645cade698753be3a177d925a28248b109d7b07",
+      "note": "Current L5 f03_head_connection_detail.oracle_location resolves directly to current F03 unit_case_rows; the removed snapshot remains origin-only."
+    },
+    {
+      "path": "docs/helix-harness/L8-unit-verification/tdd-development-flow.json",
+      "sha256": "0b79a588e4b393971470072e669b6531292c4fcb48a16218c2f60b722b390a3c",
+      "note": "Current L8 U-ID rows and candidate references; WR253 compact row index. Prior pin before table follow-up: e32389b7e3f5bbd012bed18f96042fc0beeba99b9d5c6ad00f1c611e46541636. [WR253 source-trace/oracle correction: 8853c18544e59e35c6357214d515ae7f569767275a1d07a9fb3519d8c67c8a8e -> 5bbea435bcbcc5e83220858c6fbbb5711351e22c28116ecda8f7285b469e3e24; 35 row pointers use numeric RFC6901 cases indexes and common L10 contract oracle is retained.] [WR253 numeric-pointer/oracle correction: 5bbea435bcbcc5e83220858c6fbbb5711351e22c28116ecda8f7285b469e3e24 -> fa7781d380522eb94780709422d8f7cc007ba326010f385dfad2fbaefa9d8bc0; 35 RFC6901 source and expected-source pointers resolve, five contract L10 oracle IDs retained.] [WR253 compact-meaning correction: fa7781d380522eb94780709422d8f7cc007ba326010f385dfad2fbaefa9d8bc0 -> bba5134a725d3837e3da60c34ab0967e516182176c85808cc4e0c93304ca6762; all 35 row pairs are short and individually audited against historical expected sources.] [WR253 short row-text refresh: bba5134a725d3837e3da60c34ab0967e516182176c85808cc4e0c93304ca6762 -> bd229f9e07624244acf89a684681d668e50da320a5a531a382aebe4f497b495d; all-row semantics audited, shared execution_state=not_executed.] [WR253 F02 wording correction: bd229f9e07624244acf89a684681d668e50da320a5a531a382aebe4f497b495d -> e73df7a5ae42a35d8749d821b76489d8ba9c16ff43060e43c6db31081447a515; fixture Red remains candidate-only, not real execution evidence.] [PR #4003 R1 F1 correction: e73df7a5ae42a35d8749d821b76489d8ba9c16ff43060e43c6db31081447a515 -> f264f568b8192066fa587f85345e5b8f12a5790758ef197e2c83e6d6d340ca13; retained 3 concise F03 head comparisons, boundary rules and unverified branches; 35 L9-mapped rows unchanged, total comparison scope 38.] [R1 wording clarification: expected statuses are expressly labelled unexecuted synthetic-case projections; f264f568b8192066fa587f85345e5b8f12a5790758ef197e2c83e6d6d340ca13 -> b7a4722b1870bf57e54f18f40e8b9f2675e0c4a75ea6f6764d07cdbf83d56f18.] [R1 compact provenance wording clarification: b7a4722b1870bf57e54f18f40e8b9f2675e0c4a75ea6f6764d07cdbf83d56f18 -> f0ed0cf23363c5e7cac6f8c3875789e5ba3af466ee0c6d0d7e555b2d441ecf7e.] [R1/R2 duplicate-definition correction: F03 case content exists only in unit_case_rows; fixed historical refs are provenance; f0ed0cf23363c5e7cac6f8c3875789e5ba3af466ee0c6d0d7e555b2d441ecf7e -> 0b79a588e4b393971470072e669b6531292c4fcb48a16218c2f60b722b390a3c.]"
+    },
+    {
+      "path": "docs/governance/decisions/helix-harness-verification-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+      "sha256": "1df0aa1bdb1b5fcbe2beba5e202601fa0d27fdeb5419e58d8db5cc3691d927fb",
+      "note": "Delegated authoring boundary; no new approval or implementation authorization."
+    }
+  ],
+  "role": "Issue 3510 HARNESS-015 L8の軽量化候補と撤去元provenanceを束縛する。L8 U-IDと候補設計の静的照合（35 L9-mapped + 3 F03 head cases）、およびL9への入力/期待pointer比較用。",
+  "obligations": [
+    "既存35 U-IDとL9 pointerを保持し、追加3 F03 head比較は短い反例・期待を現行contract/tableへ記録する。追加3件はL9のcase数・本文を変更せず、38比較の内訳を明記する。",
+    "既存5 candidate_unit_designのJSON値、小反例、期待、欠落oracle/citation状態を変更しない。",
+    "removed_materialsにdecision_ref/git_commit/path/meaning/removed_key_rule/use_boundaryを記録し、撤去元をgit revisionへ束縛する。",
+    "removed_materialsにdecision_ref/git_commit/path/meaning/removed_key_rule/use_boundaryを記録し、撤去元をgit revisionへ束縛する。",
+    "L5 oracle_locationは現行L8 F03 compact contract pointerへ解決し、撤去前snapshotは由来として固定revision・pointer・hashを保持する。",
+    "authority_effect noneを維持し、L7の期待、実行結果、承認、完了を生成しない。",
+    "共通unit_case_contractで対象・contract oracle・row oracle欠落・test citation欠落を表し、行oracle/test citationを生成しない。"
+  ],
+  "connections": {
+    "consumers": [
+      "WR253-TDD-L8L9-SLIMのL8候補と静的照合記録",
+      "PR #4003 R1 F1 correction: three F03 head cases and compact boundary/unverified branch coverage"
+    ],
+    "dependencies": [
+      "HARNESS-L2/L3/L10-015固定要求と受入",
+      "HARNESS-015 L4/L9固定文書",
+      "HARNESS-015 L5の歴史L8節参照",
+      "DT-VT-105 independent expectation boundary"
+    ],
+    "boundary": "L8 U-ID/candidate_unit_design候補とremoved-material provenanceのみ。35 existing L9-mapped cases plus 3 compact F03 head comparisons; no L9 edit, no authority/execution/acceptance/test/row-oracle creation."
+  },
+  "operations": {
+    "allowed": [
+      "Static L8 U-ID/candidate value comparison",
+      "Static L9 source/expected pointer comparison",
+      "design_verification_checker check-child",
+      "scfctl validate/stale",
+      "L5 historical source pointer/hash reconciliation"
+    ],
+    "forbidden": [
+      "Editing L9 or L4",
+      "Changing any candidate_unit_design JSON value",
+      "Creating test, oracle, execution input, full return, or COPY material",
+      "Executing old runtime/test/CI/algorithm or new runtime/test/CI",
+      "Generating approval, acceptance, release, or completion"
+    ]
+  },
+  "artifacts": [
+    "docs/helix-harness/L8-unit-verification/tdd-development-flow.json",
+    "docs/helix-harness/L5-detail-design/tdd-development-flow.json",
+    "scaffold/research/wr253-tdd-l8-slim-20261031/README.md",
+    "scaffold/research/wr253-tdd-l8-slim-20261031/verification-summary.json",
+    "scaffold/research/wr253-tdd-l8-slim-20261031/validate_uid_table.py",
+    "scaffold/research/wr253-tdd-l8-slim-20261031/consumer-validator-followup.json",
+    "scaffold/research/wr253-tdd-l8-slim-20261031/r1-f03-head-connection-correction-20261031.json",
+    "scaffold/research/wr253-tdd-l8-slim-20261031/r1-f03-head-validation-20261031.json"
+  ],
+  "verification": {
+    "evidence_kind": "scaffold",
+    "scope": [
+      "schema_interface",
+      "source_revision_stale",
+      "negative_case"
+    ],
+    "oracles": [
+      "Base/current main: 46864fcaa2426a480dbd037040cd4c4332c61ddd",
+      "Pre-removal L8 source SHA-256: 919b1ebdf074f291458947af0db8b751f3fd45a144aa542020759febcd652a83",
+      "Pre-removal L8 f03 section canonical SHA-256: 821f24b4f95fa28d6b72758b649be27203f75a2a9cf6adf071cad564abd931b8",
+      "DT-VT-105 independent expectation boundary",
+      "Issue #3510 comment 6447665479",
+      "L8 source packet identity/payload pointer/raw-byte digest and expected-material digest/reason compared row by row with pinned L9 for all 35 old U-ID rows.",
+      "L5 oracle_location retains removed L8 section at base commit 46864fcaa2426a480dbd037040cd4c4332c61ddd with file SHA and canonical section SHA; semantic equivalence with the L5 design section was not asserted.",
+      "check-child before/after plus scfctl validate/stale; static only.",
+      "WR243 F03/F04/B01 と WR249 historical validators: fixed evidenceは不変、履歴unit_cases/hashをgit showで維持確認し、現行unit_case_rows/candidate semanticsはWR253共通validatorで確認。",
+      "Current check-child: pair/pins pass; legacy negative_4way 35 residuals and L9 ownership-cap 35 residuals remain; L9 unchanged.",
+      "現行35件のsource_trace_refはnumeric RFC6901 cases indexで解決し、source identity=`SOURCE-{U-ID}`とexpected material reference/hashを各行で照合。旧名前付き疑似pointerは撤去前revisionの固定git blobに保持。",
+      "35 unit_case_rowsはtargetのHARNESS-L5-015-*とcontract_oracleのHARNESS-L10-015-*をroot単位で維持。row_oracle_id/test_citationは未設定/null。",
+      "現行unit_case_rowsの35 counterexample/expectedはU-ID別の短文意味監査と照合し、全返却fieldの文字列列挙は行わない。",
+      "unit_case_contractは共有execution_state=not_executedを保持し、行ごとのcounterexample/expectedは短い識別文のみ。",
+      "F02 NORMAL/NEW-IMPLEMENTATIONの短文期待は合成fixture上のRed候補を示す。実RedとTDD成功は未成立。",
+      "PR #4003 R1 F1 correction: 35 existing L9-mapped rows plus 3 F03 head comparison rows; boundary rules and absent/null/wrong-type branches retained compactly; L5 current oracle pointer resolves directly into L8 F03 unit_case_rows; row oracle/test citation remain null; verification-summary remains immutable.",
+      "candidate artifact SHA-256: scaffold/research/wr206-f02-l5-l8-pr-b-20261031/validate_static_candidate.py=469ec3aaa975700c0646d4091edacf1fd12bd442edbcaa3252884bf88a328ab5",
+      "candidate artifact SHA-256: scaffold/research/wr223-f01-l5-l8-20261031/validate_static_candidate.py=a7d82eb2267bf2fffd1740ad57591229971079deb95e9d246b9b9a402990461f",
+      "R1 check-child read-after: L4/L9 and L5/L8 pair checks and pins pass; the existing legacy negative_4way residuals (35) and L9 ownership-cap residuals (35) remain, with L8 ownership-cap at zero; see the separate R1 validation artifact.",
+      "candidate artifact SHA-256: scaffold/research/wr253-tdd-l8-slim-20261031/validate_uid_table.py=3d0c33341a9d22e60db35a5a03dfd5499daea42879947abeab90aa4afdfb28ca",
+      "candidate artifact SHA-256: scaffold/research/wr253-tdd-l8-slim-20261031/r1-f03-head-connection-correction-20261031.json=68bd77d06f49fda0113779b40ac187e4bc4b613fdaafa4b870a98206381aef8f",
+      "candidate artifact SHA-256: scaffold/research/wr253-tdd-l8-slim-20261031/r1-f03-head-validation-20261031.json=c28d7a2602686586a39e399816f1ba668cf470559148a6ccc67ca4a76486f299",
+      "candidate artifact SHA-256: scaffold/research/wr253-tdd-l8-slim-20261031/README.md=3ff0807326f9a5a39efbda8a1254d3ab71abfed74a6ac4198f4210fd898ec60f"
+    ],
+    "negative_cases": [
+      "Do not execute or materialize fixtures/COPY/patch/full return.",
+      "Do not create L7 expectations or row oracle/test citation.",
+      "Do not alter candidate_unit_design or L9.",
+      "Do not use the removed f03 section as current algorithm or oracle."
+    ]
+  },
+  "replacement": {
+    "role_target": "Formal HARNESS-015 L5/L8 pair development and verification design",
+    "formal_artifacts": [],
+    "issue": 1866,
+    "status": "pending"
+  },
+  "created": "2026-10-31",
+  "updated": "2026-10-31"
+}

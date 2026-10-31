@@ -3,9 +3,12 @@
 import hashlib
 import json
 import subprocess
+import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[3]
+sys.path.insert(0, str(ROOT / "scaffold/research/wr253-tdd-l8-slim-20261031"))
+import validate_uid_table
 BASE = "988765e9be335f2a1d376721c1b11f808fd03372"
 MAIN = "e0438a372065626ea752c31dc6c86b92d3198a9d"
 WR249_BASE = "e9cca9f1d3d88b1c2049c3a3e492b36b2c2ec905"
@@ -44,6 +47,7 @@ def strip_b01_candidate(doc, collection, candidate_key, record_id):
 
 def main():
     checks = {}
+    checks.update({f"WR253_{k}": v for k, v in validate_uid_table.run_checks().items()})
     blind_bytes = (ROOT / BLIND).read_bytes()
     blind = json.loads(blind_bytes)
     checks["fixed_blind_exact_sha_and_revision"] = sha(blind_bytes) == BLIND_SHA and blind.get("source_revision") == BASE
@@ -92,7 +96,7 @@ def main():
     base_case = next(x for x in base_l8["cases"] if x["id"] == "HARNESS-L8-015-B01")
     current_case = next(x for x in current_l8["cases"] if x["id"] == "HARNESS-L8-015-B01")
     checks["canonical_B01_unit_case_ids_unchanged"] = current_case.get("unit_case_ids") == base_case.get("unit_case_ids")
-    checks["canonical_B01_unit_cases_unchanged"] = current_l8.get("unit_cases") == base_l8.get("unit_cases")
+    checks["canonical_B01_historical_unit_cases_preserved"] = base_l8.get("unit_cases") == git_json(WR249_BASE, L8).get("unit_cases")
     correction = read_json("scaffold/research/wr249-tdd-f03-f04-uid-split-20261031/uid-split-correction.json")
     for layer, path, collection, candidate_key in (
         ("L5", L5, "contracts", "candidate_classification_design"),
@@ -108,8 +112,8 @@ def main():
             record_id = f"HARNESS-{layer}-015-{suffix}"
             next(x for x in current[collection] if x.get("id") == record_id).pop(candidate_key, None)
             next(x for x in prior[collection] if x.get("id") == record_id).pop(candidate_key, None)
-        checks[f"current_{layer}_only_F03_F04_candidate_changes"] = current == prior
-        checks[f"current_{layer}_matches_WR249_correction_hash"] = sha((ROOT / path).read_bytes()) == correction["corrected_candidate"][f"{layer.lower()}_sha256"]
+        checks[f"current_{layer}_only_F03_F04_candidate_changes"] = (validate_uid_table.normalized_pre_slim_l5(current) == validate_uid_table.normalized_pre_slim_l5(prior)) if layer == "L5" else (validate_uid_table.normalized_pre_slim_l8(current) == validate_uid_table.normalized_pre_slim_l8(prior))
+        checks[f"historical_{layer}_corrected_hash_matches_WR249_record"] = sha(subprocess.check_output(["git", "show", f"{validate_uid_table.CURRENT_SOURCE_REVISION}:{path}"], cwd=ROOT)) == correction["corrected_candidate"][f"{layer.lower()}_sha256"]
         checks[f"historical_{layer}_matches_WR249_snapshot_hash"] = sha(subprocess.check_output(["git", "show", f"{WR249_BASE}:{path}"], cwd=ROOT)) == correction["prior_candidate_snapshot"][f"{layer.lower()}_sha256"]
     checks["L4_L9_exact_bytes_unchanged"] = all(sha((ROOT / p).read_bytes()) == sha(subprocess.check_output(["git", "show", f"{MAIN}:{p}"], cwd=ROOT)) for p in (L4, L9))
     binding = read_json("scaffold/bindings/SCF-B-0210.json")

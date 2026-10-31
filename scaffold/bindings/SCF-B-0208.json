@@ -6,7 +6,7 @@
   "product": "HELIX-HARNESS",
   "owner_candidate": "HARNESS-015 F04 L5/L8 candidate-design responsibility owner candidate",
   "state": "registered",
-  "reason": "Issue #3510 WR243: preserve the fixed independent source-only meaning, compare every existing F04 L4/L9 negative row, and keep incomplete L8 row-oracle/test-citation evidence separate from formal verification. WR249-TDD-F03F04-UID-SPLITでは既存F03/F04 U-IDごとに候補条件と期待を分けた。",
+  "reason": "Issue #3510 WR243: preserve the fixed independent source-only meaning, compare every existing F04 L4/L9 negative row, and keep incomplete L8 row-oracle/test-citation evidence separate from formal verification. WR249-TDD-F03F04-UID-SPLITでは既存F03/F04 U-IDごとに候補条件と期待を分けた。 WR253-TDD-L8-SLIM preserves all five candidate_unit_design values and the 35 U-ID set while removing expanded unit_cases as current material.",
   "upstream": [
     {
       "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
@@ -35,8 +35,8 @@
     },
     {
       "path": "docs/helix-harness/L5-detail-design/tdd-development-flow.json",
-      "sha256": "6aaa1c03c484541be4bc331dbf6f05756e3eed2acc17d6f212fc901678cb9778",
-      "note": "Current shared L5 document containing F03 plus F04 candidate annotations; F03 candidate content preserved. B01 candidate added; F03/F04 candidate bytes and fixed evidence preserved. Historical F04 merge pin: SHA-256 b4b120f025efeb7fe6bfaf020d950eb7a75949baaed3268f5e3b32e88853758d at revision e0438a372065626ea752c31dc6c86b92d3198a9d; current pin reflects B01 extension. WR249-TDD-F03F04-UID-SPLIT repin at base e9cca9f1d3d88b1c2049c3a3e492b36b2c2ec905: prior pin 79a383715e020cc5b32d6b8f9f55fbf1ca13b6731e38d03e83ae0cb291b4e5fa; current shared candidate file split per existing U-ID. Historical evidence/canonical IDs retained; see scaffold/research/wr249-tdd-f03-f04-uid-split-20261031/uid-split-correction.json."
+      "sha256": "2b47ca5684c0b2e11233296ca645cade698753be3a177d925a28248b109d7b07",
+      "note": "Current shared L5 document containing F03 plus F04 candidate annotations; F03 candidate content preserved. B01 candidate added; F03/F04 candidate bytes and fixed evidence preserved. Historical F04 merge pin: SHA-256 b4b120f025efeb7fe6bfaf020d950eb7a75949baaed3268f5e3b32e88853758d at revision e0438a372065626ea752c31dc6c86b92d3198a9d; current pin reflects B01 extension. WR249-TDD-F03F04-UID-SPLIT repin at base e9cca9f1d3d88b1c2049c3a3e492b36b2c2ec905: prior pin 79a383715e020cc5b32d6b8f9f55fbf1ca13b6731e38d03e83ae0cb291b4e5fa; current shared candidate file split per existing U-ID. Historical evidence/canonical IDs retained; see scaffold/research/wr249-tdd-f03-f04-uid-split-20261031/uid-split-correction.json. [WR253 current-byte pin refresh: 6aaa1c03c484541be4bc331dbf6f05756e3eed2acc17d6f212fc901678cb9778 -> 29a67961b7cbf1b495c46466b514bb7c4bd46a50460becc11791ed6edae0f152; historical candidate evidence/meaning is unchanged.] [PR #4003 R1 F1: current oracle_location now resolves to compact F03 contract; previous pin 29a67961b7cbf1b495c46466b514bb7c4bd46a50460becc11791ed6edae0f152 refreshed to 5af9f797ee9fd4b09655a0ea2f40e9a813126795db4d63195b43c15a8d7b1d32; historical removed snapshot remains origin-only.] [PR #4003 R1/R2 follow-up: current oracle_location points to F03 unit_case_rows; 5af9f797ee9fd4b09655a0ea2f40e9a813126795db4d63195b43c15a8d7b1d32 -> 2b47ca5684c0b2e11233296ca645cade698753be3a177d925a28248b109d7b07; historical snapshot remains origin-only.]"
     }
   ],
   "role": "F04 source-only L5 condition candidate, five existing L8 U-ID references, and all-row L4/L9 comparison evidence.",

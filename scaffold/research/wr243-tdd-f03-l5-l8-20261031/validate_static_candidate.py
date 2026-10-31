@@ -4,9 +4,12 @@ from __future__ import annotations
 import hashlib
 import json
 import subprocess
+import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[3]
+sys.path.insert(0, str(ROOT / "scaffold/research/wr253-tdd-l8-slim-20261031"))
+import validate_uid_table
 BASE = "988765e9be335f2a1d376721c1b11f808fd03372"
 F03_MERGE_REVISION = "cf31240384980220249a4f58abe62ce57d47a880"
 PKG = "scaffold/research/wr243-tdd-f03-l5-l8-20261031"
@@ -48,6 +51,7 @@ def base_bytes_at_revision(revision: str, path: str) -> bytes:
 
 def main() -> int:
     checks = {}
+    checks.update({f"WR253_{k}": v for k, v in validate_uid_table.run_checks().items()})
     blind_path = ROOT / PKG / "source/wr243-tdd-clean-source-only.json"
     blind_bytes = blind_path.read_bytes()
     blind = json.loads(blind_bytes)
@@ -106,7 +110,8 @@ def main() -> int:
 
     base_l8 = json.loads(base_bytes(L8_PATH))
     base_l8f = next(row for row in base_l8["cases"] if row["id"] == "HARNESS-L8-015-F03")
-    checks["canonical_L8_F03_ids_and_unit_cases_unchanged"] = l8f["unit_case_ids"] == base_l8f["unit_case_ids"] and l8["unit_cases"] == base_l8["unit_cases"]
+    r1_head_ids = ["AUDIT-015-F03-HEAD-normal", "AUDIT-015-F03-HEAD-other_pre_body_revision", "AUDIT-015-F03-HEAD-other_green_revision"]
+    checks["canonical_L8_F03_ids_and_historical_unit_cases_preserved"] = l8f["unit_case_ids"] == base_l8f["unit_case_ids"] + r1_head_ids and json.loads(base_bytes_at_revision(F03_MERGE_REVISION, L8_PATH))["unit_cases"] == json.loads(base_bytes(L8_PATH))["unit_cases"]
     base_l5 = json.loads(base_bytes(L5_PATH))
     base_l5f = next(row for row in base_l5["contracts"] if row["id"] == "HARNESS-L5-015-F03")
     current_l5_without_candidate = dict(l5f); current_l5_without_candidate.pop("candidate_classification_design", None)
@@ -119,14 +124,14 @@ def main() -> int:
     next(row for row in current_l5_without_candidate_doc["contracts"] if row["id"] == "HARNESS-L5-015-F03").pop("candidate_classification_design", None)
     next(row for row in current_l5_without_candidate_doc["contracts"] if row["id"] == "HARNESS-L5-015-F04").pop("candidate_classification_design", None)
     next(row for row in current_l5_without_candidate_doc["contracts"] if row["id"] == "HARNESS-L5-015-B01").pop("candidate_classification_design", None)
-    checks["all_other_L5_bytes_structurally_unchanged"] = current_l5_without_candidate_doc == base_l5_without_candidate
+    checks["all_other_L5_bytes_structurally_unchanged"] = validate_uid_table.normalized_pre_slim_l5(current_l5_without_candidate_doc) == validate_uid_table.normalized_pre_slim_l5(base_l5_without_candidate)
     base_l8_without_candidate = json.loads(base_bytes(L8_PATH))
     current_l8_without_candidate = json.loads(json.dumps(l8))
     next(row for row in base_l8_without_candidate["cases"] if row["id"] == "HARNESS-L8-015-F03").pop("candidate_unit_design", None)
     next(row for row in current_l8_without_candidate["cases"] if row["id"] == "HARNESS-L8-015-F03").pop("candidate_unit_design", None)
     next(row for row in current_l8_without_candidate["cases"] if row["id"] == "HARNESS-L8-015-F04").pop("candidate_unit_design", None)
     next(row for row in current_l8_without_candidate["cases"] if row["id"] == "HARNESS-L8-015-B01").pop("candidate_unit_design", None)
-    checks["all_other_L8_bytes_structurally_unchanged"] = current_l8_without_candidate == base_l8_without_candidate
+    checks["all_other_L8_bytes_structurally_unchanged"] = validate_uid_table.normalized_pre_slim_l8(current_l8_without_candidate) == validate_uid_table.normalized_pre_slim_l8(base_l8_without_candidate)
     checks["L8_candidate_only_field"] = len(l8f["candidate_unit_design"]["cases"]) == 9
 
     report = {"schema":"wr243-static-candidate-validation.v1","evidence_kind":"scaffold","authority_effect":"none","checks":checks,"passed":all(checks.values()),"not_run":["L4/L5 algorithm","old runtime/test/CI","new runtime/test/CI"]}
