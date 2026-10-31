@@ -1,12 +1,12 @@
 {
-  "schema": "wr259-validation-results-current.v1",
+  "schema": "wr259-validation-results-current-r2.v1",
   "evidence_kind": "scaffold",
   "authority_effect": "none",
   "target": {
     "kind": "merge_overlay",
     "origin_main_revision": "cd4208605f2a4e77e85f8d34317ff44c7218ad41",
-    "source_branch_commit": "f2686fa71799da0eef9e4ee3d32b3f48d1368ecf",
-    "merge_tree": "26f16e6b234fbe820b29468d600c4a444743c53b"
+    "source_branch_commit": "e96ba9590d199520dac579a0da43a898363bb301",
+    "merge_tree": "8b817bdce8d9800e4ba4bba2a23b050b2d71d3c2"
   },
   "commands": {
     "allowlist_validator": {
@@ -1425,25 +1425,13 @@
     "check_child": {
       "command": "python3 -B scaffold/tools/design_verification_checker.py check-child --l4 docs/helix-harness/L4-basic-design/naming-identity-correspondence.json --l9 docs/helix-harness/L9-integration-verification/naming-identity-correspondence.json --l5 docs/helix-harness/L5-detail-design/naming-identity-correspondence.json --l8 docs/helix-harness/L8-unit-verification/naming-identity-correspondence.json",
       "returncode": 1,
-      "result_file": "merge-overlay-check-child-current.json",
+      "result_file": "merge-overlay-check-child-current-r2.json",
       "passed": false
     }
   },
   "read_only_validator_check": {
     "evidence_sha256_inventory_unchanged": true,
-    "git_status_unchanged": true,
-    "before": {
-      "evidence_sha256": {
-        "scaffold/research/wr259-naming-l9-slim-20261101/evidence/evidence-disposition.json": "53220ed6570a42934da8f03d27405434e8eaeee54ba70610d2cacf1e8814b566"
-      },
-      "git_status": "M  docs/helix-harness/L9-integration-verification/naming-identity-correspondence.json\nM  scaffold/bindings/SCF-B-0211.json\nA  scaffold/bindings/SCF-B-0222.json\nA  scaffold/research/wr259-naming-l9-slim-20261101/README.md\nA  scaffold/research/wr259-naming-l9-slim-20261101/evidence/evidence-disposition.json\nA  scaffold/research/wr259-naming-l9-slim-20261101/validate_l9_slim.py\n"
-    },
-    "after": {
-      "evidence_sha256": {
-        "scaffold/research/wr259-naming-l9-slim-20261101/evidence/evidence-disposition.json": "53220ed6570a42934da8f03d27405434e8eaeee54ba70610d2cacf1e8814b566"
-      },
-      "git_status": "M  docs/helix-harness/L9-integration-verification/naming-identity-correspondence.json\nM  scaffold/bindings/SCF-B-0211.json\nA  scaffold/bindings/SCF-B-0222.json\nA  scaffold/research/wr259-naming-l9-slim-20261101/README.md\nA  scaffold/research/wr259-naming-l9-slim-20261101/evidence/evidence-disposition.json\nA  scaffold/research/wr259-naming-l9-slim-20261101/validate_l9_slim.py\n"
-    }
+    "git_status_unchanged": true
   },
   "not_run": [
     "legacy runtime",

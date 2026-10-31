@@ -17,7 +17,7 @@ authority_effect: none
 
 L5の37個のL9 literal/output pointerは全て調査した。各pointerは既存の`source_revision=b52ad0e1e954790ebe57b2d87da46ea6712a07d9`で解決し、canonical value hashが固定revisionの値に一致する。これらの意味と固定source参照は保持した。L8に直接のL9 pointerはない。
 
-WR251の`SCF-B-0211`は過去の時点証拠を変更せず、現行L9 upstream hashへのrebind情報を追記した。SCF-B-0222は現行の測定2件と`evidence-disposition.json`を登録する。版番号付きの旧測定snapshotと`evidence-history-index-r1〜r3.json`は現行treeから除き、導入commit、Git blob SHA-1、内容SHA-256、byte数、正確な復元コマンドをdispositionへまとめた。各測定種別の現行artifactは1本だけ置き、過去snapshotはGit履歴から復元して参照する。
+WR251の`SCF-B-0211`は過去の時点証拠を変更せず、現行L9 upstream hashへのrebind情報を追記した。SCF-B-0222は現行の測定2件と`evidence-disposition.json`を登録する。旧版付き測定snapshot、旧current名の測定snapshot、`evidence-history-index-r1〜r3.json`は現行treeから除き、導入commit、Git blob SHA-1、内容SHA-256、byte数、正確な復元コマンドを`evidence-disposition.json`へまとめた。各測定種別は`validation-results-current-r2.json`と`merge-overlay-check-child-current-r2.json`を現行の1本として置き、過去snapshotはdisposition記載のGit履歴から復元する。
 
 `validate_l9_slim.py`はstdoutにJSONを返す読取専用validatorで、証拠を生成・更新しない。通常実行の前後でworking treeとevidence SHA inventoryが変わらないことを確認する。
 
@@ -29,6 +29,6 @@ WR251の`SCF-B-0211`は過去の時点証拠を変更せず、現行L9 upstream 
 
 ## 検証と境界
 
-`validate_l9_slim.py`は固定baseの元caseから59件を行別に再導出し、ID・順序・basis・差分対象・状態判定・返却先・source field不在、要約文の日本語、raw値/before-after/full projectionの不在、L3/L4/L10参照、L10数値pointer、L8の限定的crosscheck、L5の37固定revision pointerを検査する。最新origin/mainとのmerge overlay結果は`evidence/validation-results-current.json`と`evidence/merge-overlay-check-child-current.json`に記録する。対象revisionは各artifactに含める。
+`validate_l9_slim.py`は固定baseの元caseから59件を行別に再導出し、ID・順序・basis・差分対象・状態判定・返却先・source field不在、要約文の日本語、raw値/before-after/full projectionの不在、L3/L4/L10参照、L10数値pointer、L8の限定的crosscheck、L5の37固定revision pointerを検査する。最新origin/mainとのmerge overlay結果は`evidence/validation-results-current-r2.json`と`evidence/merge-overlay-check-child-current-r2.json`に記録する。対象revisionは各artifactに含める。
 
 `scfctl validate`、`scfctl stale`、`design_verification_checker.py check-child`はmerge overlayで実測する。check-childの`not_evaluated`や既存negative結果を成功へ読み替えない。上流整理の静的照合だけを行い、旧runtime/test/CI、L4/L5 algorithm、製品testは実行しない。実fixture、実観測、formal verification、承認、実装ready、完了状態を生成しない。
