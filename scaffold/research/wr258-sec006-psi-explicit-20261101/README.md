@@ -23,3 +23,22 @@ L9 `negative_class_assignment.classification`の旧nested codeとtop-level class
 773KBの`rowwise-integration-design.json`はf328 commit `f32812ea08cc88545ea228e71146738553ae1e35`の固定入力からbyte-identicalに再生成できることを実測した。現行pathからは外し、blob、SHA-256、計数、再生成手順を[`r2-evidence-disposition.json`](r2-evidence-disposition.json)へ記録した。復元元blobは`a29776ee2d054341a924bc2ad4bc44e33183319f`、SHA-256は`567ba03eff6607c3603b10c9bb443bf06c890364c0aa2106299cc92a81583004`。R1の旧validator/builderも現行artifactから退役し、同dispositionにGit blob/SHA・復元方法・R2への移行根拠を記録した。現行で実行するR2 validatorは通常pathを開かず、f328固定Git objectのhashだけを照合する。PR-B mappingもf328 commit/blob/SHAを明記した履歴参照である。その他のrowwise path記載は当時の測定/候補を説明する保存済み記録で、実行時consumerではない。現行validatorは`validate_pr4007_r2.py`で、rowwise Git objectを固定f328から読みhashを照合する。`validate_pr4007_r1_followup.py`はL3/L10/L4由来のcase保持・class検証を続けるがrowwise artifactを読まない。R1 uniqueness validatorとrowwise builderの現行コピーは退役した。最新main overlayで両validator、`scfctl validate`/`stale`、正式および統合候補`check-child`を再実行した唯一の現行測定を[`pr4007-r2-final-overlay.json`](pr4007-r2-final-overlay.json)へ保存する。
 
 L4/L9 pairの明示markerは維持され、L5/L8 markerとcase-arrayは未整備である。したがって正式4way check-childはpartial-marker FAILを返す。FAILを4way完了として扱わず、L5/L8側は別V-pairのままとする。
+
+## L9 casewise補足（別L4/L9 V-pair）
+
+PR #4007 merge後の基準mainは`151713275e2c2aa65bb23a8fe38eb63c46d570c8`。その時点でL9の既存98行はcasewise `condition`、`expected`、`expected_preserved`を持たず、top-level `integration_cases`もなかった。本補足はL9正本へ148件のcasewise rowを置き、各行のID・class refを現行negative caseへ対応させる。従前のnegative case 148行、15 class table、16件の`multi_contract_residual`は変更しない。
+
+従前98行の`condition`は各L9 counterexampleのrequest/context、finding pointer、比較軸から日本語で個別に導出した。`expected`と`expected_preserved`は対応するL4 classの投影から作り、L9のsystem oracle条件・ordered finding codeと98/98一致を確認した。要求inputも各L4 classのsource条件と98/98整合し、上流意味との矛盾は0件だった。新規50行は既存L9 system-oracle conditionを保持し、`expected`/`expected_preserved`がL4 class投影と50/50一致することを確認した。L9の98 nested `classification`は旧nested taxonomy labelのまま保持し、新しい`negative_class_ref`だけを明示keyとして用いる。
+
+各integration rowにはQA §58の`compact_whole_observation`を置く。既存98行は元の`expected_observation`からordered `code`/`return_owner`を射影し、新規50行はL9 rowのsystem expectationとL4 class ownerから未実行のcompact oracleを構成する。148行すべて`not_executed`で、実行結果やraw fixtureを追加しない。ORACLE-046はoperation read/connection absentのsystem oracleとして既存class `SEC003-F02-EXPLICIT-CONNECTION-ABSENT`へ接続し、局所operation-deferをnegative caseとして紐付けない。
+
+PR-B候補との一時overlayでは、class keyとL8↔L9 ID対応は15 class・148行が揃い、148 case pairが比較対象になった。期待値と保持内容は148/148一致した。L9の日本語case conditionは入力根拠から独立導出したため、現PR-B候補の旧98件英語condition文字列とはQAの完全一致がなく、その98 IDだけがcase-condition FAILとなる。追加50件は50/50一致した。英語文字列をL9へ機械複写して解消しない。L8候補側の条件も同じcounterexampleから日本語で独立に記述する必要がある。正式4way `matched_case_count`と失敗内訳は`l4l9-supplement-current-overlay.json`に実測を保存する。
+
+行別source/期待照合は`l4l9-casewise-source-audit.json`、読取専用validatorは`validate_wr258_l4l9_supplement.py`、新しい専用bindingは`SCF-B-0226`で登録する。SCF-B-0201/0218のL9 current pinを更新し、旧hashを各noteへ保全する。これらの変更はL4/L9 V-pairとそのscaffold evidenceの範囲内であり、L3/L10/QA/L5/L8はこのbranchで編集しない。
+
+
+### 最新origin/main overlayの再測定
+
+`origin/main`は本補足の起点`151713275e2c2aa65bb23a8fe38eb63c46d570c8`から`fe6232a6062685aeb15e1b8641533ea86fa712f4`へ進んでいた。SEC006のL4/L9/L5/L8正本にはその間の変更がないことを確認し、PR-B候補commit `12ce2fe821`、`7da2d1a1b5`、`89a91dfb80cabc206004b50beb825c0461f5c9a1`を一時worktreeで最新mainへ適用して再測定した。SCF-B-0201/0218のL5/L8候補pinとSCF-B-0224のL9 pinを測定overlay内だけで更新し、その前のpin値を各noteに残した。
+
+このoverlayではL4/L9 pairとL5/L8 pairがともにPASS。explicit 4wayは148件を対応付けたが、98件のL8/L9 condition不一致でFAILした。条件以外の期待値と保持内容はそれぞれ148/148一致した。候補側の英語機械投影をL9へ移さず、L8側も各入力から独立に日本語化した後に照合する。`scfctl validate`は208 bindings・失敗0、`scfctl stale`は0 stale。実測は[`l4l9-supplement-current-overlay.json`](l4l9-supplement-current-overlay.json)へ一件だけ保存した。

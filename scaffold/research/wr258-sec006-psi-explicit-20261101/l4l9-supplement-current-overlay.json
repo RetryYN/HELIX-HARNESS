@@ -1,0 +1,824 @@
+{
+  "schema": "wr258-l4l9-supplement-current-overlay.v1",
+  "evidence_kind": "scaffold",
+  "authority_effect": "none",
+  "composition": {
+    "latest_main_revision": "fe6232a6062685aeb15e1b8641533ea86fa712f4",
+    "l4l9_base_revision": "151713275e2c2aa65bb23a8fe38eb63c46d570c8",
+    "prb_candidate_source_commits": [
+      "12ce2fe821ce0577832f2b94217dff5993f86173",
+      "7da2d1a1b5d3e6756537b18aa6f13dabdc525fda",
+      "89a91dfb80cabc206004b50beb825c0461f5c9a1"
+    ],
+    "overlay_commit_after_candidate_replay": "9beac0923ad07f0da8f8a5bf091f38b39a644a32",
+    "temporary_pin_refreshes": [
+      "SCF-B-0201: L9 supplement and candidate L5/L8",
+      "SCF-B-0218: L9 supplement and candidate L5/L8",
+      "SCF-B-0224: L9 supplement"
+    ],
+    "temporary_pins_are_overlay_only": true,
+    "l9_sha256": "80f3adc2c3a00c93f1c5eb81ed1ba28542dc7e31b558db15b9c5909a2f193754",
+    "l4l9_supplement_base_revision": "151713275e2c2aa65bb23a8fe38eb63c46d570c8",
+    "supplement_l9_sha256": "80f3adc2c3a00c93f1c5eb81ed1ba28542dc7e31b558db15b9c5909a2f193754"
+  },
+  "independent_casewise_validation": {
+    "passed": true,
+    "failure_count": 0,
+    "failures": [],
+    "integration_case_count": 148,
+    "existing_98": 98,
+    "added_50": 50,
+    "class_rows": {
+      "L4": 15,
+      "L9": 15
+    },
+    "unique_condition_count": 148,
+    "source_input_conflict_count": 0,
+    "system_oracle_mismatch_count": 0,
+    "compact_observation_mismatch_count": 0,
+    "unresolved_source_pointer_count": 0,
+    "source_layer_failure_count": 0,
+    "l3_requirement_ids": [
+      "HELIXSECURITY-L3-003-F01",
+      "HELIXSECURITY-L3-003-F02"
+    ],
+    "l10_oracle_ids": [
+      "HELIXSECURITY-L10-003-F01",
+      "HELIXSECURITY-L10-003-F02"
+    ]
+  },
+  "candidate_post_derivation_comparison": {
+    "l8_revision": "9beac0923a",
+    "paired_case_count": 148,
+    "condition_equal_count": 50,
+    "expected_equal_count": 148,
+    "expected_preserved_equal_count": 148,
+    "condition_mismatch_l9_ids": [
+      "SEC003-PERMISSION-ASSET-PROJECT-DRIFT",
+      "SEC003-PERMISSION-ASSET-TENANT-DRIFT",
+      "SEC003-PERMISSION-ASSET-ENVIRONMENT-DRIFT",
+      "SEC003-PERMISSION-ASSET-ASSIGNMENT-DRIFT",
+      "SEC003-PERMISSION-ASSET-WORKTREE-DRIFT",
+      "SEC003-PERMISSION-ASSET-REVISION-DRIFT",
+      "SEC003-STATE-ASSET-PROJECT-DRIFT",
+      "SEC003-STATE-ASSET-TENANT-DRIFT",
+      "SEC003-STATE-ASSET-ENVIRONMENT-DRIFT",
+      "SEC003-STATE-ASSET-ASSIGNMENT-DRIFT",
+      "SEC003-STATE-ASSET-WORKTREE-DRIFT",
+      "SEC003-STATE-ASSET-REVISION-DRIFT",
+      "SEC003-DATA-ASSET-PROJECT-DRIFT",
+      "SEC003-DATA-ASSET-TENANT-DRIFT",
+      "SEC003-DATA-ASSET-ENVIRONMENT-DRIFT",
+      "SEC003-DATA-ASSET-ASSIGNMENT-DRIFT",
+      "SEC003-DATA-ASSET-WORKTREE-DRIFT",
+      "SEC003-DATA-ASSET-REVISION-DRIFT",
+      "SEC003-WORKER-ASSET-PROJECT-DRIFT",
+      "SEC003-WORKER-ASSET-TENANT-DRIFT",
+      "SEC003-WORKER-ASSET-ENVIRONMENT-DRIFT",
+      "SEC003-WORKER-ASSET-ASSIGNMENT-DRIFT",
+      "SEC003-WORKER-ASSET-WORKTREE-DRIFT",
+      "SEC003-WORKER-ASSET-REVISION-DRIFT",
+      "SEC003-CREDENTIAL-ASSET-PROJECT-DRIFT",
+      "SEC003-CREDENTIAL-ASSET-TENANT-DRIFT",
+      "SEC003-CREDENTIAL-ASSET-ENVIRONMENT-DRIFT",
+      "SEC003-CREDENTIAL-ASSET-ASSIGNMENT-DRIFT",
+      "SEC003-CREDENTIAL-ASSET-WORKTREE-DRIFT",
+      "SEC003-CREDENTIAL-ASSET-REVISION-DRIFT",
+      "SEC003-ARTIFACT-ASSET-PROJECT-DRIFT",
+      "SEC003-ARTIFACT-ASSET-TENANT-DRIFT",
+      "SEC003-ARTIFACT-ASSET-ENVIRONMENT-DRIFT",
+      "SEC003-ARTIFACT-ASSET-ASSIGNMENT-DRIFT",
+      "SEC003-ARTIFACT-ASSET-WORKTREE-DRIFT",
+      "SEC003-ARTIFACT-ASSET-REVISION-DRIFT",
+      "SEC003-MEMORY-ASSET-PROJECT-DRIFT",
+      "SEC003-MEMORY-ASSET-TENANT-DRIFT",
+      "SEC003-MEMORY-ASSET-ENVIRONMENT-DRIFT",
+      "SEC003-MEMORY-ASSET-ASSIGNMENT-DRIFT",
+      "SEC003-MEMORY-ASSET-WORKTREE-DRIFT",
+      "SEC003-MEMORY-ASSET-REVISION-DRIFT",
+      "SEC003-EXECUTION_TARGET-ASSET-PROJECT-DRIFT",
+      "SEC003-EXECUTION_TARGET-ASSET-TENANT-DRIFT",
+      "SEC003-EXECUTION_TARGET-ASSET-ENVIRONMENT-DRIFT",
+      "SEC003-EXECUTION_TARGET-ASSET-ASSIGNMENT-DRIFT",
+      "SEC003-EXECUTION_TARGET-ASSET-WORKTREE-DRIFT",
+      "SEC003-EXECUTION_TARGET-ASSET-REVISION-DRIFT",
+      "SEC003-TARGET-PROJECT-MISSING",
+      "SEC003-TARGET-TENANT-MISSING",
+      "SEC003-TARGET-ENVIRONMENT-MISSING",
+      "SEC003-TARGET-ASSIGNMENT-MISSING",
+      "SEC003-TARGET-WORKTREE-MISSING",
+      "SEC003-TARGET-REVISION-MISSING",
+      "SEC003-TENANT-INVENTED",
+      "SEC003-TENANT-APPLICABILITY-UNKNOWN",
+      "SEC003-ORIGIN-PROJECT-MISSING",
+      "SEC003-ORIGIN-TENANT-MISSING",
+      "SEC003-ORIGIN-ENVIRONMENT-MISSING",
+      "SEC003-ORIGIN-ASSIGNMENT-MISSING",
+      "SEC003-ORIGIN-WORKTREE-MISSING",
+      "SEC003-ORIGIN-REVISION-MISSING",
+      "SEC003-ORIGIN-TENANT-UNKNOWN-VALUES",
+      "SEC003-TARGET-TENANT-UNKNOWN-VALUES",
+      "SEC003-CROSS-READ-ABSENT",
+      "SEC003-CROSS-WRITE-ABSENT",
+      "SEC003-CROSS-EXECUTE-ABSENT",
+      "SEC003-CROSS-NETWORK-ABSENT",
+      "SEC003-CROSS-STATE-ABSENT",
+      "SEC003-CROSS-CREDENTIAL-ABSENT",
+      "SEC003-CROSS-ARTIFACT-ABSENT",
+      "SEC003-PRIMARY-TREE-FALLBACK",
+      "SEC003-OTHER-PROJECT-FALLBACK",
+      "SEC003-OTHER-PROJECT-LATEST",
+      "SEC003-CONNECTION-REVISION",
+      "SEC003-CONNECTION-UNKNOWN",
+      "SEC003-READ-DOES-NOT-GRANT-WRITE",
+      "SEC003-READ-DOES-NOT-GRANT-EXECUTE",
+      "SEC003-READ-DOES-NOT-GRANT-NETWORK",
+      "SEC003-READ-DOES-NOT-GRANT-STATE",
+      "SEC003-READ-DOES-NOT-GRANT-CREDENTIAL",
+      "SEC003-READ-DOES-NOT-GRANT-ARTIFACT",
+      "SEC003-SAME-PROJECT-NO-CONNECTION",
+      "SEC003-AGENT-PRIMARY-TREE-FALLBACK",
+      "SEC003-AGENT-OTHER-PROJECT-LATEST",
+      "SEC003-AGENT-READ-DOES-NOT-GRANT-NETWORK",
+      "SEC003-HOOK-PRIMARY-TREE-FALLBACK",
+      "SEC003-HOOK-OTHER-PROJECT-LATEST",
+      "SEC003-HOOK-READ-DOES-NOT-GRANT-NETWORK",
+      "SEC003-MEMORY-PRIMARY-TREE-FALLBACK",
+      "SEC003-MEMORY-OTHER-PROJECT-LATEST",
+      "SEC003-MEMORY-READ-DOES-NOT-GRANT-NETWORK",
+      "SEC003-CREDENTIAL-PRIMARY-TREE-FALLBACK",
+      "SEC003-CREDENTIAL-OTHER-PROJECT-LATEST",
+      "SEC003-CREDENTIAL-READ-DOES-NOT-GRANT-NETWORK",
+      "SEC003-CONFIGURATION-PRIMARY-TREE-FALLBACK",
+      "SEC003-CONFIGURATION-OTHER-PROJECT-LATEST",
+      "SEC003-CONFIGURATION-READ-DOES-NOT-GRANT-NETWORK"
+    ],
+    "expected_mismatch_ids": [],
+    "expected_preserved_mismatch_ids": [],
+    "mapping_unique": true,
+    "l8_is_comparison_only": true
+  },
+  "formal_check_child": {
+    "passed": false,
+    "L4_L9_pair": {
+      "check": "CHK-PAIR-BIDIR-ID",
+      "status": "evaluated",
+      "not_evaluated_reason": null,
+      "passed": true,
+      "left_count": 2,
+      "right_count": 2,
+      "failures": [],
+      "derived_from": {
+        "l3_pointers": [
+          "docs/helix-harness/L3-requirements/functional-requirements.json#/requirements/58 (HARNESS-L3-001-F01)",
+          "docs/helix-harness/L3-requirements/functional-requirements.json#/requirements/51..52 (HARNESS-L3-056-F01..F02)"
+        ],
+        "l10_pointers": [
+          "docs/helix-harness/L10-verification/functional-verification.json#/cases/58 (HARNESS-L10-001-F01)",
+          "docs/helix-harness/L10-verification/functional-verification.json#/cases/51..52 (HARNESS-L10-056-F01..F02)"
+        ],
+        "decision_records": [
+          "docs/governance/decisions/helix-harness-layer-acceptance-prerequisite-l3-l10-delegated-decision-2026-10-12.md (PR #2946)",
+          "docs/governance/decisions/helix-harness-extraction-naming-pair-prerequisite-l3-l10-delegated-decision-2026-10-12.md (PR #2944)"
+        ]
+      }
+    },
+    "L5_L8_pair": {
+      "check": "CHK-PAIR-BIDIR-ID",
+      "status": "evaluated",
+      "not_evaluated_reason": null,
+      "passed": true,
+      "left_count": 2,
+      "right_count": 2,
+      "failures": [],
+      "derived_from": {
+        "l3_pointers": [
+          "docs/helix-harness/L3-requirements/functional-requirements.json#/requirements/58 (HARNESS-L3-001-F01)",
+          "docs/helix-harness/L3-requirements/functional-requirements.json#/requirements/51..52 (HARNESS-L3-056-F01..F02)"
+        ],
+        "l10_pointers": [
+          "docs/helix-harness/L10-verification/functional-verification.json#/cases/58 (HARNESS-L10-001-F01)",
+          "docs/helix-harness/L10-verification/functional-verification.json#/cases/51..52 (HARNESS-L10-056-F01..F02)"
+        ],
+        "decision_records": [
+          "docs/governance/decisions/helix-harness-layer-acceptance-prerequisite-l3-l10-delegated-decision-2026-10-12.md (PR #2946)",
+          "docs/governance/decisions/helix-harness-extraction-naming-pair-prerequisite-l3-l10-delegated-decision-2026-10-12.md (PR #2944)"
+        ]
+      }
+    },
+    "mode": "explicit_negative_equivalence_classes",
+    "matched_case_count": 148,
+    "failure_count": 98,
+    "failure_counts": {
+      "case_condition:case_attribute_differs_across_l8_l9": 98
+    },
+    "failures": [
+      {
+        "check": "CHK-NEG-4WAY-MATCH",
+        "attribute": "case_condition",
+        "reason": "case_attribute_differs_across_l8_l9",
+        "case_id": "SEC003-L8-CAND-001"
+      },
+      {
+        "check": "CHK-NEG-4WAY-MATCH",
+        "attribute": "case_condition",
+        "reason": "case_attribute_differs_across_l8_l9",
+        "case_id": "SEC003-L8-CAND-002"
+      },
+      {
+        "check": "CHK-NEG-4WAY-MATCH",
+        "attribute": "case_condition",
+        "reason": "case_attribute_differs_across_l8_l9",
+        "case_id": "SEC003-L8-CAND-003"
+      },
+      {
+        "check": "CHK-NEG-4WAY-MATCH",
+        "attribute": "case_condition",
+        "reason": "case_attribute_differs_across_l8_l9",
+        "case_id": "SEC003-L8-CAND-004"
+      },
+      {
+        "check": "CHK-NEG-4WAY-MATCH",
+        "attribute": "case_condition",
+        "reason": "case_attribute_differs_across_l8_l9",
+        "case_id": "SEC003-L8-CAND-005"
+      },
+      {
+        "check": "CHK-NEG-4WAY-MATCH",
+        "attribute": "case_condition",
+        "reason": "case_attribute_differs_across_l8_l9",
+        "case_id": "SEC003-L8-CAND-006"
+      },
+      {
+        "check": "CHK-NEG-4WAY-MATCH",
+        "attribute": "case_condition",
+        "reason": "case_attribute_differs_across_l8_l9",
+        "case_id": "SEC003-L8-CAND-007"
+      },
+      {
+        "check": "CHK-NEG-4WAY-MATCH",
+        "attribute": "case_condition",
+        "reason": "case_attribute_differs_across_l8_l9",
+        "case_id": "SEC003-L8-CAND-008"
+      },
+      {
+        "check": "CHK-NEG-4WAY-MATCH",
+        "attribute": "case_condition",
+        "reason": "case_attribute_differs_across_l8_l9",
+        "case_id": "SEC003-L8-CAND-009"
+      },
+      {
+        "check": "CHK-NEG-4WAY-MATCH",
+        "attribute": "case_condition",
+        "reason": "case_attribute_differs_across_l8_l9",
+        "case_id": "SEC003-L8-CAND-010"
+      },
+      {
+        "check": "CHK-NEG-4WAY-MATCH",
+        "attribute": "case_condition",
+        "reason": "case_attribute_differs_across_l8_l9",
+        "case_id": "SEC003-L8-CAND-011"
+      },
+      {
+        "check": "CHK-NEG-4WAY-MATCH",
+        "attribute": "case_condition",
+        "reason": "case_attribute_differs_across_l8_l9",
+        "case_id": "SEC003-L8-CAND-012"
+      },
+      {
+        "check": "CHK-NEG-4WAY-MATCH",
+        "attribute": "case_condition",
+        "reason": "case_attribute_differs_across_l8_l9",
+        "case_id": "SEC003-L8-CAND-013"
+      },
+      {
+        "check": "CHK-NEG-4WAY-MATCH",
+        "attribute": "case_condition",
+        "reason": "case_attribute_differs_across_l8_l9",
+        "case_id": "SEC003-L8-CAND-014"
+      },
+      {
+        "check": "CHK-NEG-4WAY-MATCH",
+        "attribute": "case_condition",
+        "reason": "case_attribute_differs_across_l8_l9",
+        "case_id": "SEC003-L8-CAND-015"
+      },
+      {
+        "check": "CHK-NEG-4WAY-MATCH",
+        "attribute": "case_condition",
+        "reason": "case_attribute_differs_across_l8_l9",
+        "case_id": "SEC003-L8-CAND-016"
+      },
+      {
+        "check": "CHK-NEG-4WAY-MATCH",
+        "attribute": "case_condition",
+        "reason": "case_attribute_differs_across_l8_l9",
+        "case_id": "SEC003-L8-CAND-017"
+      },
+      {
+        "check": "CHK-NEG-4WAY-MATCH",
+        "attribute": "case_condition",
+        "reason": "case_attribute_differs_across_l8_l9",
+        "case_id": "SEC003-L8-CAND-018"
+      },
+      {
+        "check": "CHK-NEG-4WAY-MATCH",
+        "attribute": "case_condition",
+        "reason": "case_attribute_differs_across_l8_l9",
+        "case_id": "SEC003-L8-CAND-019"
+      },
+      {
+        "check": "CHK-NEG-4WAY-MATCH",
+        "attribute": "case_condition",
+        "reason": "case_attribute_differs_across_l8_l9",
+        "case_id": "SEC003-L8-CAND-020"
+      },
+      {
+        "check": "CHK-NEG-4WAY-MATCH",
+        "attribute": "case_condition",
+        "reason": "case_attribute_differs_across_l8_l9",
+        "case_id": "SEC003-L8-CAND-021"
+      },
+      {
+        "check": "CHK-NEG-4WAY-MATCH",
+        "attribute": "case_condition",
+        "reason": "case_attribute_differs_across_l8_l9",
+        "case_id": "SEC003-L8-CAND-022"
+      },
+      {
+        "check": "CHK-NEG-4WAY-MATCH",
+        "attribute": "case_condition",
+        "reason": "case_attribute_differs_across_l8_l9",
+        "case_id": "SEC003-L8-CAND-023"
+      },
+      {
+        "check": "CHK-NEG-4WAY-MATCH",
+        "attribute": "case_condition",
+        "reason": "case_attribute_differs_across_l8_l9",
+        "case_id": "SEC003-L8-CAND-024"
+      },
+      {
+        "check": "CHK-NEG-4WAY-MATCH",
+        "attribute": "case_condition",
+        "reason": "case_attribute_differs_across_l8_l9",
+        "case_id": "SEC003-L8-CAND-025"
+      },
+      {
+        "check": "CHK-NEG-4WAY-MATCH",
+        "attribute": "case_condition",
+        "reason": "case_attribute_differs_across_l8_l9",
+        "case_id": "SEC003-L8-CAND-026"
+      },
+      {
+        "check": "CHK-NEG-4WAY-MATCH",
+        "attribute": "case_condition",
+        "reason": "case_attribute_differs_across_l8_l9",
+        "case_id": "SEC003-L8-CAND-027"
+      },
+      {
+        "check": "CHK-NEG-4WAY-MATCH",
+        "attribute": "case_condition",
+        "reason": "case_attribute_differs_across_l8_l9",
+        "case_id": "SEC003-L8-CAND-028"
+      },
+      {
+        "check": "CHK-NEG-4WAY-MATCH",
+        "attribute": "case_condition",
+        "reason": "case_attribute_differs_across_l8_l9",
+        "case_id": "SEC003-L8-CAND-029"
+      },
+      {
+        "check": "CHK-NEG-4WAY-MATCH",
+        "attribute": "case_condition",
+        "reason": "case_attribute_differs_across_l8_l9",
+        "case_id": "SEC003-L8-CAND-030"
+      },
+      {
+        "check": "CHK-NEG-4WAY-MATCH",
+        "attribute": "case_condition",
+        "reason": "case_attribute_differs_across_l8_l9",
+        "case_id": "SEC003-L8-CAND-031"
+      },
+      {
+        "check": "CHK-NEG-4WAY-MATCH",
+        "attribute": "case_condition",
+        "reason": "case_attribute_differs_across_l8_l9",
+        "case_id": "SEC003-L8-CAND-032"
+      },
+      {
+        "check": "CHK-NEG-4WAY-MATCH",
+        "attribute": "case_condition",
+        "reason": "case_attribute_differs_across_l8_l9",
+        "case_id": "SEC003-L8-CAND-033"
+      },
+      {
+        "check": "CHK-NEG-4WAY-MATCH",
+        "attribute": "case_condition",
+        "reason": "case_attribute_differs_across_l8_l9",
+        "case_id": "SEC003-L8-CAND-034"
+      },
+      {
+        "check": "CHK-NEG-4WAY-MATCH",
+        "attribute": "case_condition",
+        "reason": "case_attribute_differs_across_l8_l9",
+        "case_id": "SEC003-L8-CAND-035"
+      },
+      {
+        "check": "CHK-NEG-4WAY-MATCH",
+        "attribute": "case_condition",
+        "reason": "case_attribute_differs_across_l8_l9",
+        "case_id": "SEC003-L8-CAND-036"
+      },
+      {
+        "check": "CHK-NEG-4WAY-MATCH",
+        "attribute": "case_condition",
+        "reason": "case_attribute_differs_across_l8_l9",
+        "case_id": "SEC003-L8-CAND-037"
+      },
+      {
+        "check": "CHK-NEG-4WAY-MATCH",
+        "attribute": "case_condition",
+        "reason": "case_attribute_differs_across_l8_l9",
+        "case_id": "SEC003-L8-CAND-038"
+      },
+      {
+        "check": "CHK-NEG-4WAY-MATCH",
+        "attribute": "case_condition",
+        "reason": "case_attribute_differs_across_l8_l9",
+        "case_id": "SEC003-L8-CAND-039"
+      },
+      {
+        "check": "CHK-NEG-4WAY-MATCH",
+        "attribute": "case_condition",
+        "reason": "case_attribute_differs_across_l8_l9",
+        "case_id": "SEC003-L8-CAND-040"
+      },
+      {
+        "check": "CHK-NEG-4WAY-MATCH",
+        "attribute": "case_condition",
+        "reason": "case_attribute_differs_across_l8_l9",
+        "case_id": "SEC003-L8-CAND-041"
+      },
+      {
+        "check": "CHK-NEG-4WAY-MATCH",
+        "attribute": "case_condition",
+        "reason": "case_attribute_differs_across_l8_l9",
+        "case_id": "SEC003-L8-CAND-042"
+      },
+      {
+        "check": "CHK-NEG-4WAY-MATCH",
+        "attribute": "case_condition",
+        "reason": "case_attribute_differs_across_l8_l9",
+        "case_id": "SEC003-L8-CAND-043"
+      },
+      {
+        "check": "CHK-NEG-4WAY-MATCH",
+        "attribute": "case_condition",
+        "reason": "case_attribute_differs_across_l8_l9",
+        "case_id": "SEC003-L8-CAND-044"
+      },
+      {
+        "check": "CHK-NEG-4WAY-MATCH",
+        "attribute": "case_condition",
+        "reason": "case_attribute_differs_across_l8_l9",
+        "case_id": "SEC003-L8-CAND-045"
+      },
+      {
+        "check": "CHK-NEG-4WAY-MATCH",
+        "attribute": "case_condition",
+        "reason": "case_attribute_differs_across_l8_l9",
+        "case_id": "SEC003-L8-CAND-046"
+      },
+      {
+        "check": "CHK-NEG-4WAY-MATCH",
+        "attribute": "case_condition",
+        "reason": "case_attribute_differs_across_l8_l9",
+        "case_id": "SEC003-L8-CAND-047"
+      },
+      {
+        "check": "CHK-NEG-4WAY-MATCH",
+        "attribute": "case_condition",
+        "reason": "case_attribute_differs_across_l8_l9",
+        "case_id": "SEC003-L8-CAND-048"
+      },
+      {
+        "check": "CHK-NEG-4WAY-MATCH",
+        "attribute": "case_condition",
+        "reason": "case_attribute_differs_across_l8_l9",
+        "case_id": "SEC003-L8-CAND-049"
+      },
+      {
+        "check": "CHK-NEG-4WAY-MATCH",
+        "attribute": "case_condition",
+        "reason": "case_attribute_differs_across_l8_l9",
+        "case_id": "SEC003-L8-CAND-050"
+      },
+      {
+        "check": "CHK-NEG-4WAY-MATCH",
+        "attribute": "case_condition",
+        "reason": "case_attribute_differs_across_l8_l9",
+        "case_id": "SEC003-L8-CAND-051"
+      },
+      {
+        "check": "CHK-NEG-4WAY-MATCH",
+        "attribute": "case_condition",
+        "reason": "case_attribute_differs_across_l8_l9",
+        "case_id": "SEC003-L8-CAND-052"
+      },
+      {
+        "check": "CHK-NEG-4WAY-MATCH",
+        "attribute": "case_condition",
+        "reason": "case_attribute_differs_across_l8_l9",
+        "case_id": "SEC003-L8-CAND-053"
+      },
+      {
+        "check": "CHK-NEG-4WAY-MATCH",
+        "attribute": "case_condition",
+        "reason": "case_attribute_differs_across_l8_l9",
+        "case_id": "SEC003-L8-CAND-054"
+      },
+      {
+        "check": "CHK-NEG-4WAY-MATCH",
+        "attribute": "case_condition",
+        "reason": "case_attribute_differs_across_l8_l9",
+        "case_id": "SEC003-L8-CAND-055"
+      },
+      {
+        "check": "CHK-NEG-4WAY-MATCH",
+        "attribute": "case_condition",
+        "reason": "case_attribute_differs_across_l8_l9",
+        "case_id": "SEC003-L8-CAND-056"
+      },
+      {
+        "check": "CHK-NEG-4WAY-MATCH",
+        "attribute": "case_condition",
+        "reason": "case_attribute_differs_across_l8_l9",
+        "case_id": "SEC003-L8-CAND-057"
+      },
+      {
+        "check": "CHK-NEG-4WAY-MATCH",
+        "attribute": "case_condition",
+        "reason": "case_attribute_differs_across_l8_l9",
+        "case_id": "SEC003-L8-CAND-058"
+      },
+      {
+        "check": "CHK-NEG-4WAY-MATCH",
+        "attribute": "case_condition",
+        "reason": "case_attribute_differs_across_l8_l9",
+        "case_id": "SEC003-L8-CAND-059"
+      },
+      {
+        "check": "CHK-NEG-4WAY-MATCH",
+        "attribute": "case_condition",
+        "reason": "case_attribute_differs_across_l8_l9",
+        "case_id": "SEC003-L8-CAND-060"
+      },
+      {
+        "check": "CHK-NEG-4WAY-MATCH",
+        "attribute": "case_condition",
+        "reason": "case_attribute_differs_across_l8_l9",
+        "case_id": "SEC003-L8-CAND-061"
+      },
+      {
+        "check": "CHK-NEG-4WAY-MATCH",
+        "attribute": "case_condition",
+        "reason": "case_attribute_differs_across_l8_l9",
+        "case_id": "SEC003-L8-CAND-062"
+      },
+      {
+        "check": "CHK-NEG-4WAY-MATCH",
+        "attribute": "case_condition",
+        "reason": "case_attribute_differs_across_l8_l9",
+        "case_id": "SEC003-L8-CAND-063"
+      },
+      {
+        "check": "CHK-NEG-4WAY-MATCH",
+        "attribute": "case_condition",
+        "reason": "case_attribute_differs_across_l8_l9",
+        "case_id": "SEC003-L8-CAND-064"
+      },
+      {
+        "check": "CHK-NEG-4WAY-MATCH",
+        "attribute": "case_condition",
+        "reason": "case_attribute_differs_across_l8_l9",
+        "case_id": "SEC003-L8-CAND-065"
+      },
+      {
+        "check": "CHK-NEG-4WAY-MATCH",
+        "attribute": "case_condition",
+        "reason": "case_attribute_differs_across_l8_l9",
+        "case_id": "SEC003-L8-CAND-066"
+      },
+      {
+        "check": "CHK-NEG-4WAY-MATCH",
+        "attribute": "case_condition",
+        "reason": "case_attribute_differs_across_l8_l9",
+        "case_id": "SEC003-L8-CAND-067"
+      },
+      {
+        "check": "CHK-NEG-4WAY-MATCH",
+        "attribute": "case_condition",
+        "reason": "case_attribute_differs_across_l8_l9",
+        "case_id": "SEC003-L8-CAND-068"
+      },
+      {
+        "check": "CHK-NEG-4WAY-MATCH",
+        "attribute": "case_condition",
+        "reason": "case_attribute_differs_across_l8_l9",
+        "case_id": "SEC003-L8-CAND-069"
+      },
+      {
+        "check": "CHK-NEG-4WAY-MATCH",
+        "attribute": "case_condition",
+        "reason": "case_attribute_differs_across_l8_l9",
+        "case_id": "SEC003-L8-CAND-070"
+      },
+      {
+        "check": "CHK-NEG-4WAY-MATCH",
+        "attribute": "case_condition",
+        "reason": "case_attribute_differs_across_l8_l9",
+        "case_id": "SEC003-L8-CAND-071"
+      },
+      {
+        "check": "CHK-NEG-4WAY-MATCH",
+        "attribute": "case_condition",
+        "reason": "case_attribute_differs_across_l8_l9",
+        "case_id": "SEC003-L8-CAND-074"
+      },
+      {
+        "check": "CHK-NEG-4WAY-MATCH",
+        "attribute": "case_condition",
+        "reason": "case_attribute_differs_across_l8_l9",
+        "case_id": "SEC003-L8-CAND-075"
+      },
+      {
+        "check": "CHK-NEG-4WAY-MATCH",
+        "attribute": "case_condition",
+        "reason": "case_attribute_differs_across_l8_l9",
+        "case_id": "SEC003-L8-CAND-076"
+      },
+      {
+        "check": "CHK-NEG-4WAY-MATCH",
+        "attribute": "case_condition",
+        "reason": "case_attribute_differs_across_l8_l9",
+        "case_id": "SEC003-L8-CAND-077"
+      },
+      {
+        "check": "CHK-NEG-4WAY-MATCH",
+        "attribute": "case_condition",
+        "reason": "case_attribute_differs_across_l8_l9",
+        "case_id": "SEC003-L8-CAND-078"
+      },
+      {
+        "check": "CHK-NEG-4WAY-MATCH",
+        "attribute": "case_condition",
+        "reason": "case_attribute_differs_across_l8_l9",
+        "case_id": "SEC003-L8-CAND-079"
+      },
+      {
+        "check": "CHK-NEG-4WAY-MATCH",
+        "attribute": "case_condition",
+        "reason": "case_attribute_differs_across_l8_l9",
+        "case_id": "SEC003-L8-CAND-080"
+      },
+      {
+        "check": "CHK-NEG-4WAY-MATCH",
+        "attribute": "case_condition",
+        "reason": "case_attribute_differs_across_l8_l9",
+        "case_id": "SEC003-L8-CAND-081"
+      },
+      {
+        "check": "CHK-NEG-4WAY-MATCH",
+        "attribute": "case_condition",
+        "reason": "case_attribute_differs_across_l8_l9",
+        "case_id": "SEC003-L8-CAND-082"
+      },
+      {
+        "check": "CHK-NEG-4WAY-MATCH",
+        "attribute": "case_condition",
+        "reason": "case_attribute_differs_across_l8_l9",
+        "case_id": "SEC003-L8-CAND-083"
+      },
+      {
+        "check": "CHK-NEG-4WAY-MATCH",
+        "attribute": "case_condition",
+        "reason": "case_attribute_differs_across_l8_l9",
+        "case_id": "SEC003-L8-CAND-085"
+      },
+      {
+        "check": "CHK-NEG-4WAY-MATCH",
+        "attribute": "case_condition",
+        "reason": "case_attribute_differs_across_l8_l9",
+        "case_id": "SEC003-L8-CAND-086"
+      },
+      {
+        "check": "CHK-NEG-4WAY-MATCH",
+        "attribute": "case_condition",
+        "reason": "case_attribute_differs_across_l8_l9",
+        "case_id": "SEC003-L8-CAND-088"
+      },
+      {
+        "check": "CHK-NEG-4WAY-MATCH",
+        "attribute": "case_condition",
+        "reason": "case_attribute_differs_across_l8_l9",
+        "case_id": "SEC003-L8-CAND-089"
+      },
+      {
+        "check": "CHK-NEG-4WAY-MATCH",
+        "attribute": "case_condition",
+        "reason": "case_attribute_differs_across_l8_l9",
+        "case_id": "SEC003-L8-CAND-091"
+      },
+      {
+        "check": "CHK-NEG-4WAY-MATCH",
+        "attribute": "case_condition",
+        "reason": "case_attribute_differs_across_l8_l9",
+        "case_id": "SEC003-L8-CAND-092"
+      },
+      {
+        "check": "CHK-NEG-4WAY-MATCH",
+        "attribute": "case_condition",
+        "reason": "case_attribute_differs_across_l8_l9",
+        "case_id": "SEC003-L8-CAND-094"
+      },
+      {
+        "check": "CHK-NEG-4WAY-MATCH",
+        "attribute": "case_condition",
+        "reason": "case_attribute_differs_across_l8_l9",
+        "case_id": "SEC003-L8-CAND-095"
+      },
+      {
+        "check": "CHK-NEG-4WAY-MATCH",
+        "attribute": "case_condition",
+        "reason": "case_attribute_differs_across_l8_l9",
+        "case_id": "SEC003-L8-CAND-097"
+      },
+      {
+        "check": "CHK-NEG-4WAY-MATCH",
+        "attribute": "case_condition",
+        "reason": "case_attribute_differs_across_l8_l9",
+        "case_id": "SEC003-L8-CAND-098"
+      },
+      {
+        "check": "CHK-NEG-4WAY-MATCH",
+        "attribute": "case_condition",
+        "reason": "case_attribute_differs_across_l8_l9",
+        "case_id": "SEC003-L8-FALLBACK-OTHER"
+      },
+      {
+        "check": "CHK-NEG-4WAY-MATCH",
+        "attribute": "case_condition",
+        "reason": "case_attribute_differs_across_l8_l9",
+        "case_id": "SEC003-L8-CALLER-PRIMARY-TREE-WORKER"
+      },
+      {
+        "check": "CHK-NEG-4WAY-MATCH",
+        "attribute": "case_condition",
+        "reason": "case_attribute_differs_across_l8_l9",
+        "case_id": "SEC003-L8-CALLER-PRIMARY-TREE-AGENT"
+      },
+      {
+        "check": "CHK-NEG-4WAY-MATCH",
+        "attribute": "case_condition",
+        "reason": "case_attribute_differs_across_l8_l9",
+        "case_id": "SEC003-L8-CALLER-PRIMARY-TREE-HOOK"
+      },
+      {
+        "check": "CHK-NEG-4WAY-MATCH",
+        "attribute": "case_condition",
+        "reason": "case_attribute_differs_across_l8_l9",
+        "case_id": "SEC003-L8-CALLER-PRIMARY-TREE-MEMORY"
+      },
+      {
+        "check": "CHK-NEG-4WAY-MATCH",
+        "attribute": "case_condition",
+        "reason": "case_attribute_differs_across_l8_l9",
+        "case_id": "SEC003-L8-CALLER-PRIMARY-TREE-CREDENTIAL"
+      },
+      {
+        "check": "CHK-NEG-4WAY-MATCH",
+        "attribute": "case_condition",
+        "reason": "case_attribute_differs_across_l8_l9",
+        "case_id": "SEC003-L8-CALLER-PRIMARY-TREE-CONFIGURATION"
+      }
+    ]
+  },
+  "tool_commands": [
+    "python3 -B scaffold/research/wr258-sec006-psi-explicit-20261101/validate_wr258_l4l9_supplement.py --candidate-l8 docs/helix-security/L8-unit-verification/project-scope-isolation.json --candidate-revision 9beac0923a",
+    "python3 -B scaffold/tools/design_verification_checker.py check-child --root . --l4 docs/helix-security/L4-basic-design/project-scope-isolation.json --l5 docs/helix-security/L5-detail-design/project-scope-isolation.json --l8 docs/helix-security/L8-unit-verification/project-scope-isolation.json --l9 docs/helix-security/L9-integration-verification/project-scope-isolation.json",
+    "python3 scaffold/tools/scfctl.py validate",
+    "python3 scaffold/tools/scfctl.py stale"
+  ],
+  "binding_measurements": {
+    "scfctl_validate": {
+      "exit_code": 0,
+      "output_summary": "bindings=208 fail=0"
+    },
+    "scfctl_stale": {
+      "exit_code": 0,
+      "output_summary": "stale=0"
+    }
+  },
+  "interpretation": "L4/L9 pairとL5/L8 pairはPASS。explicit 4wayは148件を対応付けたが、98件のL8/L9 condition不一致でFAILした。期待値と保持内容は148/148一致。候補L8の英語機械投影をL9へ移さず、L8側も各入力から独立に日本語化した後に照合する。scfctl validateは208 bindings・失敗0、staleは0。",
+  "independent_casewise_source_layer_failures": []
+}
