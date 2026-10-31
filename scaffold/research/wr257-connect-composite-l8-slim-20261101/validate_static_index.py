@@ -106,7 +106,7 @@ def historical_expectation_group_key(case_id: str, expected: dict, rule_refs: li
         literal = selector.get('zero_literal') if 'MISSING' in case_id else selector.get('many_literal') if 'DUPLICATE' in case_id else None
         trigger = literal or rule.get('when') or selector.get('kind', 'rule_trigger')
         prior_findings.append(f"{rule_id}|{rule.get('area')}+{rule.get('field')}={trigger}@{rule.get('owner_route')}")
-    key = {name: expected[name] for name in ('scenario_class', 'condition', 'l5_refs', 'verification_status')}
+    key = {name: expected[name] for name in ('scenario_class', 'l5_refs', 'verification_status')}
     key['prior_derived_rule_labels'] = prior_findings
     return json.dumps(key, ensure_ascii=False, sort_keys=True)
 
@@ -738,17 +738,17 @@ def main() -> None:
             'recovery_receipt': RAW_REPORT_DEDUP,
         },
         'checks': [
-            'all prior L8 source case IDs and order retained in a consumer-compatible array; exact L9 source/expected pointers and scenario basis resolve',
-            'all 27 local probe IDs/roles/source cases retain unique short counterexample and expected judgment; fixed historical delta comparison supports rule coverage without embedding patch recipes or return values',
-            '1 source reuse, 7 primitive cases and 1 typed carrier boundary retain identity and intended oracle boundary',
-            '91 L9 branches and 27 predeclared local probes carry U-IDs without changing the 127 declaration count; each branch row has a short L5-derived expected decision, L5 citation, normal/negative class, and unverified state (3 normal, 88 negative)',
-            'all 91 branch expectations retain only source pointer, target, field and a bounded semantic difference category; 11 previously identical groups (60 rows) are distinguished without before/after values, full arrays or repeated L5 rule prose',
-            'all four L5 public functions map by exact source refs; all 26 L5 failure rules are covered by fixed L9 oracle branches and/or predeclared local expected deltas',
-            'L5 has no unit_case_refs; absence is recorded without synthetic references',
-            'fixture hashes are absent from case/probe inventories; retained digests are source/authority pins',
-            'removed_materials has six required keys and names DT-VT-105 boundary',
-            'merge-overlay check-child completed without crash and L8 ownership cap has zero failures; unrelated L9/pair/four-way failures remain reported',
-            'byte-identical raw checker reports are stored once; old commit/blob/hash and exact restore method are recorded',
+            'L8 source caseのID・順序・配列形を保ち、L9 source/expected pointerと共通条件表参照を照合する',
+            '27 local probeのID・役割・source caseと短い反例/期待判断を保ち、固定履歴の静的比較でrule根拠を確かめる。patch手順や返却値は埋め込まない',
+            'source再照合1件、primitive 7件、typed carrier境界1件のIDとoracle境界を保つ',
+            '127件の宣言数を変えず、91 L9分岐と27 local probeのU-ID、各分岐のL5由来期待・引用・正常/反例・未検証状態を保つ（正常3、反例88）',
+            '91行はpointer、対象、field、意味差分区分、個別判断を持ち、共通条件33種は各一度だけ中央表に置く。11群60行の区別を固定sourceで照合する',
+            'L5公開関数4件とfailure_rule 26件を固定source pointerに結び、未被覆ruleがないことを確認する',
+            'L5にunit_case_refsがないことを記録し、合成参照を作らない',
+            'case/probe一覧にfixture hashを残さず、残存digestはsource/authority pinに限る',
+            'removed_materialsの必須6 keyとDT-VT-105境界を保つ',
+            'merge overlayのcheck-childが例外なく完了し、L8 ownership cap failureは0件。L9/pair/four-wayの別failureも記録する',
+            '同一bytesのchecker raw reportは一つだけ保持し、過去commit/blob/hashと復元方法を記録する',
         ],
         'not_established': ['product test execution', 'runtime behavior', 'source/owner qualification', 'L7 test citation', 'design or implementation readiness', 'full mutation-family coverage'],
     }

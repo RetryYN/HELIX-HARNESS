@@ -121,7 +121,8 @@
     "scaffold/research/wr257-connect-composite-l8-slim-20261101/checker-evidence/raw-report-dedup-receipt.json",
     "scaffold/research/wr257-connect-composite-l8-slim-20261101/checker-evidence/merge-overlay-check-child-6a0dab48.json",
     "scaffold/research/wr257-connect-composite-l8-slim-20261101/static-evidence-measurement-5d31d583a695-final-origin-main.json",
-    "scaffold/research/wr257-connect-composite-l8-slim-20261101/static-evidence-measurement-scenario-centralization.json"
+    "scaffold/research/wr257-connect-composite-l8-slim-20261101/static-evidence-measurement-scenario-centralization.json",
+    "scaffold/research/wr257-connect-composite-l8-slim-20261101/checker-evidence/merge-overlay-check-child-e4b38392.json"
   ],
   "verification": {
     "evidence_kind": "scaffold",

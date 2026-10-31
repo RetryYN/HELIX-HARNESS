@@ -34,7 +34,7 @@ raw fixture、型付きraw fixture、mutation再構成レシピ、full return、
 | L8 ownership cap violations | — | 0件（merge overlayのcheck-childで確認） |
 | L5 `unit_case_refs` | 無し | 無しを明記、捏造なし |
 
-fresh fetchおよび`git ls-remote`で確認したorigin/mainと候補HEADのmerge overlay上で`check-child`を実行した。配列consumerの例外なく完了し、L8 ownership cap failureは0件だった。checker全体のexit codeは1で、L9 ownership cap 91件、pair照合およびnegative four-way照合の残存failureがある。全体passとは扱わず、対象revision・overlay commit・raw report hashを`checker-evidence/`へ保存した。
+fresh fetchと`git ls-remote`で一致を確認したorigin/main `3c2ea6734d0038d8fd93f8bdbf090e0db6a9e09d` と候補 `1f4c85f8cd59564fca840c1143f257d01039f82c` のoverlay `e4b38392daa4ac4a9ab504caa53981a15b49adfa` で`check-child`を実行した。consumer例外なく完了し、L8 ownership cap failureは0件。checker全体はexit code 1で、L9 ownership cap 91件とpair/negative four-wayの残存failureがある。raw reportは既存canonical reportとSHA-256が一致するため重複保存せず、overlay固有のrevision・L8 SHA・測定結果を`checker-evidence/merge-overlay-check-child-e4b38392.json`へ追補した。
 
 checkerの1930行raw reportは4時点でSHA-256がすべて`89d09246bc42b821133d04b43d375dfe52999ebd5cf6ed8dd436fa32aea08028`と一致したため、同一bytesは1 copyだけ現行treeへ残した。各時点のoverlay要約は別に保ち、元commit・Git blob SHA・復元手順は`checker-evidence/raw-report-dedup-receipt.json`に記録した。履歴中のいずれのpathも`git show <commit>:<path>`で正確に戻せる。
 
