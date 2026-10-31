@@ -1,0 +1,135 @@
+{
+  "schema": "wr259-validation-results.v1",
+  "evidence_kind": "scaffold",
+  "authority_effect": "none",
+  "target": "working-tree overlay on fe79e0004d8164bffc4be7c8c31dd9e14da2ead3",
+  "commands": {
+    "allowlist_validator": {
+      "command": "python3 -B scaffold/research/wr259-naming-l9-slim-20261101/validate_l9_slim.py",
+      "returncode": 0,
+      "result": {
+        "schema": "wr259-l9-allowlist-validation.v1",
+        "evidence_kind": "scaffold",
+        "authority_effect": "none",
+        "passed": true,
+        "checks": {
+          "removed_materials_exact_six_fields_and_fixed_base": true,
+          "fixed_authority_pins_and_legacy_comparison_preserved": true,
+          "forbidden_fixture_full_return_and_mutation_material_absent": true,
+          "case_id_order_ref_property_state_and_l8_summary_match": true,
+          "case_count_and_obligation_order_preserved": true,
+          "all_five_L4_and_L10_oracles_retained": true,
+          "all_37_L5_consumer_pointers_resolve_at_pinned_source_revision": true,
+          "case_allowlist_is_lightened": true,
+          "no_l8_direct_L9_json_pointers": true
+        },
+        "measurements": {
+          "fixed_base": "fe79e0004d8164bffc4be7c8c31dd9e14da2ead3",
+          "pre_edit_bytes": 194059,
+          "current_bytes": 83557,
+          "reduction_bytes": 110502,
+          "reduction_percent": 56.94,
+          "case_count": 59,
+          "L5_direct_pointer_count": 37,
+          "L5_source_revision": "b52ad0e1e954790ebe57b2d87da46ea6712a07d9",
+          "authority_source_pins": 10
+        },
+        "not_run": [
+          "legacy runtime",
+          "legacy tests",
+          "legacy CI",
+          "design or product algorithms"
+        ]
+      }
+    },
+    "scfctl_validate": {
+      "command": "python3 -B scaffold/tools/scfctl.py validate",
+      "returncode": 0,
+      "summary": "bindings=199 fail=0"
+    },
+    "scfctl_stale": {
+      "command": "python3 -B scaffold/tools/scfctl.py stale",
+      "returncode": 0,
+      "summary": "stale=0"
+    },
+    "check_child": {
+      "command": "python3 -B scaffold/tools/design_verification_checker.py check-child --l4 docs/helix-harness/L4-basic-design/naming-identity-correspondence.json --l9 docs/helix-harness/L9-integration-verification/naming-identity-correspondence.json --l5 docs/helix-harness/L5-detail-design/naming-identity-correspondence.json --l8 docs/helix-harness/L8-unit-verification/naming-identity-correspondence.json",
+      "returncode": 1,
+      "passed": false,
+      "pairs": {
+        "L4_L9_pair": {
+          "status": "not_evaluated",
+          "not_evaluated_reason": "empty_pair_entities:left=5,right=0",
+          "passed": false
+        },
+        "L5_L8_pair": {
+          "status": "not_evaluated",
+          "not_evaluated_reason": "empty_pair_entities:left=0,right=158",
+          "passed": false
+        }
+      },
+      "negative_4way": {
+        "status": "not_evaluated",
+        "counts": {
+          "L4": 0,
+          "L9": 0,
+          "L8": 0,
+          "L5": 0
+        },
+        "matched_case_count": 0,
+        "failure_count": 1
+      },
+      "ownership_caps": [
+        {
+          "layer": "L4",
+          "passed": true,
+          "failure_count": 0
+        },
+        {
+          "layer": "L9",
+          "passed": true,
+          "failure_count": 0
+        },
+        {
+          "layer": "L5",
+          "passed": true,
+          "failure_count": 0
+        },
+        {
+          "layer": "L8",
+          "passed": true,
+          "failure_count": 0
+        }
+      ],
+      "pins": [
+        {
+          "checked_count": 10,
+          "passed": true,
+          "failure_count": 0
+        },
+        {
+          "checked_count": 10,
+          "passed": true,
+          "failure_count": 0
+        },
+        {
+          "checked_count": 24,
+          "passed": true,
+          "failure_count": 0
+        },
+        {
+          "checked_count": 24,
+          "passed": true,
+          "failure_count": 0
+        }
+      ]
+    }
+  },
+  "not_run": [
+    "legacy runtime",
+    "legacy test",
+    "legacy CI",
+    "L4/L5 algorithm",
+    "product test"
+  ]
+}

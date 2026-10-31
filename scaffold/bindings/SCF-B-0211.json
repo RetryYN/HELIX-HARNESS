@@ -40,8 +40,8 @@
     },
     {
       "path": "docs/helix-harness/L9-integration-verification/naming-identity-correspondence.json",
-      "sha256": "897861a09bd1b6a16e35bb5ce9ed3aad36f63c6ee0ec9ced24d5b241d5c335b1",
-      "note": "WR251固定baseの要求・oracle・層pair・L8 ownership境界のsource。"
+      "sha256": "f64e87d6b5d78ed800b15caf54d6db66cfc93925a46177f6ded6c00e4f95ca3a",
+      "note": "WR251固定baseの要求・oracle・層pair・L8 ownership境界のsource。 WR259によるL9 allowlist化後の現行bytesへrebind（旧WR251測定targetはfe79e0004d8164bffc4be7c8c31dd9e14da2ead3固定revision/旧SHA-256 897861a09bd1b6a16e35bb5ce9ed3aad36f63c6ee0ec9ced24d5b241d5c335b1）。WR251時点監査は書き換えない。 WR259最終allowlistの連番L9-SYSTEM-ORACLE-01..59を含むbytesへrebind（直前hash 7b61b96ca4328d1a6c36351a6d541155a6abd99a6b0760673da6a88cabd896c7、source base fe79e0004d8164bffc4be7c8c31dd9e14da2ead3）。WR251時点監査は不変。"
     },
     {
       "path": "docs/governance/design-verification-quality-assurance.md",
