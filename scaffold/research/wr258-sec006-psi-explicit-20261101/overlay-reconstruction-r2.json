@@ -1,0 +1,173 @@
+{
+  "schema": "wr258-temp-worktree-overlay-reconstruction.v1",
+  "evidence_kind": "scaffold",
+  "authority_effect": "none",
+  "fixed_commit": "f32812ea08cc88545ea228e71146738553ae1e35",
+  "worktree_head_verified": "f32812ea08cc88545ea228e71146738553ae1e35",
+  "historical_full_copy_hashes_verified_before_rebuild": 8,
+  "generated_outputs_left_in_main_worktree": false,
+  "results": {
+    "integrated-overlay-candidate": {
+      "exit_code": 1,
+      "overall_passed": false,
+      "l4_l9_pair_passed": true,
+      "l5_l8_pair_passed": true,
+      "fourway_passed": false,
+      "class_rows": {
+        "L4": 16,
+        "L9": 16,
+        "L8": 16,
+        "L5": 16
+      },
+      "case_rows": {
+        "L8": 143,
+        "L9": 148
+      },
+      "matched_case_count": 141,
+      "failure_count": 16,
+      "failure_groups": [
+        {
+          "layer": "L8",
+          "attribute": "equivalence_class",
+          "reason": "class_key_missing_from_layer",
+          "count": 1
+        },
+        {
+          "layer": "L8",
+          "attribute": "equivalence_class",
+          "reason": "unexpected_class_key",
+          "count": 1
+        },
+        {
+          "layer": "L8",
+          "attribute": "equivalence_key",
+          "reason": "class_key_missing_from_layer",
+          "count": 1
+        },
+        {
+          "layer": "L8",
+          "attribute": "equivalence_key",
+          "reason": "unexpected_class_key",
+          "count": 1
+        },
+        {
+          "layer": "L8",
+          "attribute": "integration_case_ref",
+          "reason": "integration_case_ref_unresolved",
+          "count": 1
+        },
+        {
+          "layer": "L9",
+          "attribute": "equivalence_class",
+          "reason": "class_key_missing_from_layer",
+          "count": 1
+        },
+        {
+          "layer": "L9",
+          "attribute": "equivalence_class",
+          "reason": "unexpected_class_key",
+          "count": 1
+        },
+        {
+          "layer": "L9",
+          "attribute": "equivalence_key",
+          "reason": "class_key_missing_from_layer",
+          "count": 1
+        },
+        {
+          "layer": "L9",
+          "attribute": "equivalence_key",
+          "reason": "unexpected_class_key",
+          "count": 1
+        },
+        {
+          "layer": "L9",
+          "attribute": "integration_case_ref",
+          "reason": "integration_case_not_referenced_from_l8",
+          "count": 6
+        },
+        {
+          "layer": "L9",
+          "attribute": "owner_unresolved",
+          "reason": "finding_owners_not_unique",
+          "count": 1
+        }
+      ]
+    },
+    "caller-provenance-overlay-candidate": {
+      "exit_code": 1,
+      "overall_passed": false,
+      "l4_l9_pair_passed": true,
+      "l5_l8_pair_passed": true,
+      "fourway_passed": false,
+      "class_rows": {
+        "L4": 16,
+        "L9": 16,
+        "L8": 16,
+        "L5": 16
+      },
+      "case_rows": {
+        "L8": 148,
+        "L9": 148
+      },
+      "matched_case_count": 147,
+      "failure_count": 9,
+      "failure_groups": [
+        {
+          "layer": "L8",
+          "attribute": "equivalence_class",
+          "reason": "class_key_missing_from_layer",
+          "count": 1
+        },
+        {
+          "layer": "L8",
+          "attribute": "equivalence_class",
+          "reason": "unexpected_class_key",
+          "count": 1
+        },
+        {
+          "layer": "L8",
+          "attribute": "equivalence_key",
+          "reason": "class_key_missing_from_layer",
+          "count": 1
+        },
+        {
+          "layer": "L8",
+          "attribute": "equivalence_key",
+          "reason": "unexpected_class_key",
+          "count": 1
+        },
+        {
+          "layer": "L9",
+          "attribute": "equivalence_class",
+          "reason": "class_key_missing_from_layer",
+          "count": 1
+        },
+        {
+          "layer": "L9",
+          "attribute": "equivalence_class",
+          "reason": "unexpected_class_key",
+          "count": 1
+        },
+        {
+          "layer": "L9",
+          "attribute": "equivalence_key",
+          "reason": "class_key_missing_from_layer",
+          "count": 1
+        },
+        {
+          "layer": "L9",
+          "attribute": "equivalence_key",
+          "reason": "unexpected_class_key",
+          "count": 1
+        },
+        {
+          "layer": "L9",
+          "attribute": "owner_unresolved",
+          "reason": "finding_owners_not_unique",
+          "count": 1
+        }
+      ]
+    }
+  }
+}

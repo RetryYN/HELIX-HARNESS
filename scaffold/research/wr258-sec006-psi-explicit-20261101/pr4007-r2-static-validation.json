@@ -1,0 +1,35 @@
+{
+  "schema": "wr258-pr4007-r2-static-validation.v1",
+  "evidence_kind": "scaffold",
+  "authority_effect": "none",
+  "passed": true,
+  "baseline_revisions": {
+    "pre_r1": "cf983f81ff09cd90fb3f8f781bdb7c7445923ee6",
+    "pre_r2": "d3b0b1777f3cf35d604d20ad18a177cc9f85caa3",
+    "rowwise_fixed_commit": "f32812ea08cc88545ea228e71146738553ae1e35"
+  },
+  "counts": {
+    "l4_classes": 15,
+    "l9_old_rows": 98,
+    "l9_r1_additions": 50,
+    "l9_total_rows": 148,
+    "unique_conditions": 50,
+    "python_repr_occurrences": 0,
+    "prb_candidate_rows": 50
+  },
+  "sha256": {
+    "docs/helix-security/L3-requirements/functional-requirements.json": "e4eeb70cc303e44199c7d898281e91c22dba89b47666353b9c80a4c634e898b5",
+    "docs/helix-security/L10-verification/functional-verification.json": "e6da7eaff29a623b5d069801280c295d9dd7cc43b51d9cde25b12a8110e5072a",
+    "docs/helix-security/L4-basic-design/project-scope-isolation.json": "16d4fc5e3fcf0c677703b694b538f6d8f5542db36291850ed7f72865f0d9c72c",
+    "docs/helix-security/L8-unit-verification/project-scope-isolation.json": "6d093e482b013e733bc3eb5950aef5b8385b3288dc85bbcb9854bea92830900d",
+    "docs/helix-security/L9-integration-verification/project-scope-isolation.json": "eda71cc49c10ddf0681ae7ab629c6862b3e0c984854cecf0fdf8fc9faa0a0e5c",
+    "scaffold/research/wr258-sec006-psi-explicit-20261101/pr-b-l8-integration-case-ref-candidate-r2.json": "e459fe1396e835916919b48e606366b7378ac08992291035d6bac5fdf5f5f5c6",
+    "scaffold/bindings/SCF-B-0218.json": "98cc8f3c395055ecf4eb8bfd9a131dccf4b8b3701e1f9e9bb0bf793347aeaab6"
+  },
+  "rowwise_rebuild_source": {
+    "git_blob": "a29776ee2d054341a924bc2ad4bc44e33183319f",
+    "sha256": "567ba03eff6607c3603b10c9bb443bf06c890364c0aa2106299cc92a81583004",
+    "current_path_absent": true
+  },
+  "failures": []
+}
