@@ -1,0 +1,122 @@
+{
+  "schema_revision": 1,
+  "id": "SCF-B-0216",
+  "kind": "scaffold",
+  "title": "WR257 HELIX-CONNECT composite-edge-terminal L8 U-ID index evidence",
+  "product": "HELIX-HARNESS",
+  "owner_candidate": "HELIX-HARNESS repository scaffold evidence for HELIX-CONNECT L8",
+  "state": "registered",
+  "reason": "WR257はCONNECT composite-edge-terminalのL8を既存IDと検証上の意味を保ったU-ID表へ縮約し、容量上限を0へする作業依頼。HELIX-CONNECTは機構であり製品属性は変えない。このbindingは作業の静的照合材料を登録し、authority・要求意味・製品test結果を生成しない。",
+  "upstream": [
+    {
+      "path": "docs/helix-connect/L3-requirements/functional-requirements.json",
+      "sha256": "fb04683632d92e5c51c46fdc2eecf388a58e406856f243b8105513e075a49421",
+      "note": "CONNECT007採用要求の参照先"
+    },
+    {
+      "path": "docs/helix-connect/L4-basic-design/composite-edge-terminal.json",
+      "sha256": "166a7800eac7427983ccc716a2472e9017cb9510a19ade5e9f07f63c11785030",
+      "note": "局所probe source_refとL4 pin"
+    },
+    {
+      "path": "docs/helix-connect/L5-detail-design/composite-edge-terminal.json",
+      "sha256": "0f672d5d2a8abc906a0c61139359ac41f1725635b2d2a43aef8fa3b08e2f85cd",
+      "note": "関数役割とsaved-bytes pin。unit_case_refs不在も照合"
+    },
+    {
+      "path": "docs/helix-connect/L8-unit-verification/composite-edge-terminal.json",
+      "sha256": "e8ecf160244f65df96c5926acc092b5fb7c0841b53340e875765518d688e4fcb",
+      "note": "対象U-ID表"
+    },
+    {
+      "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
+      "sha256": "313757d63a2afdbfa2bfd7d9ceff8db0f294131e393ac360fcf96b3938635f72",
+      "note": "91 source case/独立expected oracle"
+    },
+    {
+      "path": "scaffold/verification-test-template-seed-20261001/templates/DT-VT-105-l5-l8-detail-conformance.md",
+      "sha256": "d1b0bc1a4d18b749dd67710ac9308551e56764a5770336920a67c5a8a58cbb1b",
+      "note": "検証seed候補として適用境界のみ参照"
+    }
+  ],
+  "role": "WR257のL8行対応、source/oracle参照、意味境界、未検証状態の静的な保全証拠とvalidatorを保持する",
+  "obligations": [
+    "91 L9 source case ID/順序、L9 source/expected pointer、system oracle、basis、fixture-only・not-executed状態を対応づける。L5 unit_case_refsは存在しないと記録し、L5対応を捏造しない。",
+    "27 local probeのID、function role、source case、patch paths、期待delta全値、独立basisを保持する。大きな共通値はexact revision/pointerのsource_refへ集約し、validatorで元deltaへ復元して比較する。",
+    "1 source reuse、7 primitive、1 typed carrier境界のIDと識別を保ち、fixture-only・not-executedを維持する。",
+    "fixture digest、raw fixture、inline mutated bytes、full return wholeをL8に再配置しない。残すhashはsource/authority bytes pinに限る。",
+    "removed_materialsの6 key、DT-VT-105適用境界、L5 unit_case_refsとL7 test citationの未確認を保持する。",
+    "すべての結果をscaffold証拠として扱い、設計/実装ready、製品test、source qualification、要求承認、合格を生成しない。"
+  ],
+  "connections": {
+    "consumers": [
+      "docs/helix-connect/L5-detail-design/composite-edge-terminal.json (pair relation; no unit_case_refs)",
+      "docs/governance/crosswalks/l2-l11-json-migration-inventory.json (path inventory)",
+      "docs/governance/audits/limited-v12-design-reproof-2026-10-16.json (path inventory)",
+      "docs/governance/audits/connect-downstream-coverage-2026-10-22.md (document ID/path inventory)"
+    ],
+    "dependencies": [
+      "WR257-CONNECT-COMPOSITE-L8-SLIM / Issue #3510",
+      "#4002 CONNECT009 L8 slim precedent",
+      "#4003 R1 row-meaning preservation",
+      "#3999 R2 F2 fixture digest removal"
+    ],
+    "boundary": "静的source/pointer/ID照合だけ。L7 testやoracleを新設せず、旧素材を再実行せず、CONNECT要求の採否・authority・製品挙動を決めない。"
+  },
+  "operations": {
+    "allowed": [
+      "python3 -B scaffold/research/wr257-connect-composite-l8-slim-20261101/validate_static_index.py",
+      "python3 -B scaffold/research/wr257-connect-composite-l8-slim-20261101/validate_static_index.py --record",
+      "python3 -B scaffold/tools/scfctl.py validate|stale",
+      "git diff --check"
+    ],
+    "forbidden": [
+      "旧runtime・test・CI・CLI・hook・workflowの実行",
+      "L3/L4/L5/L9/L10意味の変更、L7 fixture/test/oracleの生成",
+      "fixture raw/digestやfull returnsを別pathへ複製",
+      "scaffold evidenceから実装Ready、test pass、authority、approval、完了を推論"
+    ]
+  },
+  "artifacts": [
+    "docs/helix-connect/L8-unit-verification/composite-edge-terminal.json",
+    "scaffold/research/wr257-connect-composite-l8-slim-20261101/README.md",
+    "scaffold/research/wr257-connect-composite-l8-slim-20261101/validate_static_index.py",
+    "scaffold/research/wr257-connect-composite-l8-slim-20261101/static-evidence.json",
+    "scaffold/bindings/SCF-B-0216.json"
+  ],
+  "verification": {
+    "evidence_kind": "scaffold",
+    "scope": [
+      "schema_interface",
+      "source_revision_stale",
+      "negative_case",
+      "deterministic_behavior",
+      "forbidden_write_scope"
+    ],
+    "oracles": [
+      "WR257 static index validator (source case/pointer/expected delta round-trip)",
+      "python3 scaffold/tools/scfctl.py validate",
+      "python3 scaffold/tools/scfctl.py stale",
+      "git diff --check"
+    ],
+    "negative_cases": [
+      "L5 unit_case_refs absentを存在扱いしない",
+      "L9/L10参照をL7 test citationへ読み替えない",
+      "fixture-only/not-executedを製品合格へ昇格しない",
+      "source_ref revision/pointerが固定pinに合わない場合は不合格",
+      "case/probe ID、期待delta、oracle境界を欠落・改変した場合は不合格"
+    ]
+  },
+  "replacement": {
+    "role_target": "将来、承認済みのCONNECT L8検証契約が個別に成立した場合の静的移行照合材料。新しい正式artifactや要求を定めない。",
+    "formal_artifacts": [],
+    "issue": 3510,
+    "status": "pending",
+    "transfer": null,
+    "target_revisions": {},
+    "confirmation_ref": null,
+    "confirmation_digest": null
+  },
+  "created": "2026-11-01",
+  "updated": "2026-11-01"
+}
