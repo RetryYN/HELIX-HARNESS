@@ -104,19 +104,12 @@
     "docs/helix-security/L8-unit-verification/revoke-quarantine-propagation.json",
     "scaffold/research/wr255-sec009-l5l8-audit-20261101/README.md",
     "scaffold/research/wr255-sec009-l5l8-audit-20261101/validate_wr255_l5l8.py",
-    "scaffold/research/wr255-sec009-l5l8-audit-20261101/verification-summary.json",
-    "scaffold/research/wr255-sec009-l5l8-audit-20261101/check-child-report.json",
     "scaffold/bindings/SCF-B-0220.json",
-    "scaffold/research/wr255-sec009-l5l8-audit-20261101/verification-summary-cb44877e1db6-27531334.json",
-    "scaffold/research/wr255-sec009-l5l8-audit-20261101/check-child-report-cb44877e1db6-27531334.json",
-    "scaffold/research/wr255-sec009-l5l8-audit-20261101/verification-summary-24d7f00bdca4-91da3af2.json",
-    "scaffold/research/wr255-sec009-l5l8-audit-20261101/check-child-report-24d7f00bdca4-91da3af2.json",
-    "scaffold/research/wr255-sec009-l5l8-audit-20261101/verification-summary-cb44877e1db6-91da3af2.json",
-    "scaffold/research/wr255-sec009-l5l8-audit-20261101/duplicate-check-report-disposition.json",
     "scaffold/research/wr255-sec009-l5l8-audit-20261101/validate_pointer_transfer.py",
     "scaffold/research/wr255-sec009-l5l8-audit-20261101/verification-summary-l4-d670496eeb-00376c40-l5-ea8e3c2510-1aefb9b6-l8-69fbb3e2f0-18df6dce-l9-087f02dc63-e918a289-validator-7b7544bc.json",
     "scaffold/research/wr255-sec009-l5l8-audit-20261101/check-child-report-l4-d670496eeb-00376c40-l5-ea8e3c2510-1aefb9b6-l8-69fbb3e2f0-18df6dce-l9-087f02dc63-e918a289.json",
-    "scaffold/research/wr255-sec009-l5l8-audit-20261101/pointer-transfer-audit-18df6dce679d-e918a289fe88.json"
+    "scaffold/research/wr255-sec009-l5l8-audit-20261101/pointer-transfer-audit-18df6dce679d-e918a289fe88.json",
+    "scaffold/research/wr255-sec009-l5l8-audit-20261101/measurement-artifact-disposition.json"
   ],
   "verification": {
     "evidence_kind": "scaffold",
@@ -130,7 +123,8 @@
       "Validator checks 285 unique L8 U-IDs in one-to-one order with 285 L9 source IDs and resolves each shared source pointer.",
       "Validator checks 277 negative row expectations against the referenced L4 class and each positive minimum expectation against its shared contract basis; individual oracle/test citation remain null.",
       "Validator resolves positive source identities at L3 business /requirements/2, L3 functional /requirements/21 and /requirements/22, L10 business /cases/2, and L4 /contracts/0.",
-      "positive期待を含む現candidateのpair-only check-childはL4/L9 pass、L5/L8 pass、4way matched 0、negative_4way failures 2243。L9補足を含む統合計測は別V-pair validatorで行う。"
+      "履歴上のL4/L9補足前pair-only測定は4way matched 0・2243 failuresだった。旧report/summary bytesはmeasurement-artifact-disposition.jsonにcommit/blob/SHAと復元commandを記録し、現行treeからは除いた。",
+      "最新origin/main overlay（base `151713275e2c2aa65bb23a8fe38eb63c46d570c8`）へL5/L8候補を重ねたstatic計測はL4/L9 pair pass、L5/L8 pair pass、277 matched・0 failures。L4/L5/L8/L9 SHA-256はmeasurement-artifact-disposition.jsonに記録し、current treeに各1本のsummary/reportを保持。positive 8件は契約最小期待の設計・未観測、個別oracle/test citationはnull。overlayでvalidatorを2回read-only実行しstatus不変、scfctl validateは207 bindings fail=0、stale=0。"
     ],
     "negative_cases": [
       "Do not infer individual oracle IDs or test citations from a contract-level L10 ref.",

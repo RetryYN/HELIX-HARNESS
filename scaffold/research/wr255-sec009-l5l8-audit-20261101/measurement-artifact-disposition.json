@@ -1,0 +1,313 @@
+{
+  "schema": "wr255-measurement-artifact-disposition.v1",
+  "evidence_kind": "scaffold",
+  "authority_effect": "none",
+  "purpose": "測定結果の重複コピーを現行treeから除き、固定された過去時点はGit履歴から再現できるようcommit・blob・SHA-256・復元方法を一か所に集約する。",
+  "current_tree_policy": {
+    "check_child_report_count": 1,
+    "verification_summary_count": 1,
+    "pointer_transfer_audit_count": 1,
+    "default_validator_mode": "read-only stdout",
+    "record_mode": "明示 --record のみ。runごとの一意pathをexclusive createし、既存pathを上書きしない。"
+  },
+  "retained_current_measurements": [
+    {
+      "path": "scaffold/research/wr255-sec009-l5l8-audit-20261101/verification-summary-l4-d670496eeb-00376c40-l5-ea8e3c2510-1aefb9b6-l8-69fbb3e2f0-18df6dce-l9-087f02dc63-e918a289-validator-7b7544bc.json",
+      "commit": "de63303ea8129a667834ccdc1d70e8adc831ed9e",
+      "git_blob_sha1": "362f9ef3418617065dc35f9837ebf0eaa08c1e40",
+      "content_sha256": "9c1b57d94ce5b9b82cf0101926eb7cdd3b5a39f153e65273d9779a69606a290d",
+      "byte_length": 18464,
+      "role": "最新mainと候補L5/L8の277/0統合測定summary。"
+    },
+    {
+      "path": "scaffold/research/wr255-sec009-l5l8-audit-20261101/check-child-report-l4-d670496eeb-00376c40-l5-ea8e3c2510-1aefb9b6-l8-69fbb3e2f0-18df6dce-l9-087f02dc63-e918a289.json",
+      "commit": "de63303ea8129a667834ccdc1d70e8adc831ed9e",
+      "git_blob_sha1": "41025125846a9a32087844e457e0fc42bb41bb33",
+      "content_sha256": "879fe62b0c75d6081f1754e50130ffe3c9af8561037fe58a33df5c8bfecd3e7f",
+      "byte_length": 15503,
+      "role": "上記summaryに対応する唯一の完全check-child report。"
+    },
+    {
+      "path": "scaffold/research/wr255-sec009-l5l8-audit-20261101/pointer-transfer-audit-18df6dce679d-e918a289fe88.json",
+      "commit": "de63303ea8129a667834ccdc1d70e8adc831ed9e",
+      "git_blob_sha1": "a177cc390c2dac8c48a8734f14eb6fc62f2b8642",
+      "content_sha256": "52fbfc8c3d13835ba66484047cbcec797c1e3600ced4b90398bd305db15765dc",
+      "byte_length": 197112,
+      "role": "L8 308 consumerの唯一の行別transfer audit。"
+    }
+  ],
+  "historical_measurements_removed_from_head": [
+    {
+      "path": "scaffold/research/wr255-sec009-l5l8-audit-20261101/check-child-report.json",
+      "historical_commit": "9dffee8c3489a3c5404b5bce469441a6371ed171",
+      "git_blob_sha1": "f897d0c54e9918df138dd1c22ad82c42e50e8a52",
+      "content_sha256": "6e88776cd4075be1b6d16b66ef167f627bf677796b4572dbd8ff3d778557fd4a",
+      "byte_length": 487924,
+      "disposition": "HEADから除去。旧時点は指定commit/blobから復元可能。",
+      "meaning": "初回L5/L8候補の4way未達測定。2235 failure。",
+      "restore_command": "git show 9dffee8c3489a3c5404b5bce469441a6371ed171:scaffold/research/wr255-sec009-l5l8-audit-20261101/check-child-report.json > scaffold/research/wr255-sec009-l5l8-audit-20261101/check-child-report.json",
+      "check_child_result": {
+        "passed": false,
+        "matched_case_count": 0,
+        "failure_count": 2235
+      }
+    },
+    {
+      "path": "scaffold/research/wr255-sec009-l5l8-audit-20261101/check-child-report-cb44877e1db6-27531334.json",
+      "historical_commit": "e7dd88b8f987de4cb5af6707489ea356a0c4c79a",
+      "git_blob_sha1": "f897d0c54e9918df138dd1c22ad82c42e50e8a52",
+      "content_sha256": "6e88776cd4075be1b6d16b66ef167f627bf677796b4572dbd8ff3d778557fd4a",
+      "byte_length": 487924,
+      "disposition": "HEADから除去。旧時点は指定commit/blobから復元可能。",
+      "meaning": "localized L8・現行source更新前の測定。check-child-report.jsonと同じbytes、2235 failure。",
+      "restore_command": "git show e7dd88b8f987de4cb5af6707489ea356a0c4c79a:scaffold/research/wr255-sec009-l5l8-audit-20261101/check-child-report-cb44877e1db6-27531334.json > scaffold/research/wr255-sec009-l5l8-audit-20261101/check-child-report-cb44877e1db6-27531334.json",
+      "check_child_result": {
+        "passed": false,
+        "matched_case_count": 0,
+        "failure_count": 2235
+      }
+    },
+    {
+      "path": "scaffold/research/wr255-sec009-l5l8-audit-20261101/check-child-report-24d7f00bdca4-91da3af2.json",
+      "historical_commit": "516d04b3875d05570880fbc91ed53337e0ffe6eb",
+      "git_blob_sha1": "79c8fc8835c69ecd7394534a44a9b1bea8452efb",
+      "content_sha256": "cab380a50fab1955d608fd1408580294060221673f74ce51fc3d37aa6e0e128e",
+      "byte_length": 489649,
+      "disposition": "HEADから除去。旧時点は指定commit/blobから復元可能。",
+      "meaning": "positive最小期待の設計追補時の測定。2243 failure。",
+      "restore_command": "git show 516d04b3875d05570880fbc91ed53337e0ffe6eb:scaffold/research/wr255-sec009-l5l8-audit-20261101/check-child-report-24d7f00bdca4-91da3af2.json > scaffold/research/wr255-sec009-l5l8-audit-20261101/check-child-report-24d7f00bdca4-91da3af2.json",
+      "check_child_result": {
+        "passed": false,
+        "matched_case_count": 0,
+        "failure_count": 2243
+      }
+    },
+    {
+      "path": "scaffold/research/wr255-sec009-l5l8-audit-20261101/check-child-report-cb44877e1db6-91da3af2.json",
+      "historical_commit": "24d7f00bdca41c3dfb1f3137655ffdbe3674cfb3",
+      "git_blob_sha1": "79c8fc8835c69ecd7394534a44a9b1bea8452efb",
+      "content_sha256": "cab380a50fab1955d608fd1408580294060221673f74ce51fc3d37aa6e0e128e",
+      "byte_length": 489649,
+      "disposition": "HEADから除去。旧時点は指定commit/blobから復元可能。",
+      "meaning": "commit前working tree名で保存された同一2243-failure report。check-child-report-24d7...と同一bytes。",
+      "restore_command": "git show 24d7f00bdca41c3dfb1f3137655ffdbe3674cfb3:scaffold/research/wr255-sec009-l5l8-audit-20261101/check-child-report-cb44877e1db6-91da3af2.json > scaffold/research/wr255-sec009-l5l8-audit-20261101/check-child-report-cb44877e1db6-91da3af2.json",
+      "check_child_result": {
+        "passed": false,
+        "matched_case_count": 0,
+        "failure_count": 2243
+      }
+    },
+    {
+      "path": "scaffold/research/wr255-sec009-l5l8-audit-20261101/verification-summary.json",
+      "historical_commit": "9dffee8c3489a3c5404b5bce469441a6371ed171",
+      "git_blob_sha1": "ea1f22981225dbe7f3a5c53b8f68b4a3a9fcdcfc",
+      "content_sha256": "e10c9cd6642a178ac60104690704cb9b988b23c1243f7ec7bb47c25bf14b18b0",
+      "byte_length": 126938,
+      "disposition": "HEADから除去。旧時点は指定commit/blobから復元可能。",
+      "meaning": "初回summary。negative 277、positive期待未成立、2235 failure。",
+      "restore_command": "git show 9dffee8c3489a3c5404b5bce469441a6371ed171:scaffold/research/wr255-sec009-l5l8-audit-20261101/verification-summary.json > scaffold/research/wr255-sec009-l5l8-audit-20261101/verification-summary.json",
+      "source_revision": "d8e48de751c04f4250326dd049763c08dce3eaac",
+      "counts": {
+        "classes_per_layer": 32,
+        "l8_u_ids": 285,
+        "l9_source_case_ids": 285,
+        "negative": 277,
+        "positive_unclosed": 8
+      },
+      "check_child": {
+        "exit_code": 1,
+        "passed": false,
+        "l4_l9_pair_passed": true,
+        "l5_l8_pair_passed": true,
+        "negative_4way_matched_case_count": 0,
+        "negative_4way_failure_count": 2235,
+        "negative_4way_failure_reasons": {
+          "case_attribute_differs_across_l8_l9": 847,
+          "case_condition_missing": 285,
+          "case_expected_missing": 285,
+          "case_expected_preserved_missing": 285,
+          "case_observation_missing_or_invalid": 277,
+          "class_key_missing_from_layer": 128,
+          "unexpected_class_key": 128
+        },
+        "full_report": "check-child-report.json",
+        "interpretation": "L5/L8 pair passes; 4-way remains incomplete because L9 row-level expected/condition/preserved and compact observations are absent, plus class key alignment failures. This evidence does not claim formal verification."
+      }
+    },
+    {
+      "path": "scaffold/research/wr255-sec009-l5l8-audit-20261101/verification-summary-cb44877e1db6-27531334.json",
+      "historical_commit": "e7dd88b8f987de4cb5af6707489ea356a0c4c79a",
+      "git_blob_sha1": "ef6e21517ce3fd2fe7d3dd0c1aa6baefbf1c9b7f",
+      "content_sha256": "9ca343c6f8fa0f7e8d073bfa168195b53dcc352aec6e75fdbc123b5a5d80e4b9",
+      "byte_length": 242351,
+      "disposition": "HEADから除去。旧時点は指定commit/blobから復元可能。",
+      "meaning": "2235-failure時点summary。上記初回とはsource revision・summary bytesが異なる。",
+      "restore_command": "git show e7dd88b8f987de4cb5af6707489ea356a0c4c79a:scaffold/research/wr255-sec009-l5l8-audit-20261101/verification-summary-cb44877e1db6-27531334.json > scaffold/research/wr255-sec009-l5l8-audit-20261101/verification-summary-cb44877e1db6-27531334.json",
+      "source_revision": "cb44877e1db60a872f3fa3d241260487028fe159",
+      "counts": {
+        "classes_per_layer": 32,
+        "l8_u_ids": 285,
+        "l9_source_case_ids": 285,
+        "negative": 277,
+        "positive_unclosed": 8
+      },
+      "check_child": {
+        "exit_code": 1,
+        "passed": false,
+        "l4_l9_pair_passed": true,
+        "l5_l8_pair_passed": true,
+        "negative_4way_matched_case_count": 0,
+        "negative_4way_failure_count": 2235,
+        "negative_4way_failure_reasons": {
+          "case_attribute_differs_across_l8_l9": 847,
+          "case_condition_missing": 285,
+          "case_expected_missing": 285,
+          "case_expected_preserved_missing": 285,
+          "case_observation_missing_or_invalid": 277,
+          "class_key_missing_from_layer": 128,
+          "unexpected_class_key": 128
+        },
+        "full_report": "check-child-report-cb44877e1db6-27531334.json",
+        "interpretation": "L5/L8 pair passes; 4-way remains incomplete because L9 row-level expected/condition/preserved and compact observations are absent, plus class key alignment failures. This evidence does not claim formal verification."
+      }
+    },
+    {
+      "path": "scaffold/research/wr255-sec009-l5l8-audit-20261101/verification-summary-24d7f00bdca4-91da3af2.json",
+      "historical_commit": "516d04b3875d05570880fbc91ed53337e0ffe6eb",
+      "git_blob_sha1": "9087a0de26be25194b9b004ff511783b9c2b0dd1",
+      "content_sha256": "7451e1a790de581a31d7da3f37be7f1b9f20cff70081cd39e9636d8c047b878d",
+      "byte_length": 251277,
+      "disposition": "HEADから除去。旧時点は指定commit/blobから復元可能。",
+      "meaning": "positive最小期待設計後summary。2243 failure、個別oracle/test citationなし。",
+      "restore_command": "git show 516d04b3875d05570880fbc91ed53337e0ffe6eb:scaffold/research/wr255-sec009-l5l8-audit-20261101/verification-summary-24d7f00bdca4-91da3af2.json > scaffold/research/wr255-sec009-l5l8-audit-20261101/verification-summary-24d7f00bdca4-91da3af2.json",
+      "source_revision": "24d7f00bdca41c3dfb1f3137655ffdbe3674cfb3",
+      "counts": {
+        "classes_per_layer": 32,
+        "l8_u_ids": 285,
+        "l9_source_case_ids": 285,
+        "negative": 277,
+        "positive_contract_minimum_designed_not_observed": 8
+      },
+      "check_child": {
+        "exit_code": 1,
+        "passed": false,
+        "l4_l9_pair_passed": true,
+        "l5_l8_pair_passed": true,
+        "negative_4way_matched_case_count": 0,
+        "negative_4way_failure_count": 2243,
+        "negative_4way_failure_reasons": {
+          "case_attribute_differs_across_l8_l9": 855,
+          "case_condition_missing": 285,
+          "case_expected_missing": 285,
+          "case_expected_preserved_missing": 285,
+          "case_observation_missing_or_invalid": 277,
+          "class_key_missing_from_layer": 128,
+          "unexpected_class_key": 128
+        },
+        "full_report": "check-child-report-24d7f00bdca4-91da3af2.json",
+        "interpretation": "L5/L8 pair passes; 4-way remains incomplete because the canonical L9 branch has not yet been refreshed with matching positive minimum expectations and compact observations, plus class key alignment failures. This evidence does not claim formal verification."
+      }
+    },
+    {
+      "path": "scaffold/research/wr255-sec009-l5l8-audit-20261101/verification-summary-cb44877e1db6-91da3af2.json",
+      "historical_commit": "516d04b3875d05570880fbc91ed53337e0ffe6eb",
+      "git_blob_sha1": "034ed4bc88aae2d9d5f545b7c01a8829b2cfa065",
+      "content_sha256": "f1881fea5204945bdcca6302b06c97b8206ddab6e8e19648420225724034fec1",
+      "byte_length": 251277,
+      "disposition": "HEADから除去。旧時点は指定commit/blobから復元可能。",
+      "meaning": "作業tree source revision表記のsummary。上記2243-failure summaryと別bytesで、full report aliasは同じreport bytesを指す。",
+      "restore_command": "git show 516d04b3875d05570880fbc91ed53337e0ffe6eb:scaffold/research/wr255-sec009-l5l8-audit-20261101/verification-summary-cb44877e1db6-91da3af2.json > scaffold/research/wr255-sec009-l5l8-audit-20261101/verification-summary-cb44877e1db6-91da3af2.json",
+      "source_revision": "cb44877e1db60a872f3fa3d241260487028fe159",
+      "counts": {
+        "classes_per_layer": 32,
+        "l8_u_ids": 285,
+        "l9_source_case_ids": 285,
+        "negative": 277,
+        "positive_contract_minimum_designed_not_observed": 8
+      },
+      "check_child": {
+        "exit_code": 1,
+        "passed": false,
+        "l4_l9_pair_passed": true,
+        "l5_l8_pair_passed": true,
+        "negative_4way_matched_case_count": 0,
+        "negative_4way_failure_count": 2243,
+        "negative_4way_failure_reasons": {
+          "case_attribute_differs_across_l8_l9": 855,
+          "case_condition_missing": 285,
+          "case_expected_missing": 285,
+          "case_expected_preserved_missing": 285,
+          "case_observation_missing_or_invalid": 277,
+          "class_key_missing_from_layer": 128,
+          "unexpected_class_key": 128
+        },
+        "full_report": "check-child-report-cb44877e1db6-91da3af2.json",
+        "interpretation": "L5/L8 pair passes; 4-way remains incomplete because the canonical L9 branch has not yet been refreshed with matching positive minimum expectations and compact observations, plus class key alignment failures. This evidence does not claim formal verification."
+      }
+    }
+  ],
+  "previously_removed_historical_alias": {
+    "path": "scaffold/research/wr255-sec009-l5l8-audit-20261101/check-child-report-cb44877e1db6-91da3af2.json",
+    "commit": "24d7f00bdca41c3dfb1f3137655ffdbe3674cfb3",
+    "git_blob_sha1": "79c8fc8835c69ecd7394534a44a9b1bea8452efb",
+    "content_sha256": "cab380a50fab1955d608fd1408580294060221673f74ce51fc3d37aa6e0e128e",
+    "restore_command": "git show 24d7f00bdca41c3dfb1f3137655ffdbe3674cfb3:scaffold/research/wr255-sec009-l5l8-audit-20261101/check-child-report-cb44877e1db6-91da3af2.json > scaffold/research/wr255-sec009-l5l8-audit-20261101/check-child-report-cb44877e1db6-91da3af2.json",
+    "note": "先行 duplicate-check-report-disposition.json が記録したpath。該当summaryはhistorical_measurements_removed_from_headに含めた。"
+  },
+  "expanded_uncommitted_summary_reconstruction": {
+    "content_sha256": "7e09863b58053b03e833df14d034f7c8d52b5a9ff3e0344a996aa0a82c9d4446",
+    "source_validator_commit": "69fbb3e2f064fe2f003f6d8c67cbcf6da5f268d8",
+    "note": "大容量展開版はcurrent treeへ追加せず、source commit validatorを一時保存して --audit-dir /tmp/wr255-precompact-rebuild で再生成可能。過去に完全一致を確認済み。",
+    "restore_and_rebuild_commands": [
+      "git show 69fbb3e2f0:scaffold/research/wr255-sec009-l5l8-audit-20261101/validate_wr255_l5l8.py > scaffold/research/wr255-sec009-l5l8-audit-20261101/.reconstruct-precompact.py",
+      "python3 scaffold/research/wr255-sec009-l5l8-audit-20261101/.reconstruct-precompact.py --audit-dir /tmp/wr255-precompact-rebuild",
+      "rm scaffold/research/wr255-sec009-l5l8-audit-20261101/.reconstruct-precompact.py"
+    ]
+  },
+  "pointer_transfer_duplicate_review": {
+    "current_copy_count": 1,
+    "path": "scaffold/research/wr255-sec009-l5l8-audit-20261101/pointer-transfer-audit-18df6dce679d-e918a289fe88.json",
+    "content_sha256": "52fbfc8c3d13835ba66484047cbcec797c1e3600ced4b90398bd305db15765dc",
+    "review": "この監査dirに同内容pointer-transfer JSON/JSONLの重複測定copyはない。308 consumer行が必要な単一の行別記録。"
+  },
+  "old_tree_revision": "d606832e58f87f59ba0265c9993f30410ea7ef92",
+  "latest_main_overlay_read_only_validation": {
+    "overlay_base_commit": "151713275e2c2aa65bb23a8fe38eb63c46d570c8",
+    "overlay_construction": "origin/main上にL5/L8候補文書、SCF-B-0196/0197/0209/0220/0221 binding、および本監査directoryの現行artifactを重ねた一時worktree。L4/L9はmain正本のまま。",
+    "source_sha256": {
+      "L4": "00376c402930e1287e9e0e896804b1de8a20390f8abbea8377b70712f868b9da",
+      "L5": "1aefb9b64fb52abc8cf6eec7d32312bfcb9a07359d7406c2ca4e9fa9717fa190",
+      "L8": "18df6dce679dbfe0c169eb7bcadb8457f52b30915595d3b171e6be310ec8c72a",
+      "L9": "e918a289fe88446b3f84210577f0fe8094505d9dac9d9a8713cd074eb6776e5b"
+    },
+    "commands": [
+      "python3 scaffold/research/wr255-sec009-l5l8-audit-20261101/validate_wr255_l5l8.py",
+      "python3 scaffold/research/wr255-sec009-l5l8-audit-20261101/validate_pointer_transfer.py",
+      "python3 scaffold/tools/design_verification_checker.py check-child --root . --l4 docs/helix-security/L4-basic-design/revoke-quarantine-propagation.json --l9 docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json --l5 docs/helix-security/L5-detail-design/revoke-quarantine-propagation.json --l8 docs/helix-security/L8-unit-verification/revoke-quarantine-propagation.json",
+      "python3 scaffold/tools/scfctl.py validate",
+      "python3 scaffold/tools/scfctl.py stale"
+    ],
+    "results": {
+      "validator_runs": 2,
+      "validator_result": "2回ともL4/L9 pair pass、L5/L8 pair pass、277 matched、0 failures。stdout only、recorded=false。",
+      "pointer_transfer": "pass: L8 308のうち305 canonical alias、3 fixed R2 refs（14-item fanoutを含む）、L9 current nested 308、CHK-JSON-POINTER 5787/5787。",
+      "direct_check_child": "pass: 277 matched、0 failures。",
+      "scfctl_validate": "bindings=207 fail=0",
+      "scfctl_stale": "stale=0",
+      "status_before_after": "不変。validator 2回、pointer validator、check-child、scfctlの各実行後のstatusは同一。",
+      "status_sha256": "e53ef0d6c7f24dde3fc3c995d1ec6bf4b2575a03073cde0bf85930b91bbea13a"
+    }
+  },
+  "historical_measurement_count": 8,
+  "superseded_disposition": {
+    "path": "scaffold/research/wr255-sec009-l5l8-audit-20261101/duplicate-check-report-disposition.json",
+    "historical_commit": "6dae0cc2be5de23ee25fd9f27d7187da36ab13c0",
+    "git_blob_sha1": "6924185d67c90b02e265aaf853b5e1c3eeaafbc2",
+    "content_sha256": "2a19e616505fc082fcc453f7b98baab70a1bda29d2f155477160e9d2e7455ba9",
+    "byte_length": 1754,
+    "disposition": "HEADから除去。旧時点は指定commit/blobから復元可能。",
+    "meaning": "先行disposition。内容を本manifestへ統合し、単一dispositionとする。",
+    "restore_command": "git show 6dae0cc2be5de23ee25fd9f27d7187da36ab13c0:scaffold/research/wr255-sec009-l5l8-audit-20261101/duplicate-check-report-disposition.json > scaffold/research/wr255-sec009-l5l8-audit-20261101/duplicate-check-report-disposition.json",
+    "note": "先行dedup disposition。履歴は保持し、そのrestore情報は本manifestへ統合。"
+  }
+}

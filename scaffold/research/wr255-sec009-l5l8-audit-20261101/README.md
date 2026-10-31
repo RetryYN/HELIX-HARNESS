@@ -16,7 +16,7 @@ python3 scaffold/research/wr255-sec009-l5l8-audit-20261101/validate_wr255_l5l8.p
 python3 scaffold/research/wr255-sec009-l5l8-audit-20261101/validate_wr255_l5l8.py --record
 ```
 
-初回測定はcommit `9dffee8c34` の `verification-summary.json` と `check-child-report.json` に固定してあります。validatorの再測定は過去記録を書き換えず、L4/L5/L8/L9それぞれのsource revisionとSHA-256を含む別名で追記します。positive最小期待の設計後の追補はsource revision `24d7f00bdca41c3dfb1f3137655ffdbe3674cfb3`、L8 SHA-256 `91da3af2c6ad997fdf265871f9776c5bed41f196fbccfc2276e1a41f42a267bb` に固定されています。commit前に同じbytesを測定した報告も削除せず、そのファイルではpathの最終commit `cb44877e1db6` と作業tree SHA-256 `91da3af2` を別々に記録しています。L4/L5/L8/L9の32 class identity、L5 rule IDの保持、L4/L5 codeとownerの対応、L9 source caseに結びつく285件のU-IDを照合します。negative U-IDの `condition`、`expected`、`expected_preserved` はL4 classと比較します。positive 8件は契約最小期待を設計し、実測未観測としたうえで個別 `oracle_id` と `test_citation` がnullであることを確認します。
+初回測定とその後の旧時点summary/reportはGit履歴で保全し、commit・blob・SHA-256と復元commandを[統合disposition](measurement-artifact-disposition.json)に記録しました。current treeには最新overlayの測定summaryと対応check-child reportを各1本だけ保持します。positive最小期待の設計後の追補はsource revision `24d7f00bdca41c3dfb1f3137655ffdbe3674cfb3`、L8 SHA-256 `91da3af2c6ad997fdf265871f9776c5bed41f196fbccfc2276e1a41f42a267bb` に固定されています。L4/L5/L8/L9の32 class identity、L5 rule IDの保持、L4/L5 codeとownerの対応、L9 source caseに結びつく285件のU-IDを照合します。negative U-IDの `condition`、`expected`、`expected_preserved` はL4 classと比較します。positive 8件は契約最小期待を設計し、実測未観測としたうえで個別 `oracle_id` と `test_citation` がnullであることを確認します。
 
 ## U-ID表とsource参照
 
@@ -50,7 +50,7 @@ latest `origin/main` をmergeしたL5/L8候補とcanonical L4/L9を照合したs
 
 ## 最新main overlayと固定証拠
 
-PR #4008 merge commit `cd4208605f2a4e77e85f8d34317ff44c7218ad41` を含むoverlayで再計測しました。32 class、285 U-ID/source ID、277 negative、positive最小期待8件を照合し、check-childは277 matched / 0 failuresです。positive 8件は設計済み・未観測、個別oracleとtest citationはnullです。
+`origin/main` commit `151713275e2c2aa65bb23a8fe38eb63c46d570c8` をbaseにL5/L8候補を重ねたoverlayで再計測しました。L4/L9 SHA-256はこのmainの正本と一致します。32 class、285 U-ID/source ID、277 negative、positive最小期待8件を照合し、check-childは277 matched / 0 failuresです。同じread-only検証を2回行いstatus不変を確認しました。pointer移行監査、scfctl validate（207 bindings・fail 0）、stale 0も確認しています。positive 8件は設計済み・未観測、個別oracleとtest citationはnullです。
 
 - [verification summary](verification-summary-l4-d670496eeb-00376c40-l5-ea8e3c2510-1aefb9b6-l8-69fbb3e2f0-18df6dce-l9-087f02dc63-e918a289-validator-7b7544bc.json)
 - [check-child report](check-child-report-l4-d670496eeb-00376c40-l5-ea8e3c2510-1aefb9b6-l8-69fbb3e2f0-18df6dce-l9-087f02dc63-e918a289.json)
@@ -58,13 +58,7 @@ PR #4008 merge commit `cd4208605f2a4e77e85f8d34317ff44c7218ad41` を含むoverla
 
 summaryは正本285行の内容を再複製せず、validatorで再計算したrow/class audit digestを記録します。詳細値は固定revision・SHAを持つL4/L5/L8/L9正本にあり、再現validatorは285行すべてのpointerと期待を検査します。
 
-事前に生成した展開版summary（SHA-256 `7e09863b58053b03e833df14d034f7c8d52b5a9ff3e0344a996aa0a82c9d4446`）は現在のcommit `69fbb3e2f0` のvalidatorから完全一致で再生成できることを確認しました。大きな重複ファイルはcommitせず、必要時は同commitのvalidatorを一時的にこのディレクトリへ復元し、`--audit-dir` を一時directoryに指定してください。
-
-```sh
-git show 69fbb3e2f0:scaffold/research/wr255-sec009-l5l8-audit-20261101/validate_wr255_l5l8.py > scaffold/research/wr255-sec009-l5l8-audit-20261101/.reconstruct-precompact.py
-python3 scaffold/research/wr255-sec009-l5l8-audit-20261101/.reconstruct-precompact.py --audit-dir /tmp/wr255-precompact-rebuild
-rm scaffold/research/wr255-sec009-l5l8-audit-20261101/.reconstruct-precompact.py
-```
+事前生成の展開版summaryはSHA-256 `7e09863b58053b03e833df14d034f7c8d52b5a9ff3e0344a996aa0a82c9d4446` で、commit `69fbb3e2f0` のvalidatorから完全一致で再生成可能です。復元手順は[統合disposition](measurement-artifact-disposition.json)にあります。
 
 ## SCF-B-0209 pointer移行
 
@@ -80,6 +74,6 @@ python3 scaffold/research/wr255-sec009-l5l8-audit-20261101/validate_pointer_tran
 
 監査ではcurrent checkerの明示class modeと`CHK-JSON-POINTER`の読取を確認します。明示modeの4-way照合はtop-level class表を使い、pointer checkerは参照先の解決を行います。legacy modeはnested classificationを読むため、明示modeのmarkerを維持します。SCF-B-0209はpendingのままで、L9側のtransfer mapと全consumer確認が残っています。
 
-## 同一check-child reportの履歴と重複整理
+## 測定artifactの履歴と集約
 
-作業tree測定 `check-child-report-cb44877e1db6-91da3af2.json` と確定source revision測定 `check-child-report-24d7f00bdca4-91da3af2.json` はSHA-256 `cab380a50fab1955d608fd1408580294060221673f74ce51fc3d37aa6e0e128e` で同一でした。前者の現HEAD上の複製だけを除き、source revision `24d7f00bdca41c3dfb1f3137655ffdbe3674cfb3` のgit blob `79c8fc8835c69ecd7394534a44a9b1bea8452efb` と復元コマンドを [`duplicate-check-report-disposition.json`](duplicate-check-report-disposition.json) に記録しました。後者と異なる初回報告は保持しています。旧summaryは書き換えておらず、旧full-report pathは記録したcommitから復元できます。最新overlay reportはL4/L5/L8/L9各source revisionとhashを含む別pathです。
+旧check-child reportとsummaryは現treeから除き、固定時点の意味をGit履歴で保持しています。異なる各revisionのcommit・blob SHA-1・content SHA-256・復元command、同一bytesの重複関係、旧full-report pointerは[統合disposition](measurement-artifact-disposition.json)に集約しました。current treeには277/0 overlay reportとsummaryを各1本、pointer-transferの行別監査を1本だけ残しています。pointer-transfer監査には同内容のJSON/JSONL複製はありません。
