@@ -1,0 +1,130 @@
+{
+  "schema": "wr258-pr4007-r1-latest-main-overlay-verification.v2",
+  "evidence_kind": "scaffold",
+  "authority_effect": "none",
+  "latest_origin_main": "3c2ea6734d0038d8fd93f8bdbf090e0db6a9e09d",
+  "branch_head_under_test": "d1983ee963db929256d94cc42a41bdaaaf6605fd",
+  "synthetic_merge_commit": "96eab8eaae210ee78cd4d56433a9ab4be737e6b0",
+  "synthetic_merge_tree": "3a88c0501542766bcbb992db1a19b10c42f19d7e",
+  "merge_tree_conflicts": false,
+  "validation": {
+    "scfctl_validate_exit": 0,
+    "summary": "bindings=202 fail=0",
+    "scfctl_stale_exit": 0,
+    "summary_stale": "stale=0"
+  },
+  "formal_layer_documents_check_child": {
+    "exit_code": 1,
+    "L4_L9_pair_passed": true,
+    "L5_L8_pair_passed": true,
+    "fourway_passed": false,
+    "matched_case_count": 0,
+    "case_row_counts": {
+      "L8": 0,
+      "L9": 0
+    },
+    "failure_count": 79,
+    "failure_groups": [
+      {
+        "layer": "L4",
+        "attribute": "owner_ref",
+        "reason": "class_owner_ref_unresolved",
+        "count": 15
+      },
+      {
+        "layer": "L5",
+        "attribute": "equivalence_class",
+        "reason": "class_key_missing_from_layer",
+        "count": 15
+      },
+      {
+        "layer": "L5",
+        "attribute": "equivalence_key",
+        "reason": "class_key_missing_from_layer",
+        "count": 15
+      },
+      {
+        "layer": "L5",
+        "attribute": "explicit_mode",
+        "reason": "class_source_marker_invalid",
+        "count": 1
+      },
+      {
+        "layer": "L8",
+        "attribute": "case_identity",
+        "reason": "unit_cases_missing_or_not_array",
+        "count": 1
+      },
+      {
+        "layer": "L8",
+        "attribute": "equivalence_class",
+        "reason": "class_key_missing_from_layer",
+        "count": 15
+      },
+      {
+        "layer": "L8",
+        "attribute": "equivalence_key",
+        "reason": "class_key_missing_from_layer",
+        "count": 15
+      },
+      {
+        "layer": "L8",
+        "attribute": "explicit_mode",
+        "reason": "class_table_marker_missing",
+        "count": 1
+      },
+      {
+        "layer": "L9",
+        "attribute": "case_identity",
+        "reason": "integration_cases_missing_or_not_array",
+        "count": 1
+      }
+    ]
+  },
+  "integrated_candidate_check_child": {
+    "exit_code": 1,
+    "L4_L9_pair_passed": true,
+    "L5_L8_pair_passed": true,
+    "fourway_passed": false,
+    "matched_case_count": 141,
+    "case_row_counts": {
+      "L8": 143,
+      "L9": 148
+    },
+    "failure_count": 10,
+    "failure_groups": [
+      {
+        "layer": null,
+        "attribute": "expected",
+        "reason": "case_attribute_differs_across_l8_l9",
+        "count": 1
+      },
+      {
+        "layer": null,
+        "attribute": "expected_preserved",
+        "reason": "case_attribute_differs_across_l8_l9",
+        "count": 1
+      },
+      {
+        "layer": "L8",
+        "attribute": "integration_case_ref",
+        "reason": "integration_case_ref_unresolved",
+        "count": 1
+      },
+      {
+        "layer": "L8",
+        "attribute": "negative_class_ref",
+        "reason": "negative_case_class_ref_missing_or_unresolved",
+        "count": 1
+      },
+      {
+        "layer": "L9",
+        "attribute": "integration_case_ref",
+        "reason": "integration_case_not_referenced_from_l8",
+        "count": 6
+      }
+    ]
+  },
+  "overlay_worktree_removed_after_measurement": true,
+  "interpretation": "4way未合格。partial-marker formalは0 matched/79 failures。50 unique conditionsを含むintegrated candidateは141 matched/10 failuresで、L8 operation-defer対L9 system absentの観測差、空class/ref、primary-tree 6 callerの一対多を残す。"
+}

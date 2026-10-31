@@ -130,7 +130,8 @@
     "scaffold/research/wr258-sec006-psi-explicit-20261101/validate_pr4007_r1_oracle_uniqueness.py",
     "scaffold/research/wr258-sec006-psi-explicit-20261101/pr4007-r1-oracle-uniqueness-validation-r2.json",
     "scaffold/research/wr258-sec006-psi-explicit-20261101/pr4007-r1-case-specific-overlay-check-child.json",
-    "scaffold/research/wr258-sec006-psi-explicit-20261101/pr4007-r1-latest-main-overlay-r1.json"
+    "scaffold/research/wr258-sec006-psi-explicit-20261101/pr4007-r1-latest-main-overlay-r1.json",
+    "scaffold/research/wr258-sec006-psi-explicit-20261101/pr4007-r1-latest-main-overlay-r2.json"
   ],
   "verification": {
     "evidence_kind": "scaffold",
@@ -151,7 +152,8 @@
       "The two full-copy overlay trees from f328 are removed from this revision; their Git blob IDs and SHA-256 values are recorded in f328-overlay-disposition.json. The fixed-commit temporary-worktree reconstruction verifies all eight historical overlay hashes before removal and reproduces baseline 141 matched/16 failures and caller-provenance 147 matched/9 failures.",
       "PR #4007 R1: L4 has 15 negative classes after removing local-only DEFERRED; L9 preserves 98 previous rows and adds 50 source-derived short system oracles, for 148 total (F01 93/F02 55); all five newly introduced L4 classes receive L9 case rows; 16 residual negatives remain unchanged.",
       "50 L9 additions have unique row-specific condition and explicit rowwise candidate/L8 case references; expected/class values resolve from L4 and all L3/L10/L4 source JSON pointers resolve. Previous 98 L9 rows remain exact apart from their R1 direct class ref.",
-      "Latest origin/main 3c2ea6734d0038d8fd93f8bdbf090e0db6a9e09d synthetic merge check-child: formal pair checks pass, four-way 0 matched/79 partial-marker failures; generated integration candidate reports pair checks pass, 141 matched/10 failures. No four-way PASS claim."
+      "Latest origin/main 3c2ea6734d0038d8fd93f8bdbf090e0db6a9e09d synthetic merge check-child: formal pair checks pass, four-way 0 matched/79 partial-marker failures; generated integration candidate reports pair checks pass, 141 matched/10 failures. No four-way PASS claim.",
+      "Exact post-commit d1983ee latest-main squash overlay was re-measured: main 3c2ea673, validate 202/0 and stale 0; formal partial-marker 0/79, integrated candidate 141/10. This measurement includes the exact R1 follow-up HEAD under review."
     ],
     "negative_cases": [
       "L8 SIDE-UNKNOWN-SIDE and ASSET-UNKNOWN-KIND remain unknown with scope_input_unresolved and map to separate source-derived axes.",
