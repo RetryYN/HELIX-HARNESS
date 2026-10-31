@@ -34,3 +34,5 @@ PR #4007 R1指摘を反映した正本の現状は次のとおり。`operation-d
 `validate_pr4007_r1_followup.py`は従前98行の変更範囲、追加50行のL3/L10/L4参照とexpected/class対応、15 class、148 total、16 residual、caller/old nested label保持を独立に静的照合する。checker実測、latest-main merge overlay、scfctlの結果は別の`pr4007-r1-followup-20261101.json`に記録する。
 
 R1の実装・統合測定・98旧行保持と50 oracleの静的検証を `pr4007-r1-followup-20261101.json` に追加した。最新main `569bde0bc5792349f0833461f0bb1bb6db33c592` との一時squash overlayでもL4/L9・L5/L8 pairはPASS、4wayは0 matched/79 failures、validate 200/0、stale 0を実測した。これは完全な4way合格を示さず、L5/L8後続pairを要する中間状態である。
+
+追補後にremote main refが`569bde0`から`6a7fbfbe134e9163976fa67319044fa0bc03973f`へ動いたため、最新refからの再測定を別記録 `pr4007-r1-main-overlay-r2-20261101.json` に追加した。最新overlay tree `9001bccd3806146018309ca2b1f0d8e914897ce7`でもpairはPASS、validate 201/0、stale 0、check-childはpartial-markerにより0 matched/79 failuresだった。先行569bde0 measurementは時点証拠として残す。

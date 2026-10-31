@@ -111,7 +111,8 @@
     "scaffold/research/wr250-sec006-psi-l5l8-20261031/overlay-validation-correction.json",
     "scaffold/research/wr258-sec006-psi-explicit-20261101/validate_pr4007_r1_followup.py",
     "scaffold/research/wr258-sec006-psi-explicit-20261101/pr4007-r1-static-validation.json",
-    "scaffold/research/wr258-sec006-psi-explicit-20261101/pr4007-r1-followup-20261101.json"
+    "scaffold/research/wr258-sec006-psi-explicit-20261101/pr4007-r1-followup-20261101.json",
+    "scaffold/research/wr258-sec006-psi-explicit-20261101/pr4007-r1-main-overlay-r2-20261101.json"
   ],
   "verification": {
     "evidence_kind": "scaffold",

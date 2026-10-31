@@ -66,7 +66,8 @@
     "Preserve historical source revision/hash evidence; keep the previous SCF-B-0201 L4/L9 hashes in binding notes.",
     "Record the L5 local operation-defer observation separately from the L9 system-level absent-connection finding; any component-observation schema and empty-owner checker behavior remain a separate QA/checker V-pair candidate, not canonical changes.",
     "PR #4007 R1: remove the local-only empty-finding DEFERRED row from L4 failure classes; add the 50 L9 short system oracles from L3/L10/L4, direct negative_class_ref on all 148 L9 rows, and L4/L9 explicit markers. L5/L8 remain unmarked; report the actual four-way partial-marker failure without claiming PASS.",
-    "R1 final record: 98 prior L9 rows remain exact except the new direct negative_class_ref; 50 L3/L10/L4-derived system-oracle rows are not executed fixtures; L4/L9 pair passes and four-way partial-marker result is 0 matched/79 failures. Keep that FAIL visible until PR-B completes L5/L8."
+    "R1 final record: 98 prior L9 rows remain exact except the new direct negative_class_ref; 50 L3/L10/L4-derived system-oracle rows are not executed fixtures; L4/L9 pair passes and four-way partial-marker result is 0 matched/79 failures. Keep that FAIL visible until PR-B completes L5/L8.",
+    "Latest remote main was re-verified after the earlier 569bde0 overlay; current main 6a7fbfbe134e9163976fa67319044fa0bc03973f overlay tree 9001bccd3806146018309ca2b1f0d8e914897ce7 passes L4/L9 and L5/L8 pair checks, validate 201/0 and stale 0; four-way remains expected partial-marker FAIL, matched 0/79 failures."
   ],
   "connections": {
     "consumers": [
@@ -124,7 +125,8 @@
     "scaffold/research/wr258-sec006-psi-explicit-20261101/operation-defer-and-pr-split-candidate-r1.json",
     "scaffold/research/wr258-sec006-psi-explicit-20261101/validate_pr4007_r1_followup.py",
     "scaffold/research/wr258-sec006-psi-explicit-20261101/pr4007-r1-static-validation.json",
-    "scaffold/research/wr258-sec006-psi-explicit-20261101/pr4007-r1-followup-20261101.json"
+    "scaffold/research/wr258-sec006-psi-explicit-20261101/pr4007-r1-followup-20261101.json",
+    "scaffold/research/wr258-sec006-psi-explicit-20261101/pr4007-r1-main-overlay-r2-20261101.json"
   ],
   "verification": {
     "evidence_kind": "scaffold",
