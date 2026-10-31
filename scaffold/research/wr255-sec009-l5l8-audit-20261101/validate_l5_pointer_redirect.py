@@ -17,6 +17,10 @@ BASE = "ad2dfaf6f434fbb81cd34988d4bd76212380f3a5"
 L4 = "docs/helix-security/L4-basic-design/revoke-quarantine-propagation.json"
 L5 = "docs/helix-security/L5-detail-design/revoke-quarantine-propagation.json"
 L8 = "docs/helix-security/L8-unit-verification/revoke-quarantine-propagation.json"
+L9 = "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json"
+HISTORICAL_L9_REV = "e0a1a9b9c0449759e1aebb8664fd70bd5ea25b5d"
+HISTORICAL_L9_BLOB = "e20e059dfe4ea6435921a8e2c9b7ee05da32c196"
+HISTORICAL_L9_SHA256 = "e918a289fe88446b3f84210577f0fe8094505d9dac9d9a8713cd074eb6776e5b"
 FIELD_MAP = {
     "code": "class_id",
     "change": "condition",
@@ -88,6 +92,50 @@ def nested_l4_refs(value: Any, found: list[str] | None = None) -> list[str]:
     return found
 
 
+def expected_l8_after_r2_reference_update(base_l8: dict[str, Any], current_l9: dict[str, Any]) -> dict[str, Any]:
+    """Apply only the reviewed 13 old refs plus 10 current case-row refs."""
+    expected = copy.deepcopy(base_l8)
+    integration_index = {row.get("id"): index for index, row in enumerate(current_l9.get("integration_cases", []))}
+    for row in expected.get("negative_class_assignment_audit", {}).get("unassigned_single_contract_negative_cases", []):
+        case_id = row.get("case_id")
+        index = integration_index[case_id]
+        row["l9_case_revision"] = HISTORICAL_L9_REV
+        row["current_integration_case_ref"] = {
+            "path": L9,
+            "pointer": f"/integration_cases/{index}",
+            "case_id": case_id,
+            "relation": "現行の統合行への対応参照。固定履歴のexpected_proposalと値・型が等しいことを意味しない。",
+        }
+        if case_id == "SEC009-COMPOUND-OS-UNKNOWN-CREDENTIAL-UNAPPLIED-WORKER-CONTINUES":
+            row["current_integration_field_comparison"] = [
+                {"historical_pointer": "/cases/1/negative_cases/205/expected_proposal/recipient_correspondence", "historical_type": "object", "current_pointer": f"/integration_cases/{index}/expected", "current_type": "object", "comparison": "非同値。旧recipient別対応辞書は現行expectedに同型フィールドがない。"},
+                {"historical_pointer": "/cases/1/negative_cases/205/expected_proposal/findings", "historical_type": "array<object>", "current_pointer": f"/integration_cases/{index}/expected/finding_codes", "current_type": "array<string>", "comparison": "順序付きcode列は対応するが、旧objectのpointer/return_owner値は現行code列に含まれない。"},
+            ]
+        else:
+            row["current_integration_field_comparison"] = [
+                {"historical_pointer": "/cases/2/negative_cases/40/expected_proposal/isolation_correspondence", "historical_type": "string", "current_pointer": f"/integration_cases/{index}/expected/finding_codes", "current_type": "array<string>", "comparison": "非同値。隔離axisのunknown状態を示す旧scalarに対し、現行fieldはfinding codeの配列。"},
+                {"historical_pointer": "/cases/2/negative_cases/40/expected_proposal/recovery_correspondence", "historical_type": "string", "current_pointer": f"/integration_cases/{index}/expected/finding_codes", "current_type": "array<string>", "comparison": "非同値。復旧axisのunknown状態を示す旧scalarに対し、現行fieldはfinding codeの配列。"},
+                {"historical_pointer": "/cases/2/negative_cases/40/expected_proposal/findings", "historical_type": "array<object>", "current_pointer": f"/integration_cases/{index}/expected/finding_codes", "current_type": "array<string>", "comparison": "codeは対応するが、旧objectのpointer/return_owner値は現行code列に含まれない。"},
+            ]
+        for ref in row.get("source_pointers", []):
+            if ref.get("path") == L9 and "/expected_proposal/" in ref.get("pointer", ""):
+                ref["revision"] = HISTORICAL_L9_REV
+    for row in expected.get("positive_case_expectation_source_review", {}).get("positive_cases", []):
+        case_id = row.get("case_id")
+        index = integration_index[case_id]
+        observed = row["L9_primary_source_observed"]
+        observed["revision"] = HISTORICAL_L9_REV
+        observed["source_sha256"] = HISTORICAL_L9_SHA256
+        row["current_integration_case_ref"] = {
+            "path": L9,
+            "pointer": f"/integration_cases/{index}",
+            "case_id": case_id,
+            "relation": "現行の統合projection行。旧given入力観測の代替や追加fixtureではない。",
+        }
+    expected["positive_case_expectation_source_review"]["summary"] = "L3/L10/L4には契約単位の義務とoracleがあり、L4には契約意味とnegative classがある。旧L9固定revisionのpositive givenは共有evidence_limitだけで、行固有の入力事実は記載されていない。current integration_casesは別のprojectionとして参照し、given観測と同一視しない。L9 expected_proposalはL8期待の根拠に使わない。個別期待の実観測・oracle・test citationは未確認のためnullとする。"
+    return expected
+
+
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--record", type=Path, help="write report with exclusive-create semantics")
@@ -95,14 +143,23 @@ def main() -> int:
     try:
         base_l4_raw, base_l5_raw, base_l8_raw = (git_bytes(BASE, p) for p in (L4, L5, L8))
         current_l4_raw, current_l5_raw, current_l8_raw = (Path(p).read_bytes() for p in (L4, L5, L8))
+        current_l9_raw = Path(L9).read_bytes()
+        historical_l9_raw = git_bytes(HISTORICAL_L9_REV, L9)
+        historical_l9_blob = subprocess.run(["git", "rev-parse", f"{HISTORICAL_L9_REV}:{L9}"], cwd=ROOT, check=True, capture_output=True, text=True).stdout.strip()
+        if sha(current_l9_raw) != HISTORICAL_L9_SHA256 or sha(historical_l9_raw) != HISTORICAL_L9_SHA256 or historical_l9_blob != HISTORICAL_L9_BLOB:
+            fail("current and fixed historical L9 integration bytes or fixed revision identity differ")
         base_l4, base_l5, base_l8 = (read_json_bytes(raw, label) for raw, label in zip(
             (base_l4_raw, base_l5_raw, base_l8_raw), ("base L4", "base L5", "base L8")
         ))
+        current_l9 = read_json_bytes(current_l9_raw, "current L9")
         current_l4, current_l5, current_l8 = (read_json_bytes(raw, label) for raw, label in zip(
             (current_l4_raw, current_l5_raw, current_l8_raw), ("current L4", "current L5", "current L8")
         ))
-        if current_l4_raw != base_l4_raw or current_l8_raw != base_l8_raw:
-            fail("L4 or L8 changed from fixed base; this redirect validator is scoped to L5 only")
+        if current_l4_raw != base_l4_raw:
+            fail("L4 changed from fixed base; this redirect validator expects the same L4 source")
+        expected_l8 = expected_l8_after_r2_reference_update(base_l8, current_l9)
+        if expected_l8 != current_l8:
+            fail("L8 differs beyond the exact 13 historical refs, 10 current integration row refs, and positive-source note update")
 
         canonical: dict[str, tuple[str, dict[str, Any]]] = {}
         for index, row in enumerate(base_l4.get("failure_classifications", [])):
@@ -185,6 +242,14 @@ def main() -> int:
         if expected_l5 != current_l5:
             fail("full L5 document differs beyond removing the 30 nested duplicate refs")
 
+        pointer_result = subprocess.run(
+            [sys.executable, str(ROOT / "scaffold/research/wr255-sec009-l5l8-audit-20261101/validate_pointer_transfer.py")],
+            cwd=ROOT, text=True, capture_output=True, check=True,
+        )
+        pointer_summary = json.loads(pointer_result.stdout)
+        if pointer_summary.get("passed") is not True or pointer_summary.get("counts", {}).get("L8_to_L9_fixed_historical_source_refs") != 13 or pointer_summary.get("counts", {}).get("L8_to_L9_current_integration_case_refs") != 10:
+            fail("L8→L9 R2 pointer validator did not confirm 13 historical and 10 current refs")
+
         l8_aliases = {row.get("class_id"): row for row in current_l8.get("negative_equivalence_classes", [])}
         if len(l8_aliases) != 32 or not set(nested).issubset(l8_aliases):
             fail(f"L8 canonical alias set does not include all redirected classes: {len(l8_aliases)}")
@@ -205,7 +270,8 @@ def main() -> int:
             "authority_effect": "none",
             "base_revision": BASE,
             "base_sha256": {"L4": sha(base_l4_raw), "L5": sha(base_l5_raw), "L8": sha(base_l8_raw)},
-            "current_sha256": {"L4": sha(current_l4_raw), "L5": sha(current_l5_raw), "L8": sha(current_l8_raw)},
+            "current_sha256": {"L4": sha(current_l4_raw), "L5": sha(current_l5_raw), "L8": sha(current_l8_raw), "L9": sha(current_l9_raw)},
+            "fixed_historical_l9": {"revision": HISTORICAL_L9_REV, "blob": HISTORICAL_L9_BLOB, "sha256": HISTORICAL_L9_SHA256},
             "counts": {
                 "nested_classes_checked": len(nested),
                 "L5_rules_checked": len(current_rules),
@@ -215,11 +281,17 @@ def main() -> int:
                 "L5_nested_pointer_strings_before": len(base_raw_refs),
                 "L5_nested_pointer_strings_after": len(current_raw_refs),
                 "L4_bytes_unchanged": True,
-                "L8_bytes_unchanged": True,
+                "L8_non_R2_reference_content_unchanged": True,
+                "L8_R2_historical_refs_resolved": 13,
+                "L8_R2_current_integration_refs_resolved": 10,
+                "L8_R2_value_type_comparisons": 5,
+                "L9_current_bytes_sha256_matches_fixed_history": True,
+                "L5_redirect_validator": "validated separately from the exact L8 R2 reference transformation",
             },
             "field_projection": FIELD_MAP,
             "limitations": [
                 "固定L4 nested classと同class canonical aliasの型・値、および各L5参照配列の差分を照合した静的証拠。実行動作の証明ではない。",
+                "L8の変更はR2で指摘された13固定履歴参照と10 current integration row参照、およびpositive givenの分離説明に限定され、その他のL8内容が固定baseと一致することを照合した。",
                 "L9側の583 nested参照はこの変更の対象外で未移行。SCF-B-0209はregisteredのまま。",
                 "source classとの対応は固定baseで既に存在するL5の同class canonical pointerに基づく。",
             ],

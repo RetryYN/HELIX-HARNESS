@@ -47,6 +47,9 @@ POSITIVE_EXPECTATION_REFS = {
     "SEC009-OS-OFFLINE-INDEPENDENT-RECOVERY-SELECTION": "positive_expectation_basis/rules/B01_INDEPENDENT_RECOVERY",
     "SEC009-GENERAL-MEANING-UNKNOWN": "positive_expectation_basis/rules/F02_GENERAL_MEANING_UNKNOWN",
 }
+HISTORICAL_L9_REVISION = "e0a1a9b9c0449759e1aebb8664fd70bd5ea25b5d"
+HISTORICAL_L9_BLOB = "e20e059dfe4ea6435921a8e2c9b7ee05da32c196"
+HISTORICAL_L9_SHA256 = "e918a289fe88446b3f84210577f0fe8094505d9dac9d9a8713cd074eb6776e5b"
 
 
 def fail(message: str) -> None:
@@ -82,6 +85,10 @@ def git_text(*args: str) -> str:
     return subprocess.check_output(["git", *args], cwd=ROOT, text=True).strip()
 
 
+def git_bytes(*args: str) -> bytes:
+    return subprocess.check_output(["git", *args], cwd=ROOT)
+
+
 def write_new_json(path: Path, value: Any) -> None:
     rendered = json.dumps(value, ensure_ascii=False, indent=2) + "\n"
     try:
@@ -101,6 +108,13 @@ def main() -> int:
     sources = {name: load_json(path) for name, path in FILES.items() if name != "checker"}
     l3b, l3f = sources["l3_business"], sources["l3_functional"]
     l4, l5, l8, l9, l10, l10f = (sources[k] for k in ("l4", "l5", "l8", "l9", "l10_business", "l10_functional"))
+    historical_l9_bytes = git_bytes("show", f"{HISTORICAL_L9_REVISION}:{FILES['l9']}")
+    if hashlib.sha256(historical_l9_bytes).hexdigest() != HISTORICAL_L9_SHA256:
+        fail("固定L9履歴revisionのファイルSHA-256が一致しない")
+    historical_l9_blob = git_text("rev-parse", f"{HISTORICAL_L9_REVISION}:{FILES['l9']}")
+    if historical_l9_blob != HISTORICAL_L9_BLOB:
+        fail("固定L9履歴revisionのgit blobが一致しない")
+    historical_l9 = json.loads(historical_l9_bytes.decode("utf-8"))
 
     rows_by_layer = {
         "L4": l4.get("failure_classifications", []),
@@ -178,8 +192,8 @@ def main() -> int:
         fail("L8 integration_case_ref does not preserve source case_id")
 
     # U-ID rows retain the source ID in both case_id and integration_case_ref.
-    # Resolve source observations directly from the current L9 case arrays; do not
-    # duplicate their pointers in an L8 index or in the removed case-group arrays.
+    # Current source identity is resolved from integration_cases. The deleted
+    # nested input observations are read only from a fixed historical L9 revision.
     l9_case_by_id: dict[str, tuple[str, dict[str, Any]]] = {}
     source_id_set = set(source_ids)
     def collect_l9_cases(node: Any, pointer: str = "") -> None:
@@ -194,9 +208,52 @@ def main() -> int:
         elif isinstance(node, list):
             for index, value in enumerate(node):
                 collect_l9_cases(value, pointer + "/" + str(index))
-    collect_l9_cases(l9.get("cases", []), "/cases")
+    collect_l9_cases(historical_l9.get("cases", []), "/cases")
     if set(l9_case_by_id) != source_id_set:
-        fail(f"L9 nested source IDs differ from integration inventory: {len(l9_case_by_id)}")
+        fail(f"固定L9履歴のcase IDとcurrent integration inventoryが異なる: {len(l9_case_by_id)}")
+    current_integration_by_id = {row.get("id"): (index, row) for index, row in enumerate(source_rows)}
+
+    def check_current_integration_ref(ref: Any, case_id: str) -> tuple[str, dict[str, Any]]:
+        if not isinstance(ref, dict) or ref.get("path") != FILES["l9"] or ref.get("case_id") != case_id:
+            fail(f"current integration参照が不正: {case_id}")
+        index, source = current_integration_by_id[case_id]
+        expected_pointer = f"/integration_cases/{index}"
+        if ref.get("pointer") != expected_pointer:
+            fail(f"current integration参照pointerが一致しない: {case_id}")
+        target = resolve_pointer(l9, expected_pointer)
+        if target.get("id") != case_id or target != source:
+            fail(f"current integration参照が同じcase rowを指していない: {case_id}")
+        return expected_pointer, target
+
+    positive_source_review = l8.get("positive_case_expectation_source_review", {})
+    positive_review_by_id = {row.get("case_id"): row for row in positive_source_review.get("positive_cases", [])}
+    if len(positive_review_by_id) != 8:
+        fail("positive source reviewが8行でない")
+    for case_id, review in positive_review_by_id.items():
+        observed = review.get("L9_primary_source_observed", {})
+        pointer = observed.get("pointer")
+        if observed.get("path") != FILES["l9"] or observed.get("revision") != HISTORICAL_L9_REVISION or observed.get("source_sha256") != HISTORICAL_L9_SHA256:
+            fail(f"positive given観測に固定L9 revision/hashがない: {case_id}")
+        historical_case = resolve_pointer(historical_l9, pointer)
+        if historical_case.get("id") != case_id:
+            fail(f"positive given観測のcase IDが一致しない: {case_id}")
+        given = historical_case.get("given", {})
+        if set(given) != {"evidence_limit"}:
+            fail(f"固定L9 positive givenにcase-specific入力が存在するため再確認が必要: {case_id}")
+        check_current_integration_ref(review.get("current_integration_case_ref"), case_id)
+    negative_audit_rows = l8.get("negative_class_assignment_audit", {}).get("unassigned_single_contract_negative_cases", [])
+    if len(negative_audit_rows) != 2:
+        fail("未割当negative監査行が2件でない")
+    for audit_row in negative_audit_rows:
+        case_id = audit_row.get("case_id")
+        if audit_row.get("l9_case_revision") != HISTORICAL_L9_REVISION:
+            fail(f"negative auditの旧L9 case revisionが未固定: {case_id}")
+        check_current_integration_ref(audit_row.get("current_integration_case_ref"), case_id)
+        for ref in audit_row.get("source_pointers", []):
+            if ref.get("path") == FILES["l9"] and "/expected_proposal/" in ref.get("pointer", ""):
+                if ref.get("revision") != HISTORICAL_L9_REVISION:
+                    fail(f"negative expected_proposal参照に固定L9 revisionがない: {case_id}")
+                resolve_pointer(historical_l9, ref["pointer"])
     l4_class_pointer_by_id = {row["class_id"]: f"/failure_classifications/{i}" for i, row in enumerate(l4.get("failure_classifications", []))}
     l5_rule_pointer_by_id = {row["id"]: f"/failure_rules/{i}" for i, row in enumerate(l5.get("failure_rules", []))}
 
@@ -231,10 +288,19 @@ def main() -> int:
                 fail(f"positive U-ID has a counterexample label: {case_id}")
             source_pointer, nested = l9_case_by_id[case_id]
             given = nested.get("given", {})
+            if review := positive_review_by_id.get(case_id):
+                expected_historical_pointer = review["L9_primary_source_observed"]["pointer"]
+                if source_pointer != expected_historical_pointer:
+                    fail(f"positive historical source pointer differs: {case_id}")
+                current_pointer, _ = check_current_integration_ref(review.get("current_integration_case_ref"), case_id)
+            else:
+                fail(f"positive source review is missing: {case_id}")
             positives.append({
                 "uid": unit["id"],
                 "case_id": case_id,
-                "l9_source_pointer_resolved_from_integration_case_ref": source_pointer,
+                "l9_source_pointer_resolved_from_integration_case_ref": current_pointer,
+                "historical_l9_given_pointer": source_pointer,
+                "historical_l9_revision": HISTORICAL_L9_REVISION,
                 "l9_given_keys": sorted(given),
                 "l9_given_sha256": hashlib.sha256(json.dumps(given, ensure_ascii=False, sort_keys=True, separators=(",", ":")).encode()).hexdigest(),
                 "l3_sources": ["business-requirements.json:/requirements/2", "functional-requirements.json:/requirements/21", "functional-requirements.json:/requirements/22"],
@@ -381,14 +447,15 @@ def main() -> int:
             "row_details": "recomputed by joining the 285 canonical L8 U-ID rows to L9 integration source IDs; no duplicate unit_case_source_index or L8 nested case groups are used",
         },
         "negative_source_review": {
-            "summary": "Each negative L9 nested source was resolved by joining the U-ID row's integration_case_ref to the canonical L9 integration inventory and case ID. Every `given` object contains only the shared evidence_limit notice; no concrete field values or paired conflicting values are present. Counterexamples therefore state the source ID's missing/conflict dimension plus the L4 class meaning, and conflict rows explicitly avoid inventing values.",
+            "summary": "Current source identity is resolved by joining each U-ID row to L9 integration_cases. Historical nested given observations are read from the fixed L9 revision recorded below; each given contains only the shared evidence_limit notice, not concrete values. Counterexamples therefore state the source ID's missing/conflict dimension plus L4 class meaning without inventing values.",
             "negative_case_count": negative_count,
             "distinct_given_hashes": len(negative_given_hashes),
             "given_hash_counts": dict(negative_given_hashes),
             "case_id_and_pointer_are_in_row_audit": True,
         },
         "positive_source_review": {
-            "summary": "No positive expected values were copied from L9 expected_proposal. A minimum positive contract expectation was derived independently from each abstract case marker and the cited L3/L10/L4 meaning. L9 given still provides only the shared evidence_limit field, so the designed expectations are not fixture-backed or observed outcomes.",
+            "summary": "No positive expected values were copied from L9 expected_proposal. A minimum positive contract expectation was derived independently from each abstract case marker and the cited L3/L10/L4 meaning. The fixed historical L9 given has only the shared evidence_limit field. Current integration_cases are separately referenced projections, not additional given facts or observations.",
+            "historical_l9_given_source": {"revision": HISTORICAL_L9_REVISION, "path": FILES["l9"], "blob": HISTORICAL_L9_BLOB, "sha256": HISTORICAL_L9_SHA256},
             "contract_oracle": "HELIXSECURITY-L10-009-B01 is resolved at contract level; individual oracle_id is null for each U-ID.",
             "resolved_contract_sources": [
                 {"layer": "L3", "id": "HELIXSECURITY-L3-009-B01", "path": FILES["l3_business"], "pointer": "/requirements/2"},

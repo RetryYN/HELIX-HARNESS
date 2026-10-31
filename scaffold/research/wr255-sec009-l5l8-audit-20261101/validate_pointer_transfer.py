@@ -22,6 +22,9 @@ PRE_TRANSFER_L8_REV = "24d7f00bdca41c3dfb1f3137655ffdbe3674cfb3"
 PRE_TRANSFER_L8_SHA256 = "91da3af2c6ad997fdf265871f9776c5bed41f196fbccfc2276e1a41f42a267bb"
 R1_BASE_L8_REV = "766a1772faa63932a6ac3a86e2008756e28d45ef"
 R1_BASE_L8_SHA256 = "18df6dce679dbfe0c169eb7bcadb8457f52b30915595d3b171e6be310ec8c72a"
+HISTORICAL_L9_REV = "e0a1a9b9c0449759e1aebb8664fd70bd5ea25b5d"
+HISTORICAL_L9_BLOB = "e20e059dfe4ea6435921a8e2c9b7ee05da32c196"
+HISTORICAL_L9_SHA256 = "e918a289fe88446b3f84210577f0fe8094505d9dac9d9a8713cd074eb6776e5b"
 
 
 def fail(message: str) -> None:
@@ -43,6 +46,22 @@ def sha_bytes(raw: bytes) -> str:
 
 def sha_file(path: str) -> str:
     return sha_bytes((ROOT / path).read_bytes())
+
+
+def type_label(value: Any) -> str:
+    if isinstance(value, dict):
+        return "object"
+    if isinstance(value, list):
+        if all(isinstance(item, dict) for item in value):
+            return "array<object>"
+        if all(isinstance(item, str) for item in value):
+            return "array<string>"
+        return "array<mixed>"
+    if isinstance(value, str):
+        return "string"
+    if value is None:
+        return "null"
+    return type(value).__name__
 
 
 def resolve(doc: Any, pointer: str) -> Any:
@@ -159,6 +178,14 @@ def main() -> int:
     args = parser.parse_args()
 
     l4, l8, l9 = read_json(L4), read_json(L8), read_json(L9)
+    historical_l9 = read_at(HISTORICAL_L9_REV, L9)
+    historical_l9_bytes = subprocess.check_output(["git", "show", f"{HISTORICAL_L9_REV}:{L9}"], cwd=ROOT)
+    if sha_bytes(historical_l9_bytes) != HISTORICAL_L9_SHA256:
+        fail("固定L9履歴のSHA-256が一致しない")
+    historical_l9_blob = subprocess.check_output(["git", "rev-parse", f"{HISTORICAL_L9_REV}:{L9}"], cwd=ROOT, text=True).strip()
+    if historical_l9_blob != HISTORICAL_L9_BLOB:
+        fail("固定L9履歴のgit blobが一致しない")
+    integration_by_id = {row.get("id"): (index, row) for index, row in enumerate(l9.get("integration_cases", []))}
     historical_l4 = read_at(HISTORY_REV, L4)
     hist_bytes = subprocess.check_output(["git", "show", f"{HISTORY_REV}:{L4}"], cwd=ROOT)
     if sha_bytes(hist_bytes) != HISTORY_L4_SHA256:
@@ -306,6 +333,84 @@ def main() -> int:
     if len(history_consumers) != 3:
         fail(f"historic/unassigned consumer数が3でない: {len(history_consumers)}")
 
+    l8_l9_historical_refs = []
+    l8_l9_current_refs = []
+    l8_l9_field_comparisons = []
+    for row_index, row in enumerate(l8.get("negative_class_assignment_audit", {}).get("unassigned_single_contract_negative_cases", [])):
+        case_id = row.get("case_id")
+        if row.get("l9_case_revision") != HISTORICAL_L9_REV:
+            fail(f"L8未割当caseの旧L9 revisionが未固定: {case_id}")
+        for ref_index, ref in enumerate(row.get("source_pointers", [])):
+            if ref.get("path") != L9 or "/expected_proposal/" not in ref.get("pointer", ""):
+                continue
+            if ref.get("revision") != HISTORICAL_L9_REV:
+                fail(f"L8の旧expected_proposal参照revisionが未固定: {case_id}")
+            target = resolve(historical_l9, ref["pointer"])
+            l8_l9_historical_refs.append({
+                "consumer_location": f"/negative_class_assignment_audit/unassigned_single_contract_negative_cases/{row_index}/source_pointers/{ref_index}",
+                "case_id": case_id,
+                "revision": HISTORICAL_L9_REV,
+                "pointer": ref["pointer"],
+                "target_type": type(target).__name__,
+            })
+        current_ref = row.get("current_integration_case_ref", {})
+        if current_ref.get("path") != L9 or current_ref.get("case_id") != case_id:
+            fail(f"L8未割当caseにcurrent integration case参照がない: {case_id}")
+        current_target = resolve(l9, current_ref.get("pointer", ""))
+        if current_target.get("id") != case_id or integration_by_id.get(case_id, (None, None))[1] != current_target:
+            fail(f"L8未割当caseのcurrent integration pointerが不一致: {case_id}")
+        for comparison in row.get("current_integration_field_comparison", []):
+            historical_value = resolve(historical_l9, comparison["historical_pointer"])
+            current_value = resolve(l9, comparison["current_pointer"])
+            historical_type = type_label(historical_value)
+            current_type = type_label(current_value)
+            if comparison.get("historical_type") != historical_type or comparison.get("current_type") != current_type:
+                fail(f"旧L9/current integration field type記録が実値と異なる: {case_id} {comparison}")
+            relation = "equal" if historical_value == current_value else "not_equal"
+            if relation == "equal":
+                fail(f"設計上非同値とした旧/current field値が一致: {case_id} {comparison}")
+            l8_l9_field_comparisons.append({
+                "case_id": case_id,
+                "historical_pointer": comparison["historical_pointer"],
+                "current_pointer": comparison["current_pointer"],
+                "historical_type": historical_type,
+                "current_type": current_type,
+                "value_relation": relation,
+                "comparison": comparison["comparison"],
+            })
+        old_findings = resolve(historical_l9, row["l9_case_pointer"] + "/expected_proposal/findings")
+        current_finding_codes = resolve(l9, current_ref["pointer"] + "/expected/finding_codes")
+        if [item.get("code") for item in old_findings] != current_finding_codes:
+            fail(f"old finding object code order differs from current finding_codes: {case_id}")
+        l8_l9_current_refs.append({"case_id": case_id, "pointer": current_ref["pointer"], "population_state": current_target.get("population_state")})
+
+    positive_review = l8.get("positive_case_expectation_source_review", {}).get("positive_cases", [])
+    for row_index, row in enumerate(positive_review):
+        case_id = row.get("case_id")
+        observed = row.get("L9_primary_source_observed", {})
+        if observed.get("path") != L9 or observed.get("revision") != HISTORICAL_L9_REV or observed.get("source_sha256") != HISTORICAL_L9_SHA256:
+            fail(f"L8 positiveの旧given参照が固定revision/hashを持たない: {case_id}")
+        old_case = resolve(historical_l9, observed.get("pointer", ""))
+        if old_case.get("id") != case_id or set(old_case.get("given", {})) != {"evidence_limit"}:
+            fail(f"L8 positiveの旧givenがcase ID/evidence_limit条件と異なる: {case_id}")
+        l8_l9_historical_refs.append({
+            "consumer_location": f"/positive_case_expectation_source_review/positive_cases/{row_index}/L9_primary_source_observed/pointer",
+            "case_id": case_id,
+            "revision": HISTORICAL_L9_REV,
+            "pointer": observed["pointer"],
+            "target_type": type(old_case).__name__,
+            "given_keys": sorted(old_case["given"]),
+        })
+        current_ref = row.get("current_integration_case_ref", {})
+        if current_ref.get("path") != L9 or current_ref.get("case_id") != case_id:
+            fail(f"L8 positiveにcurrent integration projection参照がない: {case_id}")
+        current_target = resolve(l9, current_ref.get("pointer", ""))
+        if current_target.get("id") != case_id or integration_by_id.get(case_id, (None, None))[1] != current_target:
+            fail(f"L8 positiveのcurrent integration pointerが不一致: {case_id}")
+        l8_l9_current_refs.append({"case_id": case_id, "pointer": current_ref["pointer"], "population_state": current_target.get("population_state"), "relation": "current projection; not historical given evidence"})
+    if len(l8_l9_historical_refs) != 13 or len(l8_l9_current_refs) != 10 or len(l8_l9_field_comparisons) != 5:
+        fail(f"L8→L9 consumer count differs: historical={len(l8_l9_historical_refs)} current={len(l8_l9_current_refs)} field_comparisons={len(l8_l9_field_comparisons)}")
+
     l8_consumers = taxonomy_consumers + history_consumers
     l8_raw_nested = walk_nested_pointer_strings(l8)
     r1_base_raw_nested = walk_nested_pointer_strings(r1_base_l8)
@@ -348,8 +453,8 @@ def main() -> int:
         resolve_raw_l4_reference(l4, row["reference"])
     l5 = read_json("docs/helix-security/L5-detail-design/revoke-quarantine-propagation.json")
     l5_raw_nested = walk_nested_pointer_strings(l5)
-    if len(l5_raw_nested) != 30:
-        fail(f"L5 raw nested pointer string count differs from 30: {len(l5_raw_nested)}")
+    if len(l5_raw_nested) != 0:
+        fail(f"L5 current raw nested pointer string count differs from 0: {len(l5_raw_nested)}")
     for row in l5_raw_nested:
         resolve_raw_l4_reference(l4, row["reference"])
 
@@ -382,6 +487,7 @@ def main() -> int:
         "source_hashes": source_hashes,
         "source_revisions": source_revisions,
         "historical_l4": {"revision": HISTORY_REV, "sha256": HISTORY_L4_SHA256},
+        "historical_l9": {"revision": HISTORICAL_L9_REV, "blob": HISTORICAL_L9_BLOB, "sha256": HISTORICAL_L9_SHA256},
         "corrected_prior_pointer": {
             "source_revision": PRE_TRANSFER_L8_REV,
             "source_sha256": PRE_TRANSFER_L8_SHA256,
@@ -401,6 +507,8 @@ def main() -> int:
             "L8_counterexamples_with_generated_colon_artifact_current": current_bad_counterexamples,
             "L8_fixed_taxonomy_pointers": len(taxonomy_consumers),
             "L8_historical_unassigned_refs": len(history_consumers),
+            "L8_to_L9_fixed_historical_source_refs": len(l8_l9_historical_refs),
+            "L8_to_L9_current_integration_case_refs": len(l8_l9_current_refs),
             "L8_historic_collection_fanout": 14,
             "L9_prior_recognized_consumer_subset": len(l9_old),
             "L9_all_raw_nested_pointer_strings": len(l9_raw_nested),
@@ -417,13 +525,20 @@ def main() -> int:
             "active_mode": "explicit_negative_equivalence_classes",
             "explicit_mode_uses_top_level_class_tables": True,
             "CHK_JSON_POINTER": "参照先の存在解決を行う。構造化referenceのrevision fieldをgit showの固定revisionとして解決する。",
-            "legacy_mode": "checkerはmarkerがない場合にnested negative_classificationsを読む。L8の重複case groupsは削除済みだが、L5 30件とL9 583件のnested pointer文字列が残るため、全consumer移行前にL4 nestedを撤去しない。",
+            "legacy_mode": "checkerはmarkerがない場合にnested negative_classificationsを読む。L8の重複case groupsとL5のnested pointer stringsは現行treeから除去済みだが、L9の583 nested pointer stringsが残るため、全consumer移行前にL4 nestedを撤去しない。",
             "expected_text_reader": "現行CHK-JSON-POINTERとexplicit 4-way checkerはnested expected_textを消費しない。人間向けsource意味は下記のfield projection表で検証する。",
             "explicit_marker_all_layers": explicit_mode,
             "pointer_check_passed": pointer_report["passed"],
         },
         "canonical_projection_by_class_id": projection_by_class,
         "L8_consumers": l8_consumers,
+        "L8_L9_source_transition": {
+            "fixed_historical_l9": {"revision": HISTORICAL_L9_REV, "path": L9, "blob": HISTORICAL_L9_BLOB, "sha256": HISTORICAL_L9_SHA256},
+            "fixed_historical_source_refs": l8_l9_historical_refs,
+            "current_integration_case_refs": l8_l9_current_refs,
+            "field_value_type_comparisons": l8_l9_field_comparisons,
+            "interpretation": "旧L9 expected_proposalとcurrent integration_casesは意味上の対応を持つが、field型・値に差があるため同値な置換として扱わない。positiveの旧givenはevidence_limitのみという観測を固定し、current integration rowは別projectionとして参照する。",
+        },
         "L9_pending_transfer": {
             "status": "separate_l4_l9_v_pair_required",
             "recognized_subset_count": len(l9_old),
@@ -435,7 +550,7 @@ def main() -> int:
             "SCF-B-0209_status": "pending",
             "check_replacement_performed": False,
             "retire_performed": False,
-            "reason": "L9の583 raw nested pointer strings、L5の30 raw nested pointer strings、履歴consumerの移行・全件reviewが未完了。L4 nested payloadを保持する。",
+            "reason": "L9の583 raw nested pointer stringsとL4/L9 pairでの移行確認が未完了。L5はlatest mainでnested pointer string 0件を実測。L4 nested payloadを保持する。",
         },
     }
 

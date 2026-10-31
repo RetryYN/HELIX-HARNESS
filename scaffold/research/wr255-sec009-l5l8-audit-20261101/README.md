@@ -20,17 +20,17 @@ python3 scaffold/research/wr255-sec009-l5l8-audit-20261101/validate_wr255_l5l8.p
 
 ## U-ID表とsource参照
 
-L8 `unit_cases` の `id` は `SEC009-U0001`〜`SEC009-U0285` の専用連番です。元のSEC009 source IDは `case_id` と `integration_case_ref` に保持します。L8 `cases` は契約単位の概要だけを持ち、`positive_cases`、`negative_cases`、`source_case_refs` の重複行群と重複`unit_case_source_index`は置きません。validatorは285 U-ID行の`integration_case_ref`をL9 `integration_cases`のIDと照合し、L9のcase-specific sourceはL9本文内でIDから解決します。negative行は`negative_class_ref`、`rule_ref`、`function_ref`でL4 classとL5 rule/ownerを引きます。
+L8 `unit_cases` の `id` は `SEC009-U0001`〜`SEC009-U0285` の専用連番です。元のSEC009 source IDは `case_id` と `integration_case_ref` に保持します。L8 `cases` は契約単位の概要だけを持ち、`positive_cases`、`negative_cases`、`source_case_refs` の重複行群と重複`unit_case_source_index`は置きません。validatorは285 U-ID行の`integration_case_ref`をcurrent L9 `integration_cases`のIDと照合します。case固有の旧入力観測は固定L9 revision `e0a1a9b9c0449759e1aebb8664fd70bd5ea25b5d`（blob `e20e059dfe4ea6435921a8e2c9b7ee05da32c196`、SHA-256 `e918a289fe88446b3f84210577f0fe8094505d9dac9d9a8713cd074eb6776e5b`）から分けて読みます。negative行は`negative_class_ref`、`rule_ref`、`function_ref`でL4 classとL5 rule/ownerを引きます。
 
 各negative行のcounterexampleは対象と食い違いを日本語で短く説明し、L4 classが示す失敗の意味を添えます。source IDの言い換えだけにはしていません。R1指摘の「識別子:が欠落/unknown」等13行を読み直して句読点を文に直し、他の反例本文は維持しました。sourceのL9 `given` に具体値がないconflict行では、値が根拠に記載されていないと明記し、値の組を補っていません。各行には契約単位の `system_oracle_ref` を残し、個別の `oracle_id` と `test_citation` はnullのままにしています。negative期待値はL9 `expected_proposal` ではなくL4から導きます。
 
 class tableをaxis、state、owner、expected classificationの共有元とします。重複する行別 `source_pointers`、`expected_property`、classのaxis/state投影は取り除きました。checkerが各L8行に必要とする `condition`、`expected`、`expected_preserved` は保持し、L5 ownerを解決する `function_ref` もnegative行に残します。
 
-validatorはnegative 277行それぞれのL9 nested pointerを解決します。全givenに共通の `evidence_limit` があるだけで、具体的なidentity値やconflict値は含まれていません。そこでcounterexampleはsource case markerにある対象・不足またはconflictの種類とL4 classの意味を説明します。実際値は記録・推測していません。
+validatorはnegative 277行のcurrent case IDをL9 `integration_cases`から照合し、旧givenの観測は固定L9 revisionから解決します。全givenに共通の `evidence_limit` があるだけで、具体的なidentity値やconflict値は含まれていません。そこでcounterexampleはsource case markerにある対象・不足またはconflictの種類とL4 classの意味を説明します。実際値は記録・推測していません。
 
 ## positive行の最小期待と根拠境界
 
-8件のpositive IDについてcanonical L9 nested sourceを確認しました。各 `given` は共通 `evidence_limit` のみで、case-specific fixture値や実観測を含みません。L9 `expected_proposal` は期待値の根拠に使っていません。代わりにcase markerの抽象条件とL3/L10/L4契約から、結果値を作らない最小意味を設計し、各U-IDに `condition`、`expected`、`expected_preserved` と共有の `positive_expectation_ref` を記録しました。
+8件のpositive IDは固定L9 revisionで旧nested `given` を確認しました。各 `given` は共通 `evidence_limit` のみで、case-specific fixture値や実観測を含みません。各行に追加したcurrent `integration_cases`参照は別projectionを示し、旧givenの入力事実や期待との同値性を主張しません。L9 `expected_proposal` は期待値の根拠に使っていません。代わりにcase markerの抽象条件とL3/L10/L4契約から、結果値を作らない最小意味を設計し、各U-IDに `condition`、`expected`、`expected_preserved` と共有の `positive_expectation_ref` を記録しました。
 
 5件の `ONLY-…-UNSELECTED-ABSENT` は、case markerが示す対象recipientの不在を選択閉包の不足や任意operation開始条件へ広げない期待です。`EMPTY-RECIPIENT-SET` は、独立期待集合と選択集合が空として解決する場合のrecipient別空出力を扱います。`OS-OFFLINE-INDEPENDENT-RECOVERY-SELECTION` は、独立復旧経路に停止中OSや通常009応答を普遍的前提とせず、隔離と復旧素材を分ける期待です。F02の一般文書meaning unknownは全操作・全scope停止へ拡張せず、unknownから安全分類を作らない期待です。
 
@@ -61,6 +61,10 @@ summaryは正本285行の内容を再複製せず、validatorで再計算したr
 事前生成の展開版summaryはSHA-256 `7e09863b58053b03e833df14d034f7c8d52b5a9ff3e0344a996aa0a82c9d4446` で、commit `69fbb3e2f0` のvalidatorから完全一致で再生成可能です。復元手順は[統合disposition](measurement-artifact-disposition.json)にあります。
 
 ## SCF-B-0209 pointer移行
+
+R2 reviewで指摘されたL8→L9参照13件を個別に解決しました。負例2件の旧`expected_proposal`参照5件は固定L9 revisionを付けて当時の値を維持し、対応するcurrent L9 `/integration_cases/283`・`/integration_cases/284`を別参照として追加しました。旧recipient correspondence objectとcurrent expected objectはfield意味が異なります。旧findingsは`pointer`・`return_owner`を持つobject配列、current `finding_codes`はstring配列で、code順序のみ対応し他の値は同値ではありません。F02の旧isolation/recovery correspondence scalarとcurrent `finding_codes`配列も型と意味が異なります。正本validatorは5旧値の型・値とcurrent fieldの型・値を毎回照合し、同値でないこと、findings code順序のみ一致することを確認します。
+
+positive 8件は旧`L9_primary_source_observed` pointerを固定L9 revisionへ束縛し、`given`に`evidence_limit`以外の入力fieldがない事実を保全しました。current `integration_cases`の行参照も別に追加し、旧given観測の代替・追加fixtureとして扱いません。負例5件とpositive 8件の旧参照計13件、current integration row参照10件をvalidatorが解決します。current L9本文はこのL5/L8 PRでは変更しません。
 
 修正前のL8 `cases`に含まれた重複wrapper 275件は正本配列の撤去とともに現行ファイルから除きました。これは275件の独立aliasへ転送した件数ではありません。現在残るL8 taxonomy pointer 30件をcanonical L4 `/failure_classifications/{index}`へ解決し、nested `code`とcanonical `class_id`の一致を確認します。旧nested値はclassごとに照合し、`change`/`axis`/`state`/`backflow_owner`/`expected`/`expected_preserved`/`expected_side_effect_count`/`source_pointers`は30 classすべてで型と値が一致します。旧`expected_text`はcanonical側に同名fieldがないため、`condition + " " + expected_preserved.contract_detail`で再構成し、元の30文字列と型が一致することをvalidatorが確認します。
 

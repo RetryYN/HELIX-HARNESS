@@ -6853,17 +6853,42 @@
           },
           {
             "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
-            "pointer": "/cases/1/negative_cases/205/expected_proposal/recipient_correspondence"
+            "pointer": "/cases/1/negative_cases/205/expected_proposal/recipient_correspondence",
+            "revision": "e0a1a9b9c0449759e1aebb8664fd70bd5ea25b5d"
           },
           {
             "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
-            "pointer": "/cases/1/negative_cases/205/expected_proposal/findings"
+            "pointer": "/cases/1/negative_cases/205/expected_proposal/findings",
+            "revision": "e0a1a9b9c0449759e1aebb8664fd70bd5ea25b5d"
           },
           {
             "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
             "pointer": "/cases/331",
             "revision": "40d6da48a44625bfd064ccabceb7f7ecb47dcd7c",
             "former_l8_source_case_pointer": "/cases/1/negative_cases/205/source_case"
+          }
+        ],
+        "l9_case_revision": "e0a1a9b9c0449759e1aebb8664fd70bd5ea25b5d",
+        "current_integration_case_ref": {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/integration_cases/283",
+          "case_id": "SEC009-COMPOUND-OS-UNKNOWN-CREDENTIAL-UNAPPLIED-WORKER-CONTINUES",
+          "relation": "現行の統合行への対応参照。固定履歴のexpected_proposalと値・型が等しいことを意味しない。"
+        },
+        "current_integration_field_comparison": [
+          {
+            "historical_pointer": "/cases/1/negative_cases/205/expected_proposal/recipient_correspondence",
+            "historical_type": "object",
+            "current_pointer": "/integration_cases/283/expected",
+            "current_type": "object",
+            "comparison": "非同値。旧recipient別対応辞書は現行expectedに同型フィールドがない。"
+          },
+          {
+            "historical_pointer": "/cases/1/negative_cases/205/expected_proposal/findings",
+            "historical_type": "array<object>",
+            "current_pointer": "/integration_cases/283/expected/finding_codes",
+            "current_type": "array<string>",
+            "comparison": "順序付きcode列は対応するが、旧objectのpointer/return_owner値は現行code列に含まれない。"
           }
         ]
       },
@@ -6903,21 +6928,54 @@
           },
           {
             "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
-            "pointer": "/cases/2/negative_cases/40/expected_proposal/isolation_correspondence"
+            "pointer": "/cases/2/negative_cases/40/expected_proposal/isolation_correspondence",
+            "revision": "e0a1a9b9c0449759e1aebb8664fd70bd5ea25b5d"
           },
           {
             "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
-            "pointer": "/cases/2/negative_cases/40/expected_proposal/recovery_correspondence"
+            "pointer": "/cases/2/negative_cases/40/expected_proposal/recovery_correspondence",
+            "revision": "e0a1a9b9c0449759e1aebb8664fd70bd5ea25b5d"
           },
           {
             "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
-            "pointer": "/cases/2/negative_cases/40/expected_proposal/findings"
+            "pointer": "/cases/2/negative_cases/40/expected_proposal/findings",
+            "revision": "e0a1a9b9c0449759e1aebb8664fd70bd5ea25b5d"
           },
           {
             "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
             "pointer": "/cases/335",
             "revision": "40d6da48a44625bfd064ccabceb7f7ecb47dcd7c",
             "former_l8_source_case_pointer": "/cases/2/negative_cases/40/source_case"
+          }
+        ],
+        "l9_case_revision": "e0a1a9b9c0449759e1aebb8664fd70bd5ea25b5d",
+        "current_integration_case_ref": {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/integration_cases/284",
+          "case_id": "SEC009-RECOVERY-PRIOR-SOURCE-MISSING",
+          "relation": "現行の統合行への対応参照。固定履歴のexpected_proposalと値・型が等しいことを意味しない。"
+        },
+        "current_integration_field_comparison": [
+          {
+            "historical_pointer": "/cases/2/negative_cases/40/expected_proposal/isolation_correspondence",
+            "historical_type": "string",
+            "current_pointer": "/integration_cases/284/expected/finding_codes",
+            "current_type": "array<string>",
+            "comparison": "非同値。隔離axisのunknown状態を示す旧scalarに対し、現行fieldはfinding codeの配列。"
+          },
+          {
+            "historical_pointer": "/cases/2/negative_cases/40/expected_proposal/recovery_correspondence",
+            "historical_type": "string",
+            "current_pointer": "/integration_cases/284/expected/finding_codes",
+            "current_type": "array<string>",
+            "comparison": "非同値。復旧axisのunknown状態を示す旧scalarに対し、現行fieldはfinding codeの配列。"
+          },
+          {
+            "historical_pointer": "/cases/2/negative_cases/40/expected_proposal/findings",
+            "historical_type": "array<object>",
+            "current_pointer": "/integration_cases/284/expected/finding_codes",
+            "current_type": "array<string>",
+            "comparison": "codeは対応するが、旧objectのpointer/return_owner値は現行code列に含まれない。"
           }
         ]
       }
@@ -15895,7 +15953,7 @@
     }
   },
   "positive_case_expectation_source_review": {
-    "summary": "L3/L10 contain contract-level obligations and oracle statements; L4 contains contract semantics and negative classes. In this revision the eight L9 nested positive `given` objects expose only the shared evidence_limit note, no case input facts. The independent L9 projection proposal likewise marks positive rows unresolved. L9 expected_proposal is excluded from L8 derivation. Therefore case-specific expected result and preservation fields remain null.",
+    "summary": "L3/L10/L4には契約単位の義務とoracleがあり、L4には契約意味とnegative classがある。旧L9固定revisionのpositive givenは共有evidence_limitだけで、行固有の入力事実は記載されていない。current integration_casesは別のprojectionとして参照し、given観測と同一視しない。L9 expected_proposalはL8期待の根拠に使わない。個別期待の実観測・oracle・test citationは未確認のためnullとする。",
     "positive_cases": [
       {
         "case_id": "SEC009-ONLY-OS_ASSIGNMENT-UNSELECTED-ABSENT",
@@ -15947,14 +16005,22 @@
           "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
           "pointer": "/cases/0/positive_cases/0",
           "given_field": "only evidence_limit; no input fields or row-level source facts",
-          "expected_proposal_used_as_source": false
+          "expected_proposal_used_as_source": false,
+          "revision": "e0a1a9b9c0449759e1aebb8664fd70bd5ea25b5d",
+          "source_sha256": "e918a289fe88446b3f84210577f0fe8094505d9dac9d9a8713cd074eb6776e5b"
         },
         "case_specific_basis_review": "L4-B01 says policy/trigger material is conditionally compared for selected recipients; L10-B01 requires selected versus unselected recipient distinctions. Case source has no actual selection/input facts; ID text alone does not establish the expected comparison output.",
         "expected_result_status": "unclosed_missing_case_input_and_L4_positive_projection",
         "expected": null,
         "expected_preserved": null,
         "individual_oracle_id": null,
-        "test_citation": null
+        "test_citation": null,
+        "current_integration_case_ref": {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/integration_cases/0",
+          "case_id": "SEC009-ONLY-OS_ASSIGNMENT-UNSELECTED-ABSENT",
+          "relation": "現行の統合projection行。旧given入力観測の代替や追加fixtureではない。"
+        }
       },
       {
         "case_id": "SEC009-ONLY-WORKER_EXECUTION-UNSELECTED-ABSENT",
@@ -16006,14 +16072,22 @@
           "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
           "pointer": "/cases/0/positive_cases/1",
           "given_field": "only evidence_limit; no input fields or row-level source facts",
-          "expected_proposal_used_as_source": false
+          "expected_proposal_used_as_source": false,
+          "revision": "e0a1a9b9c0449759e1aebb8664fd70bd5ea25b5d",
+          "source_sha256": "e918a289fe88446b3f84210577f0fe8094505d9dac9d9a8713cd074eb6776e5b"
         },
         "case_specific_basis_review": "L4-B01 says policy/trigger material is conditionally compared for selected recipients; L10-B01 requires selected versus unselected recipient distinctions. Case source has no actual selection/input facts; ID text alone does not establish the expected comparison output.",
         "expected_result_status": "unclosed_missing_case_input_and_L4_positive_projection",
         "expected": null,
         "expected_preserved": null,
         "individual_oracle_id": null,
-        "test_citation": null
+        "test_citation": null,
+        "current_integration_case_ref": {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/integration_cases/1",
+          "case_id": "SEC009-ONLY-WORKER_EXECUTION-UNSELECTED-ABSENT",
+          "relation": "現行の統合projection行。旧given入力観測の代替や追加fixtureではない。"
+        }
       },
       {
         "case_id": "SEC009-ONLY-CONNECT_COMMUNICATION-UNSELECTED-ABSENT",
@@ -16065,14 +16139,22 @@
           "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
           "pointer": "/cases/0/positive_cases/2",
           "given_field": "only evidence_limit; no input fields or row-level source facts",
-          "expected_proposal_used_as_source": false
+          "expected_proposal_used_as_source": false,
+          "revision": "e0a1a9b9c0449759e1aebb8664fd70bd5ea25b5d",
+          "source_sha256": "e918a289fe88446b3f84210577f0fe8094505d9dac9d9a8713cd074eb6776e5b"
         },
         "case_specific_basis_review": "L4-B01 says policy/trigger material is conditionally compared for selected recipients; L10-B01 requires selected versus unselected recipient distinctions. Case source has no actual selection/input facts; ID text alone does not establish the expected comparison output.",
         "expected_result_status": "unclosed_missing_case_input_and_L4_positive_projection",
         "expected": null,
         "expected_preserved": null,
         "individual_oracle_id": null,
-        "test_citation": null
+        "test_citation": null,
+        "current_integration_case_ref": {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/integration_cases/2",
+          "case_id": "SEC009-ONLY-CONNECT_COMMUNICATION-UNSELECTED-ABSENT",
+          "relation": "現行の統合projection行。旧given入力観測の代替や追加fixtureではない。"
+        }
       },
       {
         "case_id": "SEC009-ONLY-CREDENTIAL_USE-UNSELECTED-ABSENT",
@@ -16124,14 +16206,22 @@
           "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
           "pointer": "/cases/0/positive_cases/3",
           "given_field": "only evidence_limit; no input fields or row-level source facts",
-          "expected_proposal_used_as_source": false
+          "expected_proposal_used_as_source": false,
+          "revision": "e0a1a9b9c0449759e1aebb8664fd70bd5ea25b5d",
+          "source_sha256": "e918a289fe88446b3f84210577f0fe8094505d9dac9d9a8713cd074eb6776e5b"
         },
         "case_specific_basis_review": "L4-B01 says policy/trigger material is conditionally compared for selected recipients; L10-B01 requires selected versus unselected recipient distinctions. Case source has no actual selection/input facts; ID text alone does not establish the expected comparison output.",
         "expected_result_status": "unclosed_missing_case_input_and_L4_positive_projection",
         "expected": null,
         "expected_preserved": null,
         "individual_oracle_id": null,
-        "test_citation": null
+        "test_citation": null,
+        "current_integration_case_ref": {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/integration_cases/3",
+          "case_id": "SEC009-ONLY-CREDENTIAL_USE-UNSELECTED-ABSENT",
+          "relation": "現行の統合projection行。旧given入力観測の代替や追加fixtureではない。"
+        }
       },
       {
         "case_id": "SEC009-ONLY-ARTIFACT_ACCESS-UNSELECTED-ABSENT",
@@ -16183,14 +16273,22 @@
           "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
           "pointer": "/cases/0/positive_cases/4",
           "given_field": "only evidence_limit; no input fields or row-level source facts",
-          "expected_proposal_used_as_source": false
+          "expected_proposal_used_as_source": false,
+          "revision": "e0a1a9b9c0449759e1aebb8664fd70bd5ea25b5d",
+          "source_sha256": "e918a289fe88446b3f84210577f0fe8094505d9dac9d9a8713cd074eb6776e5b"
         },
         "case_specific_basis_review": "L4-B01 says policy/trigger material is conditionally compared for selected recipients; L10-B01 requires selected versus unselected recipient distinctions. Case source has no actual selection/input facts; ID text alone does not establish the expected comparison output.",
         "expected_result_status": "unclosed_missing_case_input_and_L4_positive_projection",
         "expected": null,
         "expected_preserved": null,
         "individual_oracle_id": null,
-        "test_citation": null
+        "test_citation": null,
+        "current_integration_case_ref": {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/integration_cases/4",
+          "case_id": "SEC009-ONLY-ARTIFACT_ACCESS-UNSELECTED-ABSENT",
+          "relation": "現行の統合projection行。旧given入力観測の代替や追加fixtureではない。"
+        }
       },
       {
         "case_id": "SEC009-EMPTY-RECIPIENT-SET",
@@ -16242,14 +16340,22 @@
           "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
           "pointer": "/cases/0/positive_cases/5",
           "given_field": "only evidence_limit; no input fields or row-level source facts",
-          "expected_proposal_used_as_source": false
+          "expected_proposal_used_as_source": false,
+          "revision": "e0a1a9b9c0449759e1aebb8664fd70bd5ea25b5d",
+          "source_sha256": "e918a289fe88446b3f84210577f0fe8094505d9dac9d9a8713cd074eb6776e5b"
         },
         "case_specific_basis_review": "L4-B01 distinguishes an unresolved recipient closure from a resolved closure; L10-B01 requires the applicable recipients to be identified. Current L9 `given` has only an evidence-limit note and no recipient-set input, so empty-set correctness cannot be rederived.",
         "expected_result_status": "unclosed_missing_case_input_and_L4_positive_projection",
         "expected": null,
         "expected_preserved": null,
         "individual_oracle_id": null,
-        "test_citation": null
+        "test_citation": null,
+        "current_integration_case_ref": {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/integration_cases/5",
+          "case_id": "SEC009-EMPTY-RECIPIENT-SET",
+          "relation": "現行の統合projection行。旧given入力観測の代替や追加fixtureではない。"
+        }
       },
       {
         "case_id": "SEC009-OS-OFFLINE-INDEPENDENT-RECOVERY-SELECTION",
@@ -16301,14 +16407,22 @@
           "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
           "pointer": "/cases/0/positive_cases/6",
           "given_field": "only evidence_limit; no input fields or row-level source facts",
-          "expected_proposal_used_as_source": false
+          "expected_proposal_used_as_source": false,
+          "revision": "e0a1a9b9c0449759e1aebb8664fd70bd5ea25b5d",
+          "source_sha256": "e918a289fe88446b3f84210577f0fe8094505d9dac9d9a8713cd074eb6776e5b"
         },
         "case_specific_basis_review": "L3-B01 does not make all recipient capabilities prerequisites to unrelated operations; L10-B01 asks to distinguish selected and unselected routes. Current L9 `given` has no selected-recipient or recovery facts, so this case-specific outcome cannot be rederived.",
         "expected_result_status": "unclosed_missing_case_input_and_L4_positive_projection",
         "expected": null,
         "expected_preserved": null,
         "individual_oracle_id": null,
-        "test_citation": null
+        "test_citation": null,
+        "current_integration_case_ref": {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/integration_cases/6",
+          "case_id": "SEC009-OS-OFFLINE-INDEPENDENT-RECOVERY-SELECTION",
+          "relation": "現行の統合projection行。旧given入力観測の代替や追加fixtureではない。"
+        }
       },
       {
         "case_id": "SEC009-GENERAL-MEANING-UNKNOWN",
@@ -16364,14 +16478,22 @@
           "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
           "pointer": "/cases/2/positive_cases/0",
           "given_field": "only evidence_limit; no input fields or row-level source facts",
-          "expected_proposal_used_as_source": false
+          "expected_proposal_used_as_source": false,
+          "revision": "e0a1a9b9c0449759e1aebb8664fd70bd5ea25b5d",
+          "source_sha256": "e918a289fe88446b3f84210577f0fe8094505d9dac9d9a8713cd074eb6776e5b"
         },
         "case_specific_basis_review": "L3-F02 requires general meaning unknown to stay local; L10-F02 contrasts one safety unknown with unrelated valid work. L4-F02 locality says only a general meaning matching its independent expectation does not request local stop; current L9 `given` lacks event.category/expected_category values, so the case cannot be proven to be general-meaning unknown from primary inputs.",
         "expected_result_status": "unclosed_missing_case_input_and_L4_positive_projection",
         "expected": null,
         "expected_preserved": null,
         "individual_oracle_id": null,
-        "test_citation": null
+        "test_citation": null,
+        "current_integration_case_ref": {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/integration_cases/240",
+          "case_id": "SEC009-GENERAL-MEANING-UNKNOWN",
+          "relation": "現行の統合projection行。旧given入力観測の代替や追加fixtureではない。"
+        }
       }
     ],
     "not_derived_from": [
