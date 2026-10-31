@@ -20,6 +20,8 @@ HISTORY_REV = "c50eb21b34f034262ced3f8052d2502fb84c57c9"
 HISTORY_L4_SHA256 = "d46e39cad2e2a90cfc532fa57226a4d650336e794a375f07e1cc2e6cbba15eb3"
 PRE_TRANSFER_L8_REV = "24d7f00bdca41c3dfb1f3137655ffdbe3674cfb3"
 PRE_TRANSFER_L8_SHA256 = "91da3af2c6ad997fdf265871f9776c5bed41f196fbccfc2276e1a41f42a267bb"
+R1_BASE_L8_REV = "766a1772faa63932a6ac3a86e2008756e28d45ef"
+R1_BASE_L8_SHA256 = "18df6dce679dbfe0c169eb7bcadb8457f52b30915595d3b171e6be310ec8c72a"
 
 
 def fail(message: str) -> None:
@@ -89,6 +91,30 @@ def walk_case_basis(node: Any, pointer: str = "") -> list[dict[str, Any]]:
     return found
 
 
+def walk_nested_pointer_strings(node: Any, pointer: str = "") -> list[dict[str, str]]:
+    """Count every raw nested-class pointer string, including duplicated case views."""
+    found: list[dict[str, str]] = []
+    if isinstance(node, dict):
+        for key, value in node.items():
+            found.extend(walk_nested_pointer_strings(value, f"{pointer}/{esc(key)}"))
+    elif isinstance(node, list):
+        for index, value in enumerate(node):
+            found.extend(walk_nested_pointer_strings(value, f"{pointer}/{index}"))
+    elif isinstance(node, str) and "/contracts/" in node and "/negative_classifications" in node:
+        found.append({"consumer_location": pointer, "reference": node})
+    return found
+
+
+def resolve_raw_l4_reference(l4: dict[str, Any], reference: str) -> Any:
+    if "#" in reference:
+        path, pointer = reference.split("#", 1)
+        if path != L4:
+            fail(f"nested L4 pointer has an unexpected document path: {reference}")
+    else:
+        pointer = reference
+    return resolve(l4, pointer)
+
+
 def structured_refs(rows: list[dict[str, Any]], group: str) -> list[dict[str, Any]]:
     out = []
     for index, row in enumerate(rows):
@@ -141,6 +167,15 @@ def main() -> int:
     if sha_bytes(prior_l8_bytes) != PRE_TRANSFER_L8_SHA256:
         fail("pointer移行前L8の固定履歴hashが一致しない")
     prior_l8 = json.loads(prior_l8_bytes.decode("utf-8"))
+    r1_base_l8_bytes = subprocess.check_output(["git", "show", f"{R1_BASE_L8_REV}:{L8}"], cwd=ROOT)
+    if sha_bytes(r1_base_l8_bytes) != R1_BASE_L8_SHA256:
+        fail("R1 base L8 SHA-256 does not match the fixed review head")
+    r1_base_l8 = json.loads(r1_base_l8_bytes.decode("utf-8"))
+    base_bad_counterexamples = sum(
+        1 for row in r1_base_l8.get("unit_cases", [])
+        if isinstance(row.get("counterexample"), str)
+        and ":が" in row["counterexample"]
+    )
     prior_l4 = read_at(PRE_TRANSFER_L8_REV, L4)
     prior_f02_pointer = prior_l8["positive_case_expectation_source_review"]["positive_cases"][7]["L4_sources"][1]["pointer"]
     current_f02_pointer = l8["positive_case_expectation_source_review"]["positive_cases"][7]["L4_sources"][1]["pointer"]
@@ -212,17 +247,13 @@ def main() -> int:
             },
         }
 
-    wrapper_rows = walk_case_basis(l8.get("cases", []), "/cases")
-    if len(wrapper_rows) != 275:
-        fail(f"case wrapper consumer数が275でない: {len(wrapper_rows)}")
-    for row in wrapper_rows:
-        reference = row["reference"]
-        path, pointer = reference.split("#", 1)
-        target = resolve(l4, pointer)
-        class_id = target.get("class_id")
-        if path != L4 or class_id not in projection_by_class or pointer != class_ptrs[class_id]:
-            fail(f"case wrapperのcurrent aliasが不正: {row['consumer_location']}")
-        row.update({"migration": "current_canonical_alias", "class_id": class_id, "target_pointer": pointer})
+    # R1 removed the duplicated L8 cases[].positive_cases / negative_cases /
+    # source_case_refs groups. Their former 275 raw nested pointers therefore
+    # are historical consumers, not current references. Do not count them as
+    # transferred aliases in the current tree.
+    wrapper_rows: list[dict[str, Any]] = []
+    if any(key in row for row in l8.get("cases", []) for key in ("positive_cases", "negative_cases", "source_case_refs")):
+        fail("L8 duplicate nested case groups remain in cases[]")
 
     tax_rows = l8.get("negative_class_assignment_audit", {}).get("fixed_taxonomy_source_pointers", [])
     taxonomy_consumers = []
@@ -275,9 +306,21 @@ def main() -> int:
     if len(history_consumers) != 3:
         fail(f"historic/unassigned consumer数が3でない: {len(history_consumers)}")
 
-    l8_consumers = wrapper_rows + taxonomy_consumers + history_consumers
-    if len(l8_consumers) != 308:
-        fail(f"L8 consumer総数が308でない: {len(l8_consumers)}")
+    l8_consumers = taxonomy_consumers + history_consumers
+    l8_raw_nested = walk_nested_pointer_strings(l8)
+    r1_base_raw_nested = walk_nested_pointer_strings(r1_base_l8)
+    removed_group_pointer_count = len(r1_base_raw_nested) - len(l8_raw_nested)
+    if len(l8_consumers) != 33 or len(r1_base_raw_nested) != 278 or removed_group_pointer_count != 275 or len(l8_raw_nested) != 3:
+        fail(f"L8 current refs differ: structured={len(l8_consumers)} raw_nested={len(l8_raw_nested)}")
+    current_bad_counterexamples = sum(
+        1 for row in l8.get("unit_cases", [])
+        if isinstance(row.get("counterexample"), str)
+        and ":が" in row["counterexample"]
+    )
+    if base_bad_counterexamples != 13 or current_bad_counterexamples != 0:
+        fail(f"counterexample separator cleanup differs: base={base_bad_counterexamples} current={current_bad_counterexamples}")
+    for row in l8_raw_nested:
+        resolve_raw_l4_reference(l4, row["reference"])
 
     l9_wrapper_rows = walk_case_basis(l9.get("cases", []), "/cases")
     l9_tax_rows = l9.get("negative_class_assignment_audit", {}).get("fixed_taxonomy_source_pointers", [])
@@ -298,8 +341,17 @@ def main() -> int:
             if ref.get("path") == L4 and "/negative_classifications" in ref.get("pointer", ""):
                 resolve(l4, ref["pointer"])
                 l9_old.append(ref["pointer"])
-    if len(l9_old) != 308:
-        fail(f"L9 nested consumer数が308でない: {len(l9_old)}")
+    l9_raw_nested = walk_nested_pointer_strings(l9)
+    if len(l9_raw_nested) != 583:
+        fail(f"L9 raw nested pointer string count differs from 583: {len(l9_raw_nested)}")
+    for row in l9_raw_nested:
+        resolve_raw_l4_reference(l4, row["reference"])
+    l5 = read_json("docs/helix-security/L5-detail-design/revoke-quarantine-propagation.json")
+    l5_raw_nested = walk_nested_pointer_strings(l5)
+    if len(l5_raw_nested) != 30:
+        fail(f"L5 raw nested pointer string count differs from 30: {len(l5_raw_nested)}")
+    for row in l5_raw_nested:
+        resolve_raw_l4_reference(l4, row["reference"])
 
     checker = load_checker_module()
     pointer_report = checker.check_json_pointer(ROOT, L8, data=l8, head_rev="WORKTREE")
@@ -323,7 +375,7 @@ def main() -> int:
         for path in (L4, L8, L9, CHECKER)
     }
     report = {
-        "schema": "sec009-scf-b-0209-pointer-transfer-audit.v1",
+        "schema": "sec009-scf-b-0209-pointer-transfer-audit.v2",
         "evidence_kind": "scaffold",
         "authority_effect": "none",
         "operation_effect": "none",
@@ -341,14 +393,22 @@ def main() -> int:
             "reason": "L4ではF02 localityは/architecture/localityに置かれており、旧/diagnostic_contract/localityは未解決だった。旧bytesは固定Git revisionから取得できる。",
         },
         "counts": {
-            "L8_total": len(l8_consumers),
-            "L8_current_canonical_aliases": len(wrapper_rows) + len(taxonomy_consumers),
-            "L8_case_wrappers": len(wrapper_rows),
+            "L8_current_structured_consumers": len(l8_consumers),
+            "L8_current_canonical_aliases": len(taxonomy_consumers),
+            "L8_removed_duplicate_group_raw_pointers": removed_group_pointer_count,
+            "L8_current_raw_nested_pointer_strings": len(l8_raw_nested),
+            "L8_counterexamples_with_generated_colon_artifact_before": base_bad_counterexamples,
+            "L8_counterexamples_with_generated_colon_artifact_current": current_bad_counterexamples,
             "L8_fixed_taxonomy_pointers": len(taxonomy_consumers),
             "L8_historical_unassigned_refs": len(history_consumers),
             "L8_historic_collection_fanout": 14,
-            "L9_total": len(l9_old),
-            "L9_still_on_current_nested_paths": len(l9_old),
+            "L9_prior_recognized_consumer_subset": len(l9_old),
+            "L9_all_raw_nested_pointer_strings": len(l9_raw_nested),
+            "L9_raw_nested_pointer_strings_by_top_section": {
+                section: sum(row["consumer_location"].startswith(f"/{section}/") for row in l9_raw_nested)
+                for section in ("cases", "negative_class_assignment_audit")
+            },
+            "L5_failure_rule_raw_nested_pointer_strings": len(l5_raw_nested),
             "canonical_classes_projection_checked": len(projection_by_class),
             "CHK_JSON_POINTER_checked": pointer_report["checked_count"],
             "CHK_JSON_POINTER_expanded": pointer_report["expanded_target_count"],
@@ -357,7 +417,7 @@ def main() -> int:
             "active_mode": "explicit_negative_equivalence_classes",
             "explicit_mode_uses_top_level_class_tables": True,
             "CHK_JSON_POINTER": "参照先の存在解決を行う。構造化referenceのrevision fieldをgit showの固定revisionとして解決する。",
-            "legacy_mode": "checkerはmarkerがない場合にnested negative_classificationsを読む。今回の移行では全4層のexplicit markerを維持する。",
+            "legacy_mode": "checkerはmarkerがない場合にnested negative_classificationsを読む。L8の重複case groupsは削除済みだが、L5 30件とL9 583件のnested pointer文字列が残るため、全consumer移行前にL4 nestedを撤去しない。",
             "expected_text_reader": "現行CHK-JSON-POINTERとexplicit 4-way checkerはnested expected_textを消費しない。人間向けsource意味は下記のfield projection表で検証する。",
             "explicit_marker_all_layers": explicit_mode,
             "pointer_check_passed": pointer_report["passed"],
@@ -366,15 +426,16 @@ def main() -> int:
         "L8_consumers": l8_consumers,
         "L9_pending_transfer": {
             "status": "separate_l4_l9_v_pair_required",
-            "consumer_count": len(l9_old),
+            "recognized_subset_count": len(l9_old),
+            "all_raw_nested_pointer_string_count": len(l9_raw_nested),
             "all_targets_resolve_current_L4_nested_paths": True,
-            "reason": "L9は別V-pairの正式sourceであり、L5/L8 PRから変更しない。L9側も同じprojection/historic splitを検証し、転送完了後にのみ全体retire判定を行う。",
+            "reason": "L9は別V-pairの正式sourceであり、L5/L8 PRから変更しない。全raw pointer strings 583件の置換監査が終わるまでSCF-B-0209はpendingのままにする。",
         },
         "retirement": {
             "SCF-B-0209_status": "pending",
             "check_replacement_performed": False,
             "retire_performed": False,
-            "reason": "L9の308 consumer transferと全件reviewが未完了。L4 nested payloadを保持する。",
+            "reason": "L9の583 raw nested pointer strings、L5の30 raw nested pointer strings、履歴consumerの移行・全件reviewが未完了。L4 nested payloadを保持する。",
         },
     }
 

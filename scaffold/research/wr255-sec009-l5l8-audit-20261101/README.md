@@ -20,9 +20,9 @@ python3 scaffold/research/wr255-sec009-l5l8-audit-20261101/validate_wr255_l5l8.p
 
 ## U-ID表とsource参照
 
-L8 `unit_cases` の `id` は `SEC009-U0001`〜`SEC009-U0285` の専用連番です。元のSEC009 source IDは `case_id` と `integration_case_ref` に保持します。`unit_case_source_index` は各U-IDを一度だけL9 source pointerへ結び、negative行はL4 classとL5 ruleへのpointerも記録します。
+L8 `unit_cases` の `id` は `SEC009-U0001`〜`SEC009-U0285` の専用連番です。元のSEC009 source IDは `case_id` と `integration_case_ref` に保持します。L8 `cases` は契約単位の概要だけを持ち、`positive_cases`、`negative_cases`、`source_case_refs` の重複行群と重複`unit_case_source_index`は置きません。validatorは285 U-ID行の`integration_case_ref`をL9 `integration_cases`のIDと照合し、L9のcase-specific sourceはL9本文内でIDから解決します。negative行は`negative_class_ref`、`rule_ref`、`function_ref`でL4 classとL5 rule/ownerを引きます。
 
-各negative行のcounterexampleは対象と食い違いを日本語で短く説明し、L4 classが示す失敗の意味を添えます。source IDの言い換えだけにはしていません。sourceのL9 `given` に具体値がないconflict行では、値が根拠に記載されていないと明記し、値の組を補っていません。各行には契約単位の `system_oracle_ref` を残し、個別の `oracle_id` と `test_citation` はnullのままにしています。negative期待値はL9 `expected_proposal` ではなくL4から導きます。
+各negative行のcounterexampleは対象と食い違いを日本語で短く説明し、L4 classが示す失敗の意味を添えます。source IDの言い換えだけにはしていません。R1指摘の「識別子:が欠落/unknown」等13行を読み直して句読点を文に直し、他の反例本文は維持しました。sourceのL9 `given` に具体値がないconflict行では、値が根拠に記載されていないと明記し、値の組を補っていません。各行には契約単位の `system_oracle_ref` を残し、個別の `oracle_id` と `test_citation` はnullのままにしています。negative期待値はL9 `expected_proposal` ではなくL4から導きます。
 
 class tableをaxis、state、owner、expected classificationの共有元とします。重複する行別 `source_pointers`、`expected_property`、classのaxis/state投影は取り除きました。checkerが各L8行に必要とする `condition`、`expected`、`expected_preserved` は保持し、L5 ownerを解決する `function_ref` もnegative行に残します。
 
@@ -50,11 +50,11 @@ latest `origin/main` をmergeしたL5/L8候補とcanonical L4/L9を照合したs
 
 ## 最新main overlayと固定証拠
 
-`origin/main` commit `151713275e2c2aa65bb23a8fe38eb63c46d570c8` をbaseにL5/L8候補を重ねたoverlayで再計測しました。L4/L9 SHA-256はこのmainの正本と一致します。32 class、285 U-ID/source ID、277 negative、positive最小期待8件を照合し、check-childは277 matched / 0 failuresです。同じread-only検証を2回行いstatus不変を確認しました。pointer移行監査、scfctl validate（207 bindings・fail 0）、stale 0も確認しています。positive 8件は設計済み・未観測、個別oracleとtest citationはnullです。
+latest main overlayの詳細は、R1修正後のvalidator・check-child summaryと、別worktreeの再現overlay検証結果を記録した本節の最新artifactを参照してください。正式な正本照合は32 class、285 U-ID/source ID、277 negativeと契約最小期待8件です。positive 8件は設計済み・未観測、個別oracleとtest citationはnullです。
 
 - [verification summary](verification-summary-l4-d670496eeb-00376c40-l5-ea8e3c2510-1aefb9b6-l8-69fbb3e2f0-18df6dce-l9-087f02dc63-e918a289-validator-7b7544bc.json)
 - [check-child report](check-child-report-l4-d670496eeb-00376c40-l5-ea8e3c2510-1aefb9b6-l8-69fbb3e2f0-18df6dce-l9-087f02dc63-e918a289.json)
-- [L8 pointer transfer audit](pointer-transfer-audit-18df6dce679d-e918a289fe88.json)
+- [L8 pointer transfer audit](pointer-transfer-audit-49875dcdb4bc-e918a289fe88.json)
 
 summaryは正本285行の内容を再複製せず、validatorで再計算したrow/class audit digestを記録します。詳細値は固定revision・SHAを持つL4/L5/L8/L9正本にあり、再現validatorは285行すべてのpointerと期待を検査します。
 
@@ -62,9 +62,11 @@ summaryは正本285行の内容を再複製せず、validatorで再計算したr
 
 ## SCF-B-0209 pointer移行
 
-L5/L8 V-pair側の308参照は、ケースwrapperの275件とtaxonomy pointerの30件を現在のcanonical L4 `/failure_classifications/{index}` へ移しました。class IDはnested `code` とcanonical `class_id` で一致します。残る旧nested値もclassごとに照合し、`change`/`axis`/`state`/`backflow_owner`/`expected`/`expected_preserved`/`expected_side_effect_count`/`source_pointers` は30 classすべてで型と値が一致します。旧`expected_text`はcanonical側に同名fieldがないため、`condition + " " + expected_preserved.contract_detail`で再構成し、元の30文字列と型が一致することをvalidatorが確認します。
+修正前のL8 `cases`に含まれた重複wrapper 275件は正本配列の撤去とともに現行ファイルから除きました。これは275件の独立aliasへ転送した件数ではありません。現在残るL8 taxonomy pointer 30件をcanonical L4 `/failure_classifications/{index}`へ解決し、nested `code`とcanonical `class_id`の一致を確認します。旧nested値はclassごとに照合し、`change`/`axis`/`state`/`backflow_owner`/`expected`/`expected_preserved`/`expected_side_effect_count`/`source_pointers`は30 classすべてで型と値が一致します。旧`expected_text`はcanonical側に同名fieldがないため、`condition + " " + expected_preserved.contract_detail`で再構成し、元の30文字列と型が一致することをvalidatorが確認します。
 
-R2時点の未割当監査にある3参照（F01の14要素collection 1件、F02の単体class 2件）は、現在のclass tableへ付け替えると過去の未割当判断を変えてしまうため、L4固定revision `c50eb21b34f034262ced3f8052d2502fb84c57c9` を明示して保持します。collectionの14要素をcurrent 32 classから同じ順序の集合としてJSON Pointer一つで選ぶことはできません。L8の既存F02 source-review pointer `/diagnostic_contract/locality` も現行L4では未解決だったため、旧L8 revision `24d7f00bdca41c3dfb1f3137655ffdbe3674cfb3`・SHA-256 `91da3af2c6ad997fdf265871f9776c5bed41f196fbccfc2276e1a41f42a267bb` を保持し、参照先をL4 `/architecture/locality` に訂正しました。L9側の308参照は未移行であり、別L4/L9 V-pairの逐次変更対象です。L4のnested payloadは残し、両V-pairの転送・全件照合が揃うまでSCF-B-0209のcheck-replacementとretireを行いません。
+R2時点の未割当監査にあるL4参照3件（F01の14要素collection 1件、F02の単体class 2件）は、過去の未割当判断を保持するためL4固定revision `c50eb21b34f034262ced3f8052d2502fb84c57c9`を参照します。collectionの14要素をcurrent 32 classから同じ順序の集合としてJSON Pointer一つで選ぶことはできません。削除したL8 case群を指していた監査内2件は、参照先objectの値を確認したうえで、固定L9 revision `40d6da48a44625bfd064ccabceb7f7ecb47dcd7c`上の同一case objectへ直接付け替えました。L8のF02 source-review pointer `/diagnostic_contract/locality`の訂正履歴は旧L8 revision `24d7f00bdca41c3dfb1f3137655ffdbe3674cfb3`・SHA-256 `91da3af2c6ad997fdf265871f9776c5bed41f196fbccfc2276e1a41f42a267bb`にあり、現行L4 `/architecture/locality`へ訂正済みです。
+
+再帰走査で確認した現行nested pointer文字列はL8が3件（すべて固定R2 L4参照）、L9が583件（`cases` 550件、`negative_class_assignment_audit` 33件）、L5 `failure_rules`が30件です。R1前のL8 wrapper 275件は削除済みです。旧auditの「L8 308件」「L9 308件」は旧時点に認識したconsumer subsetの測定であり、raw pointer文字列の全件数ではありません。L9とL5は各V-pairの別途確認が必要なため、L4のnested payloadを残し、全consumerの移行と照合が揃うまでSCF-B-0209のcheck-replacementとretireを行いません。
 
 再現コマンドは次の通りです。
 
@@ -72,8 +74,8 @@ R2時点の未割当監査にある3参照（F01の14要素collection 1件、F02
 python3 scaffold/research/wr255-sec009-l5l8-audit-20261101/validate_pointer_transfer.py
 ```
 
-監査ではcurrent checkerの明示class modeと`CHK-JSON-POINTER`の読取を確認します。明示modeの4-way照合はtop-level class表を使い、pointer checkerは参照先の解決を行います。legacy modeはnested classificationを読むため、明示modeのmarkerを維持します。SCF-B-0209はpendingのままで、L9側のtransfer mapと全consumer確認が残っています。
+監査ではcurrent checkerの明示class modeと`CHK-JSON-POINTER`の読取を確認します。明示modeの4-way照合はtop-level class表を使い、pointer checkerは参照先を解決します。legacy modeはnested classificationを読むため、明示modeのmarkerを維持します。SCF-B-0209はpendingのままです。L8の削除済みcase群、残るL8歴史参照、L5の30件、L9の583 raw pointer文字列をconsumer別に扱い、別V-pair分の移行後に全体を再評価します。
 
 ## 測定artifactの履歴と集約
 
-旧check-child reportとsummaryは現treeから除き、固定時点の意味をGit履歴で保持しています。異なる各revisionのcommit・blob SHA-1・content SHA-256・復元command、同一bytesの重複関係、旧full-report pointerは[統合disposition](measurement-artifact-disposition.json)に集約しました。current treeには277/0 overlay reportとsummaryを各1本、pointer-transferの行別監査を1本だけ残しています。pointer-transfer監査には同内容のJSON/JSONL複製はありません。
+修正前のcheck-child report、summary、308 subsetのpointer auditは現行測定ではなく、固定時点の意味をGit履歴と統合dispositionに保持します。異なる各revisionのcommit・blob SHA-1・content SHA-256・復元command、同一bytesの重複関係、旧full-report pointerは[統合disposition](measurement-artifact-disposition.json)に集約しました。current treeには277/0 overlay reportとsummaryを各1本、pointer-transferの行別監査を1本だけ残しています。pointer-transfer監査には同内容のJSON/JSONL複製はありません。

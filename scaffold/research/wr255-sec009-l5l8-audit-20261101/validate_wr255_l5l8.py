@@ -177,17 +177,28 @@ def main() -> int:
     if any(row.get("integration_case_ref") != row.get("case_id") for row in unit_rows):
         fail("L8 integration_case_ref does not preserve source case_id")
 
-    source_index = l8.get("unit_case_source_index", [])
-    if len(source_index) != 285 or [row.get("uid") for row in source_index] != uid_rows:
-        fail("L8 source index does not cover U-IDs in order")
-    source_index_by_uid = {row["uid"]: row for row in source_index}
-    for i, (index_row, l9row) in enumerate(zip(source_index, source_rows), 1):
-        if index_row.get("source_case_id") != l9row.get("id"):
-            fail(f"source index case ID mismatch at row {i}")
-        pointer = index_row.get("l9_pointer")
-        nested = resolve_pointer(l9, pointer)
-        if nested.get("id") != l9row.get("id"):
-            fail(f"L9 source pointer does not resolve to case ID at row {i}")
+    # U-ID rows retain the source ID in both case_id and integration_case_ref.
+    # Resolve source observations directly from the current L9 case arrays; do not
+    # duplicate their pointers in an L8 index or in the removed case-group arrays.
+    l9_case_by_id: dict[str, tuple[str, dict[str, Any]]] = {}
+    source_id_set = set(source_ids)
+    def collect_l9_cases(node: Any, pointer: str = "") -> None:
+        if isinstance(node, dict):
+            case_id = node.get("id")
+            if case_id in source_id_set and isinstance(node.get("given"), dict):
+                if case_id in l9_case_by_id:
+                    fail(f"duplicate L9 nested case source ID: {case_id}")
+                l9_case_by_id[case_id] = (pointer, node)
+            for key, value in node.items():
+                collect_l9_cases(value, pointer + "/" + str(key).replace("~", "~0").replace("/", "~1"))
+        elif isinstance(node, list):
+            for index, value in enumerate(node):
+                collect_l9_cases(value, pointer + "/" + str(index))
+    collect_l9_cases(l9.get("cases", []), "/cases")
+    if set(l9_case_by_id) != source_id_set:
+        fail(f"L9 nested source IDs differ from integration inventory: {len(l9_case_by_id)}")
+    l4_class_pointer_by_id = {row["class_id"]: f"/failure_classifications/{i}" for i, row in enumerate(l4.get("failure_classifications", []))}
+    l5_rule_pointer_by_id = {row["id"]: f"/failure_rules/{i}" for i, row in enumerate(l5.get("failure_rules", []))}
 
     l4_class_by_id = class_maps["L4"]
     l5_rule_by_id = class_maps["L5"]
@@ -218,13 +229,12 @@ def main() -> int:
                 fail(f"positive row has a fabricated individual oracle or test citation: {case_id}")
             if unit.get("counterexample") is not None:
                 fail(f"positive U-ID has a counterexample label: {case_id}")
-            source_pointer = next(x["pointer"] for x in source["source_pointers"] if x["path"].endswith("revoke-quarantine-propagation.json"))
-            nested = resolve_pointer(l9, source_pointer)
+            source_pointer, nested = l9_case_by_id[case_id]
             given = nested.get("given", {})
             positives.append({
                 "uid": unit["id"],
                 "case_id": case_id,
-                "l9_source_pointer": source_pointer,
+                "l9_source_pointer_resolved_from_integration_case_ref": source_pointer,
                 "l9_given_keys": sorted(given),
                 "l9_given_sha256": hashlib.sha256(json.dumps(given, ensure_ascii=False, sort_keys=True, separators=(",", ":")).encode()).hexdigest(),
                 "l3_sources": ["business-requirements.json:/requirements/2", "functional-requirements.json:/requirements/21", "functional-requirements.json:/requirements/22"],
@@ -255,16 +265,14 @@ def main() -> int:
         c4, rule = l4_class_by_id[class_id], l5_rule_by_id[rule_id]
         if unit.get("function_ref") != rule.get("function_ref") or unit.get("target") != unit.get("function_ref"):
             fail(f"negative U-ID function_ref does not resolve to its L5 owner: {case_id}")
-        source_row = source_index_by_uid[unit["id"]]
-        l9_pointer = source_row["l9_pointer"]
-        l9_source_case = resolve_pointer(l9, l9_pointer)
+        l9_pointer, l9_source_case = l9_case_by_id[case_id]
         given = l9_source_case.get("given", {})
         if set(given) != {"evidence_limit"}:
             fail(f"negative L9 source has unexpected case input fields requiring review: {case_id}")
         given_sha256 = hashlib.sha256(json.dumps(given, ensure_ascii=False, sort_keys=True, separators=(",", ":")).encode()).hexdigest()
         negative_given_hashes[given_sha256] += 1
-        l4_pointer = source_row.get("l4_class_pointer")
-        l5_pointer = source_row.get("l5_rule_pointer")
+        l4_pointer = l4_class_pointer_by_id[class_id]
+        l5_pointer = l5_rule_pointer_by_id[rule_id]
         if resolve_pointer(l4, l4_pointer).get("class_id") != class_id:
             fail(f"negative U-ID L4 class pointer does not resolve: {case_id}")
         if resolve_pointer(l5, l5_pointer).get("id") != rule_id:
@@ -370,10 +378,10 @@ def main() -> int:
             "canonical_sha256": hashlib.sha256(json.dumps(
                 row_audit, ensure_ascii=False, sort_keys=True, separators=(",", ":")
             ).encode()).hexdigest(),
-            "row_details": "recomputed by this validator from the pinned 285 source/unit rows; positive minimum expectations are retained below, while negative expected fields and pointers remain in the canonical documents",
+            "row_details": "recomputed by joining the 285 canonical L8 U-ID rows to L9 integration source IDs; no duplicate unit_case_source_index or L8 nested case groups are used",
         },
         "negative_source_review": {
-            "summary": "Each negative L9 nested source pointer was resolved individually. Every `given` object contains only the shared evidence_limit notice; no concrete field values or paired conflicting values are present. Counterexamples therefore state the source ID's missing/conflict dimension plus the L4 class meaning, and conflict rows explicitly avoid inventing values.",
+            "summary": "Each negative L9 nested source was resolved by joining the U-ID row's integration_case_ref to the canonical L9 integration inventory and case ID. Every `given` object contains only the shared evidence_limit notice; no concrete field values or paired conflicting values are present. Counterexamples therefore state the source ID's missing/conflict dimension plus the L4 class meaning, and conflict rows explicitly avoid inventing values.",
             "negative_case_count": negative_count,
             "distinct_given_hashes": len(negative_given_hashes),
             "given_hash_counts": dict(negative_given_hashes),
@@ -389,7 +397,7 @@ def main() -> int:
                 {"layer": "L10", "id": "HELIXSECURITY-L10-009-B01", "path": FILES["l10_business"], "pointer": "/cases/2"},
                 {"layer": "L4", "id": "HELIXSECURITY-L4-009-B01", "path": FILES["l4"], "pointer": "/contracts/0"},
             ],
-            "shared_l9_given_fact": resolve_pointer(l9, positives[0]["l9_source_pointer"])["given"],
+            "shared_l9_given_fact": l9_case_by_id[positives[0]["case_id"]][1]["given"],
             "shared_l9_given_case_count": len(positives),
             "cases": positives,
         },
