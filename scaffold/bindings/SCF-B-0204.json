@@ -25,8 +25,8 @@
     },
     {
       "path": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json",
-      "sha256": "805ab74d9792775616e10af7b3da92a8be13002f66180e2a1862de17dbd597d3",
-      "note": "Existing F03 assignments for post-freeze row comparison only. L9 unchanged and not used to derive the blind artifact. WR253 L9 follow-up: prior pin 4f64977ee8b2900733a823d5b9755f567952caef8cf323036a9b0776202d2462 remains historical at 6c1ceb0172c0dcb95b843739bee2c15905dd735f; current pin 805ab74d9792775616e10af7b3da92a8be13002f66180e2a1862de17dbd597d3 removes only 35 source_packet.byte_sha256 fields with source/expected meaning preserved. Earlier unchanged statements refer to their original revision."
+      "sha256": "9e0f0b5efd45685d18c2a2b3a39785556a67963449df86907751da8516aa3931",
+      "note": "Existing F03 assignments for post-freeze row comparison only. L9 unchanged and not used to derive the blind artifact. WR253 L9 follow-up: prior pin 4f64977ee8b2900733a823d5b9755f567952caef8cf323036a9b0776202d2462 remains historical at 6c1ceb0172c0dcb95b843739bee2c15905dd735f; current pin 805ab74d9792775616e10af7b3da92a8be13002f66180e2a1862de17dbd597d3 removes only 35 source_packet.byte_sha256 fields with source/expected meaning preserved. Earlier unchanged statements refer to their original revision. [WR253 R1 allowlist rebind: prior L9 SHA-256 805ab74d9792775616e10af7b3da92a8be13002f66180e2a1862de17dbd597d3 fixed at 22f14f1866948783a81a7eb665dc3d5da7d97daa; current L9 SHA-256 9e0f0b5efd45685d18c2a2b3a39785556a67963449df86907751da8516aa3931. L4 contracts, 37 numbered system-oracle rows (5 normal, 2 variants, 30 negative) retained; execution fixture, raw source, full return, and mutation payloads removed."
     },
     {
       "path": "docs/governance/design-verification-quality-assurance.md",

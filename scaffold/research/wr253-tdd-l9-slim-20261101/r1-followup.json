@@ -1,0 +1,160 @@
+{
+  "schema": "wr253-tdd-l9-r1-followup.v1",
+  "evidence_kind": "scaffold",
+  "authority_effect": "none",
+  "review": "PR #4005 R1 F1",
+  "baseline_revision": "22f14f1866948783a81a7eb665dc3d5da7d97daa",
+  "changes": {
+    "l9": {
+      "historical_sha256": "805ab74d9792775616e10af7b3da92a8be13002f66180e2a1862de17dbd597d3",
+      "historical_bytes": 577084,
+      "current_sha256": "9e0f0b5efd45685d18c2a2b3a39785556a67963449df86907751da8516aa3931",
+      "current_bytes": 47794,
+      "bytes_removed": 529290,
+      "removed_percent": 91.72
+    },
+    "l8": {
+      "historical_sha256": "0b79a588e4b393971470072e669b6531292c4fcb48a16218c2f60b722b390a3c",
+      "historical_bytes": 70960,
+      "current_sha256": "cd46c5d4ee15700b6b30eb081c20f13d5042608f9b3f48e2949ec16013d73101",
+      "current_bytes": 69719,
+      "candidate_unit_design_unchanged": true,
+      "direct_l9_refs": 94,
+      "resolved_current_refs": 94
+    },
+    "l9_oracles": {
+      "normal": 5,
+      "normal_variants": 2,
+      "negative": 30,
+      "total": 37,
+      "legacy_execution_material_present": false
+    }
+  },
+  "separate_l8_process_state_port": {
+    "historical_revision": "22f14f1866948783a81a7eb665dc3d5da7d97daa",
+    "historical_sha256": "f5055c9a7d19654402f3f2b595038cf0f81ed717659c342c6190c5f88577e5b2",
+    "current_sha256": "f5055c9a7d19654402f3f2b595038cf0f81ed717659c342c6190c5f88577e5b2",
+    "bytes_unchanged": true,
+    "symbolic_array_pointers": 78,
+    "rfc6901_resolvable_before": 0,
+    "note": "作業前からのpseudo-ID形式。別pair本文は変更しない。"
+  },
+  "validators": [
+    {
+      "path": "scaffold/research/wr206-f02-l5-l8-pr-b-20261031/validate_static_candidate.py",
+      "historical_revision": "22f14f1866948783a81a7eb665dc3d5da7d97daa",
+      "historical_sha256": "e3c0a1e15a7a5a73ad8ebd3ccca236581316bed33020207babc2e80cecb3f218",
+      "current_sha256": "e3c0a1e15a7a5a73ad8ebd3ccca236581316bed33020207babc2e80cecb3f218",
+      "exit_code": 0
+    },
+    {
+      "path": "scaffold/research/wr223-f01-l5-l8-20261031/validate_static_candidate.py",
+      "historical_revision": "22f14f1866948783a81a7eb665dc3d5da7d97daa",
+      "historical_sha256": "50e09444344e188cecfc9e43a2735d9669a1150872c41d5499a9d840e999a4f5",
+      "current_sha256": "50e09444344e188cecfc9e43a2735d9669a1150872c41d5499a9d840e999a4f5",
+      "exit_code": 0
+    },
+    {
+      "path": "scaffold/research/wr243-tdd-b01-l5-l8-20261031/validate_b01_candidate.py",
+      "historical_revision": "22f14f1866948783a81a7eb665dc3d5da7d97daa",
+      "historical_sha256": "781c3afa937299a18b9be40bece72ecf0297775b1dedb0893e201ff562c87b36",
+      "current_sha256": "781c3afa937299a18b9be40bece72ecf0297775b1dedb0893e201ff562c87b36",
+      "exit_code": 0
+    },
+    {
+      "path": "scaffold/research/wr243-tdd-f03-l5-l8-20261031/validate_static_candidate.py",
+      "historical_revision": "22f14f1866948783a81a7eb665dc3d5da7d97daa",
+      "historical_sha256": "29cfea19816f39dc816179b80cb4097152da5acd9416e7fbbbce5c940d828542",
+      "current_sha256": "29cfea19816f39dc816179b80cb4097152da5acd9416e7fbbbce5c940d828542",
+      "exit_code": 0
+    },
+    {
+      "path": "scaffold/research/wr243-tdd-f04-l5-l8-20261031/validate_f04_candidate.py",
+      "historical_revision": "22f14f1866948783a81a7eb665dc3d5da7d97daa",
+      "historical_sha256": "ec10c9b40dae46b799c4bf0bb05c49cf64c13c303bb1215947ebd1522d9ebc8e",
+      "current_sha256": "ec10c9b40dae46b799c4bf0bb05c49cf64c13c303bb1215947ebd1522d9ebc8e",
+      "exit_code": 0
+    },
+    {
+      "path": "scaffold/research/wr249-tdd-f03-f04-uid-split-20261031/validate_uid_split.py",
+      "historical_revision": "22f14f1866948783a81a7eb665dc3d5da7d97daa",
+      "historical_sha256": "36bc52ab434709102bbd7f3e7ecfd51246967edb468e889f60923216cf68af68",
+      "current_sha256": "36bc52ab434709102bbd7f3e7ecfd51246967edb468e889f60923216cf68af68",
+      "exit_code": 0
+    },
+    {
+      "path": "scaffold/research/wr253-tdd-l8-slim-20261031/validate_uid_table.py",
+      "historical_revision": "22f14f1866948783a81a7eb665dc3d5da7d97daa",
+      "historical_sha256": "a4f2b1f528685be8251ffe7ce12adb0282c9ff4d5e5d0c6f5557cb48027e54b8",
+      "current_sha256": "9bf9a7f496edfe68c4c0bf83d3f42ad4581ef0dc3226528758e92a4fb17b8409",
+      "exit_code": 0
+    }
+  ],
+  "shared_validators": [
+    {
+      "path": "scaffold/research/wr253-tdd-l8-slim-20261031/validate_uid_table.py",
+      "historical_revision": "22f14f1866948783a81a7eb665dc3d5da7d97daa",
+      "historical_sha256": "a4f2b1f528685be8251ffe7ce12adb0282c9ff4d5e5d0c6f5557cb48027e54b8",
+      "current_sha256": "9bf9a7f496edfe68c4c0bf83d3f42ad4581ef0dc3226528758e92a4fb17b8409"
+    },
+    {
+      "path": "scaffold/research/wr253-tdd-l9-slim-20261101/validate_l9_slim.py",
+      "historical_revision": "22f14f1866948783a81a7eb665dc3d5da7d97daa",
+      "historical_sha256": "2b96f71d28b4213336858a4c1178614643c753292c3b8e8a41036ddc3d7f639e",
+      "current_sha256": "0716bd1763cf3832195e7799eca0e2108f7ad8fc8ea5ab6d971c8509c4c90789"
+    }
+  ],
+  "scfctl": {
+    "validate": "bindings=198 fail=0",
+    "stale": "stale=0"
+  },
+  "check_child": {
+    "report_path": "scaffold/research/wr253-tdd-l9-slim-20261101/check-child-r1.json",
+    "report_sha256": "cdd4c0135556cc874a1826ff6ebec9cc29dd989eba209531ad0cb7fabdeaf5d4",
+    "passed": false,
+    "L4_L9_pair": true,
+    "L5_L8_pair": true,
+    "ownership_caps": {
+      "L4": true,
+      "L9": true,
+      "L5": true,
+      "L8": true
+    },
+    "negative_4way": {
+      "passed": false,
+      "failure_count": 35,
+      "counts": {
+        "L4": 30,
+        "L9": 30,
+        "L8": 0,
+        "L5": 0
+      },
+      "matched_case_count": 0
+    },
+    "pins": [
+      {
+        "passed": true,
+        "checked_count": 15
+      },
+      {
+        "passed": true,
+        "checked_count": 1
+      },
+      {
+        "passed": true,
+        "checked_count": 25
+      },
+      {
+        "passed": true,
+        "checked_count": 25
+      }
+    ]
+  },
+  "not_run": [
+    "旧runtime",
+    "旧test",
+    "旧CI",
+    "algorithm",
+    "製品test"
+  ]
+}

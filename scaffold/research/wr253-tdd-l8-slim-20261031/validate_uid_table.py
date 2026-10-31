@@ -10,6 +10,7 @@ ROOT = Path(__file__).resolve().parents[3]
 BASE = "46864fcaa2426a480dbd037040cd4c4332c61ddd"
 HEAD_ORACLE_SOURCE = "1a09e8670706c211c3fcb4ef6aa1f2a45a9dc3f5"
 CURRENT_SOURCE_REVISION = BASE
+L9_COMPACT_PREDECESSOR = "22f14f1866948783a81a7eb665dc3d5da7d97daa"
 L8 = "docs/helix-harness/L8-unit-verification/tdd-development-flow.json"
 L9 = "docs/helix-harness/L9-integration-verification/tdd-development-flow.json"
 CANDIDATE_FIELDS = ("candidate_unit_design",)
@@ -185,6 +186,18 @@ def precompact_l9_bytes():
     return subprocess.check_output(["git", "show", "6c1ceb0172c0dcb95b843739bee2c15905dd735f:" + L9], cwd=ROOT)
 
 
+def candidate_designs_unchanged():
+    """The R1 pointer repair must not rewrite any candidate_unit_design value."""
+    current = read(L8)
+    before = git_json(L9_COMPACT_PREDECESSOR, L8)
+    current_cases = {row["id"]: row for row in current["cases"]}
+    before_cases = {row["id"]: row for row in before["cases"]}
+    return set(current_cases) == set(before_cases) and all(
+        current_cases[key].get("candidate_unit_design") == before_cases[key].get("candidate_unit_design")
+        for key in before_cases
+    )
+
+
 def run_checks():
     current, historical, l9 = read(L8), git_json(BASE, L8), read(L9)
     historical_l9 = git_json("6c1ceb0172c0dcb95b843739bee2c15905dd735f", L9)
@@ -193,7 +206,7 @@ def run_checks():
     old_by_id = {row["id"]: row for row in historical["unit_cases"]}
     current_cases = {row["id"]: row for row in current["cases"]}
     old_cases = {row["id"]: row for row in historical["cases"]}
-    checks = {"L9_only_35_source_hashes_removed_and_historical_hashes_verified": compact_l9_check}
+    checks = {"L9_allowlist_compact_and_fixed_historical_material_checked": compact_l9_check}
     current_ids = {r.get("id") for c in current["cases"] for r in c.get("unit_case_rows", [])}
     checks["historical_35_U_IDs_resolve_to_current_table"] = len(old_by_id) == 35 and set(old_by_id) <= current_ids
     checks["current_comparison_count_is_35_plus_3"] = sum(len(row.get("unit_case_rows", [])) for row in current["cases"]) == 38
@@ -268,43 +281,56 @@ def run_checks():
                     ):
                         raise ValueError("head row lacks the fixed historical source/status provenance")
                 else:
-                    parts = row["source_trace_ref"].split("#", 1)[1].split("/", 1)[1].split("/")
-                    if len(parts) < 4 or parts[0] != "cases" or not parts[1].isdigit():
-                        raise ValueError("source_trace_ref must use numeric RFC6901 case index")
+                    historical_source_ref = canonical_l9_ref(historical_l9, old_by_id[row["id"]]["source_packet_pointer"])
+                    old_fragment = historical_source_ref.split("#", 1)[1]
+                    if "/normal_fixture/source_packet" in old_fragment:
+                        current_fragment = old_fragment.replace("/normal_fixture/source_packet", "/normal_cases/0")
+                    elif "/normal_variants/" in old_fragment:
+                        current_fragment = old_fragment.rsplit("/source_packet", 1)[0].replace("/normal_variants/", "/normal_variant_oracles/")
+                    elif "/negative_cases/" in old_fragment:
+                        current_fragment = old_fragment.rsplit("/source_packet", 1)[0]
+                    else:
+                        raise ValueError("unmapped fixed historical source pointer")
+                    expected_current_ref = L9 + "#" + current_fragment
+                    if row["source_trace_ref"] != expected_current_ref or row["expected_source_ref"] != expected_current_ref:
+                        raise ValueError("L8 source/expected pointers must resolve to the retained compact oracle row")
                     resolved = pointer(l9, row["source_trace_ref"], L9)
-                    expected_parts = row["expected_source_ref"].split("#", 1)[1].split("/", 1)[1].split("/")
-                    if len(expected_parts) < 3 or expected_parts[0] != "cases" or not expected_parts[1].isdigit():
-                        raise ValueError("expected_source_ref must use numeric RFC6901 case index")
                     pointer(l9, row["expected_source_ref"], L9)
-                    if resolved.get("source_ref", {}).get("identity") != "SOURCE-" + row["id"]:
-                        raise ValueError("source identity does not match U-ID")
+                    if resolved.get("id") != row["id"] or resolved.get("expected_observation") != row["expected"] or resolved.get("property") != row["counterexample"]:
+                        raise ValueError("current compact oracle identity/meaning does not match the U-ID row")
             except Exception:
                 checks["all_row_sources_resolve"] = False
         for uid in ids:
             oldrow = old_by_id[uid]
             try:
-                source_ref = canonical_l9_ref(l9, oldrow["source_packet_pointer"])
-                payload_ref = canonical_l9_ref(l9, oldrow["payload_source_pointer"])
-                expected_ref = canonical_l9_ref(l9, oldrow["expected_material_ref"])
-                source = pointer(l9, source_ref, L9)
+                source_ref = canonical_l9_ref(historical_l9, oldrow["source_packet_pointer"])
+                payload_ref = canonical_l9_ref(historical_l9, oldrow["payload_source_pointer"])
+                expected_ref = canonical_l9_ref(historical_l9, oldrow["expected_material_ref"])
                 historical_source = pointer(historical_l9, source_ref, L9)
-                payload = pointer(l9, payload_ref, L9)
-                expected = pointer(l9, expected_ref, L9)
-                l9_case = pointer(l9, source_ref.rsplit("/", 1)[0], L9)
+                payload = pointer(historical_l9, payload_ref, L9)
+                expected = pointer(historical_l9, expected_ref, L9)
+                l9_case = pointer(historical_l9, source_ref.rsplit("/", 1)[0], L9)
                 summary = next(row for row in rows if row["id"] == uid)
+                source = pointer(l9, summary["source_trace_ref"], L9)
                 trace = summary["source_trace_ref"]
-                expected_trace = source_ref
+                expected_trace = L9 + "#" + source_ref.split("#", 1)[1]
+                if "/normal_fixture/source_packet" in expected_trace:
+                    expected_trace = expected_trace.replace("/normal_fixture/source_packet", "/normal_cases/0")
+                elif "/normal_variants/" in expected_trace:
+                    expected_trace = expected_trace.rsplit("/source_packet", 1)[0].replace("/normal_variants/", "/normal_variant_oracles/")
+                elif "/negative_cases/" in expected_trace:
+                    expected_trace = expected_trace.rsplit("/source_packet", 1)[0]
                 expected_source_ref = summary["expected_source_ref"]
                 issue = l9_case.get("expected_issue")
                 issue_matches = (oldrow.get("expected_issue", {}).get("state") == "absent" and issue is None) or (oldrow.get("expected_issue", {}).get("state") == "provided" and isinstance(issue, str) and oldrow["expected_issue"].get("value") == issue)
                 expected_hash = hashlib.sha256(json.dumps(expected, ensure_ascii=False, sort_keys=True, separators=(",", ":")).encode()).hexdigest()
                 checks["all_35_old_source_and_expected_materials_match"] &= (
                     trace == expected_trace
-                    and expected_source_ref == expected_ref
-                    and source.get("source_ref") == oldrow["source_packet_ref"]
-                    and source.get("source_ref", {}).get("identity") == "SOURCE-" + uid
+                    and expected_source_ref == expected_trace
+                    and source.get("id") == uid
+                    and source.get("property") == summary.get("counterexample")
+                    and source.get("expected_observation") == summary.get("expected")
                     and historical_source.get("byte_sha256") == oldrow["source_packet_byte_sha256"]
-                    and source.get("owner_material") == payload
                     and expected_hash == oldrow["expected_material_sha256"]
                     and issue_matches
                 )
