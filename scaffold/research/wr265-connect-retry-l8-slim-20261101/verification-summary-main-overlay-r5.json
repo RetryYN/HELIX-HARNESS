@@ -2,11 +2,12 @@
   "schema": "wr265-static-verification.v1",
   "evidence_kind": "scaffold",
   "authority_effect": "none",
-  "record_id": "WR265-RETRY-L8-CURRENT-STATIC-R4",
+  "record_id": "WR265-RETRY-L8-CURRENT-STATIC-R5",
   "target": "docs/helix-connect/L8-unit-verification/retry-deduplication-conflict.json",
-  "target_revision": "151713275e2c2aa65bb23a8fe38eb63c46d570c8",
-  "target_sha256": "d1730f02410b801ae48b4613f3e301bf5402a47f98a8648d295cf82afa76beb4",
+  "target_revision": "d3e88d6cd460af78aea342441009a3a3572f86f7",
+  "target_sha256": "93267225d6d69fda0f3d3d14ce214021a4e2c0558049b2d8b9c61bdc47bfea20",
   "source_pins": {
+    "docs/helix-connect/L3-requirements/functional-requirements.json": "fb04683632d92e5c51c46fdc2eecf388a58e406856f243b8105513e075a49421",
     "docs/helix-connect/L4-basic-design/retry-deduplication-conflict.json": "68e77bc1579a10470f2ea608010f0bd553c1c511a8a50992c9b8bd8d28ee92eb",
     "docs/helix-connect/L5-detail-design/retry-deduplication-conflict.json": "ae83a4db64fb613ebbaa119e11ed3c83f23e1a77fad22a205375f0d6b3d9e19d",
     "docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json": "5cfea671da4e491a172590b6b6e404da9e37af230929d0e764eee1a7d7bcb465",
@@ -19,37 +20,42 @@
     "bytes": 344669,
     "restore_command": "git show b3ddf6f1d0a6cf2009e5f81a90f21c4292300185:docs/helix-connect/L8-unit-verification/retry-deduplication-conflict.json > docs/helix-connect/L8-unit-verification/retry-deduplication-conflict.json"
   },
-  "before_after": {
-    "before_bytes": 344669,
-    "after_bytes": 61309,
-    "reduction_bytes": 283360,
-    "case_count_before": 69,
-    "case_count_after": 69
-  },
   "checks": {
     "case_identity_order": "evaluated",
-    "case_oracle_and_expected": "evaluated",
-    "L5_function_and_owner_links": "evaluated",
+    "u_id_and_original_function_ref": "evaluated",
+    "input_only_counterexamples": "evaluated",
+    "independent_L3_L4_L5_expectations": "evaluated",
+    "L9_oracle_comparison_only": "evaluated",
+    "existing_L5_L9_L10_consumers": "evaluated",
     "removed_materials_and_forbidden_material": "evaluated"
   },
   "rows_checked": 69,
+  "expected_status_counts": {
+    "independently_derived": 59,
+    "unverified": 10
+  },
+  "l9_comparison_status_counts": {
+    "aligned_with_independent_L3_L5_outcome_facts": 59,
+    "partial_unverified": 10
+  },
   "result": "PASS_STATIC_ONLY",
   "errors": [],
   "not_evaluated": [
     "L5 algorithm execution",
     "product test",
     "real receiver effect",
+    "10 row claim-level expectations explicitly marked unverified",
     "approval or formal L8 completion",
     "design_verification_checker child semantics"
   ],
   "interpretation": "PASS_STATIC_ONLY is a static structure/source comparison only. It is not execution, approval, formal verification, or completion.",
   "latest_main_overlay": {
-    "revision": "151713275e2c2aa65bb23a8fe38eb63c46d570c8",
+    "revision": "d3e88d6cd460af78aea342441009a3a3572f86f7",
     "checks": {
       "scfctl_validate": {
         "command": "/usr/bin/python3 -B scaffold/tools/scfctl.py validate",
         "exit_code": 0,
-        "summary": "bindings=207 fail=0"
+        "summary": "bindings=208 fail=0"
       },
       "scfctl_stale": {
         "command": "/usr/bin/python3 -B scaffold/tools/scfctl.py stale",

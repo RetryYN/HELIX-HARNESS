@@ -6,53 +6,54 @@
   "product": "HELIX-HARNESS",
   "owner_candidate": "CONNECT004 L8 retry/deduplication/conflict unit-verification responsibility owner candidate",
   "state": "registered",
-  "reason": "Issue #3510 WR265: reduce CONNECT004 L8 to a reviewable U-ID table, preserving all 69 IDs/order, row-specific counterexamples and expected outcomes, L9 expected-material pointers, existing L5 function/branch meaning, and the execution/effect boundary. Avoid duplicating raw packet/fixture/full-return/hash material already held in L9/L5 sources.",
+  "reason": "Issue #3510 WR265: compact CONNECT004 L8 into a reviewable U-ID table while preserving the 69 case IDs/order and original function_ref. Counterexample input conditions are traced to fixed L9 source; expected semantics are independently derived from approved L3/L4 and existing L5 rules. L9 expected_material is comparison-only. Unresolvable claim semantics remain unverified; raw fixture/full-return/hash material is not copied.",
   "upstream": [
     {
       "path": "docs/helix-connect/L3-requirements/functional-requirements.json",
       "sha256": "fb04683632d92e5c51c46fdc2eecf388a58e406856f243b8105513e075a49421",
-      "note": "origin/main 151713275e2c2aa65bb23a8fe38eb63c46d570c8 source bytes."
+      "note": "Source bytes verified unchanged at latest origin/main d3e88d6cd460af78aea342441009a3a3572f86f7."
     },
     {
       "path": "docs/helix-connect/L4-basic-design/retry-deduplication-conflict.json",
       "sha256": "68e77bc1579a10470f2ea608010f0bd553c1c511a8a50992c9b8bd8d28ee92eb",
-      "note": "origin/main 151713275e2c2aa65bb23a8fe38eb63c46d570c8 source bytes."
+      "note": "Source bytes verified unchanged at latest origin/main d3e88d6cd460af78aea342441009a3a3572f86f7."
     },
     {
       "path": "docs/helix-connect/L5-detail-design/retry-deduplication-conflict.json",
       "sha256": "ae83a4db64fb613ebbaa119e11ed3c83f23e1a77fad22a205375f0d6b3d9e19d",
-      "note": "origin/main 151713275e2c2aa65bb23a8fe38eb63c46d570c8 source bytes."
+      "note": "Source bytes verified unchanged at latest origin/main d3e88d6cd460af78aea342441009a3a3572f86f7."
     },
     {
       "path": "docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json",
       "sha256": "5cfea671da4e491a172590b6b6e404da9e37af230929d0e764eee1a7d7bcb465",
-      "note": "origin/main 151713275e2c2aa65bb23a8fe38eb63c46d570c8 source bytes."
+      "note": "Source bytes verified unchanged at latest origin/main d3e88d6cd460af78aea342441009a3a3572f86f7."
     },
     {
       "path": "docs/helix-connect/L10-verification/functional-verification.json",
       "sha256": "8728cf7c2730a29375f3c7dad75c77157a119d603e52b46f775ede8f1eae474d",
-      "note": "origin/main 151713275e2c2aa65bb23a8fe38eb63c46d570c8 source bytes."
+      "note": "Source bytes verified unchanged at latest origin/main d3e88d6cd460af78aea342441009a3a3572f86f7."
     },
     {
       "path": "scaffold/verification-test-template-seed-20261001/README.md",
       "sha256": "e754243381921e4a3317a66dc784c03905ef24ab740721bc7767851989162efd",
-      "note": "origin/main 151713275e2c2aa65bb23a8fe38eb63c46d570c8 source bytes."
+      "note": "Source bytes verified unchanged at latest origin/main d3e88d6cd460af78aea342441009a3a3572f86f7."
     },
     {
       "path": "docs/governance/design-verification-quality-assurance.md",
       "sha256": "f5751e236dc073fe67114c1fcb4b0f64b3d746290b25d75b61e60a08e3c99c85",
-      "note": "origin/main 151713275e2c2aa65bb23a8fe38eb63c46d570c8 source bytes."
+      "note": "Source bytes verified unchanged at latest origin/main d3e88d6cd460af78aea342441009a3a3572f86f7."
     }
   ],
   "role": "Temporary static source, case-identity, expectation and boundary evidence for the WR265 CONNECT004 L8 candidate.",
   "obligations": [
-    "Preserve the original 69 case IDs/order. Derive every row counterexample from its fixed L9 basis, expected_material outcome, and true semantic claim names; never infer a counterexample from an ID suffix alone. Retain each row expected difference and exact L9 expected_material pointer; rows remain not_executed.",
-    "Keep L5 function/calculation/branch rule definitions in the existing design_ref. Do not add duplicate l5_function_ref or l9_basic_branches tables; common function role and candidate boundaries are described once.",
-    "Do not retain raw source_packet_ref, fixture, typed arguments, full returns, COPY, hash maps, mutation steps, or per-row repeated L3/L4/L9/function IDs. Preserve the L9 expected oracle pointer; note that future L9 slimming must migrate raw packet pointer consumers.",
+    "Preserve all 69 frozen case IDs/order and original function_ref, add unique U-C004-001..069 IDs, and resolve every function_ref/case ID through the existing L5 obligation_trace consumer.",
+    "Describe each counterexample using fixed L9 raw source input conditions only; retain a source pointer, never copy raw input or L9 outcomes into the counterexample. Do not infer scenario conditions from ID suffixes.",
+    "Independently derive each expected/status/basis reference from approved L3 requirement, L4 contract, and existing L5 function/rules. L9 expected_material is only an independent comparison oracle; mark unsupported claim semantics unverified.",
+    "Do not add duplicate l5_function_ref or l9_basic_branches tables. Keep shared function meaning, unexecuted boundary, and conditional F03 owner interpretation once; retain the L9 pointer migration caveat for future L9 slim work.",
     "Keep authority_effect and operation_effect none, implementation readiness not_ready, no actual retry/receiver effect/receipt/policy/result or product test claim.",
     "Legacy comparison is reference-only: preserve retry identity/dedup/conflict/finite-budget boundaries; do not migrate old cursor codec, database, runtime, or old execution paths.",
     "Validator defaults to read-only. --record accepts an explicit new path only and creates it exclusively; no existing evidence path may be replaced.",
-    "Generic design_verification_checker check-child outcomes are recorded as pass/fail/not_evaluated as returned; not_evaluated is never reported as pass.",
+    "Record L9 oracle alignment separately from independent expectations. Generic design_verification_checker check-child outcomes are recorded as pass/fail/not_evaluated; not_evaluated is never pass.",
     "Check scfctl validate/stale and static validator in a latest origin/main merge overlay before handing off."
   ],
   "connections": {
@@ -61,7 +62,7 @@
     ],
     "dependencies": [
       "Fixed base revision b3ddf6f1d0a6cf2009e5f81a90f21c4292300185 for original L8 identity/order and history recovery.",
-      "Latest origin/main 151713275e2c2aa65bb23a8fe38eb63c46d570c8 L3/L4/L5/L9/L10/DT-VT-105/QA source bytes.",
+      "Latest origin/main d3e88d6cd460af78aea342441009a3a3572f86f7 L3/L4/L5/L9/L10/DT-VT-105/QA source bytes; all pinned hashes were rechecked unchanged.",
       "Legacy source assets LEGACY-ASSET-C3DE79BA9451172F3E43 and LEGACY-ASSET-DD66C1B6B7BE234B37E6."
     ],
     "boundary": "Candidate L8 table normalization and static scaffold evidence only. No authority effect, approval, test execution, runtime/CI claim, invented row oracle/test citation, or completion effect."
@@ -95,16 +96,17 @@
       "negative_case"
     ],
     "oracles": [
-      "Original case identity/order from fixed base b3ddf6f1d0a6cf2009e5f81a90f21c4292300185; original file bytes recoverable by commit/path/blob/SHA-256 and restore command in evidence-history.json.",
-      "Every row counterexample is derived from that case fixed L9 basis plus concrete expected outcome witness and true claim names from its fixed L9 independent source packet; ID suffixes are not evidence. Each expected summary and pointer is checked against the same L9 concrete_case expected_material; no raw input/full return is copied.",
-      "L5 existing calculation_program, branch_tables owner mapping, and conditional retryable-result owner rule.",
-      "Current static verification summary; generic check-child result is recorded independently and not used as product completion proof.",
-      "scfctl validate/stale in latest-main merge overlay.",
-      "F03 owner resolution is cross-checked against the conditional L5 failure rule, the actual L9 business_nonretryable and unknown cases, the L4 F03 output boundary, and the L10 F03 failure-observation boundary."
+      "Original case identity/order/function_ref from fixed base b3ddf6f1d0a6cf2009e5f81a90f21c4292300185; original L8 bytes recoverable by commit/path/blob/SHA-256 and restore command in evidence-history.json.",
+      "Counterexamples are reconstructed from fixed L9 independent_source_packet input only, with literal values omitted. Expected semantics and source refs are derived from L3/L4/L5; unsupported claim-level semantics are explicitly unverified.",
+      "L9 expected_material pointer and failure/owner branches are used only as a comparison against the independent L3/L4/L5 derivation. No expected text is copied from the L9 outcome.",
+      "L5 obligation_trace resolves each preserved function_ref/case ID. F03 conditional retryable-result owner is checked against L5 rule 8 and the L9 business_nonretryable/unknown cases; L4 F03 output and L10 failure-observation boundaries are also checked.",
+      "Current latest-main overlay static summary; generic check-child result is recorded separately and is not product completion proof.",
+      "scfctl validate/stale and validator in latest-main merge overlay."
     ],
     "negative_cases": [
-      "Raw packet pointer, L5 function ID duplicate key, and L9 branch table are not added to the compact case table.",
+      "No raw packet data, expected outcomes, repeated function definitions, l5_function_ref alias, l9_basic_branches table, full return, fixture, COPY, hash map, or patch is duplicated.",
       "All 69 cases remain not_executed; actual operation/receiver effects are not evaluated.",
+      "Rows with claim semantics unsupported by L3/L4/L5 remain unverified; L9 is not used as an expected-value fallback.",
       "Do not treat generic check-child not_evaluated as pass.",
       "Static evidence does not establish approval or formal L8 completion."
     ]

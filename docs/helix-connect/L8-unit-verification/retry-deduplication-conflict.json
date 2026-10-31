@@ -24,8 +24,8 @@
   "pair_id": "HELIXCONNECT-L5-004",
   "design_ref": "docs/helix-connect/L5-detail-design/retry-deduplication-conflict.json",
   "integration_ref": "docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json",
-  "method": "既存L5のFN-C004-01 assess_same_retry_effect、FN-C004-02 assess_digest_conflict、FN-C004-03 assess_retry_stop_conditionsを各case IDのF01/F02/F03群に対応させる。関数のpure signature、calculation_program、branch_tables、failure-rule条件/emitはdesign_refの現行L5だけを参照し、ここへ複製しない。各U-ID行にはL9 expected_materialからcase固有の反例・期待差分だけを記し、expected_oracle_refは同じL9 concrete_caseのexpected_materialを指す。入力、実行用fixture、全returnは持たない。",
-  "common_expectation_boundary": "全69行はL3/L4/L5/L9/L10間の候補照合であり、実行されていない。L9の合成入力・期待はfixture内の材料で、実retry、receiver実効果、実receipt、権限、retry policy、合格を生成しない。F01の効果観測は一回分保持・二重/不明/別operation結合を区別し、F02のdigest同値/相違/unknownと衝突後効果を区別し、F03は既存policyの有限累積budget、retryable状態、history/unfinished、expiry/permission/compatibility/ACK停止を扱う。非選択retryは未観測のまま。L5計算や製品testを実行した証拠ではない。",
+  "method": "各U-IDの入力条件は固定L9 raw sourceのケース差分だけから短く記し、case ID suffixから推定しない。期待は承認済みL3 obligation・L4 contract・既存L5 function/failure_rulesから独立に導き、導けないclaim semanticsはunverifiedとする。L9 expected_materialは別のoracle comparison pointerとしてのみ使い、期待文の生成元にしない。関数定義・rule表・branch表をL8へ複写しない。",
+  "common_expectation_boundary": "全69行はL3/L4/L5/L9/L10間の候補照合であり、実行されていない。L9の合成入力・期待はfixture内の材料で、実retry、receiver実効果、実receipt、権限、retry policy、合格を生成しない。counterexample_source_refは固定L9 raw inputへの追跡pointerだけを保持し、raw内容を複製しない。F01の効果観測は一回分保持・二重/不明/別operation結合を区別し、F02のdigest同値/相違/unknownと衝突後効果を区別し、F03は既存policyの有限累積budget、retryable状態、history/unfinished、expiry/permission/compatibility/ACK停止を扱う。非選択retryは未観測のまま。L5計算や製品testを実行した証拠ではない。L9 expected_materialはL3/L4/L5から独立導出した期待との比較参照に限り、期待文の根拠にはしない。",
   "F03_retryable_result_owner_resolution": "L5 branch_tables/F03/failure_rules/8 は retryable_result.state が business_nonretryable のとき business-owner、それ以外の未知状態のとき operation-owner を返す条件分岐。L9 の C004-F03-ORIGINAL_RESULT_STATE-BUSINESS_NONRETRYABLE と C004-F03-BUSINESS_ERROR_RETRY は business-owner、C004-F03-ORIGINAL_RESULT_STATE-UNKNOWN は operation-owner を期待するため、この範囲のowner値は矛盾しない。L4 contracts/2 はこの関数の停止地点・局所理由・返し先を出力意味として定め、L10 cases/8 は operation owner/SEC/contract owner の該当境界への返却を観測対象とする。",
   "contract_oracles": {
     "F01": "HELIXCONNECT-L10-004-F01",
@@ -35,8 +35,19 @@
   "cases": [
     {
       "id": "C004-F01-RESPONSE-LOSS-SAME-CONTENT-ONE-EFFECT",
-      "counterexample": "初回応答喪失と許可済み同内容再送の別attempt、receiver一回分の合成効果を対照。実効果は未成立。 L9 condition/outcome witness: candidate_retry_receipt=requires_actual_retry_and_receiver_qualification; receiver_effect=one_effect_retained_in_fixture_only.",
-      "expected": "追加停止理由なし；candidate_retry_receipt=requires_actual_retry_and_receiver_qualification；receiver_effect=one_effect_retained_in_fixture_only",
+      "u_id": "U-C004-001",
+      "function_ref": "FN-C004-01",
+      "counterexample": "HELIXCONNECT-L3-004-F01 の固定L9 raw source入力条件: retry target全fieldはoriginal operationに対応し、attemptは区別され、effect snapshotが観測済み。",
+      "counterexample_source_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json",
+        "pointer": "/verification_obligations/0/concrete_cases/0/independent_source_packet/raw_utf8",
+        "comparison_baseline_pointer": "/verification_obligations/0/concrete_cases/0/independent_source_packet/raw_utf8"
+      },
+      "expected": "独立期待: 共通のexpectation_derivationに示す承認済みL3 requirement・L4 contractと既存L5 ruleに従い、effect_set_ruleのone-effect条件を満たす場合だけ同一再送の効果一回分をfixture内で保持する。実retry/receiver effectは主張しない。",
+      "expected_status": "independently_derived",
+      "expected_basis_refs": [
+        "docs/helix-connect/L5-detail-design/retry-deduplication-conflict.json#/branch_tables/F01/effect_set_rule"
+      ],
       "oracle_id": "HELIXCONNECT-L10-004-F01",
       "expected_oracle_ref": {
         "document": "docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json",
@@ -45,8 +56,19 @@
     },
     {
       "id": "C004-F01-CONNECTION_IDENTITY-MISSING",
-      "counterexample": "同operationのscope/期限/許可/単一版/相関を保持する。各不足は保留。 L9 condition/outcome witness: retry_target.connection_identity=missing.",
-      "expected": "retry_target.connection_identity=missing→operation-owner；candidate_retry_receipt=held；receiver_effect=one_effect_retained_in_fixture_only",
+      "u_id": "U-C004-002",
+      "function_ref": "FN-C004-01",
+      "counterexample": "HELIXCONNECT-L3-004-F01 の固定L9 raw source入力条件: submitted_retry.connection_identity は 未提示。",
+      "counterexample_source_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json",
+        "pointer": "/verification_obligations/0/concrete_cases/1/independent_source_packet/raw_utf8",
+        "comparison_baseline_pointer": "/verification_obligations/0/concrete_cases/0/independent_source_packet/raw_utf8"
+      },
+      "expected": "独立期待: 共通のexpectation_derivationに示す承認済みL3 requirement・L4 contractと既存L5 ruleに従い、retry_targetの非対応fieldをoperation-ownerへ返す；独立導出したL5期待値: retry_target.connection_identity=missing→operation-owner。実retry/receiver effectは主張しない。",
+      "expected_status": "independently_derived",
+      "expected_basis_refs": [
+        "docs/helix-connect/L5-detail-design/retry-deduplication-conflict.json#/branch_tables/F01/failure_rules/0"
+      ],
       "oracle_id": "HELIXCONNECT-L10-004-F01",
       "expected_oracle_ref": {
         "document": "docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json",
@@ -55,8 +77,19 @@
     },
     {
       "id": "C004-F01-OPERATION_IDENTITY-MISSING",
-      "counterexample": "同operationのscope/期限/許可/単一版/相関を保持する。各不足は保留。 L9 condition/outcome witness: retry_target.operation_identity=missing.",
-      "expected": "retry_target.operation_identity=missing→operation-owner；candidate_retry_receipt=held；receiver_effect=one_effect_retained_in_fixture_only",
+      "u_id": "U-C004-003",
+      "function_ref": "FN-C004-01",
+      "counterexample": "HELIXCONNECT-L3-004-F01 の固定L9 raw source入力条件: submitted_retry.operation_identity は 未提示。",
+      "counterexample_source_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json",
+        "pointer": "/verification_obligations/0/concrete_cases/2/independent_source_packet/raw_utf8",
+        "comparison_baseline_pointer": "/verification_obligations/0/concrete_cases/0/independent_source_packet/raw_utf8"
+      },
+      "expected": "独立期待: 共通のexpectation_derivationに示す承認済みL3 requirement・L4 contractと既存L5 ruleに従い、retry_targetの非対応fieldをoperation-ownerへ返す；独立導出したL5期待値: retry_target.operation_identity=missing→operation-owner。実retry/receiver effectは主張しない。",
+      "expected_status": "independently_derived",
+      "expected_basis_refs": [
+        "docs/helix-connect/L5-detail-design/retry-deduplication-conflict.json#/branch_tables/F01/failure_rules/0"
+      ],
       "oracle_id": "HELIXCONNECT-L10-004-F01",
       "expected_oracle_ref": {
         "document": "docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json",
@@ -65,8 +98,19 @@
     },
     {
       "id": "C004-F01-IDEMPOTENCY-MISSING",
-      "counterexample": "同operationのscope/期限/許可/単一版/相関を保持する。各不足は保留。 L9 condition/outcome witness: retry_target.idempotency=missing.",
-      "expected": "retry_target.idempotency=missing→operation-owner；candidate_retry_receipt=held；receiver_effect=one_effect_retained_in_fixture_only",
+      "u_id": "U-C004-004",
+      "function_ref": "FN-C004-01",
+      "counterexample": "HELIXCONNECT-L3-004-F01 の固定L9 raw source入力条件: submitted_retry.idempotency は 未提示。",
+      "counterexample_source_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json",
+        "pointer": "/verification_obligations/0/concrete_cases/3/independent_source_packet/raw_utf8",
+        "comparison_baseline_pointer": "/verification_obligations/0/concrete_cases/0/independent_source_packet/raw_utf8"
+      },
+      "expected": "独立期待: 共通のexpectation_derivationに示す承認済みL3 requirement・L4 contractと既存L5 ruleに従い、retry_targetの非対応fieldをoperation-ownerへ返す；独立導出したL5期待値: retry_target.idempotency=missing→operation-owner。実retry/receiver effectは主張しない。",
+      "expected_status": "independently_derived",
+      "expected_basis_refs": [
+        "docs/helix-connect/L5-detail-design/retry-deduplication-conflict.json#/branch_tables/F01/failure_rules/0"
+      ],
       "oracle_id": "HELIXCONNECT-L10-004-F01",
       "expected_oracle_ref": {
         "document": "docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json",
@@ -75,8 +119,19 @@
     },
     {
       "id": "C004-F01-DIGEST-MISSING",
-      "counterexample": "同operationのscope/期限/許可/単一版/相関を保持する。各不足は保留。 L9 condition/outcome witness: retry_target.digest=missing.",
-      "expected": "retry_target.digest=missing→operation-owner；candidate_retry_receipt=held；receiver_effect=one_effect_retained_in_fixture_only",
+      "u_id": "U-C004-005",
+      "function_ref": "FN-C004-01",
+      "counterexample": "HELIXCONNECT-L3-004-F01 の固定L9 raw source入力条件: submitted_retry.digest は 未提示。",
+      "counterexample_source_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json",
+        "pointer": "/verification_obligations/0/concrete_cases/4/independent_source_packet/raw_utf8",
+        "comparison_baseline_pointer": "/verification_obligations/0/concrete_cases/0/independent_source_packet/raw_utf8"
+      },
+      "expected": "独立期待: 共通のexpectation_derivationに示す承認済みL3 requirement・L4 contractと既存L5 ruleに従い、retry_targetの非対応fieldをoperation-ownerへ返す；独立導出したL5期待値: retry_target.digest=missing→operation-owner。実retry/receiver effectは主張しない。",
+      "expected_status": "independently_derived",
+      "expected_basis_refs": [
+        "docs/helix-connect/L5-detail-design/retry-deduplication-conflict.json#/branch_tables/F01/failure_rules/0"
+      ],
       "oracle_id": "HELIXCONNECT-L10-004-F01",
       "expected_oracle_ref": {
         "document": "docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json",
@@ -85,8 +140,19 @@
     },
     {
       "id": "C004-F01-SCOPE-MISSING",
-      "counterexample": "同operationのscope/期限/許可/単一版/相関を保持する。各不足は保留。 L9 condition/outcome witness: retry_target.scope=missing.",
-      "expected": "retry_target.scope=missing→operation-owner；candidate_retry_receipt=held；receiver_effect=one_effect_retained_in_fixture_only",
+      "u_id": "U-C004-006",
+      "function_ref": "FN-C004-01",
+      "counterexample": "HELIXCONNECT-L3-004-F01 の固定L9 raw source入力条件: submitted_retry.scope は 未提示。",
+      "counterexample_source_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json",
+        "pointer": "/verification_obligations/0/concrete_cases/5/independent_source_packet/raw_utf8",
+        "comparison_baseline_pointer": "/verification_obligations/0/concrete_cases/0/independent_source_packet/raw_utf8"
+      },
+      "expected": "独立期待: 共通のexpectation_derivationに示す承認済みL3 requirement・L4 contractと既存L5 ruleに従い、retry_targetの非対応fieldをoperation-ownerへ返す；独立導出したL5期待値: retry_target.scope=missing→operation-owner。実retry/receiver effectは主張しない。",
+      "expected_status": "independently_derived",
+      "expected_basis_refs": [
+        "docs/helix-connect/L5-detail-design/retry-deduplication-conflict.json#/branch_tables/F01/failure_rules/0"
+      ],
       "oracle_id": "HELIXCONNECT-L10-004-F01",
       "expected_oracle_ref": {
         "document": "docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json",
@@ -95,8 +161,19 @@
     },
     {
       "id": "C004-F01-EXPIRY-MISSING",
-      "counterexample": "同operationのscope/期限/許可/単一版/相関を保持する。各不足は保留。 L9 condition/outcome witness: retry_target.expiry=missing.",
-      "expected": "retry_target.expiry=missing→operation-owner；candidate_retry_receipt=held；receiver_effect=one_effect_retained_in_fixture_only",
+      "u_id": "U-C004-007",
+      "function_ref": "FN-C004-01",
+      "counterexample": "HELIXCONNECT-L3-004-F01 の固定L9 raw source入力条件: submitted_retry.expiry は 未提示。",
+      "counterexample_source_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json",
+        "pointer": "/verification_obligations/0/concrete_cases/6/independent_source_packet/raw_utf8",
+        "comparison_baseline_pointer": "/verification_obligations/0/concrete_cases/0/independent_source_packet/raw_utf8"
+      },
+      "expected": "独立期待: 共通のexpectation_derivationに示す承認済みL3 requirement・L4 contractと既存L5 ruleに従い、retry_targetの非対応fieldをoperation-ownerへ返す；独立導出したL5期待値: retry_target.expiry=missing→operation-owner。実retry/receiver effectは主張しない。",
+      "expected_status": "independently_derived",
+      "expected_basis_refs": [
+        "docs/helix-connect/L5-detail-design/retry-deduplication-conflict.json#/branch_tables/F01/failure_rules/0"
+      ],
       "oracle_id": "HELIXCONNECT-L10-004-F01",
       "expected_oracle_ref": {
         "document": "docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json",
@@ -105,8 +182,19 @@
     },
     {
       "id": "C004-F01-PERMISSION_REF-MISSING",
-      "counterexample": "同operationのscope/期限/許可/単一版/相関を保持する。各不足は保留。 L9 condition/outcome witness: retry_target.permission_ref=missing.",
-      "expected": "retry_target.permission_ref=missing→operation-owner；candidate_retry_receipt=held；receiver_effect=one_effect_retained_in_fixture_only",
+      "u_id": "U-C004-008",
+      "function_ref": "FN-C004-01",
+      "counterexample": "HELIXCONNECT-L3-004-F01 の固定L9 raw source入力条件: submitted_retry.permission_ref は 未提示。",
+      "counterexample_source_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json",
+        "pointer": "/verification_obligations/0/concrete_cases/7/independent_source_packet/raw_utf8",
+        "comparison_baseline_pointer": "/verification_obligations/0/concrete_cases/0/independent_source_packet/raw_utf8"
+      },
+      "expected": "独立期待: 共通のexpectation_derivationに示す承認済みL3 requirement・L4 contractと既存L5 ruleに従い、retry_targetの非対応fieldをoperation-ownerへ返す；独立導出したL5期待値: retry_target.permission_ref=missing→operation-owner。実retry/receiver effectは主張しない。",
+      "expected_status": "independently_derived",
+      "expected_basis_refs": [
+        "docs/helix-connect/L5-detail-design/retry-deduplication-conflict.json#/branch_tables/F01/failure_rules/0"
+      ],
       "oracle_id": "HELIXCONNECT-L10-004-F01",
       "expected_oracle_ref": {
         "document": "docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json",
@@ -115,8 +203,19 @@
     },
     {
       "id": "C004-F01-CONTRACT_REVISION-MISSING",
-      "counterexample": "同operationのscope/期限/許可/単一版/相関を保持する。各不足は保留。 L9 condition/outcome witness: retry_target.contract_revision=missing.",
-      "expected": "retry_target.contract_revision=missing→operation-owner；candidate_retry_receipt=held；receiver_effect=one_effect_retained_in_fixture_only",
+      "u_id": "U-C004-009",
+      "function_ref": "FN-C004-01",
+      "counterexample": "HELIXCONNECT-L3-004-F01 の固定L9 raw source入力条件: submitted_retry.contract_revision は 未提示。",
+      "counterexample_source_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json",
+        "pointer": "/verification_obligations/0/concrete_cases/8/independent_source_packet/raw_utf8",
+        "comparison_baseline_pointer": "/verification_obligations/0/concrete_cases/0/independent_source_packet/raw_utf8"
+      },
+      "expected": "独立期待: 共通のexpectation_derivationに示す承認済みL3 requirement・L4 contractと既存L5 ruleに従い、retry_targetの非対応fieldをoperation-ownerへ返す；独立導出したL5期待値: retry_target.contract_revision=missing→operation-owner。実retry/receiver effectは主張しない。",
+      "expected_status": "independently_derived",
+      "expected_basis_refs": [
+        "docs/helix-connect/L5-detail-design/retry-deduplication-conflict.json#/branch_tables/F01/failure_rules/0"
+      ],
       "oracle_id": "HELIXCONNECT-L10-004-F01",
       "expected_oracle_ref": {
         "document": "docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json",
@@ -125,8 +224,19 @@
     },
     {
       "id": "C004-F01-CORRELATION-MISSING",
-      "counterexample": "同operationのscope/期限/許可/単一版/相関を保持する。各不足は保留。 L9 condition/outcome witness: retry_target.correlation=missing.",
-      "expected": "retry_target.correlation=missing→operation-owner；candidate_retry_receipt=held；receiver_effect=one_effect_retained_in_fixture_only",
+      "u_id": "U-C004-010",
+      "function_ref": "FN-C004-01",
+      "counterexample": "HELIXCONNECT-L3-004-F01 の固定L9 raw source入力条件: submitted_retry.correlation は 未提示。",
+      "counterexample_source_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json",
+        "pointer": "/verification_obligations/0/concrete_cases/9/independent_source_packet/raw_utf8",
+        "comparison_baseline_pointer": "/verification_obligations/0/concrete_cases/0/independent_source_packet/raw_utf8"
+      },
+      "expected": "独立期待: 共通のexpectation_derivationに示す承認済みL3 requirement・L4 contractと既存L5 ruleに従い、retry_targetの非対応fieldをoperation-ownerへ返す；独立導出したL5期待値: retry_target.correlation=missing→operation-owner。実retry/receiver effectは主張しない。",
+      "expected_status": "independently_derived",
+      "expected_basis_refs": [
+        "docs/helix-connect/L5-detail-design/retry-deduplication-conflict.json#/branch_tables/F01/failure_rules/0"
+      ],
       "oracle_id": "HELIXCONNECT-L10-004-F01",
       "expected_oracle_ref": {
         "document": "docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json",
@@ -135,8 +245,19 @@
     },
     {
       "id": "C004-F01-OPERATION_IDENTITY-FOREIGN",
-      "counterexample": "別operation/digest/scope/版を同一retryにしない。 L9 condition/outcome witness: retry_target.operation_identity=content_conflict.",
-      "expected": "retry_target.operation_identity=content_conflict→operation-owner；candidate_retry_receipt=held；receiver_effect=one_effect_retained_in_fixture_only",
+      "u_id": "U-C004-011",
+      "function_ref": "FN-C004-01",
+      "counterexample": "HELIXCONNECT-L3-004-F01 の固定L9 raw source入力条件: submitted_retry.operation_identity は original_operationと異なる。",
+      "counterexample_source_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json",
+        "pointer": "/verification_obligations/0/concrete_cases/10/independent_source_packet/raw_utf8",
+        "comparison_baseline_pointer": "/verification_obligations/0/concrete_cases/0/independent_source_packet/raw_utf8"
+      },
+      "expected": "独立期待: 共通のexpectation_derivationに示す承認済みL3 requirement・L4 contractと既存L5 ruleに従い、retry_targetの非対応fieldをoperation-ownerへ返す；独立導出したL5期待値: retry_target.operation_identity=content_conflict→operation-owner。実retry/receiver effectは主張しない。",
+      "expected_status": "independently_derived",
+      "expected_basis_refs": [
+        "docs/helix-connect/L5-detail-design/retry-deduplication-conflict.json#/branch_tables/F01/failure_rules/0"
+      ],
       "oracle_id": "HELIXCONNECT-L10-004-F01",
       "expected_oracle_ref": {
         "document": "docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json",
@@ -145,8 +266,19 @@
     },
     {
       "id": "C004-F01-DIGEST-FOREIGN",
-      "counterexample": "別operation/digest/scope/版を同一retryにしない。 L9 condition/outcome witness: retry_target.digest=content_conflict.",
-      "expected": "retry_target.digest=content_conflict→operation-owner；candidate_retry_receipt=held；receiver_effect=one_effect_retained_in_fixture_only",
+      "u_id": "U-C004-012",
+      "function_ref": "FN-C004-01",
+      "counterexample": "HELIXCONNECT-L3-004-F01 の固定L9 raw source入力条件: submitted_retry.digest は original_operationと異なる。",
+      "counterexample_source_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json",
+        "pointer": "/verification_obligations/0/concrete_cases/11/independent_source_packet/raw_utf8",
+        "comparison_baseline_pointer": "/verification_obligations/0/concrete_cases/0/independent_source_packet/raw_utf8"
+      },
+      "expected": "独立期待: 共通のexpectation_derivationに示す承認済みL3 requirement・L4 contractと既存L5 ruleに従い、retry_targetの非対応fieldをoperation-ownerへ返す；独立導出したL5期待値: retry_target.digest=content_conflict→operation-owner。実retry/receiver effectは主張しない。",
+      "expected_status": "independently_derived",
+      "expected_basis_refs": [
+        "docs/helix-connect/L5-detail-design/retry-deduplication-conflict.json#/branch_tables/F01/failure_rules/0"
+      ],
       "oracle_id": "HELIXCONNECT-L10-004-F01",
       "expected_oracle_ref": {
         "document": "docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json",
@@ -155,8 +287,19 @@
     },
     {
       "id": "C004-F01-SCOPE-FOREIGN",
-      "counterexample": "別operation/digest/scope/版を同一retryにしない。 L9 condition/outcome witness: retry_target.scope=content_conflict.",
-      "expected": "retry_target.scope=content_conflict→operation-owner；candidate_retry_receipt=held；receiver_effect=one_effect_retained_in_fixture_only",
+      "u_id": "U-C004-013",
+      "function_ref": "FN-C004-01",
+      "counterexample": "HELIXCONNECT-L3-004-F01 の固定L9 raw source入力条件: submitted_retry.scope は original_operationと異なる。",
+      "counterexample_source_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json",
+        "pointer": "/verification_obligations/0/concrete_cases/12/independent_source_packet/raw_utf8",
+        "comparison_baseline_pointer": "/verification_obligations/0/concrete_cases/0/independent_source_packet/raw_utf8"
+      },
+      "expected": "独立期待: 共通のexpectation_derivationに示す承認済みL3 requirement・L4 contractと既存L5 ruleに従い、retry_targetの非対応fieldをoperation-ownerへ返す；独立導出したL5期待値: retry_target.scope=content_conflict→operation-owner。実retry/receiver effectは主張しない。",
+      "expected_status": "independently_derived",
+      "expected_basis_refs": [
+        "docs/helix-connect/L5-detail-design/retry-deduplication-conflict.json#/branch_tables/F01/failure_rules/0"
+      ],
       "oracle_id": "HELIXCONNECT-L10-004-F01",
       "expected_oracle_ref": {
         "document": "docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json",
@@ -165,8 +308,19 @@
     },
     {
       "id": "C004-F01-CONTRACT_REVISION-FOREIGN",
-      "counterexample": "別operation/digest/scope/版を同一retryにしない。 L9 condition/outcome witness: retry_target.contract_revision=content_conflict.",
-      "expected": "retry_target.contract_revision=content_conflict→operation-owner；candidate_retry_receipt=held；receiver_effect=one_effect_retained_in_fixture_only",
+      "u_id": "U-C004-014",
+      "function_ref": "FN-C004-01",
+      "counterexample": "HELIXCONNECT-L3-004-F01 の固定L9 raw source入力条件: submitted_retry.contract_revision は original_operationと異なる。",
+      "counterexample_source_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json",
+        "pointer": "/verification_obligations/0/concrete_cases/13/independent_source_packet/raw_utf8",
+        "comparison_baseline_pointer": "/verification_obligations/0/concrete_cases/0/independent_source_packet/raw_utf8"
+      },
+      "expected": "独立期待: 共通のexpectation_derivationに示す承認済みL3 requirement・L4 contractと既存L5 ruleに従い、retry_targetの非対応fieldをoperation-ownerへ返す；独立導出したL5期待値: retry_target.contract_revision=content_conflict→operation-owner。実retry/receiver effectは主張しない。",
+      "expected_status": "independently_derived",
+      "expected_basis_refs": [
+        "docs/helix-connect/L5-detail-design/retry-deduplication-conflict.json#/branch_tables/F01/failure_rules/0"
+      ],
       "oracle_id": "HELIXCONNECT-L10-004-F01",
       "expected_oracle_ref": {
         "document": "docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json",
@@ -175,8 +329,19 @@
     },
     {
       "id": "C004-F01-ORIGINAL-DUPLICATE-RECEIVER-EFFECT",
-      "counterexample": "原receiver効果が増える場合、提出同値でも冪等成立にしない。 L9 condition/outcome witness: receiver_effect.delta=duplicate_or_conflicting_effect.",
-      "expected": "receiver_effect.delta=duplicate_or_conflicting_effect→receiver-owner；candidate_retry_receipt=held；receiver_effect=duplicate_or_conflicting_effect",
+      "u_id": "U-C004-015",
+      "function_ref": "FN-C004-01",
+      "counterexample": "HELIXCONNECT-L3-004-F01 の固定L9 raw source入力条件: /original_effect_observation/after_retry 入力arrayの要素数区分は 複数；/submitted_effect_observation/after_retry 入力arrayの要素数区分は 複数。",
+      "counterexample_source_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json",
+        "pointer": "/verification_obligations/0/concrete_cases/14/independent_source_packet/raw_utf8",
+        "comparison_baseline_pointer": "/verification_obligations/0/concrete_cases/0/independent_source_packet/raw_utf8"
+      },
+      "expected": "独立期待: 共通のexpectation_derivationに示す承認済みL3 requirement・L4 contractと既存L5 ruleに従い、one-effect観測条件で効果を分類し、観測不足はunknownのまま保持する；独立導出したL5期待値: receiver_effect.delta=duplicate_or_conflicting_effect→receiver-owner。実retry/receiver effectは主張しない。",
+      "expected_status": "independently_derived",
+      "expected_basis_refs": [
+        "docs/helix-connect/L5-detail-design/retry-deduplication-conflict.json#/branch_tables/F01/failure_rules/5"
+      ],
       "oracle_id": "HELIXCONNECT-L10-004-F01",
       "expected_oracle_ref": {
         "document": "docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json",
@@ -185,8 +350,20 @@
     },
     {
       "id": "C004-F01-ORIGINAL-EFFECT-UNOBSERVED",
-      "counterexample": "実効果未観測を冪等済みにしない。 L9 condition/outcome witness: effect_content.after_retry=unknown_original_information; receiver_effect.delta=unknown_or_conflicting_effect_binding.",
-      "expected": "effect_content.after_retry=unknown_original_information→receiver-owner; receiver_effect.delta=unknown_or_conflicting_effect_binding→receiver-owner；candidate_retry_receipt=held；receiver_effect=unknown_or_conflicting_effect_binding",
+      "u_id": "U-C004-016",
+      "function_ref": "FN-C004-01",
+      "counterexample": "HELIXCONNECT-L3-004-F01 の固定L9 raw source入力条件: 入力項目 /original_effect_observation/after_retry は同機能の先頭固定caseと異なる（値は複製しない）；入力項目 /original_effect_observation/state は同機能の先頭固定caseと異なる（値は複製しない）；入力項目 /submitted_effect_observation/after_retry は同機能の先頭固定caseと異なる（値は複製しない）；入力項目 /submitted_effect_observation/state は同機能の先頭固定caseと異なる（値は複製しない）。",
+      "counterexample_source_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json",
+        "pointer": "/verification_obligations/0/concrete_cases/15/independent_source_packet/raw_utf8",
+        "comparison_baseline_pointer": "/verification_obligations/0/concrete_cases/0/independent_source_packet/raw_utf8"
+      },
+      "expected": "独立期待: 共通のexpectation_derivationに示す承認済みL3 requirement・L4 contractと既存L5 ruleに従い、effect observation内容の差をreceiver-ownerへ返す；one-effect観測条件で効果を分類し、観測不足はunknownのまま保持する；独立導出したL5期待値: effect_content.after_retry=unknown_original_information→receiver-owner、receiver_effect.delta=unknown_or_conflicting_effect_binding→receiver-owner。実retry/receiver effectは主張しない。",
+      "expected_status": "independently_derived",
+      "expected_basis_refs": [
+        "docs/helix-connect/L5-detail-design/retry-deduplication-conflict.json#/branch_tables/F01/failure_rules/3",
+        "docs/helix-connect/L5-detail-design/retry-deduplication-conflict.json#/branch_tables/F01/failure_rules/5"
+      ],
       "oracle_id": "HELIXCONNECT-L10-004-F01",
       "expected_oracle_ref": {
         "document": "docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json",
@@ -195,8 +372,20 @@
     },
     {
       "id": "C004-F01-EFFECT-OTHER-OPERATION",
-      "counterexample": "別operationの効果一回を当該retryへ外挿しない。 L9 condition/outcome witness: effect_target.operation_identity=content_conflict; receiver_effect.delta=unknown_or_conflicting_effect_binding.",
-      "expected": "effect_target.operation_identity=content_conflict→receiver-owner; receiver_effect.delta=unknown_or_conflicting_effect_binding→receiver-owner；candidate_retry_receipt=held；receiver_effect=unknown_or_conflicting_effect_binding",
+      "u_id": "U-C004-017",
+      "function_ref": "FN-C004-01",
+      "counterexample": "HELIXCONNECT-L3-004-F01 の固定L9 raw source入力条件: /original_effect_observation/target/operation_identity のtarget.operation_identity は original_operationと異なる；/submitted_effect_observation/target/operation_identity のtarget.operation_identity は original_operationと異なる。",
+      "counterexample_source_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json",
+        "pointer": "/verification_obligations/0/concrete_cases/16/independent_source_packet/raw_utf8",
+        "comparison_baseline_pointer": "/verification_obligations/0/concrete_cases/0/independent_source_packet/raw_utf8"
+      },
+      "expected": "独立期待: 共通のexpectation_derivationに示す承認済みL3 requirement・L4 contractと既存L5 ruleに従い、effect targetの差をreceiver-ownerへ返す；one-effect観測条件で効果を分類し、観測不足はunknownのまま保持する；独立導出したL5期待値: effect_target.operation_identity=content_conflict→receiver-owner、receiver_effect.delta=unknown_or_conflicting_effect_binding→receiver-owner。実retry/receiver effectは主張しない。",
+      "expected_status": "independently_derived",
+      "expected_basis_refs": [
+        "docs/helix-connect/L5-detail-design/retry-deduplication-conflict.json#/branch_tables/F01/failure_rules/4",
+        "docs/helix-connect/L5-detail-design/retry-deduplication-conflict.json#/branch_tables/F01/failure_rules/5"
+      ],
       "oracle_id": "HELIXCONNECT-L10-004-F01",
       "expected_oracle_ref": {
         "document": "docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json",
@@ -205,8 +394,20 @@
     },
     {
       "id": "C004-F01-SUBMITTED-EFFECT-ERASED",
-      "counterexample": "原効果を提出値で消して増分0にしない。 L9 condition/outcome witness: effect_content.after_retry=content_conflict; receiver_effect.delta=unknown_or_conflicting_effect_binding.",
-      "expected": "effect_content.after_retry=content_conflict→receiver-owner; receiver_effect.delta=unknown_or_conflicting_effect_binding→receiver-owner；candidate_retry_receipt=held；receiver_effect=unknown_or_conflicting_effect_binding",
+      "u_id": "U-C004-018",
+      "function_ref": "FN-C004-01",
+      "counterexample": "HELIXCONNECT-L3-004-F01 の固定L9 raw source入力条件: /submitted_effect_observation/after_retry 入力arrayの要素数区分は 空。",
+      "counterexample_source_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json",
+        "pointer": "/verification_obligations/0/concrete_cases/17/independent_source_packet/raw_utf8",
+        "comparison_baseline_pointer": "/verification_obligations/0/concrete_cases/0/independent_source_packet/raw_utf8"
+      },
+      "expected": "独立期待: 共通のexpectation_derivationに示す承認済みL3 requirement・L4 contractと既存L5 ruleに従い、effect observation内容の差をreceiver-ownerへ返す；one-effect観測条件で効果を分類し、観測不足はunknownのまま保持する；独立導出したL5期待値: effect_content.after_retry=content_conflict→receiver-owner、receiver_effect.delta=unknown_or_conflicting_effect_binding→receiver-owner。実retry/receiver effectは主張しない。",
+      "expected_status": "independently_derived",
+      "expected_basis_refs": [
+        "docs/helix-connect/L5-detail-design/retry-deduplication-conflict.json#/branch_tables/F01/failure_rules/3",
+        "docs/helix-connect/L5-detail-design/retry-deduplication-conflict.json#/branch_tables/F01/failure_rules/5"
+      ],
       "oracle_id": "HELIXCONNECT-L10-004-F01",
       "expected_oracle_ref": {
         "document": "docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json",
@@ -215,8 +416,19 @@
     },
     {
       "id": "C004-F01-ATTEMPT-IDENTITY-NOT-DISTINCT",
-      "counterexample": "同operationでもattempt identityの混同を許さない。 L9 condition/outcome witness: attempt_distinction.identity_and_ordinal=duplicate_attempt_identity.",
-      "expected": "attempt_distinction.identity_and_ordinal=duplicate_attempt_identity→operation-owner；candidate_retry_receipt=held；receiver_effect=one_effect_retained_in_fixture_only",
+      "u_id": "U-C004-019",
+      "function_ref": "FN-C004-01",
+      "counterexample": "HELIXCONNECT-L3-004-F01 の固定L9 raw source入力条件: 入力項目 /original_attempts/1/identity は同機能の先頭固定caseと異なる（値は複製しない）；入力項目 /submitted_attempts/1/identity は同機能の先頭固定caseと異なる（値は複製しない）。",
+      "counterexample_source_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json",
+        "pointer": "/verification_obligations/0/concrete_cases/18/independent_source_packet/raw_utf8",
+        "comparison_baseline_pointer": "/verification_obligations/0/concrete_cases/0/independent_source_packet/raw_utf8"
+      },
+      "expected": "独立期待: 共通のexpectation_derivationに示す承認済みL3 requirement・L4 contractと既存L5 ruleに従い、attempt identity/ordinal重複をoperation-ownerへ返す；独立導出したL5期待値: attempt_distinction.identity_and_ordinal=duplicate_attempt_identity→operation-owner。実retry/receiver effectは主張しない。",
+      "expected_status": "independently_derived",
+      "expected_basis_refs": [
+        "docs/helix-connect/L5-detail-design/retry-deduplication-conflict.json#/branch_tables/F01/failure_rules/6"
+      ],
       "oracle_id": "HELIXCONNECT-L10-004-F01",
       "expected_oracle_ref": {
         "document": "docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json",
@@ -225,8 +437,19 @@
     },
     {
       "id": "C004-F01-RECEIVER-CONTRACT-OTHER-REVISION",
-      "counterexample": "別版receiver契約を単一版へjoinしない。 L9 condition/outcome witness: receiver_contract_target.contract_revision=content_conflict.",
-      "expected": "receiver_contract_target.contract_revision=content_conflict→receiver-contract-owner；candidate_retry_receipt=held；receiver_effect=one_effect_retained_in_fixture_only",
+      "u_id": "U-C004-020",
+      "function_ref": "FN-C004-01",
+      "counterexample": "HELIXCONNECT-L3-004-F01 の固定L9 raw source入力条件: /original_receiver_contract/target/contract_revision のtarget.contract_revision は original_operationと異なる。",
+      "counterexample_source_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json",
+        "pointer": "/verification_obligations/0/concrete_cases/19/independent_source_packet/raw_utf8",
+        "comparison_baseline_pointer": "/verification_obligations/0/concrete_cases/0/independent_source_packet/raw_utf8"
+      },
+      "expected": "独立期待: 共通のexpectation_derivationに示す承認済みL3 requirement・L4 contractと既存L5 ruleに従い、receiver contract targetの差をreceiver-contract-ownerへ返す；独立導出したL5期待値: receiver_contract_target.contract_revision=content_conflict→receiver-contract-owner。実retry/receiver effectは主張しない。",
+      "expected_status": "independently_derived",
+      "expected_basis_refs": [
+        "docs/helix-connect/L5-detail-design/retry-deduplication-conflict.json#/branch_tables/F01/failure_rules/7"
+      ],
       "oracle_id": "HELIXCONNECT-L10-004-F01",
       "expected_oracle_ref": {
         "document": "docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json",
@@ -235,8 +458,19 @@
     },
     {
       "id": "C004-F01-RETRY-NOT-SELECTED",
-      "counterexample": "非選択再送の全実装/全効果を当該操作の固定gateにしない。 L9 condition/outcome witness: candidate_retry_receipt=not_selected_unobserved; receiver_effect=one_effect_retained_in_fixture_only.",
-      "expected": "追加停止理由なし；candidate_retry_receipt=not_selected_unobserved；receiver_effect=one_effect_retained_in_fixture_only",
+      "u_id": "U-C004-021",
+      "function_ref": "FN-C004-01",
+      "counterexample": "HELIXCONNECT-L3-004-F01 の固定L9 raw source入力条件: retry_selected 入力は False。",
+      "counterexample_source_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json",
+        "pointer": "/verification_obligations/0/concrete_cases/20/independent_source_packet/raw_utf8",
+        "comparison_baseline_pointer": "/verification_obligations/0/concrete_cases/0/independent_source_packet/raw_utf8"
+      },
+      "expected": "独立期待: 共通のexpectation_derivationに示す承認済みL3 requirement・L4 contractと既存L5 ruleに従い、selected_false branchではnot_selected_unobservedとし、attempt/effectを主張しない。実retry/receiver effectは主張しない。",
+      "expected_status": "independently_derived",
+      "expected_basis_refs": [
+        "docs/helix-connect/L5-detail-design/retry-deduplication-conflict.json#/branch_tables/F01/selected_false"
+      ],
       "oracle_id": "HELIXCONNECT-L10-004-F01",
       "expected_oracle_ref": {
         "document": "docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json",
@@ -245,8 +479,19 @@
     },
     {
       "id": "C004-F01-ORIGINAL-MULTIPLE-EFFECTS-BEFORE-RETRY",
-      "counterexample": "同operationの原効果は増分だけでなく一回分の総集合を照合し、二重効果を一回済みにしない。 L9 condition/outcome witness: receiver_effect.delta=duplicate_or_conflicting_effect.",
-      "expected": "receiver_effect.delta=duplicate_or_conflicting_effect→receiver-owner；candidate_retry_receipt=held；receiver_effect=duplicate_or_conflicting_effect",
+      "u_id": "U-C004-022",
+      "function_ref": "FN-C004-01",
+      "counterexample": "HELIXCONNECT-L3-004-F01 の固定L9 raw source入力条件: /original_effect_observation/after_first 入力arrayの要素数区分は 複数；/original_effect_observation/after_retry 入力arrayの要素数区分は 複数；/original_effect_observation/before 入力arrayの要素数区分は 単一；/submitted_effect_observation/after_first 入力arrayの要素数区分は 複数；/submitted_effect_observation/after_retry 入力arrayの要素数区分は 複数；/submitted_effect_observation/before 入力arrayの要素数区分は 単一。",
+      "counterexample_source_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json",
+        "pointer": "/verification_obligations/0/concrete_cases/21/independent_source_packet/raw_utf8",
+        "comparison_baseline_pointer": "/verification_obligations/0/concrete_cases/0/independent_source_packet/raw_utf8"
+      },
+      "expected": "独立期待: 共通のexpectation_derivationに示す承認済みL3 requirement・L4 contractと既存L5 ruleに従い、one-effect観測条件で効果を分類し、観測不足はunknownのまま保持する；独立導出したL5期待値: receiver_effect.delta=duplicate_or_conflicting_effect→receiver-owner。実retry/receiver effectは主張しない。",
+      "expected_status": "independently_derived",
+      "expected_basis_refs": [
+        "docs/helix-connect/L5-detail-design/retry-deduplication-conflict.json#/branch_tables/F01/failure_rules/5"
+      ],
       "oracle_id": "HELIXCONNECT-L10-004-F01",
       "expected_oracle_ref": {
         "document": "docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json",
@@ -255,8 +500,19 @@
     },
     {
       "id": "C004-F01-SAME_CONTENT_DOUBLE_EFFECT",
-      "counterexample": "二重効果/同key別operation/未観測冪等済みclaimを拒否。 L9 condition/outcome witness: receiver_effect.delta=duplicate_or_conflicting_effect; L9 scenario markers=same_content_double_effect.",
-      "expected": "receiver_effect.delta=duplicate_or_conflicting_effect→receiver-owner；candidate_retry_receipt=held；receiver_effect=duplicate_or_conflicting_effect",
+      "u_id": "U-C004-023",
+      "function_ref": "FN-C004-01",
+      "counterexample": "HELIXCONNECT-L3-004-F01 の固定L9 raw source入力条件: 入力 claim same_content_double_effect が主張されている；/original_effect_observation/after_retry 入力arrayの要素数区分は 複数；/submitted_effect_observation/after_retry 入力arrayの要素数区分は 複数。",
+      "counterexample_source_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json",
+        "pointer": "/verification_obligations/0/concrete_cases/22/independent_source_packet/raw_utf8",
+        "comparison_baseline_pointer": "/verification_obligations/0/concrete_cases/0/independent_source_packet/raw_utf8"
+      },
+      "expected": "未検証: この入力claimのacceptance/rejection semanticsは共通の承認済みL3/L4根拠およびL5 ruleから独立確定できない。適用可能な既存L5 branch境界は one-effect観測条件で効果を分類し、観測不足はunknownのまま保持する。",
+      "expected_status": "unverified",
+      "expected_basis_refs": [
+        "docs/helix-connect/L5-detail-design/retry-deduplication-conflict.json#/branch_tables/F01/failure_rules/5"
+      ],
       "oracle_id": "HELIXCONNECT-L10-004-F01",
       "expected_oracle_ref": {
         "document": "docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json",
@@ -265,8 +521,19 @@
     },
     {
       "id": "C004-F01-SAME_KEY_OTHER_OPERATION",
-      "counterexample": "二重効果/同key別operation/未観測冪等済みclaimを拒否。 L9 condition/outcome witness: retry_target.operation_identity=content_conflict; L9 scenario markers=same_key_other_operation.",
-      "expected": "retry_target.operation_identity=content_conflict→operation-owner；candidate_retry_receipt=held；receiver_effect=one_effect_retained_in_fixture_only",
+      "u_id": "U-C004-024",
+      "function_ref": "FN-C004-01",
+      "counterexample": "HELIXCONNECT-L3-004-F01 の固定L9 raw source入力条件: 入力 claim same_key_other_operation が主張されている；submitted_retry.operation_identity は original_operationと異なる。",
+      "counterexample_source_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json",
+        "pointer": "/verification_obligations/0/concrete_cases/23/independent_source_packet/raw_utf8",
+        "comparison_baseline_pointer": "/verification_obligations/0/concrete_cases/0/independent_source_packet/raw_utf8"
+      },
+      "expected": "未検証: この入力claimのacceptance/rejection semanticsは共通の承認済みL3/L4根拠およびL5 ruleから独立確定できない。適用可能な既存L5 branch境界は retry_targetの非対応fieldをoperation-ownerへ返す。",
+      "expected_status": "unverified",
+      "expected_basis_refs": [
+        "docs/helix-connect/L5-detail-design/retry-deduplication-conflict.json#/branch_tables/F01/failure_rules/0"
+      ],
       "oracle_id": "HELIXCONNECT-L10-004-F01",
       "expected_oracle_ref": {
         "document": "docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json",
@@ -275,8 +542,19 @@
     },
     {
       "id": "C004-F01-UNOBSERVED_IDEMPOTENT",
-      "counterexample": "二重効果/同key別operation/未観測冪等済みclaimを拒否。 L9 condition/outcome witness: receiver_effect.delta=unknown_unobserved; L9 scenario markers=unobserved_idempotent.",
-      "expected": "receiver_effect.delta=unknown_unobserved→receiver-owner；candidate_retry_receipt=held；receiver_effect=unknown_unobserved",
+      "u_id": "U-C004-025",
+      "function_ref": "FN-C004-01",
+      "counterexample": "HELIXCONNECT-L3-004-F01 の固定L9 raw source入力条件: 入力 claim unobserved_idempotent が主張されている；入力項目 /original_effect_observation/state は同機能の先頭固定caseと異なる（値は複製しない）；入力項目 /submitted_effect_observation/state は同機能の先頭固定caseと異なる（値は複製しない）。",
+      "counterexample_source_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json",
+        "pointer": "/verification_obligations/0/concrete_cases/24/independent_source_packet/raw_utf8",
+        "comparison_baseline_pointer": "/verification_obligations/0/concrete_cases/0/independent_source_packet/raw_utf8"
+      },
+      "expected": "未検証: この入力claimのacceptance/rejection semanticsは共通の承認済みL3/L4根拠およびL5 ruleから独立確定できない。適用可能な既存L5 branch境界は one-effect観測条件で効果を分類し、観測不足はunknownのまま保持する。",
+      "expected_status": "unverified",
+      "expected_basis_refs": [
+        "docs/helix-connect/L5-detail-design/retry-deduplication-conflict.json#/branch_tables/F01/failure_rules/5"
+      ],
       "oracle_id": "HELIXCONNECT-L10-004-F01",
       "expected_oracle_ref": {
         "document": "docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json",
@@ -285,8 +563,19 @@
     },
     {
       "id": "C004-F02-SAME-KEY-SAME-DIGEST",
-      "counterexample": "同key同digestの原入力は別caseで、衝突と混同しない。 L9 condition/outcome witness: digest_relation=same_digest; action=same_content_candidate_only; effect_increment=no_increment_in_fixture_only; additional_failure=none.",
-      "expected": "digest_relation=same_digest；action=same_content_candidate_only；effect_increment=no_increment_in_fixture_only；追加停止理由なし",
+      "u_id": "U-C004-026",
+      "function_ref": "FN-C004-02",
+      "counterexample": "HELIXCONNECT-L3-004-F02 の固定L9 raw source入力条件: original incoming digestはoriginal operation digestと同じで、effect observationが提示される。",
+      "counterexample_source_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json",
+        "pointer": "/verification_obligations/1/concrete_cases/0/independent_source_packet/raw_utf8",
+        "comparison_baseline_pointer": "/verification_obligations/1/concrete_cases/0/independent_source_packet/raw_utf8"
+      },
+      "expected": "独立期待: 共通のexpectation_derivationに示す承認済みL3 requirement・L4 contractと既存L5 ruleに従い、同digestかつincoming/operation bindingが一致するときcandidate actionはsame_content_candidate_onlyであり、異digest衝突とはしない。実retry/receiver effectは主張しない。",
+      "expected_status": "independently_derived",
+      "expected_basis_refs": [
+        "docs/helix-connect/L5-detail-design/retry-deduplication-conflict.json#/branch_tables/F02/candidate_action_rules"
+      ],
       "oracle_id": "HELIXCONNECT-L10-004-F02",
       "expected_oracle_ref": {
         "document": "docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json",
@@ -295,8 +584,19 @@
     },
     {
       "id": "C004-F02-SAME-KEY-DIFFERENT-DIGEST-NO-INCREMENT",
-      "counterexample": "異digestは衝突停止、元operation/未完とreceiver増分なしを保持。 L9 condition/outcome witness: digest_relation=different_digest; action=stop_digest_conflict; effect_increment=no_increment_in_fixture_only; digest_relation.digest=different_digest.",
-      "expected": "digest_relation=different_digest；action=stop_digest_conflict；effect_increment=no_increment_in_fixture_only；digest_relation.digest=different_digest→operation-owner",
+      "u_id": "U-C004-027",
+      "function_ref": "FN-C004-02",
+      "counterexample": "HELIXCONNECT-L3-004-F02 の固定L9 raw source入力条件: original_incoming.digest は original_operationと異なる；submitted_incoming.digest は original_incomingと同じ。",
+      "counterexample_source_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json",
+        "pointer": "/verification_obligations/1/concrete_cases/1/independent_source_packet/raw_utf8",
+        "comparison_baseline_pointer": "/verification_obligations/1/concrete_cases/0/independent_source_packet/raw_utf8"
+      },
+      "expected": "独立期待: 共通のexpectation_derivationに示す承認済みL3 requirement・L4 contractと既存L5 ruleに従い、元operation/incoming digest関係でcandidate actionを選び、digest差をoperation-ownerへ返す；独立導出したL5期待値: digest_relation.digest=different_digest→operation-owner。実retry/receiver effectは主張しない。",
+      "expected_status": "independently_derived",
+      "expected_basis_refs": [
+        "docs/helix-connect/L5-detail-design/retry-deduplication-conflict.json#/branch_tables/F02/failure_rules/3"
+      ],
       "oracle_id": "HELIXCONNECT-L10-004-F02",
       "expected_oracle_ref": {
         "document": "docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json",
@@ -305,8 +605,20 @@
     },
     {
       "id": "C004-F02-OPERATION_IDENTITY-FOREIGN",
-      "counterexample": "別operation/key/scope/版を元retryへ混載しない。 L9 condition/outcome witness: digest_relation=different_digest; action=held_identity_or_unknown; effect_increment=no_increment_in_fixture_only; operation_binding.operation_identity=content_conflict; digest_relation.digest=different_digest.",
-      "expected": "digest_relation=different_digest；action=held_identity_or_unknown；effect_increment=no_increment_in_fixture_only；operation_binding.operation_identity=content_conflict→operation-owner; digest_relation.digest=different_digest→operation-owner",
+      "u_id": "U-C004-028",
+      "function_ref": "FN-C004-02",
+      "counterexample": "HELIXCONNECT-L3-004-F02 の固定L9 raw source入力条件: original_incoming.digest は original_operationと異なる；original_incoming.operation_identity は original_operationと異なる；submitted_incoming.digest は original_incomingと同じ；submitted_incoming.operation_identity は original_incomingと同じ。",
+      "counterexample_source_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json",
+        "pointer": "/verification_obligations/1/concrete_cases/2/independent_source_packet/raw_utf8",
+        "comparison_baseline_pointer": "/verification_obligations/1/concrete_cases/0/independent_source_packet/raw_utf8"
+      },
+      "expected": "独立期待: 共通のexpectation_derivationに示す承認済みL3 requirement・L4 contractと既存L5 ruleに従い、incomingと元operationのbinding差をoperation-ownerへ返す；元operation/incoming digest関係でcandidate actionを選び、digest差をoperation-ownerへ返す；独立導出したL5期待値: operation_binding.operation_identity=content_conflict→operation-owner、digest_relation.digest=different_digest→operation-owner。実retry/receiver effectは主張しない。",
+      "expected_status": "independently_derived",
+      "expected_basis_refs": [
+        "docs/helix-connect/L5-detail-design/retry-deduplication-conflict.json#/branch_tables/F02/failure_rules/1",
+        "docs/helix-connect/L5-detail-design/retry-deduplication-conflict.json#/branch_tables/F02/failure_rules/3"
+      ],
       "oracle_id": "HELIXCONNECT-L10-004-F02",
       "expected_oracle_ref": {
         "document": "docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json",
@@ -315,8 +627,20 @@
     },
     {
       "id": "C004-F02-IDEMPOTENCY-FOREIGN",
-      "counterexample": "別operation/key/scope/版を元retryへ混載しない。 L9 condition/outcome witness: digest_relation=different_digest; action=held_identity_or_unknown; effect_increment=no_increment_in_fixture_only; operation_binding.idempotency=content_conflict; digest_relation.digest=different_digest.",
-      "expected": "digest_relation=different_digest；action=held_identity_or_unknown；effect_increment=no_increment_in_fixture_only；operation_binding.idempotency=content_conflict→operation-owner; digest_relation.digest=different_digest→operation-owner",
+      "u_id": "U-C004-029",
+      "function_ref": "FN-C004-02",
+      "counterexample": "HELIXCONNECT-L3-004-F02 の固定L9 raw source入力条件: original_incoming.digest は original_operationと異なる；original_incoming.idempotency は original_operationと異なる；submitted_incoming.digest は original_incomingと同じ；submitted_incoming.idempotency は original_incomingと同じ。",
+      "counterexample_source_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json",
+        "pointer": "/verification_obligations/1/concrete_cases/3/independent_source_packet/raw_utf8",
+        "comparison_baseline_pointer": "/verification_obligations/1/concrete_cases/0/independent_source_packet/raw_utf8"
+      },
+      "expected": "独立期待: 共通のexpectation_derivationに示す承認済みL3 requirement・L4 contractと既存L5 ruleに従い、incomingと元operationのbinding差をoperation-ownerへ返す；元operation/incoming digest関係でcandidate actionを選び、digest差をoperation-ownerへ返す；独立導出したL5期待値: operation_binding.idempotency=content_conflict→operation-owner、digest_relation.digest=different_digest→operation-owner。実retry/receiver effectは主張しない。",
+      "expected_status": "independently_derived",
+      "expected_basis_refs": [
+        "docs/helix-connect/L5-detail-design/retry-deduplication-conflict.json#/branch_tables/F02/failure_rules/1",
+        "docs/helix-connect/L5-detail-design/retry-deduplication-conflict.json#/branch_tables/F02/failure_rules/3"
+      ],
       "oracle_id": "HELIXCONNECT-L10-004-F02",
       "expected_oracle_ref": {
         "document": "docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json",
@@ -325,8 +649,20 @@
     },
     {
       "id": "C004-F02-SCOPE-FOREIGN",
-      "counterexample": "別operation/key/scope/版を元retryへ混載しない。 L9 condition/outcome witness: digest_relation=different_digest; action=held_identity_or_unknown; effect_increment=no_increment_in_fixture_only; operation_binding.scope=content_conflict; digest_relation.digest=different_digest.",
-      "expected": "digest_relation=different_digest；action=held_identity_or_unknown；effect_increment=no_increment_in_fixture_only；operation_binding.scope=content_conflict→operation-owner; digest_relation.digest=different_digest→operation-owner",
+      "u_id": "U-C004-030",
+      "function_ref": "FN-C004-02",
+      "counterexample": "HELIXCONNECT-L3-004-F02 の固定L9 raw source入力条件: original_incoming.digest は original_operationと異なる；original_incoming.scope は original_operationと異なる；submitted_incoming.digest は original_incomingと同じ；submitted_incoming.scope は original_incomingと同じ。",
+      "counterexample_source_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json",
+        "pointer": "/verification_obligations/1/concrete_cases/4/independent_source_packet/raw_utf8",
+        "comparison_baseline_pointer": "/verification_obligations/1/concrete_cases/0/independent_source_packet/raw_utf8"
+      },
+      "expected": "独立期待: 共通のexpectation_derivationに示す承認済みL3 requirement・L4 contractと既存L5 ruleに従い、incomingと元operationのbinding差をoperation-ownerへ返す；元operation/incoming digest関係でcandidate actionを選び、digest差をoperation-ownerへ返す；独立導出したL5期待値: operation_binding.scope=content_conflict→operation-owner、digest_relation.digest=different_digest→operation-owner。実retry/receiver effectは主張しない。",
+      "expected_status": "independently_derived",
+      "expected_basis_refs": [
+        "docs/helix-connect/L5-detail-design/retry-deduplication-conflict.json#/branch_tables/F02/failure_rules/1",
+        "docs/helix-connect/L5-detail-design/retry-deduplication-conflict.json#/branch_tables/F02/failure_rules/3"
+      ],
       "oracle_id": "HELIXCONNECT-L10-004-F02",
       "expected_oracle_ref": {
         "document": "docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json",
@@ -335,8 +671,20 @@
     },
     {
       "id": "C004-F02-CONTRACT_REVISION-FOREIGN",
-      "counterexample": "別operation/key/scope/版を元retryへ混載しない。 L9 condition/outcome witness: digest_relation=different_digest; action=held_identity_or_unknown; effect_increment=no_increment_in_fixture_only; operation_binding.contract_revision=content_conflict; digest_relation.digest=different_digest.",
-      "expected": "digest_relation=different_digest；action=held_identity_or_unknown；effect_increment=no_increment_in_fixture_only；operation_binding.contract_revision=content_conflict→operation-owner; digest_relation.digest=different_digest→operation-owner",
+      "u_id": "U-C004-031",
+      "function_ref": "FN-C004-02",
+      "counterexample": "HELIXCONNECT-L3-004-F02 の固定L9 raw source入力条件: original_incoming.contract_revision は original_operationと異なる；original_incoming.digest は original_operationと異なる；submitted_incoming.contract_revision は original_incomingと同じ；submitted_incoming.digest は original_incomingと同じ。",
+      "counterexample_source_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json",
+        "pointer": "/verification_obligations/1/concrete_cases/5/independent_source_packet/raw_utf8",
+        "comparison_baseline_pointer": "/verification_obligations/1/concrete_cases/0/independent_source_packet/raw_utf8"
+      },
+      "expected": "独立期待: 共通のexpectation_derivationに示す承認済みL3 requirement・L4 contractと既存L5 ruleに従い、incomingと元operationのbinding差をoperation-ownerへ返す；元operation/incoming digest関係でcandidate actionを選び、digest差をoperation-ownerへ返す；独立導出したL5期待値: operation_binding.contract_revision=content_conflict→operation-owner、digest_relation.digest=different_digest→operation-owner。実retry/receiver effectは主張しない。",
+      "expected_status": "independently_derived",
+      "expected_basis_refs": [
+        "docs/helix-connect/L5-detail-design/retry-deduplication-conflict.json#/branch_tables/F02/failure_rules/1",
+        "docs/helix-connect/L5-detail-design/retry-deduplication-conflict.json#/branch_tables/F02/failure_rules/3"
+      ],
       "oracle_id": "HELIXCONNECT-L10-004-F02",
       "expected_oracle_ref": {
         "document": "docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json",
@@ -345,8 +693,20 @@
     },
     {
       "id": "C004-F02-SUBMITTED-DIGEST-CONFLICT-HIDDEN",
-      "counterexample": "異digest原入力を提出値で同じretryへ隠さない。 L9 condition/outcome witness: digest_relation=different_digest; action=held_identity_or_unknown; effect_increment=no_increment_in_fixture_only; incoming_content.digest=content_conflict; digest_relation.digest=different_digest.",
-      "expected": "digest_relation=different_digest；action=held_identity_or_unknown；effect_increment=no_increment_in_fixture_only；incoming_content.digest=content_conflict→operation-owner; digest_relation.digest=different_digest→operation-owner",
+      "u_id": "U-C004-032",
+      "function_ref": "FN-C004-02",
+      "counterexample": "HELIXCONNECT-L3-004-F02 の固定L9 raw source入力条件: original_incoming.digest は original_operationと異なる。",
+      "counterexample_source_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json",
+        "pointer": "/verification_obligations/1/concrete_cases/6/independent_source_packet/raw_utf8",
+        "comparison_baseline_pointer": "/verification_obligations/1/concrete_cases/0/independent_source_packet/raw_utf8"
+      },
+      "expected": "独立期待: 共通のexpectation_derivationに示す承認済みL3 requirement・L4 contractと既存L5 ruleに従い、提出incoming間の内容差をoperation-ownerへ返す；元operation/incoming digest関係でcandidate actionを選び、digest差をoperation-ownerへ返す；独立導出したL5期待値: incoming_content.digest=content_conflict→operation-owner、digest_relation.digest=different_digest→operation-owner。実retry/receiver effectは主張しない。",
+      "expected_status": "independently_derived",
+      "expected_basis_refs": [
+        "docs/helix-connect/L5-detail-design/retry-deduplication-conflict.json#/branch_tables/F02/failure_rules/0",
+        "docs/helix-connect/L5-detail-design/retry-deduplication-conflict.json#/branch_tables/F02/failure_rules/3"
+      ],
       "oracle_id": "HELIXCONNECT-L10-004-F02",
       "expected_oracle_ref": {
         "document": "docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json",
@@ -355,8 +715,20 @@
     },
     {
       "id": "C004-F02-ORIGINAL-SIDE-EFFECT-AFTER-CONFLICT",
-      "counterexample": "衝突停止recordだけで増分副作用を成功扱いにしない。 L9 condition/outcome witness: digest_relation=different_digest; action=stop_digest_conflict; effect_increment=conflict_side_effect; digest_relation.digest=different_digest; receiver_effect.after_conflict=conflict_side_effect.",
-      "expected": "digest_relation=different_digest；action=stop_digest_conflict；effect_increment=conflict_side_effect；digest_relation.digest=different_digest→operation-owner; receiver_effect.after_conflict=conflict_side_effect→receiver-owner",
+      "u_id": "U-C004-033",
+      "function_ref": "FN-C004-02",
+      "counterexample": "HELIXCONNECT-L3-004-F02 の固定L9 raw source入力条件: /original_effect_after 入力arrayの要素数区分は 複数；original_incoming.digest は original_operationと異なる；/submitted_effect_after 入力arrayの要素数区分は 複数；submitted_incoming.digest は original_incomingと同じ。",
+      "counterexample_source_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json",
+        "pointer": "/verification_obligations/1/concrete_cases/7/independent_source_packet/raw_utf8",
+        "comparison_baseline_pointer": "/verification_obligations/1/concrete_cases/0/independent_source_packet/raw_utf8"
+      },
+      "expected": "独立期待: 共通のexpectation_derivationに示す承認済みL3 requirement・L4 contractと既存L5 ruleに従い、元operation/incoming digest関係でcandidate actionを選び、digest差をoperation-ownerへ返す；衝突後のreceiver effect増分をreceiver-ownerへ返す；独立導出したL5期待値: digest_relation.digest=different_digest→operation-owner、receiver_effect.after_conflict=conflict_side_effect→receiver-owner。実retry/receiver effectは主張しない。",
+      "expected_status": "independently_derived",
+      "expected_basis_refs": [
+        "docs/helix-connect/L5-detail-design/retry-deduplication-conflict.json#/branch_tables/F02/failure_rules/3",
+        "docs/helix-connect/L5-detail-design/retry-deduplication-conflict.json#/branch_tables/F02/failure_rules/4"
+      ],
       "oracle_id": "HELIXCONNECT-L10-004-F02",
       "expected_oracle_ref": {
         "document": "docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json",
@@ -365,8 +737,21 @@
     },
     {
       "id": "C004-F02-CONFLICT-EFFECT-UNOBSERVED",
-      "counterexample": "衝突後実効果未観測を増分なしへ推測しない。 L9 condition/outcome witness: digest_relation=different_digest; action=stop_digest_conflict; effect_increment=unknown_unobserved; digest_relation.digest=different_digest; receiver_effect.after_conflict=unknown_unobserved; effect_content.after_conflict=unknown_original_information.",
-      "expected": "digest_relation=different_digest；action=stop_digest_conflict；effect_increment=unknown_unobserved；digest_relation.digest=different_digest→operation-owner; receiver_effect.after_conflict=unknown_unobserved→receiver-owner; effect_content.after_conflict=unknown_original_information→receiver-owner",
+      "u_id": "U-C004-034",
+      "function_ref": "FN-C004-02",
+      "counterexample": "HELIXCONNECT-L3-004-F02 の固定L9 raw source入力条件: 入力項目 /original_effect_after は同機能の先頭固定caseと異なる（値は複製しない）；入力項目 /original_effect_state は同機能の先頭固定caseと異なる（値は複製しない）；original_incoming.digest は original_operationと異なる；入力項目 /submitted_effect_after は同機能の先頭固定caseと異なる（値は複製しない）；submitted_incoming.digest は original_incomingと同じ。",
+      "counterexample_source_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json",
+        "pointer": "/verification_obligations/1/concrete_cases/8/independent_source_packet/raw_utf8",
+        "comparison_baseline_pointer": "/verification_obligations/1/concrete_cases/0/independent_source_packet/raw_utf8"
+      },
+      "expected": "独立期待: 共通のexpectation_derivationに示す承認済みL3 requirement・L4 contractと既存L5 ruleに従い、元operation/incoming digest関係でcandidate actionを選び、digest差をoperation-ownerへ返す；衝突後のreceiver effect増分をreceiver-ownerへ返す；effect内容差をreceiver-ownerへ返す；独立導出したL5期待値: digest_relation.digest=different_digest→operation-owner、receiver_effect.after_conflict=unknown_unobserved→receiver-owner、effect_content.after_conflict=unknown_original_information→receiver-owner。実retry/receiver effectは主張しない。",
+      "expected_status": "independently_derived",
+      "expected_basis_refs": [
+        "docs/helix-connect/L5-detail-design/retry-deduplication-conflict.json#/branch_tables/F02/failure_rules/3",
+        "docs/helix-connect/L5-detail-design/retry-deduplication-conflict.json#/branch_tables/F02/failure_rules/4",
+        "docs/helix-connect/L5-detail-design/retry-deduplication-conflict.json#/branch_tables/F02/failure_rules/5"
+      ],
       "oracle_id": "HELIXCONNECT-L10-004-F02",
       "expected_oracle_ref": {
         "document": "docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json",
@@ -375,8 +760,20 @@
     },
     {
       "id": "C004-F02-ORIGINAL-DIGEST-UNKNOWN",
-      "counterexample": "原digest未定は同値nullでも同内容にしない。 L9 condition/outcome witness: digest_relation=unknown; action=held_identity_or_unknown; effect_increment=no_increment_in_fixture_only; incoming_content.digest=unknown_original_information; digest_relation.digest=unknown.",
-      "expected": "digest_relation=unknown；action=held_identity_or_unknown；effect_increment=no_increment_in_fixture_only；incoming_content.digest=unknown_original_information→operation-owner; digest_relation.digest=unknown→operation-owner",
+      "u_id": "U-C004-035",
+      "function_ref": "FN-C004-02",
+      "counterexample": "HELIXCONNECT-L3-004-F02 の固定L9 raw source入力条件: original_incoming.digest は null；submitted_incoming.digest は original_incomingと同じ。",
+      "counterexample_source_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json",
+        "pointer": "/verification_obligations/1/concrete_cases/9/independent_source_packet/raw_utf8",
+        "comparison_baseline_pointer": "/verification_obligations/1/concrete_cases/0/independent_source_packet/raw_utf8"
+      },
+      "expected": "独立期待: 共通のexpectation_derivationに示す承認済みL3 requirement・L4 contractと既存L5 ruleに従い、提出incoming間の内容差をoperation-ownerへ返す；元operation/incoming digest関係でcandidate actionを選び、digest差をoperation-ownerへ返す；独立導出したL5期待値: incoming_content.digest=unknown_original_information→operation-owner、digest_relation.digest=unknown→operation-owner。実retry/receiver effectは主張しない。",
+      "expected_status": "independently_derived",
+      "expected_basis_refs": [
+        "docs/helix-connect/L5-detail-design/retry-deduplication-conflict.json#/branch_tables/F02/failure_rules/0",
+        "docs/helix-connect/L5-detail-design/retry-deduplication-conflict.json#/branch_tables/F02/failure_rules/3"
+      ],
       "oracle_id": "HELIXCONNECT-L10-004-F02",
       "expected_oracle_ref": {
         "document": "docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json",
@@ -385,8 +782,21 @@
     },
     {
       "id": "C004-F02-EFFECT-TARGET-OPERATION_IDENTITY-FOREIGN",
-      "counterexample": "別operation/digest/版の増分なしを当該衝突後の実効果へ読み替えない。 L9 condition/outcome witness: digest_relation=different_digest; action=stop_digest_conflict; effect_increment=unknown_or_conflicting_effect_binding; receiver_effect_target.operation_identity=content_conflict; digest_relation.digest=different_digest; receiver_effect.after_conflict=unknown_or_conflicting_effect_binding.",
-      "expected": "digest_relation=different_digest；action=stop_digest_conflict；effect_increment=unknown_or_conflicting_effect_binding；receiver_effect_target.operation_identity=content_conflict→receiver-owner; digest_relation.digest=different_digest→operation-owner; receiver_effect.after_conflict=unknown_or_conflicting_effect_binding→receiver-owner",
+      "u_id": "U-C004-036",
+      "function_ref": "FN-C004-02",
+      "counterexample": "HELIXCONNECT-L3-004-F02 の固定L9 raw source入力条件: original_effect_target.operation_identity は original_operationと異なる；original_incoming.digest は original_operationと異なる；submitted_effect_target.operation_identity は original_operationと異なる；submitted_incoming.digest は original_incomingと同じ。",
+      "counterexample_source_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json",
+        "pointer": "/verification_obligations/1/concrete_cases/10/independent_source_packet/raw_utf8",
+        "comparison_baseline_pointer": "/verification_obligations/1/concrete_cases/0/independent_source_packet/raw_utf8"
+      },
+      "expected": "独立期待: 共通のexpectation_derivationに示す承認済みL3 requirement・L4 contractと既存L5 ruleに従い、effect target差をreceiver-ownerへ返す；元operation/incoming digest関係でcandidate actionを選び、digest差をoperation-ownerへ返す；衝突後のreceiver effect増分をreceiver-ownerへ返す；独立導出したL5期待値: receiver_effect_target.operation_identity=content_conflict→receiver-owner、digest_relation.digest=different_digest→operation-owner、receiver_effect.after_conflict=unknown_or_conflicting_effect_binding→receiver-owner。実retry/receiver effectは主張しない。",
+      "expected_status": "independently_derived",
+      "expected_basis_refs": [
+        "docs/helix-connect/L5-detail-design/retry-deduplication-conflict.json#/branch_tables/F02/failure_rules/2",
+        "docs/helix-connect/L5-detail-design/retry-deduplication-conflict.json#/branch_tables/F02/failure_rules/3",
+        "docs/helix-connect/L5-detail-design/retry-deduplication-conflict.json#/branch_tables/F02/failure_rules/4"
+      ],
       "oracle_id": "HELIXCONNECT-L10-004-F02",
       "expected_oracle_ref": {
         "document": "docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json",
@@ -395,8 +805,21 @@
     },
     {
       "id": "C004-F02-EFFECT-TARGET-DIGEST-FOREIGN",
-      "counterexample": "別operation/digest/版の増分なしを当該衝突後の実効果へ読み替えない。 L9 condition/outcome witness: digest_relation=different_digest; action=stop_digest_conflict; effect_increment=unknown_or_conflicting_effect_binding; receiver_effect_target.digest=content_conflict; digest_relation.digest=different_digest; receiver_effect.after_conflict=unknown_or_conflicting_effect_binding.",
-      "expected": "digest_relation=different_digest；action=stop_digest_conflict；effect_increment=unknown_or_conflicting_effect_binding；receiver_effect_target.digest=content_conflict→receiver-owner; digest_relation.digest=different_digest→operation-owner; receiver_effect.after_conflict=unknown_or_conflicting_effect_binding→receiver-owner",
+      "u_id": "U-C004-037",
+      "function_ref": "FN-C004-02",
+      "counterexample": "HELIXCONNECT-L3-004-F02 の固定L9 raw source入力条件: original_effect_target.digest は original_operationと異なる；original_incoming.digest は original_operationと異なる；submitted_effect_target.digest は original_operationと異なる；submitted_incoming.digest は original_incomingと同じ。",
+      "counterexample_source_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json",
+        "pointer": "/verification_obligations/1/concrete_cases/11/independent_source_packet/raw_utf8",
+        "comparison_baseline_pointer": "/verification_obligations/1/concrete_cases/0/independent_source_packet/raw_utf8"
+      },
+      "expected": "独立期待: 共通のexpectation_derivationに示す承認済みL3 requirement・L4 contractと既存L5 ruleに従い、effect target差をreceiver-ownerへ返す；元operation/incoming digest関係でcandidate actionを選び、digest差をoperation-ownerへ返す；衝突後のreceiver effect増分をreceiver-ownerへ返す；独立導出したL5期待値: receiver_effect_target.digest=content_conflict→receiver-owner、digest_relation.digest=different_digest→operation-owner、receiver_effect.after_conflict=unknown_or_conflicting_effect_binding→receiver-owner。実retry/receiver effectは主張しない。",
+      "expected_status": "independently_derived",
+      "expected_basis_refs": [
+        "docs/helix-connect/L5-detail-design/retry-deduplication-conflict.json#/branch_tables/F02/failure_rules/2",
+        "docs/helix-connect/L5-detail-design/retry-deduplication-conflict.json#/branch_tables/F02/failure_rules/3",
+        "docs/helix-connect/L5-detail-design/retry-deduplication-conflict.json#/branch_tables/F02/failure_rules/4"
+      ],
       "oracle_id": "HELIXCONNECT-L10-004-F02",
       "expected_oracle_ref": {
         "document": "docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json",
@@ -405,8 +828,21 @@
     },
     {
       "id": "C004-F02-EFFECT-TARGET-CONTRACT_REVISION-FOREIGN",
-      "counterexample": "別operation/digest/版の増分なしを当該衝突後の実効果へ読み替えない。 L9 condition/outcome witness: digest_relation=different_digest; action=stop_digest_conflict; effect_increment=unknown_or_conflicting_effect_binding; receiver_effect_target.contract_revision=content_conflict; digest_relation.digest=different_digest; receiver_effect.after_conflict=unknown_or_conflicting_effect_binding.",
-      "expected": "digest_relation=different_digest；action=stop_digest_conflict；effect_increment=unknown_or_conflicting_effect_binding；receiver_effect_target.contract_revision=content_conflict→receiver-owner; digest_relation.digest=different_digest→operation-owner; receiver_effect.after_conflict=unknown_or_conflicting_effect_binding→receiver-owner",
+      "u_id": "U-C004-038",
+      "function_ref": "FN-C004-02",
+      "counterexample": "HELIXCONNECT-L3-004-F02 の固定L9 raw source入力条件: original_effect_target.contract_revision は original_operationと異なる；original_incoming.digest は original_operationと異なる；submitted_effect_target.contract_revision は original_operationと異なる；submitted_incoming.digest は original_incomingと同じ。",
+      "counterexample_source_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json",
+        "pointer": "/verification_obligations/1/concrete_cases/12/independent_source_packet/raw_utf8",
+        "comparison_baseline_pointer": "/verification_obligations/1/concrete_cases/0/independent_source_packet/raw_utf8"
+      },
+      "expected": "独立期待: 共通のexpectation_derivationに示す承認済みL3 requirement・L4 contractと既存L5 ruleに従い、effect target差をreceiver-ownerへ返す；元operation/incoming digest関係でcandidate actionを選び、digest差をoperation-ownerへ返す；衝突後のreceiver effect増分をreceiver-ownerへ返す；独立導出したL5期待値: receiver_effect_target.contract_revision=content_conflict→receiver-owner、digest_relation.digest=different_digest→operation-owner、receiver_effect.after_conflict=unknown_or_conflicting_effect_binding→receiver-owner。実retry/receiver effectは主張しない。",
+      "expected_status": "independently_derived",
+      "expected_basis_refs": [
+        "docs/helix-connect/L5-detail-design/retry-deduplication-conflict.json#/branch_tables/F02/failure_rules/2",
+        "docs/helix-connect/L5-detail-design/retry-deduplication-conflict.json#/branch_tables/F02/failure_rules/3",
+        "docs/helix-connect/L5-detail-design/retry-deduplication-conflict.json#/branch_tables/F02/failure_rules/4"
+      ],
       "oracle_id": "HELIXCONNECT-L10-004-F02",
       "expected_oracle_ref": {
         "document": "docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json",
@@ -415,8 +851,22 @@
     },
     {
       "id": "C004-F02-ORIGINAL-EFFECT-BEFORE-UNKNOWN",
-      "counterexample": "衝突前効果の原観測なしは増分なしを証明しない。 L9 condition/outcome witness: digest_relation=different_digest; action=stop_digest_conflict; effect_increment=unknown_unobserved; digest_relation.digest=different_digest; receiver_effect.after_conflict=unknown_unobserved; effect_content.before=unknown_original_information.",
-      "expected": "digest_relation=different_digest；action=stop_digest_conflict；effect_increment=unknown_unobserved；digest_relation.digest=different_digest→operation-owner; receiver_effect.after_conflict=unknown_unobserved→receiver-owner; effect_content.before=unknown_original_information→receiver-owner",
+      "u_id": "U-C004-039",
+      "function_ref": "FN-C004-02",
+      "counterexample": "HELIXCONNECT-L3-004-F02 の固定L9 raw source入力条件: 入力項目 /original_effect_before は同機能の先頭固定caseと異なる（値は複製しない）；original_incoming.digest は original_operationと異なる；submitted_incoming.digest は original_incomingと同じ。",
+      "counterexample_source_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json",
+        "pointer": "/verification_obligations/1/concrete_cases/13/independent_source_packet/raw_utf8",
+        "comparison_baseline_pointer": "/verification_obligations/1/concrete_cases/0/independent_source_packet/raw_utf8"
+      },
+      "expected": "独立期待: 共通のexpectation_derivationに示す承認済みL3 requirement・L4 contractと既存L5 ruleに従い、元operation/incoming digest関係でcandidate actionを選び、digest差をoperation-ownerへ返す；衝突後のreceiver effect増分をreceiver-ownerへ返す；effect内容差をreceiver-ownerへ返す；衝突前effectのunknownをunknown_original_informationとしてreceiver-ownerへ返す；独立導出したL5期待値: digest_relation.digest=different_digest→operation-owner、receiver_effect.after_conflict=unknown_unobserved→receiver-owner、effect_content.before=unknown_original_information→receiver-owner。実retry/receiver effectは主張しない。",
+      "expected_status": "independently_derived",
+      "expected_basis_refs": [
+        "docs/helix-connect/L5-detail-design/retry-deduplication-conflict.json#/branch_tables/F02/failure_rules/3",
+        "docs/helix-connect/L5-detail-design/retry-deduplication-conflict.json#/branch_tables/F02/failure_rules/4",
+        "docs/helix-connect/L5-detail-design/retry-deduplication-conflict.json#/branch_tables/F02/failure_rules/5",
+        "docs/helix-connect/L5-detail-design/retry-deduplication-conflict.json#/branch_tables/F02/failure_rules/6"
+      ],
       "oracle_id": "HELIXCONNECT-L10-004-F02",
       "expected_oracle_ref": {
         "document": "docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json",
@@ -425,8 +875,19 @@
     },
     {
       "id": "C004-F02-DIFFERENT_DIGEST_SAME_RETRY",
-      "counterexample": "異内容retry/衝突後副作用/別成功で相殺claimを拒否。 L9 condition/outcome witness: digest_relation=different_digest; action=stop_digest_conflict; effect_increment=no_increment_in_fixture_only; digest_relation.digest=different_digest; L9 scenario markers=different_digest_same_retry.",
-      "expected": "digest_relation=different_digest；action=stop_digest_conflict；effect_increment=no_increment_in_fixture_only；digest_relation.digest=different_digest→operation-owner",
+      "u_id": "U-C004-040",
+      "function_ref": "FN-C004-02",
+      "counterexample": "HELIXCONNECT-L3-004-F02 の固定L9 raw source入力条件: 入力 claim different_digest_same_retry が主張されている；original_incoming.digest は original_operationと異なる；submitted_incoming.digest は original_incomingと同じ。",
+      "counterexample_source_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json",
+        "pointer": "/verification_obligations/1/concrete_cases/14/independent_source_packet/raw_utf8",
+        "comparison_baseline_pointer": "/verification_obligations/1/concrete_cases/0/independent_source_packet/raw_utf8"
+      },
+      "expected": "未検証: この入力claimのacceptance/rejection semanticsは共通の承認済みL3/L4根拠およびL5 ruleから独立確定できない。適用可能な既存L5 branch境界は 元operation/incoming digest関係でcandidate actionを選び、digest差をoperation-ownerへ返す。",
+      "expected_status": "unverified",
+      "expected_basis_refs": [
+        "docs/helix-connect/L5-detail-design/retry-deduplication-conflict.json#/branch_tables/F02/failure_rules/3"
+      ],
       "oracle_id": "HELIXCONNECT-L10-004-F02",
       "expected_oracle_ref": {
         "document": "docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json",
@@ -435,8 +896,20 @@
     },
     {
       "id": "C004-F02-CONFLICT_SIDE_EFFECT",
-      "counterexample": "異内容retry/衝突後副作用/別成功で相殺claimを拒否。 L9 condition/outcome witness: digest_relation=different_digest; action=stop_digest_conflict; effect_increment=conflict_side_effect; digest_relation.digest=different_digest; receiver_effect.after_conflict=conflict_side_effect; L9 scenario markers=conflict_side_effect.",
-      "expected": "digest_relation=different_digest；action=stop_digest_conflict；effect_increment=conflict_side_effect；digest_relation.digest=different_digest→operation-owner; receiver_effect.after_conflict=conflict_side_effect→receiver-owner",
+      "u_id": "U-C004-041",
+      "function_ref": "FN-C004-02",
+      "counterexample": "HELIXCONNECT-L3-004-F02 の固定L9 raw source入力条件: 入力 claim conflict_side_effect が主張されている；/original_effect_after 入力arrayの要素数区分は 複数；original_incoming.digest は original_operationと異なる；/submitted_effect_after 入力arrayの要素数区分は 複数；submitted_incoming.digest は original_incomingと同じ。",
+      "counterexample_source_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json",
+        "pointer": "/verification_obligations/1/concrete_cases/15/independent_source_packet/raw_utf8",
+        "comparison_baseline_pointer": "/verification_obligations/1/concrete_cases/0/independent_source_packet/raw_utf8"
+      },
+      "expected": "未検証: この入力claimのacceptance/rejection semanticsは共通の承認済みL3/L4根拠およびL5 ruleから独立確定できない。適用可能な既存L5 branch境界は 元operation/incoming digest関係でcandidate actionを選び、digest差をoperation-ownerへ返す；衝突後のreceiver effect増分をreceiver-ownerへ返す。",
+      "expected_status": "unverified",
+      "expected_basis_refs": [
+        "docs/helix-connect/L5-detail-design/retry-deduplication-conflict.json#/branch_tables/F02/failure_rules/3",
+        "docs/helix-connect/L5-detail-design/retry-deduplication-conflict.json#/branch_tables/F02/failure_rules/4"
+      ],
       "oracle_id": "HELIXCONNECT-L10-004-F02",
       "expected_oracle_ref": {
         "document": "docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json",
@@ -445,8 +918,19 @@
     },
     {
       "id": "C004-F02-OTHER_CONTENT_SUCCESS_OFFSETS",
-      "counterexample": "異内容retry/衝突後副作用/別成功で相殺claimを拒否。 L9 condition/outcome witness: digest_relation=different_digest; action=stop_digest_conflict; effect_increment=no_increment_in_fixture_only; digest_relation.digest=different_digest; L9 scenario markers=other_content_success_offsets.",
-      "expected": "digest_relation=different_digest；action=stop_digest_conflict；effect_increment=no_increment_in_fixture_only；digest_relation.digest=different_digest→operation-owner",
+      "u_id": "U-C004-042",
+      "function_ref": "FN-C004-02",
+      "counterexample": "HELIXCONNECT-L3-004-F02 の固定L9 raw source入力条件: 入力 claim other_content_success_offsets が主張されている；original_incoming.digest は original_operationと異なる；submitted_incoming.digest は original_incomingと同じ。",
+      "counterexample_source_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json",
+        "pointer": "/verification_obligations/1/concrete_cases/16/independent_source_packet/raw_utf8",
+        "comparison_baseline_pointer": "/verification_obligations/1/concrete_cases/0/independent_source_packet/raw_utf8"
+      },
+      "expected": "未検証: この入力claimのacceptance/rejection semanticsは共通の承認済みL3/L4根拠およびL5 ruleから独立確定できない。適用可能な既存L5 branch境界は 元operation/incoming digest関係でcandidate actionを選び、digest差をoperation-ownerへ返す。",
+      "expected_status": "unverified",
+      "expected_basis_refs": [
+        "docs/helix-connect/L5-detail-design/retry-deduplication-conflict.json#/branch_tables/F02/failure_rules/3"
+      ],
       "oracle_id": "HELIXCONNECT-L10-004-F02",
       "expected_oracle_ref": {
         "document": "docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json",
@@ -455,8 +939,19 @@
     },
     {
       "id": "C004-F03-WITHIN-ORIGINAL-LIMIT-TECHNICAL-RETRYABLE",
-      "counterexample": "元契約の数え方/上限/累積と再送可否を照合。合成候補は実attemptでない。 L9 condition/outcome witness: budget=within_original_limit; candidate_next_action=requires_actual_operation_authority_and_retry_qualification; additional_attempts=1; result_state=technical_retryable_failure.",
-      "expected": "next_action=requires_actual_operation_authority_and_retry_qualification；additional_attempts=1；budget=within_original_limit；停止理由なし",
+      "u_id": "U-C004-043",
+      "function_ref": "FN-C004-03",
+      "counterexample": "HELIXCONNECT-L3-004-F03 の固定L9 raw source入力条件: policyと累積attemptの入力が提示され、retry result stateが与えられる。",
+      "counterexample_source_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json",
+        "pointer": "/verification_obligations/2/concrete_cases/0/independent_source_packet/raw_utf8",
+        "comparison_baseline_pointer": "/verification_obligations/2/concrete_cases/0/independent_source_packet/raw_utf8"
+      },
+      "expected": "独立期待: 共通のexpectation_derivationに示す承認済みL3 requirement・L4 contractと既存L5 ruleに従い、candidate conditionの元budget/retryability/target/history/unfinished/expiry/permission/compatibility条件を満たす場合だけqualification候補とし、実attemptを主張しない。実retry/receiver effectは主張しない。",
+      "expected_status": "independently_derived",
+      "expected_basis_refs": [
+        "docs/helix-connect/L5-detail-design/retry-deduplication-conflict.json#/calculation_programs/FN-C004-03/ordered_steps/18"
+      ],
       "oracle_id": "HELIXCONNECT-L10-004-F03",
       "expected_oracle_ref": {
         "document": "docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json",
@@ -465,8 +960,19 @@
     },
     {
       "id": "C004-F03-ORIGINAL-LIMIT-REACHED",
-      "counterexample": "累積は保持し上限到達で追加attempt候補0。 L9 condition/outcome witness: budget=exhausted; retry_budget.remaining=exhausted.",
-      "expected": "next_action=stop_or_hold_with_unfinished；additional_attempts=0；budget=exhausted；retry_budget.remaining=exhausted→operation-owner",
+      "u_id": "U-C004-044",
+      "function_ref": "FN-C004-03",
+      "counterexample": "HELIXCONNECT-L3-004-F03 の固定L9 raw source入力条件: 元policy上限は元の累積attempt数以下；submitted_policy.max_total_attempts は original_policyと同じ。",
+      "counterexample_source_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json",
+        "pointer": "/verification_obligations/2/concrete_cases/1/independent_source_packet/raw_utf8",
+        "comparison_baseline_pointer": "/verification_obligations/2/concrete_cases/0/independent_source_packet/raw_utf8"
+      },
+      "expected": "独立期待: 共通のexpectation_derivationに示す承認済みL3 requirement・L4 contractと既存L5 ruleに従い、元policyと累積値から有限retry budgetを判定しoperation-ownerへ返す；独立導出したL5期待値: retry_budget.remaining=exhausted→operation-owner。実retry/receiver effectは主張しない。",
+      "expected_status": "independently_derived",
+      "expected_basis_refs": [
+        "docs/helix-connect/L5-detail-design/retry-deduplication-conflict.json#/branch_tables/F03/failure_rules/3"
+      ],
       "oracle_id": "HELIXCONNECT-L10-004-F03",
       "expected_oracle_ref": {
         "document": "docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json",
@@ -475,8 +981,20 @@
     },
     {
       "id": "C004-F03-ORIGINAL-LIMIT-UNKNOWN",
-      "counterexample": "上限未定を無限retryにしない。 L9 condition/outcome witness: budget=unknown_budget; policy_content.max_total_attempts=unknown_original_information; retry_budget.remaining=unknown_budget.",
-      "expected": "next_action=stop_or_hold_with_unfinished；additional_attempts=0；budget=unknown_budget；policy_content.max_total_attempts=unknown_original_information→connection-contract-owner; retry_budget.remaining=unknown_budget→operation-owner",
+      "u_id": "U-C004-045",
+      "function_ref": "FN-C004-03",
+      "counterexample": "HELIXCONNECT-L3-004-F03 の固定L9 raw source入力条件: original_policy.max_total_attempts 入力は未提示またはnull；submitted_policy.max_total_attempts は null。",
+      "counterexample_source_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json",
+        "pointer": "/verification_obligations/2/concrete_cases/2/independent_source_packet/raw_utf8",
+        "comparison_baseline_pointer": "/verification_obligations/2/concrete_cases/0/independent_source_packet/raw_utf8"
+      },
+      "expected": "独立期待: 共通のexpectation_derivationに示す承認済みL3 requirement・L4 contractと既存L5 ruleに従い、policy内容差をconnection-contract-ownerへ返す；元policyと累積値から有限retry budgetを判定しoperation-ownerへ返す；独立導出したL5期待値: policy_content.max_total_attempts=unknown_original_information→connection-contract-owner、retry_budget.remaining=unknown_budget→operation-owner。実retry/receiver effectは主張しない。",
+      "expected_status": "independently_derived",
+      "expected_basis_refs": [
+        "docs/helix-connect/L5-detail-design/retry-deduplication-conflict.json#/branch_tables/F03/failure_rules/1",
+        "docs/helix-connect/L5-detail-design/retry-deduplication-conflict.json#/branch_tables/F03/failure_rules/3"
+      ],
       "oracle_id": "HELIXCONNECT-L10-004-F03",
       "expected_oracle_ref": {
         "document": "docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json",
@@ -485,8 +1003,21 @@
     },
     {
       "id": "C004-F03-ORIGINAL-CUMULATIVE-UNKNOWN",
-      "counterexample": "元累積不明を0へ戻して再送しない。 L9 condition/outcome witness: budget=unknown_budget; cumulative_attempts.value=unknown_original_information; retry_budget.remaining=unknown_budget; cumulative_history.count=unknown_or_conflicting_history.",
-      "expected": "next_action=stop_or_hold_with_unfinished；additional_attempts=0；budget=unknown_budget；cumulative_attempts.value=unknown_original_information→operation-owner; retry_budget.remaining=unknown_budget→operation-owner; cumulative_history.count=unknown_or_conflicting_history→operation-owner",
+      "u_id": "U-C004-046",
+      "function_ref": "FN-C004-03",
+      "counterexample": "HELIXCONNECT-L3-004-F03 の固定L9 raw source入力条件: original_cumulative_attempts 入力は未提示またはnull；submitted_cumulative_attempts 入力は未提示またはnull。",
+      "counterexample_source_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json",
+        "pointer": "/verification_obligations/2/concrete_cases/3/independent_source_packet/raw_utf8",
+        "comparison_baseline_pointer": "/verification_obligations/2/concrete_cases/0/independent_source_packet/raw_utf8"
+      },
+      "expected": "独立期待: 共通のexpectation_derivationに示す承認済みL3 requirement・L4 contractと既存L5 ruleに従い、累積attempt差をoperation-ownerへ返す；元policyと累積値から有限retry budgetを判定しoperation-ownerへ返す；history件数不整合をoperation-ownerへ返す；独立導出したL5期待値: cumulative_attempts.value=unknown_original_information→operation-owner、retry_budget.remaining=unknown_budget→operation-owner、cumulative_history.count=unknown_or_conflicting_history→operation-owner。実retry/receiver effectは主張しない。",
+      "expected_status": "independently_derived",
+      "expected_basis_refs": [
+        "docs/helix-connect/L5-detail-design/retry-deduplication-conflict.json#/branch_tables/F03/failure_rules/2",
+        "docs/helix-connect/L5-detail-design/retry-deduplication-conflict.json#/branch_tables/F03/failure_rules/3",
+        "docs/helix-connect/L5-detail-design/retry-deduplication-conflict.json#/branch_tables/F03/failure_rules/4"
+      ],
       "oracle_id": "HELIXCONNECT-L10-004-F03",
       "expected_oracle_ref": {
         "document": "docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json",
@@ -495,8 +1026,19 @@
     },
     {
       "id": "C004-F03-ORIGINAL_RESULT_STATE-BUSINESS_NONRETRYABLE",
-      "counterexample": "元停止条件/業務再送不可/期限/許可/版/ACKを独立に照合する。 L9 condition/outcome witness: budget=within_original_limit; retryable_result.state=business_nonretryable.",
-      "expected": "next_action=stop_or_hold_with_unfinished；additional_attempts=0；budget=within_original_limit；retryable_result.state=business_nonretryable→business-owner",
+      "u_id": "U-C004-047",
+      "function_ref": "FN-C004-03",
+      "counterexample": "HELIXCONNECT-L3-004-F03 の固定L9 raw source入力条件: original_result_state 入力状態は business_nonretryable。",
+      "counterexample_source_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json",
+        "pointer": "/verification_obligations/2/concrete_cases/4/independent_source_packet/raw_utf8",
+        "comparison_baseline_pointer": "/verification_obligations/2/concrete_cases/0/independent_source_packet/raw_utf8"
+      },
+      "expected": "独立期待: 共通のexpectation_derivationに示す承認済みL3 requirement・L4 contractと既存L5 ruleに従い、retryabilityに応じてbusiness_nonretryableはbusiness-owner、それ以外のunknownはoperation-ownerへ返す；独立導出したL5期待値: retryable_result.state=business_nonretryable→business-owner。実retry/receiver effectは主張しない。",
+      "expected_status": "independently_derived",
+      "expected_basis_refs": [
+        "docs/helix-connect/L5-detail-design/retry-deduplication-conflict.json#/branch_tables/F03/failure_rules/8"
+      ],
       "oracle_id": "HELIXCONNECT-L10-004-F03",
       "expected_oracle_ref": {
         "document": "docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json",
@@ -505,8 +1047,19 @@
     },
     {
       "id": "C004-F03-ORIGINAL_RESULT_STATE-UNKNOWN",
-      "counterexample": "元停止条件/業務再送不可/期限/許可/版/ACKを独立に照合する。 L9 condition/outcome witness: budget=within_original_limit; retryable_result.state=unknown.",
-      "expected": "next_action=stop_or_hold_with_unfinished；additional_attempts=0；budget=within_original_limit；retryable_result.state=unknown→operation-owner",
+      "u_id": "U-C004-048",
+      "function_ref": "FN-C004-03",
+      "counterexample": "HELIXCONNECT-L3-004-F03 の固定L9 raw source入力条件: original_result_state 入力状態は unknown。",
+      "counterexample_source_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json",
+        "pointer": "/verification_obligations/2/concrete_cases/5/independent_source_packet/raw_utf8",
+        "comparison_baseline_pointer": "/verification_obligations/2/concrete_cases/0/independent_source_packet/raw_utf8"
+      },
+      "expected": "独立期待: 共通のexpectation_derivationに示す承認済みL3 requirement・L4 contractと既存L5 ruleに従い、retryabilityに応じてbusiness_nonretryableはbusiness-owner、それ以外のunknownはoperation-ownerへ返す；独立導出したL5期待値: retryable_result.state=unknown→operation-owner。実retry/receiver effectは主張しない。",
+      "expected_status": "independently_derived",
+      "expected_basis_refs": [
+        "docs/helix-connect/L5-detail-design/retry-deduplication-conflict.json#/branch_tables/F03/failure_rules/8"
+      ],
       "oracle_id": "HELIXCONNECT-L10-004-F03",
       "expected_oracle_ref": {
         "document": "docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json",
@@ -515,8 +1068,19 @@
     },
     {
       "id": "C004-F03-ORIGINAL_EXPIRY_STATE-EXPIRED",
-      "counterexample": "元停止条件/業務再送不可/期限/許可/版/ACKを独立に照合する。 L9 condition/outcome witness: budget=within_original_limit; original_expiry_state.state=expired.",
-      "expected": "next_action=stop_or_hold_with_unfinished；additional_attempts=0；budget=within_original_limit；original_expiry_state.state=expired→HELIX-SECURITY",
+      "u_id": "U-C004-049",
+      "function_ref": "FN-C004-03",
+      "counterexample": "HELIXCONNECT-L3-004-F03 の固定L9 raw source入力条件: original_expiry_state 入力状態は expired。",
+      "counterexample_source_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json",
+        "pointer": "/verification_obligations/2/concrete_cases/6/independent_source_packet/raw_utf8",
+        "comparison_baseline_pointer": "/verification_obligations/2/concrete_cases/0/independent_source_packet/raw_utf8"
+      },
+      "expected": "独立期待: 共通のexpectation_derivationに示す承認済みL3 requirement・L4 contractと既存L5 ruleに従い、expiry停止状態をHELIX-SECURITYへ返す；独立導出したL5期待値: original_expiry_state.state=expired→HELIX-SECURITY。実retry/receiver effectは主張しない。",
+      "expected_status": "independently_derived",
+      "expected_basis_refs": [
+        "docs/helix-connect/L5-detail-design/retry-deduplication-conflict.json#/branch_tables/F03/failure_rules/9"
+      ],
       "oracle_id": "HELIXCONNECT-L10-004-F03",
       "expected_oracle_ref": {
         "document": "docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json",
@@ -525,8 +1089,19 @@
     },
     {
       "id": "C004-F03-ORIGINAL_PERMISSION_STATE-REVOKED",
-      "counterexample": "元停止条件/業務再送不可/期限/許可/版/ACKを独立に照合する。 L9 condition/outcome witness: budget=within_original_limit; original_permission_state.state=revoked.",
-      "expected": "next_action=stop_or_hold_with_unfinished；additional_attempts=0；budget=within_original_limit；original_permission_state.state=revoked→HELIX-SECURITY",
+      "u_id": "U-C004-050",
+      "function_ref": "FN-C004-03",
+      "counterexample": "HELIXCONNECT-L3-004-F03 の固定L9 raw source入力条件: original_permission_state 入力状態は revoked。",
+      "counterexample_source_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json",
+        "pointer": "/verification_obligations/2/concrete_cases/7/independent_source_packet/raw_utf8",
+        "comparison_baseline_pointer": "/verification_obligations/2/concrete_cases/0/independent_source_packet/raw_utf8"
+      },
+      "expected": "独立期待: 共通のexpectation_derivationに示す承認済みL3 requirement・L4 contractと既存L5 ruleに従い、permission停止状態をHELIX-SECURITYへ返す；独立導出したL5期待値: original_permission_state.state=revoked→HELIX-SECURITY。実retry/receiver effectは主張しない。",
+      "expected_status": "independently_derived",
+      "expected_basis_refs": [
+        "docs/helix-connect/L5-detail-design/retry-deduplication-conflict.json#/branch_tables/F03/failure_rules/10"
+      ],
       "oracle_id": "HELIXCONNECT-L10-004-F03",
       "expected_oracle_ref": {
         "document": "docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json",
@@ -535,8 +1110,19 @@
     },
     {
       "id": "C004-F03-ORIGINAL_PERMISSION_STATE-UNKNOWN",
-      "counterexample": "元停止条件/業務再送不可/期限/許可/版/ACKを独立に照合する。 L9 condition/outcome witness: budget=within_original_limit; original_permission_state.state=unknown.",
-      "expected": "next_action=stop_or_hold_with_unfinished；additional_attempts=0；budget=within_original_limit；original_permission_state.state=unknown→HELIX-SECURITY",
+      "u_id": "U-C004-051",
+      "function_ref": "FN-C004-03",
+      "counterexample": "HELIXCONNECT-L3-004-F03 の固定L9 raw source入力条件: original_permission_state 入力状態は unknown。",
+      "counterexample_source_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json",
+        "pointer": "/verification_obligations/2/concrete_cases/8/independent_source_packet/raw_utf8",
+        "comparison_baseline_pointer": "/verification_obligations/2/concrete_cases/0/independent_source_packet/raw_utf8"
+      },
+      "expected": "独立期待: 共通のexpectation_derivationに示す承認済みL3 requirement・L4 contractと既存L5 ruleに従い、permission停止状態をHELIX-SECURITYへ返す；独立導出したL5期待値: original_permission_state.state=unknown→HELIX-SECURITY。実retry/receiver effectは主張しない。",
+      "expected_status": "independently_derived",
+      "expected_basis_refs": [
+        "docs/helix-connect/L5-detail-design/retry-deduplication-conflict.json#/branch_tables/F03/failure_rules/10"
+      ],
       "oracle_id": "HELIXCONNECT-L10-004-F03",
       "expected_oracle_ref": {
         "document": "docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json",
@@ -545,8 +1131,19 @@
     },
     {
       "id": "C004-F03-ORIGINAL_COMPATIBILITY_STATE-STALE",
-      "counterexample": "元停止条件/業務再送不可/期限/許可/版/ACKを独立に照合する。 L9 condition/outcome witness: budget=within_original_limit; original_compatibility_state.state=stale.",
-      "expected": "next_action=stop_or_hold_with_unfinished；additional_attempts=0；budget=within_original_limit；original_compatibility_state.state=stale→endpoint-contract-owner",
+      "u_id": "U-C004-052",
+      "function_ref": "FN-C004-03",
+      "counterexample": "HELIXCONNECT-L3-004-F03 の固定L9 raw source入力条件: original_compatibility_state 入力状態は stale。",
+      "counterexample_source_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json",
+        "pointer": "/verification_obligations/2/concrete_cases/9/independent_source_packet/raw_utf8",
+        "comparison_baseline_pointer": "/verification_obligations/2/concrete_cases/0/independent_source_packet/raw_utf8"
+      },
+      "expected": "独立期待: 共通のexpectation_derivationに示す承認済みL3 requirement・L4 contractと既存L5 ruleに従い、compatibility停止状態をendpoint-contract-ownerへ返す；独立導出したL5期待値: original_compatibility_state.state=stale→endpoint-contract-owner。実retry/receiver effectは主張しない。",
+      "expected_status": "independently_derived",
+      "expected_basis_refs": [
+        "docs/helix-connect/L5-detail-design/retry-deduplication-conflict.json#/branch_tables/F03/failure_rules/11"
+      ],
       "oracle_id": "HELIXCONNECT-L10-004-F03",
       "expected_oracle_ref": {
         "document": "docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json",
@@ -555,8 +1152,19 @@
     },
     {
       "id": "C004-F03-ORIGINAL_COMPATIBILITY_STATE-INCOMPATIBLE",
-      "counterexample": "元停止条件/業務再送不可/期限/許可/版/ACKを独立に照合する。 L9 condition/outcome witness: budget=within_original_limit; original_compatibility_state.state=incompatible.",
-      "expected": "next_action=stop_or_hold_with_unfinished；additional_attempts=0；budget=within_original_limit；original_compatibility_state.state=incompatible→endpoint-contract-owner",
+      "u_id": "U-C004-053",
+      "function_ref": "FN-C004-03",
+      "counterexample": "HELIXCONNECT-L3-004-F03 の固定L9 raw source入力条件: original_compatibility_state 入力状態は incompatible。",
+      "counterexample_source_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json",
+        "pointer": "/verification_obligations/2/concrete_cases/10/independent_source_packet/raw_utf8",
+        "comparison_baseline_pointer": "/verification_obligations/2/concrete_cases/0/independent_source_packet/raw_utf8"
+      },
+      "expected": "独立期待: 共通のexpectation_derivationに示す承認済みL3 requirement・L4 contractと既存L5 ruleに従い、compatibility停止状態をendpoint-contract-ownerへ返す；独立導出したL5期待値: original_compatibility_state.state=incompatible→endpoint-contract-owner。実retry/receiver effectは主張しない。",
+      "expected_status": "independently_derived",
+      "expected_basis_refs": [
+        "docs/helix-connect/L5-detail-design/retry-deduplication-conflict.json#/branch_tables/F03/failure_rules/11"
+      ],
       "oracle_id": "HELIXCONNECT-L10-004-F03",
       "expected_oracle_ref": {
         "document": "docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json",
@@ -565,8 +1173,19 @@
     },
     {
       "id": "C004-F03-ORIGINAL_ACK_STATE-RECEIVED_TERMINAL",
-      "counterexample": "元停止条件/業務再送不可/期限/許可/版/ACKを独立に照合する。 L9 condition/outcome witness: budget=within_original_limit; ack_state.state=already_terminal.",
-      "expected": "next_action=stop_or_hold_with_unfinished；additional_attempts=0；budget=within_original_limit；ack_state.state=already_terminal→operation-owner",
+      "u_id": "U-C004-054",
+      "function_ref": "FN-C004-03",
+      "counterexample": "HELIXCONNECT-L3-004-F03 の固定L9 raw source入力条件: original_ack_state 入力状態は received_terminal。",
+      "counterexample_source_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json",
+        "pointer": "/verification_obligations/2/concrete_cases/11/independent_source_packet/raw_utf8",
+        "comparison_baseline_pointer": "/verification_obligations/2/concrete_cases/0/independent_source_packet/raw_utf8"
+      },
+      "expected": "独立期待: 共通のexpectation_derivationに示す承認済みL3 requirement・L4 contractと既存L5 ruleに従い、terminal ACKをalready_terminalとしてoperation-ownerへ返す；独立導出したL5期待値: ack_state.state=already_terminal→operation-owner。実retry/receiver effectは主張しない。",
+      "expected_status": "independently_derived",
+      "expected_basis_refs": [
+        "docs/helix-connect/L5-detail-design/retry-deduplication-conflict.json#/branch_tables/F03/failure_rules/12"
+      ],
       "oracle_id": "HELIXCONNECT-L10-004-F03",
       "expected_oracle_ref": {
         "document": "docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json",
@@ -575,8 +1194,19 @@
     },
     {
       "id": "C004-F03-CONTRACT_REVISION-FOREIGN",
-      "counterexample": "新旧版/別scope/許可/operationを同累積retryへ混在させない。 L9 condition/outcome witness: budget=within_original_limit; retry_target.contract_revision=content_conflict.",
-      "expected": "next_action=stop_or_hold_with_unfinished；additional_attempts=0；budget=within_original_limit；retry_target.contract_revision=content_conflict→operation-owner",
+      "u_id": "U-C004-055",
+      "function_ref": "FN-C004-03",
+      "counterexample": "HELIXCONNECT-L3-004-F03 の固定L9 raw source入力条件: submitted_retry.contract_revision は original_operationと異なる。",
+      "counterexample_source_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json",
+        "pointer": "/verification_obligations/2/concrete_cases/12/independent_source_packet/raw_utf8",
+        "comparison_baseline_pointer": "/verification_obligations/2/concrete_cases/0/independent_source_packet/raw_utf8"
+      },
+      "expected": "独立期待: 共通のexpectation_derivationに示す承認済みL3 requirement・L4 contractと既存L5 ruleに従い、retry target差をoperation-ownerへ返す；独立導出したL5期待値: retry_target.contract_revision=content_conflict→operation-owner。実retry/receiver effectは主張しない。",
+      "expected_status": "independently_derived",
+      "expected_basis_refs": [
+        "docs/helix-connect/L5-detail-design/retry-deduplication-conflict.json#/branch_tables/F03/failure_rules/0"
+      ],
       "oracle_id": "HELIXCONNECT-L10-004-F03",
       "expected_oracle_ref": {
         "document": "docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json",
@@ -585,8 +1215,19 @@
     },
     {
       "id": "C004-F03-SCOPE-FOREIGN",
-      "counterexample": "新旧版/別scope/許可/operationを同累積retryへ混在させない。 L9 condition/outcome witness: budget=within_original_limit; retry_target.scope=content_conflict.",
-      "expected": "next_action=stop_or_hold_with_unfinished；additional_attempts=0；budget=within_original_limit；retry_target.scope=content_conflict→operation-owner",
+      "u_id": "U-C004-056",
+      "function_ref": "FN-C004-03",
+      "counterexample": "HELIXCONNECT-L3-004-F03 の固定L9 raw source入力条件: submitted_retry.scope は original_operationと異なる。",
+      "counterexample_source_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json",
+        "pointer": "/verification_obligations/2/concrete_cases/13/independent_source_packet/raw_utf8",
+        "comparison_baseline_pointer": "/verification_obligations/2/concrete_cases/0/independent_source_packet/raw_utf8"
+      },
+      "expected": "独立期待: 共通のexpectation_derivationに示す承認済みL3 requirement・L4 contractと既存L5 ruleに従い、retry target差をoperation-ownerへ返す；独立導出したL5期待値: retry_target.scope=content_conflict→operation-owner。実retry/receiver effectは主張しない。",
+      "expected_status": "independently_derived",
+      "expected_basis_refs": [
+        "docs/helix-connect/L5-detail-design/retry-deduplication-conflict.json#/branch_tables/F03/failure_rules/0"
+      ],
       "oracle_id": "HELIXCONNECT-L10-004-F03",
       "expected_oracle_ref": {
         "document": "docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json",
@@ -595,8 +1236,19 @@
     },
     {
       "id": "C004-F03-EXPIRY-FOREIGN",
-      "counterexample": "新旧版/別scope/許可/operationを同累積retryへ混在させない。 L9 condition/outcome witness: budget=within_original_limit; retry_target.expiry=content_conflict.",
-      "expected": "next_action=stop_or_hold_with_unfinished；additional_attempts=0；budget=within_original_limit；retry_target.expiry=content_conflict→operation-owner",
+      "u_id": "U-C004-057",
+      "function_ref": "FN-C004-03",
+      "counterexample": "HELIXCONNECT-L3-004-F03 の固定L9 raw source入力条件: submitted_retry.expiry は original_operationと異なる。",
+      "counterexample_source_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json",
+        "pointer": "/verification_obligations/2/concrete_cases/14/independent_source_packet/raw_utf8",
+        "comparison_baseline_pointer": "/verification_obligations/2/concrete_cases/0/independent_source_packet/raw_utf8"
+      },
+      "expected": "独立期待: 共通のexpectation_derivationに示す承認済みL3 requirement・L4 contractと既存L5 ruleに従い、retry target差をoperation-ownerへ返す；独立導出したL5期待値: retry_target.expiry=content_conflict→operation-owner。実retry/receiver effectは主張しない。",
+      "expected_status": "independently_derived",
+      "expected_basis_refs": [
+        "docs/helix-connect/L5-detail-design/retry-deduplication-conflict.json#/branch_tables/F03/failure_rules/0"
+      ],
       "oracle_id": "HELIXCONNECT-L10-004-F03",
       "expected_oracle_ref": {
         "document": "docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json",
@@ -605,8 +1257,19 @@
     },
     {
       "id": "C004-F03-PERMISSION_REF-FOREIGN",
-      "counterexample": "新旧版/別scope/許可/operationを同累積retryへ混在させない。 L9 condition/outcome witness: budget=within_original_limit; retry_target.permission_ref=content_conflict.",
-      "expected": "next_action=stop_or_hold_with_unfinished；additional_attempts=0；budget=within_original_limit；retry_target.permission_ref=content_conflict→operation-owner",
+      "u_id": "U-C004-058",
+      "function_ref": "FN-C004-03",
+      "counterexample": "HELIXCONNECT-L3-004-F03 の固定L9 raw source入力条件: submitted_retry.permission_ref は original_operationと異なる。",
+      "counterexample_source_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json",
+        "pointer": "/verification_obligations/2/concrete_cases/15/independent_source_packet/raw_utf8",
+        "comparison_baseline_pointer": "/verification_obligations/2/concrete_cases/0/independent_source_packet/raw_utf8"
+      },
+      "expected": "独立期待: 共通のexpectation_derivationに示す承認済みL3 requirement・L4 contractと既存L5 ruleに従い、retry target差をoperation-ownerへ返す；独立導出したL5期待値: retry_target.permission_ref=content_conflict→operation-owner。実retry/receiver effectは主張しない。",
+      "expected_status": "independently_derived",
+      "expected_basis_refs": [
+        "docs/helix-connect/L5-detail-design/retry-deduplication-conflict.json#/branch_tables/F03/failure_rules/0"
+      ],
       "oracle_id": "HELIXCONNECT-L10-004-F03",
       "expected_oracle_ref": {
         "document": "docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json",
@@ -615,8 +1278,19 @@
     },
     {
       "id": "C004-F03-OPERATION_IDENTITY-FOREIGN",
-      "counterexample": "新旧版/別scope/許可/operationを同累積retryへ混在させない。 L9 condition/outcome witness: budget=within_original_limit; retry_target.operation_identity=content_conflict.",
-      "expected": "next_action=stop_or_hold_with_unfinished；additional_attempts=0；budget=within_original_limit；retry_target.operation_identity=content_conflict→operation-owner",
+      "u_id": "U-C004-059",
+      "function_ref": "FN-C004-03",
+      "counterexample": "HELIXCONNECT-L3-004-F03 の固定L9 raw source入力条件: submitted_retry.operation_identity は original_operationと異なる。",
+      "counterexample_source_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json",
+        "pointer": "/verification_obligations/2/concrete_cases/16/independent_source_packet/raw_utf8",
+        "comparison_baseline_pointer": "/verification_obligations/2/concrete_cases/0/independent_source_packet/raw_utf8"
+      },
+      "expected": "独立期待: 共通のexpectation_derivationに示す承認済みL3 requirement・L4 contractと既存L5 ruleに従い、retry target差をoperation-ownerへ返す；独立導出したL5期待値: retry_target.operation_identity=content_conflict→operation-owner。実retry/receiver effectは主張しない。",
+      "expected_status": "independently_derived",
+      "expected_basis_refs": [
+        "docs/helix-connect/L5-detail-design/retry-deduplication-conflict.json#/branch_tables/F03/failure_rules/0"
+      ],
       "oracle_id": "HELIXCONNECT-L10-004-F03",
       "expected_oracle_ref": {
         "document": "docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json",
@@ -625,8 +1299,19 @@
     },
     {
       "id": "C004-F03-SUBMITTED-RETRY-LIMIT-INVENTED",
-      "counterexample": "CONNECT提出側でretry policyを新設しない。 L9 condition/outcome witness: budget=within_original_limit; policy_content.max_total_attempts=content_conflict.",
-      "expected": "next_action=stop_or_hold_with_unfinished；additional_attempts=0；budget=within_original_limit；policy_content.max_total_attempts=content_conflict→connection-contract-owner",
+      "u_id": "U-C004-060",
+      "function_ref": "FN-C004-03",
+      "counterexample": "HELIXCONNECT-L3-004-F03 の固定L9 raw source入力条件: submitted_policy.max_total_attempts は original_policyと異なる。",
+      "counterexample_source_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json",
+        "pointer": "/verification_obligations/2/concrete_cases/17/independent_source_packet/raw_utf8",
+        "comparison_baseline_pointer": "/verification_obligations/2/concrete_cases/0/independent_source_packet/raw_utf8"
+      },
+      "expected": "独立期待: 共通のexpectation_derivationに示す承認済みL3 requirement・L4 contractと既存L5 ruleに従い、policy内容差をconnection-contract-ownerへ返す；独立導出したL5期待値: policy_content.max_total_attempts=content_conflict→connection-contract-owner。実retry/receiver effectは主張しない。",
+      "expected_status": "independently_derived",
+      "expected_basis_refs": [
+        "docs/helix-connect/L5-detail-design/retry-deduplication-conflict.json#/branch_tables/F03/failure_rules/1"
+      ],
       "oracle_id": "HELIXCONNECT-L10-004-F03",
       "expected_oracle_ref": {
         "document": "docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json",
@@ -635,8 +1320,19 @@
     },
     {
       "id": "C004-F03-SUBMITTED-BUDGET-RESET",
-      "counterexample": "累積attemptを提出0へ置換しない。 L9 condition/outcome witness: budget=within_original_limit; cumulative_attempts.value=content_conflict.",
-      "expected": "next_action=stop_or_hold_with_unfinished；additional_attempts=0；budget=within_original_limit；cumulative_attempts.value=content_conflict→operation-owner",
+      "u_id": "U-C004-061",
+      "function_ref": "FN-C004-03",
+      "counterexample": "HELIXCONNECT-L3-004-F03 の固定L9 raw source入力条件: submitted_cumulative_attempts 入力は提示され、もう一方と異なる（値は複製しない）。",
+      "counterexample_source_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json",
+        "pointer": "/verification_obligations/2/concrete_cases/18/independent_source_packet/raw_utf8",
+        "comparison_baseline_pointer": "/verification_obligations/2/concrete_cases/0/independent_source_packet/raw_utf8"
+      },
+      "expected": "独立期待: 共通のexpectation_derivationに示す承認済みL3 requirement・L4 contractと既存L5 ruleに従い、累積attempt差をoperation-ownerへ返す；独立導出したL5期待値: cumulative_attempts.value=content_conflict→operation-owner。実retry/receiver effectは主張しない。",
+      "expected_status": "independently_derived",
+      "expected_basis_refs": [
+        "docs/helix-connect/L5-detail-design/retry-deduplication-conflict.json#/branch_tables/F03/failure_rules/2"
+      ],
       "oracle_id": "HELIXCONNECT-L10-004-F03",
       "expected_oracle_ref": {
         "document": "docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json",
@@ -645,8 +1341,19 @@
     },
     {
       "id": "C004-F03-SUBMITTED-HISTORY-ERASED",
-      "counterexample": "原attempt/ACK結果履歴を消さない。 L9 condition/outcome witness: budget=within_original_limit; history_content.value=content_conflict.",
-      "expected": "next_action=stop_or_hold_with_unfinished；additional_attempts=0；budget=within_original_limit；history_content.value=content_conflict→operation-owner",
+      "u_id": "U-C004-062",
+      "function_ref": "FN-C004-03",
+      "counterexample": "HELIXCONNECT-L3-004-F03 の固定L9 raw source入力条件: /submitted_history 入力arrayの要素数区分は 空。",
+      "counterexample_source_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json",
+        "pointer": "/verification_obligations/2/concrete_cases/19/independent_source_packet/raw_utf8",
+        "comparison_baseline_pointer": "/verification_obligations/2/concrete_cases/0/independent_source_packet/raw_utf8"
+      },
+      "expected": "独立期待: 共通のexpectation_derivationに示す承認済みL3 requirement・L4 contractと既存L5 ruleに従い、history内容差をoperation-ownerへ返す；独立導出したL5期待値: history_content.value=content_conflict→operation-owner。実retry/receiver effectは主張しない。",
+      "expected_status": "independently_derived",
+      "expected_basis_refs": [
+        "docs/helix-connect/L5-detail-design/retry-deduplication-conflict.json#/branch_tables/F03/failure_rules/5"
+      ],
       "oracle_id": "HELIXCONNECT-L10-004-F03",
       "expected_oracle_ref": {
         "document": "docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json",
@@ -655,8 +1362,19 @@
     },
     {
       "id": "C004-F03-SUBMITTED-UNFINISHED-ERASED",
-      "counterexample": "元recovery/未完を停止や技術成功で消さない。 L9 condition/outcome witness: budget=within_original_limit; unfinished_content.value=content_conflict.",
-      "expected": "next_action=stop_or_hold_with_unfinished；additional_attempts=0；budget=within_original_limit；unfinished_content.value=content_conflict→operation-owner",
+      "u_id": "U-C004-063",
+      "function_ref": "FN-C004-03",
+      "counterexample": "HELIXCONNECT-L3-004-F03 の固定L9 raw source入力条件: /submitted_unfinished 入力arrayの要素数区分は 空。",
+      "counterexample_source_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json",
+        "pointer": "/verification_obligations/2/concrete_cases/20/independent_source_packet/raw_utf8",
+        "comparison_baseline_pointer": "/verification_obligations/2/concrete_cases/0/independent_source_packet/raw_utf8"
+      },
+      "expected": "独立期待: 共通のexpectation_derivationに示す承認済みL3 requirement・L4 contractと既存L5 ruleに従い、unfinished/recovery差をoperation-ownerへ返す；独立導出したL5期待値: unfinished_content.value=content_conflict→operation-owner。実retry/receiver effectは主張しない。",
+      "expected_status": "independently_derived",
+      "expected_basis_refs": [
+        "docs/helix-connect/L5-detail-design/retry-deduplication-conflict.json#/branch_tables/F03/failure_rules/7"
+      ],
       "oracle_id": "HELIXCONNECT-L10-004-F03",
       "expected_oracle_ref": {
         "document": "docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json",
@@ -665,8 +1383,19 @@
     },
     {
       "id": "C004-F03-ORIGINAL-HISTORY-MIXED-REVISION",
-      "counterexample": "原履歴の新旧版混載は提出一致でも単一版にならない。 L9 condition/outcome witness: budget=within_original_limit; history_target_1.contract_revision=content_conflict.",
-      "expected": "next_action=stop_or_hold_with_unfinished；additional_attempts=0；budget=within_original_limit；history_target_1.contract_revision=content_conflict→operation-owner",
+      "u_id": "U-C004-064",
+      "function_ref": "FN-C004-03",
+      "counterexample": "HELIXCONNECT-L3-004-F03 の固定L9 raw source入力条件: /original_history/1/target/contract_revision のtarget.contract_revision は 未提示；/submitted_history/1/target/contract_revision のtarget.contract_revision は 未提示。",
+      "counterexample_source_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json",
+        "pointer": "/verification_obligations/2/concrete_cases/21/independent_source_packet/raw_utf8",
+        "comparison_baseline_pointer": "/verification_obligations/2/concrete_cases/0/independent_source_packet/raw_utf8"
+      },
+      "expected": "独立期待: 共通のexpectation_derivationに示す承認済みL3 requirement・L4 contractと既存L5 ruleに従い、history target差をindex別にoperation-ownerへ返す；独立導出したL5期待値: history_target_1.contract_revision=content_conflict→operation-owner。実retry/receiver effectは主張しない。",
+      "expected_status": "independently_derived",
+      "expected_basis_refs": [
+        "docs/helix-connect/L5-detail-design/retry-deduplication-conflict.json#/branch_tables/F03/failure_rules/6"
+      ],
       "oracle_id": "HELIXCONNECT-L10-004-F03",
       "expected_oracle_ref": {
         "document": "docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json",
@@ -675,8 +1404,19 @@
     },
     {
       "id": "C004-F03-RETRY-NOT-SELECTED",
-      "counterexample": "非選択retryは未観測に保ち全retry能力の完成を要求しない。 L9 condition/outcome witness: budget=within_original_limit; candidate_next_action=not_selected_unobserved; additional_attempts=0; result_state=technical_retryable_failure.",
-      "expected": "next_action=not_selected_unobserved；additional_attempts=0；budget=within_original_limit；停止理由なし",
+      "u_id": "U-C004-065",
+      "function_ref": "FN-C004-03",
+      "counterexample": "HELIXCONNECT-L3-004-F03 の固定L9 raw source入力条件: retry_selected 入力は False。",
+      "counterexample_source_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json",
+        "pointer": "/verification_obligations/2/concrete_cases/22/independent_source_packet/raw_utf8",
+        "comparison_baseline_pointer": "/verification_obligations/2/concrete_cases/0/independent_source_packet/raw_utf8"
+      },
+      "expected": "独立期待: 共通のexpectation_derivationに示す承認済みL3 requirement・L4 contractと既存L5 ruleに従い、selected_false branchではnot_selected_unobservedとし、attempt/effectを主張しない。実retry/receiver effectは主張しない。",
+      "expected_status": "independently_derived",
+      "expected_basis_refs": [
+        "docs/helix-connect/L5-detail-design/retry-deduplication-conflict.json#/calculation_programs/FN-C004-03/ordered_steps/18"
+      ],
       "oracle_id": "HELIXCONNECT-L10-004-F03",
       "expected_oracle_ref": {
         "document": "docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json",
@@ -685,8 +1425,19 @@
     },
     {
       "id": "C004-F03-BUDGET_RESET",
-      "counterexample": "budget reset/無限retry/業務エラー再送/新旧版混載claimを拒否。 L9 condition/outcome witness: budget=within_original_limit; cumulative_attempts.value=content_conflict; L9 scenario markers=budget_reset.",
-      "expected": "next_action=stop_or_hold_with_unfinished；additional_attempts=0；budget=within_original_limit；cumulative_attempts.value=content_conflict→operation-owner",
+      "u_id": "U-C004-066",
+      "function_ref": "FN-C004-03",
+      "counterexample": "HELIXCONNECT-L3-004-F03 の固定L9 raw source入力条件: 入力 claim budget_reset が主張されている；submitted_cumulative_attempts 入力は提示され、もう一方と異なる（値は複製しない）。",
+      "counterexample_source_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json",
+        "pointer": "/verification_obligations/2/concrete_cases/23/independent_source_packet/raw_utf8",
+        "comparison_baseline_pointer": "/verification_obligations/2/concrete_cases/0/independent_source_packet/raw_utf8"
+      },
+      "expected": "未検証: この入力claimのacceptance/rejection semanticsは共通の承認済みL3/L4根拠およびL5 ruleから独立確定できない。適用可能な既存L5 branch境界は 累積attempt差をoperation-ownerへ返す。",
+      "expected_status": "unverified",
+      "expected_basis_refs": [
+        "docs/helix-connect/L5-detail-design/retry-deduplication-conflict.json#/branch_tables/F03/failure_rules/2"
+      ],
       "oracle_id": "HELIXCONNECT-L10-004-F03",
       "expected_oracle_ref": {
         "document": "docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json",
@@ -695,8 +1446,20 @@
     },
     {
       "id": "C004-F03-INFINITE_RETRY",
-      "counterexample": "budget reset/無限retry/業務エラー再送/新旧版混載claimを拒否。 L9 condition/outcome witness: budget=unknown_budget; policy_content.max_total_attempts=unknown_original_information; retry_budget.remaining=unknown_budget; L9 scenario markers=infinite_retry.",
-      "expected": "next_action=stop_or_hold_with_unfinished；additional_attempts=0；budget=unknown_budget；policy_content.max_total_attempts=unknown_original_information→connection-contract-owner; retry_budget.remaining=unknown_budget→operation-owner",
+      "u_id": "U-C004-067",
+      "function_ref": "FN-C004-03",
+      "counterexample": "HELIXCONNECT-L3-004-F03 の固定L9 raw source入力条件: 入力 claim infinite_retry が主張されている；original_policy.max_total_attempts 入力は未提示またはnull。",
+      "counterexample_source_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json",
+        "pointer": "/verification_obligations/2/concrete_cases/24/independent_source_packet/raw_utf8",
+        "comparison_baseline_pointer": "/verification_obligations/2/concrete_cases/0/independent_source_packet/raw_utf8"
+      },
+      "expected": "未検証: この入力claimのacceptance/rejection semanticsは共通の承認済みL3/L4根拠およびL5 ruleから独立確定できない。適用可能な既存L5 branch境界は policy内容差をconnection-contract-ownerへ返す；元policyと累積値から有限retry budgetを判定しoperation-ownerへ返す。",
+      "expected_status": "unverified",
+      "expected_basis_refs": [
+        "docs/helix-connect/L5-detail-design/retry-deduplication-conflict.json#/branch_tables/F03/failure_rules/1",
+        "docs/helix-connect/L5-detail-design/retry-deduplication-conflict.json#/branch_tables/F03/failure_rules/3"
+      ],
       "oracle_id": "HELIXCONNECT-L10-004-F03",
       "expected_oracle_ref": {
         "document": "docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json",
@@ -705,8 +1468,19 @@
     },
     {
       "id": "C004-F03-BUSINESS_ERROR_RETRY",
-      "counterexample": "budget reset/無限retry/業務エラー再送/新旧版混載claimを拒否。 L9 condition/outcome witness: budget=within_original_limit; retryable_result.state=business_nonretryable; L9 scenario markers=business_error_retry.",
-      "expected": "next_action=stop_or_hold_with_unfinished；additional_attempts=0；budget=within_original_limit；retryable_result.state=business_nonretryable→business-owner",
+      "u_id": "U-C004-068",
+      "function_ref": "FN-C004-03",
+      "counterexample": "HELIXCONNECT-L3-004-F03 の固定L9 raw source入力条件: 入力 claim business_error_retry が主張されている；original_result_state 入力状態は business_nonretryable。",
+      "counterexample_source_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json",
+        "pointer": "/verification_obligations/2/concrete_cases/25/independent_source_packet/raw_utf8",
+        "comparison_baseline_pointer": "/verification_obligations/2/concrete_cases/0/independent_source_packet/raw_utf8"
+      },
+      "expected": "未検証: この入力claimのacceptance/rejection semanticsは共通の承認済みL3/L4根拠およびL5 ruleから独立確定できない。適用可能な既存L5 branch境界は retryabilityに応じてbusiness_nonretryableはbusiness-owner、それ以外のunknownはoperation-ownerへ返す。",
+      "expected_status": "unverified",
+      "expected_basis_refs": [
+        "docs/helix-connect/L5-detail-design/retry-deduplication-conflict.json#/branch_tables/F03/failure_rules/8"
+      ],
       "oracle_id": "HELIXCONNECT-L10-004-F03",
       "expected_oracle_ref": {
         "document": "docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json",
@@ -715,8 +1489,19 @@
     },
     {
       "id": "C004-F03-OLD_NEW_REVISION_MIXED",
-      "counterexample": "budget reset/無限retry/業務エラー再送/新旧版混載claimを拒否。 L9 condition/outcome witness: budget=within_original_limit; retry_target.contract_revision=content_conflict; L9 scenario markers=old_new_revision_mixed.",
-      "expected": "next_action=stop_or_hold_with_unfinished；additional_attempts=0；budget=within_original_limit；retry_target.contract_revision=content_conflict→operation-owner",
+      "u_id": "U-C004-069",
+      "function_ref": "FN-C004-03",
+      "counterexample": "HELIXCONNECT-L3-004-F03 の固定L9 raw source入力条件: 入力 claim old_new_revision_mixed が主張されている；submitted_retry.contract_revision は original_operationと異なる。",
+      "counterexample_source_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json",
+        "pointer": "/verification_obligations/2/concrete_cases/26/independent_source_packet/raw_utf8",
+        "comparison_baseline_pointer": "/verification_obligations/2/concrete_cases/0/independent_source_packet/raw_utf8"
+      },
+      "expected": "未検証: この入力claimのacceptance/rejection semanticsは共通の承認済みL3/L4根拠およびL5 ruleから独立確定できない。適用可能な既存L5 branch境界は retry target差をoperation-ownerへ返す。",
+      "expected_status": "unverified",
+      "expected_basis_refs": [
+        "docs/helix-connect/L5-detail-design/retry-deduplication-conflict.json#/branch_tables/F03/failure_rules/0"
+      ],
       "oracle_id": "HELIXCONNECT-L10-004-F03",
       "expected_oracle_ref": {
         "document": "docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json",
@@ -729,8 +1514,8 @@
     "git_commit": "b3ddf6f1d0a6cf2009e5f81a90f21c4292300185",
     "path": "docs/helix-connect/L8-unit-verification/retry-deduplication-conflict.json",
     "meaning": "approved whole-object/hash pins、69行のraw packet/typed arguments/COPY fixture、全返却・実行/変異手順・hash材料、source packet pins、重複L3/L4/L9/function参照、independent probesの全面展開を整理した。元の69 case IDと順序、case固有反例・期待差分、各L9 expected_material pointer、L3/L4/L5/L9/L10責務、未実行/fixture-only/authority・operation効果なしの境界を保持。",
-    "removed_key_rule": "L8は既存U-ID表と共通意味境界を正本とし、行にはid/counterexample/expected/oracle_id/oracle pointerのみを置く。fixture/raw packet/typed arguments/COPY/full return/hash/seed/変異手順を置かず、同じL3/L4/L9/function参照やbranch表を行ごとに複製しない。",
-    "use_boundary": "DT-VT-105のL5↔L8候補照合だけに用いる。L9 oracle pointerは現行L9 slimで移管が必要。旧commitはgit履歴確認専用で、実行/fallback/期待再生成に使わない。全caseは未実行で、L7 test citationも作らない。"
+    "removed_key_rule": "U-ID行には既存case id、明示u_id、元function_ref、source input-only counterexample/source pointer、独立期待/status/根拠source refs、既存oracle_id/oracle pointerを置く。function定義やfailure rule表を複製せず、fixture/raw packet本体、typed arguments、全返却、COPY、hash、seed、patch・変異手順を置かない。",
+    "use_boundary": "DT-VT-105のL5↔L8候補照合だけに用いる。counterexample_source_refとexpected_oracle_refは固定L9へのpointerで、raw fixtureを複製しない。将来L9 slimで両pointerを撤去する場合は既存consumerを移行する。旧commitはgit履歴確認専用で、実行/fallback/期待再生成に使わない。全caseは未実行で、L7 test citationも作らない。"
   },
   "legacy_comparison": [
     {
@@ -780,6 +1565,38 @@
       "failure_id": "T13",
       "pointer": "/failure_types/12",
       "boundary": "CONNECT-004は送信重複排除の限定scope。reviewer assignment/GUI claim排他の成立を主張しない。"
+    }
+  },
+  "expectation_derivation": {
+    "boundary": "反例は固定L9 independent_source_packet raw inputの条件のみ。期待はL3 approved obligation・L4 contract・L5 calculation/function/failure ruleの読み取りから独立導出し、導けないものはunverified。L9 expected_materialは独立期待との比較に限る。期待をL9から文字列移送しない。",
+    "functions": {
+      "FN-C004-01": {
+        "requirement_ref": "HELIXCONNECT-L3-004-F01",
+        "design_contract_ref": "HELIXCONNECT-L4-004-F01",
+        "l5_ref": "/calculation_programs/FN-C004-01 and /branch_tables/F01",
+        "oracle_id": "HELIXCONNECT-L10-004-F01",
+        "requirement_source_ref": "docs/helix-connect/L3-requirements/functional-requirements.json#/requirements/6",
+        "design_contract_source_ref": "docs/helix-connect/L4-basic-design/retry-deduplication-conflict.json#/contracts/0",
+        "l5_source_ref": "docs/helix-connect/L5-detail-design/retry-deduplication-conflict.json#/calculation_programs/FN-C004-01 and /branch_tables/F01"
+      },
+      "FN-C004-02": {
+        "requirement_ref": "HELIXCONNECT-L3-004-F02",
+        "design_contract_ref": "HELIXCONNECT-L4-004-F02",
+        "l5_ref": "/calculation_programs/FN-C004-02 and /branch_tables/F02",
+        "oracle_id": "HELIXCONNECT-L10-004-F02",
+        "requirement_source_ref": "docs/helix-connect/L3-requirements/functional-requirements.json#/requirements/7",
+        "design_contract_source_ref": "docs/helix-connect/L4-basic-design/retry-deduplication-conflict.json#/contracts/1",
+        "l5_source_ref": "docs/helix-connect/L5-detail-design/retry-deduplication-conflict.json#/calculation_programs/FN-C004-02 and /branch_tables/F02"
+      },
+      "FN-C004-03": {
+        "requirement_ref": "HELIXCONNECT-L3-004-F03",
+        "design_contract_ref": "HELIXCONNECT-L4-004-F03",
+        "l5_ref": "/calculation_programs/FN-C004-03 and /branch_tables/F03",
+        "oracle_id": "HELIXCONNECT-L10-004-F03",
+        "requirement_source_ref": "docs/helix-connect/L3-requirements/functional-requirements.json#/requirements/8",
+        "design_contract_source_ref": "docs/helix-connect/L4-basic-design/retry-deduplication-conflict.json#/contracts/2",
+        "l5_source_ref": "docs/helix-connect/L5-detail-design/retry-deduplication-conflict.json#/calculation_programs/FN-C004-03 and /branch_tables/F03"
+      }
     }
   }
 }

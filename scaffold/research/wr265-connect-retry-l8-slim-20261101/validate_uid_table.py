@@ -15,6 +15,7 @@ L8 = "docs/helix-connect/L8-unit-verification/retry-deduplication-conflict.json"
 L5 = "docs/helix-connect/L5-detail-design/retry-deduplication-conflict.json"
 L9 = "docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json"
 L4 = "docs/helix-connect/L4-basic-design/retry-deduplication-conflict.json"
+L3 = "docs/helix-connect/L3-requirements/functional-requirements.json"
 L10 = "docs/helix-connect/L10-verification/functional-verification.json"
 HISTORY = "scaffold/research/wr265-connect-retry-l8-slim-20261101/evidence-history.json"
 
@@ -23,59 +24,471 @@ def load(path):
     return json.loads((ROOT / path).read_text(encoding="utf-8"))
 
 
-def counterexample(case_id, source_case):
-    # Build row-specific meaning from the fixed L9 basis, oracle witnesses, and
-    # true semantic claim names. No case-ID suffix is treated as evidence.
-    basis = source_case.get("basis", "")
-    expected = source_case["expected_material"]
-    raw = json.loads(source_case["independent_source_packet"]["raw_utf8"])
-    markers = [name for name, value in raw.get("claims", {}).items() if value is True]
-    fn = case_id.split("-")[1]
+def pointer_for(case, obligation_index, case_index):
+    return f"/verification_obligations/{obligation_index}/concrete_cases/{case_index}"
+
+
+def changed_leaves(before, after, path=""):
+    if type(before) is not type(after):
+        return [path]
+    if isinstance(before, dict):
+        result = []
+        for key in sorted(set(before) | set(after)):
+            child = f"{path}/{key}"
+            if key not in before or key not in after:
+                result.append(child)
+            else:
+                result.extend(changed_leaves(before[key], after[key], child))
+        return result
+    if isinstance(before, list):
+        result = []
+        if len(before) != len(after):
+            result.append(f"{path}/length")
+        for index, (left, right) in enumerate(zip(before, after)):
+            result.extend(changed_leaves(left, right, f"{path}/{index}"))
+        return result
+    return [path] if before != after else []
+
+
+def raw_case(case):
+    return json.loads(case["independent_source_packet"]["raw_utf8"])
+
+
+FN_TO_GROUP = {"FN-C004-01": "F01", "FN-C004-02": "F02", "FN-C004-03": "F03"}
+
+
+def counterexample(case, raw, baseline, function_ref, requirement_ref):
+    """Describe only source input conditions; do not read the L9 oracle result."""
+    fn = FN_TO_GROUP[function_ref]
+    changes = changed_leaves(baseline, raw)
+    changed_array_paths = [path[:-len("/length")] for path in changes if path.endswith("/length")]
+    conditions = []
+    for path in changes:
+        if any(path.startswith(array_path + "/") and path != array_path + "/length" for array_path in changed_array_paths):
+            continue
+        if path.startswith("/claims/"):
+            name = path.rsplit("/", 1)[1]
+            if raw.get("claims", {}).get(name) is True:
+                conditions.append(f"入力 claim {name} が主張されている")
+            elif name in raw.get("claims", {}):
+                conditions.append(f"入力 claim {name} は主張されていない")
+            continue
+        if path == "/original_policy/max_total_attempts":
+            limit = raw.get("original_policy", {}).get("max_total_attempts", MISSING)
+            cumulative = raw.get("original_cumulative_attempts", MISSING)
+            if limit is MISSING or limit is None:
+                conditions.append("original_policy.max_total_attempts 入力は未提示またはnull")
+            elif isinstance(limit, int) and isinstance(cumulative, int) and limit <= cumulative:
+                conditions.append("元policy上限は元の累積attempt数以下")
+            else:
+                conditions.append("元policy上限は元の累積attempt数より大きい")
+            continue
+        if path == "/submitted_policy/max_total_attempts":
+            submitted = raw.get("submitted_policy", {}).get("max_total_attempts", MISSING)
+            original = raw.get("original_policy", {}).get("max_total_attempts", MISSING)
+            relation = "未提示" if submitted is MISSING else "null" if submitted is None else "original_policyと異なる" if not same_json(submitted, original) else "original_policyと同じ"
+            conditions.append(f"submitted_policy.max_total_attempts は {relation}")
+            continue
+        if path in ("/original_cumulative_attempts", "/submitted_cumulative_attempts"):
+            key = path[1:]
+            value = raw.get(key, MISSING)
+            if value is MISSING or value is None:
+                conditions.append(f"{key} 入力は未提示またはnull")
+            else:
+                other_key = "submitted_cumulative_attempts" if key == "original_cumulative_attempts" else "original_cumulative_attempts"
+                other = raw.get(other_key, MISSING)
+                relation = "もう一方と異なる" if other is MISSING or not same_json(value, other) else "もう一方と同じ"
+                conditions.append(f"{key} 入力は提示され、{relation}（値は複製しない）")
+            continue
+        if path.startswith("/submitted_retry/"):
+            field = path.split("/")[-1]
+            value = raw.get("submitted_retry", {}).get(field, MISSING)
+            original = raw.get("original_operation", {}).get(field, MISSING)
+            conditions.append(f"submitted_retry.{field} は {'未提示' if value is MISSING else 'original_operationと異なる' if value != original else '提示されoriginal_operationと同じ'}")
+            continue
+        if path.startswith("/original_incoming/"):
+            field = path.split("/")[-1]
+            value = raw.get("original_incoming", {}).get(field, MISSING)
+            original = raw.get("original_operation", {}).get(field, MISSING)
+            conditions.append(f"original_incoming.{field} は {'未提示' if value is MISSING else 'null' if value is None else 'original_operationと異なる' if value != original else 'original_operationと同じ'}")
+            continue
+        if path.startswith("/submitted_incoming/"):
+            field = path.split("/")[-1]
+            value = raw.get("submitted_incoming", {}).get(field, MISSING)
+            original = raw.get("original_incoming", {}).get(field, MISSING)
+            conditions.append(f"submitted_incoming.{field} は {'未提示' if value is MISSING else 'original_incomingと異なる' if value != original else 'original_incomingと同じ'}")
+            continue
+        if path.startswith("/original_effect_target/") or path.startswith("/submitted_effect_target/"):
+            target, field = path.lstrip("/").split("/", 1)
+            value = raw.get(target, {}).get(field, MISSING)
+            conditions.append(f"{target}.{field} は {'未提示' if value is MISSING else 'original_operationと異なる' if value != raw.get('original_operation', {}).get(field, MISSING) else 'original_operationと同じ'}")
+            continue
+        if path.startswith("/original_effect_observation/target/") or path.startswith("/submitted_effect_observation/target/") or path.startswith("/original_receiver_contract/target/") or ((path.startswith("/original_history/") or path.startswith("/submitted_history/")) and "/target/" in path):
+            parts = path.strip("/").split("/")
+            field = parts[-1]
+            target = raw
+            for part in parts[:-1]:
+                target = target.get(part, {}) if isinstance(target, dict) else {}
+            value = target.get(field, MISSING) if isinstance(target, dict) else MISSING
+            original = raw.get("original_operation", {}).get(field, MISSING)
+            conditions.append(f"{path} のtarget.{field} は {'未提示' if value is MISSING else 'original_operationと異なる' if not same_json(value, original) else 'original_operationと同じ'}")
+            continue
+        if path.endswith("/length"):
+            array_path = path[:-len("/length")]
+            value = raw
+            for part in array_path.strip("/").split("/"):
+                value = value.get(part, MISSING) if isinstance(value, dict) else MISSING
+            category = "未提示" if value is MISSING or not isinstance(value, list) else "空" if not value else "単一" if len(value) == 1 else "複数"
+            conditions.append(f"{array_path} 入力arrayの要素数区分は {category}")
+            continue
+        if path in ("/original_result_state", "/original_expiry_state", "/original_permission_state", "/original_compatibility_state", "/original_ack_state"):
+            key = path[1:]
+            value = raw.get(key, MISSING)
+            conditions.append(f"{key} 入力状態は {'未提示' if value is MISSING else 'null' if value is None else value}")
+            continue
+        if path == "/retry_selected":
+            conditions.append(f"retry_selected 入力は {raw.get('retry_selected')}")
+            continue
+        conditions.append(f"入力項目 {path or '/'} は同機能の先頭固定caseと異なる（値は複製しない）")
+    if not conditions:
+        if fn == "F01":
+            conditions = ["retry target全fieldはoriginal operationに対応し、attemptは区別され、effect snapshotが観測済み"]
+        elif fn == "F02":
+            conditions = ["original incoming digestはoriginal operation digestと同じで、effect observationが提示される"]
+        else:
+            conditions = ["policyと累積attemptの入力が提示され、retry result stateが与えられる"]
+    return f"{requirement_ref} の固定L9 raw source入力条件: " + "；".join(conditions) + "。"
+
+
+MISSING = object()
+
+
+RULE_TEXT = {
+    "F01": {
+        0: "retry_targetの非対応fieldをoperation-ownerへ返す",
+        1: "attempt binding不足をoperation-ownerへ返す",
+        2: "receiver contract識別情報の不足をreceiver-contract-ownerへ返す",
+        3: "effect observation内容の差をreceiver-ownerへ返す",
+        4: "effect targetの差をreceiver-ownerへ返す",
+        5: "one-effect観測条件で効果を分類し、観測不足はunknownのまま保持する",
+        6: "attempt identity/ordinal重複をoperation-ownerへ返す",
+        7: "receiver contract targetの差をreceiver-contract-ownerへ返す",
+    },
+    "F02": {
+        0: "提出incoming間の内容差をoperation-ownerへ返す",
+        1: "incomingと元operationのbinding差をoperation-ownerへ返す",
+        2: "effect target差をreceiver-ownerへ返す",
+        3: "元operation/incoming digest関係でcandidate actionを選び、digest差をoperation-ownerへ返す",
+        4: "衝突後のreceiver effect増分をreceiver-ownerへ返す",
+        5: "effect内容差をreceiver-ownerへ返す",
+        6: "衝突前effectのunknownをunknown_original_informationとしてreceiver-ownerへ返す",
+    },
+    "F03": {
+        0: "retry target差をoperation-ownerへ返す",
+        1: "policy内容差をconnection-contract-ownerへ返す",
+        2: "累積attempt差をoperation-ownerへ返す",
+        3: "元policyと累積値から有限retry budgetを判定しoperation-ownerへ返す",
+        4: "history件数不整合をoperation-ownerへ返す",
+        5: "history内容差をoperation-ownerへ返す",
+        6: "history target差をindex別にoperation-ownerへ返す",
+        7: "unfinished/recovery差をoperation-ownerへ返す",
+        8: "retryabilityに応じてbusiness_nonretryableはbusiness-owner、それ以外のunknownはoperation-ownerへ返す",
+        9: "expiry停止状態をHELIX-SECURITYへ返す",
+        10: "permission停止状態をHELIX-SECURITYへ返す",
+        11: "compatibility停止状態をendpoint-contract-ownerへ返す",
+        12: "terminal ACKをalready_terminalとしてoperation-ownerへ返す",
+    },
+}
+
+
+def same_json(left, right):
+    return type(left) is type(right) and left == right
+
+
+def compare_record(left, right, fields, unknown_original=()):
+    result = {}
+    for field in fields:
+        a = left.get(field, MISSING) if isinstance(left, dict) else MISSING
+        b = right.get(field, MISSING) if isinstance(right, dict) else MISSING
+        if a is MISSING or b is MISSING:
+            result[field] = "missing"
+        elif field in unknown_original and a is None:
+            result[field] = "unknown_original_information"
+        else:
+            result[field] = "content_corresponding_in_fixture" if same_json(a, b) else "content_conflict"
+    return result
+
+
+def rule_refs_for(fn, raw, l5):
+    """Statically match declared L5 failure-rule predicates to fixed input shape."""
+    table = l5["branch_tables"][fn]
+    rules = set()
     if fn == "F01":
-        reasons = expected.get("failure_reasons", [])
-        witness = "; ".join(f"{x['area']}.{x['field']}={x['result']}" for x in reasons)
-        if not witness:
-            witness = f"candidate_retry_receipt={expected.get('candidate_retry_receipt')}; receiver_effect={expected.get('receiver_effect_result', expected.get('raw_effect_set_result'))}"
+        target_fields = table["target_fields_order"]
+        target_results = compare_record(raw.get("original_operation"), raw.get("submitted_retry"), target_fields)
+        if raw.get("retry_selected") is True and any(v != "content_corresponding_in_fixture" for v in target_results.values()): rules.add(0)
+        original_attempts, submitted_attempts = raw.get("original_attempts"), raw.get("submitted_attempts")
+        bound = isinstance(original_attempts, list) and isinstance(submitted_attempts, list) and len(original_attempts) > 0 and len(original_attempts) == len(submitted_attempts)
+        if bound:
+            for a, b in zip(original_attempts, submitted_attempts):
+                if not isinstance(a, dict) or not isinstance(b, dict) or not same_json(a.get("identity", MISSING), b.get("identity", MISSING)) or not same_json(a.get("ordinal", MISSING), b.get("ordinal", MISSING)):
+                    bound = False
+                if any(v != "content_corresponding_in_fixture" for v in compare_record(a.get("target"), raw.get("original_operation"), target_fields).values()) or any(v != "content_corresponding_in_fixture" for v in compare_record(b.get("target"), raw.get("original_operation"), target_fields).values()):
+                    bound = False
+        if raw.get("retry_selected") is True and not bound: rules.add(1)
+        contract = raw.get("original_receiver_contract", {})
+        contract_strings = [contract.get(k, MISSING) for k in ("identity", "revision", "rule")]
+        if any(v is MISSING or v is None or v == "" for v in contract_strings): rules.add(2)
+        obs_fields = table["effect_fields_order"]
+        obs_diff = compare_record(raw.get("original_effect_observation"), raw.get("submitted_effect_observation"), obs_fields, unknown_original=("after_retry",))
+        if any(v != "content_corresponding_in_fixture" for v in obs_diff.values()): rules.add(3)
+        effect_target = compare_record(raw.get("original_operation"), raw.get("original_effect_observation", {}).get("target"), target_fields)
+        if any(v != "content_corresponding_in_fixture" for v in effect_target.values()): rules.add(4)
+        if raw.get("retry_selected") is True and bound and all(v is not MISSING and v not in (None, "") for v in contract_strings):
+            before = raw.get("original_effect_observation", {}).get("before", MISSING)
+            first = raw.get("original_effect_observation", {}).get("after_first", MISSING)
+            retry = raw.get("original_effect_observation", {}).get("after_retry", MISSING)
+            observed = raw.get("original_effect_observation", {}).get("state") == "observed_in_fixture_only"
+            one_effect = observed and isinstance(before, list) and isinstance(first, list) and isinstance(retry, list) and len(before) == 0 and len(first) == 1 and len(retry) == len(first) and same_json(first, retry)
+            target_unbound = any(v != "content_corresponding_in_fixture" for v in effect_target.values())
+            obs_unmatched = any(v != "content_corresponding_in_fixture" for v in obs_diff.values())
+            if not one_effect or target_unbound or obs_unmatched: rules.add(5)
+        keys = table.get("attempt_distinctness_keys", [])
+        if any(not isinstance(raw.get("submitted_attempts"), list) or len({json.dumps(a.get(k), sort_keys=True, ensure_ascii=False) for a in raw["submitted_attempts"]}) != len(raw["submitted_attempts"]) for k in keys): rules.add(6)
+        receiver_target = compare_record(raw.get("original_operation"), contract.get("target"), target_fields)
+        if any(v != "content_corresponding_in_fixture" for v in receiver_target.values()): rules.add(7)
+        if raw.get("retry_selected") is False: return []
     elif fn == "F02":
-        reasons = expected.get("failure_reasons", [])
-        witness = "; ".join(f"{x['area']}.{x['field']}={x['result']}" for x in reasons) if reasons else "additional_failure=none"
-        witness = f"digest_relation={expected.get('digest_relation')}; action={expected.get('candidate_conflict_action')}; effect_increment={expected.get('effect_increment_result')}; {witness}"
+        incoming_fields = table["incoming_fields_order"]
+        binding_fields = table["binding_fields_order"]
+        a, b = raw.get("original_incoming"), raw.get("submitted_incoming")
+        incoming_results = compare_record(a, b, incoming_fields, unknown_original=("digest",))
+        if any(v != "content_corresponding_in_fixture" for v in incoming_results.values()): rules.add(0)
+        binding_results = compare_record(raw.get("original_operation"), a, binding_fields)
+        if any(v != "content_corresponding_in_fixture" for v in binding_results.values()): rules.add(1)
+        target_fields = l5["branch_tables"]["F01"]["target_fields_order"]
+        effect_target = compare_record(raw.get("original_operation"), raw.get("original_effect_target"), target_fields)
+        submitted_effect_target = compare_record(raw.get("original_effect_target"), raw.get("submitted_effect_target"), target_fields)
+        target_unbound = any(v != "content_corresponding_in_fixture" for v in effect_target.values()) or any(v != "content_corresponding_in_fixture" for v in submitted_effect_target.values())
+        if target_unbound: rules.update((2, 4))
+        operation_digest = raw.get("original_operation", {}).get("digest", MISSING)
+        incoming_digest = a.get("digest", MISSING) if isinstance(a, dict) else MISSING
+        digest_relation = "unknown" if operation_digest in (MISSING, None) or incoming_digest in (MISSING, None) else "same_digest" if same_json(operation_digest, incoming_digest) else "different_digest"
+        if digest_relation != "same_digest": rules.add(3)
+        before, after = raw.get("original_effect_before", MISSING), raw.get("original_effect_after", MISSING)
+        effect_state = raw.get("original_effect_state")
+        if effect_state == "observed_in_fixture_only" and not isinstance(before, list):
+            rules.update((4, 5, 6))
+        elif effect_state != "observed_in_fixture_only" or not isinstance(before, list) or not isinstance(after, list) or not same_json(before, after): rules.add(4)
+        content = compare_record({"after": raw.get("original_effect_after", MISSING)}, {"after": raw.get("submitted_effect_after", MISSING)}, ["after"], unknown_original=("after",))
+        if next(iter(content.values())) != "content_corresponding_in_fixture": rules.add(5)
     else:
-        reasons = expected.get("stop_reasons", [])
-        witness = "; ".join(f"{x['area']}.{x['field']}={x['result']}" for x in reasons)
-        if not witness:
-            witness = f"candidate_next_action={expected.get('candidate_next_action')}; additional_attempts={expected.get('candidate_additional_attempts')}; result_state={expected.get('retained_result_state')}"
-        witness = f"budget={expected.get('budget_result')}; {witness}"
-    marker_text = f"; L9 scenario markers={','.join(markers)}" if markers else ""
-    return f"{basis} L9 condition/outcome witness: {witness}{marker_text}."
+        target_fields = table["target_fields_order"]
+        target_results = compare_record(raw.get("original_operation"), raw.get("submitted_retry"), target_fields)
+        if any(v != "content_corresponding_in_fixture" for v in target_results.values()): rules.add(0)
+        policy_fields = table["policy_fields_order"]
+        policy_results = compare_record(raw.get("original_policy"), raw.get("submitted_policy"), policy_fields, unknown_original=("max_total_attempts",))
+        if any(v != "content_corresponding_in_fixture" for v in policy_results.values()): rules.add(1)
+        ca, cb = raw.get("original_cumulative_attempts", MISSING), raw.get("submitted_cumulative_attempts", MISSING)
+        cumulative_result = "missing" if ca is MISSING or cb is MISSING else "unknown_original_information" if ca is None else "content_corresponding_in_fixture" if same_json(ca, cb) else "content_conflict"
+        if cumulative_result != "content_corresponding_in_fixture": rules.add(2)
+        limit = raw.get("original_policy", {}).get("max_total_attempts", MISSING)
+        if limit in (MISSING, None) or ca in (MISSING, None) or not isinstance(limit, int) or not isinstance(ca, int):
+            budget_result = "unknown_budget"
+        else:
+            budget_result = "exhausted" if ca >= limit else "within_original_limit"
+        if budget_result != "within_original_limit": rules.add(3)
+        history = raw.get("original_history", MISSING)
+        if not isinstance(history, list) or not isinstance(ca, int) or len(history) != ca: rules.add(4)
+        if not same_json(raw.get("original_history", MISSING), raw.get("submitted_history", MISSING)): rules.add(5)
+        if isinstance(history, list) and any(any(v != "content_corresponding_in_fixture" for v in compare_record(raw.get("original_operation"), item.get("target"), target_fields).values()) for item in history if isinstance(item, dict)): rules.add(6)
+        if not same_json(raw.get("original_unfinished", MISSING), raw.get("submitted_unfinished", MISSING)): rules.add(7)
+        retryable = raw.get("original_policy", {}).get("retryable_result_states", [])
+        result_state = raw.get("original_result_state", MISSING)
+        if result_state is MISSING or result_state not in retryable: rules.add(8)
+        if raw.get("original_expiry_state") != "valid_in_fixture_only": rules.add(9)
+        if raw.get("original_permission_state") != "valid_in_fixture_only": rules.add(10)
+        if raw.get("original_compatibility_state") != "compatible_in_fixture_only": rules.add(11)
+        if raw.get("original_ack_state") == "received_terminal": rules.add(12)
+        if raw.get("retry_selected") is False: return []
+    return sorted(rules)
 
 
-def expected_summary(case, expected):
-    if "F01" in case["id"]:
-        stops = expected.get("failure_reasons", [])
-        reason = "; ".join(
-            f"{x['area']}.{x['field']}={x['result']}→{x['return_owner']}" for x in stops
-        ) if stops else "追加停止理由なし"
-        return (f"{reason}；candidate_retry_receipt={expected.get('candidate_retry_receipt')}"
-                f"；receiver_effect={expected.get('receiver_effect_result', expected.get('raw_effect_set_result'))}")
-    if "F02" in case["id"]:
-        stops = expected.get("failure_reasons", [])
-        reason = "; ".join(
-            f"{x['area']}.{x['field']}={x['result']}→{x['return_owner']}" for x in stops
-        ) if stops else "追加停止理由なし"
-        return (f"digest_relation={expected.get('digest_relation')}；action={expected.get('candidate_conflict_action')}"
-                f"；effect_increment={expected.get('effect_increment_result')}；{reason}")
-    stops = expected.get("stop_reasons", [])
-    reason = "; ".join(
-        f"{x['area']}.{x['field']}={x['result']}→{x['return_owner']}" for x in stops
-    ) if stops else "停止理由なし"
-    return (f"next_action={expected.get('candidate_next_action')}"
-            f"；additional_attempts={expected.get('candidate_additional_attempts')}"
-            f"；budget={expected.get('budget_result')}；{reason}")
+def independent_outcome_facts(fn, raw, l5, rules):
+    """Derive a small expected-fact set by reading L5 comparisons and emit owners."""
+    table = l5["branch_tables"][fn]
+    facts = []
+    owner = table.get("owner_by_area", {})
+
+    def add(area, field, result, assigned_owner=None):
+        facts.append((area, field, result, assigned_owner or owner.get(area)))
+
+    def add_record(area, left, right, fields, assigned_owner=None, unknown_original=()):
+        for field, result in compare_record(left, right, fields, unknown_original).items():
+            if result != "content_corresponding_in_fixture":
+                add(area, field, result, assigned_owner)
+
+    if fn == "F01":
+        target_fields = table["target_fields_order"]
+        if 0 in rules:
+            add_record("retry_target", raw.get("original_operation"), raw.get("submitted_retry"), target_fields)
+        if 1 in rules:
+            original, submitted = raw.get("original_attempts"), raw.get("submitted_attempts")
+            if not isinstance(original, list) or not isinstance(submitted, list) or not original or len(original) != len(submitted):
+                result = "missing"
+            elif any(any(v != "content_corresponding_in_fixture" for v in compare_record(a.get("target"), raw.get("original_operation"), target_fields).values()) or any(v != "content_corresponding_in_fixture" for v in compare_record(b.get("target"), raw.get("original_operation"), target_fields).values()) for a,b in zip(original,submitted)):
+                result = "content_conflict"
+            else:
+                result = "unknown"
+            add("retry_target", "attempt_binding", result)
+        if 2 in rules:
+            add("receiver_contract_target", "identity_revision_or_rule", "missing")
+        if 3 in rules:
+            add_record("effect_content", raw.get("original_effect_observation"), raw.get("submitted_effect_observation"), table["effect_fields_order"], unknown_original=("after_retry",))
+        if 4 in rules:
+            add_record("effect_target", raw.get("original_operation"), raw.get("original_effect_observation", {}).get("target"), target_fields)
+        if 5 in rules:
+            observation = raw.get("original_effect_observation", {})
+            before, first, retry = observation.get("before", MISSING), observation.get("after_first", MISSING), observation.get("after_retry", MISSING)
+            observed = observation.get("state") == "observed_in_fixture_only"
+            if not observed or not all(isinstance(x, list) for x in (before, first, retry)):
+                effect_result = "unknown_unobserved"
+            elif len(before) == 0 and len(first) == 1 and len(retry) == 1 and same_json(first, retry):
+                effect_result = "one_effect_retained_in_fixture_only"
+            else:
+                effect_result = "duplicate_or_conflicting_effect"
+            target_unbound = any(v != "content_corresponding_in_fixture" for v in compare_record(raw.get("original_operation"), observation.get("target"), target_fields).values())
+            observation_diff = any(v != "content_corresponding_in_fixture" for v in compare_record(observation, raw.get("submitted_effect_observation"), table["effect_fields_order"], unknown_original=("after_retry",)).values())
+            if target_unbound or observation_diff:
+                effect_result = "unknown_or_conflicting_effect_binding"
+            add("receiver_effect", "delta", effect_result)
+        if 6 in rules:
+            add("attempt_distinction", "identity_and_ordinal", "duplicate_attempt_identity")
+        if 7 in rules:
+            add_record("receiver_contract_target", raw.get("original_operation"), raw.get("original_receiver_contract", {}).get("target"), target_fields)
+    elif fn == "F02":
+        incoming_fields, binding_fields = table["incoming_fields_order"], table["binding_fields_order"]
+        if 0 in rules:
+            add_record("incoming_content", raw.get("original_incoming"), raw.get("submitted_incoming"), incoming_fields, unknown_original=("digest",))
+        if 1 in rules:
+            add_record("operation_binding", raw.get("original_operation"), raw.get("original_incoming"), binding_fields)
+        target_fields = l5["branch_tables"]["F01"]["target_fields_order"]
+        if 2 in rules:
+            add_record("receiver_effect_target", raw.get("original_operation"), raw.get("original_effect_target"), target_fields)
+        operation_digest = raw.get("original_operation", {}).get("digest", MISSING)
+        incoming_digest = raw.get("original_incoming", {}).get("digest", MISSING)
+        digest_relation = "unknown" if operation_digest in (MISSING, None) or incoming_digest in (MISSING, None) else "same_digest" if same_json(operation_digest, incoming_digest) else "different_digest"
+        if 3 in rules:
+            add("digest_relation", "digest", digest_relation)
+        if 4 in rules:
+            before, after = raw.get("original_effect_before", MISSING), raw.get("original_effect_after", MISSING)
+            target_left = compare_record(raw.get("original_operation"), raw.get("original_effect_target"), target_fields)
+            target_right = compare_record(raw.get("original_effect_target"), raw.get("submitted_effect_target"), target_fields)
+            if raw.get("original_effect_state") != "observed_in_fixture_only" or not isinstance(before, list) or not isinstance(after, list):
+                effect_result = "unknown_unobserved"
+            elif any(v != "content_corresponding_in_fixture" for v in target_left.values()) or any(v != "content_corresponding_in_fixture" for v in target_right.values()):
+                effect_result = "unknown_or_conflicting_effect_binding"
+            else:
+                effect_result = "no_increment_in_fixture_only" if same_json(before, after) else "conflict_side_effect"
+            add("receiver_effect", "after_conflict", effect_result)
+        if 5 in rules:
+            effect_content = compare_record({"after": raw.get("original_effect_after", MISSING)}, {"after": raw.get("submitted_effect_after", MISSING)}, ["after"], unknown_original=("after",))
+            if effect_content["after"] != "content_corresponding_in_fixture":
+                add("effect_content", "after_conflict", effect_content["after"])
+        if 6 in rules:
+            add("effect_content", "before", "unknown_original_information")
+    else:
+        target_fields, policy_fields = table["target_fields_order"], table["policy_fields_order"]
+        if 0 in rules:
+            add_record("retry_target", raw.get("original_operation"), raw.get("submitted_retry"), target_fields)
+        if 1 in rules:
+            add_record("policy_content", raw.get("original_policy"), raw.get("submitted_policy"), policy_fields, unknown_original=("max_total_attempts",))
+        ca, cb = raw.get("original_cumulative_attempts", MISSING), raw.get("submitted_cumulative_attempts", MISSING)
+        cumulative = "missing" if ca is MISSING or cb is MISSING else "unknown_original_information" if ca is None else "content_corresponding_in_fixture" if same_json(ca, cb) else "content_conflict"
+        if 2 in rules:
+            add("cumulative_attempts", "value", cumulative)
+        limit = raw.get("original_policy", {}).get("max_total_attempts", MISSING)
+        if limit in (MISSING, None) or ca in (MISSING, None) or type(limit) is not int or type(ca) is not int:
+            budget = "unknown_budget"
+        else:
+            budget = "exhausted" if ca >= limit else "within_original_limit"
+        if 3 in rules:
+            add("retry_budget", "remaining", budget)
+        history = raw.get("original_history", MISSING)
+        if 4 in rules:
+            add("cumulative_history", "count", "unknown_or_conflicting_history")
+        if 5 in rules:
+            add("history_content", "value", "content_conflict" if not same_json(history, raw.get("submitted_history", MISSING)) else "content_corresponding_in_fixture")
+        if 6 in rules and isinstance(history, list):
+            for index, item in enumerate(history):
+                for field, result in compare_record(raw.get("original_operation"), item.get("target"), target_fields).items():
+                    if result != "content_corresponding_in_fixture": add(f"history_target_{index}", field, result, owner.get("history_target"))
+        if 7 in rules:
+            add("unfinished_content", "value", "content_conflict" if not same_json(raw.get("original_unfinished", MISSING), raw.get("submitted_unfinished", MISSING)) else "content_corresponding_in_fixture")
+        if 8 in rules:
+            state = raw.get("original_result_state", MISSING)
+            result = "business_nonretryable" if state == "business_nonretryable" else "unknown"
+            assigned_owner = "business-owner" if state == "business_nonretryable" else "operation-owner"
+            add("retryable_result", "state", result, assigned_owner)
+        for index, key, area, owner_name, mapping in (
+            (9,"original_expiry_state","original_expiry_state","HELIX-SECURITY",{"expired":"expired","unknown":"unknown"}),
+            (10,"original_permission_state","original_permission_state","HELIX-SECURITY",{"revoked":"revoked","unknown":"unknown"}),
+            (11,"original_compatibility_state","original_compatibility_state","endpoint-contract-owner",{"stale":"stale","incompatible":"incompatible","unknown":"unknown"}),
+        ):
+            if index in rules:
+                value = raw.get(key, MISSING)
+                add(area, "state", mapping.get(value, "unknown"), owner_name)
+        if 12 in rules:
+            add("ack_state", "state", "already_terminal")
+    return facts
+
+
+def derive_expected(row, case, raw, baseline, l3, l4, l5):
+    fn = FN_TO_GROUP[row["function_ref"]]
+    changes = changed_leaves(baseline, raw)
+    rules = rule_refs_for(fn, raw, l5)
+    rule_base = f"/branch_tables/{fn}/failure_rules"
+    assertions = [name for name, value in raw.get("claims", {}).items() if value is True and f"/claims/{name}" in changes]
+    facts = independent_outcome_facts(fn, raw, l5, rules)
+    status = "unverified" if assertions else "independently_derived"
+    l3_id = f"HELIXCONNECT-L3-004-{fn}"
+    l4_id = f"HELIXCONNECT-L4-004-{fn}"
+    l3_req = next((item for item in l3.get("requirements", []) if item.get("id") == l3_id), None)
+    l4_contract = next((item for item in l4.get("contracts", []) if item.get("id") == l4_id), None)
+    refs = []
+    if raw.get("retry_selected") is False:
+        if fn == "F01":
+            refs.append(f"{L5}#/branch_tables/F01/selected_false")
+        elif fn == "F03":
+            refs.append(f"{L5}#/calculation_programs/FN-C004-03/ordered_steps/18")
+        statements = ["selected_false branchではnot_selected_unobservedとし、attempt/effectを主張しない"]
+    elif not rules and fn == "F01":
+        refs.append(f"{L5}#/branch_tables/F01/effect_set_rule")
+        statements = ["effect_set_ruleのone-effect条件を満たす場合だけ同一再送の効果一回分をfixture内で保持する"]
+    elif not rules and fn == "F02":
+        refs.append(f"{L5}#/branch_tables/F02/candidate_action_rules")
+        statements = ["同digestかつincoming/operation bindingが一致するときcandidate actionはsame_content_candidate_onlyであり、異digest衝突とはしない"]
+    elif not rules and fn == "F03":
+        refs.append(f"{L5}#/calculation_programs/FN-C004-03/ordered_steps/18")
+        statements = ["candidate conditionの元budget/retryability/target/history/unfinished/expiry/permission/compatibility条件を満たす場合だけqualification候補とし、実attemptを主張しない"]
+    else:
+        refs.extend(f"{L5}#{rule_base}/{i}" for i in rules)
+        statements = [RULE_TEXT[fn][i] for i in rules]
+    if not l3_req or not l4_contract:
+        status = "unverified"
+    if assertions:
+        text = "未検証: この入力claimのacceptance/rejection semanticsは共通の承認済みL3/L4根拠およびL5 ruleから独立確定できない。適用可能な既存L5 branch境界は " + "；".join(statements) + "。"
+    elif statements:
+        fact_text = "；独立導出したL5期待値: " + "、".join(f"{area}.{field}={result}→{assigned_owner}" for area,field,result,assigned_owner in facts) if facts else ""
+        text = "独立期待: 共通のexpectation_derivationに示す承認済みL3 requirement・L4 contractと既存L5 ruleに従い、" + "；".join(statements) + fact_text + "。実retry/receiver effectは主張しない。"
+    else:
+        status = "unverified"
+        text = "未検証: 固定L3/L4/L5からこの入力に対する期待を独立導出できない。L9 expected_materialは比較参照のみ。"
+    return {"status": status, "text": text, "basis_refs": refs, "rule_indices": rules, "asserted_claims": assertions, "changes": changes, "outcome_facts": facts}
 
 
 def check():
-    doc, l4, l5, l9, l10, history = load(L8), load(L4), load(L5), load(L9), load(L10), load(HISTORY)
+    doc, l3, l4, l5, l9, l10, history = load(L8), load(L3), load(L4), load(L5), load(L9), load(L10), load(HISTORY)
     errors = []
     old_bytes = subprocess.check_output(["git", "show", f"{BASE}:{L8}"], cwd=ROOT)
     old = json.loads(old_bytes)
@@ -85,13 +498,52 @@ def check():
         errors.append("case ID/order differs from fixed pre-edit source")
     if len(ids) != 69:
         errors.append(f"case count is {len(ids)}, expected 69")
-    expected_by_id = {c["id"]: c for ob in l9["verification_obligations"] for c in ob["concrete_cases"]}
+    source_index = {}
+    for ob_index, obligation in enumerate(l9["verification_obligations"]):
+        for case_index, case in enumerate(obligation["concrete_cases"]):
+            source_index[case["id"]] = (ob_index, case_index, case)
+    expected_by_id = {case_id: value[2] for case_id, value in source_index.items()}
     if set(ids) != set(expected_by_id):
         errors.append("L8 and L9 case ID sets differ")
+    base_function_by_id = {case["id"]: case["function_ref"] for case in old["cases"]}
+    expected_uids = [f"U-C004-{i:03d}" for i in range(1, len(ids) + 1)]
+    uids = [row.get("u_id") for row in doc.get("cases", [])]
+    if uids != expected_uids or len(set(uids)) != len(ids):
+        errors.append("U-ID sequence must be unique U-C004-001..069 in case order")
+    l5_function_by_case = {}
+    for trace in l5.get("obligation_trace", []):
+        for case_id in trace.get("case_ids", []):
+            l5_function_by_case[case_id] = trace.get("function_ref")
+    if set(l5_function_by_case) != set(ids):
+        errors.append("existing L5 obligation_trace consumer has unresolved or extra case IDs")
+    baseline_by_fn = {}
+    fn_by_requirement = {"HELIXCONNECT-L3-004-F01":"F01", "HELIXCONNECT-L3-004-F02":"F02", "HELIXCONNECT-L3-004-F03":"F03"}
+    for obligation in l9["verification_obligations"]:
+        if obligation.get("concrete_cases"):
+            group = fn_by_requirement.get(obligation.get("requirement_ref"))
+            if group:
+                baseline_by_fn[group] = raw_case(obligation["concrete_cases"][0])
     if set(doc.get("removed_materials", {})) != {"decision_ref", "git_commit", "path", "meaning", "removed_key_rule", "use_boundary"}:
         errors.append("removed_materials must contain exactly the six required keys")
     if "DT-VT-105" not in doc.get("removed_materials", {}).get("use_boundary", ""):
         errors.append("removed_materials does not name DT-VT-105")
+    derivation_boundary = doc.get("expectation_derivation", {}).get("boundary", "")
+    if not all(term in derivation_boundary for term in ("L3", "L4", "L5", "L9 expected_material", "unverified")):
+        errors.append("expectation derivation does not separate L3/L4/L5 expected source from L9 comparison")
+    derivation_functions = doc.get("expectation_derivation", {}).get("functions", {})
+    if set(derivation_functions) != set(FN_TO_GROUP):
+        errors.append("shared expectation_derivation must map exactly the three existing L5 function_ref values")
+    for fnref, entry in derivation_functions.items():
+        group = FN_TO_GROUP.get(fnref)
+        if not group:
+            continue
+        l3_id, l4_id = f"HELIXCONNECT-L3-004-{group}", f"HELIXCONNECT-L4-004-{group}"
+        l3_index = next((i for i,x in enumerate(l3.get("requirements", [])) if x.get("id") == l3_id), None)
+        l4_index = next((i for i,x in enumerate(l4.get("contracts", [])) if x.get("id") == l4_id), None)
+        if l3_index is None or l4_index is None:
+            errors.append(f"{fnref}: approved L3 or L4 expectation source is unresolved")
+        elif entry.get("requirement_source_ref") != f"{L3}#/requirements/{l3_index}" or entry.get("design_contract_source_ref") != f"{L4}#/contracts/{l4_index}":
+            errors.append(f"{fnref}: shared L3/L4 expectation source pointer is stale or unresolved")
     owner_note = doc.get("F03_retryable_result_owner_resolution", "")
     l5_rules = l5.get("branch_tables", {}).get("F03", {}).get("failure_rules", [])
     if len(l5_rules) <= 8 or l5_rules[8].get("owner_ref") != "business_nonretryableならbusiness-owner、それ以外の未知状態ならoperation-ownerへ返す。":
@@ -116,59 +568,88 @@ def check():
             for i, v in enumerate(value):
                 walk(v, f"{trail}/{i}")
     walk(doc)
-    owner_tables = l5["branch_tables"]
     matched = 0
+    comparisons = []
     for row in doc["cases"]:
         src = expected_by_id.get(row["id"])
         if src is None:
             continue
-        if row.get("counterexample") != counterexample(row["id"], src):
-            errors.append(f"{row['id']}: counterexample differs from fixed L9 source/outcome witness")
-        if row.get("expected") != expected_summary(src, src["expected_material"]):
-            errors.append(f"{row['id']}: expected semantics differ from fixed L9 outcome summary")
+        fn = FN_TO_GROUP.get(row.get("function_ref"), "")
+        if not fn:
+            errors.append(f"{row['id']}: function_ref does not resolve to an existing L5 public function")
+            continue
+        raw = raw_case(src)
+        baseline = baseline_by_fn.get(fn, {})
+        if row.get("function_ref") != base_function_by_id.get(row["id"]) or row.get("function_ref") != l5_function_by_case.get(row["id"]):
+            errors.append(f"{row['id']}: original function_ref is missing or does not resolve through L5 obligation_trace")
+        if row.get("u_id") != f"U-C004-{ids.index(row['id'])+1:03d}":
+            errors.append(f"{row['id']}: U-ID does not correspond to its fixed case order")
+        ob_index, case_index, _ = source_index[row["id"]]
+        requirement_ref = l9["verification_obligations"][ob_index].get("requirement_ref", "")
+        if row.get("counterexample") != counterexample(src, raw, baseline, row["function_ref"], requirement_ref):
+            errors.append(f"{row['id']}: counterexample must contain only source-derived input conditions")
+        source_pointer = f"/verification_obligations/{ob_index}/concrete_cases/{case_index}/independent_source_packet/raw_utf8"
+        baseline_case_index = 0
+        baseline_pointer = f"/verification_obligations/{ob_index}/concrete_cases/{baseline_case_index}/independent_source_packet/raw_utf8"
+        if row.get("counterexample_source_ref") != {"document": L9, "pointer": source_pointer, "comparison_baseline_pointer": baseline_pointer}:
+            errors.append(f"{row['id']}: counterexample source pointer does not resolve to fixed L9 raw input")
+        derived = derive_expected(row, src, raw, baseline, l3, l4, l5)
+        if row.get("expected") != derived["text"] or row.get("expected_status") != derived["status"] or row.get("expected_basis_refs") != derived["basis_refs"]:
+            errors.append(f"{row['id']}: expected must derive from approved L3/L4 and existing L5 rules, independent of L9 expected_material")
+        if "L9 condition/outcome witness" in row.get("counterexample", "") or "expected_material" in row.get("expected", ""):
+            errors.append(f"{row['id']}: counterexample/expected duplicates or derives from L9 oracle outcome")
         if row.get("oracle_id") != src.get("system_oracle_ref"):
             errors.append(f"{row['id']}: oracle identity differs")
+        if row.get("oracle_id") not in {case.get("id") for case in l10.get("cases", [])}:
+            errors.append(f"{row['id']}: L10 oracle consumer does not resolve")
         if row.get("expected_oracle_ref", {}).get("document") != L9:
             errors.append(f"{row['id']}: expected oracle document differs")
-        ob_index = next(i for i,o in enumerate(l9['verification_obligations']) if any(c['id']==row['id'] for c in o['concrete_cases']))
-        case_index = next(i for i,c in enumerate(l9['verification_obligations'][ob_index]['concrete_cases']) if c['id']==row['id'])
         if row.get("expected_oracle_ref", {}).get("pointer") != f"/verification_obligations/{ob_index}/concrete_cases/{case_index}/expected_material":
             errors.append(f"{row['id']}: oracle pointer does not resolve to its L9 expected_material")
-        fn = row["id"].split("-")[1]
         fnid = {"F01":"FN-C004-01", "F02":"FN-C004-02", "F03":"FN-C004-03"}.get(fn)
         if not fnid or fnid not in l5.get("calculation_programs", {}):
             errors.append(f"{row['id']}: no matching existing L5 calculation program")
         else:
             matched += 1
-        # Check that each listed failure area/owner exists in the existing L5 branch contract.
-        exp = src["expected_material"]
-        reasons = exp.get("failure_reasons", exp.get("stop_reasons", []))
-        branches = owner_tables.get(fn, {})
-        owner_by_area = branches.get("owner_by_area", {})
-        for failure in reasons:
-            area = failure.get("area", "")
-            owner = owner_by_area.get(area)
-            if fn == "F03" and area.startswith("history_target_"):
-                owner = owner_by_area.get("history_target")
+        # The L9 expected_material is compared with the independent L3/L5 derivation only.
+        reason_map = {
+            "F01":{"retry_target":0,"receiver_contract_target":7,"effect_content":3,"effect_target":4,"receiver_effect":5,"attempt_distinction":6},
+            "F02":{"incoming_content":0,"operation_binding":1,"receiver_effect_target":2,"digest_relation":3,"receiver_effect":4,"effect_content":5},
+            "F03":{"retry_target":0,"policy_content":1,"cumulative_attempts":2,"retry_budget":3,"cumulative_history":4,"history_content":5,"history_target":6,"unfinished_content":7,"retryable_result":8,"original_expiry_state":9,"original_permission_state":10,"original_compatibility_state":11,"ack_state":12},
+        }
+        oracle_reasons = src["expected_material"].get("failure_reasons", src["expected_material"].get("stop_reasons", []))
+        oracle_rules = {reason_map[fn].get(item.get("area"), 6 if fn == "F03" and item.get("area", "").startswith("history_target_") else None) for item in oracle_reasons}
+        oracle_rules.discard(None)
+        oracle_facts = {(item.get("area"), item.get("field"), item.get("result"), item.get("return_owner")) for item in oracle_reasons}
+        independent_facts = set(derived["outcome_facts"])
+        if derived["status"] == "unverified":
+            oracle_comparison = "partial_unverified"
+        elif oracle_rules.issubset(set(derived["rule_indices"])) and oracle_facts == independent_facts:
+            oracle_comparison = "aligned_with_independent_L3_L5_outcome_facts"
+        else:
+            oracle_comparison = "comparison_conflict_unresolved"
+            errors.append(f"{row['id']}: L9 expected_material comparison conflicts with independently derived L5 outcome facts or rule refs")
+        l5_owner_by_area = l5["branch_tables"][fn].get("owner_by_area", {})
+        for item in oracle_reasons:
+            area = item.get("area", "")
+            expected_owner = l5_owner_by_area.get("history_target") if fn == "F03" and area.startswith("history_target_") else l5_owner_by_area.get(area)
             if fn == "F03" and area == "retryable_result":
-                # Existing L5 rule 8 makes owner conditional: business_nonretryable
-                # belongs to business-owner; other/unknown result states to operation-owner.
-                owner = "business-owner" if failure.get("result") == "business_nonretryable" else "operation-owner"
-            if owner != failure.get("return_owner"):
-                errors.append(f"{row['id']}: L5 owner mapping mismatch for {failure.get('area')}")
+                expected_owner = "business-owner" if item.get("result") == "business_nonretryable" else "operation-owner"
+            if item.get("return_owner") != expected_owner:
+                errors.append(f"{row['id']}: L9 owner comparison disagrees with the existing L5 conditional owner contract for {area}")
+        comparisons.append({"u_id": row["u_id"], "status": oracle_comparison})
     source_revision = subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=ROOT, text=True).strip()
     current_bytes = (ROOT / L8).read_bytes()
     report = {
         "schema":"wr265-static-verification.v1", "evidence_kind":"scaffold", "authority_effect":"none",
         "record_id":"WR265-RETRY-L8-CURRENT-STATIC-R1",
         "target":L8, "target_revision":source_revision, "target_sha256":hashlib.sha256(current_bytes).hexdigest(),
-        "source_pins": {path: hashlib.sha256((ROOT / path).read_bytes()).hexdigest() for path in (L4,L5,L9,L10)},
+        "source_pins": {path: hashlib.sha256((ROOT / path).read_bytes()).hexdigest() for path in (L3,L4,L5,L9,L10)},
         "historical_source":history["historical_source"],
-        "before_after":{"before_bytes":len(old_bytes),"after_bytes":len(current_bytes),"reduction_bytes":len(old_bytes)-len(current_bytes),"case_count_before":len(old_ids),"case_count_after":len(ids)},
-        "checks":{"case_identity_order":"evaluated","case_oracle_and_expected":"evaluated","L5_function_and_owner_links":"evaluated","removed_materials_and_forbidden_material":"evaluated"},
-        "rows_checked":matched, "result":"FAIL" if errors else "PASS_STATIC_ONLY",
+        "checks":{"case_identity_order":"evaluated","u_id_and_original_function_ref":"evaluated","input_only_counterexamples":"evaluated","independent_L3_L4_L5_expectations":"evaluated","L9_oracle_comparison_only":"evaluated","existing_L5_L9_L10_consumers":"evaluated","removed_materials_and_forbidden_material":"evaluated"},
+        "rows_checked":matched, "expected_status_counts":{status:sum(1 for row in doc["cases"] if row.get("expected_status")==status) for status in sorted({row.get("expected_status") for row in doc["cases"]})}, "l9_comparison_status_counts":{status:sum(1 for item in comparisons if item["status"]==status) for status in sorted({item["status"] for item in comparisons})}, "result":"FAIL" if errors else "PASS_STATIC_ONLY",
         "errors":errors,
-        "not_evaluated":["L5 algorithm execution","product test","real receiver effect","approval or formal L8 completion","design_verification_checker child semantics"],
+        "not_evaluated":["L5 algorithm execution","product test","real receiver effect",f"{sum(1 for row in doc['cases'] if row.get('expected_status')=='unverified')} row claim-level expectations explicitly marked unverified","approval or formal L8 completion","design_verification_checker child semantics"],
         "interpretation":"PASS_STATIC_ONLY is a static structure/source comparison only. It is not execution, approval, formal verification, or completion."
     }
     commands = [

@@ -1,25 +1,25 @@
 # WR265 CONNECT004 L8 retry/deduplication/conflict slim
 
-This scaffold records a static normalization of `docs/helix-connect/L8-unit-verification/retry-deduplication-conflict.json` for DT-VT-105. The formal candidate retains the 69 existing case IDs in their prior order. Each row keeps a source-derived counterexample, expected outcome difference, L10 oracle identity, and pointer to the corresponding L9 `expected_material`. Counterexamples combine the fixed L9 basis, expected outcome witnesses, and true semantic claim names from that same L9 case; an ID suffix is never used as evidence. This preserves distinct counterexamples even where two rows share a generic basis and expected summary.
+このscaffoldは DT-VT-105 に沿う L8 候補と静的照合の手順を記録する。L8 は既存69件のcase IDと順序、凍結baseにあった `function_ref`、新規で一意な `u_id` を保持する。
 
-## Scope and meaning
+## 行の根拠と境界
 
-L8 keeps only the U-ID rows and one shared boundary. The three existing L5 function meanings remain referenced through the existing `design_ref`: same-retry effect assessment (F01), digest-conflict assessment (F02), and retry-stop assessment against the existing policy/history (F03). Their calculation programs, branch tables, failure rules, and return details are not copied into L8. Row expectations retain the specific stop area, field, result, owner, digest action/effect increment, or retry budget/action as applicable.
+各counterexampleは固定L9 raw sourceの入力条件だけを記述し、raw packet自体は複製しない。`counterexample_source_ref` は追跡用pointerで、将来L9 slimで移行が必要になるconsumerである。各expectedは承認済みL3 requirement、L4 contract、既存L5 function/failure ruleから独立に導く。L9 `expected_material` は別のoracle pointerとして照合に使うだけで、L8 expectedの生成元にはしない。L3/L4/L5からclaimのaccept/rejectを導けない10行は `expected_status: unverified` とし、L9記述から補完しない。
 
-All rows remain unexecuted. Fixture-derived L9 expectations do not establish a real retry, receiver effect, receipt, policy, approval, pass, or product test. The retained L9 oracle pointer does not include the raw packet pointer; a future L9 slim migration must migrate consumers that still use raw packet pointers.
+各行の `function_ref` は凍結baseの値を保ち、L5 `obligation_trace` のcase ID consumerへ解決する。関数定義、calculation program、failure ruleやbranch表をL8へ重ねていない。全行は未実行であり、実retry、receiver効果、receipt、policy、承認、製品testを主張しない。F03 retryable result ownerはL5条件分岐に従い、`business_nonretryable` は business-owner、それ以外のunknownは operation-owner へ返す。L9実例、L4出力境界、L10 failure observationと整合する。
 
-The change follows the local L8 table precedent in `direction-order-feedback-relations.json` and the L5/L8 source and oracle separation in DT-VT-105. Legacy references remain reference-only: `LEGACY-ASSET-C3DE79BA9451172F3E43` and `LEGACY-ASSET-DD66C1B6B7BE234B37E6` preserve same-key/same-digest deduplication, different-digest conflict stop, operation identity, retry policy, and fault recovery boundaries. Legacy cursor codec, database, runtime, and execution paths are not carried forward.
+legacy referencesは参照のみ: `LEGACY-ASSET-C3DE79BA9451172F3E43` と `LEGACY-ASSET-DD66C1B6B7BE234B37E6`。same-key/same-digest deduplication、異digest conflict、operation identity、既存retry policy、fault recovery境界を保持し、旧cursor codec、database、runtime、execution pathは移さない。
 
-## Validation
+## 検証
 
-`validate_uid_table.py` is read-only by default. It checks fixed-base case IDs/order, all 69 source-derived row counterexamples and expected summaries against the retained L9 oracle pointers, L5 function presence and owner mapping including its explicit conditional owner rule, and L4/L10 F03 owner-observation boundaries, required `removed_materials` shape, and absence of copied fixture/full-return/hash material. It does not execute an L5 algorithm or product test.
+`validate_uid_table.py` は既定でread-only。固定baseからcase ID/順序/function_refを照合し、全U-IDの一意性、L5 consumer、raw input-only counterexample、L3/L4/L5から作るexpected/status/basis refs、L9 expected_materialとの比較状態、L4/L10 owner境界、required `removed_materials` 6 keysを確認する。L5 algorithmや製品testは実行しない。
 
-To write a new immutable run record, pass a new output path explicitly:
+新しいimmutable recordが必要な場合だけ未使用pathを明示する:
 
 ```sh
-python3 -B scaffold/research/wr265-connect-retry-l8-slim-20261101/validate_uid_table.py --record scaffold/research/wr265-connect-retry-l8-slim-20261101/evidence/records/NEW-UNUSED-ID/verification-summary-main-overlay-rN.json
+python3 -B scaffold/research/wr265-connect-retry-l8-slim-20261101/validate_uid_table.py --record-id WR265-RETRY-L8-CURRENT-STATIC-R5 --record scaffold/research/wr265-connect-retry-l8-slim-20261101/verification-summary-main-overlay-r5.json
 ```
 
-The output is created exclusively; an existing path is rejected. `verification-summary-main-overlay-r4.json` is the one current evidence record for the latest-main overlay. It is not listed in the binding artifact list to avoid a circular validate-before-write dependency. `evidence-history.json` provides commit, git blob, SHA-256, and exact restoration commands for the pre-edit file and superseded summaries R1, R2, and R3. Do not use the historical file as an execution input or expected-value fallback.
+書込みはexclusive作成で、既存pathを拒否する。current summary R5はlatest `origin/main` overlay上の記録で、summary生成前validateとの循環を避けるためbinding artifact一覧には含めない。旧summary R1〜R4は `evidence-history.json` にcommit/blob/SHA-256と復元方法を保全する。履歴summaryは実行入力やexpected fallbackに使わない。
 
-Run `scfctl validate`, `scfctl stale`, and `design_verification_checker.py check-child` against the latest `origin/main` merge overlay. Preserve each actual status; `not_evaluated` is not a pass. These checks remain static scaffold evidence and do not imply approval or formal L8 completion.
+latest `origin/main` merge overlayで `scfctl validate`, `scfctl stale`, 固有validator、`design_verification_checker.py check-child` を実測し、各結果をそのまま記録する。`not_evaluated` はpassではない。証拠は静的scaffold照合で、承認やformal L8 completionを示さない。
