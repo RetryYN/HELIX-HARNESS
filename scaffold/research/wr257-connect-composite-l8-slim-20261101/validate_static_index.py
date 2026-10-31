@@ -21,8 +21,8 @@ L10B = 'docs/helix-connect/L10-verification/business-verification.json'
 EVIDENCE = 'scaffold/research/wr257-connect-composite-l8-slim-20261101/static-evidence.json'
 EVIDENCE_DIR = 'scaffold/research/wr257-connect-composite-l8-slim-20261101'
 BINDING = 'scaffold/bindings/SCF-B-0216.json'
-CHECK_CHILD = 'scaffold/research/wr257-connect-composite-l8-slim-20261101/checker-evidence/merge-overlay-check-child-8d982681.json'
-CHECK_CHILD_RAW = 'scaffold/research/wr257-connect-composite-l8-slim-20261101/checker-evidence/raw-check-child-report-8d982681.json'
+CHECK_CHILD = 'scaffold/research/wr257-connect-composite-l8-slim-20261101/checker-evidence/merge-overlay-check-child-82fba857.json'
+CHECK_CHILD_RAW = 'scaffold/research/wr257-connect-composite-l8-slim-20261101/checker-evidence/raw-check-child-report-82fba857.json'
 
 PROBE_EXPECTATIONS = {
     'LOCAL-C007-N01-EXACT-DECLARED-SCOPE-THREE-BOUNDARY-EVIDENCE-READONLY-OWNER-PROBE': ('必要証拠3件のうち第三境界の原証拠・提出証拠がともに欠ける。', '証拠集合はcontent conflictとして保留し、証拠ownerへ返す。'),
@@ -348,6 +348,12 @@ def main() -> None:
     ]
     overlay_raw = subprocess.check_output(['git', 'show', f"{check_child['overlay_revision']}:{L8}"], cwd=ROOT)
     assert sha(overlay_raw) == check_child['target_sha256']
+    candidate_raw = subprocess.check_output(['git', 'show', f"{check_child['candidate_revision']}:{L8}"], cwd=ROOT)
+    assert sha(candidate_raw) == check_child['target_sha256']
+    overlay_tree = subprocess.check_output(['git', 'show', '-s', '--format=%T', check_child['overlay_revision']], cwd=ROOT, text=True).strip()
+    assert overlay_tree == check_child['overlay_tree']
+    overlay_parents = subprocess.check_output(['git', 'rev-list', '--parents', '-n', '1', check_child['overlay_revision']], cwd=ROOT, text=True).strip().split()
+    assert overlay_parents == [check_child['overlay_revision'], check_child['main_revision'], check_child['candidate_revision']]
     assert sha((ROOT / CHECK_CHILD_RAW).read_bytes()) == check_child['source_report_sha256']
     checker_report = json.loads((ROOT / CHECK_CHILD_RAW).read_text(encoding='utf-8'))
     assert checker_report['passed'] is False
@@ -654,6 +660,7 @@ def main() -> None:
             'uncovered_failure_rules': [f"{rule['function_ref']}:{rule['rule_id']}" for rule in trace['l5_failure_rules'] if rule['coverage_status'] == 'uncovered'],
         },
         'merge_overlay_check_child': {
+            'main_revision': check_child['main_revision'],
             'overlay_revision': check_child['overlay_revision'],
             'candidate_revision': check_child['candidate_revision'],
             'target_sha256': check_child['target_sha256'],

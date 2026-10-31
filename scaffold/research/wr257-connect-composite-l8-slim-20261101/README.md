@@ -31,10 +31,10 @@ raw fixture、型付きraw fixture、mutation再構成レシピ、full return、
 | source再照合 / primitive / typed境界 | 1 / 7 / 1 | 同じ宣言数と区別を維持 |
 | L5 public function / failure_rule | 4 / 26 | 全関数・全ruleを固定参照へ対応、uncovered=0 |
 | L9分岐U-ID / 行別期待 | 91 | 91件、正常3・反例88、全件未検証 |
-| ownership cap violations | — | 0件（merge overlayのcheck-childで確認） |
+| L8 ownership cap violations | — | 0件（merge overlayのcheck-childで確認） |
 | L5 `unit_case_refs` | 無し | 無しを明記、捏造なし |
 
-merge overlayの`check-child`は配列consumerの例外なく完了し、L8 ownership cap failureは0件だった。checker全体のexit codeは1で、L9 ownership cap 91件、pair照合およびnegative four-way照合の残存failureがある。これらを全体passとは扱わず、実測reportと要約をchecker-evidenceへ保存した。
+fresh fetchおよび`git ls-remote`で確認した`origin/main` `569bde0bc5792349f0833461f0bb1bb6db33c592`と候補HEAD `b3e71b8e8bc258505e896aa49eae7156ce0e4d21`のmerge overlay `82fba8577c1a63d3eac75c3342e9cd195f2c76ec`上で`check-child`を実行した。配列consumerの例外なく完了し、L8 ownership cap failureは0件だった。checker全体のexit codeは1で、L9 ownership cap 91件、pair照合およびnegative four-way照合の残存failureがある。これらを全体passとは扱わず、reportと要約をchecker-evidenceへ保存した。
 
 初回`static-evidence.json`は8510d76時点の原bytesとして復元し固定した。後続の測定は旧revision/blob SHAとともにappend-onlyの別証拠へ保存し、現行測定はbindingのartifact一覧から対象L8 hashに一致するappendixを参照する。既存証拠を上書きしない。
 
