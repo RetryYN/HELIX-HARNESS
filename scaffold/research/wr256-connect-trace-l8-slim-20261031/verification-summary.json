@@ -48,29 +48,36 @@
     "checked": 25,
     "changed": []
   },
+  "source_semantic_audit": {
+    "path": "scaffold/research/wr256-connect-trace-l8-slim-20261031/source-semantic-audit.json",
+    "row_count": 224,
+    "sha256": "123ea24eb172f535f598ccd8d8f02baddbc314b7be1ca53ec994f32fb2b50af4"
+  },
   "expected_result_audit": {
     "row_count": 224,
     "baseline_groups": {
       "F01": {
         "rows": 69,
-        "baseline_fields": 22
+        "audit_baseline_fields": 22
       },
       "F02": {
         "rows": 87,
-        "baseline_fields": 47
+        "audit_baseline_fields": 47
       },
       "N01": {
         "rows": 63,
-        "baseline_fields": 39
+        "audit_baseline_fields": 39
       },
       "independent_cross_field_probe": {
         "rows": 5,
-        "baseline_fields": 2
+        "audit_baseline_fields": 2
       }
     },
-    "baseline_field_total": 110,
-    "total_row_delta_fields": 834,
-    "max_row_delta_fields": 14,
+    "audit_baseline_field_total": 110,
+    "audit_row_delta_fields": 834,
+    "max_audit_row_delta_fields": 14,
+    "formal_expected_result_kind": "concise row-specific semantic statement",
+    "formal_expected_result_length_max": 159,
     "ellipsis_count": 0,
     "array_count_placeholder_count": 0,
     "source_semantic_mismatch_count": 0

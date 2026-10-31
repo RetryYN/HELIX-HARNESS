@@ -148,6 +148,43 @@ def flatten_projection(value, prefix=""):
     return {prefix: value}
 
 
+def display_path(path):
+    return path.lstrip("/").replace("/$array/", "[").replace("/$array", "[]").replace("/", ".").replace("~1", "/").replace("~0", "~")
+
+
+def concise_expected_label(group, sets, removes):
+    """Render one primary row-specific semantic outcome; detailed source audit stays in scaffold."""
+    if group == "independent_cross_field_probe":
+        raise ValueError("typed cross-field expectations are generated from the typed input literal")
+    failure = sets.get("/failure_reasons")
+    if isinstance(failure, str) and failure != "failure_reasons=[]":
+        body = failure.removeprefix("failure_reasons=[").removesuffix("]")
+        primary = body.split("; ", 1)[0]
+        return "期待: source failure " + primary + "."
+    candidates = []
+    for path, value in sets.items():
+        leaf = path.rsplit("/", 1)[-1]
+        if leaf in ("actual_authority", "actual_operation", "actual_implementation_ready", "actual_acceptance", "actual_business_completion", "actual_transmission", "actual_storage", "actual_append") or leaf == "business_completion":
+            continue
+        priority = 0 if leaf in ("candidate_trace_state", "candidate_handoff_state", "candidate_reference_state") else 1
+        shown = json.dumps(value, ensure_ascii=False, separators=(",", ":")) if isinstance(value, (dict, list)) else str(value)
+        candidates.append((priority, f"{display_path(path)}={shown}"))
+    for path in removes:
+        leaf = path.rsplit("/", 1)[-1]
+        if leaf not in ("actual_authority", "actual_operation", "actual_implementation_ready", "actual_acceptance", "actual_business_completion", "actual_transmission", "actual_storage", "actual_append", "business_completion"):
+            candidates.append((2, f"{display_path(path)} absent"))
+    candidates.sort(key=lambda item: (item[0], item[1]))
+    if not candidates:
+        raise ValueError("row has no concise unique semantic deviation")
+    labels = [item[1] for item in candidates[:2]]
+    return "期待: " + "; ".join(labels) + "."
+
+
+def cross_field_expected_label(value):
+    literal = json.dumps(value, ensure_ascii=False, separators=(",", ":"))
+    return f"期待: original_prior_successes={literal}を空配列へ強制変換しない。"
+
+
 def main() -> int:
     current = json.loads((ROOT / L8).read_text(encoding="utf-8"))
     old8, l5, l9 = source_json(L8), source_json(L5), source_json(L9)
@@ -245,10 +282,38 @@ def main() -> int:
             mode = sorted(frequencies.items(), key=lambda pair: (-pair[1], pair[0]))[0][0]
             if mode != "<MISSING>":
                 baseline_fields[path] = json.loads(mode)["value"]
-        expected_baselines[group] = {"fields": baseline_fields, "selection": "per-result-path modal source projection; rows store only deviations"}
-    if current.get("expected_result_baselines") != expected_baselines:
-        failures.append({"check": "common_expected_result_baselines_match_source", "expected_groups": sorted(expected_baselines), "actual_groups": sorted(current.get("expected_result_baselines", {}))})
-    expectation_text = json.dumps({"baselines": current.get("expected_result_baselines", {}), "rows": [row.get("expected_result") for row in rows]}, ensure_ascii=False)
+        expected_baselines[group] = baseline_fields
+
+    source_audit_rows = []
+    source_deltas = {}
+    for row in rows:
+        group, projection = source_projections[row["u_id"]]
+        flat = flatten_projection(projection)
+        baseline = expected_baselines[group]
+        sets = {path: value for path, value in flat.items() if path not in baseline or baseline[path] != value}
+        removes = sorted(path for path in baseline if path not in flat)
+        if group == "independent_cross_field_probe":
+            index = int(row["source_ref"]["pointer"].rsplit("/", 1)[1])
+            probe = cross_probes[index]
+            literal_value = probe["input_patch"][0]["value"]
+            label = cross_field_expected_label(literal_value)
+        else:
+            try:
+                label = concise_expected_label(group, sets, removes)
+            except Exception as exc:
+                failures.append({"check": "concise_unique_expected_result_generation", "u_id": row["u_id"], "error": str(exc)})
+                label = ""
+        source_deltas[row["u_id"]] = {"baseline_ref": group, "set": sets, "remove": removes, "expected_result": label}
+        source_audit_rows.append({
+            "u_id": row["u_id"], "source_kind": row["source_kind"], "source_id": row["source_id"],
+            "source_ref": row["source_ref"], "expected_ref": row["expected_ref"],
+            "contract_oracle_id": row["contract_oracle_id"],
+            "projection_sha256": hashlib.sha256(json.dumps(flat, ensure_ascii=False, sort_keys=True, separators=(",", ":")).encode("utf-8")).hexdigest(),
+            "source_semantic_projection": flat,
+            "modal_comparison_delta": {"set": sets, "remove": removes},
+            "formal_expected_result": label,
+        })
+    expectation_text = json.dumps({"audit": source_audit_rows, "formal": [row.get("expected_result") for row in rows]}, ensure_ascii=False)
     ellipsis_count = expectation_text.count("...") + expectation_text.count("…")
     array_placeholder_count = len(re.findall(r"array\(\d+ items\)", expectation_text))
     if ellipsis_count or array_placeholder_count:
@@ -285,22 +350,9 @@ def main() -> int:
                 failures.append({"check": "l5_failure_rule_pointer_resolution", "u_id": row.get("u_id"), "reference": ref, "error": str(exc)})
 
         try:
-            group, projection = source_projections[row["u_id"]]
-            baseline = expected_baselines[group]["fields"]
-            flat_projection = flatten_projection(projection)
-            sets = {path: value for path, value in flat_projection.items() if path not in baseline or baseline[path] != value}
-            removes = sorted(path for path in baseline if path not in flat_projection)
-            wanted = {"baseline_ref": group, "set": sets, "remove": removes}
-            actual = row["expected_result"]
-            reconstructed = dict(baseline)
-            for path in actual.get("remove", []):
-                reconstructed.pop(path, None)
-            reconstructed.update(actual.get("set", {}))
-            if actual != wanted or reconstructed != flat_projection:
-                failures.append({"check": "row_expected_delta_reconstructs_source_projection", "u_id": row["u_id"]})
-            flat = json.dumps(actual, ensure_ascii=False)
-            if "..." in flat or "…" in flat or "array(" in flat or "items)" in flat:
-                failures.append({"check": "no_truncated_or_count_only_expectation", "u_id": row["u_id"]})
+            expected_label = source_deltas[row["u_id"]]["expected_result"]
+            if row["expected_result"] != expected_label:
+                failures.append({"check": "row_expected_result_matches_concise_source_semantics", "u_id": row["u_id"]})
         except Exception as exc:
             failures.append({"check": "row_expected_delta_resolution", "u_id": row.get("u_id"), "error": str(exc)})
 
@@ -323,12 +375,21 @@ def main() -> int:
                     and row["expected_ref"]["pointer"] == f"/cross_field_type_constraints/probes/{index}/expected_constraints"
                     and row["contract_oracle_id"] == "HELIXCONNECT-L10-005-F02"
                     and row["counterexample"] == want_counterexample
+                    and row["expected_result"] == cross_field_expected_label(value)
                     and row["execution_state"] == "not_executed"
                 )
                 if type(value) is not type(values[index]) or value != values[index] or not valid_shape:
                     failures.append({"check": "independent_cross_field_probe_semantics", "u_id": row["u_id"], "probe_id": probe.get("id")})
             except Exception as exc:
                 failures.append({"check": "independent_cross_field_probe_resolution", "u_id": row.get("u_id"), "error": str(exc)})
+
+    expected_cross_common = {
+        "applies_to_source_ids": [probe["id"] for probe in cross_probes],
+        "shared_expected_result": {"no_exception": True, "stop_link_result": "unknown_original_information"},
+        "shared_boundary": "original_prior_successesの非配列値を空配列へ変換しない。original_stop.stop_event_ref=nullからstop eventを解決しない。",
+    }
+    if current.get("cross_field_type_expectation") != expected_cross_common:
+        failures.append({"check": "cross_field_shared_expectation_matches_fixed_source"})
 
     expected_cross_uids = [f"U-CONNECT005-{i:03d}" for i in range(220, 225)]
     actual_cross_uids = [row["u_id"] for row in rows if row.get("source_kind") == "independent_cross_field_probe"]
@@ -398,6 +459,18 @@ def main() -> int:
     child_four_way = child_report.get("negative_4way", {})
     child_status = "not_evaluated" if child_pair.get("status") == "not_evaluated" and child_four_way.get("status") == "not_evaluated" else "evaluated"
 
+    source_audit = {
+        "schema": "wr256-connect-l8-source-semantic-audit.v1",
+        "evidence_kind": "scaffold",
+        "authority_effect": "none",
+        "base_revision": BASE,
+        "groups": {group: {"row_count": len(items), "modal_source_projection": expected_baselines[group]} for group, items in sorted(grouped.items())},
+        "rows": source_audit_rows,
+        "limits": ["This is a fixed-source semantic audit projection, not an executed oracle or full-return fixture."],
+    }
+    audit_path = ROOT / "scaffold/research/wr256-connect-trace-l8-slim-20261031/source-semantic-audit.json"
+    audit_path.write_text(json.dumps(source_audit, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+
     result = {
         "schema": "wr256-connect-l8-u-id-audit.v1",
         "evidence_kind": "scaffold",
@@ -414,7 +487,8 @@ def main() -> int:
             "wrong_target_mapping_count": len(wrong_contract_oracles),
         },
         "preserved_boundary_fields": {"checked": len(preserved_top_level), "changed": changed_boundary_fields},
-        "expected_result_audit": {"row_count": len(rows), "baseline_groups": {group: {"rows": len(grouped[group]), "baseline_fields": len(expected_baselines[group]["fields"])} for group in sorted(grouped)}, "baseline_field_total": sum(len(group["fields"]) for group in expected_baselines.values()), "total_row_delta_fields": sum(len(row["expected_result"].get("set", {})) + len(row["expected_result"].get("remove", [])) for row in rows), "max_row_delta_fields": max((len(row["expected_result"].get("set", {})) + len(row["expected_result"].get("remove", [])) for row in rows), default=0), "ellipsis_count": ellipsis_count, "array_count_placeholder_count": array_placeholder_count, "source_semantic_mismatch_count": sum(any(f.get("u_id") == row.get("u_id") and f.get("check", "").startswith(("row_expected_delta", "row_expected_semantics_resolution", "independent_cross_field_probe")) for f in failures) for row in rows)},
+        "source_semantic_audit": {"path": str(audit_path.relative_to(ROOT)), "row_count": len(source_audit_rows), "sha256": hashlib.sha256(audit_path.read_bytes()).hexdigest()},
+        "expected_result_audit": {"row_count": len(rows), "baseline_groups": {group: {"rows": len(grouped[group]), "audit_baseline_fields": len(expected_baselines[group])} for group in sorted(grouped)}, "audit_baseline_field_total": sum(len(fields) for fields in expected_baselines.values()), "audit_row_delta_fields": sum(len(item["set"]) + len(item["remove"]) for item in source_deltas.values()), "max_audit_row_delta_fields": max((len(item["set"]) + len(item["remove"]) for item in source_deltas.values()), default=0), "formal_expected_result_kind": "concise row-specific semantic statement", "formal_expected_result_length_max": max((len(row.get("expected_result", "")) for row in rows), default=0), "ellipsis_count": ellipsis_count, "array_count_placeholder_count": array_placeholder_count, "source_semantic_mismatch_count": sum(any(f.get("u_id") == row.get("u_id") and f.get("check", "").startswith(("row_expected_delta", "row_expected_semantics_resolution", "independent_cross_field_probe")) for f in failures) for row in rows)},
         "row_oracle_and_test_citation": "null; not found at fixed source; not invented",
         "ownership_cap": {"passed": not cap.get("failures"), "failure_count": len(cap.get("failures", []))},
         "check_child": {

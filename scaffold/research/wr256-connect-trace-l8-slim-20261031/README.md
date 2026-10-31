@@ -6,7 +6,7 @@ Issue #3510 の依頼 WR256-CONNECT-TRACE-L8-SLIMに基づき、CONNECT005 のL8
 
 L5の公開関数3本とfailure_rules 27行、L9の基本枝90件、既存L8追加probeのlocal 61件・independent 68件に、独立したcross-field制約5件を加え、元のID・順序・対象・短い行固有反例と期待・契約oracle・固定source pointer付きで224行へ対応づけた。cross-field 5件はL9の90 wholeとは別系列の条件probeとして個別行に保持する。L5の27 rule pointerは候補行の参照として保持する。row oracleとtest citationは元資料に存在しないためnullとし、未作成を明記した。全行のexecution_stateは`not_executed`を維持し、新しいcaseの実行・承認状態は生成しない。
 
-期待結果はfixture/full returnや共通状態の行ごとの文字列再掲にしない。関数別の共通期待baselineを一度だけ `expected_result_baselines` に置き、各行の `expected_result` はbaseline参照とsource projectionとの差分（set/remove）のみを持つ。validatorは固定sourceから各行の構造projectionを作り、baselineと差分を再構成して全行をsourceと照合する。結果要約は非実行の候補意味projectionであり、fixtureやfull returnを再展開しない。
+各L8行はsource条件に対応する短い固有期待だけを記し、共通の責務・未検証・副作用境界は文書上部で一度だけ示す。5つのtyped cross-field枝は共通のno-exception/unknown-stop-link条件を一度記し、各行は型別の非強制変換期待を記す。行別の詳細source projection、期待差分、hash、L8短文との対応は `source-semantic-audit.json` に置き、validatorは固定sourceから再生成して各U-IDの意味を照合する。L8へfull returnや再構成baselineを残さない。
 
 L8から撤去した展開fixture、入力patch、full return、重複probe payload、source packet hashは、同じpathの固定main revisionから辿れる。`removed_materials`はdecision_ref、git_commit、path、meaning、removed_key_rule、use_boundaryの6キー。DT-VT-105に従い、撤去sourceをL7 fixture/test/oracle/citationに流用しない。
 
@@ -18,12 +18,12 @@ L8から撤去した展開fixture、入力patch、full return、重複probe payl
 
 ## 消費側・validator・pin調査
 
-main HEADで固定対象pathを検索し、直接の文書参照はCONNECT監査記録、crosswalk、L5正本に限られた。監査・crosswalkの過去時点記録は変更せず保持する。L5の現行文面に削除対象のL8 nodeを指すpointerは見つからず、現行L4/L5/L9のbytesは変更しない。JSONの一般validatorは `scaffold/tools/design_verification_checker.py check-child`、Bindingのconsumerは `scaffold/tools/scfctl.py stale/validate`。case参照を固定revisionへ結び、撤去nodeの現行参照を残さない。検証結果は `verification-summary.json` に記録し、再生成と照合手順は `validate_uid_table.py` に置く。
+main HEADで固定対象pathを検索し、直接の文書参照はCONNECT監査記録、crosswalk、L5正本に限られた。監査・crosswalkの過去時点記録は変更せず保持する。L5の現行文面に削除対象のL8 nodeを指すpointerは見つからず、現行L4/L5/L9のbytesは変更しない。JSONの一般validatorは `scaffold/tools/design_verification_checker.py check-child`、Bindingのconsumerは `scaffold/tools/scfctl.py stale/validate`。case参照を固定revisionへ結び、撤去nodeの現行参照を残さない。検証結果は `verification-summary.json` と行別監査 `source-semantic-audit.json` に記録し、再生成と照合手順は `validate_uid_table.py` に置く。
 
 ## 検証の限界
 
 全照合は文書bytes、ID、JSON Pointer、責務・参照境界に限る。行の意味の独立reviewは残る。L9の90件と追加probe134件は意味を統合・削除せず、source順・IDごとに別行で記録した。旧候補で欠けていたcross-field probe 5 IDも連番U-IDへ割り当て、型別入力差（`null`、`false`、`0`、空文字、空object）、`stop_event_ref=null`、例外なし、`stop_link_result=unknown_original_information`、未実行を照合する。
 
-対象固有照合は224行、L5 failure rule 27件、L10 contract oracle ID、固定source pointer、共通baselineとrow差分の復元結果、capを機械確認する。4 group (F01/F02/N01/cross-field) ではbaseline fieldを一度保持し、合計110 baseline path値、row deltaは計834 path差分（最大14件/行）。cross-field 5型枝は期待constraintを共有baselineに一度保持し、各行は型別入力差をcounterexampleに残す。`design_verification_checker.py check-child` も試行したが、L5/L8 pairと4-wayは `empty_pair_entities` / 0件で `not_evaluated` となった。この汎用validatorのfalse結果は合格にも意味上の所見にもせず、未検証として残す。validatorが理解するpairは既存のL5/L8文書形と異なる。L9全体のcap違反も同コマンドに出るが、本作業のL9は変更しておらず、L8候補のcap判定は対象固有照合で独立に0件を確認した。
+対象固有照合は224行、L5 failure rule 27件、L10 contract oracle ID、固定source pointer、各rowの短い期待とscaffold側行別projection/hash、capを機械確認する。scaffold監査の比較用projectionは4 groupで計110 baseline path値と834 row差分（最大14件/行）。L8本文の期待文字列は最大159文字。cross-field 5型枝は各型入力差をcounterexampleと固有期待に残す。`design_verification_checker.py check-child` も試行したが、L5/L8 pairと4-wayは `empty_pair_entities` / 0件で `not_evaluated` となった。この汎用validatorのfalse結果は合格にも意味上の所見にもせず、未検証として残す。validatorが理解するpairは既存のL5/L8文書形と異なる。L9全体のcap違反も同コマンドに出るが、本作業のL9は変更しておらず、L8候補のcap判定は対象固有照合で独立に0件を確認した。
 
 候補L8の承認、L5/L8意味整合、L7 test/oracle、実行、CI、L11受入や設計閉包は生成しない。

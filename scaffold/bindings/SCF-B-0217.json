@@ -54,7 +54,7 @@
     "Preserve the 90 L9 whole branches, 61 local domain probes, 68 independent semantic probes, and five independent cross-field typed probes as 224 distinct rows with source ID/order/pointers.",
     "Keep L10 contract oracle identity on each row; row oracle and test citation stay null because the fixed source does not provide them.",
     "Keep all rows not_executed and preserve existing top-level boundary and unverified states; do not infer approval or completion.",
-    "Store common function/role expectation fields once in expected_result_baselines; each row stores only set/remove deviations. Validator reconstructs each compact source projection and compares it structurally to fixed L9/probe expectations; no fixture/full return expansion.",
+    "Keep each formal L8 expected_result as a concise row-specific semantic statement; shared responsibility, unverified, and effect boundaries occur once. Store fixed-source row-by-row semantic projections, hashes, and comparison deltas in source-semantic-audit.json, generated and checked by the validator; no reconstructed baseline or full return remains in L8.",
     "Record L5 failure-rule coverage and L8 ownership cap; do not modify L3/L4/L5/L9/L10 or execute old runtime, CLI, hooks, tests, or CI.",
     "Retain legacy comparison to LEGACY-ASSET-C3DE79BA9451172F3E43 and LEGACY-ASSET-DD66C1B6B7BE234B37E6, including preserved and changed points; legacy assets are read-only references."
   ],
@@ -85,6 +85,7 @@
     "docs/helix-connect/L8-unit-verification/technical-trace-handoff-custody.json",
     "scaffold/research/wr256-connect-trace-l8-slim-20261031/README.md",
     "scaffold/research/wr256-connect-trace-l8-slim-20261031/verification-summary.json",
+    "scaffold/research/wr256-connect-trace-l8-slim-20261031/source-semantic-audit.json",
     "scaffold/research/wr256-connect-trace-l8-slim-20261031/validate_uid_table.py",
     "scaffold/bindings/SCF-B-0217.json"
   ],
@@ -98,8 +99,8 @@
     "oracles": [
       "Fixed base c14adddf2678c7a69d76420c451df3f05b1251ab with source row IDs and pointers; L9 whole expected-material hashes retained.",
       "L3/L4/L5/L9/L10 source boundary and L10 oracle mapping.",
-      "Four shared expectation baselines (F01/F02/N01/cross-field) plus row-level set/remove deltas structurally reconstructed against fixed source projections; all 5 cross-field type probes checked for exact value/ref/expectation/unexecuted state.",
-      "All 25 preserved top-level boundaries, L5 failure-rule coverage, L8 ownership cap, shared expectation baselines and row-specific delta counts.",
+      "All 224 formal concise expected_result values are checked against fixed-source row projections in scaffold audit; all 5 cross-field type probes are checked for exact value/ref/expectation/unexecuted state.",
+      "All 25 preserved top-level boundaries, L5 failure-rule coverage, L8 ownership cap, concise formal expectations, and source-audit row projection/delta counts.",
       "scfctl validate/stale and generic check-child result captured without treating not_evaluated as pass."
     ],
     "negative_cases": [
