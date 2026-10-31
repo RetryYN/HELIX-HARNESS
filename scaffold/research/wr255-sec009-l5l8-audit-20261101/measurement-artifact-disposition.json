@@ -348,9 +348,9 @@
     "note": "先行dedup disposition。履歴は保持し、そのrestore情報は本manifestへ統合。"
   },
   "latest_main_overlay_read_only_validation_r1": {
-    "overlay_base_commit": "fe6232a6062685aeb15e1b8641533ea86fa712f4",
+    "overlay_base_commit": "9cce1cc5238de71231b1fcd37727391113e17956",
     "feature_commit": "0451f67e4b94451b7258078f49df3cb34db36098",
-    "overlay_construction": "latest mainを第1親としたgit merge --no-commit --no-ff。作業treeはcommitせずread-only検証。",
+    "overlay_construction": "fresh fetchとls-remoteでmain一致を確認し、latest mainを第1親としたgit merge --no-commit --no-ff 11ccad81240e243a42392e29c15677772ff6526d。永続overlay worktree /home/tenni/helix-worktrees/wr255-sec009-prb-l5l8-overlay はcommitせずread-only検証。",
     "commands": [
       "python3 scaffold/research/wr255-sec009-l5l8-audit-20261101/validate_wr255_l5l8.py",
       "python3 scaffold/research/wr255-sec009-l5l8-audit-20261101/validate_pointer_transfer.py",
@@ -384,7 +384,15 @@
       "scfctl_stale": 0,
       "overlay_status_unchanged": true,
       "positive_contract_minimum_designed_not_observed": 8,
-      "positive_individual_oracle_and_test_citation": "null"
+      "positive_individual_oracle_and_test_citation": "null",
+      "direct_check_child": "pass",
+      "overlay_worktree_status_before_after": "identical"
+    },
+    "source_revisions": {
+      "L4": "d670496eebc5a28469ac3da0e2f9be1bcd7a37ce",
+      "L5": "e165ca7200cd8daec7f5fce5e26a7bcdeb864b0c",
+      "L8": "3ba4b60efba174b9fad773f86637e58166626643",
+      "L9": "087f02dc637f6860e344e2bda9efa83c83506b72"
     }
   }
 }
