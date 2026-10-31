@@ -46,7 +46,7 @@
   ],
   "role": "Temporary static source, case-identity, expectation and boundary evidence for the WR265 CONNECT004 L8 candidate.",
   "obligations": [
-    "Preserve the original 69 case IDs and order, each row counterexample/expected difference, and exact L9 expected_material path/pointer; rows remain not_executed.",
+    "Preserve the original 69 case IDs/order. Derive every row counterexample from its fixed L9 basis, expected_material outcome, and true semantic claim names; never infer a counterexample from an ID suffix alone. Retain each row expected difference and exact L9 expected_material pointer; rows remain not_executed.",
     "Keep L5 function/calculation/branch rule definitions in the existing design_ref. Do not add duplicate l5_function_ref or l9_basic_branches tables; common function role and candidate boundaries are described once.",
     "Do not retain raw source_packet_ref, fixture, typed arguments, full returns, COPY, hash maps, mutation steps, or per-row repeated L3/L4/L9/function IDs. Preserve the L9 expected oracle pointer; note that future L9 slimming must migrate raw packet pointer consumers.",
     "Keep authority_effect and operation_effect none, implementation readiness not_ready, no actual retry/receiver effect/receipt/policy/result or product test claim.",
@@ -61,7 +61,7 @@
     ],
     "dependencies": [
       "Fixed base revision b3ddf6f1d0a6cf2009e5f81a90f21c4292300185 for original L8 identity/order and history recovery.",
-      "Latest origin/main fdf7539d33543707649e970a199f064c43940d93 L3/L4/L5/L9/L10/DT-VT-105/QA source bytes.",
+      "Latest origin/main 151713275e2c2aa65bb23a8fe38eb63c46d570c8 L3/L4/L5/L9/L10/DT-VT-105/QA source bytes.",
       "Legacy source assets LEGACY-ASSET-C3DE79BA9451172F3E43 and LEGACY-ASSET-DD66C1B6B7BE234B37E6."
     ],
     "boundary": "Candidate L8 table normalization and static scaffold evidence only. No authority effect, approval, test execution, runtime/CI claim, invented row oracle/test citation, or completion effect."
@@ -84,7 +84,6 @@
     "docs/helix-connect/L8-unit-verification/retry-deduplication-conflict.json",
     "scaffold/research/wr265-connect-retry-l8-slim-20261101/README.md",
     "scaffold/research/wr265-connect-retry-l8-slim-20261101/validate_uid_table.py",
-    "scaffold/research/wr265-connect-retry-l8-slim-20261101/verification-summary.json",
     "scaffold/research/wr265-connect-retry-l8-slim-20261101/evidence-history.json",
     "scaffold/bindings/SCF-B-0225.json"
   ],
@@ -97,10 +96,11 @@
     ],
     "oracles": [
       "Original case identity/order from fixed base b3ddf6f1d0a6cf2009e5f81a90f21c4292300185; original file bytes recoverable by commit/path/blob/SHA-256 and restore command in evidence-history.json.",
-      "L9 expected_material and basis pointers for each retained row; summaries checked without copying raw input/full return.",
+      "Every row counterexample is derived from that case fixed L9 basis plus concrete expected outcome witness and true claim names from its fixed L9 independent source packet; ID suffixes are not evidence. Each expected summary and pointer is checked against the same L9 concrete_case expected_material; no raw input/full return is copied.",
       "L5 existing calculation_program, branch_tables owner mapping, and conditional retryable-result owner rule.",
       "Current static verification summary; generic check-child result is recorded independently and not used as product completion proof.",
-      "scfctl validate/stale in latest-main merge overlay."
+      "scfctl validate/stale in latest-main merge overlay.",
+      "F03 owner resolution is cross-checked against the conditional L5 failure rule, the actual L9 business_nonretryable and unknown cases, the L4 F03 output boundary, and the L10 F03 failure-observation boundary."
     ],
     "negative_cases": [
       "Raw packet pointer, L5 function ID duplicate key, and L9 branch table are not added to the compact case table.",

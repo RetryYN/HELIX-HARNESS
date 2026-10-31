@@ -26,6 +26,7 @@
   "integration_ref": "docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json",
   "method": "既存L5のFN-C004-01 assess_same_retry_effect、FN-C004-02 assess_digest_conflict、FN-C004-03 assess_retry_stop_conditionsを各case IDのF01/F02/F03群に対応させる。関数のpure signature、calculation_program、branch_tables、failure-rule条件/emitはdesign_refの現行L5だけを参照し、ここへ複製しない。各U-ID行にはL9 expected_materialからcase固有の反例・期待差分だけを記し、expected_oracle_refは同じL9 concrete_caseのexpected_materialを指す。入力、実行用fixture、全returnは持たない。",
   "common_expectation_boundary": "全69行はL3/L4/L5/L9/L10間の候補照合であり、実行されていない。L9の合成入力・期待はfixture内の材料で、実retry、receiver実効果、実receipt、権限、retry policy、合格を生成しない。F01の効果観測は一回分保持・二重/不明/別operation結合を区別し、F02のdigest同値/相違/unknownと衝突後効果を区別し、F03は既存policyの有限累積budget、retryable状態、history/unfinished、expiry/permission/compatibility/ACK停止を扱う。非選択retryは未観測のまま。L5計算や製品testを実行した証拠ではない。",
+  "F03_retryable_result_owner_resolution": "L5 branch_tables/F03/failure_rules/8 は retryable_result.state が business_nonretryable のとき business-owner、それ以外の未知状態のとき operation-owner を返す条件分岐。L9 の C004-F03-ORIGINAL_RESULT_STATE-BUSINESS_NONRETRYABLE と C004-F03-BUSINESS_ERROR_RETRY は business-owner、C004-F03-ORIGINAL_RESULT_STATE-UNKNOWN は operation-owner を期待するため、この範囲のowner値は矛盾しない。L4 contracts/2 はこの関数の停止地点・局所理由・返し先を出力意味として定め、L10 cases/8 は operation owner/SEC/contract owner の該当境界への返却を観測対象とする。",
   "contract_oracles": {
     "F01": "HELIXCONNECT-L10-004-F01",
     "F02": "HELIXCONNECT-L10-004-F02",
@@ -34,7 +35,7 @@
   "cases": [
     {
       "id": "C004-F01-RESPONSE-LOSS-SAME-CONTENT-ONE-EFFECT",
-      "counterexample": "初回応答喪失と許可済み同内容再送の別attempt、receiver一回分の合成効果を対照。実効果は未成立。",
+      "counterexample": "初回応答喪失と許可済み同内容再送の別attempt、receiver一回分の合成効果を対照。実効果は未成立。 L9 condition/outcome witness: candidate_retry_receipt=requires_actual_retry_and_receiver_qualification; receiver_effect=one_effect_retained_in_fixture_only.",
       "expected": "追加停止理由なし；candidate_retry_receipt=requires_actual_retry_and_receiver_qualification；receiver_effect=one_effect_retained_in_fixture_only",
       "oracle_id": "HELIXCONNECT-L10-004-F01",
       "expected_oracle_ref": {
@@ -44,7 +45,7 @@
     },
     {
       "id": "C004-F01-CONNECTION_IDENTITY-MISSING",
-      "counterexample": "同operationのscope/期限/許可/単一版/相関を保持する。各不足は保留。",
+      "counterexample": "同operationのscope/期限/許可/単一版/相関を保持する。各不足は保留。 L9 condition/outcome witness: retry_target.connection_identity=missing.",
       "expected": "retry_target.connection_identity=missing→operation-owner；candidate_retry_receipt=held；receiver_effect=one_effect_retained_in_fixture_only",
       "oracle_id": "HELIXCONNECT-L10-004-F01",
       "expected_oracle_ref": {
@@ -54,7 +55,7 @@
     },
     {
       "id": "C004-F01-OPERATION_IDENTITY-MISSING",
-      "counterexample": "同operationのscope/期限/許可/単一版/相関を保持する。各不足は保留。",
+      "counterexample": "同operationのscope/期限/許可/単一版/相関を保持する。各不足は保留。 L9 condition/outcome witness: retry_target.operation_identity=missing.",
       "expected": "retry_target.operation_identity=missing→operation-owner；candidate_retry_receipt=held；receiver_effect=one_effect_retained_in_fixture_only",
       "oracle_id": "HELIXCONNECT-L10-004-F01",
       "expected_oracle_ref": {
@@ -64,7 +65,7 @@
     },
     {
       "id": "C004-F01-IDEMPOTENCY-MISSING",
-      "counterexample": "同operationのscope/期限/許可/単一版/相関を保持する。各不足は保留。",
+      "counterexample": "同operationのscope/期限/許可/単一版/相関を保持する。各不足は保留。 L9 condition/outcome witness: retry_target.idempotency=missing.",
       "expected": "retry_target.idempotency=missing→operation-owner；candidate_retry_receipt=held；receiver_effect=one_effect_retained_in_fixture_only",
       "oracle_id": "HELIXCONNECT-L10-004-F01",
       "expected_oracle_ref": {
@@ -74,7 +75,7 @@
     },
     {
       "id": "C004-F01-DIGEST-MISSING",
-      "counterexample": "同operationのscope/期限/許可/単一版/相関を保持する。各不足は保留。",
+      "counterexample": "同operationのscope/期限/許可/単一版/相関を保持する。各不足は保留。 L9 condition/outcome witness: retry_target.digest=missing.",
       "expected": "retry_target.digest=missing→operation-owner；candidate_retry_receipt=held；receiver_effect=one_effect_retained_in_fixture_only",
       "oracle_id": "HELIXCONNECT-L10-004-F01",
       "expected_oracle_ref": {
@@ -84,7 +85,7 @@
     },
     {
       "id": "C004-F01-SCOPE-MISSING",
-      "counterexample": "同operationのscope/期限/許可/単一版/相関を保持する。各不足は保留。",
+      "counterexample": "同operationのscope/期限/許可/単一版/相関を保持する。各不足は保留。 L9 condition/outcome witness: retry_target.scope=missing.",
       "expected": "retry_target.scope=missing→operation-owner；candidate_retry_receipt=held；receiver_effect=one_effect_retained_in_fixture_only",
       "oracle_id": "HELIXCONNECT-L10-004-F01",
       "expected_oracle_ref": {
@@ -94,7 +95,7 @@
     },
     {
       "id": "C004-F01-EXPIRY-MISSING",
-      "counterexample": "同operationのscope/期限/許可/単一版/相関を保持する。各不足は保留。",
+      "counterexample": "同operationのscope/期限/許可/単一版/相関を保持する。各不足は保留。 L9 condition/outcome witness: retry_target.expiry=missing.",
       "expected": "retry_target.expiry=missing→operation-owner；candidate_retry_receipt=held；receiver_effect=one_effect_retained_in_fixture_only",
       "oracle_id": "HELIXCONNECT-L10-004-F01",
       "expected_oracle_ref": {
@@ -104,7 +105,7 @@
     },
     {
       "id": "C004-F01-PERMISSION_REF-MISSING",
-      "counterexample": "同operationのscope/期限/許可/単一版/相関を保持する。各不足は保留。",
+      "counterexample": "同operationのscope/期限/許可/単一版/相関を保持する。各不足は保留。 L9 condition/outcome witness: retry_target.permission_ref=missing.",
       "expected": "retry_target.permission_ref=missing→operation-owner；candidate_retry_receipt=held；receiver_effect=one_effect_retained_in_fixture_only",
       "oracle_id": "HELIXCONNECT-L10-004-F01",
       "expected_oracle_ref": {
@@ -114,7 +115,7 @@
     },
     {
       "id": "C004-F01-CONTRACT_REVISION-MISSING",
-      "counterexample": "同operationのscope/期限/許可/単一版/相関を保持する。各不足は保留。",
+      "counterexample": "同operationのscope/期限/許可/単一版/相関を保持する。各不足は保留。 L9 condition/outcome witness: retry_target.contract_revision=missing.",
       "expected": "retry_target.contract_revision=missing→operation-owner；candidate_retry_receipt=held；receiver_effect=one_effect_retained_in_fixture_only",
       "oracle_id": "HELIXCONNECT-L10-004-F01",
       "expected_oracle_ref": {
@@ -124,7 +125,7 @@
     },
     {
       "id": "C004-F01-CORRELATION-MISSING",
-      "counterexample": "同operationのscope/期限/許可/単一版/相関を保持する。各不足は保留。",
+      "counterexample": "同operationのscope/期限/許可/単一版/相関を保持する。各不足は保留。 L9 condition/outcome witness: retry_target.correlation=missing.",
       "expected": "retry_target.correlation=missing→operation-owner；candidate_retry_receipt=held；receiver_effect=one_effect_retained_in_fixture_only",
       "oracle_id": "HELIXCONNECT-L10-004-F01",
       "expected_oracle_ref": {
@@ -134,7 +135,7 @@
     },
     {
       "id": "C004-F01-OPERATION_IDENTITY-FOREIGN",
-      "counterexample": "別operation/digest/scope/版を同一retryにしない。",
+      "counterexample": "別operation/digest/scope/版を同一retryにしない。 L9 condition/outcome witness: retry_target.operation_identity=content_conflict.",
       "expected": "retry_target.operation_identity=content_conflict→operation-owner；candidate_retry_receipt=held；receiver_effect=one_effect_retained_in_fixture_only",
       "oracle_id": "HELIXCONNECT-L10-004-F01",
       "expected_oracle_ref": {
@@ -144,7 +145,7 @@
     },
     {
       "id": "C004-F01-DIGEST-FOREIGN",
-      "counterexample": "別operation/digest/scope/版を同一retryにしない。",
+      "counterexample": "別operation/digest/scope/版を同一retryにしない。 L9 condition/outcome witness: retry_target.digest=content_conflict.",
       "expected": "retry_target.digest=content_conflict→operation-owner；candidate_retry_receipt=held；receiver_effect=one_effect_retained_in_fixture_only",
       "oracle_id": "HELIXCONNECT-L10-004-F01",
       "expected_oracle_ref": {
@@ -154,7 +155,7 @@
     },
     {
       "id": "C004-F01-SCOPE-FOREIGN",
-      "counterexample": "別operation/digest/scope/版を同一retryにしない。",
+      "counterexample": "別operation/digest/scope/版を同一retryにしない。 L9 condition/outcome witness: retry_target.scope=content_conflict.",
       "expected": "retry_target.scope=content_conflict→operation-owner；candidate_retry_receipt=held；receiver_effect=one_effect_retained_in_fixture_only",
       "oracle_id": "HELIXCONNECT-L10-004-F01",
       "expected_oracle_ref": {
@@ -164,7 +165,7 @@
     },
     {
       "id": "C004-F01-CONTRACT_REVISION-FOREIGN",
-      "counterexample": "別operation/digest/scope/版を同一retryにしない。",
+      "counterexample": "別operation/digest/scope/版を同一retryにしない。 L9 condition/outcome witness: retry_target.contract_revision=content_conflict.",
       "expected": "retry_target.contract_revision=content_conflict→operation-owner；candidate_retry_receipt=held；receiver_effect=one_effect_retained_in_fixture_only",
       "oracle_id": "HELIXCONNECT-L10-004-F01",
       "expected_oracle_ref": {
@@ -174,7 +175,7 @@
     },
     {
       "id": "C004-F01-ORIGINAL-DUPLICATE-RECEIVER-EFFECT",
-      "counterexample": "原receiver効果が増える場合、提出同値でも冪等成立にしない。",
+      "counterexample": "原receiver効果が増える場合、提出同値でも冪等成立にしない。 L9 condition/outcome witness: receiver_effect.delta=duplicate_or_conflicting_effect.",
       "expected": "receiver_effect.delta=duplicate_or_conflicting_effect→receiver-owner；candidate_retry_receipt=held；receiver_effect=duplicate_or_conflicting_effect",
       "oracle_id": "HELIXCONNECT-L10-004-F01",
       "expected_oracle_ref": {
@@ -184,7 +185,7 @@
     },
     {
       "id": "C004-F01-ORIGINAL-EFFECT-UNOBSERVED",
-      "counterexample": "実効果未観測を冪等済みにしない。",
+      "counterexample": "実効果未観測を冪等済みにしない。 L9 condition/outcome witness: effect_content.after_retry=unknown_original_information; receiver_effect.delta=unknown_or_conflicting_effect_binding.",
       "expected": "effect_content.after_retry=unknown_original_information→receiver-owner; receiver_effect.delta=unknown_or_conflicting_effect_binding→receiver-owner；candidate_retry_receipt=held；receiver_effect=unknown_or_conflicting_effect_binding",
       "oracle_id": "HELIXCONNECT-L10-004-F01",
       "expected_oracle_ref": {
@@ -194,7 +195,7 @@
     },
     {
       "id": "C004-F01-EFFECT-OTHER-OPERATION",
-      "counterexample": "別operationの効果一回を当該retryへ外挿しない。",
+      "counterexample": "別operationの効果一回を当該retryへ外挿しない。 L9 condition/outcome witness: effect_target.operation_identity=content_conflict; receiver_effect.delta=unknown_or_conflicting_effect_binding.",
       "expected": "effect_target.operation_identity=content_conflict→receiver-owner; receiver_effect.delta=unknown_or_conflicting_effect_binding→receiver-owner；candidate_retry_receipt=held；receiver_effect=unknown_or_conflicting_effect_binding",
       "oracle_id": "HELIXCONNECT-L10-004-F01",
       "expected_oracle_ref": {
@@ -204,7 +205,7 @@
     },
     {
       "id": "C004-F01-SUBMITTED-EFFECT-ERASED",
-      "counterexample": "原効果を提出値で消して増分0にしない。",
+      "counterexample": "原効果を提出値で消して増分0にしない。 L9 condition/outcome witness: effect_content.after_retry=content_conflict; receiver_effect.delta=unknown_or_conflicting_effect_binding.",
       "expected": "effect_content.after_retry=content_conflict→receiver-owner; receiver_effect.delta=unknown_or_conflicting_effect_binding→receiver-owner；candidate_retry_receipt=held；receiver_effect=unknown_or_conflicting_effect_binding",
       "oracle_id": "HELIXCONNECT-L10-004-F01",
       "expected_oracle_ref": {
@@ -214,7 +215,7 @@
     },
     {
       "id": "C004-F01-ATTEMPT-IDENTITY-NOT-DISTINCT",
-      "counterexample": "同operationでもattempt identityの混同を許さない。",
+      "counterexample": "同operationでもattempt identityの混同を許さない。 L9 condition/outcome witness: attempt_distinction.identity_and_ordinal=duplicate_attempt_identity.",
       "expected": "attempt_distinction.identity_and_ordinal=duplicate_attempt_identity→operation-owner；candidate_retry_receipt=held；receiver_effect=one_effect_retained_in_fixture_only",
       "oracle_id": "HELIXCONNECT-L10-004-F01",
       "expected_oracle_ref": {
@@ -224,7 +225,7 @@
     },
     {
       "id": "C004-F01-RECEIVER-CONTRACT-OTHER-REVISION",
-      "counterexample": "別版receiver契約を単一版へjoinしない。",
+      "counterexample": "別版receiver契約を単一版へjoinしない。 L9 condition/outcome witness: receiver_contract_target.contract_revision=content_conflict.",
       "expected": "receiver_contract_target.contract_revision=content_conflict→receiver-contract-owner；candidate_retry_receipt=held；receiver_effect=one_effect_retained_in_fixture_only",
       "oracle_id": "HELIXCONNECT-L10-004-F01",
       "expected_oracle_ref": {
@@ -234,7 +235,7 @@
     },
     {
       "id": "C004-F01-RETRY-NOT-SELECTED",
-      "counterexample": "非選択再送の全実装/全効果を当該操作の固定gateにしない。",
+      "counterexample": "非選択再送の全実装/全効果を当該操作の固定gateにしない。 L9 condition/outcome witness: candidate_retry_receipt=not_selected_unobserved; receiver_effect=one_effect_retained_in_fixture_only.",
       "expected": "追加停止理由なし；candidate_retry_receipt=not_selected_unobserved；receiver_effect=one_effect_retained_in_fixture_only",
       "oracle_id": "HELIXCONNECT-L10-004-F01",
       "expected_oracle_ref": {
@@ -244,7 +245,7 @@
     },
     {
       "id": "C004-F01-ORIGINAL-MULTIPLE-EFFECTS-BEFORE-RETRY",
-      "counterexample": "同operationの原効果は増分だけでなく一回分の総集合を照合し、二重効果を一回済みにしない。",
+      "counterexample": "同operationの原効果は増分だけでなく一回分の総集合を照合し、二重効果を一回済みにしない。 L9 condition/outcome witness: receiver_effect.delta=duplicate_or_conflicting_effect.",
       "expected": "receiver_effect.delta=duplicate_or_conflicting_effect→receiver-owner；candidate_retry_receipt=held；receiver_effect=duplicate_or_conflicting_effect",
       "oracle_id": "HELIXCONNECT-L10-004-F01",
       "expected_oracle_ref": {
@@ -254,7 +255,7 @@
     },
     {
       "id": "C004-F01-SAME_CONTENT_DOUBLE_EFFECT",
-      "counterexample": "二重効果/同key別operation/未観測冪等済みclaimを拒否。",
+      "counterexample": "二重効果/同key別operation/未観測冪等済みclaimを拒否。 L9 condition/outcome witness: receiver_effect.delta=duplicate_or_conflicting_effect; L9 scenario markers=same_content_double_effect.",
       "expected": "receiver_effect.delta=duplicate_or_conflicting_effect→receiver-owner；candidate_retry_receipt=held；receiver_effect=duplicate_or_conflicting_effect",
       "oracle_id": "HELIXCONNECT-L10-004-F01",
       "expected_oracle_ref": {
@@ -264,7 +265,7 @@
     },
     {
       "id": "C004-F01-SAME_KEY_OTHER_OPERATION",
-      "counterexample": "二重効果/同key別operation/未観測冪等済みclaimを拒否。",
+      "counterexample": "二重効果/同key別operation/未観測冪等済みclaimを拒否。 L9 condition/outcome witness: retry_target.operation_identity=content_conflict; L9 scenario markers=same_key_other_operation.",
       "expected": "retry_target.operation_identity=content_conflict→operation-owner；candidate_retry_receipt=held；receiver_effect=one_effect_retained_in_fixture_only",
       "oracle_id": "HELIXCONNECT-L10-004-F01",
       "expected_oracle_ref": {
@@ -274,7 +275,7 @@
     },
     {
       "id": "C004-F01-UNOBSERVED_IDEMPOTENT",
-      "counterexample": "二重効果/同key別operation/未観測冪等済みclaimを拒否。",
+      "counterexample": "二重効果/同key別operation/未観測冪等済みclaimを拒否。 L9 condition/outcome witness: receiver_effect.delta=unknown_unobserved; L9 scenario markers=unobserved_idempotent.",
       "expected": "receiver_effect.delta=unknown_unobserved→receiver-owner；candidate_retry_receipt=held；receiver_effect=unknown_unobserved",
       "oracle_id": "HELIXCONNECT-L10-004-F01",
       "expected_oracle_ref": {
@@ -284,7 +285,7 @@
     },
     {
       "id": "C004-F02-SAME-KEY-SAME-DIGEST",
-      "counterexample": "同key同digestの原入力は別caseで、衝突と混同しない。",
+      "counterexample": "同key同digestの原入力は別caseで、衝突と混同しない。 L9 condition/outcome witness: digest_relation=same_digest; action=same_content_candidate_only; effect_increment=no_increment_in_fixture_only; additional_failure=none.",
       "expected": "digest_relation=same_digest；action=same_content_candidate_only；effect_increment=no_increment_in_fixture_only；追加停止理由なし",
       "oracle_id": "HELIXCONNECT-L10-004-F02",
       "expected_oracle_ref": {
@@ -294,7 +295,7 @@
     },
     {
       "id": "C004-F02-SAME-KEY-DIFFERENT-DIGEST-NO-INCREMENT",
-      "counterexample": "異digestは衝突停止、元operation/未完とreceiver増分なしを保持。",
+      "counterexample": "異digestは衝突停止、元operation/未完とreceiver増分なしを保持。 L9 condition/outcome witness: digest_relation=different_digest; action=stop_digest_conflict; effect_increment=no_increment_in_fixture_only; digest_relation.digest=different_digest.",
       "expected": "digest_relation=different_digest；action=stop_digest_conflict；effect_increment=no_increment_in_fixture_only；digest_relation.digest=different_digest→operation-owner",
       "oracle_id": "HELIXCONNECT-L10-004-F02",
       "expected_oracle_ref": {
@@ -304,7 +305,7 @@
     },
     {
       "id": "C004-F02-OPERATION_IDENTITY-FOREIGN",
-      "counterexample": "別operation/key/scope/版を元retryへ混載しない。",
+      "counterexample": "別operation/key/scope/版を元retryへ混載しない。 L9 condition/outcome witness: digest_relation=different_digest; action=held_identity_or_unknown; effect_increment=no_increment_in_fixture_only; operation_binding.operation_identity=content_conflict; digest_relation.digest=different_digest.",
       "expected": "digest_relation=different_digest；action=held_identity_or_unknown；effect_increment=no_increment_in_fixture_only；operation_binding.operation_identity=content_conflict→operation-owner; digest_relation.digest=different_digest→operation-owner",
       "oracle_id": "HELIXCONNECT-L10-004-F02",
       "expected_oracle_ref": {
@@ -314,7 +315,7 @@
     },
     {
       "id": "C004-F02-IDEMPOTENCY-FOREIGN",
-      "counterexample": "別operation/key/scope/版を元retryへ混載しない。",
+      "counterexample": "別operation/key/scope/版を元retryへ混載しない。 L9 condition/outcome witness: digest_relation=different_digest; action=held_identity_or_unknown; effect_increment=no_increment_in_fixture_only; operation_binding.idempotency=content_conflict; digest_relation.digest=different_digest.",
       "expected": "digest_relation=different_digest；action=held_identity_or_unknown；effect_increment=no_increment_in_fixture_only；operation_binding.idempotency=content_conflict→operation-owner; digest_relation.digest=different_digest→operation-owner",
       "oracle_id": "HELIXCONNECT-L10-004-F02",
       "expected_oracle_ref": {
@@ -324,7 +325,7 @@
     },
     {
       "id": "C004-F02-SCOPE-FOREIGN",
-      "counterexample": "別operation/key/scope/版を元retryへ混載しない。",
+      "counterexample": "別operation/key/scope/版を元retryへ混載しない。 L9 condition/outcome witness: digest_relation=different_digest; action=held_identity_or_unknown; effect_increment=no_increment_in_fixture_only; operation_binding.scope=content_conflict; digest_relation.digest=different_digest.",
       "expected": "digest_relation=different_digest；action=held_identity_or_unknown；effect_increment=no_increment_in_fixture_only；operation_binding.scope=content_conflict→operation-owner; digest_relation.digest=different_digest→operation-owner",
       "oracle_id": "HELIXCONNECT-L10-004-F02",
       "expected_oracle_ref": {
@@ -334,7 +335,7 @@
     },
     {
       "id": "C004-F02-CONTRACT_REVISION-FOREIGN",
-      "counterexample": "別operation/key/scope/版を元retryへ混載しない。",
+      "counterexample": "別operation/key/scope/版を元retryへ混載しない。 L9 condition/outcome witness: digest_relation=different_digest; action=held_identity_or_unknown; effect_increment=no_increment_in_fixture_only; operation_binding.contract_revision=content_conflict; digest_relation.digest=different_digest.",
       "expected": "digest_relation=different_digest；action=held_identity_or_unknown；effect_increment=no_increment_in_fixture_only；operation_binding.contract_revision=content_conflict→operation-owner; digest_relation.digest=different_digest→operation-owner",
       "oracle_id": "HELIXCONNECT-L10-004-F02",
       "expected_oracle_ref": {
@@ -344,7 +345,7 @@
     },
     {
       "id": "C004-F02-SUBMITTED-DIGEST-CONFLICT-HIDDEN",
-      "counterexample": "異digest原入力を提出値で同じretryへ隠さない。",
+      "counterexample": "異digest原入力を提出値で同じretryへ隠さない。 L9 condition/outcome witness: digest_relation=different_digest; action=held_identity_or_unknown; effect_increment=no_increment_in_fixture_only; incoming_content.digest=content_conflict; digest_relation.digest=different_digest.",
       "expected": "digest_relation=different_digest；action=held_identity_or_unknown；effect_increment=no_increment_in_fixture_only；incoming_content.digest=content_conflict→operation-owner; digest_relation.digest=different_digest→operation-owner",
       "oracle_id": "HELIXCONNECT-L10-004-F02",
       "expected_oracle_ref": {
@@ -354,7 +355,7 @@
     },
     {
       "id": "C004-F02-ORIGINAL-SIDE-EFFECT-AFTER-CONFLICT",
-      "counterexample": "衝突停止recordだけで増分副作用を成功扱いにしない。",
+      "counterexample": "衝突停止recordだけで増分副作用を成功扱いにしない。 L9 condition/outcome witness: digest_relation=different_digest; action=stop_digest_conflict; effect_increment=conflict_side_effect; digest_relation.digest=different_digest; receiver_effect.after_conflict=conflict_side_effect.",
       "expected": "digest_relation=different_digest；action=stop_digest_conflict；effect_increment=conflict_side_effect；digest_relation.digest=different_digest→operation-owner; receiver_effect.after_conflict=conflict_side_effect→receiver-owner",
       "oracle_id": "HELIXCONNECT-L10-004-F02",
       "expected_oracle_ref": {
@@ -364,7 +365,7 @@
     },
     {
       "id": "C004-F02-CONFLICT-EFFECT-UNOBSERVED",
-      "counterexample": "衝突後実効果未観測を増分なしへ推測しない。",
+      "counterexample": "衝突後実効果未観測を増分なしへ推測しない。 L9 condition/outcome witness: digest_relation=different_digest; action=stop_digest_conflict; effect_increment=unknown_unobserved; digest_relation.digest=different_digest; receiver_effect.after_conflict=unknown_unobserved; effect_content.after_conflict=unknown_original_information.",
       "expected": "digest_relation=different_digest；action=stop_digest_conflict；effect_increment=unknown_unobserved；digest_relation.digest=different_digest→operation-owner; receiver_effect.after_conflict=unknown_unobserved→receiver-owner; effect_content.after_conflict=unknown_original_information→receiver-owner",
       "oracle_id": "HELIXCONNECT-L10-004-F02",
       "expected_oracle_ref": {
@@ -374,7 +375,7 @@
     },
     {
       "id": "C004-F02-ORIGINAL-DIGEST-UNKNOWN",
-      "counterexample": "原digest未定は同値nullでも同内容にしない。",
+      "counterexample": "原digest未定は同値nullでも同内容にしない。 L9 condition/outcome witness: digest_relation=unknown; action=held_identity_or_unknown; effect_increment=no_increment_in_fixture_only; incoming_content.digest=unknown_original_information; digest_relation.digest=unknown.",
       "expected": "digest_relation=unknown；action=held_identity_or_unknown；effect_increment=no_increment_in_fixture_only；incoming_content.digest=unknown_original_information→operation-owner; digest_relation.digest=unknown→operation-owner",
       "oracle_id": "HELIXCONNECT-L10-004-F02",
       "expected_oracle_ref": {
@@ -384,7 +385,7 @@
     },
     {
       "id": "C004-F02-EFFECT-TARGET-OPERATION_IDENTITY-FOREIGN",
-      "counterexample": "別operation/digest/版の増分なしを当該衝突後の実効果へ読み替えない。",
+      "counterexample": "別operation/digest/版の増分なしを当該衝突後の実効果へ読み替えない。 L9 condition/outcome witness: digest_relation=different_digest; action=stop_digest_conflict; effect_increment=unknown_or_conflicting_effect_binding; receiver_effect_target.operation_identity=content_conflict; digest_relation.digest=different_digest; receiver_effect.after_conflict=unknown_or_conflicting_effect_binding.",
       "expected": "digest_relation=different_digest；action=stop_digest_conflict；effect_increment=unknown_or_conflicting_effect_binding；receiver_effect_target.operation_identity=content_conflict→receiver-owner; digest_relation.digest=different_digest→operation-owner; receiver_effect.after_conflict=unknown_or_conflicting_effect_binding→receiver-owner",
       "oracle_id": "HELIXCONNECT-L10-004-F02",
       "expected_oracle_ref": {
@@ -394,7 +395,7 @@
     },
     {
       "id": "C004-F02-EFFECT-TARGET-DIGEST-FOREIGN",
-      "counterexample": "別operation/digest/版の増分なしを当該衝突後の実効果へ読み替えない。",
+      "counterexample": "別operation/digest/版の増分なしを当該衝突後の実効果へ読み替えない。 L9 condition/outcome witness: digest_relation=different_digest; action=stop_digest_conflict; effect_increment=unknown_or_conflicting_effect_binding; receiver_effect_target.digest=content_conflict; digest_relation.digest=different_digest; receiver_effect.after_conflict=unknown_or_conflicting_effect_binding.",
       "expected": "digest_relation=different_digest；action=stop_digest_conflict；effect_increment=unknown_or_conflicting_effect_binding；receiver_effect_target.digest=content_conflict→receiver-owner; digest_relation.digest=different_digest→operation-owner; receiver_effect.after_conflict=unknown_or_conflicting_effect_binding→receiver-owner",
       "oracle_id": "HELIXCONNECT-L10-004-F02",
       "expected_oracle_ref": {
@@ -404,7 +405,7 @@
     },
     {
       "id": "C004-F02-EFFECT-TARGET-CONTRACT_REVISION-FOREIGN",
-      "counterexample": "別operation/digest/版の増分なしを当該衝突後の実効果へ読み替えない。",
+      "counterexample": "別operation/digest/版の増分なしを当該衝突後の実効果へ読み替えない。 L9 condition/outcome witness: digest_relation=different_digest; action=stop_digest_conflict; effect_increment=unknown_or_conflicting_effect_binding; receiver_effect_target.contract_revision=content_conflict; digest_relation.digest=different_digest; receiver_effect.after_conflict=unknown_or_conflicting_effect_binding.",
       "expected": "digest_relation=different_digest；action=stop_digest_conflict；effect_increment=unknown_or_conflicting_effect_binding；receiver_effect_target.contract_revision=content_conflict→receiver-owner; digest_relation.digest=different_digest→operation-owner; receiver_effect.after_conflict=unknown_or_conflicting_effect_binding→receiver-owner",
       "oracle_id": "HELIXCONNECT-L10-004-F02",
       "expected_oracle_ref": {
@@ -414,7 +415,7 @@
     },
     {
       "id": "C004-F02-ORIGINAL-EFFECT-BEFORE-UNKNOWN",
-      "counterexample": "衝突前効果の原観測なしは増分なしを証明しない。",
+      "counterexample": "衝突前効果の原観測なしは増分なしを証明しない。 L9 condition/outcome witness: digest_relation=different_digest; action=stop_digest_conflict; effect_increment=unknown_unobserved; digest_relation.digest=different_digest; receiver_effect.after_conflict=unknown_unobserved; effect_content.before=unknown_original_information.",
       "expected": "digest_relation=different_digest；action=stop_digest_conflict；effect_increment=unknown_unobserved；digest_relation.digest=different_digest→operation-owner; receiver_effect.after_conflict=unknown_unobserved→receiver-owner; effect_content.before=unknown_original_information→receiver-owner",
       "oracle_id": "HELIXCONNECT-L10-004-F02",
       "expected_oracle_ref": {
@@ -424,7 +425,7 @@
     },
     {
       "id": "C004-F02-DIFFERENT_DIGEST_SAME_RETRY",
-      "counterexample": "異内容retry/衝突後副作用/別成功で相殺claimを拒否。",
+      "counterexample": "異内容retry/衝突後副作用/別成功で相殺claimを拒否。 L9 condition/outcome witness: digest_relation=different_digest; action=stop_digest_conflict; effect_increment=no_increment_in_fixture_only; digest_relation.digest=different_digest; L9 scenario markers=different_digest_same_retry.",
       "expected": "digest_relation=different_digest；action=stop_digest_conflict；effect_increment=no_increment_in_fixture_only；digest_relation.digest=different_digest→operation-owner",
       "oracle_id": "HELIXCONNECT-L10-004-F02",
       "expected_oracle_ref": {
@@ -434,7 +435,7 @@
     },
     {
       "id": "C004-F02-CONFLICT_SIDE_EFFECT",
-      "counterexample": "異内容retry/衝突後副作用/別成功で相殺claimを拒否。",
+      "counterexample": "異内容retry/衝突後副作用/別成功で相殺claimを拒否。 L9 condition/outcome witness: digest_relation=different_digest; action=stop_digest_conflict; effect_increment=conflict_side_effect; digest_relation.digest=different_digest; receiver_effect.after_conflict=conflict_side_effect; L9 scenario markers=conflict_side_effect.",
       "expected": "digest_relation=different_digest；action=stop_digest_conflict；effect_increment=conflict_side_effect；digest_relation.digest=different_digest→operation-owner; receiver_effect.after_conflict=conflict_side_effect→receiver-owner",
       "oracle_id": "HELIXCONNECT-L10-004-F02",
       "expected_oracle_ref": {
@@ -444,7 +445,7 @@
     },
     {
       "id": "C004-F02-OTHER_CONTENT_SUCCESS_OFFSETS",
-      "counterexample": "異内容retry/衝突後副作用/別成功で相殺claimを拒否。",
+      "counterexample": "異内容retry/衝突後副作用/別成功で相殺claimを拒否。 L9 condition/outcome witness: digest_relation=different_digest; action=stop_digest_conflict; effect_increment=no_increment_in_fixture_only; digest_relation.digest=different_digest; L9 scenario markers=other_content_success_offsets.",
       "expected": "digest_relation=different_digest；action=stop_digest_conflict；effect_increment=no_increment_in_fixture_only；digest_relation.digest=different_digest→operation-owner",
       "oracle_id": "HELIXCONNECT-L10-004-F02",
       "expected_oracle_ref": {
@@ -454,7 +455,7 @@
     },
     {
       "id": "C004-F03-WITHIN-ORIGINAL-LIMIT-TECHNICAL-RETRYABLE",
-      "counterexample": "元契約の数え方/上限/累積と再送可否を照合。合成候補は実attemptでない。",
+      "counterexample": "元契約の数え方/上限/累積と再送可否を照合。合成候補は実attemptでない。 L9 condition/outcome witness: budget=within_original_limit; candidate_next_action=requires_actual_operation_authority_and_retry_qualification; additional_attempts=1; result_state=technical_retryable_failure.",
       "expected": "next_action=requires_actual_operation_authority_and_retry_qualification；additional_attempts=1；budget=within_original_limit；停止理由なし",
       "oracle_id": "HELIXCONNECT-L10-004-F03",
       "expected_oracle_ref": {
@@ -464,7 +465,7 @@
     },
     {
       "id": "C004-F03-ORIGINAL-LIMIT-REACHED",
-      "counterexample": "累積は保持し上限到達で追加attempt候補0。",
+      "counterexample": "累積は保持し上限到達で追加attempt候補0。 L9 condition/outcome witness: budget=exhausted; retry_budget.remaining=exhausted.",
       "expected": "next_action=stop_or_hold_with_unfinished；additional_attempts=0；budget=exhausted；retry_budget.remaining=exhausted→operation-owner",
       "oracle_id": "HELIXCONNECT-L10-004-F03",
       "expected_oracle_ref": {
@@ -474,7 +475,7 @@
     },
     {
       "id": "C004-F03-ORIGINAL-LIMIT-UNKNOWN",
-      "counterexample": "上限未定を無限retryにしない。",
+      "counterexample": "上限未定を無限retryにしない。 L9 condition/outcome witness: budget=unknown_budget; policy_content.max_total_attempts=unknown_original_information; retry_budget.remaining=unknown_budget.",
       "expected": "next_action=stop_or_hold_with_unfinished；additional_attempts=0；budget=unknown_budget；policy_content.max_total_attempts=unknown_original_information→connection-contract-owner; retry_budget.remaining=unknown_budget→operation-owner",
       "oracle_id": "HELIXCONNECT-L10-004-F03",
       "expected_oracle_ref": {
@@ -484,7 +485,7 @@
     },
     {
       "id": "C004-F03-ORIGINAL-CUMULATIVE-UNKNOWN",
-      "counterexample": "元累積不明を0へ戻して再送しない。",
+      "counterexample": "元累積不明を0へ戻して再送しない。 L9 condition/outcome witness: budget=unknown_budget; cumulative_attempts.value=unknown_original_information; retry_budget.remaining=unknown_budget; cumulative_history.count=unknown_or_conflicting_history.",
       "expected": "next_action=stop_or_hold_with_unfinished；additional_attempts=0；budget=unknown_budget；cumulative_attempts.value=unknown_original_information→operation-owner; retry_budget.remaining=unknown_budget→operation-owner; cumulative_history.count=unknown_or_conflicting_history→operation-owner",
       "oracle_id": "HELIXCONNECT-L10-004-F03",
       "expected_oracle_ref": {
@@ -494,7 +495,7 @@
     },
     {
       "id": "C004-F03-ORIGINAL_RESULT_STATE-BUSINESS_NONRETRYABLE",
-      "counterexample": "元停止条件/業務再送不可/期限/許可/版/ACKを独立に照合する。",
+      "counterexample": "元停止条件/業務再送不可/期限/許可/版/ACKを独立に照合する。 L9 condition/outcome witness: budget=within_original_limit; retryable_result.state=business_nonretryable.",
       "expected": "next_action=stop_or_hold_with_unfinished；additional_attempts=0；budget=within_original_limit；retryable_result.state=business_nonretryable→business-owner",
       "oracle_id": "HELIXCONNECT-L10-004-F03",
       "expected_oracle_ref": {
@@ -504,7 +505,7 @@
     },
     {
       "id": "C004-F03-ORIGINAL_RESULT_STATE-UNKNOWN",
-      "counterexample": "元停止条件/業務再送不可/期限/許可/版/ACKを独立に照合する。",
+      "counterexample": "元停止条件/業務再送不可/期限/許可/版/ACKを独立に照合する。 L9 condition/outcome witness: budget=within_original_limit; retryable_result.state=unknown.",
       "expected": "next_action=stop_or_hold_with_unfinished；additional_attempts=0；budget=within_original_limit；retryable_result.state=unknown→operation-owner",
       "oracle_id": "HELIXCONNECT-L10-004-F03",
       "expected_oracle_ref": {
@@ -514,7 +515,7 @@
     },
     {
       "id": "C004-F03-ORIGINAL_EXPIRY_STATE-EXPIRED",
-      "counterexample": "元停止条件/業務再送不可/期限/許可/版/ACKを独立に照合する。",
+      "counterexample": "元停止条件/業務再送不可/期限/許可/版/ACKを独立に照合する。 L9 condition/outcome witness: budget=within_original_limit; original_expiry_state.state=expired.",
       "expected": "next_action=stop_or_hold_with_unfinished；additional_attempts=0；budget=within_original_limit；original_expiry_state.state=expired→HELIX-SECURITY",
       "oracle_id": "HELIXCONNECT-L10-004-F03",
       "expected_oracle_ref": {
@@ -524,7 +525,7 @@
     },
     {
       "id": "C004-F03-ORIGINAL_PERMISSION_STATE-REVOKED",
-      "counterexample": "元停止条件/業務再送不可/期限/許可/版/ACKを独立に照合する。",
+      "counterexample": "元停止条件/業務再送不可/期限/許可/版/ACKを独立に照合する。 L9 condition/outcome witness: budget=within_original_limit; original_permission_state.state=revoked.",
       "expected": "next_action=stop_or_hold_with_unfinished；additional_attempts=0；budget=within_original_limit；original_permission_state.state=revoked→HELIX-SECURITY",
       "oracle_id": "HELIXCONNECT-L10-004-F03",
       "expected_oracle_ref": {
@@ -534,7 +535,7 @@
     },
     {
       "id": "C004-F03-ORIGINAL_PERMISSION_STATE-UNKNOWN",
-      "counterexample": "元停止条件/業務再送不可/期限/許可/版/ACKを独立に照合する。",
+      "counterexample": "元停止条件/業務再送不可/期限/許可/版/ACKを独立に照合する。 L9 condition/outcome witness: budget=within_original_limit; original_permission_state.state=unknown.",
       "expected": "next_action=stop_or_hold_with_unfinished；additional_attempts=0；budget=within_original_limit；original_permission_state.state=unknown→HELIX-SECURITY",
       "oracle_id": "HELIXCONNECT-L10-004-F03",
       "expected_oracle_ref": {
@@ -544,7 +545,7 @@
     },
     {
       "id": "C004-F03-ORIGINAL_COMPATIBILITY_STATE-STALE",
-      "counterexample": "元停止条件/業務再送不可/期限/許可/版/ACKを独立に照合する。",
+      "counterexample": "元停止条件/業務再送不可/期限/許可/版/ACKを独立に照合する。 L9 condition/outcome witness: budget=within_original_limit; original_compatibility_state.state=stale.",
       "expected": "next_action=stop_or_hold_with_unfinished；additional_attempts=0；budget=within_original_limit；original_compatibility_state.state=stale→endpoint-contract-owner",
       "oracle_id": "HELIXCONNECT-L10-004-F03",
       "expected_oracle_ref": {
@@ -554,7 +555,7 @@
     },
     {
       "id": "C004-F03-ORIGINAL_COMPATIBILITY_STATE-INCOMPATIBLE",
-      "counterexample": "元停止条件/業務再送不可/期限/許可/版/ACKを独立に照合する。",
+      "counterexample": "元停止条件/業務再送不可/期限/許可/版/ACKを独立に照合する。 L9 condition/outcome witness: budget=within_original_limit; original_compatibility_state.state=incompatible.",
       "expected": "next_action=stop_or_hold_with_unfinished；additional_attempts=0；budget=within_original_limit；original_compatibility_state.state=incompatible→endpoint-contract-owner",
       "oracle_id": "HELIXCONNECT-L10-004-F03",
       "expected_oracle_ref": {
@@ -564,7 +565,7 @@
     },
     {
       "id": "C004-F03-ORIGINAL_ACK_STATE-RECEIVED_TERMINAL",
-      "counterexample": "元停止条件/業務再送不可/期限/許可/版/ACKを独立に照合する。",
+      "counterexample": "元停止条件/業務再送不可/期限/許可/版/ACKを独立に照合する。 L9 condition/outcome witness: budget=within_original_limit; ack_state.state=already_terminal.",
       "expected": "next_action=stop_or_hold_with_unfinished；additional_attempts=0；budget=within_original_limit；ack_state.state=already_terminal→operation-owner",
       "oracle_id": "HELIXCONNECT-L10-004-F03",
       "expected_oracle_ref": {
@@ -574,7 +575,7 @@
     },
     {
       "id": "C004-F03-CONTRACT_REVISION-FOREIGN",
-      "counterexample": "新旧版/別scope/許可/operationを同累積retryへ混在させない。",
+      "counterexample": "新旧版/別scope/許可/operationを同累積retryへ混在させない。 L9 condition/outcome witness: budget=within_original_limit; retry_target.contract_revision=content_conflict.",
       "expected": "next_action=stop_or_hold_with_unfinished；additional_attempts=0；budget=within_original_limit；retry_target.contract_revision=content_conflict→operation-owner",
       "oracle_id": "HELIXCONNECT-L10-004-F03",
       "expected_oracle_ref": {
@@ -584,7 +585,7 @@
     },
     {
       "id": "C004-F03-SCOPE-FOREIGN",
-      "counterexample": "新旧版/別scope/許可/operationを同累積retryへ混在させない。",
+      "counterexample": "新旧版/別scope/許可/operationを同累積retryへ混在させない。 L9 condition/outcome witness: budget=within_original_limit; retry_target.scope=content_conflict.",
       "expected": "next_action=stop_or_hold_with_unfinished；additional_attempts=0；budget=within_original_limit；retry_target.scope=content_conflict→operation-owner",
       "oracle_id": "HELIXCONNECT-L10-004-F03",
       "expected_oracle_ref": {
@@ -594,7 +595,7 @@
     },
     {
       "id": "C004-F03-EXPIRY-FOREIGN",
-      "counterexample": "新旧版/別scope/許可/operationを同累積retryへ混在させない。",
+      "counterexample": "新旧版/別scope/許可/operationを同累積retryへ混在させない。 L9 condition/outcome witness: budget=within_original_limit; retry_target.expiry=content_conflict.",
       "expected": "next_action=stop_or_hold_with_unfinished；additional_attempts=0；budget=within_original_limit；retry_target.expiry=content_conflict→operation-owner",
       "oracle_id": "HELIXCONNECT-L10-004-F03",
       "expected_oracle_ref": {
@@ -604,7 +605,7 @@
     },
     {
       "id": "C004-F03-PERMISSION_REF-FOREIGN",
-      "counterexample": "新旧版/別scope/許可/operationを同累積retryへ混在させない。",
+      "counterexample": "新旧版/別scope/許可/operationを同累積retryへ混在させない。 L9 condition/outcome witness: budget=within_original_limit; retry_target.permission_ref=content_conflict.",
       "expected": "next_action=stop_or_hold_with_unfinished；additional_attempts=0；budget=within_original_limit；retry_target.permission_ref=content_conflict→operation-owner",
       "oracle_id": "HELIXCONNECT-L10-004-F03",
       "expected_oracle_ref": {
@@ -614,7 +615,7 @@
     },
     {
       "id": "C004-F03-OPERATION_IDENTITY-FOREIGN",
-      "counterexample": "新旧版/別scope/許可/operationを同累積retryへ混在させない。",
+      "counterexample": "新旧版/別scope/許可/operationを同累積retryへ混在させない。 L9 condition/outcome witness: budget=within_original_limit; retry_target.operation_identity=content_conflict.",
       "expected": "next_action=stop_or_hold_with_unfinished；additional_attempts=0；budget=within_original_limit；retry_target.operation_identity=content_conflict→operation-owner",
       "oracle_id": "HELIXCONNECT-L10-004-F03",
       "expected_oracle_ref": {
@@ -624,7 +625,7 @@
     },
     {
       "id": "C004-F03-SUBMITTED-RETRY-LIMIT-INVENTED",
-      "counterexample": "CONNECT提出側でretry policyを新設しない。",
+      "counterexample": "CONNECT提出側でretry policyを新設しない。 L9 condition/outcome witness: budget=within_original_limit; policy_content.max_total_attempts=content_conflict.",
       "expected": "next_action=stop_or_hold_with_unfinished；additional_attempts=0；budget=within_original_limit；policy_content.max_total_attempts=content_conflict→connection-contract-owner",
       "oracle_id": "HELIXCONNECT-L10-004-F03",
       "expected_oracle_ref": {
@@ -634,7 +635,7 @@
     },
     {
       "id": "C004-F03-SUBMITTED-BUDGET-RESET",
-      "counterexample": "累積attemptを提出0へ置換しない。",
+      "counterexample": "累積attemptを提出0へ置換しない。 L9 condition/outcome witness: budget=within_original_limit; cumulative_attempts.value=content_conflict.",
       "expected": "next_action=stop_or_hold_with_unfinished；additional_attempts=0；budget=within_original_limit；cumulative_attempts.value=content_conflict→operation-owner",
       "oracle_id": "HELIXCONNECT-L10-004-F03",
       "expected_oracle_ref": {
@@ -644,7 +645,7 @@
     },
     {
       "id": "C004-F03-SUBMITTED-HISTORY-ERASED",
-      "counterexample": "原attempt/ACK結果履歴を消さない。",
+      "counterexample": "原attempt/ACK結果履歴を消さない。 L9 condition/outcome witness: budget=within_original_limit; history_content.value=content_conflict.",
       "expected": "next_action=stop_or_hold_with_unfinished；additional_attempts=0；budget=within_original_limit；history_content.value=content_conflict→operation-owner",
       "oracle_id": "HELIXCONNECT-L10-004-F03",
       "expected_oracle_ref": {
@@ -654,7 +655,7 @@
     },
     {
       "id": "C004-F03-SUBMITTED-UNFINISHED-ERASED",
-      "counterexample": "元recovery/未完を停止や技術成功で消さない。",
+      "counterexample": "元recovery/未完を停止や技術成功で消さない。 L9 condition/outcome witness: budget=within_original_limit; unfinished_content.value=content_conflict.",
       "expected": "next_action=stop_or_hold_with_unfinished；additional_attempts=0；budget=within_original_limit；unfinished_content.value=content_conflict→operation-owner",
       "oracle_id": "HELIXCONNECT-L10-004-F03",
       "expected_oracle_ref": {
@@ -664,7 +665,7 @@
     },
     {
       "id": "C004-F03-ORIGINAL-HISTORY-MIXED-REVISION",
-      "counterexample": "原履歴の新旧版混載は提出一致でも単一版にならない。",
+      "counterexample": "原履歴の新旧版混載は提出一致でも単一版にならない。 L9 condition/outcome witness: budget=within_original_limit; history_target_1.contract_revision=content_conflict.",
       "expected": "next_action=stop_or_hold_with_unfinished；additional_attempts=0；budget=within_original_limit；history_target_1.contract_revision=content_conflict→operation-owner",
       "oracle_id": "HELIXCONNECT-L10-004-F03",
       "expected_oracle_ref": {
@@ -674,7 +675,7 @@
     },
     {
       "id": "C004-F03-RETRY-NOT-SELECTED",
-      "counterexample": "非選択retryは未観測に保ち全retry能力の完成を要求しない。",
+      "counterexample": "非選択retryは未観測に保ち全retry能力の完成を要求しない。 L9 condition/outcome witness: budget=within_original_limit; candidate_next_action=not_selected_unobserved; additional_attempts=0; result_state=technical_retryable_failure.",
       "expected": "next_action=not_selected_unobserved；additional_attempts=0；budget=within_original_limit；停止理由なし",
       "oracle_id": "HELIXCONNECT-L10-004-F03",
       "expected_oracle_ref": {
@@ -684,7 +685,7 @@
     },
     {
       "id": "C004-F03-BUDGET_RESET",
-      "counterexample": "budget reset/無限retry/業務エラー再送/新旧版混載claimを拒否。",
+      "counterexample": "budget reset/無限retry/業務エラー再送/新旧版混載claimを拒否。 L9 condition/outcome witness: budget=within_original_limit; cumulative_attempts.value=content_conflict; L9 scenario markers=budget_reset.",
       "expected": "next_action=stop_or_hold_with_unfinished；additional_attempts=0；budget=within_original_limit；cumulative_attempts.value=content_conflict→operation-owner",
       "oracle_id": "HELIXCONNECT-L10-004-F03",
       "expected_oracle_ref": {
@@ -694,7 +695,7 @@
     },
     {
       "id": "C004-F03-INFINITE_RETRY",
-      "counterexample": "budget reset/無限retry/業務エラー再送/新旧版混載claimを拒否。",
+      "counterexample": "budget reset/無限retry/業務エラー再送/新旧版混載claimを拒否。 L9 condition/outcome witness: budget=unknown_budget; policy_content.max_total_attempts=unknown_original_information; retry_budget.remaining=unknown_budget; L9 scenario markers=infinite_retry.",
       "expected": "next_action=stop_or_hold_with_unfinished；additional_attempts=0；budget=unknown_budget；policy_content.max_total_attempts=unknown_original_information→connection-contract-owner; retry_budget.remaining=unknown_budget→operation-owner",
       "oracle_id": "HELIXCONNECT-L10-004-F03",
       "expected_oracle_ref": {
@@ -704,7 +705,7 @@
     },
     {
       "id": "C004-F03-BUSINESS_ERROR_RETRY",
-      "counterexample": "budget reset/無限retry/業務エラー再送/新旧版混載claimを拒否。",
+      "counterexample": "budget reset/無限retry/業務エラー再送/新旧版混載claimを拒否。 L9 condition/outcome witness: budget=within_original_limit; retryable_result.state=business_nonretryable; L9 scenario markers=business_error_retry.",
       "expected": "next_action=stop_or_hold_with_unfinished；additional_attempts=0；budget=within_original_limit；retryable_result.state=business_nonretryable→business-owner",
       "oracle_id": "HELIXCONNECT-L10-004-F03",
       "expected_oracle_ref": {
@@ -714,7 +715,7 @@
     },
     {
       "id": "C004-F03-OLD_NEW_REVISION_MIXED",
-      "counterexample": "budget reset/無限retry/業務エラー再送/新旧版混載claimを拒否。",
+      "counterexample": "budget reset/無限retry/業務エラー再送/新旧版混載claimを拒否。 L9 condition/outcome witness: budget=within_original_limit; retry_target.contract_revision=content_conflict; L9 scenario markers=old_new_revision_mixed.",
       "expected": "next_action=stop_or_hold_with_unfinished；additional_attempts=0；budget=within_original_limit；retry_target.contract_revision=content_conflict→operation-owner",
       "oracle_id": "HELIXCONNECT-L10-004-F03",
       "expected_oracle_ref": {
@@ -727,8 +728,58 @@
     "decision_ref": "Issue #3510 comment 6408252809; Issue #3510 comment 6447665479; PR #4009 R1 review; WR265-CONNECT-RETRY-DEDUP-L8-SLIM.",
     "git_commit": "b3ddf6f1d0a6cf2009e5f81a90f21c4292300185",
     "path": "docs/helix-connect/L8-unit-verification/retry-deduplication-conflict.json",
-    "meaning": " approved whole-object/hash pins、69行のraw packet/typed arguments/COPY fixture、全返却・実行/変異手順・hash材料、source packet pins、重複L3/L4/L9/function参照、independent probesの全面展開を整理した。元の69 case IDと順序、case固有反例・期待差分、各L9 expected_material pointer、L3/L4/L5/L9/L10責務、未実行/fixture-only/authority・operation効果なしの境界を保持。",
+    "meaning": "approved whole-object/hash pins、69行のraw packet/typed arguments/COPY fixture、全返却・実行/変異手順・hash材料、source packet pins、重複L3/L4/L9/function参照、independent probesの全面展開を整理した。元の69 case IDと順序、case固有反例・期待差分、各L9 expected_material pointer、L3/L4/L5/L9/L10責務、未実行/fixture-only/authority・operation効果なしの境界を保持。",
     "removed_key_rule": "L8は既存U-ID表と共通意味境界を正本とし、行にはid/counterexample/expected/oracle_id/oracle pointerのみを置く。fixture/raw packet/typed arguments/COPY/full return/hash/seed/変異手順を置かず、同じL3/L4/L9/function参照やbranch表を行ごとに複製しない。",
     "use_boundary": "DT-VT-105のL5↔L8候補照合だけに用いる。L9 oracle pointerは現行L9 slimで移管が必要。旧commitはgit履歴確認専用で、実行/fallback/期待再生成に使わない。全caseは未実行で、L7 test citationも作らない。"
+  },
+  "legacy_comparison": [
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/product-data-connector.md",
+      "read_lines": [
+        93,
+        109
+      ],
+      "asset_id": "LEGACY-ASSET-C3DE79BA9451172F3E43",
+      "reuse": "reference_only",
+      "preserve": "同key同digestの重複効果を防ぎ、異digestを衝突停止し、operation identity・版・fence・lineageをfault recoveryまで保つ。",
+      "change": "旧cursor codec/Node/DB/projection/active最大1は移さず、CONNECT004の選択再送・receiver効果・衝突・累積上限・失効・未完へ再導出。",
+      "reason": "CONNECT004採択内容と10/12承認はreceiver deduplication、同operation単一版、既存retry policyを保持する。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L6-function-design/product-data-connector.md",
+      "read_lines": [
+        51,
+        62
+      ],
+      "asset_id": "LEGACY-ASSET-DD66C1B6B7BE234B37E6",
+      "reuse": "reference_only",
+      "preserve": "同key同digestは一回の効果/receipt、異digest・CAS・failureは増分0とし、fault後も同じoperation identityで収束する。",
+      "change": "旧DB・Node・projection関数や実装証拠は移さず、現行L5純関数とL9/L10候補oracleへの対応だけを保持。",
+      "reason": "CONNECT004要求と既決境界は再送選択、単一版、有限retry policy、未完状態を保つ。"
+    }
+  ],
+  "consumer_failure_trace": {
+    "current_consumer": {
+      "path": "docs/helix-connect/L2-requirements/connect-requirements.md",
+      "lines": [
+        91,
+        100
+      ],
+      "meaning": "同一operation/digest制御再送、受信側一回効果、上限/可否、digest衝突拒否、業務owner・SECURITY境界への返却。"
+    },
+    "acceptance_consumer": {
+      "path": "docs/helix-connect/L11-acceptance/connect-acceptance.md",
+      "lines": [
+        58,
+        64
+      ],
+      "meaning": "応答喪失後の同一operation/digest限定再送、上限後追加attemptなし、衝突で効果を増やさない、業務エラーはretryしない。"
+    },
+    "failure_audit": {
+      "path": "docs/governance/audits/failure-development-foundation-audit-2026-10-12.json",
+      "failure_id": "T13",
+      "pointer": "/failure_types/12",
+      "boundary": "CONNECT-004は送信重複排除の限定scope。reviewer assignment/GUI claim排他の成立を主張しない。"
+    }
   }
 }

@@ -86,5 +86,368 @@
     ]
   },
   "purpose": "縮約前の正本を復元可能にし、検証の固定起点として参照する。内容は読むだけで、fixture/expectedを再生成したりfallbackとして使わない。",
-  "recording_rule": "append-only; updateしない。後続履歴は異なる新pathとrecord_idで記録する。"
+  "recording_rule": "append-only; updateしない。後続履歴は異なる新pathとrecord_idで記録する。",
+  "superseded_verification_summary": {
+    "commit": "8e3ea7474ead919b2f86dfc2c2b14c1b875ca707",
+    "path": "scaffold/research/wr265-connect-retry-l8-slim-20261101/verification-summary.json",
+    "blob": "bb44e994788e0033994382686d4e623d71a92e5f",
+    "sha256": "7ce0c0145a5c383a7bc02f627680412df86f9275df96c3c9b1b2396b76498a94",
+    "bytes": 1991,
+    "restore_command": "git show 8e3ea7474ead919b2f86dfc2c2b14c1b875ca707:scaffold/research/wr265-connect-retry-l8-slim-20261101/verification-summary.json > scaffold/research/wr265-connect-retry-l8-slim-20261101/verification-summary.json",
+    "purpose": "WR265初回編集時のbase-worktree static summary。最新origin/main overlayのcurrent summaryへ交代するが、当時の証拠bytesはGit履歴に固定し、再解釈・上書きしない。"
+  },
+  "superseded_overlay_attempt": {
+    "path": "scaffold/research/wr265-connect-retry-l8-slim-20261101/verification-summary-main-overlay.json",
+    "sha256": "d5a13a2ac377bc11f250761e0bc9741fa6f58064dd953c0336b21a2ae678515e",
+    "bytes": 4266,
+    "record_id": "WR265-RETRY-L8-CURRENT-STATIC-R1",
+    "result": {
+      "schema": "wr265-static-verification.v1",
+      "evidence_kind": "scaffold",
+      "authority_effect": "none",
+      "record_id": "WR265-RETRY-L8-CURRENT-STATIC-R1",
+      "target": "docs/helix-connect/L8-unit-verification/retry-deduplication-conflict.json",
+      "target_revision": "151713275e2c2aa65bb23a8fe38eb63c46d570c8",
+      "target_sha256": "b7f3ca5117f4d1a31f62299a09f120505f6614a6a33e855d9cfcae6ea4a9989a",
+      "source_pins": {
+        "docs/helix-connect/L5-detail-design/retry-deduplication-conflict.json": "ae83a4db64fb613ebbaa119e11ed3c83f23e1a77fad22a205375f0d6b3d9e19d",
+        "docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json": "5cfea671da4e491a172590b6b6e404da9e37af230929d0e764eee1a7d7bcb465"
+      },
+      "historical_source": {
+        "commit": "b3ddf6f1d0a6cf2009e5f81a90f21c4292300185",
+        "blob": "0a10d9378bd684b5b5c1bf6bd58ca93b10c6b8ef",
+        "sha256": "5ecda5612925ba482e43b51a2e89ee1d06413c0d4533af199d1284c5d5fa6d42",
+        "bytes": 344669,
+        "restore_command": "git show b3ddf6f1d0a6cf2009e5f81a90f21c4292300185:docs/helix-connect/L8-unit-verification/retry-deduplication-conflict.json > docs/helix-connect/L8-unit-verification/retry-deduplication-conflict.json"
+      },
+      "before_after": {
+        "before_bytes": 344669,
+        "after_bytes": 51073,
+        "reduction_bytes": 293596,
+        "case_count_before": 69,
+        "case_count_after": 69
+      },
+      "checks": {
+        "case_identity_order": "evaluated",
+        "case_oracle_and_expected": "evaluated",
+        "L5_function_and_owner_links": "evaluated",
+        "removed_materials_and_forbidden_material": "evaluated"
+      },
+      "rows_checked": 69,
+      "result": "PASS_STATIC_ONLY",
+      "errors": [],
+      "not_evaluated": [
+        "L5 algorithm execution",
+        "product test",
+        "real receiver effect",
+        "approval or formal L8 completion",
+        "design_verification_checker child semantics"
+      ],
+      "interpretation": "PASS_STATIC_ONLY is a static structure/source comparison only. It is not execution, approval, formal verification, or completion.",
+      "latest_main_overlay": {
+        "revision": "151713275e2c2aa65bb23a8fe38eb63c46d570c8",
+        "checks": {
+          "scfctl_validate": {
+            "command": "/usr/bin/python3 -B scaffold/tools/scfctl.py validate",
+            "exit_code": 1,
+            "summary": "bindings=207 fail=1"
+          },
+          "scfctl_stale": {
+            "command": "/usr/bin/python3 -B scaffold/tools/scfctl.py stale",
+            "exit_code": 0,
+            "summary": "stale=0"
+          },
+          "design_verification_checker_check_child": {
+            "command": "/usr/bin/python3 -B scaffold/tools/design_verification_checker.py check-child --root . --l4 docs/helix-connect/L4-basic-design/retry-deduplication-conflict.json --l9 docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json --l5 docs/helix-connect/L5-detail-design/retry-deduplication-conflict.json --l8 docs/helix-connect/L8-unit-verification/retry-deduplication-conflict.json",
+            "exit_code": 1,
+            "overall_passed": false,
+            "L4_L9_pair": {
+              "status": "not_evaluated",
+              "not_evaluated_reason": "empty_pair_entities:left=3,right=0"
+            },
+            "L5_L8_pair": {
+              "status": "not_evaluated",
+              "not_evaluated_reason": "empty_pair_entities:left=0,right=69"
+            },
+            "negative_4way": {
+              "status": "not_evaluated",
+              "not_evaluated_reason": "zero_negative_case_counts_without_rationale",
+              "counts": {
+                "L4": 0,
+                "L9": 0,
+                "L8": 0,
+                "L5": 0
+              },
+              "matched_case_count": 0
+            },
+            "ownership_caps": [
+              {
+                "check": "CHK-OWNERSHIP-CAP-L3L6",
+                "layer": "L4",
+                "passed": true,
+                "failure_count": 0
+              },
+              {
+                "check": "CHK-OWNERSHIP-CAP-L8L9",
+                "layer": "L9",
+                "passed": false,
+                "failure_count": 69
+              },
+              {
+                "check": "CHK-OWNERSHIP-CAP-L3L6",
+                "layer": "L5",
+                "passed": true,
+                "failure_count": 0
+              },
+              {
+                "check": "CHK-OWNERSHIP-CAP-L8L9",
+                "layer": "L8",
+                "passed": true,
+                "failure_count": 0
+              }
+            ],
+            "pins": []
+          }
+        }
+      }
+    },
+    "restore_method": "extract result JSON from this evidence-history.json superseded_overlay_attempt.result and write it as UTF-8 JSON with trailing LF to the recorded path",
+    "purpose": "初回overlay測定はSCF-B artifact existence checkがsummary生成前に走ったためvalidateがfail=1となった。測定結果をそのまま保持し、最終overlayの新規exclusive summaryで置き換えた。"
+  },
+  "superseded_overlay_r2_summary": {
+    "path": "verification-summary-main-overlay-r2.json",
+    "sha256": "aa1ddc4e307747e3e6dc0b205fdc77293835a492fd6703fbe7ef7ef042bed097",
+    "bytes": 4266,
+    "record_id": "WR265-RETRY-L8-CURRENT-STATIC-R2",
+    "result": {
+      "schema": "wr265-static-verification.v1",
+      "evidence_kind": "scaffold",
+      "authority_effect": "none",
+      "record_id": "WR265-RETRY-L8-CURRENT-STATIC-R2",
+      "target": "docs/helix-connect/L8-unit-verification/retry-deduplication-conflict.json",
+      "target_revision": "151713275e2c2aa65bb23a8fe38eb63c46d570c8",
+      "target_sha256": "b7f3ca5117f4d1a31f62299a09f120505f6614a6a33e855d9cfcae6ea4a9989a",
+      "source_pins": {
+        "docs/helix-connect/L5-detail-design/retry-deduplication-conflict.json": "ae83a4db64fb613ebbaa119e11ed3c83f23e1a77fad22a205375f0d6b3d9e19d",
+        "docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json": "5cfea671da4e491a172590b6b6e404da9e37af230929d0e764eee1a7d7bcb465"
+      },
+      "historical_source": {
+        "commit": "b3ddf6f1d0a6cf2009e5f81a90f21c4292300185",
+        "blob": "0a10d9378bd684b5b5c1bf6bd58ca93b10c6b8ef",
+        "sha256": "5ecda5612925ba482e43b51a2e89ee1d06413c0d4533af199d1284c5d5fa6d42",
+        "bytes": 344669,
+        "restore_command": "git show b3ddf6f1d0a6cf2009e5f81a90f21c4292300185:docs/helix-connect/L8-unit-verification/retry-deduplication-conflict.json > docs/helix-connect/L8-unit-verification/retry-deduplication-conflict.json"
+      },
+      "before_after": {
+        "before_bytes": 344669,
+        "after_bytes": 51073,
+        "reduction_bytes": 293596,
+        "case_count_before": 69,
+        "case_count_after": 69
+      },
+      "checks": {
+        "case_identity_order": "evaluated",
+        "case_oracle_and_expected": "evaluated",
+        "L5_function_and_owner_links": "evaluated",
+        "removed_materials_and_forbidden_material": "evaluated"
+      },
+      "rows_checked": 69,
+      "result": "PASS_STATIC_ONLY",
+      "errors": [],
+      "not_evaluated": [
+        "L5 algorithm execution",
+        "product test",
+        "real receiver effect",
+        "approval or formal L8 completion",
+        "design_verification_checker child semantics"
+      ],
+      "interpretation": "PASS_STATIC_ONLY is a static structure/source comparison only. It is not execution, approval, formal verification, or completion.",
+      "latest_main_overlay": {
+        "revision": "151713275e2c2aa65bb23a8fe38eb63c46d570c8",
+        "checks": {
+          "scfctl_validate": {
+            "command": "/usr/bin/python3 -B scaffold/tools/scfctl.py validate",
+            "exit_code": 0,
+            "summary": "bindings=207 fail=0"
+          },
+          "scfctl_stale": {
+            "command": "/usr/bin/python3 -B scaffold/tools/scfctl.py stale",
+            "exit_code": 0,
+            "summary": "stale=0"
+          },
+          "design_verification_checker_check_child": {
+            "command": "/usr/bin/python3 -B scaffold/tools/design_verification_checker.py check-child --root . --l4 docs/helix-connect/L4-basic-design/retry-deduplication-conflict.json --l9 docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json --l5 docs/helix-connect/L5-detail-design/retry-deduplication-conflict.json --l8 docs/helix-connect/L8-unit-verification/retry-deduplication-conflict.json",
+            "exit_code": 1,
+            "overall_passed": false,
+            "L4_L9_pair": {
+              "status": "not_evaluated",
+              "not_evaluated_reason": "empty_pair_entities:left=3,right=0"
+            },
+            "L5_L8_pair": {
+              "status": "not_evaluated",
+              "not_evaluated_reason": "empty_pair_entities:left=0,right=69"
+            },
+            "negative_4way": {
+              "status": "not_evaluated",
+              "not_evaluated_reason": "zero_negative_case_counts_without_rationale",
+              "counts": {
+                "L4": 0,
+                "L9": 0,
+                "L8": 0,
+                "L5": 0
+              },
+              "matched_case_count": 0
+            },
+            "ownership_caps": [
+              {
+                "check": "CHK-OWNERSHIP-CAP-L3L6",
+                "layer": "L4",
+                "passed": true,
+                "failure_count": 0
+              },
+              {
+                "check": "CHK-OWNERSHIP-CAP-L8L9",
+                "layer": "L9",
+                "passed": false,
+                "failure_count": 69
+              },
+              {
+                "check": "CHK-OWNERSHIP-CAP-L3L6",
+                "layer": "L5",
+                "passed": true,
+                "failure_count": 0
+              },
+              {
+                "check": "CHK-OWNERSHIP-CAP-L8L9",
+                "layer": "L8",
+                "passed": true,
+                "failure_count": 0
+              }
+            ],
+            "pins": []
+          }
+        }
+      }
+    },
+    "restore_method": "extract result JSON from this evidence-history.json superseded_overlay_r2_summary.result and write it as UTF-8 JSON with trailing LF to the recorded path",
+    "purpose": "R2はL8 legacy_comparison/consumer_failure_traceを加える前の候補をlatest-main overlayで静的照合した記録。最終候補R3で置換した。"
+  },
+  "superseded_overlay_r3_summary": {
+    "path": "verification-summary-main-overlay-r3.json",
+    "sha256": "288e0e563de0c4a48179a9ad2ae9fff7f4052a4abfa44601cc1ca0e85a39b5a0",
+    "bytes": 4266,
+    "record_id": "WR265-RETRY-L8-CURRENT-STATIC-R3",
+    "result": {
+      "schema": "wr265-static-verification.v1",
+      "evidence_kind": "scaffold",
+      "authority_effect": "none",
+      "record_id": "WR265-RETRY-L8-CURRENT-STATIC-R3",
+      "target": "docs/helix-connect/L8-unit-verification/retry-deduplication-conflict.json",
+      "target_revision": "151713275e2c2aa65bb23a8fe38eb63c46d570c8",
+      "target_sha256": "cf6a7f46d75fb72e80523256a29fc85b751d5bcef3fd80f00275f970aaf08352",
+      "source_pins": {
+        "docs/helix-connect/L5-detail-design/retry-deduplication-conflict.json": "ae83a4db64fb613ebbaa119e11ed3c83f23e1a77fad22a205375f0d6b3d9e19d",
+        "docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json": "5cfea671da4e491a172590b6b6e404da9e37af230929d0e764eee1a7d7bcb465"
+      },
+      "historical_source": {
+        "commit": "b3ddf6f1d0a6cf2009e5f81a90f21c4292300185",
+        "blob": "0a10d9378bd684b5b5c1bf6bd58ca93b10c6b8ef",
+        "sha256": "5ecda5612925ba482e43b51a2e89ee1d06413c0d4533af199d1284c5d5fa6d42",
+        "bytes": 344669,
+        "restore_command": "git show b3ddf6f1d0a6cf2009e5f81a90f21c4292300185:docs/helix-connect/L8-unit-verification/retry-deduplication-conflict.json > docs/helix-connect/L8-unit-verification/retry-deduplication-conflict.json"
+      },
+      "before_after": {
+        "before_bytes": 344669,
+        "after_bytes": 53589,
+        "reduction_bytes": 291080,
+        "case_count_before": 69,
+        "case_count_after": 69
+      },
+      "checks": {
+        "case_identity_order": "evaluated",
+        "case_oracle_and_expected": "evaluated",
+        "L5_function_and_owner_links": "evaluated",
+        "removed_materials_and_forbidden_material": "evaluated"
+      },
+      "rows_checked": 69,
+      "result": "PASS_STATIC_ONLY",
+      "errors": [],
+      "not_evaluated": [
+        "L5 algorithm execution",
+        "product test",
+        "real receiver effect",
+        "approval or formal L8 completion",
+        "design_verification_checker child semantics"
+      ],
+      "interpretation": "PASS_STATIC_ONLY is a static structure/source comparison only. It is not execution, approval, formal verification, or completion.",
+      "latest_main_overlay": {
+        "revision": "151713275e2c2aa65bb23a8fe38eb63c46d570c8",
+        "checks": {
+          "scfctl_validate": {
+            "command": "/usr/bin/python3 -B scaffold/tools/scfctl.py validate",
+            "exit_code": 0,
+            "summary": "bindings=207 fail=0"
+          },
+          "scfctl_stale": {
+            "command": "/usr/bin/python3 -B scaffold/tools/scfctl.py stale",
+            "exit_code": 0,
+            "summary": "stale=0"
+          },
+          "design_verification_checker_check_child": {
+            "command": "/usr/bin/python3 -B scaffold/tools/design_verification_checker.py check-child --root . --l4 docs/helix-connect/L4-basic-design/retry-deduplication-conflict.json --l9 docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json --l5 docs/helix-connect/L5-detail-design/retry-deduplication-conflict.json --l8 docs/helix-connect/L8-unit-verification/retry-deduplication-conflict.json",
+            "exit_code": 1,
+            "overall_passed": false,
+            "L4_L9_pair": {
+              "status": "not_evaluated",
+              "not_evaluated_reason": "empty_pair_entities:left=3,right=0"
+            },
+            "L5_L8_pair": {
+              "status": "not_evaluated",
+              "not_evaluated_reason": "empty_pair_entities:left=0,right=69"
+            },
+            "negative_4way": {
+              "status": "not_evaluated",
+              "not_evaluated_reason": "zero_negative_case_counts_without_rationale",
+              "counts": {
+                "L4": 0,
+                "L9": 0,
+                "L8": 0,
+                "L5": 0
+              },
+              "matched_case_count": 0
+            },
+            "ownership_caps": [
+              {
+                "check": "CHK-OWNERSHIP-CAP-L3L6",
+                "layer": "L4",
+                "passed": true,
+                "failure_count": 0
+              },
+              {
+                "check": "CHK-OWNERSHIP-CAP-L8L9",
+                "layer": "L9",
+                "passed": false,
+                "failure_count": 69
+              },
+              {
+                "check": "CHK-OWNERSHIP-CAP-L3L6",
+                "layer": "L5",
+                "passed": true,
+                "failure_count": 0
+              },
+              {
+                "check": "CHK-OWNERSHIP-CAP-L8L9",
+                "layer": "L8",
+                "passed": true,
+                "failure_count": 0
+              }
+            ],
+            "pins": []
+          }
+        }
+      }
+    },
+    "restore_method": "extract result JSON from this evidence-history.json superseded_overlay_r3_summary.result and write it as UTF-8 JSON with trailing LF to the recorded path",
+    "purpose": "R3はlegacy_comparison/consumer_failure_traceを含む候補をlatest-main overlayで測定した記録。反例を固定L9のbasis/outcome/claim witnessから再構成し、F03 owner根拠を追加した最終候補R4で置換。R3のbytesと結果は不変で保持する。"
+  }
 }

@@ -1,6 +1,6 @@
 # WR265 CONNECT004 L8 retry/deduplication/conflict slim
 
-This scaffold records a static normalization of `docs/helix-connect/L8-unit-verification/retry-deduplication-conflict.json` for DT-VT-105. The formal candidate retains the 69 existing case IDs in their prior order. Each row keeps its own counterexample, expected outcome difference, L10 oracle identity, and pointer to the corresponding L9 `expected_material`.
+This scaffold records a static normalization of `docs/helix-connect/L8-unit-verification/retry-deduplication-conflict.json` for DT-VT-105. The formal candidate retains the 69 existing case IDs in their prior order. Each row keeps a source-derived counterexample, expected outcome difference, L10 oracle identity, and pointer to the corresponding L9 `expected_material`. Counterexamples combine the fixed L9 basis, expected outcome witnesses, and true semantic claim names from that same L9 case; an ID suffix is never used as evidence. This preserves distinct counterexamples even where two rows share a generic basis and expected summary.
 
 ## Scope and meaning
 
@@ -12,14 +12,14 @@ The change follows the local L8 table precedent in `direction-order-feedback-rel
 
 ## Validation
 
-`validate_uid_table.py` is read-only by default. It checks fixed-base case IDs/order, all 69 row summaries against the retained L9 oracle pointers, L5 function presence and owner mapping including its explicit conditional owner rule, required `removed_materials` shape, and absence of copied fixture/full-return/hash material. It does not execute an L5 algorithm or product test.
+`validate_uid_table.py` is read-only by default. It checks fixed-base case IDs/order, all 69 source-derived row counterexamples and expected summaries against the retained L9 oracle pointers, L5 function presence and owner mapping including its explicit conditional owner rule, and L4/L10 F03 owner-observation boundaries, required `removed_materials` shape, and absence of copied fixture/full-return/hash material. It does not execute an L5 algorithm or product test.
 
 To write a new immutable run record, pass a new output path explicitly:
 
 ```sh
-python3 -B scaffold/research/wr265-connect-retry-l8-slim-20261101/validate_uid_table.py --record scaffold/research/wr265-connect-retry-l8-slim-20261101/evidence/records/NEW-UNUSED-ID/verification-summary.json
+python3 -B scaffold/research/wr265-connect-retry-l8-slim-20261101/validate_uid_table.py --record scaffold/research/wr265-connect-retry-l8-slim-20261101/evidence/records/NEW-UNUSED-ID/verification-summary-main-overlay-rN.json
 ```
 
-The output is created exclusively; an existing path is rejected. `verification-summary.json` is the one current evidence record. `evidence-history.json` is the single fixed historical source record and provides commit, git blob, SHA-256, and exact restoration command for the pre-edit file. Do not use the historical file as an execution input or expected-value fallback.
+The output is created exclusively; an existing path is rejected. `verification-summary-main-overlay-r4.json` is the one current evidence record for the latest-main overlay. It is not listed in the binding artifact list to avoid a circular validate-before-write dependency. `evidence-history.json` provides commit, git blob, SHA-256, and exact restoration commands for the pre-edit file and superseded summaries R1, R2, and R3. Do not use the historical file as an execution input or expected-value fallback.
 
 Run `scfctl validate`, `scfctl stale`, and `design_verification_checker.py check-child` against the latest `origin/main` merge overlay. Preserve each actual status; `not_evaluated` is not a pass. These checks remain static scaffold evidence and do not imply approval or formal L8 completion.
