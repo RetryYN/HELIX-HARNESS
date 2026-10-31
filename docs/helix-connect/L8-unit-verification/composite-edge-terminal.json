@@ -222,7 +222,7 @@
   "integration_ref": "HELIXCONNECT-L9-007",
   "method": {
     "kind": "static_u_id_oracle_index",
-    "rule": "91件のsource caseは固定L9 case ID・basis・source pointer・独立expected pointerへ結ぶ。各caseのU-IDにはL5 function/rule参照と短い行別期待を付ける。local probeはsource case/pointer、固有の反例・期待判断、未実行境界を記す。固定基準revisionはvalidatorによる由来・rule coverageの静的比較に限り、patchや返却差分全体を再現しない。raw fixture、全返却値、L7 test fixture/caseはここへ複製しない。",
+    "rule": "91件のsource caseは固定L9 case ID・basis・source pointer・独立expected pointerへ結ぶ。各caseのU-IDにはL5 function/rule参照と短い行別期待を付ける。局所probeはsource case/pointer、固有の反例・期待判断、未実行境界を記す。固定基準revisionはvalidatorによる由来・failure_rule被覆の静的比較に限り、変更指示や返却差分全体を再現しない。raw fixture、返却全体、L7 test fixture/caseはここへ複製しない。",
     "execution_state": "not_executed_static_index_only_not_product_execution"
   },
   "cases": [
@@ -5400,7 +5400,7 @@
       "u_id": "U-C007-LP-001",
       "counterexample": "必要証拠3件のうち第三境界の原証拠・提出証拠がともに欠ける。",
       "expected_judgment": "証拠集合はcontent conflictとして保留し、証拠ownerへ返す。",
-      "boundary": "synthetic local mutation only; qualification/effect unestablished",
+      "boundary": "合成probeの静的反例に限る。未実行であり、source/owner資格・挙動・効果は未成立。DT-VT-105照合候補。",
       "execution_state": "not_executed"
     },
     {
@@ -5411,7 +5411,7 @@
       "u_id": "U-C007-LP-002",
       "counterexample": "技術終端と未受理の業務recordが同時にあり、dependency選択も異なる。",
       "expected_judgment": "技術終端から業務acceptanceを作らず、技術・業務・dependency各ownerへ返す。",
-      "boundary": "synthetic local mutation only; qualification/effect unestablished",
+      "boundary": "合成probeの静的反例に限る。未実行であり、source/owner資格・挙動・効果は未成立。DT-VT-105照合候補。",
       "execution_state": "not_executed"
     },
     {
@@ -5422,7 +5422,7 @@
       "u_id": "U-C007-LP-003",
       "counterexample": "必要証拠集合と証拠recordがともに空で、宣言対象を立証できない。",
       "expected_judgment": "空同士の一致を成功扱いせず、未観測として候補を保留する。",
-      "boundary": "synthetic local mutation only; qualification/effect unestablished",
+      "boundary": "合成probeの静的反例に限る。未実行であり、source/owner資格・挙動・効果は未成立。DT-VT-105照合候補。",
       "execution_state": "not_executed"
     },
     {
@@ -5433,7 +5433,7 @@
       "u_id": "U-C007-LP-004",
       "counterexample": "中間edgeのsource operationが原・提出定義の双方で不在。",
       "expected_judgment": "operation mapping不足を補完せず、候補を非終端に保ってedge/composite ownerへ返す。",
-      "boundary": "synthetic local mutation only; qualification/effect unestablished",
+      "boundary": "合成probeの静的反例に限る。未実行であり、source/owner資格・挙動・効果は未成立。DT-VT-105照合候補。",
       "execution_state": "not_executed"
     },
     {
@@ -5444,7 +5444,7 @@
       "u_id": "U-C007-LP-005",
       "counterexample": "stop identityに一致する原edge定義が重複し、一意なbindingがない。",
       "expected_judgment": "stop ownerを選ばず曖昧性を保ち、trace failureをcomposite ownerへ返す。",
-      "boundary": "synthetic local mutation only; qualification/effect unestablished",
+      "boundary": "合成probeの静的反例に限る。未実行であり、source/owner資格・挙動・効果は未成立。DT-VT-105照合候補。",
       "execution_state": "not_executed"
     },
     {
@@ -5455,7 +5455,7 @@
       "u_id": "U-C007-LP-006",
       "counterexample": "一つの提出receiptだけが成功以外のresult stateを示す。",
       "expected_judgment": "receipt不成立を保持して合成終端を保留し、対象edge ownerへ返す。",
-      "boundary": "synthetic local mutation only; qualification/effect unestablished",
+      "boundary": "合成probeの静的反例に限る。未実行であり、source/owner資格・挙動・効果は未成立。DT-VT-105照合候補。",
       "execution_state": "not_executed"
     },
     {
@@ -5466,7 +5466,7 @@
       "u_id": "U-C007-LP-007",
       "counterexample": "一つの提出receiptのscopeが宣言edgeのscopeと異なる。",
       "expected_judgment": "foreign scopeを一致扱いせず、edge/composite ownerへ返す。",
-      "boundary": "synthetic local mutation only; qualification/effect unestablished",
+      "boundary": "合成probeの静的反例に限る。未実行であり、source/owner資格・挙動・効果は未成立。DT-VT-105照合候補。",
       "execution_state": "not_executed"
     },
     {
@@ -5477,7 +5477,7 @@
       "u_id": "U-C007-LP-008",
       "counterexample": "宣言順のstop位置に対応するedge identityが存在しない。",
       "expected_judgment": "stop後の進行を確定せず、downstream判断を保留してcomposite ownerへ返す。",
-      "boundary": "synthetic local mutation only; qualification/effect unestablished",
+      "boundary": "合成probeの静的反例に限る。未実行であり、source/owner資格・挙動・効果は未成立。DT-VT-105照合候補。",
       "execution_state": "not_executed"
     },
     {
@@ -5488,7 +5488,7 @@
       "u_id": "U-C007-LP-009",
       "counterexample": "stop位置のedge identityが重複し、停止edgeを一意に定められない。",
       "expected_judgment": "曖昧なstop bindingを保持し、unique ownerを選ばずcomposite ownerへ返す。",
-      "boundary": "synthetic local mutation only; qualification/effect unestablished",
+      "boundary": "合成probeの静的反例に限る。未実行であり、source/owner資格・挙動・効果は未成立。DT-VT-105照合候補。",
       "execution_state": "not_executed"
     },
     {
@@ -5499,7 +5499,7 @@
       "u_id": "U-C007-LP-010",
       "counterexample": "stop後の宣言edgeに原・提出いずれのattemptもない。",
       "expected_judgment": "欠落attemptを成功扱いせず、downstreamを未完了としてcomposite ownerへ返す。",
-      "boundary": "synthetic local mutation only; qualification/effect unestablished",
+      "boundary": "合成probeの静的反例に限る。未実行であり、source/owner資格・挙動・効果は未成立。DT-VT-105照合候補。",
       "execution_state": "not_executed"
     },
     {
@@ -5510,7 +5510,7 @@
       "u_id": "U-C007-LP-011",
       "counterexample": "downstream attemptのedge keyがdot表記のforeign identityである。",
       "expected_judgment": "foreign keyを宣言edgeに結びつけず、downstream結果を保留する。",
-      "boundary": "synthetic local mutation only; qualification/effect unestablished",
+      "boundary": "合成probeの静的反例に限る。未実行であり、source/owner資格・挙動・効果は未成立。DT-VT-105照合候補。",
       "execution_state": "not_executed"
     },
     {
@@ -5521,7 +5521,7 @@
       "u_id": "U-C007-LP-012",
       "counterexample": "downstream attemptのedge keyが宣言形式と異なるplain identityである。",
       "expected_judgment": "foreign keyを宣言edgeに結びつけず、downstream結果を保留する。",
-      "boundary": "synthetic local mutation only; qualification/effect unestablished",
+      "boundary": "合成probeの静的反例に限る。未実行であり、source/owner資格・挙動・効果は未成立。DT-VT-105照合候補。",
       "execution_state": "not_executed"
     },
     {
@@ -5532,7 +5532,7 @@
       "u_id": "U-C007-LP-013",
       "counterexample": "原・提出downstream attemptの値がJSON nullである。",
       "expected_judgment": "nullを進行attemptへ変換せず、判断を保留してcomposite ownerへ返す。",
-      "boundary": "synthetic local mutation only; qualification/effect unestablished",
+      "boundary": "合成probeの静的反例に限る。未実行であり、source/owner資格・挙動・効果は未成立。DT-VT-105照合候補。",
       "execution_state": "not_executed"
     },
     {
@@ -5543,7 +5543,7 @@
       "u_id": "U-C007-LP-014",
       "counterexample": "evidence-to-edge mappingがdot表記の未宣言identityを指す。",
       "expected_judgment": "未宣言mappingを必要証拠へ結びつけず、evidence ownerへ返す。",
-      "boundary": "synthetic local mutation only; qualification/effect unestablished",
+      "boundary": "合成probeの静的反例に限る。未実行であり、source/owner資格・挙動・効果は未成立。DT-VT-105照合候補。",
       "execution_state": "not_executed"
     },
     {
@@ -5554,7 +5554,7 @@
       "u_id": "U-C007-LP-015",
       "counterexample": "evidence-to-edge mappingがplain表記の未宣言identityを指す。",
       "expected_judgment": "未宣言mappingを必要証拠へ結びつけず、evidence ownerへ返す。",
-      "boundary": "synthetic local mutation only; qualification/effect unestablished",
+      "boundary": "合成probeの静的反例に限る。未実行であり、source/owner資格・挙動・効果は未成立。DT-VT-105照合候補。",
       "execution_state": "not_executed"
     },
     {
@@ -5565,7 +5565,7 @@
       "u_id": "U-C007-LP-016",
       "counterexample": "原recordのeffect-stop参照は欠落し提出recordには参照がある。",
       "expected_judgment": "欠落とforeign参照を一致扱いせず、evidence候補を保留してownerへ返す。",
-      "boundary": "synthetic local mutation only; qualification/effect unestablished",
+      "boundary": "合成probeの静的反例に限る。未実行であり、source/owner資格・挙動・効果は未成立。DT-VT-105照合候補。",
       "execution_state": "not_executed"
     },
     {
@@ -5576,7 +5576,7 @@
       "u_id": "U-C007-LP-017",
       "counterexample": "一つの提出edgeだけconsumer endpoint対応が宣言と異なる。",
       "expected_judgment": "endpoint mapping不一致を保持し、候補を非終端にしてedge/composite ownerへ返す。",
-      "boundary": "synthetic local mutation only; qualification/effect unestablished",
+      "boundary": "合成probeの静的反例に限る。未実行であり、source/owner資格・挙動・効果は未成立。DT-VT-105照合候補。",
       "execution_state": "not_executed"
     },
     {
@@ -5587,7 +5587,7 @@
       "u_id": "U-C007-LP-018",
       "counterexample": "提出evidenceのedge identityが原evidenceの宣言対象と異なる。",
       "expected_judgment": "対象binding不一致を保持し、証拠候補を保留してevidence ownerへ返す。",
-      "boundary": "synthetic local mutation only; qualification/effect unestablished",
+      "boundary": "合成probeの静的反例に限る。未実行であり、source/owner資格・挙動・効果は未成立。DT-VT-105照合候補。",
       "execution_state": "not_executed"
     },
     {
@@ -5598,7 +5598,7 @@
       "u_id": "U-C007-LP-019",
       "counterexample": "同一receipt位置の原・提出result stateがtimeoutを示す。",
       "expected_judgment": "timeoutを成功へ読み替えず、edge failureをcomposite ownerへ返す。",
-      "boundary": "synthetic local mutation only; qualification/effect unestablished",
+      "boundary": "合成probeの静的反例に限る。未実行であり、source/owner資格・挙動・効果は未成立。DT-VT-105照合候補。",
       "execution_state": "not_executed"
     },
     {
@@ -5609,7 +5609,7 @@
       "u_id": "U-C007-LP-020",
       "counterexample": "提出stop ownerと原handoff scopeが異なり、提出handoff scopeにも差がある。",
       "expected_judgment": "owner/scope差を上書きせず、stop判断を保留してcomposite ownerへ返す。",
-      "boundary": "synthetic local mutation only; qualification/effect unestablished",
+      "boundary": "合成probeの静的反例に限る。未実行であり、source/owner資格・挙動・効果は未成立。DT-VT-105照合候補。",
       "execution_state": "not_executed"
     },
     {
@@ -5620,7 +5620,7 @@
       "u_id": "U-C007-LP-021",
       "counterexample": "downstream attemptが負の数として与えられる。",
       "expected_judgment": "負値を有効な進行に数えず、型・値の不適合としてcomposite ownerへ返す。",
-      "boundary": "synthetic local mutation only; qualification/effect unestablished",
+      "boundary": "合成probeの静的反例に限る。未実行であり、source/owner資格・挙動・効果は未成立。DT-VT-105照合候補。",
       "execution_state": "not_executed"
     },
     {
@@ -5631,7 +5631,7 @@
       "u_id": "U-C007-LP-022",
       "counterexample": "downstream attemptが小数として与えられる。",
       "expected_judgment": "小数を整数位置へ丸めず、進行判断を保留してcomposite ownerへ返す。",
-      "boundary": "synthetic local mutation only; qualification/effect unestablished",
+      "boundary": "合成probeの静的反例に限る。未実行であり、source/owner資格・挙動・効果は未成立。DT-VT-105照合候補。",
       "execution_state": "not_executed"
     },
     {
@@ -5642,7 +5642,7 @@
       "u_id": "U-C007-LP-023",
       "counterexample": "downstream attemptがbooleanとして与えられる。",
       "expected_judgment": "booleanを数値へ読み替えず、進行判断を保留してcomposite ownerへ返す。",
-      "boundary": "synthetic local mutation only; qualification/effect unestablished",
+      "boundary": "合成probeの静的反例に限る。未実行であり、source/owner資格・挙動・効果は未成立。DT-VT-105照合候補。",
       "execution_state": "not_executed"
     },
     {
@@ -5653,7 +5653,7 @@
       "u_id": "U-C007-LP-024",
       "counterexample": "downstream attemptが有限で正確に表現できる大きな整数である。",
       "expected_judgment": "有限整数を浮動小数化で丸めず数値domain内として比較し、fixtureの未検証境界を維持する。",
-      "boundary": "synthetic local mutation only; qualification/effect unestablished",
+      "boundary": "合成probeの静的反例に限る。未実行であり、source/owner資格・挙動・効果は未成立。DT-VT-105照合候補。",
       "execution_state": "not_executed"
     },
     {
@@ -5664,7 +5664,7 @@
       "u_id": "U-C007-LP-025",
       "counterexample": "stop位置が宣言順の最後のedgeにある。",
       "expected_judgment": "stopより後にdownstream edgeがないことを保ち、余分な進行を生成しない。",
-      "boundary": "synthetic local mutation only; qualification/effect unestablished",
+      "boundary": "合成probeの静的反例に限る。未実行であり、source/owner資格・挙動・効果は未成立。DT-VT-105照合候補。",
       "execution_state": "not_executed"
     },
     {
@@ -5675,7 +5675,7 @@
       "u_id": "U-C007-LP-026",
       "counterexample": "原receiptが欠け、対応する提出receiptだけが残る。",
       "expected_judgment": "片側receiptを対応とみなさず、候補を保留してedge/composite ownerへ返す。",
-      "boundary": "synthetic local mutation only; qualification/effect unestablished",
+      "boundary": "合成probeの静的反例に限る。未実行であり、source/owner資格・挙動・効果は未成立。DT-VT-105照合候補。",
       "execution_state": "not_executed"
     },
     {
@@ -5686,14 +5686,14 @@
       "u_id": "U-C007-LP-027",
       "counterexample": "同じ原receiptが重複し、edge対応が一意でない。",
       "expected_judgment": "重複receiptを単一成功へ縮約せず、曖昧性を保ってownerへ返す。",
-      "boundary": "synthetic local mutation only; qualification/effect unestablished",
+      "boundary": "合成probeの静的反例に限る。未実行であり、source/owner資格・挙動・効果は未成立。DT-VT-105照合候補。",
       "execution_state": "not_executed"
     }
   ],
   "local_probe_contract": {
     "source": "各局所probeは固定L9 source caseとpointerを示す。現行L8では入力変更列を保持せず、対象を識別できる短い反例と期待判断を記録する。",
-    "expectation": "probeの短い期待判断はL3/L4/L5契約と固定sourceの対象条件に照らす。基準revisionの旧記録は由来・rule coverageのvalidator比較だけに使い、op/path/valueのpatchやfull expected deltaをL8へ戻さない。元sourceのwhole oracleは91件のL9 expected pointerから参照する。",
-    "boundary": "全probeはnot_executed。DT-VT-105のL5↔L8照合候補としての静的索引に限り、source資格、実行、接続効果、authority、CI、Readyを成立させない。"
+    "expectation": "probeの短い期待判断はL3/L4/L5契約と固定sourceの対象条件に照らす。固定基準revisionの旧記録は由来・failure_rule被覆の静的比較だけに使い、現行L8には変更指示列や期待差分全量を保持しない。元sourceの全返却期待は91件のL9 expected pointerから参照する。",
+    "boundary": "全probeは未実行。DT-VT-105のL5↔L8照合候補としての静的索引に限り、source資格、実行、接続効果、権限、CI、Readyを成立させない。"
   },
   "local_probe_source_reuse": [
     {
@@ -5703,8 +5703,8 @@
       "source_case_pointer": "/cases/31",
       "source_packet_pointer": "/verification_obligations/0/concrete_cases/31/independent_source_packet/raw_utf8",
       "expected_oracle_pointer": "/verification_obligations/0/concrete_cases/31/expected_material",
-      "meaning": "原sourceとraw/全返却が同じであることを独立全期待へ照合する再利用参照。新規raw/変異coverageへ数えない。",
-      "boundary": "same source case recheck; not an additional raw input or mutation coverage",
+      "meaning": "原sourceと期待を独立参照へ再照合する。新しいraw inputや変異の被覆を追加しない。",
+      "boundary": "同一sourceの再照合であり、追加raw input・変異被覆・実行を含まない。",
       "execution_state": "not_executed"
     }
   ],
@@ -5811,7 +5811,7 @@
       "execution_state": "not_executed"
     }
   ],
-  "coverage_limit": "91 source ID、27 local probe ID、同一source再照合1件、primitive ID 7件、typed carrier ID 1件の合計127宣言を索引化した。ID数はcoverageや完了を示さない。非等価mutation family、一般domain、source資格、runtime挙動、全量coverageは未検証。",
+  "coverage_limit": "91件のsource ID、27件のlocal probe ID、同一source再照合1件、primitive ID 7件、typed carrier ID 1件の合計127宣言を索引化した。ID数は被覆範囲や完了を示さない。非等価のmutation family、一般的な対象領域、source資格、実行時挙動、全量被覆は未検証。",
   "traceability_boundary": {
     "l5_path": "docs/helix-connect/L5-detail-design/composite-edge-terminal.json",
     "l5_unit_case_refs": "absent_in_source_document",
@@ -5819,15 +5819,15 @@
     "l7_test_citation": "not_found_in_source_materials; no citation fabricated"
   },
   "common_expectation_boundary": {
-    "oracle_role": "91件のsource caseはL9 expected_materialを独立whole oracleとして固定revision/pointerで参照する。局所probeはID、source参照、短い反例・期待判断だけを持つ。固定履歴はvalidatorの由来・coverage静的比較に使うだけで、現行L8のprobe値・patch・oracle生成材料として扱わず、L7 test fixture/caseも追加しない。",
-    "shared_state": "全case/probeはnot_executed、合成fixtureに限る静的照合である。実source/owner資格、通信、permission、receiver effect、業務Accepted、正式schema/codec、全domain closureを成立させない。",
-    "unverified": "全非等価mutation family、全graph/edge/scope/owner combinations、および実runtime behaviorは未検証。"
+    "oracle_role": "91件のsource caseはL9 expected_materialを独立した全返却期待の照合元として固定revision/pointerで参照する。局所probeはID、source参照、短い反例・期待判断だけを持つ。固定履歴はvalidatorの由来・failure_rule被覆の静的比較に使うだけで、現行L8のprobe値・変更指示・oracle生成材料として扱わず、L7 test fixture/caseも追加しない。",
+    "shared_state": "全case/probeは未実行であり、合成fixtureに限る静的照合である。実source/owner適格性、通信、権限、受信側効果、業務受入、正式schema/codec、全domain閉包を成立させない。",
+    "unverified": "全非等価mutation family、全graph/edge/scope/owner combinations、および実行時挙動は未検証。"
   },
   "removed_materials": {
     "decision_ref": "https://github.com/RetryYN/HELIX-HARNESS/issues/3510#issuecomment-6447665479",
     "git_commit": "663b75324810a6f004668a1451de5b03acc542c3",
     "path": "docs/helix-connect/L8-unit-verification/composite-edge-terminal.json",
-    "meaning": "91 source case、27 local probe、1 source reuse、7 primitive case、1 typed carrier caseのID・役割・oracle参照・行固有の差分意図/期待・境界・未実行状態を保持した。91 casesはconsumer互換の配列でU-IDと短い期待を各case objectに結び、L5 unit_case_refs不在を明記。局所probeは独立した短い反例・判断のみを保持し、変更指示列と全返却差分値は固定基準revisionとのvalidator比較に限る。raw fixture、inline mutated bytes、full return whole、fixture digestを除いた。",
+    "meaning": "91 source case、27 local probe、1 source reuse、7 primitive case、1 typed carrier caseのID・役割・oracle参照・行別の差分意図/期待・境界・未実行状態を保持した。91 caseはconsumer互換の配列でU-IDと短い期待を各case objectに結び、L5 unit_case_refs不在を明記。局所probeは独立した短い反例・判断のみを保持し、変更指示列と返却差分全体は固定基準revisionとのvalidator比較に限る。raw fixture、inline変異bytes、返却全体、fixture digestは除いた。",
     "removed_key_rule": "L8はsource ID対応・短い期待判断・意味条件を保持し、raw_utf8、型付きraw fixture、mutation patch/再構成レシピ、全返却値・hash、実行生成物を置かない。独立oracleはexact L9 revision/pointerへ結び、probeの比較証拠は固定git revisionとの静的比較でのみ参照する。",
     "use_boundary": "DT-VT-105（L5↔L8照合）のseed候補を適用照合先とする。固定旧revisionは比較・由来照合専用であり、fixture・期待値の再生成、実行、fallback、合格・authority・Readyの根拠にしない。"
   },
@@ -5837,7 +5837,7 @@
     "local_probe_source_reuse": 1,
     "pure_primitive_cases": 7,
     "typed_carrier_boundary_cases": 1,
-    "meaning": "ID inventory only; counts are not coverage or completion claims."
+    "meaning": "ID数の索引のみであり、被覆や完了の主張ではない。"
   },
   "role_catalog": [
     {
@@ -7870,8 +7870,8 @@
             "pointer": "/contract_views/F02/failure_rules/7"
           }
         ],
-        "expected_delta_source": "固定基準revisionに保存された既存probe記録を由来・rule coverageの静的比較にのみ使う。操作列や全返却差分値は現行L8に保持しない。",
-        "boundary": "合成fixtureの静的な対応確認だけであり、未実行。DT-VT-105の照合候補を越える挙動資格・効果・authorityを成立させない。"
+        "expected_delta_source": "固定基準revisionに残る従来のprobe記録を由来・failure_rule被覆の静的比較にのみ使う。変更指示列や返却差分全量は現行L8に保持しない。",
+        "boundary": "合成fixtureの静的な対応確認だけであり、未実行。DT-VT-105の照合候補を越える挙動資格・効果・権限を成立させない。"
       },
       {
         "rule_ref": "B01:technical_content",
@@ -7903,8 +7903,8 @@
             "pointer": "/contract_views/B01/failure_rules/0"
           }
         ],
-        "expected_delta_source": "固定基準revisionに保存された既存probe記録を由来・rule coverageの静的比較にのみ使う。操作列や全返却差分値は現行L8に保持しない。",
-        "boundary": "合成fixtureの静的な対応確認だけであり、未実行。DT-VT-105の照合候補を越える挙動資格・効果・authorityを成立させない。"
+        "expected_delta_source": "固定基準revisionに残る従来のprobe記録を由来・failure_rule被覆の静的比較にのみ使う。変更指示列や返却差分全量は現行L8に保持しない。",
+        "boundary": "合成fixtureの静的な対応確認だけであり、未実行。DT-VT-105の照合候補を越える挙動資格・効果・権限を成立させない。"
       }
     ]
   }

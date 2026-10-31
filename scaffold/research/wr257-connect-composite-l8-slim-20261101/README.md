@@ -16,7 +16,7 @@ request: `WR257-CONNECT-COMPOSITE-L8-SLIM` / Issue #3510
 
 27局所probeは各ID、function、source case/pointer、短い固有反例、期待判断、境界、未実行状態だけを持つ。変更操作列や返却差分値はL8に置かず、固定基準revision `663b75324810a6f004668a1451de5b03acc542c3`とのvalidator内比較に限る。source refがある場合は固定revision/pointerを検証し、比較・由来照合だけに使う。7 primitive caseは比較の関係（対応・相違・判定不能）を記録し、関数全体のreturn objectを置かない。
 
-L5 `unit_case_refs`は元文書に存在しないと記録し、捏造していない。F02 `stop_position`は既存probe `LOCAL-C007-F02-STOP-POSITION-ABSENT`と`...DUPLICATE`、B01 `technical_content`は既存probe `LOCAL-C007-B01-TECHNICAL-TERMINAL-BUSINESS-NOT-ACCEPTED-READONLY-OWNER-PROBE`の固定期待とL3/L10/L4/L5の対応からcoverageへ結んだ。probe U-IDは既存27宣言のラベルであり、宣言数は増やさない。26 ruleはすべて根拠を持ち、uncovered=0である。
+L5 `unit_case_refs`は元文書に存在しないと記録し、捏造していない。F02 `stop_position`は既存probe `LOCAL-C007-F02-STOP-POSITION-ABSENT`と`...DUPLICATE`、B01 `technical_content`は既存probe `LOCAL-C007-B01-TECHNICAL-TERMINAL-BUSINESS-NOT-ACCEPTED-READONLY-OWNER-PROBE`の固定期待とL3/L10/L4/L5の対応からrule被覆へ結んだ。probe U-IDは既存27宣言のラベルであり、宣言数は増やさない。26 ruleはすべて根拠を持ち、uncovered=0である。
 
 raw fixture、型付きraw fixture、mutation再構成レシピ、full return、fixture digest、実行生成物はL8に置かない。91 source caseは固定L9 source/expected pointerへ結ぶ。L7 test citationは未確認であり、L9/L10参照をtest citationへ読み替えていない。
 
@@ -46,6 +46,6 @@ fresh fetchおよび`git ls-remote`で確認した`origin/main` `569bde0bc579234
 
 ## 再現可能な静的照合
 
-`python3 -B scaffold/research/wr257-connect-composite-l8-slim-20261101/validate_static_index.py`は、127宣言のID/順序/件数、`cases`配列、91 U-IDとL9 pointer、各行のL5由来期待、11群60件の行別区別、27 probeの短い反例・期待と固定履歴の比較、4 function/26 ruleの参照とcoverage、L3/L10/L4/L5固定pin、L5 `unit_case_refs`不在、fixture hashの除外、`removed_materials`とDT-VT-105境界を確認する。固定履歴の操作列・返却差分値は比較時のみ読み、現行L8へ複製しない。
+`python3 -B scaffold/research/wr257-connect-composite-l8-slim-20261101/validate_static_index.py`は、127宣言のID/順序/件数、`cases`配列、91 U-IDとL9 pointer、各行のL5由来期待、11群60件の行別区別、27 probeの短い反例・期待と固定履歴の比較、4 function/26 ruleの参照とcoverage、L3/L10/L4/L5固定pin、L5 `unit_case_refs`不在、fixture hashの除外、`removed_materials`とDT-VT-105境界を確認する。固定履歴の変更操作列・返却差分値は比較時のみ読み、現行L8へ複製しない。
 
 `python3 -B scaffold/tools/design_verification_checker.py check-child`はmerge overlayで実行し、consumerのcrashがないこととL8 ownership cap failure=0を確認する。`scfctl validate`と`scfctl stale`はScaffold Bindingとsource pinの静的確認に限る。いずれも実装・動作・承認・完了を生成しない。旧CLI、runtime、test、CIは起動していない。

@@ -57,12 +57,12 @@
   "role": "WR257のL8行対応、source/oracle参照、意味境界、未検証状態の静的な保全証拠とvalidatorを保持する",
   "obligations": [
     "91件のL9 source ID/順序とconsumer互換配列形を維持し、各case objectのU-ID、L9 source/expected pointer、system oracle、basis、fixture-only・not-executed状態を対応づける。L5 unit_case_refsは存在しないと記録し、対応を捏造しない。",
-    "27 local probeのID、function role、source case/pointer、短い固有反例・期待判断・未実行状態を保持する。patch操作列やreturn差分値はL8に置かず、固定基準revisionとの静的比較だけでcoverage根拠を検証する。",
+    "27 local probeのID、function role、source case/pointer、短い固有反例・期待判断・未実行状態を保持する。変更操作列や返却差分値はL8に置かず、固定基準revisionとの静的比較だけでrule根拠を検証する。",
     "1 source reuse、7 primitive、1 typed carrier境界のIDと識別を保ち、fixture-only・not-executedを維持する。",
-    "fixture digest、raw fixture、inline mutated bytes、full return wholeをL8に再配置しない。残すhashはsource/authority bytes pinに限る。",
+    "fixture digest、raw fixture、inline変異bytes、返却全体をL8に複製しない。残すhashはsource/authority bytes pinに限る。",
     "removed_materialsの6 key、DT-VT-105適用境界、L5 unit_case_refsとL7 test citationの未確認を保持する。",
     "すべての結果をscaffold証拠として扱い、設計/実装ready、製品test、source qualification、要求承認、合格を生成しない。",
-    "91 L9 basic branchと既存27 local probeへ固有U-IDを割当て、L5 4 public functionと26 failure_ruleを個々の固定source pointerへ照合する。各ruleは固定L9 oracleおよび/または基準revisionに保存されたprobe由来の根拠で確認し、uncovered=0をvalidatorで確かめる。probe U-IDは既存宣言のラベルであり総数127を変えない。",
+    "91 L9 basic branchと既存27 local probeへ固有U-IDを割当て、L5 4 public functionと26 failure_ruleを個々の固定source pointerへ照合する。各ruleは固定L9 oracleおよび/または基準revisionに保存されたprobe由来の根拠で確認し、未対応rule=0をvalidatorで確かめる。probe U-IDは既存宣言のラベルであり総数127を変えない。",
     "91行の期待には固定L9 source packet内pointer、対象field/edge/状態、短い差分種別、行別判断を保持する。baseline/observed実値やfixture配列全体をL8へ置かない。L5 rule本文とowner routeを繰り返さず固定L5 refsで照合し、expected.findingsを持たない。validatorは固定sourceからの意味再導出と11群60行の区別、およびfull material非保持を確かめる。",
     "fresh fetchしたorigin/mainと検証対象HEADのmerge overlayでcheck-childを実行し、配列consumer crashの有無、L8 ownership cap failure数、全体checker statusを別々に記録する。"
   ],
