@@ -2,6 +2,7 @@
 """WR265 L8 U-ID table static validator; read-only unless --record PATH is explicit."""
 from __future__ import annotations
 import argparse
+import copy
 import hashlib
 import json
 import os
@@ -26,6 +27,7 @@ EXPECTED_HISTORY_ARCHIVES = {
     "summary-r0": {"commit":"8e3ea7474ead919b2f86dfc2c2b14c1b875ca707", "path":SUMMARY_ROOT+"verification-summary.json", "blob":"bb44e994788e0033994382686d4e623d71a92e5f", "sha256":"7ce0c0145a5c383a7bc02f627680412df86f9275df96c3c9b1b2396b76498a94", "bytes":1991, "kind":"summary_json", "restore_command":f"git show 8e3ea7474ead919b2f86dfc2c2b14c1b875ca707:{SUMMARY_ROOT}verification-summary.json > /tmp/wr265-summary-initial.json"},
     "summary-r5": {"commit":"869675e43871daa3034eeaacc78a157eb234cc01", "path":SUMMARY_ROOT+"verification-summary-main-overlay-r5.json", "blob":"42d5b1031c3f2d4af034a683da8cd9c445b0335a", "sha256":"2331b3458c129633371ff8dd73fb98d3c4abb08602911e0c5087b999058393b4", "bytes":4959, "kind":"summary_json", "restore_command":f"git show 869675e43871daa3034eeaacc78a157eb234cc01:{SUMMARY_ROOT}verification-summary-main-overlay-r5.json > /tmp/wr265-summary-r5.json"},
     "summary-r7": {"commit":"ef3b6adef8dc60b9ba67380a8e00891694f4633e", "path":SUMMARY_ROOT+"verification-summary-main-overlay-r7.json", "blob":"737893b37638b3906551c05acd82537020c49264", "sha256":"fa9e39b20b6a93fd295a84c61d8a341f8239d8061da84ee090e004cbd588637b", "bytes":4959, "kind":"summary_json", "restore_command":f"git show ef3b6adef8dc60b9ba67380a8e00891694f4633e:{SUMMARY_ROOT}verification-summary-main-overlay-r7.json > /tmp/wr265-summary-r7.json"},
+    "summary-r8": {"commit":"246dc1e26561fd2c92a90dad80591f69d817f5ba", "path":SUMMARY_ROOT+"verification-summary-main-overlay-r8.json", "blob":"ef95f42d85fcff3bf6d1354e70314d9fb8a6015b", "sha256":"9f4e9df0a8fcaff8e4f22d647ba0cbb72efec9578a574108410cc511cbe0135f", "bytes":9834, "kind":"summary_json", "restore_command":f"git show 246dc1e26561fd2c92a90dad80591f69d817f5ba:{SUMMARY_ROOT}verification-summary-main-overlay-r8.json > /tmp/wr265-summary-r8.json"},
 }
 
 
@@ -38,6 +40,36 @@ def resolve_pointer(document, pointer):
     for token in pointer.lstrip("/").split("/"):
         token = token.replace("~1", "/").replace("~0", "~")
         value = value[token]
+    return value
+
+
+def apply_source_patch(document, operations):
+    """Apply the historical probe input edits in memory for source correspondence only."""
+    value = copy.deepcopy(document)
+    for operation in operations:
+        tokens = [token.replace("~1", "/").replace("~0", "~") for token in operation["path"].lstrip("/").split("/")]
+        parent = value
+        for token in tokens[:-1]:
+            parent = parent[int(token)] if isinstance(parent, list) else parent[token]
+        final = tokens[-1]
+        if isinstance(parent, list):
+            index = int(final)
+            if operation["op"] == "remove":
+                parent.pop(index)
+            elif operation["op"] == "replace":
+                parent[index] = copy.deepcopy(operation["value"])
+            elif operation["op"] == "add":
+                parent.insert(index, copy.deepcopy(operation["value"]))
+            else:
+                raise ValueError(f"unsupported fixed probe operation: {operation['op']}")
+        elif operation["op"] == "remove":
+            del parent[final]
+        elif operation["op"] == "replace":
+            parent[final] = copy.deepcopy(operation["value"])
+        elif operation["op"] == "add":
+            parent[final] = copy.deepcopy(operation["value"])
+        else:
+            raise ValueError(f"unsupported fixed probe operation: {operation['op']}")
     return value
 
 
@@ -72,6 +104,7 @@ def validate_history_archives(history):
         "summary-r5-overlay": ("WR265-RETRY-L8-CURRENT-STATIC-R5", "summary-r5", None, "2331b3458c129633371ff8dd73fb98d3c4abb08602911e0c5087b999058393b4", 4959),
         "summary-r6-overlay": ("WR265-RETRY-L8-CURRENT-STATIC-R6", "history-through-r6", "/superseded_overlay_r6_summary/result", "212c458d6804537c849533325c1f54a3abeafdb890d89dc58df87347cf222652", 4959),
         "summary-r7-overlay": ("WR265-RETRY-L8-CURRENT-STATIC-R7", "summary-r7", None, "fa9e39b20b6a93fd295a84c61d8a341f8239d8061da84ee090e004cbd588637b", 4959),
+        "summary-r8-overlay": ("WR265-RETRY-L8-CURRENT-STATIC-R8", "summary-r8", None, "9f4e9df0a8fcaff8e4f22d647ba0cbb72efec9578a574108410cc511cbe0135f", 9834),
     }
     records_by_key = {item.get("archive_key"): item for item in records}
     if set(records_by_key) != set(expected_records) or len(records_by_key) != len(records):
@@ -294,7 +327,9 @@ def counterexample(case, raw, baseline, function_ref, requirement_ref):
                 elif category == "単一": meaning = "snapshotは単一の効果項目"
                 elif category == "複数": meaning = "snapshotは複数の効果項目"
                 else: meaning = "snapshotは未提示または配列でない"
-                conditions.append(f"{array_path.rsplit('/', 1)[0]} の {label} {meaning}")
+                parent_path = array_path.rsplit("/", 1)[0]
+                parent = parent_path if parent_path else ("original_effect" if label.startswith("original_") else "submitted_effect")
+                conditions.append(f"{parent} の {label} {meaning}")
             elif array_path == "/submitted_history":
                 original_history = raw.get("original_history", MISSING)
                 if category == "空" and isinstance(original_history, list) and original_history:
@@ -373,7 +408,52 @@ RULE_TEXT = {
 
 
 def same_json(left, right):
-    return type(left) is type(right) and left == right
+    if type(left) is not type(right):
+        return False
+    if isinstance(left, dict):
+        return left.keys() == right.keys() and all(same_json(left[key], right[key]) for key in left)
+    if isinstance(left, list):
+        return len(left) == len(right) and all(same_json(a, b) for a, b in zip(left, right))
+    return left == right
+
+
+PROBE_COUNTEREXAMPLES = {
+    "C004-PROBE-F01-RETRY-EFFECT-DECREMENT": "同内容再送の固定入力で、原側と提出側のafter_retry snapshotはともに空、after_firstは単一effect観測。",
+    "C004-PROBE-F02-JSON-BOOLEAN-NUMBER-DISTINCTION": "原側effect markerはJSON boolean、提出側effect markerはJSON numberで、見かけの数値が同じでも型が異なる。",
+    "C004-PROBE-F01-EFFECT-VALUE-REPLACED-SAME-COUNT": "原側と提出側のafter_retry snapshotは同じ単一件数を保つが、そのeffect内容はafter_firstと異なる。",
+    "C004-PROBE-F01-AFTER-FIRST-CONTENT-CHANGED": "原側after_first snapshotが空で、beforeも空、after_retryには単一effect項目が残る。",
+    "C004-PROBE-F03-RETRYABLE-STATES-REMOVED": "提出policyのretryable_result_statesが空で、元result stateを含む既知のretryable集合を渡さない。",
+    "C004-PROBE-F03-HISTORY-TARGET-INDEX-ZERO": "元historyの先頭targetはoriginal_operationと異なるcontract_revisionを持つ。",
+    "C004-PROBE-F02-EFFECT-VALUE-REPLACED-SAME-COUNT": "異digestの固定入力で、衝突前effectと異なる同一件数のafter effectを原側・提出側の両方に与える。",
+    "C004-PROBE-F01-ATTEMPT-TARGET-UNBOUND": "2件目の原側・提出側attempt targetは互いに対応するが、operationのdigestとは異なる。",
+    "C004-PROBE-F01-EMPTY-ATTEMPTS": "retry_selectedのまま原側attemptと提出側attemptがともに空で、effect観測だけが提示される。",
+    "C004-PROBE-F01-EXTRA-SUBMITTED-ATTEMPT": "提出attempt列に、原側attempt列に対応しない末尾attemptが1件ある。",
+    "C004-PROBE-F03-UNKNOWN-EXPIRY-STRING": "original_expiry_stateに既知のvalid enumではない文字列が入力される。",
+    "C004-PROBE-F01-DUPLICATE-ORDINAL": "attempt identityは異なるが、2件目のordinalが1件目と重複する。",
+    "C004-PROBE-F01-RECEIVER-CONTRACT-IDENTIFIER-EMPTY": "receiver contractのidentityとrevisionは提示されるが、rule文字列が空である。",
+}
+
+
+def probe_counterexample(probe_id, raw):
+    """Return a short input-only witness after checking its source facts."""
+    guards = {
+        "C004-PROBE-F01-RETRY-EFFECT-DECREMENT": lambda: raw["original_effect_observation"]["after_retry"] == [] and raw["submitted_effect_observation"]["after_retry"] == [] and len(raw["original_effect_observation"]["after_first"]) == 1,
+        "C004-PROBE-F02-JSON-BOOLEAN-NUMBER-DISTINCTION": lambda: raw["original_effect_after"][0]["marker"] is True and type(raw["submitted_effect_after"][0]["marker"]) is int and raw["submitted_effect_after"][0]["marker"] == 1,
+        "C004-PROBE-F01-EFFECT-VALUE-REPLACED-SAME-COUNT": lambda: len(raw["original_effect_observation"]["after_retry"]) == len(raw["submitted_effect_observation"]["after_retry"]) == 1 and raw["original_effect_observation"]["after_retry"] == raw["submitted_effect_observation"]["after_retry"] and raw["original_effect_observation"]["after_retry"] != raw["original_effect_observation"]["after_first"],
+        "C004-PROBE-F01-AFTER-FIRST-CONTENT-CHANGED": lambda: raw["original_effect_observation"]["before"] == [] and raw["original_effect_observation"]["after_first"] == [] and len(raw["original_effect_observation"]["after_retry"]) == 1,
+        "C004-PROBE-F03-RETRYABLE-STATES-REMOVED": lambda: raw["submitted_policy"]["retryable_result_states"] == [] and raw["original_result_state"] not in raw["submitted_policy"]["retryable_result_states"],
+        "C004-PROBE-F03-HISTORY-TARGET-INDEX-ZERO": lambda: raw["original_history"][0]["target"]["contract_revision"] != raw["original_operation"]["contract_revision"],
+        "C004-PROBE-F02-EFFECT-VALUE-REPLACED-SAME-COUNT": lambda: raw["original_operation"]["digest"] != raw["original_incoming"]["digest"] and len(raw["original_effect_before"]) == len(raw["original_effect_after"]) == len(raw["submitted_effect_after"]) == 1 and same_json(raw["original_effect_after"], raw["submitted_effect_after"]) and not same_json(raw["original_effect_before"], raw["original_effect_after"]),
+        "C004-PROBE-F01-ATTEMPT-TARGET-UNBOUND": lambda: same_json(raw["original_attempts"][1]["target"], raw["submitted_attempts"][1]["target"]) and raw["original_attempts"][1]["target"]["digest"] != raw["original_operation"]["digest"],
+        "C004-PROBE-F01-EMPTY-ATTEMPTS": lambda: raw["retry_selected"] is True and raw["original_attempts"] == raw["submitted_attempts"] == [] and raw["original_effect_observation"]["state"] == "observed_in_fixture_only",
+        "C004-PROBE-F01-EXTRA-SUBMITTED-ATTEMPT": lambda: len(raw["submitted_attempts"]) == len(raw["original_attempts"]) + 1,
+        "C004-PROBE-F03-UNKNOWN-EXPIRY-STRING": lambda: raw["original_expiry_state"] == "valid" and raw["original_expiry_state"] != "valid_in_fixture_only",
+        "C004-PROBE-F01-DUPLICATE-ORDINAL": lambda: raw["original_attempts"][0]["identity"] != raw["original_attempts"][1]["identity"] and raw["submitted_attempts"][0]["identity"] != raw["submitted_attempts"][1]["identity"] and raw["submitted_attempts"][0]["ordinal"] == raw["submitted_attempts"][1]["ordinal"],
+        "C004-PROBE-F01-RECEIVER-CONTRACT-IDENTIFIER-EMPTY": lambda: raw["original_receiver_contract"]["identity"] and raw["original_receiver_contract"]["revision"] and raw["original_receiver_contract"]["rule"] == "",
+    }
+    if probe_id not in guards or not guards[probe_id]():
+        raise ValueError(f"{probe_id}: fixed source input does not support the stated counterexample")
+    return PROBE_COUNTEREXAMPLES[probe_id]
 
 
 def compare_record(left, right, fields, unknown_original=()):
@@ -534,7 +614,10 @@ def independent_outcome_facts(fn, raw, l5, rules):
                 effect_result = "unknown_or_conflicting_effect_binding"
             add("receiver_effect", "delta", effect_result)
         if 6 in rules:
-            add("attempt_distinction", "identity_and_ordinal", "duplicate_attempt_identity")
+            submitted = raw.get("submitted_attempts", [])
+            duplicated = [key for key in table.get("attempt_distinctness_keys", []) if len({json.dumps(item.get(key, MISSING), sort_keys=True, ensure_ascii=False) for item in submitted if isinstance(item, dict)}) != len(submitted)]
+            duplicate_result = {"identity": "duplicate_attempt_identity", "ordinal": "duplicate_attempt_ordinal"}.get(duplicated[0], "duplicate_attempt_identity")
+            add("attempt_distinction", "identity_and_ordinal", duplicate_result)
         if 7 in rules:
             add_record("receiver_contract_target", raw.get("original_operation"), raw.get("original_receiver_contract", {}).get("target"), target_fields)
     elif fn == "F02":
@@ -666,35 +749,41 @@ def check():
     old_bytes = subprocess.check_output(["git", "show", f"{BASE}:{L8}"], cwd=ROOT)
     old = json.loads(old_bytes)
     old_ids = [c["id"] for c in old["cases"]]
+    old_probes = old.get("independent_local_probes", [])
+    probe_ids = [probe["id"] for probe in old_probes]
     expected_historical_source = {"commit":BASE,"path":L8,"blob":subprocess.check_output(["git", "rev-parse", f"{BASE}:{L8}"], cwd=ROOT, text=True).strip(),"sha256":hashlib.sha256(old_bytes).hexdigest(),"bytes":len(old_bytes),"restore_command":f"git show {BASE}:{L8} > {L8}"}
     if history.get("historical_source") != expected_historical_source:
         errors.append("historical L8 source commit/blob/SHA-256/bytes/restore command do not resolve")
     order_hash = hashlib.sha256(("\n".join(old_ids)+"\n").encode("utf-8")).hexdigest()
     if history.get("historical_structure") != {"case_count":len(old_ids),"case_ids_order_sha256":order_hash,"case_ids_order_source":"historical_source commit/path; validator re-reads it"}:
         errors.append("compact historical case count/order digest does not resolve from the fixed source")
-    ids = [c.get("id") for c in doc.get("cases", [])]
-    if ids != old_ids:
-        errors.append("case ID/order differs from fixed pre-edit source")
-    if len(ids) != 69:
-        errors.append(f"case count is {len(ids)}, expected 69")
+    rows = doc.get("cases", [])
+    ids = [c.get("id") for c in rows]
+    original_rows, probe_rows = rows[:len(old_ids)], rows[len(old_ids):]
+    if [row.get("id") for row in original_rows] != old_ids:
+        errors.append("the original 69 case IDs/order differs from fixed pre-edit source")
+    if [row.get("id") for row in probe_rows] != probe_ids:
+        errors.append("the 13 independent probe IDs/order differs from fixed pre-edit source")
+    if len(original_rows) != 69 or len(probe_rows) != 13 or len(rows) != 82:
+        errors.append(f"case table has {len(rows)} rows ({len(original_rows)} original, {len(probe_rows)} probes), expected 82 (69+13)")
     source_index = {}
     for ob_index, obligation in enumerate(l9["verification_obligations"]):
         for case_index, case in enumerate(obligation["concrete_cases"]):
             source_index[case["id"]] = (ob_index, case_index, case)
     expected_by_id = {case_id: value[2] for case_id, value in source_index.items()}
-    if set(ids) != set(expected_by_id):
-        errors.append("L8 and L9 case ID sets differ")
+    if set(old_ids) != set(expected_by_id):
+        errors.append("the 69 original L8 and L9 case ID sets differ")
     base_function_by_id = {case["id"]: case["function_ref"] for case in old["cases"]}
-    expected_uids = [f"U-C004-{i:03d}" for i in range(1, len(ids) + 1)]
-    uids = [row.get("u_id") for row in doc.get("cases", [])]
-    if uids != expected_uids or len(set(uids)) != len(ids):
-        errors.append("U-ID sequence must be unique U-C004-001..069 in case order")
+    expected_uids = [f"U-C004-{i:03d}" for i in range(1, len(rows) + 1)]
+    uids = [row.get("u_id") for row in rows]
+    if uids != expected_uids or len(set(uids)) != len(rows):
+        errors.append("U-ID sequence must be unique U-C004-001..082 (69 original cases then 13 probes)")
     l5_function_by_case = {}
     for trace in l5.get("obligation_trace", []):
         for case_id in trace.get("case_ids", []):
             l5_function_by_case[case_id] = trace.get("function_ref")
-    if set(l5_function_by_case) != set(ids):
-        errors.append("existing L5 obligation_trace consumer has unresolved or extra case IDs")
+    if set(l5_function_by_case) != set(old_ids):
+        errors.append("existing L5 obligation_trace consumer has unresolved or extra original case IDs")
     baseline_by_fn = {}
     fn_by_requirement = {"HELIXCONNECT-L3-004-F01":"F01", "HELIXCONNECT-L3-004-F02":"F02", "HELIXCONNECT-L3-004-F03":"F03"}
     for obligation in l9["verification_obligations"]:
@@ -749,7 +838,7 @@ def check():
     walk(doc)
     matched = 0
     comparisons = []
-    for row in doc["cases"]:
+    for row in original_rows:
         src = expected_by_id.get(row["id"])
         if src is None:
             continue
@@ -820,6 +909,50 @@ def check():
             if item.get("return_owner") != expected_owner:
                 errors.append(f"{row['id']}: L9 owner comparison disagrees with the existing L5 conditional owner contract for {area}")
         comparisons.append({"u_id": row["u_id"], "status": oracle_comparison})
+    for index, (row, historical_probe) in enumerate(zip(probe_rows, old_probes)):
+        probe_id = historical_probe.get("id")
+        if row.get("id") != probe_id or row.get("function_ref") != historical_probe.get("function_ref"):
+            errors.append(f"{probe_id}: probe ID/function_ref differs from the pinned independent_local_probes source")
+            continue
+        if row.get("u_id") != f"U-C004-{len(old_ids)+index+1:03d}":
+            errors.append(f"{probe_id}: probe U-ID does not follow the original 69-case order")
+        source = source_index.get(historical_probe.get("base_case_id"))
+        if source is None:
+            errors.append(f"{probe_id}: fixed L9 base input case does not resolve")
+            continue
+        ob_index, case_index, base_case = source
+        raw_source = raw_case(base_case)
+        try:
+            derived_raw = apply_source_patch(raw_source, historical_probe.get("raw_patch_from_base", []))
+        except (KeyError, IndexError, TypeError, ValueError) as exc:
+            errors.append(f"{probe_id}: historical source input transform cannot be resolved: {exc}")
+            continue
+        if not same_json(derived_raw, historical_probe.get("raw_packet")):
+            errors.append(f"{probe_id}: historical probe input does not reconstruct from its fixed L9 raw source")
+        expected_counterexample = f"{l9['verification_obligations'][ob_index]['requirement_ref']} の独立local probe入力条件: {probe_counterexample(probe_id, derived_raw)}"
+        if row.get("counterexample") != expected_counterexample:
+            errors.append(f"{probe_id}: compact basis does not describe the fixed probe input condition")
+        source_pointer = f"/verification_obligations/{ob_index}/concrete_cases/{case_index}/independent_source_packet/raw_utf8"
+        if row.get("base_case_id") != historical_probe.get("base_case_id") or row.get("counterexample_source_ref") != {"document": L9, "pointer": source_pointer, "role": "L9 raw source used as the fixed input basis for this local probe"}:
+            errors.append(f"{probe_id}: base-case L9 raw input source pointer does not resolve")
+        if row.get("independent_probe_source_ref") != {"commit": BASE, "path": L8, "pointer": f"/independent_local_probes/{index}"}:
+            errors.append(f"{probe_id}: fixed historical probe provenance does not resolve")
+        if row.get("expected_oracle_ref") is not None:
+            errors.append(f"{probe_id}: no probe-specific L9 expected_material oracle exists")
+        group = FN_TO_GROUP.get(row.get("function_ref"), "")
+        if not group or row.get("oracle_id") != f"HELIXCONNECT-L10-004-{group}" or row.get("oracle_id") not in {case.get("id") for case in l10.get("cases", [])}:
+            errors.append(f"{probe_id}: function-level L10 oracle does not resolve")
+        derived = derive_expected(row, historical_probe, derived_raw, baseline_by_fn.get(group, {}), l3, l4, l5)
+        if row.get("expected") != derived["text"] or row.get("expected_status") != derived["status"] or row.get("expected_basis_refs") != derived["basis_refs"]:
+            errors.append(f"{probe_id}: probe expected/status/basis must derive from L3/L4/L5 without using L9 expected_material")
+        if derived["status"] != "independently_derived":
+            errors.append(f"{probe_id}: expected semantics are not independently derivable and must remain unverified")
+        fnid = row.get("function_ref")
+        if fnid not in l5.get("calculation_programs", {}):
+            errors.append(f"{probe_id}: matching existing L5 function contract does not resolve")
+    limits = doc.get("unidentified_mutation_limits", [])
+    if len(limits) != 7 or any(set(item) != {"area", "unidentified_mutation"} or not item.get("unidentified_mutation", "").strip() for item in limits):
+        errors.append("seven compact area-scoped unidentified_mutation_limits must remain visible")
     source_revision = subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=ROOT, text=True).strip()
     current_bytes = (ROOT / L8).read_bytes()
     report = {
@@ -828,8 +961,8 @@ def check():
         "target":L8, "target_revision":source_revision, "target_sha256":hashlib.sha256(current_bytes).hexdigest(),
         "source_pins": {path: hashlib.sha256((ROOT / path).read_bytes()).hexdigest() for path in (L3,L4,L5,L9,L10)},
         "historical_source":history["historical_source"], "historical_summary_archive":archive_view,
-        "checks":{"case_identity_order":"evaluated","u_id_and_original_function_ref":"evaluated","input_only_counterexamples":"evaluated","independent_L3_L4_L5_expectations":"evaluated","L9_oracle_comparison_only":"evaluated","existing_L5_L9_L10_consumers":"evaluated","removed_materials_and_forbidden_material":"evaluated","immutable_summary_history_recovery":"evaluated"},
-        "rows_checked":matched, "expected_status_counts":{status:sum(1 for row in doc["cases"] if row.get("expected_status")==status) for status in sorted({row.get("expected_status") for row in doc["cases"]})}, "l9_comparison_status_counts":{status:sum(1 for item in comparisons if item["status"]==status) for status in sorted({item["status"] for item in comparisons})}, "result":"FAIL" if errors else "PASS_STATIC_ONLY",
+        "checks":{"original_69_case_identity_order":"evaluated","82_unique_u_id_and_original_function_ref":"evaluated","13_fixed_probe_input_source_correspondence":"evaluated","input_only_counterexamples":"evaluated","independent_L3_L4_L5_expectations":"evaluated","L9_case_oracle_comparison_only":"evaluated","unidentified_mutation_limits":"evaluated","existing_L5_L9_L10_consumers":"evaluated","removed_materials_and_forbidden_material":"evaluated","immutable_summary_history_recovery":"evaluated"},
+        "rows_checked":matched+len(probe_rows), "original_l9_cases_checked":matched, "independent_local_probe_rows_checked":len(probe_rows), "expected_status_counts":{status:sum(1 for row in doc["cases"] if row.get("expected_status")==status) for status in sorted({row.get("expected_status") for row in doc["cases"]})}, "l9_comparison_status_counts":{status:sum(1 for item in comparisons if item["status"]==status) for status in sorted({item["status"] for item in comparisons})}, "result":"FAIL" if errors else "PASS_STATIC_ONLY",
         "errors":errors,
         "not_evaluated":["L5 algorithm execution","product test","real receiver effect",f"{sum(1 for row in doc['cases'] if row.get('expected_status')=='unverified')} row claim-level expectations explicitly marked unverified","approval or formal L8 completion","design_verification_checker child semantics"],
         "interpretation":"PASS_STATIC_ONLY is a static structure/source comparison only. It is not execution, approval, formal verification, or completion."
@@ -863,7 +996,7 @@ def check():
 def main():
     ap=argparse.ArgumentParser()
     ap.add_argument("--record", metavar="NEW_PATH", help="write one new report path with O_EXCL; default is read-only")
-    ap.add_argument("--record-id", default="WR265-RETRY-L8-CURRENT-STATIC-R8", help="unique ID for the explicitly recorded summary")
+    ap.add_argument("--record-id", default="WR265-RETRY-L8-CURRENT-STATIC-R9", help="unique ID for the explicitly recorded summary")
     args=ap.parse_args()
     report=check()
     report["record_id"] = args.record_id

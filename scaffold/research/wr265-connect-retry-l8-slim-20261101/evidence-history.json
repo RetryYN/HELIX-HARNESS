@@ -69,6 +69,16 @@
       "sha256": "fa9e39b20b6a93fd295a84c61d8a341f8239d8061da84ee090e004cbd588637b",
       "bytes": 4959,
       "restore_command": "git show ef3b6adef8dc60b9ba67380a8e00891694f4633e:scaffold/research/wr265-connect-retry-l8-slim-20261101/verification-summary-main-overlay-r7.json > /tmp/wr265-summary-r7.json"
+    },
+    {
+      "id": "summary-r8",
+      "kind": "summary_json",
+      "commit": "246dc1e26561fd2c92a90dad80591f69d817f5ba",
+      "path": "scaffold/research/wr265-connect-retry-l8-slim-20261101/verification-summary-main-overlay-r8.json",
+      "blob": "ef95f42d85fcff3bf6d1354e70314d9fb8a6015b",
+      "sha256": "9f4e9df0a8fcaff8e4f22d647ba0cbb72efec9578a574108410cc511cbe0135f",
+      "bytes": 9834,
+      "restore_command": "git show 246dc1e26561fd2c92a90dad80591f69d817f5ba:scaffold/research/wr265-connect-retry-l8-slim-20261101/verification-summary-main-overlay-r8.json > /tmp/wr265-summary-r8.json"
     }
   ],
   "archived_summaries": [
@@ -144,6 +154,16 @@
       "sha256": "fa9e39b20b6a93fd295a84c61d8a341f8239d8061da84ee090e004cbd588637b",
       "bytes": 4959,
       "archive_key": "summary-r7-overlay"
+    },
+    {
+      "archive_key": "summary-r8-overlay",
+      "record_id": "WR265-RETRY-L8-CURRENT-STATIC-R8",
+      "archive_id": "summary-r8",
+      "json_pointer": null,
+      "summary_path": "scaffold/research/wr265-connect-retry-l8-slim-20261101/verification-summary-main-overlay-r8.json",
+      "sha256": "9f4e9df0a8fcaff8e4f22d647ba0cbb72efec9578a574108410cc511cbe0135f",
+      "bytes": 9834,
+      "label": "previous current main-overlay summary"
     }
   ],
   "restore_procedure": {

@@ -6,55 +6,56 @@
   "product": "HELIX-HARNESS",
   "owner_candidate": "CONNECT004 L8 retry/deduplication/conflict unit-verification responsibility owner candidate",
   "state": "registered",
-  "reason": "Issue #3510 WR265: compact CONNECT004 L8 into a reviewable U-ID table while preserving the 69 case IDs/order and original function_ref. Counterexample input conditions are traced to fixed L9 source; expected semantics are independently derived from approved L3/L4 and existing L5 rules. L9 expected_material is comparison-only. Unresolvable claim semantics remain unverified; raw fixture/full-return/hash material is not copied.",
+  "reason": "Issue #3510 WR265: compact CONNECT004 L8 into a reviewable U-ID table while preserving the 69 original case IDs/order/function_ref and restoring 13 fixed-base independent local probes as rows U-C004-070..082. Original counterexample input conditions trace to fixed L9 source; probe inputs trace to their fixed L9 base packet and immutable base probe record. All expected semantics are independently derived from approved L3/L4 and existing L5 rules; L9 expected_material is comparison-only for the 69 source cases, and unsupported claim semantics remain unverified. Raw fixture/full-return/hash material is not copied.",
   "upstream": [
     {
       "path": "docs/helix-connect/L3-requirements/functional-requirements.json",
       "sha256": "fb04683632d92e5c51c46fdc2eecf388a58e406856f243b8105513e075a49421",
-      "note": "Source bytes verified unchanged at latest origin/main 8ca99d8afcfcca2e5240afb992289ea8c80c41a6."
+      "note": "Source bytes verified unchanged at latest origin/main overlay 4b3dbea7185bb9720112e878da0f9922da32d9ad (rechecked during R1 follow-up)."
     },
     {
       "path": "docs/helix-connect/L4-basic-design/retry-deduplication-conflict.json",
       "sha256": "68e77bc1579a10470f2ea608010f0bd553c1c511a8a50992c9b8bd8d28ee92eb",
-      "note": "Source bytes verified unchanged at latest origin/main 8ca99d8afcfcca2e5240afb992289ea8c80c41a6."
+      "note": "Source bytes verified unchanged at latest origin/main overlay 4b3dbea7185bb9720112e878da0f9922da32d9ad (rechecked during R1 follow-up)."
     },
     {
       "path": "docs/helix-connect/L5-detail-design/retry-deduplication-conflict.json",
       "sha256": "ae83a4db64fb613ebbaa119e11ed3c83f23e1a77fad22a205375f0d6b3d9e19d",
-      "note": "Source bytes verified unchanged at latest origin/main 8ca99d8afcfcca2e5240afb992289ea8c80c41a6."
+      "note": "Source bytes verified unchanged at latest origin/main overlay 4b3dbea7185bb9720112e878da0f9922da32d9ad (rechecked during R1 follow-up)."
     },
     {
       "path": "docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json",
       "sha256": "5cfea671da4e491a172590b6b6e404da9e37af230929d0e764eee1a7d7bcb465",
-      "note": "Source bytes verified unchanged at latest origin/main 8ca99d8afcfcca2e5240afb992289ea8c80c41a6."
+      "note": "Source bytes verified unchanged at latest origin/main overlay 4b3dbea7185bb9720112e878da0f9922da32d9ad (rechecked during R1 follow-up)."
     },
     {
       "path": "docs/helix-connect/L10-verification/functional-verification.json",
       "sha256": "8728cf7c2730a29375f3c7dad75c77157a119d603e52b46f775ede8f1eae474d",
-      "note": "Source bytes verified unchanged at latest origin/main 8ca99d8afcfcca2e5240afb992289ea8c80c41a6."
+      "note": "Source bytes verified unchanged at latest origin/main overlay 4b3dbea7185bb9720112e878da0f9922da32d9ad (rechecked during R1 follow-up)."
     },
     {
       "path": "scaffold/verification-test-template-seed-20261001/README.md",
       "sha256": "e754243381921e4a3317a66dc784c03905ef24ab740721bc7767851989162efd",
-      "note": "Source bytes verified unchanged at latest origin/main 8ca99d8afcfcca2e5240afb992289ea8c80c41a6."
+      "note": "Source bytes verified unchanged at latest origin/main overlay 4b3dbea7185bb9720112e878da0f9922da32d9ad (rechecked during R1 follow-up)."
     },
     {
       "path": "docs/governance/design-verification-quality-assurance.md",
       "sha256": "f5751e236dc073fe67114c1fcb4b0f64b3d746290b25d75b61e60a08e3c99c85",
-      "note": "Source bytes verified unchanged at latest origin/main 8ca99d8afcfcca2e5240afb992289ea8c80c41a6."
+      "note": "Source bytes verified unchanged at latest origin/main overlay 4b3dbea7185bb9720112e878da0f9922da32d9ad (rechecked during R1 follow-up)."
     }
   ],
   "role": "Temporary static source, case-identity, expectation and boundary evidence for the WR265 CONNECT004 L8 candidate.",
   "obligations": [
-    "Preserve all 69 frozen case IDs/order and original function_ref, add unique U-C004-001..069 IDs, and resolve every function_ref/case ID through the existing L5 obligation_trace consumer.",
-    "Describe each counterexample using fixed L9 raw source input conditions only; retain a source pointer, never copy raw input or L9 outcomes into the counterexample. Do not infer scenario conditions from ID suffixes.",
-    "Independently derive each expected/status/basis reference from approved L3 requirement, L4 contract, and existing L5 function/rules. L9 expected_material is only an independent comparison oracle; mark unsupported claim semantics unverified.",
-    "Do not add duplicate l5_function_ref or l9_basic_branches tables. Keep shared function meaning, unexecuted boundary, and conditional F03 owner interpretation once; retain the L9 pointer migration caveat for future L9 slim work.",
+    "Preserve all 69 frozen case IDs/order and original function_ref as the first rows; append the 13 fixed-base independent_local_probes in source order as U-C004-070..082. Keep every original function_ref and a unique U-ID. Resolve the 69 original case IDs/function refs through the existing L5 obligation_trace; resolve all 13 probe function_refs through the existing L5 calculation_programs.",
+    "Describe original counterexamples using fixed L9 raw source input conditions only; for each independent local probe, retain a concise condition statement, its L9 base raw pointer, and the fixed-base probe provenance pointer. Do not copy raw input, whole expected returns, patches, hashes, or fixture values.",
+    "Independently derive expected semantics/status/basis from approved L3 requirement, L4 contract, and existing L5 function/rules for all 82 rows. L9 expected_material is an independent comparison oracle only for the 69 existing L9 cases; no probe-specific L9 expected_material exists. Unsupported original claim semantics remain unverified.",
+    "Keep the seven area-scoped unidentified_mutation_limits visible in concise form; do not imply existing cases identify those mutations.",
+    "Do not add duplicate l5_function_ref or l9_basic_branches tables. Keep shared function meaning, unexecuted/fixture-only boundary, and conditional F03 owner interpretation once; retain the L9 pointer migration caveat for future L9 slim work.",
     "Keep authority_effect and operation_effect none, implementation readiness not_ready, no actual retry/receiver effect/receipt/policy/result or product test claim.",
     "Legacy comparison is reference-only: preserve retry identity/dedup/conflict/finite-budget boundaries; do not migrate old cursor codec, database, runtime, or old execution paths.",
     "Validator defaults to read-only. --record accepts an explicit new path only and creates it exclusively; no existing evidence path may be replaced.",
-    "Record L9 oracle alignment separately from independent expectations. Generic design_verification_checker check-child outcomes are recorded as pass/fail/not_evaluated; not_evaluated is never pass.",
-    "Check scfctl validate/stale and static validator in a latest origin/main merge overlay before handing off.",
+    "Record L9 oracle alignment separately from independent expectations for the 69 cases. Generic design_verification_checker check-child outcomes are recorded as pass/fail/not_evaluated; not_evaluated is never pass.",
+    "Check scfctl validate/stale and static validator in a latest origin/main first-parent merge overlay before handing off.",
     "Keep one current verification summary. Preserve superseded summary bytes in their existing commits/blobs; evidence-history.json stores only commit/blob/SHA-256, paths or JSON pointers, byte lengths and extraction instructions, without embedding full report objects."
   ],
   "connections": {
@@ -97,18 +98,19 @@
       "negative_case"
     ],
     "oracles": [
-      "Original case identity/order/function_ref from fixed base b3ddf6f1d0a6cf2009e5f81a90f21c4292300185; original L8 bytes recoverable by commit/path/blob/SHA-256 and restore command in evidence-history.json. Historical summary archive blobs at commits 869675e43871daa3034eeaacc78a157eb234cc01 and ef3b6adef8dc60b9ba67380a8e00891694f4633e are verified by blob/SHA/byte length; each prior summary is extracted via its pinned history JSON pointer or direct summary path.",
-      "Counterexamples are reconstructed from fixed L9 independent_source_packet input only, with literal values omitted. Expected semantics and source refs are derived from L3/L4/L5; unsupported claim-level semantics are explicitly unverified.",
-      "L9 expected_material pointer and failure/owner branches are used only as a comparison against the independent L3/L4/L5 derivation. No expected text is copied from the L9 outcome.",
-      "L5 obligation_trace resolves each preserved function_ref/case ID. F03 conditional retryable-result owner is checked against L5 rule 8 and the L9 business_nonretryable/unknown cases; L4 F03 output and L10 failure-observation boundaries are also checked.",
-      "Current summary is verification-summary-main-overlay-r8.json from latest origin/main overlay 8ca99d8afcfcca2e5240afb992289ea8c80c41a6; generic check-child result is recorded separately and is not product completion proof.",
-      "scfctl validate/stale and validator in latest-main merge overlay.",
-      "validate_uid_table.py checks all history archive blob, pointer, reconstructed summary hashes and byte lengths without writing."
+      "Original 69 case IDs/order/function_ref and independent local probe IDs/order/function_ref from fixed base b3ddf6f1d0a6cf2009e5f81a90f21c4292300185. Historical source is recoverable by commit/path/blob/SHA-256 and restore command in evidence-history.json. The 13 probe input packets are reconstructed in memory from fixed L9 base raw source and the historical probe input edits; historical whole expected objects are not read for expectation generation.",
+      "Original 69 counterexamples trace to fixed L9 raw packets. The 13 independent probe rows retain concise basis and source pointers to the L9 base input and immutable probe record. Expected semantics for all 82 rows are derived from L3/L4/L5; L9 expected_material is comparison-only for the 69 original cases. Unsupported claim-level semantics among the original cases remain unverified.",
+      "L5 obligation_trace resolves each original case ID/function_ref. All 13 probe function_refs resolve to existing L5 calculation_programs. F03 conditional retryable-result owner is checked against L5 rule 8 and source cases; L4 F03 output and L10 failure-observation boundaries are also checked.",
+      "Seven area-scoped unidentified_mutation_limits remain visible; they describe gaps in distinguishing mutations and do not assert that current rows cover them.",
+      "Current summary is verification-summary-main-overlay-r9.json from the latest-main first-parent merge overlay using origin/main 4b3dbea7185bb9720112e878da0f9922da32d9ad. Generic check-child outcomes are recorded separately and are not product completion proof.",
+      "scfctl validate/stale, validator, and design_verification_checker check-child in latest-main merge overlay.",
+      "validate_uid_table.py checks all history archive blobs, pointers, reconstructed summary hashes and byte lengths without writing."
     ],
     "negative_cases": [
-      "No raw packet data, expected outcomes, repeated function definitions, l5_function_ref alias, l9_basic_branches table, full return, fixture, COPY, hash map, or patch is duplicated.",
-      "All 69 cases remain not_executed; actual operation/receiver effects are not evaluated.",
-      "Rows with claim semantics unsupported by L3/L4/L5 remain unverified; L9 is not used as an expected-value fallback.",
+      "No raw packet data, expected whole outcomes, copied patches, hashes, repeated function definitions, l5_function_ref alias, l9_basic_branches table, full return, or COPY fixture is duplicated in current L8.",
+      "All 69 original cases and 13 local probes remain not_executed; actual operation/receiver effects are not evaluated.",
+      "Rows with claim semantics unsupported by L3/L4/L5 remain unverified; L9 is not used as an expected-value fallback, and no probe-specific L9 outcome is invented.",
+      "Seven unidentified mutation limits remain explicit rather than being represented as covered.",
       "Do not treat generic check-child not_evaluated as pass.",
       "Static evidence does not establish approval or formal L8 completion."
     ]
