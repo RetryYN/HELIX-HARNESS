@@ -1,0 +1,110 @@
+{
+  "schema": "wr257-static-evidence-appendix.v1",
+  "evidence_kind": "scaffold",
+  "authority_effect": "none",
+  "recorded_against_revision": "21b2ec9a0007e5cd80abdb7d570ad015860ee0dd",
+  "source_path": "docs/helix-connect/L8-unit-verification/composite-edge-terminal.json",
+  "target_sha256": "de87cf706cad9d579ef3bdbb37a94f757c198214833f2ab32a1179d470019bb7",
+  "payload": {
+    "schema": "wr257-static-index-evidence.v1",
+    "evidence_kind": "scaffold",
+    "authority_effect": "none",
+    "request_id": "WR257-CONNECT-COMPOSITE-L8-SLIM",
+    "base_revision": "663b75324810a6f004668a1451de5b03acc542c3",
+    "target_path": "docs/helix-connect/L8-unit-verification/composite-edge-terminal.json",
+    "target_sha256": "de87cf706cad9d579ef3bdbb37a94f757c198214833f2ab32a1179d470019bb7",
+    "target_bytes": 351085,
+    "source_pins": {
+      "docs/helix-connect/L4-basic-design/composite-edge-terminal.json": "166a7800eac7427983ccc716a2472e9017cb9510a19ade5e9f07f63c11785030",
+      "docs/helix-connect/L5-detail-design/composite-edge-terminal.json": "0f672d5d2a8abc906a0c61139359ac41f1725635b2d2a43aef8fa3b08e2f85cd",
+      "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json": "313757d63a2afdbfa2bfd7d9ceff8db0f294131e393ac360fcf96b3938635f72"
+    },
+    "traceability_source_pins": {
+      "docs/helix-connect/L3-requirements/functional-requirements.json": "fb04683632d92e5c51c46fdc2eecf388a58e406856f243b8105513e075a49421",
+      "docs/helix-connect/L10-verification/functional-verification.json": "8728cf7c2730a29375f3c7dad75c77157a119d603e52b46f775ede8f1eae474d",
+      "docs/helix-connect/L3-requirements/business-requirements.json": "29ca195ff54d61f422050f28740c2cf887defaf21a3ad7da4c37f3ef797bd0ed",
+      "docs/helix-connect/L10-verification/business-verification.json": "b01cdbd03885b523254aba339bd166ad235382402942527e4e7844825ea05fcd",
+      "docs/helix-connect/L4-basic-design/composite-edge-terminal.json": "166a7800eac7427983ccc716a2472e9017cb9510a19ade5e9f07f63c11785030",
+      "docs/helix-connect/L5-detail-design/composite-edge-terminal.json": "0f672d5d2a8abc906a0c61139359ac41f1725635b2d2a43aef8fa3b08e2f85cd",
+      "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json": "313757d63a2afdbfa2bfd7d9ceff8db0f294131e393ac360fcf96b3938635f72"
+    },
+    "inventory": {
+      "source_cases": 91,
+      "local_probes": 27,
+      "local_probe_source_reuse": 1,
+      "pure_primitive_cases": 7,
+      "typed_carrier_boundary_cases": 1,
+      "meaning": "ID inventory only; counts are not coverage or completion claims."
+    },
+    "l5_traceability": {
+      "public_functions": 4,
+      "l9_branch_u_ids": 91,
+      "predeclared_local_probe_u_ids": 27,
+      "failure_rules": 26,
+      "covered_failure_rules": 26,
+      "case_expected_classes": {
+        "normal": 3,
+        "negative": 88
+      },
+      "case_focus_rows": 91,
+      "distinguished_duplicate_groups": 11,
+      "distinguished_duplicate_rows": 60,
+      "uncovered_failure_rules": []
+    },
+    "merge_overlay_check_child": {
+      "main_revision": "569bde0bc5792349f0833461f0bb1bb6db33c592",
+      "overlay_revision": "ce813755e5731dafb8029023f40acdecb9bcd11a",
+      "candidate_revision": "c4828ff2a972690ceeb65f4d57abfebec3fb9198",
+      "target_sha256": "de87cf706cad9d579ef3bdbb37a94f757c198214833f2ab32a1179d470019bb7",
+      "checker_completed": true,
+      "crash_free": true,
+      "exit_code": 1,
+      "overall_passed": false,
+      "L8_ownership_cap_failure_count": 0,
+      "ownership_caps": [
+        {
+          "layer": "L4",
+          "passed": true,
+          "failure_count": 0
+        },
+        {
+          "layer": "L9",
+          "passed": false,
+          "failure_count": 91
+        },
+        {
+          "layer": "L5",
+          "passed": true,
+          "failure_count": 0
+        },
+        {
+          "layer": "L8",
+          "passed": true,
+          "failure_count": 0
+        }
+      ],
+      "other_residuals": "L9 ownership cap has 91 sha256-key findings; L4/L9 and L5/L8 pair and negative four-way checks are false. The L8 ownership cap itself has zero failures."
+    },
+    "checks": [
+      "all prior L8 source case IDs and order retained in a consumer-compatible array; exact L9 source/expected pointers and scenario basis resolve",
+      "all 27 local probe IDs/roles/source cases retain unique short counterexample and expected judgment; fixed historical delta comparison supports rule coverage without embedding patch recipes or return values",
+      "1 source reuse, 7 primitive cases and 1 typed carrier boundary retain identity and intended oracle boundary",
+      "91 L9 branches and 27 predeclared local probes carry U-IDs without changing the 127 declaration count; each branch row has a short L5-derived expected decision, L5 citation, normal/negative class, and unverified state (3 normal, 88 negative)",
+      "all 91 branch expectations retain only source pointer, target, field and a bounded semantic difference category; 11 previously identical groups (60 rows) are distinguished without before/after values, full arrays or repeated L5 rule prose",
+      "all four L5 public functions map by exact source refs; all 26 L5 failure rules are covered by fixed L9 oracle branches and/or predeclared local expected deltas",
+      "L5 has no unit_case_refs; absence is recorded without synthetic references",
+      "fixture hashes are absent from case/probe inventories; retained digests are source/authority pins",
+      "removed_materials has six required keys and names DT-VT-105 boundary",
+      "merge-overlay check-child completed without crash and L8 ownership cap has zero failures; unrelated L9/pair/four-way failures remain reported"
+    ],
+    "not_established": [
+      "product test execution",
+      "runtime behavior",
+      "source/owner qualification",
+      "L7 test citation",
+      "design or implementation readiness",
+      "full mutation-family coverage"
+    ]
+  },
+  "appendix_sha256": "b263dd97b7f4ea92c5e6bf8a5e905963133fc8bb389d7d7f6ffefe6616963194"
+}
