@@ -40,7 +40,7 @@
     },
     {
       "path": "scaffold/research/wr259-naming-l9-slim-20261101/README.md",
-      "sha256": "01034210c7a62ae91e76c2a8bfdfb8b18f25c1e0c41ba3a17f70eb92c516e301",
+      "sha256": "4cfbecb7bac813e4b9624f127c6d06b4c4b756e4baf4d9af802b578a3f3b5ef3",
       "note": "WR259固定作業treeのsource/artifact bytes。"
     },
     {
@@ -94,26 +94,7 @@
     "scaffold/research/wr259-naming-l9-slim-20261101/validate_l9_slim.py",
     "scaffold/bindings/SCF-B-0211.json",
     "scaffold/bindings/SCF-B-0222.json",
-    "scaffold/research/wr259-naming-l9-slim-20261101/evidence/validation-results-r2.json",
-    "scaffold/research/wr259-naming-l9-slim-20261101/evidence/merge-overlay-check-child-r2.json",
-    "scaffold/research/wr259-naming-l9-slim-20261101/evidence/validation-results-r1.json",
-    "scaffold/research/wr259-naming-l9-slim-20261101/evidence/validation-results-r3.json",
-    "scaffold/research/wr259-naming-l9-slim-20261101/evidence/merge-overlay-check-child-r3.json",
-    "scaffold/research/wr259-naming-l9-slim-20261101/evidence/validation-results-r4.json",
-    "scaffold/research/wr259-naming-l9-slim-20261101/evidence/merge-overlay-check-child-r4.json",
-    "scaffold/research/wr259-naming-l9-slim-20261101/evidence/validation-results-r5.json",
-    "scaffold/research/wr259-naming-l9-slim-20261101/evidence/validation-results-r6.json",
-    "scaffold/research/wr259-naming-l9-slim-20261101/evidence/merge-overlay-check-child-r5.json",
-    "scaffold/research/wr259-naming-l9-slim-20261101/evidence/validation-results-r7.json",
-    "scaffold/research/wr259-naming-l9-slim-20261101/evidence/validation-results-r8.json",
-    "scaffold/research/wr259-naming-l9-slim-20261101/evidence/merge-overlay-check-child-r6.json",
-    "scaffold/research/wr259-naming-l9-slim-20261101/evidence/evidence-history-index-r1.json",
-    "scaffold/research/wr259-naming-l9-slim-20261101/evidence/validation-results-r9.json",
-    "scaffold/research/wr259-naming-l9-slim-20261101/evidence/merge-overlay-check-child-r7.json",
-    "scaffold/research/wr259-naming-l9-slim-20261101/evidence/evidence-history-index-r2.json",
-    "scaffold/research/wr259-naming-l9-slim-20261101/evidence/evidence-history-index-r3.json",
-    "scaffold/research/wr259-naming-l9-slim-20261101/evidence/validation-results-r10.json",
-    "scaffold/research/wr259-naming-l9-slim-20261101/evidence/merge-overlay-check-child-r8.json"
+    "scaffold/research/wr259-naming-l9-slim-20261101/evidence/evidence-disposition.json"
   ],
   "verification": {
     "evidence_kind": "scaffold",
