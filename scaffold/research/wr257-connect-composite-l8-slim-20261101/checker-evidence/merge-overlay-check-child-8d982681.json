@@ -1,0 +1,44 @@
+{
+  "schema": "wr257-check-child-merge-overlay-evidence.v1",
+  "evidence_kind": "scaffold",
+  "authority_effect": "none",
+  "command": "python3 -B scaffold/tools/design_verification_checker.py check-child --root . --l4 docs/helix-connect/L4-basic-design/composite-edge-terminal.json --l9 docs/helix-connect/L9-integration-verification/composite-edge-terminal.json --l5 docs/helix-connect/L5-detail-design/composite-edge-terminal.json --l8 docs/helix-connect/L8-unit-verification/composite-edge-terminal.json",
+  "main_revision": "aa124441198b3b89cbe089be3dbd46805634201d",
+  "candidate_revision": "70ca969f20830fd21e79fb2f7e5d0bccbbf0a832",
+  "overlay_revision": "8d9826818ca75422bff3b4656457d21715fd694e",
+  "overlay_tree": "ba81aecf443933b4420a317e1ecacde65b798643",
+  "target_path": "docs/helix-connect/L8-unit-verification/composite-edge-terminal.json",
+  "target_sha256": "f21e8e6f1493420145172c337884d05423c679404e0f46179d74491ec60ac2c2",
+  "checker_completed": true,
+  "crash_free": true,
+  "checker_exit_code": 1,
+  "overall_passed": false,
+  "ownership_caps": [
+    {
+      "layer": "L4",
+      "passed": true,
+      "failure_count": 0
+    },
+    {
+      "layer": "L9",
+      "passed": false,
+      "failure_count": 91
+    },
+    {
+      "layer": "L5",
+      "passed": true,
+      "failure_count": 0
+    },
+    {
+      "layer": "L8",
+      "passed": true,
+      "failure_count": 0
+    }
+  ],
+  "L8_ownership_cap_failure_count": 0,
+  "L4_L9_pair_passed": false,
+  "L5_L8_pair_passed": false,
+  "negative_4way_passed": false,
+  "remaining_checker_findings": "L9 ownership cap has 91 sha256-key findings; other pair/four-way checks are false. These are recorded as existing checker findings, not L8-cap failures.",
+  "source_report_sha256": "89d09246bc42b821133d04b43d375dfe52999ebd5cf6ed8dd436fa32aea08028"
+}

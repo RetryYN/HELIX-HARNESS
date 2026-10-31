@@ -21,6 +21,8 @@ L10B = 'docs/helix-connect/L10-verification/business-verification.json'
 EVIDENCE = 'scaffold/research/wr257-connect-composite-l8-slim-20261101/static-evidence.json'
 EVIDENCE_DIR = 'scaffold/research/wr257-connect-composite-l8-slim-20261101'
 BINDING = 'scaffold/bindings/SCF-B-0216.json'
+CHECK_CHILD = 'scaffold/research/wr257-connect-composite-l8-slim-20261101/checker-evidence/merge-overlay-check-child-8d982681.json'
+CHECK_CHILD_RAW = 'scaffold/research/wr257-connect-composite-l8-slim-20261101/checker-evidence/raw-check-child-report-8d982681.json'
 
 PROBE_EXPECTATIONS = {
     'LOCAL-C007-N01-EXACT-DECLARED-SCOPE-THREE-BOUNDARY-EVIDENCE-READONLY-OWNER-PROBE': ('必要証拠3件のうち第三境界の原証拠・提出証拠がともに欠ける。', '証拠集合はcontent conflictとして保留し、証拠ownerへ返す。'),
@@ -334,6 +336,24 @@ def main() -> None:
     current = load(L8)
     prior = base_load(L8)
     l5, l4, l9 = load(L5), load(L4), load(L9)
+    check_child = load(CHECK_CHILD)
+    raw_check_child = load(CHECK_CHILD_RAW)
+    assert check_child['schema'] == 'wr257-check-child-merge-overlay-evidence.v1'
+    assert check_child['target_path'] == L8 and check_child['target_sha256'] == sha((ROOT / L8).read_bytes())
+    assert check_child['checker_completed'] is True and check_child['crash_free'] is True
+    assert check_child['checker_exit_code'] == 1 and check_child['overall_passed'] is False
+    assert check_child['L8_ownership_cap_failure_count'] == 0
+    assert [(item['layer'], item['passed'], item['failure_count']) for item in check_child['ownership_caps']] == [
+        ('L4', True, 0), ('L9', False, 91), ('L5', True, 0), ('L8', True, 0),
+    ]
+    overlay_raw = subprocess.check_output(['git', 'show', f"{check_child['overlay_revision']}:{L8}"], cwd=ROOT)
+    assert sha(overlay_raw) == check_child['target_sha256']
+    assert sha((ROOT / CHECK_CHILD_RAW).read_bytes()) == check_child['source_report_sha256']
+    checker_report = json.loads((ROOT / CHECK_CHILD_RAW).read_text(encoding='utf-8'))
+    assert checker_report['passed'] is False
+    assert [(item['layer'], item['passed'], len(item['failures'])) for item in checker_report['ownership_caps']] == [
+        (item['layer'], item['passed'], item['failure_count']) for item in check_child['ownership_caps']
+    ]
     pinned_docs = {L4: l4, L9: l9}
     pin_records = {item['path']: item for item in current['source_pair_pins']}
 
@@ -633,6 +653,18 @@ def main() -> None:
             'distinguished_duplicate_rows': sum(len(group) for group in duplicated_groups),
             'uncovered_failure_rules': [f"{rule['function_ref']}:{rule['rule_id']}" for rule in trace['l5_failure_rules'] if rule['coverage_status'] == 'uncovered'],
         },
+        'merge_overlay_check_child': {
+            'overlay_revision': check_child['overlay_revision'],
+            'candidate_revision': check_child['candidate_revision'],
+            'target_sha256': check_child['target_sha256'],
+            'checker_completed': check_child['checker_completed'],
+            'crash_free': check_child['crash_free'],
+            'exit_code': check_child['checker_exit_code'],
+            'overall_passed': check_child['overall_passed'],
+            'L8_ownership_cap_failure_count': check_child['L8_ownership_cap_failure_count'],
+            'ownership_caps': check_child['ownership_caps'],
+            'other_residuals': check_child['remaining_checker_findings'],
+        },
         'checks': [
             'all prior L8 source case IDs and order retained in a consumer-compatible array; exact L9 source/expected pointers and scenario basis resolve',
             'all 27 local probe IDs/roles/source cases retain unique short counterexample and expected judgment; fixed historical delta comparison supports rule coverage without embedding patch recipes or return values',
@@ -643,6 +675,7 @@ def main() -> None:
             'L5 has no unit_case_refs; absence is recorded without synthetic references',
             'fixture hashes are absent from case/probe inventories; retained digests are source/authority pins',
             'removed_materials has six required keys and names DT-VT-105 boundary',
+            'merge-overlay check-child completed without crash and L8 ownership cap has zero failures; unrelated L9/pair/four-way failures remain reported',
         ],
         'not_established': ['product test execution', 'runtime behavior', 'source/owner qualification', 'L7 test citation', 'design or implementation readiness', 'full mutation-family coverage'],
     }
