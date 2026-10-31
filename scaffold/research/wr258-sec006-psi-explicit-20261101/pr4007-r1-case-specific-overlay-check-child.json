@@ -1,0 +1,123 @@
+{
+  "schema": "wr258-pr4007-r1-case-specific-overlay-check-child.v1",
+  "evidence_kind": "scaffold",
+  "authority_effect": "none",
+  "source_head": "689fcb7b237693803f487df662228d493820126f",
+  "source_sha256": "8cd71128dd5c3e7e4efe0c685e5ad00ad847deb9ea3fa2d311e0202e6f9b7c9b",
+  "temporary_overlay": true,
+  "generated_full_overlay_saved_in_repository": false,
+  "command": "python3 scaffold/tools/design_verification_checker.py check-child --root . --l4 <temp>/overlay/l4.json --l5 <temp>/overlay/l5.json --l8 <temp>/overlay/l8.json --l9 <temp>/overlay/l9.json",
+  "exit_code": 1,
+  "L4_L9_pair_passed": true,
+  "L5_L8_pair_passed": true,
+  "fourway_passed": false,
+  "matched_case_count": 141,
+  "case_row_counts": {
+    "L8": 143,
+    "L9": 148
+  },
+  "failure_count": 10,
+  "failure_groups": [
+    {
+      "layer": null,
+      "attribute": "expected",
+      "reason": "case_attribute_differs_across_l8_l9",
+      "count": 1
+    },
+    {
+      "layer": null,
+      "attribute": "expected_preserved",
+      "reason": "case_attribute_differs_across_l8_l9",
+      "count": 1
+    },
+    {
+      "layer": "L8",
+      "attribute": "integration_case_ref",
+      "reason": "integration_case_ref_unresolved",
+      "count": 1
+    },
+    {
+      "layer": "L8",
+      "attribute": "negative_class_ref",
+      "reason": "negative_case_class_ref_missing_or_unresolved",
+      "count": 1
+    },
+    {
+      "layer": "L9",
+      "attribute": "integration_case_ref",
+      "reason": "integration_case_not_referenced_from_l8",
+      "count": 6
+    }
+  ],
+  "failures": [
+    {
+      "check": "CHK-NEG-4WAY-MATCH",
+      "attribute": "expected",
+      "reason": "case_attribute_differs_across_l8_l9",
+      "case_id": "SEC003-L8-OPERATION-DEFER"
+    },
+    {
+      "check": "CHK-NEG-4WAY-MATCH",
+      "attribute": "expected_preserved",
+      "reason": "case_attribute_differs_across_l8_l9",
+      "case_id": "SEC003-L8-OPERATION-DEFER"
+    },
+    {
+      "check": "CHK-NEG-4WAY-MATCH",
+      "attribute": "negative_class_ref",
+      "reason": "negative_case_class_ref_missing_or_unresolved",
+      "layer": "L8",
+      "case_id": "SEC003-L8-OPERATION-DEFER"
+    },
+    {
+      "check": "CHK-NEG-4WAY-MATCH",
+      "attribute": "integration_case_ref",
+      "reason": "integration_case_ref_unresolved",
+      "layer": "L8",
+      "case_id": "SEC003-L8-FALLBACK-PRIMARY"
+    },
+    {
+      "check": "CHK-NEG-4WAY-MATCH",
+      "attribute": "integration_case_ref",
+      "reason": "integration_case_not_referenced_from_l8",
+      "layer": "L9",
+      "case_id": "SEC003-AGENT-PRIMARY-TREE-FALLBACK"
+    },
+    {
+      "check": "CHK-NEG-4WAY-MATCH",
+      "attribute": "integration_case_ref",
+      "reason": "integration_case_not_referenced_from_l8",
+      "layer": "L9",
+      "case_id": "SEC003-CONFIGURATION-PRIMARY-TREE-FALLBACK"
+    },
+    {
+      "check": "CHK-NEG-4WAY-MATCH",
+      "attribute": "integration_case_ref",
+      "reason": "integration_case_not_referenced_from_l8",
+      "layer": "L9",
+      "case_id": "SEC003-CREDENTIAL-PRIMARY-TREE-FALLBACK"
+    },
+    {
+      "check": "CHK-NEG-4WAY-MATCH",
+      "attribute": "integration_case_ref",
+      "reason": "integration_case_not_referenced_from_l8",
+      "layer": "L9",
+      "case_id": "SEC003-HOOK-PRIMARY-TREE-FALLBACK"
+    },
+    {
+      "check": "CHK-NEG-4WAY-MATCH",
+      "attribute": "integration_case_ref",
+      "reason": "integration_case_not_referenced_from_l8",
+      "layer": "L9",
+      "case_id": "SEC003-MEMORY-PRIMARY-TREE-FALLBACK"
+    },
+    {
+      "check": "CHK-NEG-4WAY-MATCH",
+      "attribute": "integration_case_ref",
+      "reason": "integration_case_not_referenced_from_l8",
+      "layer": "L9",
+      "case_id": "SEC003-PRIMARY-TREE-FALLBACK"
+    }
+  ],
+  "interpretation": "未実行caseの構造測定。operation-defer局所観測とsystem absent caseは期待が異なるため1件のexpected/preserved mismatchが残る。local classとL8 integration refの未解決各1件、primary-tree 6 callerの一対一未解決を保持する。"
+}

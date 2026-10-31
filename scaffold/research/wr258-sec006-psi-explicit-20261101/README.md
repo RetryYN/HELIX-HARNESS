@@ -8,7 +8,7 @@ L9の98行では `negative_class_assignment.classification` に旧nested `negati
 
 L8 52 canonical rowsをL9 98 rowsへ、L5 `function_read_fields`と入力のpresent/null/omitted状態で比較したところ、完全なfunction-consumed projection一致は2つのL8行から7つのL9行に限られた。`SEC003-L8-FALLBACK-PRIMARY`は6つのcaller別primary-treeケースへ一致し、`SEC003-L8-FALLBACK-OTHER`はother-project 1件へ一致する。残る50 L8行には現L9の完全一致projectionがない。WR250 R1の98行候補からは91件を保持、7件を既存のL8入力・結果との一致で除外している。除外6件はprimary-tree caller行、1件はother-project fallback行である。91候補はすべて`candidate_not_canonical`かつ`not_executed`。
 
-L9側では各98行の現行class・expected classification・L4 class key対応を行ごとに保持した。未対応50行について、L8 case pointerはfunction input projectionを照合するためだけに使い、oracle導出には使わず、L3/L10参照とL4 classからL9候補の`condition`、`expected`、`expected_preserved`を独立に導出した。L8候補側も同じL4契約を別に投影して一致を照合した。具体的なL9統合request/source traceと実行oracleは現行sourceにないため、candidateは未実行のまま正本L9へ追加していない。
+L9側では各98行の現行class・expected classification・L4 class key対応を行ごとに保持した。未対応50行について、L8 case pointerはfunction input projectionを照合するためだけに使い、oracle導出には使わず、L3/L10参照とL4 classからL9候補の`condition`、`expected`、`expected_preserved`を独立に導出した。L8候補側も同じL4契約を別に投影して一致を照合した。PR #4007 R1追補では、この50件を正本L9へ未実行のsystem-oracle caseとして追加し、各行に対応L8 case ID・JSON pointerと入力上の固有条件を付けた。対応は既存`rowwise-integration-design.json`のcandidate ID↔L8 ID記録から行い、L8入力は対応・条件の区別にだけ用いた。expected/classification/expected_preservedはL3/L10/L4から独立導出したままにし、各L9 rowには期待導出元のL3/L10/L4 pointerを保つ。
 
 4層markerは正本に追加していない。基本overlayはL4/L5/L8/L9の4 markerを全て持ち、L8は52 canonical+91 candidate=143 rows、L9は98 existing+50 source-derived candidate=148 rowsで計測した。`new_parent_link`で評価され、L4↔L9 pairとL5↔L8 pairはPASS、4wayはFAIL（class rows 16/16/16/16、141 matched cases、16 failures）。condition/expected/expected_preserved不足は0件。基本overlayにはprimary-treeの1 L8行から6 caller L9行への一対一不一致（1 unresolved L8 ref、6 unreferenced L9 rows）と、`SEC003-L8-OPERATION-DEFER`の空finding owner導出が残った。この空findingを埋めるfindingは作らず、局所function出力とsystem observationの違いを保持した。
 
@@ -36,3 +36,12 @@ PR #4007 R1指摘を反映した正本の現状は次のとおり。`operation-d
 R1の実装・統合測定・98旧行保持と50 oracleの静的検証を `pr4007-r1-followup-20261101.json` に追加した。最新main `569bde0bc5792349f0833461f0bb1bb6db33c592` との一時squash overlayでもL4/L9・L5/L8 pairはPASS、4wayは0 matched/79 failures、validate 200/0、stale 0を実測した。これは完全な4way合格を示さず、L5/L8後続pairを要する中間状態である。
 
 追補後にremote main refが`569bde0`から`6a7fbfbe134e9163976fa67319044fa0bc03973f`へ動いたため、最新refからの再測定を別記録 `pr4007-r1-main-overlay-r2-20261101.json` に追加した。最新overlay tree `9001bccd3806146018309ca2b1f0d8e914897ce7`でもpairはPASS、validate 201/0、stale 0、check-childはpartial-markerにより0 matched/79 failuresだった。先行569bde0 measurementは時点証拠として残す。
+
+
+### R1追加追補：50 L9 caseの行別条件
+
+PR #4007 R1で追加した50 L9 rowがID以外に同じ内容となっていたため、対応する既存L8 50 caseの入力差分を行固有の`condition`として抽象化した。tenant適用性のnull/非適用、side側の各identity memberのnull/競合、owner material別stale、connection member別不一致、operation別未許可、fallback unknown/nullを区別する。fixture値やL8 expected resultはL9 expectedへ転記していない。L9 rowの`source_derived_condition`は従前の広いsystem条件を保持し、`input_condition`/`condition`は対応入力の識別を表す。`rowwise_candidate_ref`と`case_input_ref`で、既存設計artifactのcandidate ID、L9 row、L8 caseを一意に結んでいる。
+
+`validate_pr4007_r1_oracle_uniqueness.py`は50対応の一意性、case conditionの一意性、L8 JSON pointerの解決、rowwise artifact内のfunction/class対応、L3/L10/L4 source pointerの実在とexpected/class値のL4一致、従前98行の保持を検査する。結果は`pr4007-r1-oracle-uniqueness-validation.json`に保存した。50条件/50 L8対象、従前98行、合計148行で静的検証PASS。
+
+統合candidate builderは正本L9の50 rowを再複製せず、同じcandidate ID↔L8 caseをchecker overlayへ接続する。実際の一時overlay結果は`pr4007-r1-case-specific-overlay-check-child.json`に保存した。L4/L9・L5/L8 pairはPASS、4wayは141 matched/10 failures。内訳はoperation-deferの局所L8 unknownとL9 system absentの不一致、空class参照とL8 integration refの各1件、primary-tree callerの6件が一対一で未参照である。これらは修正済みとせずFAILのまま記録する。

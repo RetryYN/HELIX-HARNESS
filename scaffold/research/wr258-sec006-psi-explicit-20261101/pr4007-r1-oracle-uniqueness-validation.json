@@ -1,0 +1,375 @@
+{
+  "schema": "wr258-pr4007-r1-oracle-uniqueness-check.v1",
+  "evidence_kind": "scaffold",
+  "authority_effect": "none",
+  "passed": true,
+  "baseline_revision": "cf983f81ff09cd90fb3f8f781bdb7c7445923ee6",
+  "counts": {
+    "old_rows": 98,
+    "new_rows": 50,
+    "total_l9_rows": 148,
+    "unique_input_conditions": 50,
+    "unique_l8_targets": 50
+  },
+  "source_sha256": {
+    "docs/helix-security/L3-requirements/functional-requirements.json": "e4eeb70cc303e44199c7d898281e91c22dba89b47666353b9c80a4c634e898b5",
+    "docs/helix-security/L10-verification/functional-verification.json": "e6da7eaff29a623b5d069801280c295d9dd7cc43b51d9cde25b12a8110e5072a",
+    "docs/helix-security/L4-basic-design/project-scope-isolation.json": "16d4fc5e3fcf0c677703b694b538f6d8f5542db36291850ed7f72865f0d9c72c",
+    "docs/helix-security/L8-unit-verification/project-scope-isolation.json": "6d093e482b013e733bc3eb5950aef5b8385b3288dc85bbcb9854bea92830900d",
+    "docs/helix-security/L9-integration-verification/project-scope-isolation.json": "8cd71128dd5c3e7e4efe0c685e5ad00ad847deb9ea3fa2d311e0202e6f9b7c9b",
+    "scaffold/research/wr258-sec006-psi-explicit-20261101/rowwise-integration-design.json": "567ba03eff6607c3603b10c9bb443bf06c890364c0aa2106299cc92a81583004"
+  },
+  "row_mapping": [
+    {
+      "l9_id": "SEC003-WR258-L9-ORACLE-001",
+      "l8_id": "SEC003-L8-SIDE-NULL-PROJECT",
+      "l8_pointer": "/cases/0/negative_cases/0",
+      "class_id": "SEC003-F01-IDENTITY-MISSING",
+      "condition": "origin側のprojectが明示nullであり、必須のidentity対応を確定できない。"
+    },
+    {
+      "l9_id": "SEC003-WR258-L9-ORACLE-002",
+      "l8_id": "SEC003-L8-SIDE-CONFLICT-PROJECT",
+      "l8_pointer": "/cases/0/negative_cases/1",
+      "class_id": "SEC003-F01-IDENTITY-CONFLICT",
+      "condition": "origin側のprojectが独立した期待値と不一致であり、他軸で補完せずscope対応を扱う。"
+    },
+    {
+      "l9_id": "SEC003-WR258-L9-ORACLE-003",
+      "l8_id": "SEC003-L8-SIDE-NULL-TENANT",
+      "l8_pointer": "/cases/0/negative_cases/2",
+      "class_id": "SEC003-F01-IDENTITY-MISSING",
+      "condition": "origin側のtenantが明示nullであり、必須のidentity対応を確定できない。"
+    },
+    {
+      "l9_id": "SEC003-WR258-L9-ORACLE-004",
+      "l8_id": "SEC003-L8-SIDE-CONFLICT-TENANT",
+      "l8_pointer": "/cases/0/negative_cases/3",
+      "class_id": "SEC003-F01-IDENTITY-CONFLICT",
+      "condition": "origin側のtenantが独立した期待値と不一致であり、他軸で補完せずscope対応を扱う。"
+    },
+    {
+      "l9_id": "SEC003-WR258-L9-ORACLE-005",
+      "l8_id": "SEC003-L8-SIDE-NULL-ENVIRONMENT",
+      "l8_pointer": "/cases/0/negative_cases/4",
+      "class_id": "SEC003-F01-IDENTITY-MISSING",
+      "condition": "origin側のenvironmentが明示nullであり、必須のidentity対応を確定できない。"
+    },
+    {
+      "l9_id": "SEC003-WR258-L9-ORACLE-006",
+      "l8_id": "SEC003-L8-SIDE-CONFLICT-ENVIRONMENT",
+      "l8_pointer": "/cases/0/negative_cases/5",
+      "class_id": "SEC003-F01-IDENTITY-CONFLICT",
+      "condition": "origin側のenvironmentが独立した期待値と不一致であり、他軸で補完せずscope対応を扱う。"
+    },
+    {
+      "l9_id": "SEC003-WR258-L9-ORACLE-007",
+      "l8_id": "SEC003-L8-SIDE-NULL-ASSIGNMENT",
+      "l8_pointer": "/cases/0/negative_cases/6",
+      "class_id": "SEC003-F01-IDENTITY-MISSING",
+      "condition": "origin側のassignmentが明示nullであり、必須のidentity対応を確定できない。"
+    },
+    {
+      "l9_id": "SEC003-WR258-L9-ORACLE-008",
+      "l8_id": "SEC003-L8-SIDE-CONFLICT-ASSIGNMENT",
+      "l8_pointer": "/cases/0/negative_cases/7",
+      "class_id": "SEC003-F01-IDENTITY-CONFLICT",
+      "condition": "origin側のassignmentが独立した期待値と不一致であり、他軸で補完せずscope対応を扱う。"
+    },
+    {
+      "l9_id": "SEC003-WR258-L9-ORACLE-009",
+      "l8_id": "SEC003-L8-SIDE-NULL-WORKTREE",
+      "l8_pointer": "/cases/0/negative_cases/8",
+      "class_id": "SEC003-F01-IDENTITY-MISSING",
+      "condition": "origin側のworktreeが明示nullであり、必須のidentity対応を確定できない。"
+    },
+    {
+      "l9_id": "SEC003-WR258-L9-ORACLE-010",
+      "l8_id": "SEC003-L8-SIDE-CONFLICT-WORKTREE",
+      "l8_pointer": "/cases/0/negative_cases/9",
+      "class_id": "SEC003-F01-IDENTITY-CONFLICT",
+      "condition": "origin側のworktreeが独立した期待値と不一致であり、他軸で補完せずscope対応を扱う。"
+    },
+    {
+      "l9_id": "SEC003-WR258-L9-ORACLE-011",
+      "l8_id": "SEC003-L8-SIDE-NULL-REVISION",
+      "l8_pointer": "/cases/0/negative_cases/10",
+      "class_id": "SEC003-F01-IDENTITY-MISSING",
+      "condition": "origin側のrevisionが明示nullであり、必須のidentity対応を確定できない。"
+    },
+    {
+      "l9_id": "SEC003-WR258-L9-ORACLE-012",
+      "l8_id": "SEC003-L8-SIDE-CONFLICT-REVISION",
+      "l8_pointer": "/cases/0/negative_cases/11",
+      "class_id": "SEC003-F01-IDENTITY-CONFLICT",
+      "condition": "origin側のrevisionが独立した期待値と不一致であり、他軸で補完せずscope対応を扱う。"
+    },
+    {
+      "l9_id": "SEC003-WR258-L9-ORACLE-013",
+      "l8_id": "SEC003-L8-SIDE-INVENTED",
+      "l8_pointer": "/cases/0/negative_cases/12",
+      "class_id": "SEC003-F01-TENANT-INVENTED",
+      "condition": "origin側tenantが非適用と示される一方、request originにはtenant値が存在する。"
+    },
+    {
+      "l9_id": "SEC003-WR258-L9-ORACLE-014",
+      "l8_id": "SEC003-L8-SIDE-UNKNOWN-VALUES",
+      "l8_pointer": "/cases/0/negative_cases/13",
+      "class_id": "SEC003-F01-TENANT-APPLICABILITY-UNRESOLVED",
+      "condition": "origin_tenant_applicableが明示nullであり、tenant適用性を確定できない。"
+    },
+    {
+      "l9_id": "SEC003-WR258-L9-ORACLE-015",
+      "l8_id": "SEC003-L8-SIDE-NONAPPLICABLE-ABSENT",
+      "l8_pointer": "/cases/0/negative_cases/14",
+      "class_id": "SEC003-F01-IDENTITY-MISSING",
+      "condition": "origin tenantが非適用と示され、request originからtenant memberが省略されている。"
+    },
+    {
+      "l9_id": "SEC003-WR258-L9-ORACLE-016",
+      "l8_id": "SEC003-L8-SIDE-UNKNOWN-SIDE",
+      "l8_pointer": "/cases/0/negative_cases/15",
+      "class_id": "SEC003-F01-SIDE-INPUT-UNRESOLVED",
+      "condition": "side selectorがorigin/target以外の値であり、比較する側を選べない。"
+    },
+    {
+      "l9_id": "SEC003-WR258-L9-ORACLE-017",
+      "l8_id": "SEC003-L8-SIDE-EXPECTED-NULL",
+      "l8_pointer": "/cases/0/negative_cases/16",
+      "class_id": "SEC003-F01-IDENTITY-MISSING",
+      "condition": "request originは存在するが、independent expected originのproject memberが明示nullである。"
+    },
+    {
+      "l9_id": "SEC003-WR258-L9-ORACLE-018",
+      "l8_id": "SEC003-L8-ASSET-CONFLICT-PROJECT",
+      "l8_pointer": "/cases/0/negative_cases/17",
+      "class_id": "SEC003-F01-IDENTITY-CONFLICT",
+      "condition": "asset_scope.projectが比較対象のexpected targetと不一致であり、state assetのscopeを別軸から補完しない。"
+    },
+    {
+      "l9_id": "SEC003-WR258-L9-ORACLE-019",
+      "l8_id": "SEC003-L8-ASSET-CONFLICT-TENANT",
+      "l8_pointer": "/cases/0/negative_cases/18",
+      "class_id": "SEC003-F01-IDENTITY-CONFLICT",
+      "condition": "asset_scope.tenantが比較対象のexpected targetと不一致であり、state assetのscopeを別軸から補完しない。"
+    },
+    {
+      "l9_id": "SEC003-WR258-L9-ORACLE-020",
+      "l8_id": "SEC003-L8-ASSET-CONFLICT-ENVIRONMENT",
+      "l8_pointer": "/cases/0/negative_cases/19",
+      "class_id": "SEC003-F01-IDENTITY-CONFLICT",
+      "condition": "asset_scope.environmentが比較対象のexpected targetと不一致であり、state assetのscopeを別軸から補完しない。"
+    },
+    {
+      "l9_id": "SEC003-WR258-L9-ORACLE-021",
+      "l8_id": "SEC003-L8-ASSET-CONFLICT-ASSIGNMENT",
+      "l8_pointer": "/cases/0/negative_cases/20",
+      "class_id": "SEC003-F01-IDENTITY-CONFLICT",
+      "condition": "asset_scope.assignmentが比較対象のexpected targetと不一致であり、state assetのscopeを別軸から補完しない。"
+    },
+    {
+      "l9_id": "SEC003-WR258-L9-ORACLE-022",
+      "l8_id": "SEC003-L8-ASSET-CONFLICT-WORKTREE",
+      "l8_pointer": "/cases/0/negative_cases/21",
+      "class_id": "SEC003-F01-IDENTITY-CONFLICT",
+      "condition": "asset_scope.worktreeが比較対象のexpected targetと不一致であり、state assetのscopeを別軸から補完しない。"
+    },
+    {
+      "l9_id": "SEC003-WR258-L9-ORACLE-023",
+      "l8_id": "SEC003-L8-ASSET-CONFLICT-REVISION",
+      "l8_pointer": "/cases/0/negative_cases/22",
+      "class_id": "SEC003-F01-IDENTITY-CONFLICT",
+      "condition": "asset_scope.revisionが比較対象のexpected targetと不一致であり、state assetのscopeを別軸から補完しない。"
+    },
+    {
+      "l9_id": "SEC003-WR258-L9-ORACLE-024",
+      "l8_id": "SEC003-L8-ASSET-UNKNOWN-KIND",
+      "l8_pointer": "/cases/0/negative_cases/23",
+      "class_id": "SEC003-F01-ASSET-KIND-UNRESOLVED",
+      "condition": "asset_kindが既知のasset種別に解決せず、asset scope判定を未解決に保つ。"
+    },
+    {
+      "l9_id": "SEC003-WR258-L9-ORACLE-025",
+      "l8_id": "SEC003-L8-OWNERS-STALE-OS",
+      "l8_pointer": "/cases/0/negative_cases/24",
+      "class_id": "SEC003-F01-OWNER-MATERIAL-UNRESOLVED",
+      "condition": "OS owner materialだけがstaleであり、他ownerのcurrent状態から当該materialを補完しない。"
+    },
+    {
+      "l9_id": "SEC003-WR258-L9-ORACLE-026",
+      "l8_id": "SEC003-L8-OWNERS-STALE-INFRA",
+      "l8_pointer": "/cases/0/negative_cases/25",
+      "class_id": "SEC003-F01-OWNER-MATERIAL-UNRESOLVED",
+      "condition": "INFRA owner materialだけがstaleであり、他ownerのcurrent状態から当該materialを補完しない。"
+    },
+    {
+      "l9_id": "SEC003-WR258-L9-ORACLE-027",
+      "l8_id": "SEC003-L8-OWNERS-STALE-CONNECT",
+      "l8_pointer": "/cases/0/negative_cases/26",
+      "class_id": "SEC003-F01-OWNER-MATERIAL-UNRESOLVED",
+      "condition": "CONNECT owner materialだけがstaleであり、他ownerのcurrent状態から当該materialを補完しない。"
+    },
+    {
+      "l9_id": "SEC003-WR258-L9-ORACLE-028",
+      "l8_id": "SEC003-L8-SIDE-TARGET-NULL",
+      "l8_pointer": "/cases/0/negative_cases/27",
+      "class_id": "SEC003-F01-IDENTITY-MISSING",
+      "condition": "request targetのproject memberが明示nullである。"
+    },
+    {
+      "l9_id": "SEC003-WR258-L9-ORACLE-029",
+      "l8_id": "SEC003-L8-SIDE-ORIGIN-MULTITARGET",
+      "l8_pointer": "/cases/0/negative_cases/28",
+      "class_id": "SEC003-F01-IDENTITY-MISSING",
+      "condition": "request originが単一recordでなく複数候補の配列として与えられる。"
+    },
+    {
+      "l9_id": "SEC003-WR258-L9-ORACLE-030",
+      "l8_id": "SEC003-L8-CONNECTION-ABSENT",
+      "l8_pointer": "/cases/1/negative_cases/0",
+      "class_id": "SEC003-F02-EXPLICIT-CONNECTION-ABSENT",
+      "condition": "connection_stateがabsentであり、全体system判定では明示接続不在として扱う。"
+    },
+    {
+      "l9_id": "SEC003-WR258-L9-ORACLE-031",
+      "l8_id": "SEC003-L8-CONNECTION-UNKNOWN",
+      "l8_pointer": "/cases/1/negative_cases/1",
+      "class_id": "SEC003-F02-CONNECTION-MATERIAL-UNRESOLVED",
+      "condition": "connection_stateがunknownであり、接続materialを確定できない状態を保持する。"
+    },
+    {
+      "l9_id": "SEC003-WR258-L9-ORACLE-032",
+      "l8_id": "SEC003-L8-CONNECTION-ENUM",
+      "l8_pointer": "/cases/1/negative_cases/2",
+      "class_id": "SEC003-F02-CONNECTION-MATERIAL-UNRESOLVED",
+      "condition": "connection_stateに未知のenum値が入り、既知状態へ読み替えない。"
+    },
+    {
+      "l9_id": "SEC003-WR258-L9-ORACLE-033",
+      "l8_id": "SEC003-L8-CONNECTION-CONTENT-IDENTITY",
+      "l8_pointer": "/cases/1/negative_cases/3",
+      "class_id": "SEC003-F02-CONNECTION-MATERIAL-CONFLICT",
+      "condition": "request connectionのidentity memberがindependent expected connectionの同memberと不一致であり、join結果を未解決/矛盾として保持する。"
+    },
+    {
+      "l9_id": "SEC003-WR258-L9-ORACLE-034",
+      "l8_id": "SEC003-L8-CONNECTION-CONTENT-REVISION",
+      "l8_pointer": "/cases/1/negative_cases/4",
+      "class_id": "SEC003-F02-CONNECTION-MATERIAL-CONFLICT",
+      "condition": "request connectionのrevision memberがindependent expected connectionの同memberと不一致であり、join結果を未解決/矛盾として保持する。"
+    },
+    {
+      "l9_id": "SEC003-WR258-L9-ORACLE-035",
+      "l8_id": "SEC003-L8-CONNECTION-CONTENT-ALLOWED_OPERATIONS",
+      "l8_pointer": "/cases/1/negative_cases/5",
+      "class_id": "SEC003-F02-CONNECTION-MATERIAL-CONFLICT",
+      "condition": "request connectionのallowed_operations memberがindependent expected connectionの同memberと不一致であり、join結果を未解決/矛盾として保持する。"
+    },
+    {
+      "l9_id": "SEC003-WR258-L9-ORACLE-036",
+      "l8_id": "SEC003-L8-CONNECTION-JOIN-ORIGIN",
+      "l8_pointer": "/cases/1/negative_cases/6",
+      "class_id": "SEC003-F02-CONNECTION-MATERIAL-CONFLICT",
+      "condition": "request origin scopeとconnection同側scopeが一致せず、connection joinを成立扱いにしない。"
+    },
+    {
+      "l9_id": "SEC003-WR258-L9-ORACLE-037",
+      "l8_id": "SEC003-L8-CONNECTION-JOIN-TARGET",
+      "l8_pointer": "/cases/1/negative_cases/7",
+      "class_id": "SEC003-F02-CONNECTION-MATERIAL-CONFLICT",
+      "condition": "request target scopeとconnection同側scopeが一致せず、connection joinを成立扱いにしない。"
+    },
+    {
+      "l9_id": "SEC003-WR258-L9-ORACLE-038",
+      "l8_id": "SEC003-L8-CONNECTION-IDENTITY-ABSENT",
+      "l8_pointer": "/cases/1/negative_cases/8",
+      "class_id": "SEC003-F02-CONNECTION-MATERIAL-UNRESOLVED",
+      "condition": "request connectionのidentity memberが欠落し、独立expected connectionへの同一性を解決できない。"
+    },
+    {
+      "l9_id": "SEC003-WR258-L9-ORACLE-039",
+      "l8_id": "SEC003-L8-OPERATION-WRITE",
+      "l8_pointer": "/cases/1/negative_cases/9",
+      "class_id": "SEC003-F02-OPERATION-SCOPE",
+      "condition": "requested operation=writeはallowed_operationsに含まれず、read許可を当該operationへ拡張しない。"
+    },
+    {
+      "l9_id": "SEC003-WR258-L9-ORACLE-040",
+      "l8_id": "SEC003-L8-OPERATION-EXECUTE",
+      "l8_pointer": "/cases/1/negative_cases/10",
+      "class_id": "SEC003-F02-OPERATION-SCOPE",
+      "condition": "requested operation=executeはallowed_operationsに含まれず、read許可を当該operationへ拡張しない。"
+    },
+    {
+      "l9_id": "SEC003-WR258-L9-ORACLE-041",
+      "l8_id": "SEC003-L8-OPERATION-NETWORK",
+      "l8_pointer": "/cases/1/negative_cases/11",
+      "class_id": "SEC003-F02-OPERATION-SCOPE",
+      "condition": "requested operation=networkはallowed_operationsに含まれず、read許可を当該operationへ拡張しない。"
+    },
+    {
+      "l9_id": "SEC003-WR258-L9-ORACLE-042",
+      "l8_id": "SEC003-L8-OPERATION-STATE",
+      "l8_pointer": "/cases/1/negative_cases/12",
+      "class_id": "SEC003-F02-OPERATION-SCOPE",
+      "condition": "requested operation=stateはallowed_operationsに含まれず、read許可を当該operationへ拡張しない。"
+    },
+    {
+      "l9_id": "SEC003-WR258-L9-ORACLE-043",
+      "l8_id": "SEC003-L8-OPERATION-CREDENTIAL",
+      "l8_pointer": "/cases/1/negative_cases/13",
+      "class_id": "SEC003-F02-OPERATION-SCOPE",
+      "condition": "requested operation=credentialはallowed_operationsに含まれず、read許可を当該operationへ拡張しない。"
+    },
+    {
+      "l9_id": "SEC003-WR258-L9-ORACLE-044",
+      "l8_id": "SEC003-L8-OPERATION-ARTIFACT",
+      "l8_pointer": "/cases/1/negative_cases/14",
+      "class_id": "SEC003-F02-OPERATION-SCOPE",
+      "condition": "requested operation=artifactはallowed_operationsに含まれず、read許可を当該operationへ拡張しない。"
+    },
+    {
+      "l9_id": "SEC003-WR258-L9-ORACLE-045",
+      "l8_id": "SEC003-L8-OPERATION-UNKNOWN",
+      "l8_pointer": "/cases/1/negative_cases/15",
+      "class_id": "SEC003-F02-OPERATION-INPUT-UNRESOLVED",
+      "condition": "operation値が未知であり、既知operationへ読み替えてscopeを確定しない。"
+    },
+    {
+      "l9_id": "SEC003-WR258-L9-ORACLE-046",
+      "l8_id": "SEC003-L8-OPERATION-DEFER",
+      "l8_pointer": "/cases/1/negative_cases/16",
+      "class_id": "SEC003-F02-EXPLICIT-CONNECTION-ABSENT",
+      "condition": "operation=readに対してconnection_state=absentであり、局所deferをsystem許可へ拡張しない。"
+    },
+    {
+      "l9_id": "SEC003-WR258-L9-ORACLE-047",
+      "l8_id": "SEC003-L8-OPERATION-EMPTY",
+      "l8_pointer": "/cases/1/negative_cases/17",
+      "class_id": "SEC003-F02-OPERATION-SCOPE",
+      "condition": "connection allowed_operationsが空であり、requested readを許可集合に含むと扱わない。"
+    },
+    {
+      "l9_id": "SEC003-WR258-L9-ORACLE-048",
+      "l8_id": "SEC003-L8-OPERATION-INVALID-LIST",
+      "l8_pointer": "/cases/1/negative_cases/18",
+      "class_id": "SEC003-F02-CONNECTION-MATERIAL-UNRESOLVED",
+      "condition": "requested operation=listはallowed_operationsに含まれず、read許可を当該operationへ拡張しない。"
+    },
+    {
+      "l9_id": "SEC003-WR258-L9-ORACLE-049",
+      "l8_id": "SEC003-L8-FALLBACK-UNKNOWN",
+      "l8_pointer": "/cases/1/negative_cases/21",
+      "class_id": "SEC003-F02-FALLBACK-INPUT-UNRESOLVED",
+      "condition": "fallback値が未知であり、既知のfallback先へ読み替えない。"
+    },
+    {
+      "l9_id": "SEC003-WR258-L9-ORACLE-050",
+      "l8_id": "SEC003-L8-FALLBACK-NULL",
+      "l8_pointer": "/cases/1/negative_cases/22",
+      "class_id": "SEC003-F02-FALLBACK-INPUT-UNRESOLVED",
+      "condition": "fallbackが明示nullであり、既定先で補完しない。"
+    }
+  ],
+  "failures": []
+}

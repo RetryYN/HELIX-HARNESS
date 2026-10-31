@@ -6776,7 +6776,7 @@
           "design_ref": "HELIXSECURITY-L4-003-F01",
           "system_oracle_ref": "HELIXSECURITY-L10-003-F01",
           "negative_class_ref": "SEC003-F01-IDENTITY-MISSING",
-          "condition": "必要なidentity軸が欠落し、primary tree/別projectで補完せずscope対応を未解決に保つ。",
+          "condition": "origin側のprojectが明示nullであり、必須のidentity対応を確定できない。",
           "expected_classification": "scope_unresolved",
           "expected": {
             "condition": "scope_unresolved",
@@ -6835,7 +6835,16 @@
           ],
           "execution_state": "not_executed",
           "actual_observation": "not_observed",
-          "candidate_disposition": "source_derived_system_oracle_not_executed"
+          "candidate_disposition": "source_derived_system_oracle_not_executed",
+          "case_input_ref": {
+            "path": "docs/helix-security/L8-unit-verification/project-scope-isolation.json",
+            "pointer": "/cases/0/negative_cases/0",
+            "case_id": "SEC003-L8-SIDE-NULL-PROJECT",
+            "role": "対応caseと入力条件の識別に使用。expected/classの導出には使用しない。"
+          },
+          "input_condition": "origin側のprojectが明示nullであり、必須のidentity対応を確定できない。",
+          "source_derived_condition": "必要なidentity軸が欠落し、primary tree/別projectで補完せずscope対応を未解決に保つ。",
+          "rowwise_candidate_ref": "WR258-L9-CAND-001"
         },
         {
           "id": "SEC003-WR258-L9-ORACLE-002",
@@ -6845,7 +6854,7 @@
           "design_ref": "HELIXSECURITY-L4-003-F01",
           "system_oracle_ref": "HELIXSECURITY-L10-003-F01",
           "negative_class_ref": "SEC003-F01-IDENTITY-CONFLICT",
-          "condition": "明示されたidentity軸の既知値どうしが相反し、同一scope対応を成立させない。",
+          "condition": "origin側のprojectが独立した期待値と不一致であり、他軸で補完せずscope対応を扱う。",
           "expected_classification": "isolation_violation",
           "expected": {
             "condition": "isolation_violation",
@@ -6904,7 +6913,16 @@
           ],
           "execution_state": "not_executed",
           "actual_observation": "not_observed",
-          "candidate_disposition": "source_derived_system_oracle_not_executed"
+          "candidate_disposition": "source_derived_system_oracle_not_executed",
+          "case_input_ref": {
+            "path": "docs/helix-security/L8-unit-verification/project-scope-isolation.json",
+            "pointer": "/cases/0/negative_cases/1",
+            "case_id": "SEC003-L8-SIDE-CONFLICT-PROJECT",
+            "role": "対応caseと入力条件の識別に使用。expected/classの導出には使用しない。"
+          },
+          "input_condition": "origin側のprojectが独立した期待値と不一致であり、他軸で補完せずscope対応を扱う。",
+          "source_derived_condition": "明示されたidentity軸の既知値どうしが相反し、同一scope対応を成立させない。",
+          "rowwise_candidate_ref": "WR258-L9-CAND-002"
         },
         {
           "id": "SEC003-WR258-L9-ORACLE-003",
@@ -6914,7 +6932,7 @@
           "design_ref": "HELIXSECURITY-L4-003-F01",
           "system_oracle_ref": "HELIXSECURITY-L10-003-F01",
           "negative_class_ref": "SEC003-F01-IDENTITY-MISSING",
-          "condition": "必要なidentity軸が欠落し、primary tree/別projectで補完せずscope対応を未解決に保つ。",
+          "condition": "origin側のtenantが明示nullであり、必須のidentity対応を確定できない。",
           "expected_classification": "scope_unresolved",
           "expected": {
             "condition": "scope_unresolved",
@@ -6973,7 +6991,16 @@
           ],
           "execution_state": "not_executed",
           "actual_observation": "not_observed",
-          "candidate_disposition": "source_derived_system_oracle_not_executed"
+          "candidate_disposition": "source_derived_system_oracle_not_executed",
+          "case_input_ref": {
+            "path": "docs/helix-security/L8-unit-verification/project-scope-isolation.json",
+            "pointer": "/cases/0/negative_cases/2",
+            "case_id": "SEC003-L8-SIDE-NULL-TENANT",
+            "role": "対応caseと入力条件の識別に使用。expected/classの導出には使用しない。"
+          },
+          "input_condition": "origin側のtenantが明示nullであり、必須のidentity対応を確定できない。",
+          "source_derived_condition": "必要なidentity軸が欠落し、primary tree/別projectで補完せずscope対応を未解決に保つ。",
+          "rowwise_candidate_ref": "WR258-L9-CAND-003"
         },
         {
           "id": "SEC003-WR258-L9-ORACLE-004",
@@ -6983,7 +7010,7 @@
           "design_ref": "HELIXSECURITY-L4-003-F01",
           "system_oracle_ref": "HELIXSECURITY-L10-003-F01",
           "negative_class_ref": "SEC003-F01-IDENTITY-CONFLICT",
-          "condition": "明示されたidentity軸の既知値どうしが相反し、同一scope対応を成立させない。",
+          "condition": "origin側のtenantが独立した期待値と不一致であり、他軸で補完せずscope対応を扱う。",
           "expected_classification": "isolation_violation",
           "expected": {
             "condition": "isolation_violation",
@@ -7042,7 +7069,16 @@
           ],
           "execution_state": "not_executed",
           "actual_observation": "not_observed",
-          "candidate_disposition": "source_derived_system_oracle_not_executed"
+          "candidate_disposition": "source_derived_system_oracle_not_executed",
+          "case_input_ref": {
+            "path": "docs/helix-security/L8-unit-verification/project-scope-isolation.json",
+            "pointer": "/cases/0/negative_cases/3",
+            "case_id": "SEC003-L8-SIDE-CONFLICT-TENANT",
+            "role": "対応caseと入力条件の識別に使用。expected/classの導出には使用しない。"
+          },
+          "input_condition": "origin側のtenantが独立した期待値と不一致であり、他軸で補完せずscope対応を扱う。",
+          "source_derived_condition": "明示されたidentity軸の既知値どうしが相反し、同一scope対応を成立させない。",
+          "rowwise_candidate_ref": "WR258-L9-CAND-004"
         },
         {
           "id": "SEC003-WR258-L9-ORACLE-005",
@@ -7052,7 +7088,7 @@
           "design_ref": "HELIXSECURITY-L4-003-F01",
           "system_oracle_ref": "HELIXSECURITY-L10-003-F01",
           "negative_class_ref": "SEC003-F01-IDENTITY-MISSING",
-          "condition": "必要なidentity軸が欠落し、primary tree/別projectで補完せずscope対応を未解決に保つ。",
+          "condition": "origin側のenvironmentが明示nullであり、必須のidentity対応を確定できない。",
           "expected_classification": "scope_unresolved",
           "expected": {
             "condition": "scope_unresolved",
@@ -7111,7 +7147,16 @@
           ],
           "execution_state": "not_executed",
           "actual_observation": "not_observed",
-          "candidate_disposition": "source_derived_system_oracle_not_executed"
+          "candidate_disposition": "source_derived_system_oracle_not_executed",
+          "case_input_ref": {
+            "path": "docs/helix-security/L8-unit-verification/project-scope-isolation.json",
+            "pointer": "/cases/0/negative_cases/4",
+            "case_id": "SEC003-L8-SIDE-NULL-ENVIRONMENT",
+            "role": "対応caseと入力条件の識別に使用。expected/classの導出には使用しない。"
+          },
+          "input_condition": "origin側のenvironmentが明示nullであり、必須のidentity対応を確定できない。",
+          "source_derived_condition": "必要なidentity軸が欠落し、primary tree/別projectで補完せずscope対応を未解決に保つ。",
+          "rowwise_candidate_ref": "WR258-L9-CAND-005"
         },
         {
           "id": "SEC003-WR258-L9-ORACLE-006",
@@ -7121,7 +7166,7 @@
           "design_ref": "HELIXSECURITY-L4-003-F01",
           "system_oracle_ref": "HELIXSECURITY-L10-003-F01",
           "negative_class_ref": "SEC003-F01-IDENTITY-CONFLICT",
-          "condition": "明示されたidentity軸の既知値どうしが相反し、同一scope対応を成立させない。",
+          "condition": "origin側のenvironmentが独立した期待値と不一致であり、他軸で補完せずscope対応を扱う。",
           "expected_classification": "isolation_violation",
           "expected": {
             "condition": "isolation_violation",
@@ -7180,7 +7225,16 @@
           ],
           "execution_state": "not_executed",
           "actual_observation": "not_observed",
-          "candidate_disposition": "source_derived_system_oracle_not_executed"
+          "candidate_disposition": "source_derived_system_oracle_not_executed",
+          "case_input_ref": {
+            "path": "docs/helix-security/L8-unit-verification/project-scope-isolation.json",
+            "pointer": "/cases/0/negative_cases/5",
+            "case_id": "SEC003-L8-SIDE-CONFLICT-ENVIRONMENT",
+            "role": "対応caseと入力条件の識別に使用。expected/classの導出には使用しない。"
+          },
+          "input_condition": "origin側のenvironmentが独立した期待値と不一致であり、他軸で補完せずscope対応を扱う。",
+          "source_derived_condition": "明示されたidentity軸の既知値どうしが相反し、同一scope対応を成立させない。",
+          "rowwise_candidate_ref": "WR258-L9-CAND-006"
         },
         {
           "id": "SEC003-WR258-L9-ORACLE-007",
@@ -7190,7 +7244,7 @@
           "design_ref": "HELIXSECURITY-L4-003-F01",
           "system_oracle_ref": "HELIXSECURITY-L10-003-F01",
           "negative_class_ref": "SEC003-F01-IDENTITY-MISSING",
-          "condition": "必要なidentity軸が欠落し、primary tree/別projectで補完せずscope対応を未解決に保つ。",
+          "condition": "origin側のassignmentが明示nullであり、必須のidentity対応を確定できない。",
           "expected_classification": "scope_unresolved",
           "expected": {
             "condition": "scope_unresolved",
@@ -7249,7 +7303,16 @@
           ],
           "execution_state": "not_executed",
           "actual_observation": "not_observed",
-          "candidate_disposition": "source_derived_system_oracle_not_executed"
+          "candidate_disposition": "source_derived_system_oracle_not_executed",
+          "case_input_ref": {
+            "path": "docs/helix-security/L8-unit-verification/project-scope-isolation.json",
+            "pointer": "/cases/0/negative_cases/6",
+            "case_id": "SEC003-L8-SIDE-NULL-ASSIGNMENT",
+            "role": "対応caseと入力条件の識別に使用。expected/classの導出には使用しない。"
+          },
+          "input_condition": "origin側のassignmentが明示nullであり、必須のidentity対応を確定できない。",
+          "source_derived_condition": "必要なidentity軸が欠落し、primary tree/別projectで補完せずscope対応を未解決に保つ。",
+          "rowwise_candidate_ref": "WR258-L9-CAND-007"
         },
         {
           "id": "SEC003-WR258-L9-ORACLE-008",
@@ -7259,7 +7322,7 @@
           "design_ref": "HELIXSECURITY-L4-003-F01",
           "system_oracle_ref": "HELIXSECURITY-L10-003-F01",
           "negative_class_ref": "SEC003-F01-IDENTITY-CONFLICT",
-          "condition": "明示されたidentity軸の既知値どうしが相反し、同一scope対応を成立させない。",
+          "condition": "origin側のassignmentが独立した期待値と不一致であり、他軸で補完せずscope対応を扱う。",
           "expected_classification": "isolation_violation",
           "expected": {
             "condition": "isolation_violation",
@@ -7318,7 +7381,16 @@
           ],
           "execution_state": "not_executed",
           "actual_observation": "not_observed",
-          "candidate_disposition": "source_derived_system_oracle_not_executed"
+          "candidate_disposition": "source_derived_system_oracle_not_executed",
+          "case_input_ref": {
+            "path": "docs/helix-security/L8-unit-verification/project-scope-isolation.json",
+            "pointer": "/cases/0/negative_cases/7",
+            "case_id": "SEC003-L8-SIDE-CONFLICT-ASSIGNMENT",
+            "role": "対応caseと入力条件の識別に使用。expected/classの導出には使用しない。"
+          },
+          "input_condition": "origin側のassignmentが独立した期待値と不一致であり、他軸で補完せずscope対応を扱う。",
+          "source_derived_condition": "明示されたidentity軸の既知値どうしが相反し、同一scope対応を成立させない。",
+          "rowwise_candidate_ref": "WR258-L9-CAND-008"
         },
         {
           "id": "SEC003-WR258-L9-ORACLE-009",
@@ -7328,7 +7400,7 @@
           "design_ref": "HELIXSECURITY-L4-003-F01",
           "system_oracle_ref": "HELIXSECURITY-L10-003-F01",
           "negative_class_ref": "SEC003-F01-IDENTITY-MISSING",
-          "condition": "必要なidentity軸が欠落し、primary tree/別projectで補完せずscope対応を未解決に保つ。",
+          "condition": "origin側のworktreeが明示nullであり、必須のidentity対応を確定できない。",
           "expected_classification": "scope_unresolved",
           "expected": {
             "condition": "scope_unresolved",
@@ -7387,7 +7459,16 @@
           ],
           "execution_state": "not_executed",
           "actual_observation": "not_observed",
-          "candidate_disposition": "source_derived_system_oracle_not_executed"
+          "candidate_disposition": "source_derived_system_oracle_not_executed",
+          "case_input_ref": {
+            "path": "docs/helix-security/L8-unit-verification/project-scope-isolation.json",
+            "pointer": "/cases/0/negative_cases/8",
+            "case_id": "SEC003-L8-SIDE-NULL-WORKTREE",
+            "role": "対応caseと入力条件の識別に使用。expected/classの導出には使用しない。"
+          },
+          "input_condition": "origin側のworktreeが明示nullであり、必須のidentity対応を確定できない。",
+          "source_derived_condition": "必要なidentity軸が欠落し、primary tree/別projectで補完せずscope対応を未解決に保つ。",
+          "rowwise_candidate_ref": "WR258-L9-CAND-009"
         },
         {
           "id": "SEC003-WR258-L9-ORACLE-010",
@@ -7397,7 +7478,7 @@
           "design_ref": "HELIXSECURITY-L4-003-F01",
           "system_oracle_ref": "HELIXSECURITY-L10-003-F01",
           "negative_class_ref": "SEC003-F01-IDENTITY-CONFLICT",
-          "condition": "明示されたidentity軸の既知値どうしが相反し、同一scope対応を成立させない。",
+          "condition": "origin側のworktreeが独立した期待値と不一致であり、他軸で補完せずscope対応を扱う。",
           "expected_classification": "isolation_violation",
           "expected": {
             "condition": "isolation_violation",
@@ -7456,7 +7537,16 @@
           ],
           "execution_state": "not_executed",
           "actual_observation": "not_observed",
-          "candidate_disposition": "source_derived_system_oracle_not_executed"
+          "candidate_disposition": "source_derived_system_oracle_not_executed",
+          "case_input_ref": {
+            "path": "docs/helix-security/L8-unit-verification/project-scope-isolation.json",
+            "pointer": "/cases/0/negative_cases/9",
+            "case_id": "SEC003-L8-SIDE-CONFLICT-WORKTREE",
+            "role": "対応caseと入力条件の識別に使用。expected/classの導出には使用しない。"
+          },
+          "input_condition": "origin側のworktreeが独立した期待値と不一致であり、他軸で補完せずscope対応を扱う。",
+          "source_derived_condition": "明示されたidentity軸の既知値どうしが相反し、同一scope対応を成立させない。",
+          "rowwise_candidate_ref": "WR258-L9-CAND-010"
         },
         {
           "id": "SEC003-WR258-L9-ORACLE-011",
@@ -7466,7 +7556,7 @@
           "design_ref": "HELIXSECURITY-L4-003-F01",
           "system_oracle_ref": "HELIXSECURITY-L10-003-F01",
           "negative_class_ref": "SEC003-F01-IDENTITY-MISSING",
-          "condition": "必要なidentity軸が欠落し、primary tree/別projectで補完せずscope対応を未解決に保つ。",
+          "condition": "origin側のrevisionが明示nullであり、必須のidentity対応を確定できない。",
           "expected_classification": "scope_unresolved",
           "expected": {
             "condition": "scope_unresolved",
@@ -7525,7 +7615,16 @@
           ],
           "execution_state": "not_executed",
           "actual_observation": "not_observed",
-          "candidate_disposition": "source_derived_system_oracle_not_executed"
+          "candidate_disposition": "source_derived_system_oracle_not_executed",
+          "case_input_ref": {
+            "path": "docs/helix-security/L8-unit-verification/project-scope-isolation.json",
+            "pointer": "/cases/0/negative_cases/10",
+            "case_id": "SEC003-L8-SIDE-NULL-REVISION",
+            "role": "対応caseと入力条件の識別に使用。expected/classの導出には使用しない。"
+          },
+          "input_condition": "origin側のrevisionが明示nullであり、必須のidentity対応を確定できない。",
+          "source_derived_condition": "必要なidentity軸が欠落し、primary tree/別projectで補完せずscope対応を未解決に保つ。",
+          "rowwise_candidate_ref": "WR258-L9-CAND-011"
         },
         {
           "id": "SEC003-WR258-L9-ORACLE-012",
@@ -7535,7 +7634,7 @@
           "design_ref": "HELIXSECURITY-L4-003-F01",
           "system_oracle_ref": "HELIXSECURITY-L10-003-F01",
           "negative_class_ref": "SEC003-F01-IDENTITY-CONFLICT",
-          "condition": "明示されたidentity軸の既知値どうしが相反し、同一scope対応を成立させない。",
+          "condition": "origin側のrevisionが独立した期待値と不一致であり、他軸で補完せずscope対応を扱う。",
           "expected_classification": "isolation_violation",
           "expected": {
             "condition": "isolation_violation",
@@ -7594,7 +7693,16 @@
           ],
           "execution_state": "not_executed",
           "actual_observation": "not_observed",
-          "candidate_disposition": "source_derived_system_oracle_not_executed"
+          "candidate_disposition": "source_derived_system_oracle_not_executed",
+          "case_input_ref": {
+            "path": "docs/helix-security/L8-unit-verification/project-scope-isolation.json",
+            "pointer": "/cases/0/negative_cases/11",
+            "case_id": "SEC003-L8-SIDE-CONFLICT-REVISION",
+            "role": "対応caseと入力条件の識別に使用。expected/classの導出には使用しない。"
+          },
+          "input_condition": "origin側のrevisionが独立した期待値と不一致であり、他軸で補完せずscope対応を扱う。",
+          "source_derived_condition": "明示されたidentity軸の既知値どうしが相反し、同一scope対応を成立させない。",
+          "rowwise_candidate_ref": "WR258-L9-CAND-012"
         },
         {
           "id": "SEC003-WR258-L9-ORACLE-013",
@@ -7604,7 +7712,7 @@
           "design_ref": "HELIXSECURITY-L4-003-F01",
           "system_oracle_ref": "HELIXSECURITY-L10-003-F01",
           "negative_class_ref": "SEC003-F01-TENANT-INVENTED",
-          "condition": "非適用対象へtenantを付与しており、tenant値を生成せず要求scopeに一致しないものとして扱う。",
+          "condition": "origin側tenantが非適用と示される一方、request originにはtenant値が存在する。",
           "expected_classification": "isolation_violation",
           "expected": {
             "condition": "isolation_violation",
@@ -7663,7 +7771,16 @@
           ],
           "execution_state": "not_executed",
           "actual_observation": "not_observed",
-          "candidate_disposition": "source_derived_system_oracle_not_executed"
+          "candidate_disposition": "source_derived_system_oracle_not_executed",
+          "case_input_ref": {
+            "path": "docs/helix-security/L8-unit-verification/project-scope-isolation.json",
+            "pointer": "/cases/0/negative_cases/12",
+            "case_id": "SEC003-L8-SIDE-INVENTED",
+            "role": "対応caseと入力条件の識別に使用。expected/classの導出には使用しない。"
+          },
+          "input_condition": "origin側tenantが非適用と示される一方、request originにはtenant値が存在する。",
+          "source_derived_condition": "非適用対象へtenantを付与しており、tenant値を生成せず要求scopeに一致しないものとして扱う。",
+          "rowwise_candidate_ref": "WR258-L9-CAND-013"
         },
         {
           "id": "SEC003-WR258-L9-ORACLE-014",
@@ -7673,7 +7790,7 @@
           "design_ref": "HELIXSECURITY-L4-003-F01",
           "system_oracle_ref": "HELIXSECURITY-L10-003-F01",
           "negative_class_ref": "SEC003-F01-TENANT-APPLICABILITY-UNRESOLVED",
-          "condition": "tenant適用条件または適用tenant identityが未解決であり、非適用へ推定せず比較を未解決に保つ。",
+          "condition": "origin_tenant_applicableが明示nullであり、tenant適用性を確定できない。",
           "expected_classification": "scope_unresolved",
           "expected": {
             "condition": "scope_unresolved",
@@ -7732,7 +7849,16 @@
           ],
           "execution_state": "not_executed",
           "actual_observation": "not_observed",
-          "candidate_disposition": "source_derived_system_oracle_not_executed"
+          "candidate_disposition": "source_derived_system_oracle_not_executed",
+          "case_input_ref": {
+            "path": "docs/helix-security/L8-unit-verification/project-scope-isolation.json",
+            "pointer": "/cases/0/negative_cases/13",
+            "case_id": "SEC003-L8-SIDE-UNKNOWN-VALUES",
+            "role": "対応caseと入力条件の識別に使用。expected/classの導出には使用しない。"
+          },
+          "input_condition": "origin_tenant_applicableが明示nullであり、tenant適用性を確定できない。",
+          "source_derived_condition": "tenant適用条件または適用tenant identityが未解決であり、非適用へ推定せず比較を未解決に保つ。",
+          "rowwise_candidate_ref": "WR258-L9-CAND-014"
         },
         {
           "id": "SEC003-WR258-L9-ORACLE-015",
@@ -7742,7 +7868,7 @@
           "design_ref": "HELIXSECURITY-L4-003-F01",
           "system_oracle_ref": "HELIXSECURITY-L10-003-F01",
           "negative_class_ref": "SEC003-F01-IDENTITY-MISSING",
-          "condition": "必要なidentity軸が欠落し、primary tree/別projectで補完せずscope対応を未解決に保つ。",
+          "condition": "origin tenantが非適用と示され、request originからtenant memberが省略されている。",
           "expected_classification": "scope_unresolved",
           "expected": {
             "condition": "scope_unresolved",
@@ -7801,7 +7927,16 @@
           ],
           "execution_state": "not_executed",
           "actual_observation": "not_observed",
-          "candidate_disposition": "source_derived_system_oracle_not_executed"
+          "candidate_disposition": "source_derived_system_oracle_not_executed",
+          "case_input_ref": {
+            "path": "docs/helix-security/L8-unit-verification/project-scope-isolation.json",
+            "pointer": "/cases/0/negative_cases/14",
+            "case_id": "SEC003-L8-SIDE-NONAPPLICABLE-ABSENT",
+            "role": "対応caseと入力条件の識別に使用。expected/classの導出には使用しない。"
+          },
+          "input_condition": "origin tenantが非適用と示され、request originからtenant memberが省略されている。",
+          "source_derived_condition": "必要なidentity軸が欠落し、primary tree/別projectで補完せずscope対応を未解決に保つ。",
+          "rowwise_candidate_ref": "WR258-L9-CAND-015"
         },
         {
           "id": "SEC003-WR258-L9-ORACLE-016",
@@ -7811,7 +7946,7 @@
           "design_ref": "HELIXSECURITY-L4-003-F01",
           "system_oracle_ref": "HELIXSECURITY-L10-003-F01",
           "negative_class_ref": "SEC003-F01-SIDE-INPUT-UNRESOLVED",
-          "condition": "sideのidentity比較入力が解決できず、scope対応の照合を未解決に保つ。",
+          "condition": "side selectorがorigin/target以外の値であり、比較する側を選べない。",
           "expected_classification": "scope_unresolved",
           "expected": {
             "condition": "scope_unresolved",
@@ -7870,7 +8005,16 @@
           ],
           "execution_state": "not_executed",
           "actual_observation": "not_observed",
-          "candidate_disposition": "source_derived_system_oracle_not_executed"
+          "candidate_disposition": "source_derived_system_oracle_not_executed",
+          "case_input_ref": {
+            "path": "docs/helix-security/L8-unit-verification/project-scope-isolation.json",
+            "pointer": "/cases/0/negative_cases/15",
+            "case_id": "SEC003-L8-SIDE-UNKNOWN-SIDE",
+            "role": "対応caseと入力条件の識別に使用。expected/classの導出には使用しない。"
+          },
+          "input_condition": "side selectorがorigin/target以外の値であり、比較する側を選べない。",
+          "source_derived_condition": "sideのidentity比較入力が解決できず、scope対応の照合を未解決に保つ。",
+          "rowwise_candidate_ref": "WR258-L9-CAND-016"
         },
         {
           "id": "SEC003-WR258-L9-ORACLE-017",
@@ -7880,7 +8024,7 @@
           "design_ref": "HELIXSECURITY-L4-003-F01",
           "system_oracle_ref": "HELIXSECURITY-L10-003-F01",
           "negative_class_ref": "SEC003-F01-IDENTITY-MISSING",
-          "condition": "必要なidentity軸が欠落し、primary tree/別projectで補完せずscope対応を未解決に保つ。",
+          "condition": "request originは存在するが、independent expected originのproject memberが明示nullである。",
           "expected_classification": "scope_unresolved",
           "expected": {
             "condition": "scope_unresolved",
@@ -7939,7 +8083,16 @@
           ],
           "execution_state": "not_executed",
           "actual_observation": "not_observed",
-          "candidate_disposition": "source_derived_system_oracle_not_executed"
+          "candidate_disposition": "source_derived_system_oracle_not_executed",
+          "case_input_ref": {
+            "path": "docs/helix-security/L8-unit-verification/project-scope-isolation.json",
+            "pointer": "/cases/0/negative_cases/16",
+            "case_id": "SEC003-L8-SIDE-EXPECTED-NULL",
+            "role": "対応caseと入力条件の識別に使用。expected/classの導出には使用しない。"
+          },
+          "input_condition": "request originは存在するが、independent expected originのproject memberが明示nullである。",
+          "source_derived_condition": "必要なidentity軸が欠落し、primary tree/別projectで補完せずscope対応を未解決に保つ。",
+          "rowwise_candidate_ref": "WR258-L9-CAND-017"
         },
         {
           "id": "SEC003-WR258-L9-ORACLE-018",
@@ -7949,7 +8102,7 @@
           "design_ref": "HELIXSECURITY-L4-003-F01",
           "system_oracle_ref": "HELIXSECURITY-L10-003-F01",
           "negative_class_ref": "SEC003-F01-IDENTITY-CONFLICT",
-          "condition": "明示されたidentity軸の既知値どうしが相反し、同一scope対応を成立させない。",
+          "condition": "asset_scope.projectが比較対象のexpected targetと不一致であり、state assetのscopeを別軸から補完しない。",
           "expected_classification": "isolation_violation",
           "expected": {
             "condition": "isolation_violation",
@@ -8008,7 +8161,16 @@
           ],
           "execution_state": "not_executed",
           "actual_observation": "not_observed",
-          "candidate_disposition": "source_derived_system_oracle_not_executed"
+          "candidate_disposition": "source_derived_system_oracle_not_executed",
+          "case_input_ref": {
+            "path": "docs/helix-security/L8-unit-verification/project-scope-isolation.json",
+            "pointer": "/cases/0/negative_cases/17",
+            "case_id": "SEC003-L8-ASSET-CONFLICT-PROJECT",
+            "role": "対応caseと入力条件の識別に使用。expected/classの導出には使用しない。"
+          },
+          "input_condition": "asset_scope.projectが比較対象のexpected targetと不一致であり、state assetのscopeを別軸から補完しない。",
+          "source_derived_condition": "明示されたidentity軸の既知値どうしが相反し、同一scope対応を成立させない。",
+          "rowwise_candidate_ref": "WR258-L9-CAND-018"
         },
         {
           "id": "SEC003-WR258-L9-ORACLE-019",
@@ -8018,7 +8180,7 @@
           "design_ref": "HELIXSECURITY-L4-003-F01",
           "system_oracle_ref": "HELIXSECURITY-L10-003-F01",
           "negative_class_ref": "SEC003-F01-IDENTITY-CONFLICT",
-          "condition": "明示されたidentity軸の既知値どうしが相反し、同一scope対応を成立させない。",
+          "condition": "asset_scope.tenantが比較対象のexpected targetと不一致であり、state assetのscopeを別軸から補完しない。",
           "expected_classification": "isolation_violation",
           "expected": {
             "condition": "isolation_violation",
@@ -8077,7 +8239,16 @@
           ],
           "execution_state": "not_executed",
           "actual_observation": "not_observed",
-          "candidate_disposition": "source_derived_system_oracle_not_executed"
+          "candidate_disposition": "source_derived_system_oracle_not_executed",
+          "case_input_ref": {
+            "path": "docs/helix-security/L8-unit-verification/project-scope-isolation.json",
+            "pointer": "/cases/0/negative_cases/18",
+            "case_id": "SEC003-L8-ASSET-CONFLICT-TENANT",
+            "role": "対応caseと入力条件の識別に使用。expected/classの導出には使用しない。"
+          },
+          "input_condition": "asset_scope.tenantが比較対象のexpected targetと不一致であり、state assetのscopeを別軸から補完しない。",
+          "source_derived_condition": "明示されたidentity軸の既知値どうしが相反し、同一scope対応を成立させない。",
+          "rowwise_candidate_ref": "WR258-L9-CAND-019"
         },
         {
           "id": "SEC003-WR258-L9-ORACLE-020",
@@ -8087,7 +8258,7 @@
           "design_ref": "HELIXSECURITY-L4-003-F01",
           "system_oracle_ref": "HELIXSECURITY-L10-003-F01",
           "negative_class_ref": "SEC003-F01-IDENTITY-CONFLICT",
-          "condition": "明示されたidentity軸の既知値どうしが相反し、同一scope対応を成立させない。",
+          "condition": "asset_scope.environmentが比較対象のexpected targetと不一致であり、state assetのscopeを別軸から補完しない。",
           "expected_classification": "isolation_violation",
           "expected": {
             "condition": "isolation_violation",
@@ -8146,7 +8317,16 @@
           ],
           "execution_state": "not_executed",
           "actual_observation": "not_observed",
-          "candidate_disposition": "source_derived_system_oracle_not_executed"
+          "candidate_disposition": "source_derived_system_oracle_not_executed",
+          "case_input_ref": {
+            "path": "docs/helix-security/L8-unit-verification/project-scope-isolation.json",
+            "pointer": "/cases/0/negative_cases/19",
+            "case_id": "SEC003-L8-ASSET-CONFLICT-ENVIRONMENT",
+            "role": "対応caseと入力条件の識別に使用。expected/classの導出には使用しない。"
+          },
+          "input_condition": "asset_scope.environmentが比較対象のexpected targetと不一致であり、state assetのscopeを別軸から補完しない。",
+          "source_derived_condition": "明示されたidentity軸の既知値どうしが相反し、同一scope対応を成立させない。",
+          "rowwise_candidate_ref": "WR258-L9-CAND-020"
         },
         {
           "id": "SEC003-WR258-L9-ORACLE-021",
@@ -8156,7 +8336,7 @@
           "design_ref": "HELIXSECURITY-L4-003-F01",
           "system_oracle_ref": "HELIXSECURITY-L10-003-F01",
           "negative_class_ref": "SEC003-F01-IDENTITY-CONFLICT",
-          "condition": "明示されたidentity軸の既知値どうしが相反し、同一scope対応を成立させない。",
+          "condition": "asset_scope.assignmentが比較対象のexpected targetと不一致であり、state assetのscopeを別軸から補完しない。",
           "expected_classification": "isolation_violation",
           "expected": {
             "condition": "isolation_violation",
@@ -8215,7 +8395,16 @@
           ],
           "execution_state": "not_executed",
           "actual_observation": "not_observed",
-          "candidate_disposition": "source_derived_system_oracle_not_executed"
+          "candidate_disposition": "source_derived_system_oracle_not_executed",
+          "case_input_ref": {
+            "path": "docs/helix-security/L8-unit-verification/project-scope-isolation.json",
+            "pointer": "/cases/0/negative_cases/20",
+            "case_id": "SEC003-L8-ASSET-CONFLICT-ASSIGNMENT",
+            "role": "対応caseと入力条件の識別に使用。expected/classの導出には使用しない。"
+          },
+          "input_condition": "asset_scope.assignmentが比較対象のexpected targetと不一致であり、state assetのscopeを別軸から補完しない。",
+          "source_derived_condition": "明示されたidentity軸の既知値どうしが相反し、同一scope対応を成立させない。",
+          "rowwise_candidate_ref": "WR258-L9-CAND-021"
         },
         {
           "id": "SEC003-WR258-L9-ORACLE-022",
@@ -8225,7 +8414,7 @@
           "design_ref": "HELIXSECURITY-L4-003-F01",
           "system_oracle_ref": "HELIXSECURITY-L10-003-F01",
           "negative_class_ref": "SEC003-F01-IDENTITY-CONFLICT",
-          "condition": "明示されたidentity軸の既知値どうしが相反し、同一scope対応を成立させない。",
+          "condition": "asset_scope.worktreeが比較対象のexpected targetと不一致であり、state assetのscopeを別軸から補完しない。",
           "expected_classification": "isolation_violation",
           "expected": {
             "condition": "isolation_violation",
@@ -8284,7 +8473,16 @@
           ],
           "execution_state": "not_executed",
           "actual_observation": "not_observed",
-          "candidate_disposition": "source_derived_system_oracle_not_executed"
+          "candidate_disposition": "source_derived_system_oracle_not_executed",
+          "case_input_ref": {
+            "path": "docs/helix-security/L8-unit-verification/project-scope-isolation.json",
+            "pointer": "/cases/0/negative_cases/21",
+            "case_id": "SEC003-L8-ASSET-CONFLICT-WORKTREE",
+            "role": "対応caseと入力条件の識別に使用。expected/classの導出には使用しない。"
+          },
+          "input_condition": "asset_scope.worktreeが比較対象のexpected targetと不一致であり、state assetのscopeを別軸から補完しない。",
+          "source_derived_condition": "明示されたidentity軸の既知値どうしが相反し、同一scope対応を成立させない。",
+          "rowwise_candidate_ref": "WR258-L9-CAND-022"
         },
         {
           "id": "SEC003-WR258-L9-ORACLE-023",
@@ -8294,7 +8492,7 @@
           "design_ref": "HELIXSECURITY-L4-003-F01",
           "system_oracle_ref": "HELIXSECURITY-L10-003-F01",
           "negative_class_ref": "SEC003-F01-IDENTITY-CONFLICT",
-          "condition": "明示されたidentity軸の既知値どうしが相反し、同一scope対応を成立させない。",
+          "condition": "asset_scope.revisionが比較対象のexpected targetと不一致であり、state assetのscopeを別軸から補完しない。",
           "expected_classification": "isolation_violation",
           "expected": {
             "condition": "isolation_violation",
@@ -8353,7 +8551,16 @@
           ],
           "execution_state": "not_executed",
           "actual_observation": "not_observed",
-          "candidate_disposition": "source_derived_system_oracle_not_executed"
+          "candidate_disposition": "source_derived_system_oracle_not_executed",
+          "case_input_ref": {
+            "path": "docs/helix-security/L8-unit-verification/project-scope-isolation.json",
+            "pointer": "/cases/0/negative_cases/22",
+            "case_id": "SEC003-L8-ASSET-CONFLICT-REVISION",
+            "role": "対応caseと入力条件の識別に使用。expected/classの導出には使用しない。"
+          },
+          "input_condition": "asset_scope.revisionが比較対象のexpected targetと不一致であり、state assetのscopeを別軸から補完しない。",
+          "source_derived_condition": "明示されたidentity軸の既知値どうしが相反し、同一scope対応を成立させない。",
+          "rowwise_candidate_ref": "WR258-L9-CAND-023"
         },
         {
           "id": "SEC003-WR258-L9-ORACLE-024",
@@ -8363,7 +8570,7 @@
           "design_ref": "HELIXSECURITY-L4-003-F01",
           "system_oracle_ref": "HELIXSECURITY-L10-003-F01",
           "negative_class_ref": "SEC003-F01-ASSET-KIND-UNRESOLVED",
-          "condition": "requestのasset_kindがHELIXSECURITY-L3-003-F01の列挙対象へ解決できず、asset-scope比較を未解決に保つ。",
+          "condition": "asset_kindが既知のasset種別に解決せず、asset scope判定を未解決に保つ。",
           "expected_classification": "scope_unresolved",
           "expected": {
             "condition": "scope_unresolved",
@@ -8422,7 +8629,16 @@
           ],
           "execution_state": "not_executed",
           "actual_observation": "not_observed",
-          "candidate_disposition": "source_derived_system_oracle_not_executed"
+          "candidate_disposition": "source_derived_system_oracle_not_executed",
+          "case_input_ref": {
+            "path": "docs/helix-security/L8-unit-verification/project-scope-isolation.json",
+            "pointer": "/cases/0/negative_cases/23",
+            "case_id": "SEC003-L8-ASSET-UNKNOWN-KIND",
+            "role": "対応caseと入力条件の識別に使用。expected/classの導出には使用しない。"
+          },
+          "input_condition": "asset_kindが既知のasset種別に解決せず、asset scope判定を未解決に保つ。",
+          "source_derived_condition": "requestのasset_kindがHELIXSECURITY-L3-003-F01の列挙対象へ解決できず、asset-scope比較を未解決に保つ。",
+          "rowwise_candidate_ref": "WR258-L9-CAND-024"
         },
         {
           "id": "SEC003-WR258-L9-ORACLE-025",
@@ -8432,7 +8648,7 @@
           "design_ref": "HELIXSECURITY-L4-003-F01",
           "system_oracle_ref": "HELIXSECURITY-L10-003-F01",
           "negative_class_ref": "SEC003-F01-OWNER-MATERIAL-UNRESOLVED",
-          "condition": "OS/INFRA/CONNECTのowner material stateがstaleまたは未解決であり、独立owner資料との照合を成立させない。",
+          "condition": "OS owner materialだけがstaleであり、他ownerのcurrent状態から当該materialを補完しない。",
           "expected_classification": "scope_unresolved",
           "expected": {
             "condition": "scope_unresolved",
@@ -8491,7 +8707,16 @@
           ],
           "execution_state": "not_executed",
           "actual_observation": "not_observed",
-          "candidate_disposition": "source_derived_system_oracle_not_executed"
+          "candidate_disposition": "source_derived_system_oracle_not_executed",
+          "case_input_ref": {
+            "path": "docs/helix-security/L8-unit-verification/project-scope-isolation.json",
+            "pointer": "/cases/0/negative_cases/24",
+            "case_id": "SEC003-L8-OWNERS-STALE-OS",
+            "role": "対応caseと入力条件の識別に使用。expected/classの導出には使用しない。"
+          },
+          "input_condition": "OS owner materialだけがstaleであり、他ownerのcurrent状態から当該materialを補完しない。",
+          "source_derived_condition": "OS/INFRA/CONNECTのowner material stateがstaleまたは未解決であり、独立owner資料との照合を成立させない。",
+          "rowwise_candidate_ref": "WR258-L9-CAND-025"
         },
         {
           "id": "SEC003-WR258-L9-ORACLE-026",
@@ -8501,7 +8726,7 @@
           "design_ref": "HELIXSECURITY-L4-003-F01",
           "system_oracle_ref": "HELIXSECURITY-L10-003-F01",
           "negative_class_ref": "SEC003-F01-OWNER-MATERIAL-UNRESOLVED",
-          "condition": "OS/INFRA/CONNECTのowner material stateがstaleまたは未解決であり、独立owner資料との照合を成立させない。",
+          "condition": "INFRA owner materialだけがstaleであり、他ownerのcurrent状態から当該materialを補完しない。",
           "expected_classification": "scope_unresolved",
           "expected": {
             "condition": "scope_unresolved",
@@ -8560,7 +8785,16 @@
           ],
           "execution_state": "not_executed",
           "actual_observation": "not_observed",
-          "candidate_disposition": "source_derived_system_oracle_not_executed"
+          "candidate_disposition": "source_derived_system_oracle_not_executed",
+          "case_input_ref": {
+            "path": "docs/helix-security/L8-unit-verification/project-scope-isolation.json",
+            "pointer": "/cases/0/negative_cases/25",
+            "case_id": "SEC003-L8-OWNERS-STALE-INFRA",
+            "role": "対応caseと入力条件の識別に使用。expected/classの導出には使用しない。"
+          },
+          "input_condition": "INFRA owner materialだけがstaleであり、他ownerのcurrent状態から当該materialを補完しない。",
+          "source_derived_condition": "OS/INFRA/CONNECTのowner material stateがstaleまたは未解決であり、独立owner資料との照合を成立させない。",
+          "rowwise_candidate_ref": "WR258-L9-CAND-026"
         },
         {
           "id": "SEC003-WR258-L9-ORACLE-027",
@@ -8570,7 +8804,7 @@
           "design_ref": "HELIXSECURITY-L4-003-F01",
           "system_oracle_ref": "HELIXSECURITY-L10-003-F01",
           "negative_class_ref": "SEC003-F01-OWNER-MATERIAL-UNRESOLVED",
-          "condition": "OS/INFRA/CONNECTのowner material stateがstaleまたは未解決であり、独立owner資料との照合を成立させない。",
+          "condition": "CONNECT owner materialだけがstaleであり、他ownerのcurrent状態から当該materialを補完しない。",
           "expected_classification": "scope_unresolved",
           "expected": {
             "condition": "scope_unresolved",
@@ -8629,7 +8863,16 @@
           ],
           "execution_state": "not_executed",
           "actual_observation": "not_observed",
-          "candidate_disposition": "source_derived_system_oracle_not_executed"
+          "candidate_disposition": "source_derived_system_oracle_not_executed",
+          "case_input_ref": {
+            "path": "docs/helix-security/L8-unit-verification/project-scope-isolation.json",
+            "pointer": "/cases/0/negative_cases/26",
+            "case_id": "SEC003-L8-OWNERS-STALE-CONNECT",
+            "role": "対応caseと入力条件の識別に使用。expected/classの導出には使用しない。"
+          },
+          "input_condition": "CONNECT owner materialだけがstaleであり、他ownerのcurrent状態から当該materialを補完しない。",
+          "source_derived_condition": "OS/INFRA/CONNECTのowner material stateがstaleまたは未解決であり、独立owner資料との照合を成立させない。",
+          "rowwise_candidate_ref": "WR258-L9-CAND-027"
         },
         {
           "id": "SEC003-WR258-L9-ORACLE-028",
@@ -8639,7 +8882,7 @@
           "design_ref": "HELIXSECURITY-L4-003-F01",
           "system_oracle_ref": "HELIXSECURITY-L10-003-F01",
           "negative_class_ref": "SEC003-F01-IDENTITY-MISSING",
-          "condition": "必要なidentity軸が欠落し、primary tree/別projectで補完せずscope対応を未解決に保つ。",
+          "condition": "request targetのproject memberが明示nullである。",
           "expected_classification": "scope_unresolved",
           "expected": {
             "condition": "scope_unresolved",
@@ -8698,7 +8941,16 @@
           ],
           "execution_state": "not_executed",
           "actual_observation": "not_observed",
-          "candidate_disposition": "source_derived_system_oracle_not_executed"
+          "candidate_disposition": "source_derived_system_oracle_not_executed",
+          "case_input_ref": {
+            "path": "docs/helix-security/L8-unit-verification/project-scope-isolation.json",
+            "pointer": "/cases/0/negative_cases/27",
+            "case_id": "SEC003-L8-SIDE-TARGET-NULL",
+            "role": "対応caseと入力条件の識別に使用。expected/classの導出には使用しない。"
+          },
+          "input_condition": "request targetのproject memberが明示nullである。",
+          "source_derived_condition": "必要なidentity軸が欠落し、primary tree/別projectで補完せずscope対応を未解決に保つ。",
+          "rowwise_candidate_ref": "WR258-L9-CAND-028"
         },
         {
           "id": "SEC003-WR258-L9-ORACLE-029",
@@ -8708,7 +8960,7 @@
           "design_ref": "HELIXSECURITY-L4-003-F01",
           "system_oracle_ref": "HELIXSECURITY-L10-003-F01",
           "negative_class_ref": "SEC003-F01-IDENTITY-MISSING",
-          "condition": "必要なidentity軸が欠落し、primary tree/別projectで補完せずscope対応を未解決に保つ。",
+          "condition": "request originが単一recordでなく複数候補の配列として与えられる。",
           "expected_classification": "scope_unresolved",
           "expected": {
             "condition": "scope_unresolved",
@@ -8767,7 +9019,16 @@
           ],
           "execution_state": "not_executed",
           "actual_observation": "not_observed",
-          "candidate_disposition": "source_derived_system_oracle_not_executed"
+          "candidate_disposition": "source_derived_system_oracle_not_executed",
+          "case_input_ref": {
+            "path": "docs/helix-security/L8-unit-verification/project-scope-isolation.json",
+            "pointer": "/cases/0/negative_cases/28",
+            "case_id": "SEC003-L8-SIDE-ORIGIN-MULTITARGET",
+            "role": "対応caseと入力条件の識別に使用。expected/classの導出には使用しない。"
+          },
+          "input_condition": "request originが単一recordでなく複数候補の配列として与えられる。",
+          "source_derived_condition": "必要なidentity軸が欠落し、primary tree/別projectで補完せずscope対応を未解決に保つ。",
+          "rowwise_candidate_ref": "WR258-L9-CAND-029"
         }
       ],
       "execution_state": "not_executed",
@@ -12466,7 +12727,7 @@
           "design_ref": "HELIXSECURITY-L4-003-F02",
           "system_oracle_ref": "HELIXSECURITY-L10-003-F02",
           "negative_class_ref": "SEC003-F02-EXPLICIT-CONNECTION-ABSENT",
-          "condition": "要求された作用のconnection_stateがabsentである。L3 F02は明示接続なしの越境作用を認めず、L4 F02はsame-projectを含む明示接続を照合対象とするため、known absentはscope violationとして扱い、unknownとは分ける。",
+          "condition": "connection_stateがabsentであり、全体system判定では明示接続不在として扱う。",
           "expected_classification": "isolation_violation",
           "expected": {
             "condition": "isolation_violation",
@@ -12525,7 +12786,16 @@
           ],
           "execution_state": "not_executed",
           "actual_observation": "not_observed",
-          "candidate_disposition": "source_derived_system_oracle_not_executed"
+          "candidate_disposition": "source_derived_system_oracle_not_executed",
+          "case_input_ref": {
+            "path": "docs/helix-security/L8-unit-verification/project-scope-isolation.json",
+            "pointer": "/cases/1/negative_cases/0",
+            "case_id": "SEC003-L8-CONNECTION-ABSENT",
+            "role": "対応caseと入力条件の識別に使用。expected/classの導出には使用しない。"
+          },
+          "input_condition": "connection_stateがabsentであり、全体system判定では明示接続不在として扱う。",
+          "source_derived_condition": "要求された作用のconnection_stateがabsentである。L3 F02は明示接続なしの越境作用を認めず、L4 F02はsame-projectを含む明示接続を照合対象とするため、known absentはscope violationとして扱い、unknownとは分ける。",
+          "rowwise_candidate_ref": "WR258-L9-CAND-030"
         },
         {
           "id": "SEC003-WR258-L9-ORACLE-031",
@@ -12535,7 +12805,7 @@
           "design_ref": "HELIXSECURITY-L4-003-F02",
           "system_oracle_ref": "HELIXSECURITY-L10-003-F02",
           "negative_class_ref": "SEC003-F02-CONNECTION-MATERIAL-UNRESOLVED",
-          "condition": "実connection memberが不明または欠落し、独立expected connectionとの同member比較を解決できない。",
+          "condition": "connection_stateがunknownであり、接続materialを確定できない状態を保持する。",
           "expected_classification": "scope_unresolved",
           "expected": {
             "condition": "scope_unresolved",
@@ -12594,7 +12864,16 @@
           ],
           "execution_state": "not_executed",
           "actual_observation": "not_observed",
-          "candidate_disposition": "source_derived_system_oracle_not_executed"
+          "candidate_disposition": "source_derived_system_oracle_not_executed",
+          "case_input_ref": {
+            "path": "docs/helix-security/L8-unit-verification/project-scope-isolation.json",
+            "pointer": "/cases/1/negative_cases/1",
+            "case_id": "SEC003-L8-CONNECTION-UNKNOWN",
+            "role": "対応caseと入力条件の識別に使用。expected/classの導出には使用しない。"
+          },
+          "input_condition": "connection_stateがunknownであり、接続materialを確定できない状態を保持する。",
+          "source_derived_condition": "実connection memberが不明または欠落し、独立expected connectionとの同member比較を解決できない。",
+          "rowwise_candidate_ref": "WR258-L9-CAND-031"
         },
         {
           "id": "SEC003-WR258-L9-ORACLE-032",
@@ -12604,7 +12883,7 @@
           "design_ref": "HELIXSECURITY-L4-003-F02",
           "system_oracle_ref": "HELIXSECURITY-L10-003-F02",
           "negative_class_ref": "SEC003-F02-CONNECTION-MATERIAL-UNRESOLVED",
-          "condition": "実connection memberが不明または欠落し、独立expected connectionとの同member比較を解決できない。",
+          "condition": "connection_stateに未知のenum値が入り、既知状態へ読み替えない。",
           "expected_classification": "scope_unresolved",
           "expected": {
             "condition": "scope_unresolved",
@@ -12663,7 +12942,16 @@
           ],
           "execution_state": "not_executed",
           "actual_observation": "not_observed",
-          "candidate_disposition": "source_derived_system_oracle_not_executed"
+          "candidate_disposition": "source_derived_system_oracle_not_executed",
+          "case_input_ref": {
+            "path": "docs/helix-security/L8-unit-verification/project-scope-isolation.json",
+            "pointer": "/cases/1/negative_cases/2",
+            "case_id": "SEC003-L8-CONNECTION-ENUM",
+            "role": "対応caseと入力条件の識別に使用。expected/classの導出には使用しない。"
+          },
+          "input_condition": "connection_stateに未知のenum値が入り、既知状態へ読み替えない。",
+          "source_derived_condition": "実connection memberが不明または欠落し、独立expected connectionとの同member比較を解決できない。",
+          "rowwise_candidate_ref": "WR258-L9-CAND-032"
         },
         {
           "id": "SEC003-WR258-L9-ORACLE-033",
@@ -12673,7 +12961,7 @@
           "design_ref": "HELIXSECURITY-L4-003-F02",
           "system_oracle_ref": "HELIXSECURITY-L10-003-F02",
           "negative_class_ref": "SEC003-F02-CONNECTION-MATERIAL-CONFLICT",
-          "condition": "実connection memberが独立expected connectionの同じmemberと既知値で相反する。",
+          "condition": "request connectionのidentity memberがindependent expected connectionの同memberと不一致であり、join結果を未解決/矛盾として保持する。",
           "expected_classification": "isolation_violation",
           "expected": {
             "condition": "isolation_violation",
@@ -12732,7 +13020,16 @@
           ],
           "execution_state": "not_executed",
           "actual_observation": "not_observed",
-          "candidate_disposition": "source_derived_system_oracle_not_executed"
+          "candidate_disposition": "source_derived_system_oracle_not_executed",
+          "case_input_ref": {
+            "path": "docs/helix-security/L8-unit-verification/project-scope-isolation.json",
+            "pointer": "/cases/1/negative_cases/3",
+            "case_id": "SEC003-L8-CONNECTION-CONTENT-IDENTITY",
+            "role": "対応caseと入力条件の識別に使用。expected/classの導出には使用しない。"
+          },
+          "input_condition": "request connectionのidentity memberがindependent expected connectionの同memberと不一致であり、join結果を未解決/矛盾として保持する。",
+          "source_derived_condition": "実connection memberが独立expected connectionの同じmemberと既知値で相反する。",
+          "rowwise_candidate_ref": "WR258-L9-CAND-033"
         },
         {
           "id": "SEC003-WR258-L9-ORACLE-034",
@@ -12742,7 +13039,7 @@
           "design_ref": "HELIXSECURITY-L4-003-F02",
           "system_oracle_ref": "HELIXSECURITY-L10-003-F02",
           "negative_class_ref": "SEC003-F02-CONNECTION-MATERIAL-CONFLICT",
-          "condition": "実connection memberが独立expected connectionの同じmemberと既知値で相反する。",
+          "condition": "request connectionのrevision memberがindependent expected connectionの同memberと不一致であり、join結果を未解決/矛盾として保持する。",
           "expected_classification": "isolation_violation",
           "expected": {
             "condition": "isolation_violation",
@@ -12801,7 +13098,16 @@
           ],
           "execution_state": "not_executed",
           "actual_observation": "not_observed",
-          "candidate_disposition": "source_derived_system_oracle_not_executed"
+          "candidate_disposition": "source_derived_system_oracle_not_executed",
+          "case_input_ref": {
+            "path": "docs/helix-security/L8-unit-verification/project-scope-isolation.json",
+            "pointer": "/cases/1/negative_cases/4",
+            "case_id": "SEC003-L8-CONNECTION-CONTENT-REVISION",
+            "role": "対応caseと入力条件の識別に使用。expected/classの導出には使用しない。"
+          },
+          "input_condition": "request connectionのrevision memberがindependent expected connectionの同memberと不一致であり、join結果を未解決/矛盾として保持する。",
+          "source_derived_condition": "実connection memberが独立expected connectionの同じmemberと既知値で相反する。",
+          "rowwise_candidate_ref": "WR258-L9-CAND-034"
         },
         {
           "id": "SEC003-WR258-L9-ORACLE-035",
@@ -12811,7 +13117,7 @@
           "design_ref": "HELIXSECURITY-L4-003-F02",
           "system_oracle_ref": "HELIXSECURITY-L10-003-F02",
           "negative_class_ref": "SEC003-F02-CONNECTION-MATERIAL-CONFLICT",
-          "condition": "実connection memberが独立expected connectionの同じmemberと既知値で相反する。",
+          "condition": "request connectionのallowed_operations memberがindependent expected connectionの同memberと不一致であり、join結果を未解決/矛盾として保持する。",
           "expected_classification": "isolation_violation",
           "expected": {
             "condition": "isolation_violation",
@@ -12870,7 +13176,16 @@
           ],
           "execution_state": "not_executed",
           "actual_observation": "not_observed",
-          "candidate_disposition": "source_derived_system_oracle_not_executed"
+          "candidate_disposition": "source_derived_system_oracle_not_executed",
+          "case_input_ref": {
+            "path": "docs/helix-security/L8-unit-verification/project-scope-isolation.json",
+            "pointer": "/cases/1/negative_cases/5",
+            "case_id": "SEC003-L8-CONNECTION-CONTENT-ALLOWED_OPERATIONS",
+            "role": "対応caseと入力条件の識別に使用。expected/classの導出には使用しない。"
+          },
+          "input_condition": "request connectionのallowed_operations memberがindependent expected connectionの同memberと不一致であり、join結果を未解決/矛盾として保持する。",
+          "source_derived_condition": "実connection memberが独立expected connectionの同じmemberと既知値で相反する。",
+          "rowwise_candidate_ref": "WR258-L9-CAND-035"
         },
         {
           "id": "SEC003-WR258-L9-ORACLE-036",
@@ -12880,7 +13195,7 @@
           "design_ref": "HELIXSECURITY-L4-003-F02",
           "system_oracle_ref": "HELIXSECURITY-L10-003-F02",
           "negative_class_ref": "SEC003-F02-CONNECTION-MATERIAL-CONFLICT",
-          "condition": "実connection memberが独立expected connectionの同じmemberと既知値で相反する。",
+          "condition": "request origin scopeとconnection同側scopeが一致せず、connection joinを成立扱いにしない。",
           "expected_classification": "isolation_violation",
           "expected": {
             "condition": "isolation_violation",
@@ -12939,7 +13254,16 @@
           ],
           "execution_state": "not_executed",
           "actual_observation": "not_observed",
-          "candidate_disposition": "source_derived_system_oracle_not_executed"
+          "candidate_disposition": "source_derived_system_oracle_not_executed",
+          "case_input_ref": {
+            "path": "docs/helix-security/L8-unit-verification/project-scope-isolation.json",
+            "pointer": "/cases/1/negative_cases/6",
+            "case_id": "SEC003-L8-CONNECTION-JOIN-ORIGIN",
+            "role": "対応caseと入力条件の識別に使用。expected/classの導出には使用しない。"
+          },
+          "input_condition": "request origin scopeとconnection同側scopeが一致せず、connection joinを成立扱いにしない。",
+          "source_derived_condition": "実connection memberが独立expected connectionの同じmemberと既知値で相反する。",
+          "rowwise_candidate_ref": "WR258-L9-CAND-036"
         },
         {
           "id": "SEC003-WR258-L9-ORACLE-037",
@@ -12949,7 +13273,7 @@
           "design_ref": "HELIXSECURITY-L4-003-F02",
           "system_oracle_ref": "HELIXSECURITY-L10-003-F02",
           "negative_class_ref": "SEC003-F02-CONNECTION-MATERIAL-CONFLICT",
-          "condition": "実connection memberが独立expected connectionの同じmemberと既知値で相反する。",
+          "condition": "request target scopeとconnection同側scopeが一致せず、connection joinを成立扱いにしない。",
           "expected_classification": "isolation_violation",
           "expected": {
             "condition": "isolation_violation",
@@ -13008,7 +13332,16 @@
           ],
           "execution_state": "not_executed",
           "actual_observation": "not_observed",
-          "candidate_disposition": "source_derived_system_oracle_not_executed"
+          "candidate_disposition": "source_derived_system_oracle_not_executed",
+          "case_input_ref": {
+            "path": "docs/helix-security/L8-unit-verification/project-scope-isolation.json",
+            "pointer": "/cases/1/negative_cases/7",
+            "case_id": "SEC003-L8-CONNECTION-JOIN-TARGET",
+            "role": "対応caseと入力条件の識別に使用。expected/classの導出には使用しない。"
+          },
+          "input_condition": "request target scopeとconnection同側scopeが一致せず、connection joinを成立扱いにしない。",
+          "source_derived_condition": "実connection memberが独立expected connectionの同じmemberと既知値で相反する。",
+          "rowwise_candidate_ref": "WR258-L9-CAND-037"
         },
         {
           "id": "SEC003-WR258-L9-ORACLE-038",
@@ -13018,7 +13351,7 @@
           "design_ref": "HELIXSECURITY-L4-003-F02",
           "system_oracle_ref": "HELIXSECURITY-L10-003-F02",
           "negative_class_ref": "SEC003-F02-CONNECTION-MATERIAL-UNRESOLVED",
-          "condition": "実connection memberが不明または欠落し、独立expected connectionとの同member比較を解決できない。",
+          "condition": "request connectionのidentity memberが欠落し、独立expected connectionへの同一性を解決できない。",
           "expected_classification": "scope_unresolved",
           "expected": {
             "condition": "scope_unresolved",
@@ -13077,7 +13410,16 @@
           ],
           "execution_state": "not_executed",
           "actual_observation": "not_observed",
-          "candidate_disposition": "source_derived_system_oracle_not_executed"
+          "candidate_disposition": "source_derived_system_oracle_not_executed",
+          "case_input_ref": {
+            "path": "docs/helix-security/L8-unit-verification/project-scope-isolation.json",
+            "pointer": "/cases/1/negative_cases/8",
+            "case_id": "SEC003-L8-CONNECTION-IDENTITY-ABSENT",
+            "role": "対応caseと入力条件の識別に使用。expected/classの導出には使用しない。"
+          },
+          "input_condition": "request connectionのidentity memberが欠落し、独立expected connectionへの同一性を解決できない。",
+          "source_derived_condition": "実connection memberが不明または欠落し、独立expected connectionとの同member比較を解決できない。",
+          "rowwise_candidate_ref": "WR258-L9-CAND-038"
         },
         {
           "id": "SEC003-WR258-L9-ORACLE-039",
@@ -13087,7 +13429,7 @@
           "design_ref": "HELIXSECURITY-L4-003-F02",
           "system_oracle_ref": "HELIXSECURITY-L10-003-F02",
           "negative_class_ref": "SEC003-F02-OPERATION-SCOPE",
-          "condition": "あるoperationの明示許可を別operationへ拡張せず、requested operationをallowed operation集合と照合する。",
+          "condition": "requested operation=writeはallowed_operationsに含まれず、read許可を当該operationへ拡張しない。",
           "expected_classification": "isolation_violation",
           "expected": {
             "condition": "isolation_violation",
@@ -13146,7 +13488,16 @@
           ],
           "execution_state": "not_executed",
           "actual_observation": "not_observed",
-          "candidate_disposition": "source_derived_system_oracle_not_executed"
+          "candidate_disposition": "source_derived_system_oracle_not_executed",
+          "case_input_ref": {
+            "path": "docs/helix-security/L8-unit-verification/project-scope-isolation.json",
+            "pointer": "/cases/1/negative_cases/9",
+            "case_id": "SEC003-L8-OPERATION-WRITE",
+            "role": "対応caseと入力条件の識別に使用。expected/classの導出には使用しない。"
+          },
+          "input_condition": "requested operation=writeはallowed_operationsに含まれず、read許可を当該operationへ拡張しない。",
+          "source_derived_condition": "あるoperationの明示許可を別operationへ拡張せず、requested operationをallowed operation集合と照合する。",
+          "rowwise_candidate_ref": "WR258-L9-CAND-039"
         },
         {
           "id": "SEC003-WR258-L9-ORACLE-040",
@@ -13156,7 +13507,7 @@
           "design_ref": "HELIXSECURITY-L4-003-F02",
           "system_oracle_ref": "HELIXSECURITY-L10-003-F02",
           "negative_class_ref": "SEC003-F02-OPERATION-SCOPE",
-          "condition": "あるoperationの明示許可を別operationへ拡張せず、requested operationをallowed operation集合と照合する。",
+          "condition": "requested operation=executeはallowed_operationsに含まれず、read許可を当該operationへ拡張しない。",
           "expected_classification": "isolation_violation",
           "expected": {
             "condition": "isolation_violation",
@@ -13215,7 +13566,16 @@
           ],
           "execution_state": "not_executed",
           "actual_observation": "not_observed",
-          "candidate_disposition": "source_derived_system_oracle_not_executed"
+          "candidate_disposition": "source_derived_system_oracle_not_executed",
+          "case_input_ref": {
+            "path": "docs/helix-security/L8-unit-verification/project-scope-isolation.json",
+            "pointer": "/cases/1/negative_cases/10",
+            "case_id": "SEC003-L8-OPERATION-EXECUTE",
+            "role": "対応caseと入力条件の識別に使用。expected/classの導出には使用しない。"
+          },
+          "input_condition": "requested operation=executeはallowed_operationsに含まれず、read許可を当該operationへ拡張しない。",
+          "source_derived_condition": "あるoperationの明示許可を別operationへ拡張せず、requested operationをallowed operation集合と照合する。",
+          "rowwise_candidate_ref": "WR258-L9-CAND-040"
         },
         {
           "id": "SEC003-WR258-L9-ORACLE-041",
@@ -13225,7 +13585,7 @@
           "design_ref": "HELIXSECURITY-L4-003-F02",
           "system_oracle_ref": "HELIXSECURITY-L10-003-F02",
           "negative_class_ref": "SEC003-F02-OPERATION-SCOPE",
-          "condition": "あるoperationの明示許可を別operationへ拡張せず、requested operationをallowed operation集合と照合する。",
+          "condition": "requested operation=networkはallowed_operationsに含まれず、read許可を当該operationへ拡張しない。",
           "expected_classification": "isolation_violation",
           "expected": {
             "condition": "isolation_violation",
@@ -13284,7 +13644,16 @@
           ],
           "execution_state": "not_executed",
           "actual_observation": "not_observed",
-          "candidate_disposition": "source_derived_system_oracle_not_executed"
+          "candidate_disposition": "source_derived_system_oracle_not_executed",
+          "case_input_ref": {
+            "path": "docs/helix-security/L8-unit-verification/project-scope-isolation.json",
+            "pointer": "/cases/1/negative_cases/11",
+            "case_id": "SEC003-L8-OPERATION-NETWORK",
+            "role": "対応caseと入力条件の識別に使用。expected/classの導出には使用しない。"
+          },
+          "input_condition": "requested operation=networkはallowed_operationsに含まれず、read許可を当該operationへ拡張しない。",
+          "source_derived_condition": "あるoperationの明示許可を別operationへ拡張せず、requested operationをallowed operation集合と照合する。",
+          "rowwise_candidate_ref": "WR258-L9-CAND-041"
         },
         {
           "id": "SEC003-WR258-L9-ORACLE-042",
@@ -13294,7 +13663,7 @@
           "design_ref": "HELIXSECURITY-L4-003-F02",
           "system_oracle_ref": "HELIXSECURITY-L10-003-F02",
           "negative_class_ref": "SEC003-F02-OPERATION-SCOPE",
-          "condition": "あるoperationの明示許可を別operationへ拡張せず、requested operationをallowed operation集合と照合する。",
+          "condition": "requested operation=stateはallowed_operationsに含まれず、read許可を当該operationへ拡張しない。",
           "expected_classification": "isolation_violation",
           "expected": {
             "condition": "isolation_violation",
@@ -13353,7 +13722,16 @@
           ],
           "execution_state": "not_executed",
           "actual_observation": "not_observed",
-          "candidate_disposition": "source_derived_system_oracle_not_executed"
+          "candidate_disposition": "source_derived_system_oracle_not_executed",
+          "case_input_ref": {
+            "path": "docs/helix-security/L8-unit-verification/project-scope-isolation.json",
+            "pointer": "/cases/1/negative_cases/12",
+            "case_id": "SEC003-L8-OPERATION-STATE",
+            "role": "対応caseと入力条件の識別に使用。expected/classの導出には使用しない。"
+          },
+          "input_condition": "requested operation=stateはallowed_operationsに含まれず、read許可を当該operationへ拡張しない。",
+          "source_derived_condition": "あるoperationの明示許可を別operationへ拡張せず、requested operationをallowed operation集合と照合する。",
+          "rowwise_candidate_ref": "WR258-L9-CAND-042"
         },
         {
           "id": "SEC003-WR258-L9-ORACLE-043",
@@ -13363,7 +13741,7 @@
           "design_ref": "HELIXSECURITY-L4-003-F02",
           "system_oracle_ref": "HELIXSECURITY-L10-003-F02",
           "negative_class_ref": "SEC003-F02-OPERATION-SCOPE",
-          "condition": "あるoperationの明示許可を別operationへ拡張せず、requested operationをallowed operation集合と照合する。",
+          "condition": "requested operation=credentialはallowed_operationsに含まれず、read許可を当該operationへ拡張しない。",
           "expected_classification": "isolation_violation",
           "expected": {
             "condition": "isolation_violation",
@@ -13422,7 +13800,16 @@
           ],
           "execution_state": "not_executed",
           "actual_observation": "not_observed",
-          "candidate_disposition": "source_derived_system_oracle_not_executed"
+          "candidate_disposition": "source_derived_system_oracle_not_executed",
+          "case_input_ref": {
+            "path": "docs/helix-security/L8-unit-verification/project-scope-isolation.json",
+            "pointer": "/cases/1/negative_cases/13",
+            "case_id": "SEC003-L8-OPERATION-CREDENTIAL",
+            "role": "対応caseと入力条件の識別に使用。expected/classの導出には使用しない。"
+          },
+          "input_condition": "requested operation=credentialはallowed_operationsに含まれず、read許可を当該operationへ拡張しない。",
+          "source_derived_condition": "あるoperationの明示許可を別operationへ拡張せず、requested operationをallowed operation集合と照合する。",
+          "rowwise_candidate_ref": "WR258-L9-CAND-043"
         },
         {
           "id": "SEC003-WR258-L9-ORACLE-044",
@@ -13432,7 +13819,7 @@
           "design_ref": "HELIXSECURITY-L4-003-F02",
           "system_oracle_ref": "HELIXSECURITY-L10-003-F02",
           "negative_class_ref": "SEC003-F02-OPERATION-SCOPE",
-          "condition": "あるoperationの明示許可を別operationへ拡張せず、requested operationをallowed operation集合と照合する。",
+          "condition": "requested operation=artifactはallowed_operationsに含まれず、read許可を当該operationへ拡張しない。",
           "expected_classification": "isolation_violation",
           "expected": {
             "condition": "isolation_violation",
@@ -13491,7 +13878,16 @@
           ],
           "execution_state": "not_executed",
           "actual_observation": "not_observed",
-          "candidate_disposition": "source_derived_system_oracle_not_executed"
+          "candidate_disposition": "source_derived_system_oracle_not_executed",
+          "case_input_ref": {
+            "path": "docs/helix-security/L8-unit-verification/project-scope-isolation.json",
+            "pointer": "/cases/1/negative_cases/14",
+            "case_id": "SEC003-L8-OPERATION-ARTIFACT",
+            "role": "対応caseと入力条件の識別に使用。expected/classの導出には使用しない。"
+          },
+          "input_condition": "requested operation=artifactはallowed_operationsに含まれず、read許可を当該operationへ拡張しない。",
+          "source_derived_condition": "あるoperationの明示許可を別operationへ拡張せず、requested operationをallowed operation集合と照合する。",
+          "rowwise_candidate_ref": "WR258-L9-CAND-044"
         },
         {
           "id": "SEC003-WR258-L9-ORACLE-045",
@@ -13501,7 +13897,7 @@
           "design_ref": "HELIXSECURITY-L4-003-F02",
           "system_oracle_ref": "HELIXSECURITY-L10-003-F02",
           "negative_class_ref": "SEC003-F02-OPERATION-INPUT-UNRESOLVED",
-          "condition": "requestのoperationが既知の操作範囲へ解決できず、requested operationのscope照合を未解決に保つ。",
+          "condition": "operation値が未知であり、既知operationへ読み替えてscopeを確定しない。",
           "expected_classification": "scope_unresolved",
           "expected": {
             "condition": "scope_unresolved",
@@ -13560,7 +13956,16 @@
           ],
           "execution_state": "not_executed",
           "actual_observation": "not_observed",
-          "candidate_disposition": "source_derived_system_oracle_not_executed"
+          "candidate_disposition": "source_derived_system_oracle_not_executed",
+          "case_input_ref": {
+            "path": "docs/helix-security/L8-unit-verification/project-scope-isolation.json",
+            "pointer": "/cases/1/negative_cases/15",
+            "case_id": "SEC003-L8-OPERATION-UNKNOWN",
+            "role": "対応caseと入力条件の識別に使用。expected/classの導出には使用しない。"
+          },
+          "input_condition": "operation値が未知であり、既知operationへ読み替えてscopeを確定しない。",
+          "source_derived_condition": "requestのoperationが既知の操作範囲へ解決できず、requested operationのscope照合を未解決に保つ。",
+          "rowwise_candidate_ref": "WR258-L9-CAND-045"
         },
         {
           "id": "SEC003-WR258-L9-ORACLE-046",
@@ -13570,7 +13975,7 @@
           "design_ref": "HELIXSECURITY-L4-003-F02",
           "system_oracle_ref": "HELIXSECURITY-L10-003-F02",
           "negative_class_ref": "SEC003-F02-EXPLICIT-CONNECTION-ABSENT",
-          "condition": "要求されたreadで接続がabsentの場合、局所operation比較のdeferを全体の許可へ拡張せず、system oracleは明示接続違反と接続不在findingを保持する。",
+          "condition": "operation=readに対してconnection_state=absentであり、局所deferをsystem許可へ拡張しない。",
           "expected_classification": "isolation_violation",
           "expected": {
             "condition": "isolation_violation",
@@ -13629,7 +14034,16 @@
           ],
           "execution_state": "not_executed",
           "actual_observation": "not_observed",
-          "candidate_disposition": "source_derived_system_oracle_not_executed"
+          "candidate_disposition": "source_derived_system_oracle_not_executed",
+          "case_input_ref": {
+            "path": "docs/helix-security/L8-unit-verification/project-scope-isolation.json",
+            "pointer": "/cases/1/negative_cases/16",
+            "case_id": "SEC003-L8-OPERATION-DEFER",
+            "role": "対応caseと入力条件の識別に使用。expected/classの導出には使用しない。"
+          },
+          "input_condition": "operation=readに対してconnection_state=absentであり、局所deferをsystem許可へ拡張しない。",
+          "source_derived_condition": "要求されたreadで接続がabsentの場合、局所operation比較のdeferを全体の許可へ拡張せず、system oracleは明示接続違反と接続不在findingを保持する。",
+          "rowwise_candidate_ref": "WR258-L9-CAND-046"
         },
         {
           "id": "SEC003-WR258-L9-ORACLE-047",
@@ -13639,7 +14053,7 @@
           "design_ref": "HELIXSECURITY-L4-003-F02",
           "system_oracle_ref": "HELIXSECURITY-L10-003-F02",
           "negative_class_ref": "SEC003-F02-OPERATION-SCOPE",
-          "condition": "あるoperationの明示許可を別operationへ拡張せず、requested operationをallowed operation集合と照合する。",
+          "condition": "connection allowed_operationsが空であり、requested readを許可集合に含むと扱わない。",
           "expected_classification": "isolation_violation",
           "expected": {
             "condition": "isolation_violation",
@@ -13698,7 +14112,16 @@
           ],
           "execution_state": "not_executed",
           "actual_observation": "not_observed",
-          "candidate_disposition": "source_derived_system_oracle_not_executed"
+          "candidate_disposition": "source_derived_system_oracle_not_executed",
+          "case_input_ref": {
+            "path": "docs/helix-security/L8-unit-verification/project-scope-isolation.json",
+            "pointer": "/cases/1/negative_cases/17",
+            "case_id": "SEC003-L8-OPERATION-EMPTY",
+            "role": "対応caseと入力条件の識別に使用。expected/classの導出には使用しない。"
+          },
+          "input_condition": "connection allowed_operationsが空であり、requested readを許可集合に含むと扱わない。",
+          "source_derived_condition": "あるoperationの明示許可を別operationへ拡張せず、requested operationをallowed operation集合と照合する。",
+          "rowwise_candidate_ref": "WR258-L9-CAND-047"
         },
         {
           "id": "SEC003-WR258-L9-ORACLE-048",
@@ -13708,7 +14131,7 @@
           "design_ref": "HELIXSECURITY-L4-003-F02",
           "system_oracle_ref": "HELIXSECURITY-L10-003-F02",
           "negative_class_ref": "SEC003-F02-CONNECTION-MATERIAL-UNRESOLVED",
-          "condition": "実connection memberが不明または欠落し、独立expected connectionとの同member比較を解決できない。",
+          "condition": "requested operation=listはallowed_operationsに含まれず、read許可を当該operationへ拡張しない。",
           "expected_classification": "scope_unresolved",
           "expected": {
             "condition": "scope_unresolved",
@@ -13767,7 +14190,16 @@
           ],
           "execution_state": "not_executed",
           "actual_observation": "not_observed",
-          "candidate_disposition": "source_derived_system_oracle_not_executed"
+          "candidate_disposition": "source_derived_system_oracle_not_executed",
+          "case_input_ref": {
+            "path": "docs/helix-security/L8-unit-verification/project-scope-isolation.json",
+            "pointer": "/cases/1/negative_cases/18",
+            "case_id": "SEC003-L8-OPERATION-INVALID-LIST",
+            "role": "対応caseと入力条件の識別に使用。expected/classの導出には使用しない。"
+          },
+          "input_condition": "requested operation=listはallowed_operationsに含まれず、read許可を当該operationへ拡張しない。",
+          "source_derived_condition": "実connection memberが不明または欠落し、独立expected connectionとの同member比較を解決できない。",
+          "rowwise_candidate_ref": "WR258-L9-CAND-048"
         },
         {
           "id": "SEC003-WR258-L9-ORACLE-049",
@@ -13777,7 +14209,7 @@
           "design_ref": "HELIXSECURITY-L4-003-F02",
           "system_oracle_ref": "HELIXSECURITY-L10-003-F02",
           "negative_class_ref": "SEC003-F02-FALLBACK-INPUT-UNRESOLVED",
-          "condition": "fallback値がunknownまたは明示nullであり、明示接続を確定できずfallback先で補完しない。",
+          "condition": "fallback値が未知であり、既知のfallback先へ読み替えない。",
           "expected_classification": "scope_unresolved",
           "expected": {
             "condition": "scope_unresolved",
@@ -13836,7 +14268,16 @@
           ],
           "execution_state": "not_executed",
           "actual_observation": "not_observed",
-          "candidate_disposition": "source_derived_system_oracle_not_executed"
+          "candidate_disposition": "source_derived_system_oracle_not_executed",
+          "case_input_ref": {
+            "path": "docs/helix-security/L8-unit-verification/project-scope-isolation.json",
+            "pointer": "/cases/1/negative_cases/21",
+            "case_id": "SEC003-L8-FALLBACK-UNKNOWN",
+            "role": "対応caseと入力条件の識別に使用。expected/classの導出には使用しない。"
+          },
+          "input_condition": "fallback値が未知であり、既知のfallback先へ読み替えない。",
+          "source_derived_condition": "fallback値がunknownまたは明示nullであり、明示接続を確定できずfallback先で補完しない。",
+          "rowwise_candidate_ref": "WR258-L9-CAND-049"
         },
         {
           "id": "SEC003-WR258-L9-ORACLE-050",
@@ -13846,7 +14287,7 @@
           "design_ref": "HELIXSECURITY-L4-003-F02",
           "system_oracle_ref": "HELIXSECURITY-L10-003-F02",
           "negative_class_ref": "SEC003-F02-FALLBACK-INPUT-UNRESOLVED",
-          "condition": "fallback値がunknownまたは明示nullであり、明示接続を確定できずfallback先で補完しない。",
+          "condition": "fallbackが明示nullであり、既定先で補完しない。",
           "expected_classification": "scope_unresolved",
           "expected": {
             "condition": "scope_unresolved",
@@ -13905,7 +14346,16 @@
           ],
           "execution_state": "not_executed",
           "actual_observation": "not_observed",
-          "candidate_disposition": "source_derived_system_oracle_not_executed"
+          "candidate_disposition": "source_derived_system_oracle_not_executed",
+          "case_input_ref": {
+            "path": "docs/helix-security/L8-unit-verification/project-scope-isolation.json",
+            "pointer": "/cases/1/negative_cases/22",
+            "case_id": "SEC003-L8-FALLBACK-NULL",
+            "role": "対応caseと入力条件の識別に使用。expected/classの導出には使用しない。"
+          },
+          "input_condition": "fallbackが明示nullであり、既定先で補完しない。",
+          "source_derived_condition": "fallback値がunknownまたは明示nullであり、明示接続を確定できずfallback先で補完しない。",
+          "rowwise_candidate_ref": "WR258-L9-CAND-050"
         }
       ],
       "execution_state": "not_executed",

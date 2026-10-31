@@ -109,6 +109,9 @@ def main():
     l8_rows = []
     l8_case_ref_by_id = {}
     l9_by_id = {row['id']: row for case in l9['cases'] for row in case['negative_cases']}
+    rowwise = json.loads((Path('scaffold/research/wr258-sec006-psi-explicit-20261101') / 'rowwise-integration-design.json').read_text())
+    new_candidates = rowwise['candidate_l9_skeletons_for_50_unmatched_l8_rows']
+    new_candidate_by_l8 = {x['intended_l8_case_ref']: x for x in new_candidates}
     for case in l8['cases']:
         for row in case['negative_cases']:
             arow = row.get('negative_class_assignment', {})
@@ -138,6 +141,10 @@ def main():
             if class_id in l5_by_class:
                 l8_row['rule_ref'] = class_id
                 l8_row['contract_ref'] = l5_by_class[class_id].get('contract_ref')
+            if row['id'] in new_candidate_by_l8:
+                candidate = new_candidate_by_l8[row['id']]
+                l8_row['integration_case_ref'] = f"SEC003-WR258-L9-ORACLE-{int(candidate['candidate_id'][-3:]):03d}"
+                l8_row['condition'] = l9_by_id[f"SEC003-WR258-L9-ORACLE-{int(candidate['candidate_id'][-3:]):03d}"]['condition']
             l8_rows.append(l8_row)
             l8_case_ref_by_id[row['id']] = l8_row
 
@@ -176,14 +183,14 @@ def main():
     for case in l9['cases']:
         for row in case['negative_cases']:
             arow = row.get('negative_class_assignment', {})
-            class_id = arow.get('class_id')
+            class_id = row.get('negative_class_ref') or arow.get('class_id')
             cls = l4_by_id.get(class_id, {})
             obs = row.get('expected_observation', {})
             l9_rows.append({
                 'id': row['id'],
                 'population_state': 'negative',
                 'negative_class_ref': class_id,
-                'condition': cls.get('condition'),
+                'condition': row.get('condition') or cls.get('condition'),
                 'expected': copy.deepcopy(cls.get('expected')),
                 'expected_preserved': copy.deepcopy(cls.get('expected_preserved')),
                 'expected_axis': cls.get('expected_axis'),
@@ -198,33 +205,6 @@ def main():
                 },
             })
 
-    # Fifty previously unmatched canonical unit rows receive source-derived
-    # L9 case candidates. They retain L3/L10/L4 expectation provenance; the
-    # new case is not represented as an executed oracles-backed fixture.
-    rowwise = json.loads((Path('scaffold/research/wr258-sec006-psi-explicit-20261101') / 'rowwise-integration-design.json').read_text())
-    new_candidates = rowwise['candidate_l9_skeletons_for_50_unmatched_l8_rows']
-    for item in new_candidates:
-        cls = l4_by_id[item['l4_class_id']]
-        l8_case_ref_by_id[item['intended_l8_case_ref']]['integration_case_ref'] = item['candidate_id']
-        l9_rows.append({
-            'id': item['candidate_id'],
-            'population_state': 'negative',
-            'negative_class_ref': cls['class_id'],
-            'condition': cls['condition'],
-            'expected': copy.deepcopy(cls['expected']),
-            'expected_preserved': copy.deepcopy(cls['expected_preserved']),
-            'expected_axis': cls['expected_axis'],
-            'expected_state': cls['expected_state'],
-            'side_effect_count': cls['side_effect_count'],
-            'compact_whole_observation': {
-                'condition': cls['expected']['condition'],
-                'ordered_findings': [
-                    {'code': code, 'return_owner': cls['backflow_owner']}
-                    for code in cls['expected']['finding_codes']
-                ],
-            },
-            'candidate_state': 'not_executed_source_derived_expected_case',
-        })
     l9['integration_cases'] = l9_rows
 
     for name, data in [('l4', l4), ('l5', l5), ('l8', l8), ('l9', l9)]:

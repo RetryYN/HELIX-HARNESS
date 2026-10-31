@@ -25,8 +25,8 @@
     },
     {
       "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
-      "sha256": "de953eaa30348263eed914098f559bceca24c0fceef3bd76e733d2887b2f5609",
-      "note": "WR258 98行のclass identity/projection。既存case ID・期待観測は変更せず、履歴hashを保持。 PR #4007 R1 current pin updated from fb5895c299f3f14ecbc41fde01bdac605a20b98275e56cb6176b12693c12df72 at reviewed head cf983f81ff09cd90fb3f8f781bdb7c7445923ee6; prior hashes in this note remain history. Current L4/L9 now record 15 classes and 148 negative system-oracle rows (98 existing + 50 source-derived additions)."
+      "sha256": "8cd71128dd5c3e7e4efe0c685e5ad00ad847deb9ea3fa2d311e0202e6f9b7c9b",
+      "note": "WR258 98行のclass identity/projection。既存case ID・期待観測は変更せず、履歴hashを保持。 PR #4007 R1 current pin updated from fb5895c299f3f14ecbc41fde01bdac605a20b98275e56cb6176b12693c12df72 at reviewed head cf983f81ff09cd90fb3f8f781bdb7c7445923ee6; prior hashes in this note remain history. Current L4/L9 now record 15 classes and 148 negative system-oracle rows (98 existing + 50 source-derived additions). R1 row-specific-oracle followup: previous pin de953eaa30348263eed914098f559bceca24c0fceef3bd76e733d2887b2f5609 retained in this note; current L9 pin 8cd71128dd5c3e7e4efe0c685e5ad00ad847deb9ea3fa2d311e0202e6f9b7c9b includes 50 unique case conditions and exact L8 input references without using them to derive expected values."
     },
     {
       "path": "docs/governance/design-verification-quality-assurance.md",
