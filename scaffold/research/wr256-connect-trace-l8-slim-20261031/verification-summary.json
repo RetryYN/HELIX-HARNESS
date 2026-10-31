@@ -51,7 +51,7 @@
   "source_semantic_audit": {
     "path": "scaffold/research/wr256-connect-trace-l8-slim-20261031/source-semantic-audit.json",
     "row_count": 224,
-    "sha256": "123ea24eb172f535f598ccd8d8f02baddbc314b7be1ca53ec994f32fb2b50af4"
+    "sha256": "64a673123da67e5c5a05bcbb2855e504c279b31a942521ae571ab9fab9c55b5d"
   },
   "expected_result_audit": {
     "row_count": 224,

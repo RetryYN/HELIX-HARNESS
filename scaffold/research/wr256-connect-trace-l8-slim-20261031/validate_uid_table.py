@@ -274,7 +274,7 @@ def main() -> int:
         flattened = [flatten_projection(item) for item in projections]
         paths = set().union(*(item.keys() for item in flattened))
         baseline_fields = {}
-        for path in paths:
+        for path in sorted(paths):
             encoded = [json.dumps({"value": item[path]}, ensure_ascii=False, sort_keys=True, separators=(",", ":")) if path in item else "<MISSING>" for item in flattened]
             frequencies = {}
             for value in encoded:
