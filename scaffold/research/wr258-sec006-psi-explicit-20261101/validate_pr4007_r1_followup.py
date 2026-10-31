@@ -17,6 +17,7 @@ L10 = "docs/helix-security/L10-verification/functional-verification.json"
 BEFORE = "cf983f81ff09cd90fb3f8f781bdb7c7445923ee6"
 BLIND = "3e469f273817af640a2adafa50b8548b22a107fd"
 DEFERRED = "SEC003-F02-OPERATION-CONNECTION-ABSENT-DEFERRED"
+CURRENT_ORACLE_PREFIX = "SEC003-L9-ORACLE-"
 
 
 def git_json(revision: str, path: str) -> dict:
@@ -54,7 +55,7 @@ def main() -> int:
         for case in l9["cases"]
         for row in case["negative_cases"]
     }
-    added = [row for row in current_rows.values() if row["id"].startswith("SEC003-WR258-L9-ORACLE-")]
+    added = [row for row in current_rows.values() if row["id"].startswith(CURRENT_ORACLE_PREFIX)]
     preserved_errors = []
 
     def check(ok: bool, name: str, detail: str | None = None) -> None:
@@ -91,7 +92,8 @@ def main() -> int:
         check(class_id in new_classes, "old L9 class ref resolves", case_id)
         check(current and current.get("negative_class_ref") == class_id, "old L9 direct class ref matches assignment", case_id)
 
-    candidate_id_map = {f"SEC003-WR258-L9-ORACLE-{i:03d}": i for i in range(1, 51)}
+    expected_added_ids = {f"{CURRENT_ORACLE_PREFIX}{i:03d}" for i in range(1, 51)}
+    check({row["id"] for row in added} == expected_added_ids, "all 50 stable L9 oracle IDs are present exactly once")
     for row in added:
         cid = row.get("negative_class_ref")
         cls = l4_classes.get(cid)

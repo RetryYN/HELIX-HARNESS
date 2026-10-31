@@ -6769,7 +6769,7 @@
           "negative_class_ref": "SEC003-F01-TENANT-APPLICABILITY-UNRESOLVED"
         },
         {
-          "id": "SEC003-WR258-L9-ORACLE-001",
+          "id": "SEC003-L9-ORACLE-001",
           "requirement_refs": [
             "HELIXSECURITY-L3-003-F01"
           ],
@@ -6830,7 +6830,7 @@
           "actual_observation": "not_observed"
         },
         {
-          "id": "SEC003-WR258-L9-ORACLE-002",
+          "id": "SEC003-L9-ORACLE-002",
           "requirement_refs": [
             "HELIXSECURITY-L3-003-F01"
           ],
@@ -6891,7 +6891,7 @@
           "actual_observation": "not_observed"
         },
         {
-          "id": "SEC003-WR258-L9-ORACLE-003",
+          "id": "SEC003-L9-ORACLE-003",
           "requirement_refs": [
             "HELIXSECURITY-L3-003-F01"
           ],
@@ -6952,7 +6952,7 @@
           "actual_observation": "not_observed"
         },
         {
-          "id": "SEC003-WR258-L9-ORACLE-004",
+          "id": "SEC003-L9-ORACLE-004",
           "requirement_refs": [
             "HELIXSECURITY-L3-003-F01"
           ],
@@ -7013,7 +7013,7 @@
           "actual_observation": "not_observed"
         },
         {
-          "id": "SEC003-WR258-L9-ORACLE-005",
+          "id": "SEC003-L9-ORACLE-005",
           "requirement_refs": [
             "HELIXSECURITY-L3-003-F01"
           ],
@@ -7074,7 +7074,7 @@
           "actual_observation": "not_observed"
         },
         {
-          "id": "SEC003-WR258-L9-ORACLE-006",
+          "id": "SEC003-L9-ORACLE-006",
           "requirement_refs": [
             "HELIXSECURITY-L3-003-F01"
           ],
@@ -7135,7 +7135,7 @@
           "actual_observation": "not_observed"
         },
         {
-          "id": "SEC003-WR258-L9-ORACLE-007",
+          "id": "SEC003-L9-ORACLE-007",
           "requirement_refs": [
             "HELIXSECURITY-L3-003-F01"
           ],
@@ -7196,7 +7196,7 @@
           "actual_observation": "not_observed"
         },
         {
-          "id": "SEC003-WR258-L9-ORACLE-008",
+          "id": "SEC003-L9-ORACLE-008",
           "requirement_refs": [
             "HELIXSECURITY-L3-003-F01"
           ],
@@ -7257,7 +7257,7 @@
           "actual_observation": "not_observed"
         },
         {
-          "id": "SEC003-WR258-L9-ORACLE-009",
+          "id": "SEC003-L9-ORACLE-009",
           "requirement_refs": [
             "HELIXSECURITY-L3-003-F01"
           ],
@@ -7318,7 +7318,7 @@
           "actual_observation": "not_observed"
         },
         {
-          "id": "SEC003-WR258-L9-ORACLE-010",
+          "id": "SEC003-L9-ORACLE-010",
           "requirement_refs": [
             "HELIXSECURITY-L3-003-F01"
           ],
@@ -7379,7 +7379,7 @@
           "actual_observation": "not_observed"
         },
         {
-          "id": "SEC003-WR258-L9-ORACLE-011",
+          "id": "SEC003-L9-ORACLE-011",
           "requirement_refs": [
             "HELIXSECURITY-L3-003-F01"
           ],
@@ -7440,7 +7440,7 @@
           "actual_observation": "not_observed"
         },
         {
-          "id": "SEC003-WR258-L9-ORACLE-012",
+          "id": "SEC003-L9-ORACLE-012",
           "requirement_refs": [
             "HELIXSECURITY-L3-003-F01"
           ],
@@ -7501,7 +7501,7 @@
           "actual_observation": "not_observed"
         },
         {
-          "id": "SEC003-WR258-L9-ORACLE-013",
+          "id": "SEC003-L9-ORACLE-013",
           "requirement_refs": [
             "HELIXSECURITY-L3-003-F01"
           ],
@@ -7562,7 +7562,7 @@
           "actual_observation": "not_observed"
         },
         {
-          "id": "SEC003-WR258-L9-ORACLE-014",
+          "id": "SEC003-L9-ORACLE-014",
           "requirement_refs": [
             "HELIXSECURITY-L3-003-F01"
           ],
@@ -7623,7 +7623,7 @@
           "actual_observation": "not_observed"
         },
         {
-          "id": "SEC003-WR258-L9-ORACLE-015",
+          "id": "SEC003-L9-ORACLE-015",
           "requirement_refs": [
             "HELIXSECURITY-L3-003-F01"
           ],
@@ -7684,7 +7684,7 @@
           "actual_observation": "not_observed"
         },
         {
-          "id": "SEC003-WR258-L9-ORACLE-016",
+          "id": "SEC003-L9-ORACLE-016",
           "requirement_refs": [
             "HELIXSECURITY-L3-003-F01"
           ],
@@ -7745,7 +7745,7 @@
           "actual_observation": "not_observed"
         },
         {
-          "id": "SEC003-WR258-L9-ORACLE-017",
+          "id": "SEC003-L9-ORACLE-017",
           "requirement_refs": [
             "HELIXSECURITY-L3-003-F01"
           ],
@@ -7806,7 +7806,7 @@
           "actual_observation": "not_observed"
         },
         {
-          "id": "SEC003-WR258-L9-ORACLE-018",
+          "id": "SEC003-L9-ORACLE-018",
           "requirement_refs": [
             "HELIXSECURITY-L3-003-F01"
           ],
@@ -7867,7 +7867,7 @@
           "actual_observation": "not_observed"
         },
         {
-          "id": "SEC003-WR258-L9-ORACLE-019",
+          "id": "SEC003-L9-ORACLE-019",
           "requirement_refs": [
             "HELIXSECURITY-L3-003-F01"
           ],
@@ -7928,7 +7928,7 @@
           "actual_observation": "not_observed"
         },
         {
-          "id": "SEC003-WR258-L9-ORACLE-020",
+          "id": "SEC003-L9-ORACLE-020",
           "requirement_refs": [
             "HELIXSECURITY-L3-003-F01"
           ],
@@ -7989,7 +7989,7 @@
           "actual_observation": "not_observed"
         },
         {
-          "id": "SEC003-WR258-L9-ORACLE-021",
+          "id": "SEC003-L9-ORACLE-021",
           "requirement_refs": [
             "HELIXSECURITY-L3-003-F01"
           ],
@@ -8050,7 +8050,7 @@
           "actual_observation": "not_observed"
         },
         {
-          "id": "SEC003-WR258-L9-ORACLE-022",
+          "id": "SEC003-L9-ORACLE-022",
           "requirement_refs": [
             "HELIXSECURITY-L3-003-F01"
           ],
@@ -8111,7 +8111,7 @@
           "actual_observation": "not_observed"
         },
         {
-          "id": "SEC003-WR258-L9-ORACLE-023",
+          "id": "SEC003-L9-ORACLE-023",
           "requirement_refs": [
             "HELIXSECURITY-L3-003-F01"
           ],
@@ -8172,7 +8172,7 @@
           "actual_observation": "not_observed"
         },
         {
-          "id": "SEC003-WR258-L9-ORACLE-024",
+          "id": "SEC003-L9-ORACLE-024",
           "requirement_refs": [
             "HELIXSECURITY-L3-003-F01"
           ],
@@ -8233,7 +8233,7 @@
           "actual_observation": "not_observed"
         },
         {
-          "id": "SEC003-WR258-L9-ORACLE-025",
+          "id": "SEC003-L9-ORACLE-025",
           "requirement_refs": [
             "HELIXSECURITY-L3-003-F01"
           ],
@@ -8294,7 +8294,7 @@
           "actual_observation": "not_observed"
         },
         {
-          "id": "SEC003-WR258-L9-ORACLE-026",
+          "id": "SEC003-L9-ORACLE-026",
           "requirement_refs": [
             "HELIXSECURITY-L3-003-F01"
           ],
@@ -8355,7 +8355,7 @@
           "actual_observation": "not_observed"
         },
         {
-          "id": "SEC003-WR258-L9-ORACLE-027",
+          "id": "SEC003-L9-ORACLE-027",
           "requirement_refs": [
             "HELIXSECURITY-L3-003-F01"
           ],
@@ -8416,7 +8416,7 @@
           "actual_observation": "not_observed"
         },
         {
-          "id": "SEC003-WR258-L9-ORACLE-028",
+          "id": "SEC003-L9-ORACLE-028",
           "requirement_refs": [
             "HELIXSECURITY-L3-003-F01"
           ],
@@ -8477,7 +8477,7 @@
           "actual_observation": "not_observed"
         },
         {
-          "id": "SEC003-WR258-L9-ORACLE-029",
+          "id": "SEC003-L9-ORACLE-029",
           "requirement_refs": [
             "HELIXSECURITY-L3-003-F01"
           ],
@@ -12227,7 +12227,7 @@
           "negative_class_ref": "SEC003-F02-OPERATION-SCOPE"
         },
         {
-          "id": "SEC003-WR258-L9-ORACLE-030",
+          "id": "SEC003-L9-ORACLE-030",
           "requirement_refs": [
             "HELIXSECURITY-L3-003-F02"
           ],
@@ -12288,7 +12288,7 @@
           "actual_observation": "not_observed"
         },
         {
-          "id": "SEC003-WR258-L9-ORACLE-031",
+          "id": "SEC003-L9-ORACLE-031",
           "requirement_refs": [
             "HELIXSECURITY-L3-003-F02"
           ],
@@ -12349,7 +12349,7 @@
           "actual_observation": "not_observed"
         },
         {
-          "id": "SEC003-WR258-L9-ORACLE-032",
+          "id": "SEC003-L9-ORACLE-032",
           "requirement_refs": [
             "HELIXSECURITY-L3-003-F02"
           ],
@@ -12410,7 +12410,7 @@
           "actual_observation": "not_observed"
         },
         {
-          "id": "SEC003-WR258-L9-ORACLE-033",
+          "id": "SEC003-L9-ORACLE-033",
           "requirement_refs": [
             "HELIXSECURITY-L3-003-F02"
           ],
@@ -12471,7 +12471,7 @@
           "actual_observation": "not_observed"
         },
         {
-          "id": "SEC003-WR258-L9-ORACLE-034",
+          "id": "SEC003-L9-ORACLE-034",
           "requirement_refs": [
             "HELIXSECURITY-L3-003-F02"
           ],
@@ -12532,7 +12532,7 @@
           "actual_observation": "not_observed"
         },
         {
-          "id": "SEC003-WR258-L9-ORACLE-035",
+          "id": "SEC003-L9-ORACLE-035",
           "requirement_refs": [
             "HELIXSECURITY-L3-003-F02"
           ],
@@ -12593,7 +12593,7 @@
           "actual_observation": "not_observed"
         },
         {
-          "id": "SEC003-WR258-L9-ORACLE-036",
+          "id": "SEC003-L9-ORACLE-036",
           "requirement_refs": [
             "HELIXSECURITY-L3-003-F02"
           ],
@@ -12654,7 +12654,7 @@
           "actual_observation": "not_observed"
         },
         {
-          "id": "SEC003-WR258-L9-ORACLE-037",
+          "id": "SEC003-L9-ORACLE-037",
           "requirement_refs": [
             "HELIXSECURITY-L3-003-F02"
           ],
@@ -12715,7 +12715,7 @@
           "actual_observation": "not_observed"
         },
         {
-          "id": "SEC003-WR258-L9-ORACLE-038",
+          "id": "SEC003-L9-ORACLE-038",
           "requirement_refs": [
             "HELIXSECURITY-L3-003-F02"
           ],
@@ -12776,7 +12776,7 @@
           "actual_observation": "not_observed"
         },
         {
-          "id": "SEC003-WR258-L9-ORACLE-039",
+          "id": "SEC003-L9-ORACLE-039",
           "requirement_refs": [
             "HELIXSECURITY-L3-003-F02"
           ],
@@ -12837,7 +12837,7 @@
           "actual_observation": "not_observed"
         },
         {
-          "id": "SEC003-WR258-L9-ORACLE-040",
+          "id": "SEC003-L9-ORACLE-040",
           "requirement_refs": [
             "HELIXSECURITY-L3-003-F02"
           ],
@@ -12898,7 +12898,7 @@
           "actual_observation": "not_observed"
         },
         {
-          "id": "SEC003-WR258-L9-ORACLE-041",
+          "id": "SEC003-L9-ORACLE-041",
           "requirement_refs": [
             "HELIXSECURITY-L3-003-F02"
           ],
@@ -12959,7 +12959,7 @@
           "actual_observation": "not_observed"
         },
         {
-          "id": "SEC003-WR258-L9-ORACLE-042",
+          "id": "SEC003-L9-ORACLE-042",
           "requirement_refs": [
             "HELIXSECURITY-L3-003-F02"
           ],
@@ -13020,7 +13020,7 @@
           "actual_observation": "not_observed"
         },
         {
-          "id": "SEC003-WR258-L9-ORACLE-043",
+          "id": "SEC003-L9-ORACLE-043",
           "requirement_refs": [
             "HELIXSECURITY-L3-003-F02"
           ],
@@ -13081,7 +13081,7 @@
           "actual_observation": "not_observed"
         },
         {
-          "id": "SEC003-WR258-L9-ORACLE-044",
+          "id": "SEC003-L9-ORACLE-044",
           "requirement_refs": [
             "HELIXSECURITY-L3-003-F02"
           ],
@@ -13142,7 +13142,7 @@
           "actual_observation": "not_observed"
         },
         {
-          "id": "SEC003-WR258-L9-ORACLE-045",
+          "id": "SEC003-L9-ORACLE-045",
           "requirement_refs": [
             "HELIXSECURITY-L3-003-F02"
           ],
@@ -13203,7 +13203,7 @@
           "actual_observation": "not_observed"
         },
         {
-          "id": "SEC003-WR258-L9-ORACLE-046",
+          "id": "SEC003-L9-ORACLE-046",
           "requirement_refs": [
             "HELIXSECURITY-L3-003-F02"
           ],
@@ -13264,7 +13264,7 @@
           "actual_observation": "not_observed"
         },
         {
-          "id": "SEC003-WR258-L9-ORACLE-047",
+          "id": "SEC003-L9-ORACLE-047",
           "requirement_refs": [
             "HELIXSECURITY-L3-003-F02"
           ],
@@ -13325,7 +13325,7 @@
           "actual_observation": "not_observed"
         },
         {
-          "id": "SEC003-WR258-L9-ORACLE-048",
+          "id": "SEC003-L9-ORACLE-048",
           "requirement_refs": [
             "HELIXSECURITY-L3-003-F02"
           ],
@@ -13386,7 +13386,7 @@
           "actual_observation": "not_observed"
         },
         {
-          "id": "SEC003-WR258-L9-ORACLE-049",
+          "id": "SEC003-L9-ORACLE-049",
           "requirement_refs": [
             "HELIXSECURITY-L3-003-F02"
           ],
@@ -13447,7 +13447,7 @@
           "actual_observation": "not_observed"
         },
         {
-          "id": "SEC003-WR258-L9-ORACLE-050",
+          "id": "SEC003-L9-ORACLE-050",
           "requirement_refs": [
             "HELIXSECURITY-L3-003-F02"
           ],
@@ -13510,6 +13510,4152 @@
       ],
       "execution_state": "not_executed",
       "actual_observation": "not_observed"
+    }
+  ],
+  "integration_cases": [
+    {
+      "id": "SEC003-PERMISSION-ASSET-PROJECT-DRIFT",
+      "population_state": "negative",
+      "condition": "permission資産のprojectで、request側=\"PROJECT-B\"、expected_target側=\"PROJECT-A\"が相反する。",
+      "expected": {
+        "condition": "isolation_violation",
+        "finding_codes": [
+          "asset_scope_conflict"
+        ]
+      },
+      "expected_preserved": {
+        "original_identity": "原request identityと存在するfinding/pointer/return_ownerを保持し、他project等の値で補完しない。",
+        "unaffected_scope": "今回のrequest/operation以外の有効scopeを一律停止しない。",
+        "operation_effect": "実認可・credential・接続・state変更、通信、停止や回復の実作用はnone。"
+      },
+      "negative_class_ref": "SEC003-F01-IDENTITY-CONFLICT",
+      "execution_state": "not_executed",
+      "test_citation": null,
+      "compact_whole_observation": {
+        "condition": "isolation_violation",
+        "ordered_findings": [
+          {
+            "code": "asset_scope_conflict",
+            "return_owner": "scope-binding-owner"
+          }
+        ]
+      }
+    },
+    {
+      "id": "SEC003-PERMISSION-ASSET-TENANT-DRIFT",
+      "population_state": "negative",
+      "condition": "permission資産のtenantで、request側=\"TENANT-B\"、expected_target側=\"TENANT-A\"が相反する。",
+      "expected": {
+        "condition": "isolation_violation",
+        "finding_codes": [
+          "asset_scope_conflict"
+        ]
+      },
+      "expected_preserved": {
+        "original_identity": "原request identityと存在するfinding/pointer/return_ownerを保持し、他project等の値で補完しない。",
+        "unaffected_scope": "今回のrequest/operation以外の有効scopeを一律停止しない。",
+        "operation_effect": "実認可・credential・接続・state変更、通信、停止や回復の実作用はnone。"
+      },
+      "negative_class_ref": "SEC003-F01-IDENTITY-CONFLICT",
+      "execution_state": "not_executed",
+      "test_citation": null,
+      "compact_whole_observation": {
+        "condition": "isolation_violation",
+        "ordered_findings": [
+          {
+            "code": "asset_scope_conflict",
+            "return_owner": "scope-binding-owner"
+          }
+        ]
+      }
+    },
+    {
+      "id": "SEC003-PERMISSION-ASSET-ENVIRONMENT-DRIFT",
+      "population_state": "negative",
+      "condition": "permission資産のenvironmentで、request側=\"ENV-B\"、expected_target側=\"ENV-A\"が相反する。",
+      "expected": {
+        "condition": "isolation_violation",
+        "finding_codes": [
+          "asset_scope_conflict"
+        ]
+      },
+      "expected_preserved": {
+        "original_identity": "原request identityと存在するfinding/pointer/return_ownerを保持し、他project等の値で補完しない。",
+        "unaffected_scope": "今回のrequest/operation以外の有効scopeを一律停止しない。",
+        "operation_effect": "実認可・credential・接続・state変更、通信、停止や回復の実作用はnone。"
+      },
+      "negative_class_ref": "SEC003-F01-IDENTITY-CONFLICT",
+      "execution_state": "not_executed",
+      "test_citation": null,
+      "compact_whole_observation": {
+        "condition": "isolation_violation",
+        "ordered_findings": [
+          {
+            "code": "asset_scope_conflict",
+            "return_owner": "scope-binding-owner"
+          }
+        ]
+      }
+    },
+    {
+      "id": "SEC003-PERMISSION-ASSET-ASSIGNMENT-DRIFT",
+      "population_state": "negative",
+      "condition": "permission資産のassignmentで、request側=\"ASSIGN-B\"、expected_target側=\"ASSIGN-A\"が相反する。",
+      "expected": {
+        "condition": "isolation_violation",
+        "finding_codes": [
+          "asset_scope_conflict"
+        ]
+      },
+      "expected_preserved": {
+        "original_identity": "原request identityと存在するfinding/pointer/return_ownerを保持し、他project等の値で補完しない。",
+        "unaffected_scope": "今回のrequest/operation以外の有効scopeを一律停止しない。",
+        "operation_effect": "実認可・credential・接続・state変更、通信、停止や回復の実作用はnone。"
+      },
+      "negative_class_ref": "SEC003-F01-IDENTITY-CONFLICT",
+      "execution_state": "not_executed",
+      "test_citation": null,
+      "compact_whole_observation": {
+        "condition": "isolation_violation",
+        "ordered_findings": [
+          {
+            "code": "asset_scope_conflict",
+            "return_owner": "scope-binding-owner"
+          }
+        ]
+      }
+    },
+    {
+      "id": "SEC003-PERMISSION-ASSET-WORKTREE-DRIFT",
+      "population_state": "negative",
+      "condition": "permission資産のworktreeで、request側=\"TREE-B\"、expected_target側=\"TREE-A\"が相反する。",
+      "expected": {
+        "condition": "isolation_violation",
+        "finding_codes": [
+          "asset_scope_conflict"
+        ]
+      },
+      "expected_preserved": {
+        "original_identity": "原request identityと存在するfinding/pointer/return_ownerを保持し、他project等の値で補完しない。",
+        "unaffected_scope": "今回のrequest/operation以外の有効scopeを一律停止しない。",
+        "operation_effect": "実認可・credential・接続・state変更、通信、停止や回復の実作用はnone。"
+      },
+      "negative_class_ref": "SEC003-F01-IDENTITY-CONFLICT",
+      "execution_state": "not_executed",
+      "test_citation": null,
+      "compact_whole_observation": {
+        "condition": "isolation_violation",
+        "ordered_findings": [
+          {
+            "code": "asset_scope_conflict",
+            "return_owner": "scope-binding-owner"
+          }
+        ]
+      }
+    },
+    {
+      "id": "SEC003-PERMISSION-ASSET-REVISION-DRIFT",
+      "population_state": "negative",
+      "condition": "permission資産のrevisionで、request側=\"scope-r2\"、expected_target側=\"scope-r1\"が相反する。",
+      "expected": {
+        "condition": "isolation_violation",
+        "finding_codes": [
+          "asset_scope_conflict"
+        ]
+      },
+      "expected_preserved": {
+        "original_identity": "原request identityと存在するfinding/pointer/return_ownerを保持し、他project等の値で補完しない。",
+        "unaffected_scope": "今回のrequest/operation以外の有効scopeを一律停止しない。",
+        "operation_effect": "実認可・credential・接続・state変更、通信、停止や回復の実作用はnone。"
+      },
+      "negative_class_ref": "SEC003-F01-IDENTITY-CONFLICT",
+      "execution_state": "not_executed",
+      "test_citation": null,
+      "compact_whole_observation": {
+        "condition": "isolation_violation",
+        "ordered_findings": [
+          {
+            "code": "asset_scope_conflict",
+            "return_owner": "scope-binding-owner"
+          }
+        ]
+      }
+    },
+    {
+      "id": "SEC003-STATE-ASSET-PROJECT-DRIFT",
+      "population_state": "negative",
+      "condition": "state資産のprojectで、request側=\"PROJECT-B\"、expected_target側=\"PROJECT-A\"が相反する。",
+      "expected": {
+        "condition": "isolation_violation",
+        "finding_codes": [
+          "asset_scope_conflict"
+        ]
+      },
+      "expected_preserved": {
+        "original_identity": "原request identityと存在するfinding/pointer/return_ownerを保持し、他project等の値で補完しない。",
+        "unaffected_scope": "今回のrequest/operation以外の有効scopeを一律停止しない。",
+        "operation_effect": "実認可・credential・接続・state変更、通信、停止や回復の実作用はnone。"
+      },
+      "negative_class_ref": "SEC003-F01-IDENTITY-CONFLICT",
+      "execution_state": "not_executed",
+      "test_citation": null,
+      "compact_whole_observation": {
+        "condition": "isolation_violation",
+        "ordered_findings": [
+          {
+            "code": "asset_scope_conflict",
+            "return_owner": "scope-binding-owner"
+          }
+        ]
+      }
+    },
+    {
+      "id": "SEC003-STATE-ASSET-TENANT-DRIFT",
+      "population_state": "negative",
+      "condition": "state資産のtenantで、request側=\"TENANT-B\"、expected_target側=\"TENANT-A\"が相反する。",
+      "expected": {
+        "condition": "isolation_violation",
+        "finding_codes": [
+          "asset_scope_conflict"
+        ]
+      },
+      "expected_preserved": {
+        "original_identity": "原request identityと存在するfinding/pointer/return_ownerを保持し、他project等の値で補完しない。",
+        "unaffected_scope": "今回のrequest/operation以外の有効scopeを一律停止しない。",
+        "operation_effect": "実認可・credential・接続・state変更、通信、停止や回復の実作用はnone。"
+      },
+      "negative_class_ref": "SEC003-F01-IDENTITY-CONFLICT",
+      "execution_state": "not_executed",
+      "test_citation": null,
+      "compact_whole_observation": {
+        "condition": "isolation_violation",
+        "ordered_findings": [
+          {
+            "code": "asset_scope_conflict",
+            "return_owner": "scope-binding-owner"
+          }
+        ]
+      }
+    },
+    {
+      "id": "SEC003-STATE-ASSET-ENVIRONMENT-DRIFT",
+      "population_state": "negative",
+      "condition": "state資産のenvironmentで、request側=\"ENV-B\"、expected_target側=\"ENV-A\"が相反する。",
+      "expected": {
+        "condition": "isolation_violation",
+        "finding_codes": [
+          "asset_scope_conflict"
+        ]
+      },
+      "expected_preserved": {
+        "original_identity": "原request identityと存在するfinding/pointer/return_ownerを保持し、他project等の値で補完しない。",
+        "unaffected_scope": "今回のrequest/operation以外の有効scopeを一律停止しない。",
+        "operation_effect": "実認可・credential・接続・state変更、通信、停止や回復の実作用はnone。"
+      },
+      "negative_class_ref": "SEC003-F01-IDENTITY-CONFLICT",
+      "execution_state": "not_executed",
+      "test_citation": null,
+      "compact_whole_observation": {
+        "condition": "isolation_violation",
+        "ordered_findings": [
+          {
+            "code": "asset_scope_conflict",
+            "return_owner": "scope-binding-owner"
+          }
+        ]
+      }
+    },
+    {
+      "id": "SEC003-STATE-ASSET-ASSIGNMENT-DRIFT",
+      "population_state": "negative",
+      "condition": "state資産のassignmentで、request側=\"ASSIGN-B\"、expected_target側=\"ASSIGN-A\"が相反する。",
+      "expected": {
+        "condition": "isolation_violation",
+        "finding_codes": [
+          "asset_scope_conflict"
+        ]
+      },
+      "expected_preserved": {
+        "original_identity": "原request identityと存在するfinding/pointer/return_ownerを保持し、他project等の値で補完しない。",
+        "unaffected_scope": "今回のrequest/operation以外の有効scopeを一律停止しない。",
+        "operation_effect": "実認可・credential・接続・state変更、通信、停止や回復の実作用はnone。"
+      },
+      "negative_class_ref": "SEC003-F01-IDENTITY-CONFLICT",
+      "execution_state": "not_executed",
+      "test_citation": null,
+      "compact_whole_observation": {
+        "condition": "isolation_violation",
+        "ordered_findings": [
+          {
+            "code": "asset_scope_conflict",
+            "return_owner": "scope-binding-owner"
+          }
+        ]
+      }
+    },
+    {
+      "id": "SEC003-STATE-ASSET-WORKTREE-DRIFT",
+      "population_state": "negative",
+      "condition": "state資産のworktreeで、request側=\"TREE-B\"、expected_target側=\"TREE-A\"が相反する。",
+      "expected": {
+        "condition": "isolation_violation",
+        "finding_codes": [
+          "asset_scope_conflict"
+        ]
+      },
+      "expected_preserved": {
+        "original_identity": "原request identityと存在するfinding/pointer/return_ownerを保持し、他project等の値で補完しない。",
+        "unaffected_scope": "今回のrequest/operation以外の有効scopeを一律停止しない。",
+        "operation_effect": "実認可・credential・接続・state変更、通信、停止や回復の実作用はnone。"
+      },
+      "negative_class_ref": "SEC003-F01-IDENTITY-CONFLICT",
+      "execution_state": "not_executed",
+      "test_citation": null,
+      "compact_whole_observation": {
+        "condition": "isolation_violation",
+        "ordered_findings": [
+          {
+            "code": "asset_scope_conflict",
+            "return_owner": "scope-binding-owner"
+          }
+        ]
+      }
+    },
+    {
+      "id": "SEC003-STATE-ASSET-REVISION-DRIFT",
+      "population_state": "negative",
+      "condition": "state資産のrevisionで、request側=\"scope-r2\"、expected_target側=\"scope-r1\"が相反する。",
+      "expected": {
+        "condition": "isolation_violation",
+        "finding_codes": [
+          "asset_scope_conflict"
+        ]
+      },
+      "expected_preserved": {
+        "original_identity": "原request identityと存在するfinding/pointer/return_ownerを保持し、他project等の値で補完しない。",
+        "unaffected_scope": "今回のrequest/operation以外の有効scopeを一律停止しない。",
+        "operation_effect": "実認可・credential・接続・state変更、通信、停止や回復の実作用はnone。"
+      },
+      "negative_class_ref": "SEC003-F01-IDENTITY-CONFLICT",
+      "execution_state": "not_executed",
+      "test_citation": null,
+      "compact_whole_observation": {
+        "condition": "isolation_violation",
+        "ordered_findings": [
+          {
+            "code": "asset_scope_conflict",
+            "return_owner": "scope-binding-owner"
+          }
+        ]
+      }
+    },
+    {
+      "id": "SEC003-DATA-ASSET-PROJECT-DRIFT",
+      "population_state": "negative",
+      "condition": "data資産のprojectで、request側=\"PROJECT-B\"、expected_target側=\"PROJECT-A\"が相反する。",
+      "expected": {
+        "condition": "isolation_violation",
+        "finding_codes": [
+          "asset_scope_conflict"
+        ]
+      },
+      "expected_preserved": {
+        "original_identity": "原request identityと存在するfinding/pointer/return_ownerを保持し、他project等の値で補完しない。",
+        "unaffected_scope": "今回のrequest/operation以外の有効scopeを一律停止しない。",
+        "operation_effect": "実認可・credential・接続・state変更、通信、停止や回復の実作用はnone。"
+      },
+      "negative_class_ref": "SEC003-F01-IDENTITY-CONFLICT",
+      "execution_state": "not_executed",
+      "test_citation": null,
+      "compact_whole_observation": {
+        "condition": "isolation_violation",
+        "ordered_findings": [
+          {
+            "code": "asset_scope_conflict",
+            "return_owner": "scope-binding-owner"
+          }
+        ]
+      }
+    },
+    {
+      "id": "SEC003-DATA-ASSET-TENANT-DRIFT",
+      "population_state": "negative",
+      "condition": "data資産のtenantで、request側=\"TENANT-B\"、expected_target側=\"TENANT-A\"が相反する。",
+      "expected": {
+        "condition": "isolation_violation",
+        "finding_codes": [
+          "asset_scope_conflict"
+        ]
+      },
+      "expected_preserved": {
+        "original_identity": "原request identityと存在するfinding/pointer/return_ownerを保持し、他project等の値で補完しない。",
+        "unaffected_scope": "今回のrequest/operation以外の有効scopeを一律停止しない。",
+        "operation_effect": "実認可・credential・接続・state変更、通信、停止や回復の実作用はnone。"
+      },
+      "negative_class_ref": "SEC003-F01-IDENTITY-CONFLICT",
+      "execution_state": "not_executed",
+      "test_citation": null,
+      "compact_whole_observation": {
+        "condition": "isolation_violation",
+        "ordered_findings": [
+          {
+            "code": "asset_scope_conflict",
+            "return_owner": "scope-binding-owner"
+          }
+        ]
+      }
+    },
+    {
+      "id": "SEC003-DATA-ASSET-ENVIRONMENT-DRIFT",
+      "population_state": "negative",
+      "condition": "data資産のenvironmentで、request側=\"ENV-B\"、expected_target側=\"ENV-A\"が相反する。",
+      "expected": {
+        "condition": "isolation_violation",
+        "finding_codes": [
+          "asset_scope_conflict"
+        ]
+      },
+      "expected_preserved": {
+        "original_identity": "原request identityと存在するfinding/pointer/return_ownerを保持し、他project等の値で補完しない。",
+        "unaffected_scope": "今回のrequest/operation以外の有効scopeを一律停止しない。",
+        "operation_effect": "実認可・credential・接続・state変更、通信、停止や回復の実作用はnone。"
+      },
+      "negative_class_ref": "SEC003-F01-IDENTITY-CONFLICT",
+      "execution_state": "not_executed",
+      "test_citation": null,
+      "compact_whole_observation": {
+        "condition": "isolation_violation",
+        "ordered_findings": [
+          {
+            "code": "asset_scope_conflict",
+            "return_owner": "scope-binding-owner"
+          }
+        ]
+      }
+    },
+    {
+      "id": "SEC003-DATA-ASSET-ASSIGNMENT-DRIFT",
+      "population_state": "negative",
+      "condition": "data資産のassignmentで、request側=\"ASSIGN-B\"、expected_target側=\"ASSIGN-A\"が相反する。",
+      "expected": {
+        "condition": "isolation_violation",
+        "finding_codes": [
+          "asset_scope_conflict"
+        ]
+      },
+      "expected_preserved": {
+        "original_identity": "原request identityと存在するfinding/pointer/return_ownerを保持し、他project等の値で補完しない。",
+        "unaffected_scope": "今回のrequest/operation以外の有効scopeを一律停止しない。",
+        "operation_effect": "実認可・credential・接続・state変更、通信、停止や回復の実作用はnone。"
+      },
+      "negative_class_ref": "SEC003-F01-IDENTITY-CONFLICT",
+      "execution_state": "not_executed",
+      "test_citation": null,
+      "compact_whole_observation": {
+        "condition": "isolation_violation",
+        "ordered_findings": [
+          {
+            "code": "asset_scope_conflict",
+            "return_owner": "scope-binding-owner"
+          }
+        ]
+      }
+    },
+    {
+      "id": "SEC003-DATA-ASSET-WORKTREE-DRIFT",
+      "population_state": "negative",
+      "condition": "data資産のworktreeで、request側=\"TREE-B\"、expected_target側=\"TREE-A\"が相反する。",
+      "expected": {
+        "condition": "isolation_violation",
+        "finding_codes": [
+          "asset_scope_conflict"
+        ]
+      },
+      "expected_preserved": {
+        "original_identity": "原request identityと存在するfinding/pointer/return_ownerを保持し、他project等の値で補完しない。",
+        "unaffected_scope": "今回のrequest/operation以外の有効scopeを一律停止しない。",
+        "operation_effect": "実認可・credential・接続・state変更、通信、停止や回復の実作用はnone。"
+      },
+      "negative_class_ref": "SEC003-F01-IDENTITY-CONFLICT",
+      "execution_state": "not_executed",
+      "test_citation": null,
+      "compact_whole_observation": {
+        "condition": "isolation_violation",
+        "ordered_findings": [
+          {
+            "code": "asset_scope_conflict",
+            "return_owner": "scope-binding-owner"
+          }
+        ]
+      }
+    },
+    {
+      "id": "SEC003-DATA-ASSET-REVISION-DRIFT",
+      "population_state": "negative",
+      "condition": "data資産のrevisionで、request側=\"scope-r2\"、expected_target側=\"scope-r1\"が相反する。",
+      "expected": {
+        "condition": "isolation_violation",
+        "finding_codes": [
+          "asset_scope_conflict"
+        ]
+      },
+      "expected_preserved": {
+        "original_identity": "原request identityと存在するfinding/pointer/return_ownerを保持し、他project等の値で補完しない。",
+        "unaffected_scope": "今回のrequest/operation以外の有効scopeを一律停止しない。",
+        "operation_effect": "実認可・credential・接続・state変更、通信、停止や回復の実作用はnone。"
+      },
+      "negative_class_ref": "SEC003-F01-IDENTITY-CONFLICT",
+      "execution_state": "not_executed",
+      "test_citation": null,
+      "compact_whole_observation": {
+        "condition": "isolation_violation",
+        "ordered_findings": [
+          {
+            "code": "asset_scope_conflict",
+            "return_owner": "scope-binding-owner"
+          }
+        ]
+      }
+    },
+    {
+      "id": "SEC003-WORKER-ASSET-PROJECT-DRIFT",
+      "population_state": "negative",
+      "condition": "Worker資産のprojectで、request側=\"PROJECT-B\"、expected_target側=\"PROJECT-A\"が相反する。",
+      "expected": {
+        "condition": "isolation_violation",
+        "finding_codes": [
+          "asset_scope_conflict"
+        ]
+      },
+      "expected_preserved": {
+        "original_identity": "原request identityと存在するfinding/pointer/return_ownerを保持し、他project等の値で補完しない。",
+        "unaffected_scope": "今回のrequest/operation以外の有効scopeを一律停止しない。",
+        "operation_effect": "実認可・credential・接続・state変更、通信、停止や回復の実作用はnone。"
+      },
+      "negative_class_ref": "SEC003-F01-IDENTITY-CONFLICT",
+      "execution_state": "not_executed",
+      "test_citation": null,
+      "compact_whole_observation": {
+        "condition": "isolation_violation",
+        "ordered_findings": [
+          {
+            "code": "asset_scope_conflict",
+            "return_owner": "scope-binding-owner"
+          }
+        ]
+      }
+    },
+    {
+      "id": "SEC003-WORKER-ASSET-TENANT-DRIFT",
+      "population_state": "negative",
+      "condition": "Worker資産のtenantで、request側=\"TENANT-B\"、expected_target側=\"TENANT-A\"が相反する。",
+      "expected": {
+        "condition": "isolation_violation",
+        "finding_codes": [
+          "asset_scope_conflict"
+        ]
+      },
+      "expected_preserved": {
+        "original_identity": "原request identityと存在するfinding/pointer/return_ownerを保持し、他project等の値で補完しない。",
+        "unaffected_scope": "今回のrequest/operation以外の有効scopeを一律停止しない。",
+        "operation_effect": "実認可・credential・接続・state変更、通信、停止や回復の実作用はnone。"
+      },
+      "negative_class_ref": "SEC003-F01-IDENTITY-CONFLICT",
+      "execution_state": "not_executed",
+      "test_citation": null,
+      "compact_whole_observation": {
+        "condition": "isolation_violation",
+        "ordered_findings": [
+          {
+            "code": "asset_scope_conflict",
+            "return_owner": "scope-binding-owner"
+          }
+        ]
+      }
+    },
+    {
+      "id": "SEC003-WORKER-ASSET-ENVIRONMENT-DRIFT",
+      "population_state": "negative",
+      "condition": "Worker資産のenvironmentで、request側=\"ENV-B\"、expected_target側=\"ENV-A\"が相反する。",
+      "expected": {
+        "condition": "isolation_violation",
+        "finding_codes": [
+          "asset_scope_conflict"
+        ]
+      },
+      "expected_preserved": {
+        "original_identity": "原request identityと存在するfinding/pointer/return_ownerを保持し、他project等の値で補完しない。",
+        "unaffected_scope": "今回のrequest/operation以外の有効scopeを一律停止しない。",
+        "operation_effect": "実認可・credential・接続・state変更、通信、停止や回復の実作用はnone。"
+      },
+      "negative_class_ref": "SEC003-F01-IDENTITY-CONFLICT",
+      "execution_state": "not_executed",
+      "test_citation": null,
+      "compact_whole_observation": {
+        "condition": "isolation_violation",
+        "ordered_findings": [
+          {
+            "code": "asset_scope_conflict",
+            "return_owner": "scope-binding-owner"
+          }
+        ]
+      }
+    },
+    {
+      "id": "SEC003-WORKER-ASSET-ASSIGNMENT-DRIFT",
+      "population_state": "negative",
+      "condition": "Worker資産のassignmentで、request側=\"ASSIGN-B\"、expected_target側=\"ASSIGN-A\"が相反する。",
+      "expected": {
+        "condition": "isolation_violation",
+        "finding_codes": [
+          "asset_scope_conflict"
+        ]
+      },
+      "expected_preserved": {
+        "original_identity": "原request identityと存在するfinding/pointer/return_ownerを保持し、他project等の値で補完しない。",
+        "unaffected_scope": "今回のrequest/operation以外の有効scopeを一律停止しない。",
+        "operation_effect": "実認可・credential・接続・state変更、通信、停止や回復の実作用はnone。"
+      },
+      "negative_class_ref": "SEC003-F01-IDENTITY-CONFLICT",
+      "execution_state": "not_executed",
+      "test_citation": null,
+      "compact_whole_observation": {
+        "condition": "isolation_violation",
+        "ordered_findings": [
+          {
+            "code": "asset_scope_conflict",
+            "return_owner": "scope-binding-owner"
+          }
+        ]
+      }
+    },
+    {
+      "id": "SEC003-WORKER-ASSET-WORKTREE-DRIFT",
+      "population_state": "negative",
+      "condition": "Worker資産のworktreeで、request側=\"TREE-B\"、expected_target側=\"TREE-A\"が相反する。",
+      "expected": {
+        "condition": "isolation_violation",
+        "finding_codes": [
+          "asset_scope_conflict"
+        ]
+      },
+      "expected_preserved": {
+        "original_identity": "原request identityと存在するfinding/pointer/return_ownerを保持し、他project等の値で補完しない。",
+        "unaffected_scope": "今回のrequest/operation以外の有効scopeを一律停止しない。",
+        "operation_effect": "実認可・credential・接続・state変更、通信、停止や回復の実作用はnone。"
+      },
+      "negative_class_ref": "SEC003-F01-IDENTITY-CONFLICT",
+      "execution_state": "not_executed",
+      "test_citation": null,
+      "compact_whole_observation": {
+        "condition": "isolation_violation",
+        "ordered_findings": [
+          {
+            "code": "asset_scope_conflict",
+            "return_owner": "scope-binding-owner"
+          }
+        ]
+      }
+    },
+    {
+      "id": "SEC003-WORKER-ASSET-REVISION-DRIFT",
+      "population_state": "negative",
+      "condition": "Worker資産のrevisionで、request側=\"scope-r2\"、expected_target側=\"scope-r1\"が相反する。",
+      "expected": {
+        "condition": "isolation_violation",
+        "finding_codes": [
+          "asset_scope_conflict"
+        ]
+      },
+      "expected_preserved": {
+        "original_identity": "原request identityと存在するfinding/pointer/return_ownerを保持し、他project等の値で補完しない。",
+        "unaffected_scope": "今回のrequest/operation以外の有効scopeを一律停止しない。",
+        "operation_effect": "実認可・credential・接続・state変更、通信、停止や回復の実作用はnone。"
+      },
+      "negative_class_ref": "SEC003-F01-IDENTITY-CONFLICT",
+      "execution_state": "not_executed",
+      "test_citation": null,
+      "compact_whole_observation": {
+        "condition": "isolation_violation",
+        "ordered_findings": [
+          {
+            "code": "asset_scope_conflict",
+            "return_owner": "scope-binding-owner"
+          }
+        ]
+      }
+    },
+    {
+      "id": "SEC003-CREDENTIAL-ASSET-PROJECT-DRIFT",
+      "population_state": "negative",
+      "condition": "credential資産のprojectで、request側=\"PROJECT-B\"、expected_target側=\"PROJECT-A\"が相反する。",
+      "expected": {
+        "condition": "isolation_violation",
+        "finding_codes": [
+          "asset_scope_conflict"
+        ]
+      },
+      "expected_preserved": {
+        "original_identity": "原request identityと存在するfinding/pointer/return_ownerを保持し、他project等の値で補完しない。",
+        "unaffected_scope": "今回のrequest/operation以外の有効scopeを一律停止しない。",
+        "operation_effect": "実認可・credential・接続・state変更、通信、停止や回復の実作用はnone。"
+      },
+      "negative_class_ref": "SEC003-F01-IDENTITY-CONFLICT",
+      "execution_state": "not_executed",
+      "test_citation": null,
+      "compact_whole_observation": {
+        "condition": "isolation_violation",
+        "ordered_findings": [
+          {
+            "code": "asset_scope_conflict",
+            "return_owner": "scope-binding-owner"
+          }
+        ]
+      }
+    },
+    {
+      "id": "SEC003-CREDENTIAL-ASSET-TENANT-DRIFT",
+      "population_state": "negative",
+      "condition": "credential資産のtenantで、request側=\"TENANT-B\"、expected_target側=\"TENANT-A\"が相反する。",
+      "expected": {
+        "condition": "isolation_violation",
+        "finding_codes": [
+          "asset_scope_conflict"
+        ]
+      },
+      "expected_preserved": {
+        "original_identity": "原request identityと存在するfinding/pointer/return_ownerを保持し、他project等の値で補完しない。",
+        "unaffected_scope": "今回のrequest/operation以外の有効scopeを一律停止しない。",
+        "operation_effect": "実認可・credential・接続・state変更、通信、停止や回復の実作用はnone。"
+      },
+      "negative_class_ref": "SEC003-F01-IDENTITY-CONFLICT",
+      "execution_state": "not_executed",
+      "test_citation": null,
+      "compact_whole_observation": {
+        "condition": "isolation_violation",
+        "ordered_findings": [
+          {
+            "code": "asset_scope_conflict",
+            "return_owner": "scope-binding-owner"
+          }
+        ]
+      }
+    },
+    {
+      "id": "SEC003-CREDENTIAL-ASSET-ENVIRONMENT-DRIFT",
+      "population_state": "negative",
+      "condition": "credential資産のenvironmentで、request側=\"ENV-B\"、expected_target側=\"ENV-A\"が相反する。",
+      "expected": {
+        "condition": "isolation_violation",
+        "finding_codes": [
+          "asset_scope_conflict"
+        ]
+      },
+      "expected_preserved": {
+        "original_identity": "原request identityと存在するfinding/pointer/return_ownerを保持し、他project等の値で補完しない。",
+        "unaffected_scope": "今回のrequest/operation以外の有効scopeを一律停止しない。",
+        "operation_effect": "実認可・credential・接続・state変更、通信、停止や回復の実作用はnone。"
+      },
+      "negative_class_ref": "SEC003-F01-IDENTITY-CONFLICT",
+      "execution_state": "not_executed",
+      "test_citation": null,
+      "compact_whole_observation": {
+        "condition": "isolation_violation",
+        "ordered_findings": [
+          {
+            "code": "asset_scope_conflict",
+            "return_owner": "scope-binding-owner"
+          }
+        ]
+      }
+    },
+    {
+      "id": "SEC003-CREDENTIAL-ASSET-ASSIGNMENT-DRIFT",
+      "population_state": "negative",
+      "condition": "credential資産のassignmentで、request側=\"ASSIGN-B\"、expected_target側=\"ASSIGN-A\"が相反する。",
+      "expected": {
+        "condition": "isolation_violation",
+        "finding_codes": [
+          "asset_scope_conflict"
+        ]
+      },
+      "expected_preserved": {
+        "original_identity": "原request identityと存在するfinding/pointer/return_ownerを保持し、他project等の値で補完しない。",
+        "unaffected_scope": "今回のrequest/operation以外の有効scopeを一律停止しない。",
+        "operation_effect": "実認可・credential・接続・state変更、通信、停止や回復の実作用はnone。"
+      },
+      "negative_class_ref": "SEC003-F01-IDENTITY-CONFLICT",
+      "execution_state": "not_executed",
+      "test_citation": null,
+      "compact_whole_observation": {
+        "condition": "isolation_violation",
+        "ordered_findings": [
+          {
+            "code": "asset_scope_conflict",
+            "return_owner": "scope-binding-owner"
+          }
+        ]
+      }
+    },
+    {
+      "id": "SEC003-CREDENTIAL-ASSET-WORKTREE-DRIFT",
+      "population_state": "negative",
+      "condition": "credential資産のworktreeで、request側=\"TREE-B\"、expected_target側=\"TREE-A\"が相反する。",
+      "expected": {
+        "condition": "isolation_violation",
+        "finding_codes": [
+          "asset_scope_conflict"
+        ]
+      },
+      "expected_preserved": {
+        "original_identity": "原request identityと存在するfinding/pointer/return_ownerを保持し、他project等の値で補完しない。",
+        "unaffected_scope": "今回のrequest/operation以外の有効scopeを一律停止しない。",
+        "operation_effect": "実認可・credential・接続・state変更、通信、停止や回復の実作用はnone。"
+      },
+      "negative_class_ref": "SEC003-F01-IDENTITY-CONFLICT",
+      "execution_state": "not_executed",
+      "test_citation": null,
+      "compact_whole_observation": {
+        "condition": "isolation_violation",
+        "ordered_findings": [
+          {
+            "code": "asset_scope_conflict",
+            "return_owner": "scope-binding-owner"
+          }
+        ]
+      }
+    },
+    {
+      "id": "SEC003-CREDENTIAL-ASSET-REVISION-DRIFT",
+      "population_state": "negative",
+      "condition": "credential資産のrevisionで、request側=\"scope-r2\"、expected_target側=\"scope-r1\"が相反する。",
+      "expected": {
+        "condition": "isolation_violation",
+        "finding_codes": [
+          "asset_scope_conflict"
+        ]
+      },
+      "expected_preserved": {
+        "original_identity": "原request identityと存在するfinding/pointer/return_ownerを保持し、他project等の値で補完しない。",
+        "unaffected_scope": "今回のrequest/operation以外の有効scopeを一律停止しない。",
+        "operation_effect": "実認可・credential・接続・state変更、通信、停止や回復の実作用はnone。"
+      },
+      "negative_class_ref": "SEC003-F01-IDENTITY-CONFLICT",
+      "execution_state": "not_executed",
+      "test_citation": null,
+      "compact_whole_observation": {
+        "condition": "isolation_violation",
+        "ordered_findings": [
+          {
+            "code": "asset_scope_conflict",
+            "return_owner": "scope-binding-owner"
+          }
+        ]
+      }
+    },
+    {
+      "id": "SEC003-ARTIFACT-ASSET-PROJECT-DRIFT",
+      "population_state": "negative",
+      "condition": "artifact資産のprojectで、request側=\"PROJECT-B\"、expected_target側=\"PROJECT-A\"が相反する。",
+      "expected": {
+        "condition": "isolation_violation",
+        "finding_codes": [
+          "asset_scope_conflict"
+        ]
+      },
+      "expected_preserved": {
+        "original_identity": "原request identityと存在するfinding/pointer/return_ownerを保持し、他project等の値で補完しない。",
+        "unaffected_scope": "今回のrequest/operation以外の有効scopeを一律停止しない。",
+        "operation_effect": "実認可・credential・接続・state変更、通信、停止や回復の実作用はnone。"
+      },
+      "negative_class_ref": "SEC003-F01-IDENTITY-CONFLICT",
+      "execution_state": "not_executed",
+      "test_citation": null,
+      "compact_whole_observation": {
+        "condition": "isolation_violation",
+        "ordered_findings": [
+          {
+            "code": "asset_scope_conflict",
+            "return_owner": "scope-binding-owner"
+          }
+        ]
+      }
+    },
+    {
+      "id": "SEC003-ARTIFACT-ASSET-TENANT-DRIFT",
+      "population_state": "negative",
+      "condition": "artifact資産のtenantで、request側=\"TENANT-B\"、expected_target側=\"TENANT-A\"が相反する。",
+      "expected": {
+        "condition": "isolation_violation",
+        "finding_codes": [
+          "asset_scope_conflict"
+        ]
+      },
+      "expected_preserved": {
+        "original_identity": "原request identityと存在するfinding/pointer/return_ownerを保持し、他project等の値で補完しない。",
+        "unaffected_scope": "今回のrequest/operation以外の有効scopeを一律停止しない。",
+        "operation_effect": "実認可・credential・接続・state変更、通信、停止や回復の実作用はnone。"
+      },
+      "negative_class_ref": "SEC003-F01-IDENTITY-CONFLICT",
+      "execution_state": "not_executed",
+      "test_citation": null,
+      "compact_whole_observation": {
+        "condition": "isolation_violation",
+        "ordered_findings": [
+          {
+            "code": "asset_scope_conflict",
+            "return_owner": "scope-binding-owner"
+          }
+        ]
+      }
+    },
+    {
+      "id": "SEC003-ARTIFACT-ASSET-ENVIRONMENT-DRIFT",
+      "population_state": "negative",
+      "condition": "artifact資産のenvironmentで、request側=\"ENV-B\"、expected_target側=\"ENV-A\"が相反する。",
+      "expected": {
+        "condition": "isolation_violation",
+        "finding_codes": [
+          "asset_scope_conflict"
+        ]
+      },
+      "expected_preserved": {
+        "original_identity": "原request identityと存在するfinding/pointer/return_ownerを保持し、他project等の値で補完しない。",
+        "unaffected_scope": "今回のrequest/operation以外の有効scopeを一律停止しない。",
+        "operation_effect": "実認可・credential・接続・state変更、通信、停止や回復の実作用はnone。"
+      },
+      "negative_class_ref": "SEC003-F01-IDENTITY-CONFLICT",
+      "execution_state": "not_executed",
+      "test_citation": null,
+      "compact_whole_observation": {
+        "condition": "isolation_violation",
+        "ordered_findings": [
+          {
+            "code": "asset_scope_conflict",
+            "return_owner": "scope-binding-owner"
+          }
+        ]
+      }
+    },
+    {
+      "id": "SEC003-ARTIFACT-ASSET-ASSIGNMENT-DRIFT",
+      "population_state": "negative",
+      "condition": "artifact資産のassignmentで、request側=\"ASSIGN-B\"、expected_target側=\"ASSIGN-A\"が相反する。",
+      "expected": {
+        "condition": "isolation_violation",
+        "finding_codes": [
+          "asset_scope_conflict"
+        ]
+      },
+      "expected_preserved": {
+        "original_identity": "原request identityと存在するfinding/pointer/return_ownerを保持し、他project等の値で補完しない。",
+        "unaffected_scope": "今回のrequest/operation以外の有効scopeを一律停止しない。",
+        "operation_effect": "実認可・credential・接続・state変更、通信、停止や回復の実作用はnone。"
+      },
+      "negative_class_ref": "SEC003-F01-IDENTITY-CONFLICT",
+      "execution_state": "not_executed",
+      "test_citation": null,
+      "compact_whole_observation": {
+        "condition": "isolation_violation",
+        "ordered_findings": [
+          {
+            "code": "asset_scope_conflict",
+            "return_owner": "scope-binding-owner"
+          }
+        ]
+      }
+    },
+    {
+      "id": "SEC003-ARTIFACT-ASSET-WORKTREE-DRIFT",
+      "population_state": "negative",
+      "condition": "artifact資産のworktreeで、request側=\"TREE-B\"、expected_target側=\"TREE-A\"が相反する。",
+      "expected": {
+        "condition": "isolation_violation",
+        "finding_codes": [
+          "asset_scope_conflict"
+        ]
+      },
+      "expected_preserved": {
+        "original_identity": "原request identityと存在するfinding/pointer/return_ownerを保持し、他project等の値で補完しない。",
+        "unaffected_scope": "今回のrequest/operation以外の有効scopeを一律停止しない。",
+        "operation_effect": "実認可・credential・接続・state変更、通信、停止や回復の実作用はnone。"
+      },
+      "negative_class_ref": "SEC003-F01-IDENTITY-CONFLICT",
+      "execution_state": "not_executed",
+      "test_citation": null,
+      "compact_whole_observation": {
+        "condition": "isolation_violation",
+        "ordered_findings": [
+          {
+            "code": "asset_scope_conflict",
+            "return_owner": "scope-binding-owner"
+          }
+        ]
+      }
+    },
+    {
+      "id": "SEC003-ARTIFACT-ASSET-REVISION-DRIFT",
+      "population_state": "negative",
+      "condition": "artifact資産のrevisionで、request側=\"scope-r2\"、expected_target側=\"scope-r1\"が相反する。",
+      "expected": {
+        "condition": "isolation_violation",
+        "finding_codes": [
+          "asset_scope_conflict"
+        ]
+      },
+      "expected_preserved": {
+        "original_identity": "原request identityと存在するfinding/pointer/return_ownerを保持し、他project等の値で補完しない。",
+        "unaffected_scope": "今回のrequest/operation以外の有効scopeを一律停止しない。",
+        "operation_effect": "実認可・credential・接続・state変更、通信、停止や回復の実作用はnone。"
+      },
+      "negative_class_ref": "SEC003-F01-IDENTITY-CONFLICT",
+      "execution_state": "not_executed",
+      "test_citation": null,
+      "compact_whole_observation": {
+        "condition": "isolation_violation",
+        "ordered_findings": [
+          {
+            "code": "asset_scope_conflict",
+            "return_owner": "scope-binding-owner"
+          }
+        ]
+      }
+    },
+    {
+      "id": "SEC003-MEMORY-ASSET-PROJECT-DRIFT",
+      "population_state": "negative",
+      "condition": "memory資産のprojectで、request側=\"PROJECT-B\"、expected_target側=\"PROJECT-A\"が相反する。",
+      "expected": {
+        "condition": "isolation_violation",
+        "finding_codes": [
+          "asset_scope_conflict"
+        ]
+      },
+      "expected_preserved": {
+        "original_identity": "原request identityと存在するfinding/pointer/return_ownerを保持し、他project等の値で補完しない。",
+        "unaffected_scope": "今回のrequest/operation以外の有効scopeを一律停止しない。",
+        "operation_effect": "実認可・credential・接続・state変更、通信、停止や回復の実作用はnone。"
+      },
+      "negative_class_ref": "SEC003-F01-IDENTITY-CONFLICT",
+      "execution_state": "not_executed",
+      "test_citation": null,
+      "compact_whole_observation": {
+        "condition": "isolation_violation",
+        "ordered_findings": [
+          {
+            "code": "asset_scope_conflict",
+            "return_owner": "scope-binding-owner"
+          }
+        ]
+      }
+    },
+    {
+      "id": "SEC003-MEMORY-ASSET-TENANT-DRIFT",
+      "population_state": "negative",
+      "condition": "memory資産のtenantで、request側=\"TENANT-B\"、expected_target側=\"TENANT-A\"が相反する。",
+      "expected": {
+        "condition": "isolation_violation",
+        "finding_codes": [
+          "asset_scope_conflict"
+        ]
+      },
+      "expected_preserved": {
+        "original_identity": "原request identityと存在するfinding/pointer/return_ownerを保持し、他project等の値で補完しない。",
+        "unaffected_scope": "今回のrequest/operation以外の有効scopeを一律停止しない。",
+        "operation_effect": "実認可・credential・接続・state変更、通信、停止や回復の実作用はnone。"
+      },
+      "negative_class_ref": "SEC003-F01-IDENTITY-CONFLICT",
+      "execution_state": "not_executed",
+      "test_citation": null,
+      "compact_whole_observation": {
+        "condition": "isolation_violation",
+        "ordered_findings": [
+          {
+            "code": "asset_scope_conflict",
+            "return_owner": "scope-binding-owner"
+          }
+        ]
+      }
+    },
+    {
+      "id": "SEC003-MEMORY-ASSET-ENVIRONMENT-DRIFT",
+      "population_state": "negative",
+      "condition": "memory資産のenvironmentで、request側=\"ENV-B\"、expected_target側=\"ENV-A\"が相反する。",
+      "expected": {
+        "condition": "isolation_violation",
+        "finding_codes": [
+          "asset_scope_conflict"
+        ]
+      },
+      "expected_preserved": {
+        "original_identity": "原request identityと存在するfinding/pointer/return_ownerを保持し、他project等の値で補完しない。",
+        "unaffected_scope": "今回のrequest/operation以外の有効scopeを一律停止しない。",
+        "operation_effect": "実認可・credential・接続・state変更、通信、停止や回復の実作用はnone。"
+      },
+      "negative_class_ref": "SEC003-F01-IDENTITY-CONFLICT",
+      "execution_state": "not_executed",
+      "test_citation": null,
+      "compact_whole_observation": {
+        "condition": "isolation_violation",
+        "ordered_findings": [
+          {
+            "code": "asset_scope_conflict",
+            "return_owner": "scope-binding-owner"
+          }
+        ]
+      }
+    },
+    {
+      "id": "SEC003-MEMORY-ASSET-ASSIGNMENT-DRIFT",
+      "population_state": "negative",
+      "condition": "memory資産のassignmentで、request側=\"ASSIGN-B\"、expected_target側=\"ASSIGN-A\"が相反する。",
+      "expected": {
+        "condition": "isolation_violation",
+        "finding_codes": [
+          "asset_scope_conflict"
+        ]
+      },
+      "expected_preserved": {
+        "original_identity": "原request identityと存在するfinding/pointer/return_ownerを保持し、他project等の値で補完しない。",
+        "unaffected_scope": "今回のrequest/operation以外の有効scopeを一律停止しない。",
+        "operation_effect": "実認可・credential・接続・state変更、通信、停止や回復の実作用はnone。"
+      },
+      "negative_class_ref": "SEC003-F01-IDENTITY-CONFLICT",
+      "execution_state": "not_executed",
+      "test_citation": null,
+      "compact_whole_observation": {
+        "condition": "isolation_violation",
+        "ordered_findings": [
+          {
+            "code": "asset_scope_conflict",
+            "return_owner": "scope-binding-owner"
+          }
+        ]
+      }
+    },
+    {
+      "id": "SEC003-MEMORY-ASSET-WORKTREE-DRIFT",
+      "population_state": "negative",
+      "condition": "memory資産のworktreeで、request側=\"TREE-B\"、expected_target側=\"TREE-A\"が相反する。",
+      "expected": {
+        "condition": "isolation_violation",
+        "finding_codes": [
+          "asset_scope_conflict"
+        ]
+      },
+      "expected_preserved": {
+        "original_identity": "原request identityと存在するfinding/pointer/return_ownerを保持し、他project等の値で補完しない。",
+        "unaffected_scope": "今回のrequest/operation以外の有効scopeを一律停止しない。",
+        "operation_effect": "実認可・credential・接続・state変更、通信、停止や回復の実作用はnone。"
+      },
+      "negative_class_ref": "SEC003-F01-IDENTITY-CONFLICT",
+      "execution_state": "not_executed",
+      "test_citation": null,
+      "compact_whole_observation": {
+        "condition": "isolation_violation",
+        "ordered_findings": [
+          {
+            "code": "asset_scope_conflict",
+            "return_owner": "scope-binding-owner"
+          }
+        ]
+      }
+    },
+    {
+      "id": "SEC003-MEMORY-ASSET-REVISION-DRIFT",
+      "population_state": "negative",
+      "condition": "memory資産のrevisionで、request側=\"scope-r2\"、expected_target側=\"scope-r1\"が相反する。",
+      "expected": {
+        "condition": "isolation_violation",
+        "finding_codes": [
+          "asset_scope_conflict"
+        ]
+      },
+      "expected_preserved": {
+        "original_identity": "原request identityと存在するfinding/pointer/return_ownerを保持し、他project等の値で補完しない。",
+        "unaffected_scope": "今回のrequest/operation以外の有効scopeを一律停止しない。",
+        "operation_effect": "実認可・credential・接続・state変更、通信、停止や回復の実作用はnone。"
+      },
+      "negative_class_ref": "SEC003-F01-IDENTITY-CONFLICT",
+      "execution_state": "not_executed",
+      "test_citation": null,
+      "compact_whole_observation": {
+        "condition": "isolation_violation",
+        "ordered_findings": [
+          {
+            "code": "asset_scope_conflict",
+            "return_owner": "scope-binding-owner"
+          }
+        ]
+      }
+    },
+    {
+      "id": "SEC003-EXECUTION_TARGET-ASSET-PROJECT-DRIFT",
+      "population_state": "negative",
+      "condition": "execution_target資産のprojectで、request側=\"PROJECT-B\"、expected_target側=\"PROJECT-A\"が相反する。",
+      "expected": {
+        "condition": "isolation_violation",
+        "finding_codes": [
+          "asset_scope_conflict"
+        ]
+      },
+      "expected_preserved": {
+        "original_identity": "原request identityと存在するfinding/pointer/return_ownerを保持し、他project等の値で補完しない。",
+        "unaffected_scope": "今回のrequest/operation以外の有効scopeを一律停止しない。",
+        "operation_effect": "実認可・credential・接続・state変更、通信、停止や回復の実作用はnone。"
+      },
+      "negative_class_ref": "SEC003-F01-IDENTITY-CONFLICT",
+      "execution_state": "not_executed",
+      "test_citation": null,
+      "compact_whole_observation": {
+        "condition": "isolation_violation",
+        "ordered_findings": [
+          {
+            "code": "asset_scope_conflict",
+            "return_owner": "scope-binding-owner"
+          }
+        ]
+      }
+    },
+    {
+      "id": "SEC003-EXECUTION_TARGET-ASSET-TENANT-DRIFT",
+      "population_state": "negative",
+      "condition": "execution_target資産のtenantで、request側=\"TENANT-B\"、expected_target側=\"TENANT-A\"が相反する。",
+      "expected": {
+        "condition": "isolation_violation",
+        "finding_codes": [
+          "asset_scope_conflict"
+        ]
+      },
+      "expected_preserved": {
+        "original_identity": "原request identityと存在するfinding/pointer/return_ownerを保持し、他project等の値で補完しない。",
+        "unaffected_scope": "今回のrequest/operation以外の有効scopeを一律停止しない。",
+        "operation_effect": "実認可・credential・接続・state変更、通信、停止や回復の実作用はnone。"
+      },
+      "negative_class_ref": "SEC003-F01-IDENTITY-CONFLICT",
+      "execution_state": "not_executed",
+      "test_citation": null,
+      "compact_whole_observation": {
+        "condition": "isolation_violation",
+        "ordered_findings": [
+          {
+            "code": "asset_scope_conflict",
+            "return_owner": "scope-binding-owner"
+          }
+        ]
+      }
+    },
+    {
+      "id": "SEC003-EXECUTION_TARGET-ASSET-ENVIRONMENT-DRIFT",
+      "population_state": "negative",
+      "condition": "execution_target資産のenvironmentで、request側=\"ENV-B\"、expected_target側=\"ENV-A\"が相反する。",
+      "expected": {
+        "condition": "isolation_violation",
+        "finding_codes": [
+          "asset_scope_conflict"
+        ]
+      },
+      "expected_preserved": {
+        "original_identity": "原request identityと存在するfinding/pointer/return_ownerを保持し、他project等の値で補完しない。",
+        "unaffected_scope": "今回のrequest/operation以外の有効scopeを一律停止しない。",
+        "operation_effect": "実認可・credential・接続・state変更、通信、停止や回復の実作用はnone。"
+      },
+      "negative_class_ref": "SEC003-F01-IDENTITY-CONFLICT",
+      "execution_state": "not_executed",
+      "test_citation": null,
+      "compact_whole_observation": {
+        "condition": "isolation_violation",
+        "ordered_findings": [
+          {
+            "code": "asset_scope_conflict",
+            "return_owner": "scope-binding-owner"
+          }
+        ]
+      }
+    },
+    {
+      "id": "SEC003-EXECUTION_TARGET-ASSET-ASSIGNMENT-DRIFT",
+      "population_state": "negative",
+      "condition": "execution_target資産のassignmentで、request側=\"ASSIGN-B\"、expected_target側=\"ASSIGN-A\"が相反する。",
+      "expected": {
+        "condition": "isolation_violation",
+        "finding_codes": [
+          "asset_scope_conflict"
+        ]
+      },
+      "expected_preserved": {
+        "original_identity": "原request identityと存在するfinding/pointer/return_ownerを保持し、他project等の値で補完しない。",
+        "unaffected_scope": "今回のrequest/operation以外の有効scopeを一律停止しない。",
+        "operation_effect": "実認可・credential・接続・state変更、通信、停止や回復の実作用はnone。"
+      },
+      "negative_class_ref": "SEC003-F01-IDENTITY-CONFLICT",
+      "execution_state": "not_executed",
+      "test_citation": null,
+      "compact_whole_observation": {
+        "condition": "isolation_violation",
+        "ordered_findings": [
+          {
+            "code": "asset_scope_conflict",
+            "return_owner": "scope-binding-owner"
+          }
+        ]
+      }
+    },
+    {
+      "id": "SEC003-EXECUTION_TARGET-ASSET-WORKTREE-DRIFT",
+      "population_state": "negative",
+      "condition": "execution_target資産のworktreeで、request側=\"TREE-B\"、expected_target側=\"TREE-A\"が相反する。",
+      "expected": {
+        "condition": "isolation_violation",
+        "finding_codes": [
+          "asset_scope_conflict"
+        ]
+      },
+      "expected_preserved": {
+        "original_identity": "原request identityと存在するfinding/pointer/return_ownerを保持し、他project等の値で補完しない。",
+        "unaffected_scope": "今回のrequest/operation以外の有効scopeを一律停止しない。",
+        "operation_effect": "実認可・credential・接続・state変更、通信、停止や回復の実作用はnone。"
+      },
+      "negative_class_ref": "SEC003-F01-IDENTITY-CONFLICT",
+      "execution_state": "not_executed",
+      "test_citation": null,
+      "compact_whole_observation": {
+        "condition": "isolation_violation",
+        "ordered_findings": [
+          {
+            "code": "asset_scope_conflict",
+            "return_owner": "scope-binding-owner"
+          }
+        ]
+      }
+    },
+    {
+      "id": "SEC003-EXECUTION_TARGET-ASSET-REVISION-DRIFT",
+      "population_state": "negative",
+      "condition": "execution_target資産のrevisionで、request側=\"scope-r2\"、expected_target側=\"scope-r1\"が相反する。",
+      "expected": {
+        "condition": "isolation_violation",
+        "finding_codes": [
+          "asset_scope_conflict"
+        ]
+      },
+      "expected_preserved": {
+        "original_identity": "原request identityと存在するfinding/pointer/return_ownerを保持し、他project等の値で補完しない。",
+        "unaffected_scope": "今回のrequest/operation以外の有効scopeを一律停止しない。",
+        "operation_effect": "実認可・credential・接続・state変更、通信、停止や回復の実作用はnone。"
+      },
+      "negative_class_ref": "SEC003-F01-IDENTITY-CONFLICT",
+      "execution_state": "not_executed",
+      "test_citation": null,
+      "compact_whole_observation": {
+        "condition": "isolation_violation",
+        "ordered_findings": [
+          {
+            "code": "asset_scope_conflict",
+            "return_owner": "scope-binding-owner"
+          }
+        ]
+      }
+    },
+    {
+      "id": "SEC003-TARGET-PROJECT-MISSING",
+      "population_state": "negative",
+      "condition": "state資産のtarget.projectがnullで、expected_target.project=\"PROJECT-A\"とのidentity対応を確定できない。",
+      "expected": {
+        "condition": "scope_unresolved",
+        "finding_codes": [
+          "scope_identity_unresolved"
+        ]
+      },
+      "expected_preserved": {
+        "original_identity": "原request identityと存在するfinding/pointer/return_ownerを保持し、他project等の値で補完しない。",
+        "unaffected_scope": "今回のrequest/operation以外の有効scopeを一律停止しない。",
+        "operation_effect": "実認可・credential・接続・state変更、通信、停止や回復の実作用はnone。"
+      },
+      "negative_class_ref": "SEC003-F01-IDENTITY-MISSING",
+      "execution_state": "not_executed",
+      "test_citation": null,
+      "compact_whole_observation": {
+        "condition": "scope_unresolved",
+        "ordered_findings": [
+          {
+            "code": "scope_identity_unresolved",
+            "return_owner": "scope-binding-owner"
+          }
+        ]
+      }
+    },
+    {
+      "id": "SEC003-TARGET-TENANT-MISSING",
+      "population_state": "negative",
+      "condition": "state資産のtarget.tenantがnullで、expected_target.tenant=\"TENANT-A\"とのidentity対応を確定できない。",
+      "expected": {
+        "condition": "scope_unresolved",
+        "finding_codes": [
+          "scope_identity_unresolved"
+        ]
+      },
+      "expected_preserved": {
+        "original_identity": "原request identityと存在するfinding/pointer/return_ownerを保持し、他project等の値で補完しない。",
+        "unaffected_scope": "今回のrequest/operation以外の有効scopeを一律停止しない。",
+        "operation_effect": "実認可・credential・接続・state変更、通信、停止や回復の実作用はnone。"
+      },
+      "negative_class_ref": "SEC003-F01-IDENTITY-MISSING",
+      "execution_state": "not_executed",
+      "test_citation": null,
+      "compact_whole_observation": {
+        "condition": "scope_unresolved",
+        "ordered_findings": [
+          {
+            "code": "scope_identity_unresolved",
+            "return_owner": "scope-binding-owner"
+          }
+        ]
+      }
+    },
+    {
+      "id": "SEC003-TARGET-ENVIRONMENT-MISSING",
+      "population_state": "negative",
+      "condition": "state資産のtarget.environmentがnullで、expected_target.environment=\"ENV-A\"とのidentity対応を確定できない。",
+      "expected": {
+        "condition": "scope_unresolved",
+        "finding_codes": [
+          "scope_identity_unresolved"
+        ]
+      },
+      "expected_preserved": {
+        "original_identity": "原request identityと存在するfinding/pointer/return_ownerを保持し、他project等の値で補完しない。",
+        "unaffected_scope": "今回のrequest/operation以外の有効scopeを一律停止しない。",
+        "operation_effect": "実認可・credential・接続・state変更、通信、停止や回復の実作用はnone。"
+      },
+      "negative_class_ref": "SEC003-F01-IDENTITY-MISSING",
+      "execution_state": "not_executed",
+      "test_citation": null,
+      "compact_whole_observation": {
+        "condition": "scope_unresolved",
+        "ordered_findings": [
+          {
+            "code": "scope_identity_unresolved",
+            "return_owner": "scope-binding-owner"
+          }
+        ]
+      }
+    },
+    {
+      "id": "SEC003-TARGET-ASSIGNMENT-MISSING",
+      "population_state": "negative",
+      "condition": "state資産のtarget.assignmentがnullで、expected_target.assignment=\"ASSIGN-A\"とのidentity対応を確定できない。",
+      "expected": {
+        "condition": "scope_unresolved",
+        "finding_codes": [
+          "scope_identity_unresolved"
+        ]
+      },
+      "expected_preserved": {
+        "original_identity": "原request identityと存在するfinding/pointer/return_ownerを保持し、他project等の値で補完しない。",
+        "unaffected_scope": "今回のrequest/operation以外の有効scopeを一律停止しない。",
+        "operation_effect": "実認可・credential・接続・state変更、通信、停止や回復の実作用はnone。"
+      },
+      "negative_class_ref": "SEC003-F01-IDENTITY-MISSING",
+      "execution_state": "not_executed",
+      "test_citation": null,
+      "compact_whole_observation": {
+        "condition": "scope_unresolved",
+        "ordered_findings": [
+          {
+            "code": "scope_identity_unresolved",
+            "return_owner": "scope-binding-owner"
+          }
+        ]
+      }
+    },
+    {
+      "id": "SEC003-TARGET-WORKTREE-MISSING",
+      "population_state": "negative",
+      "condition": "state資産のtarget.worktreeがnullで、expected_target.worktree=\"TREE-A\"とのidentity対応を確定できない。",
+      "expected": {
+        "condition": "scope_unresolved",
+        "finding_codes": [
+          "scope_identity_unresolved"
+        ]
+      },
+      "expected_preserved": {
+        "original_identity": "原request identityと存在するfinding/pointer/return_ownerを保持し、他project等の値で補完しない。",
+        "unaffected_scope": "今回のrequest/operation以外の有効scopeを一律停止しない。",
+        "operation_effect": "実認可・credential・接続・state変更、通信、停止や回復の実作用はnone。"
+      },
+      "negative_class_ref": "SEC003-F01-IDENTITY-MISSING",
+      "execution_state": "not_executed",
+      "test_citation": null,
+      "compact_whole_observation": {
+        "condition": "scope_unresolved",
+        "ordered_findings": [
+          {
+            "code": "scope_identity_unresolved",
+            "return_owner": "scope-binding-owner"
+          }
+        ]
+      }
+    },
+    {
+      "id": "SEC003-TARGET-REVISION-MISSING",
+      "population_state": "negative",
+      "condition": "state資産のtarget.revisionがnullで、expected_target.revision=\"scope-r1\"とのidentity対応を確定できない。",
+      "expected": {
+        "condition": "scope_unresolved",
+        "finding_codes": [
+          "scope_identity_unresolved"
+        ]
+      },
+      "expected_preserved": {
+        "original_identity": "原request identityと存在するfinding/pointer/return_ownerを保持し、他project等の値で補完しない。",
+        "unaffected_scope": "今回のrequest/operation以外の有効scopeを一律停止しない。",
+        "operation_effect": "実認可・credential・接続・state変更、通信、停止や回復の実作用はnone。"
+      },
+      "negative_class_ref": "SEC003-F01-IDENTITY-MISSING",
+      "execution_state": "not_executed",
+      "test_citation": null,
+      "compact_whole_observation": {
+        "condition": "scope_unresolved",
+        "ordered_findings": [
+          {
+            "code": "scope_identity_unresolved",
+            "return_owner": "scope-binding-owner"
+          }
+        ]
+      }
+    },
+    {
+      "id": "SEC003-TENANT-INVENTED",
+      "population_state": "negative",
+      "condition": "request.target.tenant=\"INVENTED-TENANT\"だがexpected_target.tenant=nullであり、tenant非適用側に値が与えられている。",
+      "expected": {
+        "condition": "isolation_violation",
+        "finding_codes": [
+          "tenant_invented"
+        ]
+      },
+      "expected_preserved": {
+        "original_identity": "原request identityと存在するfinding/pointer/return_ownerを保持し、他project等の値で補完しない。",
+        "unaffected_scope": "今回のrequest/operation以外の有効scopeを一律停止しない。",
+        "operation_effect": "実認可・credential・接続・state変更、通信、停止や回復の実作用はnone。"
+      },
+      "negative_class_ref": "SEC003-F01-TENANT-INVENTED",
+      "execution_state": "not_executed",
+      "test_citation": null,
+      "compact_whole_observation": {
+        "condition": "isolation_violation",
+        "ordered_findings": [
+          {
+            "code": "tenant_invented",
+            "return_owner": "scope-binding-owner"
+          }
+        ]
+      }
+    },
+    {
+      "id": "SEC003-TENANT-APPLICABILITY-UNKNOWN",
+      "population_state": "negative",
+      "condition": "context.target_tenant_applicable=nullであり、tenant適用性は未確定である。",
+      "expected": {
+        "condition": "scope_unresolved",
+        "finding_codes": [
+          "tenant_applicability_unresolved"
+        ]
+      },
+      "expected_preserved": {
+        "original_identity": "原request identityと存在するfinding/pointer/return_ownerを保持し、他project等の値で補完しない。",
+        "unaffected_scope": "今回のrequest/operation以外の有効scopeを一律停止しない。",
+        "operation_effect": "実認可・credential・接続・state変更、通信、停止や回復の実作用はnone。"
+      },
+      "negative_class_ref": "SEC003-F01-TENANT-APPLICABILITY-UNRESOLVED",
+      "execution_state": "not_executed",
+      "test_citation": null,
+      "compact_whole_observation": {
+        "condition": "scope_unresolved",
+        "ordered_findings": [
+          {
+            "code": "tenant_applicability_unresolved",
+            "return_owner": "scope-binding-owner"
+          }
+        ]
+      }
+    },
+    {
+      "id": "SEC003-ORIGIN-PROJECT-MISSING",
+      "population_state": "negative",
+      "condition": "state資産のorigin.projectがnullで、expected_origin.project=\"PROJECT-A\"とのidentity対応を確定できない。",
+      "expected": {
+        "condition": "scope_unresolved",
+        "finding_codes": [
+          "scope_identity_unresolved"
+        ]
+      },
+      "expected_preserved": {
+        "original_identity": "原request identityと存在するfinding/pointer/return_ownerを保持し、他project等の値で補完しない。",
+        "unaffected_scope": "今回のrequest/operation以外の有効scopeを一律停止しない。",
+        "operation_effect": "実認可・credential・接続・state変更、通信、停止や回復の実作用はnone。"
+      },
+      "negative_class_ref": "SEC003-F01-IDENTITY-MISSING",
+      "execution_state": "not_executed",
+      "test_citation": null,
+      "compact_whole_observation": {
+        "condition": "scope_unresolved",
+        "ordered_findings": [
+          {
+            "code": "scope_identity_unresolved",
+            "return_owner": "scope-binding-owner"
+          }
+        ]
+      }
+    },
+    {
+      "id": "SEC003-ORIGIN-TENANT-MISSING",
+      "population_state": "negative",
+      "condition": "state資産のorigin.tenantがnullで、expected_origin.tenant=\"TENANT-A\"とのidentity対応を確定できない。",
+      "expected": {
+        "condition": "scope_unresolved",
+        "finding_codes": [
+          "scope_identity_unresolved"
+        ]
+      },
+      "expected_preserved": {
+        "original_identity": "原request identityと存在するfinding/pointer/return_ownerを保持し、他project等の値で補完しない。",
+        "unaffected_scope": "今回のrequest/operation以外の有効scopeを一律停止しない。",
+        "operation_effect": "実認可・credential・接続・state変更、通信、停止や回復の実作用はnone。"
+      },
+      "negative_class_ref": "SEC003-F01-IDENTITY-MISSING",
+      "execution_state": "not_executed",
+      "test_citation": null,
+      "compact_whole_observation": {
+        "condition": "scope_unresolved",
+        "ordered_findings": [
+          {
+            "code": "scope_identity_unresolved",
+            "return_owner": "scope-binding-owner"
+          }
+        ]
+      }
+    },
+    {
+      "id": "SEC003-ORIGIN-ENVIRONMENT-MISSING",
+      "population_state": "negative",
+      "condition": "state資産のorigin.environmentがnullで、expected_origin.environment=\"ENV-A\"とのidentity対応を確定できない。",
+      "expected": {
+        "condition": "scope_unresolved",
+        "finding_codes": [
+          "scope_identity_unresolved"
+        ]
+      },
+      "expected_preserved": {
+        "original_identity": "原request identityと存在するfinding/pointer/return_ownerを保持し、他project等の値で補完しない。",
+        "unaffected_scope": "今回のrequest/operation以外の有効scopeを一律停止しない。",
+        "operation_effect": "実認可・credential・接続・state変更、通信、停止や回復の実作用はnone。"
+      },
+      "negative_class_ref": "SEC003-F01-IDENTITY-MISSING",
+      "execution_state": "not_executed",
+      "test_citation": null,
+      "compact_whole_observation": {
+        "condition": "scope_unresolved",
+        "ordered_findings": [
+          {
+            "code": "scope_identity_unresolved",
+            "return_owner": "scope-binding-owner"
+          }
+        ]
+      }
+    },
+    {
+      "id": "SEC003-ORIGIN-ASSIGNMENT-MISSING",
+      "population_state": "negative",
+      "condition": "state資産のorigin.assignmentがnullで、expected_origin.assignment=\"ASSIGN-A\"とのidentity対応を確定できない。",
+      "expected": {
+        "condition": "scope_unresolved",
+        "finding_codes": [
+          "scope_identity_unresolved"
+        ]
+      },
+      "expected_preserved": {
+        "original_identity": "原request identityと存在するfinding/pointer/return_ownerを保持し、他project等の値で補完しない。",
+        "unaffected_scope": "今回のrequest/operation以外の有効scopeを一律停止しない。",
+        "operation_effect": "実認可・credential・接続・state変更、通信、停止や回復の実作用はnone。"
+      },
+      "negative_class_ref": "SEC003-F01-IDENTITY-MISSING",
+      "execution_state": "not_executed",
+      "test_citation": null,
+      "compact_whole_observation": {
+        "condition": "scope_unresolved",
+        "ordered_findings": [
+          {
+            "code": "scope_identity_unresolved",
+            "return_owner": "scope-binding-owner"
+          }
+        ]
+      }
+    },
+    {
+      "id": "SEC003-ORIGIN-WORKTREE-MISSING",
+      "population_state": "negative",
+      "condition": "state資産のorigin.worktreeがnullで、expected_origin.worktree=\"TREE-A\"とのidentity対応を確定できない。",
+      "expected": {
+        "condition": "scope_unresolved",
+        "finding_codes": [
+          "scope_identity_unresolved"
+        ]
+      },
+      "expected_preserved": {
+        "original_identity": "原request identityと存在するfinding/pointer/return_ownerを保持し、他project等の値で補完しない。",
+        "unaffected_scope": "今回のrequest/operation以外の有効scopeを一律停止しない。",
+        "operation_effect": "実認可・credential・接続・state変更、通信、停止や回復の実作用はnone。"
+      },
+      "negative_class_ref": "SEC003-F01-IDENTITY-MISSING",
+      "execution_state": "not_executed",
+      "test_citation": null,
+      "compact_whole_observation": {
+        "condition": "scope_unresolved",
+        "ordered_findings": [
+          {
+            "code": "scope_identity_unresolved",
+            "return_owner": "scope-binding-owner"
+          }
+        ]
+      }
+    },
+    {
+      "id": "SEC003-ORIGIN-REVISION-MISSING",
+      "population_state": "negative",
+      "condition": "state資産のorigin.revisionがnullで、expected_origin.revision=\"scope-r1\"とのidentity対応を確定できない。",
+      "expected": {
+        "condition": "scope_unresolved",
+        "finding_codes": [
+          "scope_identity_unresolved"
+        ]
+      },
+      "expected_preserved": {
+        "original_identity": "原request identityと存在するfinding/pointer/return_ownerを保持し、他project等の値で補完しない。",
+        "unaffected_scope": "今回のrequest/operation以外の有効scopeを一律停止しない。",
+        "operation_effect": "実認可・credential・接続・state変更、通信、停止や回復の実作用はnone。"
+      },
+      "negative_class_ref": "SEC003-F01-IDENTITY-MISSING",
+      "execution_state": "not_executed",
+      "test_citation": null,
+      "compact_whole_observation": {
+        "condition": "scope_unresolved",
+        "ordered_findings": [
+          {
+            "code": "scope_identity_unresolved",
+            "return_owner": "scope-binding-owner"
+          }
+        ]
+      }
+    },
+    {
+      "id": "SEC003-ORIGIN-TENANT-UNKNOWN-VALUES",
+      "population_state": "negative",
+      "condition": "context.origin_tenant_applicable=null; request.origin={\"tenant\":\"UNCONFIRMED-TENANT\"}; context.expected_origin={\"tenant\":\"TENANT-A\"}であり、tenant適用性は未確定である。",
+      "expected": {
+        "condition": "scope_unresolved",
+        "finding_codes": [
+          "tenant_applicability_unresolved"
+        ]
+      },
+      "expected_preserved": {
+        "original_identity": "原request identityと存在するfinding/pointer/return_ownerを保持し、他project等の値で補完しない。",
+        "unaffected_scope": "今回のrequest/operation以外の有効scopeを一律停止しない。",
+        "operation_effect": "実認可・credential・接続・state変更、通信、停止や回復の実作用はnone。"
+      },
+      "negative_class_ref": "SEC003-F01-TENANT-APPLICABILITY-UNRESOLVED",
+      "execution_state": "not_executed",
+      "test_citation": null,
+      "compact_whole_observation": {
+        "condition": "scope_unresolved",
+        "ordered_findings": [
+          {
+            "code": "tenant_applicability_unresolved",
+            "return_owner": "scope-binding-owner"
+          }
+        ]
+      }
+    },
+    {
+      "id": "SEC003-TARGET-TENANT-UNKNOWN-VALUES",
+      "population_state": "negative",
+      "condition": "context.target_tenant_applicable=null; request.target={\"tenant\":\"UNCONFIRMED-TENANT\"}; context.expected_target={\"tenant\":\"TENANT-A\"}; request.asset_scope={\"tenant\":null}であり、tenant適用性は未確定である。",
+      "expected": {
+        "condition": "scope_unresolved",
+        "finding_codes": [
+          "tenant_applicability_unresolved"
+        ]
+      },
+      "expected_preserved": {
+        "original_identity": "原request identityと存在するfinding/pointer/return_ownerを保持し、他project等の値で補完しない。",
+        "unaffected_scope": "今回のrequest/operation以外の有効scopeを一律停止しない。",
+        "operation_effect": "実認可・credential・接続・state変更、通信、停止や回復の実作用はnone。"
+      },
+      "negative_class_ref": "SEC003-F01-TENANT-APPLICABILITY-UNRESOLVED",
+      "execution_state": "not_executed",
+      "test_citation": null,
+      "compact_whole_observation": {
+        "condition": "scope_unresolved",
+        "ordered_findings": [
+          {
+            "code": "tenant_applicability_unresolved",
+            "return_owner": "scope-binding-owner"
+          }
+        ]
+      }
+    },
+    {
+      "id": "SEC003-L9-ORACLE-001",
+      "population_state": "negative",
+      "condition": "origin側のprojectが明示nullであり、必須のidentity対応を確定できない。",
+      "expected": {
+        "condition": "scope_unresolved",
+        "finding_codes": [
+          "scope_identity_unresolved"
+        ]
+      },
+      "expected_preserved": {
+        "original_identity": "原request identityと存在するfinding/pointer/return_ownerを保持し、他project等の値で補完しない。",
+        "unaffected_scope": "今回のrequest/operation以外の有効scopeを一律停止しない。",
+        "operation_effect": "実認可・credential・接続・state変更、通信、停止や回復の実作用はnone。"
+      },
+      "negative_class_ref": "SEC003-F01-IDENTITY-MISSING",
+      "execution_state": "not_executed",
+      "test_citation": null,
+      "compact_whole_observation": {
+        "condition": "scope_unresolved",
+        "ordered_findings": [
+          {
+            "code": "scope_identity_unresolved",
+            "return_owner": "scope-binding-owner"
+          }
+        ]
+      }
+    },
+    {
+      "id": "SEC003-L9-ORACLE-002",
+      "population_state": "negative",
+      "condition": "origin側のprojectが独立した期待値と不一致であり、他軸で補完せずscope対応を扱う。",
+      "expected": {
+        "condition": "isolation_violation",
+        "finding_codes": [
+          "asset_scope_conflict"
+        ]
+      },
+      "expected_preserved": {
+        "original_identity": "原request identityと存在するfinding/pointer/return_ownerを保持し、他project等の値で補完しない。",
+        "unaffected_scope": "今回のrequest/operation以外の有効scopeを一律停止しない。",
+        "operation_effect": "実認可・credential・接続・state変更、通信、停止や回復の実作用はnone。"
+      },
+      "negative_class_ref": "SEC003-F01-IDENTITY-CONFLICT",
+      "execution_state": "not_executed",
+      "test_citation": null,
+      "compact_whole_observation": {
+        "condition": "isolation_violation",
+        "ordered_findings": [
+          {
+            "code": "asset_scope_conflict",
+            "return_owner": "scope-binding-owner"
+          }
+        ]
+      }
+    },
+    {
+      "id": "SEC003-L9-ORACLE-003",
+      "population_state": "negative",
+      "condition": "origin側のtenantが明示nullであり、必須のidentity対応を確定できない。",
+      "expected": {
+        "condition": "scope_unresolved",
+        "finding_codes": [
+          "scope_identity_unresolved"
+        ]
+      },
+      "expected_preserved": {
+        "original_identity": "原request identityと存在するfinding/pointer/return_ownerを保持し、他project等の値で補完しない。",
+        "unaffected_scope": "今回のrequest/operation以外の有効scopeを一律停止しない。",
+        "operation_effect": "実認可・credential・接続・state変更、通信、停止や回復の実作用はnone。"
+      },
+      "negative_class_ref": "SEC003-F01-IDENTITY-MISSING",
+      "execution_state": "not_executed",
+      "test_citation": null,
+      "compact_whole_observation": {
+        "condition": "scope_unresolved",
+        "ordered_findings": [
+          {
+            "code": "scope_identity_unresolved",
+            "return_owner": "scope-binding-owner"
+          }
+        ]
+      }
+    },
+    {
+      "id": "SEC003-L9-ORACLE-004",
+      "population_state": "negative",
+      "condition": "origin側のtenantが独立した期待値と不一致であり、他軸で補完せずscope対応を扱う。",
+      "expected": {
+        "condition": "isolation_violation",
+        "finding_codes": [
+          "asset_scope_conflict"
+        ]
+      },
+      "expected_preserved": {
+        "original_identity": "原request identityと存在するfinding/pointer/return_ownerを保持し、他project等の値で補完しない。",
+        "unaffected_scope": "今回のrequest/operation以外の有効scopeを一律停止しない。",
+        "operation_effect": "実認可・credential・接続・state変更、通信、停止や回復の実作用はnone。"
+      },
+      "negative_class_ref": "SEC003-F01-IDENTITY-CONFLICT",
+      "execution_state": "not_executed",
+      "test_citation": null,
+      "compact_whole_observation": {
+        "condition": "isolation_violation",
+        "ordered_findings": [
+          {
+            "code": "asset_scope_conflict",
+            "return_owner": "scope-binding-owner"
+          }
+        ]
+      }
+    },
+    {
+      "id": "SEC003-L9-ORACLE-005",
+      "population_state": "negative",
+      "condition": "origin側のenvironmentが明示nullであり、必須のidentity対応を確定できない。",
+      "expected": {
+        "condition": "scope_unresolved",
+        "finding_codes": [
+          "scope_identity_unresolved"
+        ]
+      },
+      "expected_preserved": {
+        "original_identity": "原request identityと存在するfinding/pointer/return_ownerを保持し、他project等の値で補完しない。",
+        "unaffected_scope": "今回のrequest/operation以外の有効scopeを一律停止しない。",
+        "operation_effect": "実認可・credential・接続・state変更、通信、停止や回復の実作用はnone。"
+      },
+      "negative_class_ref": "SEC003-F01-IDENTITY-MISSING",
+      "execution_state": "not_executed",
+      "test_citation": null,
+      "compact_whole_observation": {
+        "condition": "scope_unresolved",
+        "ordered_findings": [
+          {
+            "code": "scope_identity_unresolved",
+            "return_owner": "scope-binding-owner"
+          }
+        ]
+      }
+    },
+    {
+      "id": "SEC003-L9-ORACLE-006",
+      "population_state": "negative",
+      "condition": "origin側のenvironmentが独立した期待値と不一致であり、他軸で補完せずscope対応を扱う。",
+      "expected": {
+        "condition": "isolation_violation",
+        "finding_codes": [
+          "asset_scope_conflict"
+        ]
+      },
+      "expected_preserved": {
+        "original_identity": "原request identityと存在するfinding/pointer/return_ownerを保持し、他project等の値で補完しない。",
+        "unaffected_scope": "今回のrequest/operation以外の有効scopeを一律停止しない。",
+        "operation_effect": "実認可・credential・接続・state変更、通信、停止や回復の実作用はnone。"
+      },
+      "negative_class_ref": "SEC003-F01-IDENTITY-CONFLICT",
+      "execution_state": "not_executed",
+      "test_citation": null,
+      "compact_whole_observation": {
+        "condition": "isolation_violation",
+        "ordered_findings": [
+          {
+            "code": "asset_scope_conflict",
+            "return_owner": "scope-binding-owner"
+          }
+        ]
+      }
+    },
+    {
+      "id": "SEC003-L9-ORACLE-007",
+      "population_state": "negative",
+      "condition": "origin側のassignmentが明示nullであり、必須のidentity対応を確定できない。",
+      "expected": {
+        "condition": "scope_unresolved",
+        "finding_codes": [
+          "scope_identity_unresolved"
+        ]
+      },
+      "expected_preserved": {
+        "original_identity": "原request identityと存在するfinding/pointer/return_ownerを保持し、他project等の値で補完しない。",
+        "unaffected_scope": "今回のrequest/operation以外の有効scopeを一律停止しない。",
+        "operation_effect": "実認可・credential・接続・state変更、通信、停止や回復の実作用はnone。"
+      },
+      "negative_class_ref": "SEC003-F01-IDENTITY-MISSING",
+      "execution_state": "not_executed",
+      "test_citation": null,
+      "compact_whole_observation": {
+        "condition": "scope_unresolved",
+        "ordered_findings": [
+          {
+            "code": "scope_identity_unresolved",
+            "return_owner": "scope-binding-owner"
+          }
+        ]
+      }
+    },
+    {
+      "id": "SEC003-L9-ORACLE-008",
+      "population_state": "negative",
+      "condition": "origin側のassignmentが独立した期待値と不一致であり、他軸で補完せずscope対応を扱う。",
+      "expected": {
+        "condition": "isolation_violation",
+        "finding_codes": [
+          "asset_scope_conflict"
+        ]
+      },
+      "expected_preserved": {
+        "original_identity": "原request identityと存在するfinding/pointer/return_ownerを保持し、他project等の値で補完しない。",
+        "unaffected_scope": "今回のrequest/operation以外の有効scopeを一律停止しない。",
+        "operation_effect": "実認可・credential・接続・state変更、通信、停止や回復の実作用はnone。"
+      },
+      "negative_class_ref": "SEC003-F01-IDENTITY-CONFLICT",
+      "execution_state": "not_executed",
+      "test_citation": null,
+      "compact_whole_observation": {
+        "condition": "isolation_violation",
+        "ordered_findings": [
+          {
+            "code": "asset_scope_conflict",
+            "return_owner": "scope-binding-owner"
+          }
+        ]
+      }
+    },
+    {
+      "id": "SEC003-L9-ORACLE-009",
+      "population_state": "negative",
+      "condition": "origin側のworktreeが明示nullであり、必須のidentity対応を確定できない。",
+      "expected": {
+        "condition": "scope_unresolved",
+        "finding_codes": [
+          "scope_identity_unresolved"
+        ]
+      },
+      "expected_preserved": {
+        "original_identity": "原request identityと存在するfinding/pointer/return_ownerを保持し、他project等の値で補完しない。",
+        "unaffected_scope": "今回のrequest/operation以外の有効scopeを一律停止しない。",
+        "operation_effect": "実認可・credential・接続・state変更、通信、停止や回復の実作用はnone。"
+      },
+      "negative_class_ref": "SEC003-F01-IDENTITY-MISSING",
+      "execution_state": "not_executed",
+      "test_citation": null,
+      "compact_whole_observation": {
+        "condition": "scope_unresolved",
+        "ordered_findings": [
+          {
+            "code": "scope_identity_unresolved",
+            "return_owner": "scope-binding-owner"
+          }
+        ]
+      }
+    },
+    {
+      "id": "SEC003-L9-ORACLE-010",
+      "population_state": "negative",
+      "condition": "origin側のworktreeが独立した期待値と不一致であり、他軸で補完せずscope対応を扱う。",
+      "expected": {
+        "condition": "isolation_violation",
+        "finding_codes": [
+          "asset_scope_conflict"
+        ]
+      },
+      "expected_preserved": {
+        "original_identity": "原request identityと存在するfinding/pointer/return_ownerを保持し、他project等の値で補完しない。",
+        "unaffected_scope": "今回のrequest/operation以外の有効scopeを一律停止しない。",
+        "operation_effect": "実認可・credential・接続・state変更、通信、停止や回復の実作用はnone。"
+      },
+      "negative_class_ref": "SEC003-F01-IDENTITY-CONFLICT",
+      "execution_state": "not_executed",
+      "test_citation": null,
+      "compact_whole_observation": {
+        "condition": "isolation_violation",
+        "ordered_findings": [
+          {
+            "code": "asset_scope_conflict",
+            "return_owner": "scope-binding-owner"
+          }
+        ]
+      }
+    },
+    {
+      "id": "SEC003-L9-ORACLE-011",
+      "population_state": "negative",
+      "condition": "origin側のrevisionが明示nullであり、必須のidentity対応を確定できない。",
+      "expected": {
+        "condition": "scope_unresolved",
+        "finding_codes": [
+          "scope_identity_unresolved"
+        ]
+      },
+      "expected_preserved": {
+        "original_identity": "原request identityと存在するfinding/pointer/return_ownerを保持し、他project等の値で補完しない。",
+        "unaffected_scope": "今回のrequest/operation以外の有効scopeを一律停止しない。",
+        "operation_effect": "実認可・credential・接続・state変更、通信、停止や回復の実作用はnone。"
+      },
+      "negative_class_ref": "SEC003-F01-IDENTITY-MISSING",
+      "execution_state": "not_executed",
+      "test_citation": null,
+      "compact_whole_observation": {
+        "condition": "scope_unresolved",
+        "ordered_findings": [
+          {
+            "code": "scope_identity_unresolved",
+            "return_owner": "scope-binding-owner"
+          }
+        ]
+      }
+    },
+    {
+      "id": "SEC003-L9-ORACLE-012",
+      "population_state": "negative",
+      "condition": "origin側のrevisionが独立した期待値と不一致であり、他軸で補完せずscope対応を扱う。",
+      "expected": {
+        "condition": "isolation_violation",
+        "finding_codes": [
+          "asset_scope_conflict"
+        ]
+      },
+      "expected_preserved": {
+        "original_identity": "原request identityと存在するfinding/pointer/return_ownerを保持し、他project等の値で補完しない。",
+        "unaffected_scope": "今回のrequest/operation以外の有効scopeを一律停止しない。",
+        "operation_effect": "実認可・credential・接続・state変更、通信、停止や回復の実作用はnone。"
+      },
+      "negative_class_ref": "SEC003-F01-IDENTITY-CONFLICT",
+      "execution_state": "not_executed",
+      "test_citation": null,
+      "compact_whole_observation": {
+        "condition": "isolation_violation",
+        "ordered_findings": [
+          {
+            "code": "asset_scope_conflict",
+            "return_owner": "scope-binding-owner"
+          }
+        ]
+      }
+    },
+    {
+      "id": "SEC003-L9-ORACLE-013",
+      "population_state": "negative",
+      "condition": "origin側tenantが非適用と示される一方、request originにはtenant値が存在する。",
+      "expected": {
+        "condition": "isolation_violation",
+        "finding_codes": [
+          "tenant_invented"
+        ]
+      },
+      "expected_preserved": {
+        "original_identity": "原request identityと存在するfinding/pointer/return_ownerを保持し、他project等の値で補完しない。",
+        "unaffected_scope": "今回のrequest/operation以外の有効scopeを一律停止しない。",
+        "operation_effect": "実認可・credential・接続・state変更、通信、停止や回復の実作用はnone。"
+      },
+      "negative_class_ref": "SEC003-F01-TENANT-INVENTED",
+      "execution_state": "not_executed",
+      "test_citation": null,
+      "compact_whole_observation": {
+        "condition": "isolation_violation",
+        "ordered_findings": [
+          {
+            "code": "tenant_invented",
+            "return_owner": "scope-binding-owner"
+          }
+        ]
+      }
+    },
+    {
+      "id": "SEC003-L9-ORACLE-014",
+      "population_state": "negative",
+      "condition": "origin_tenant_applicableが明示nullであり、tenant適用性を確定できない。",
+      "expected": {
+        "condition": "scope_unresolved",
+        "finding_codes": [
+          "tenant_applicability_unresolved"
+        ]
+      },
+      "expected_preserved": {
+        "original_identity": "原request identityと存在するfinding/pointer/return_ownerを保持し、他project等の値で補完しない。",
+        "unaffected_scope": "今回のrequest/operation以外の有効scopeを一律停止しない。",
+        "operation_effect": "実認可・credential・接続・state変更、通信、停止や回復の実作用はnone。"
+      },
+      "negative_class_ref": "SEC003-F01-TENANT-APPLICABILITY-UNRESOLVED",
+      "execution_state": "not_executed",
+      "test_citation": null,
+      "compact_whole_observation": {
+        "condition": "scope_unresolved",
+        "ordered_findings": [
+          {
+            "code": "tenant_applicability_unresolved",
+            "return_owner": "scope-binding-owner"
+          }
+        ]
+      }
+    },
+    {
+      "id": "SEC003-L9-ORACLE-015",
+      "population_state": "negative",
+      "condition": "origin tenantが非適用と示され、request originからtenant memberが省略されている。",
+      "expected": {
+        "condition": "scope_unresolved",
+        "finding_codes": [
+          "scope_identity_unresolved"
+        ]
+      },
+      "expected_preserved": {
+        "original_identity": "原request identityと存在するfinding/pointer/return_ownerを保持し、他project等の値で補完しない。",
+        "unaffected_scope": "今回のrequest/operation以外の有効scopeを一律停止しない。",
+        "operation_effect": "実認可・credential・接続・state変更、通信、停止や回復の実作用はnone。"
+      },
+      "negative_class_ref": "SEC003-F01-IDENTITY-MISSING",
+      "execution_state": "not_executed",
+      "test_citation": null,
+      "compact_whole_observation": {
+        "condition": "scope_unresolved",
+        "ordered_findings": [
+          {
+            "code": "scope_identity_unresolved",
+            "return_owner": "scope-binding-owner"
+          }
+        ]
+      }
+    },
+    {
+      "id": "SEC003-L9-ORACLE-016",
+      "population_state": "negative",
+      "condition": "side selectorがorigin/target以外の値であり、比較する側を選べない。",
+      "expected": {
+        "condition": "scope_unresolved",
+        "finding_codes": [
+          "scope_input_unresolved"
+        ]
+      },
+      "expected_preserved": {
+        "original_identity": "原request identityと存在するfinding/pointer/return_ownerを保持し、他project等の値で補完しない。",
+        "unaffected_scope": "今回のrequest/operation以外の有効scopeを一律停止しない。",
+        "operation_effect": "実認可・credential・接続・state変更、通信、停止や回復の実作用はnone。"
+      },
+      "negative_class_ref": "SEC003-F01-SIDE-INPUT-UNRESOLVED",
+      "execution_state": "not_executed",
+      "test_citation": null,
+      "compact_whole_observation": {
+        "condition": "scope_unresolved",
+        "ordered_findings": [
+          {
+            "code": "scope_input_unresolved",
+            "return_owner": "scope-binding-owner"
+          }
+        ]
+      }
+    },
+    {
+      "id": "SEC003-L9-ORACLE-017",
+      "population_state": "negative",
+      "condition": "request originは存在するが、independent expected originのproject memberが明示nullである。",
+      "expected": {
+        "condition": "scope_unresolved",
+        "finding_codes": [
+          "scope_identity_unresolved"
+        ]
+      },
+      "expected_preserved": {
+        "original_identity": "原request identityと存在するfinding/pointer/return_ownerを保持し、他project等の値で補完しない。",
+        "unaffected_scope": "今回のrequest/operation以外の有効scopeを一律停止しない。",
+        "operation_effect": "実認可・credential・接続・state変更、通信、停止や回復の実作用はnone。"
+      },
+      "negative_class_ref": "SEC003-F01-IDENTITY-MISSING",
+      "execution_state": "not_executed",
+      "test_citation": null,
+      "compact_whole_observation": {
+        "condition": "scope_unresolved",
+        "ordered_findings": [
+          {
+            "code": "scope_identity_unresolved",
+            "return_owner": "scope-binding-owner"
+          }
+        ]
+      }
+    },
+    {
+      "id": "SEC003-L9-ORACLE-018",
+      "population_state": "negative",
+      "condition": "asset_scope.projectが比較対象のexpected targetと不一致であり、state assetのscopeを別軸から補完しない。",
+      "expected": {
+        "condition": "isolation_violation",
+        "finding_codes": [
+          "asset_scope_conflict"
+        ]
+      },
+      "expected_preserved": {
+        "original_identity": "原request identityと存在するfinding/pointer/return_ownerを保持し、他project等の値で補完しない。",
+        "unaffected_scope": "今回のrequest/operation以外の有効scopeを一律停止しない。",
+        "operation_effect": "実認可・credential・接続・state変更、通信、停止や回復の実作用はnone。"
+      },
+      "negative_class_ref": "SEC003-F01-IDENTITY-CONFLICT",
+      "execution_state": "not_executed",
+      "test_citation": null,
+      "compact_whole_observation": {
+        "condition": "isolation_violation",
+        "ordered_findings": [
+          {
+            "code": "asset_scope_conflict",
+            "return_owner": "scope-binding-owner"
+          }
+        ]
+      }
+    },
+    {
+      "id": "SEC003-L9-ORACLE-019",
+      "population_state": "negative",
+      "condition": "asset_scope.tenantが比較対象のexpected targetと不一致であり、state assetのscopeを別軸から補完しない。",
+      "expected": {
+        "condition": "isolation_violation",
+        "finding_codes": [
+          "asset_scope_conflict"
+        ]
+      },
+      "expected_preserved": {
+        "original_identity": "原request identityと存在するfinding/pointer/return_ownerを保持し、他project等の値で補完しない。",
+        "unaffected_scope": "今回のrequest/operation以外の有効scopeを一律停止しない。",
+        "operation_effect": "実認可・credential・接続・state変更、通信、停止や回復の実作用はnone。"
+      },
+      "negative_class_ref": "SEC003-F01-IDENTITY-CONFLICT",
+      "execution_state": "not_executed",
+      "test_citation": null,
+      "compact_whole_observation": {
+        "condition": "isolation_violation",
+        "ordered_findings": [
+          {
+            "code": "asset_scope_conflict",
+            "return_owner": "scope-binding-owner"
+          }
+        ]
+      }
+    },
+    {
+      "id": "SEC003-L9-ORACLE-020",
+      "population_state": "negative",
+      "condition": "asset_scope.environmentが比較対象のexpected targetと不一致であり、state assetのscopeを別軸から補完しない。",
+      "expected": {
+        "condition": "isolation_violation",
+        "finding_codes": [
+          "asset_scope_conflict"
+        ]
+      },
+      "expected_preserved": {
+        "original_identity": "原request identityと存在するfinding/pointer/return_ownerを保持し、他project等の値で補完しない。",
+        "unaffected_scope": "今回のrequest/operation以外の有効scopeを一律停止しない。",
+        "operation_effect": "実認可・credential・接続・state変更、通信、停止や回復の実作用はnone。"
+      },
+      "negative_class_ref": "SEC003-F01-IDENTITY-CONFLICT",
+      "execution_state": "not_executed",
+      "test_citation": null,
+      "compact_whole_observation": {
+        "condition": "isolation_violation",
+        "ordered_findings": [
+          {
+            "code": "asset_scope_conflict",
+            "return_owner": "scope-binding-owner"
+          }
+        ]
+      }
+    },
+    {
+      "id": "SEC003-L9-ORACLE-021",
+      "population_state": "negative",
+      "condition": "asset_scope.assignmentが比較対象のexpected targetと不一致であり、state assetのscopeを別軸から補完しない。",
+      "expected": {
+        "condition": "isolation_violation",
+        "finding_codes": [
+          "asset_scope_conflict"
+        ]
+      },
+      "expected_preserved": {
+        "original_identity": "原request identityと存在するfinding/pointer/return_ownerを保持し、他project等の値で補完しない。",
+        "unaffected_scope": "今回のrequest/operation以外の有効scopeを一律停止しない。",
+        "operation_effect": "実認可・credential・接続・state変更、通信、停止や回復の実作用はnone。"
+      },
+      "negative_class_ref": "SEC003-F01-IDENTITY-CONFLICT",
+      "execution_state": "not_executed",
+      "test_citation": null,
+      "compact_whole_observation": {
+        "condition": "isolation_violation",
+        "ordered_findings": [
+          {
+            "code": "asset_scope_conflict",
+            "return_owner": "scope-binding-owner"
+          }
+        ]
+      }
+    },
+    {
+      "id": "SEC003-L9-ORACLE-022",
+      "population_state": "negative",
+      "condition": "asset_scope.worktreeが比較対象のexpected targetと不一致であり、state assetのscopeを別軸から補完しない。",
+      "expected": {
+        "condition": "isolation_violation",
+        "finding_codes": [
+          "asset_scope_conflict"
+        ]
+      },
+      "expected_preserved": {
+        "original_identity": "原request identityと存在するfinding/pointer/return_ownerを保持し、他project等の値で補完しない。",
+        "unaffected_scope": "今回のrequest/operation以外の有効scopeを一律停止しない。",
+        "operation_effect": "実認可・credential・接続・state変更、通信、停止や回復の実作用はnone。"
+      },
+      "negative_class_ref": "SEC003-F01-IDENTITY-CONFLICT",
+      "execution_state": "not_executed",
+      "test_citation": null,
+      "compact_whole_observation": {
+        "condition": "isolation_violation",
+        "ordered_findings": [
+          {
+            "code": "asset_scope_conflict",
+            "return_owner": "scope-binding-owner"
+          }
+        ]
+      }
+    },
+    {
+      "id": "SEC003-L9-ORACLE-023",
+      "population_state": "negative",
+      "condition": "asset_scope.revisionが比較対象のexpected targetと不一致であり、state assetのscopeを別軸から補完しない。",
+      "expected": {
+        "condition": "isolation_violation",
+        "finding_codes": [
+          "asset_scope_conflict"
+        ]
+      },
+      "expected_preserved": {
+        "original_identity": "原request identityと存在するfinding/pointer/return_ownerを保持し、他project等の値で補完しない。",
+        "unaffected_scope": "今回のrequest/operation以外の有効scopeを一律停止しない。",
+        "operation_effect": "実認可・credential・接続・state変更、通信、停止や回復の実作用はnone。"
+      },
+      "negative_class_ref": "SEC003-F01-IDENTITY-CONFLICT",
+      "execution_state": "not_executed",
+      "test_citation": null,
+      "compact_whole_observation": {
+        "condition": "isolation_violation",
+        "ordered_findings": [
+          {
+            "code": "asset_scope_conflict",
+            "return_owner": "scope-binding-owner"
+          }
+        ]
+      }
+    },
+    {
+      "id": "SEC003-L9-ORACLE-024",
+      "population_state": "negative",
+      "condition": "asset_kindが既知のasset種別に解決せず、asset scope判定を未解決に保つ。",
+      "expected": {
+        "condition": "scope_unresolved",
+        "finding_codes": [
+          "scope_input_unresolved"
+        ]
+      },
+      "expected_preserved": {
+        "original_identity": "原request identityと存在するfinding/pointer/return_ownerを保持し、他project等の値で補完しない。",
+        "unaffected_scope": "今回のrequest/operation以外の有効scopeを一律停止しない。",
+        "operation_effect": "実認可・credential・接続・state変更、通信、停止や回復の実作用はnone。"
+      },
+      "negative_class_ref": "SEC003-F01-ASSET-KIND-UNRESOLVED",
+      "execution_state": "not_executed",
+      "test_citation": null,
+      "compact_whole_observation": {
+        "condition": "scope_unresolved",
+        "ordered_findings": [
+          {
+            "code": "scope_input_unresolved",
+            "return_owner": "scope-binding-owner"
+          }
+        ]
+      }
+    },
+    {
+      "id": "SEC003-L9-ORACLE-025",
+      "population_state": "negative",
+      "condition": "OS owner materialだけがstaleであり、他ownerのcurrent状態から当該materialを補完しない。",
+      "expected": {
+        "condition": "scope_unresolved",
+        "finding_codes": [
+          "owner_material_unresolved"
+        ]
+      },
+      "expected_preserved": {
+        "original_identity": "原request identityと存在するfinding/pointer/return_ownerを保持し、他project等の値で補完しない。",
+        "unaffected_scope": "今回のrequest/operation以外の有効scopeを一律停止しない。",
+        "operation_effect": "実認可・credential・接続・state変更、通信、停止や回復の実作用はnone。"
+      },
+      "negative_class_ref": "SEC003-F01-OWNER-MATERIAL-UNRESOLVED",
+      "execution_state": "not_executed",
+      "test_citation": null,
+      "compact_whole_observation": {
+        "condition": "scope_unresolved",
+        "ordered_findings": [
+          {
+            "code": "owner_material_unresolved",
+            "return_owner": "scope-binding-owner"
+          }
+        ]
+      }
+    },
+    {
+      "id": "SEC003-L9-ORACLE-026",
+      "population_state": "negative",
+      "condition": "INFRA owner materialだけがstaleであり、他ownerのcurrent状態から当該materialを補完しない。",
+      "expected": {
+        "condition": "scope_unresolved",
+        "finding_codes": [
+          "owner_material_unresolved"
+        ]
+      },
+      "expected_preserved": {
+        "original_identity": "原request identityと存在するfinding/pointer/return_ownerを保持し、他project等の値で補完しない。",
+        "unaffected_scope": "今回のrequest/operation以外の有効scopeを一律停止しない。",
+        "operation_effect": "実認可・credential・接続・state変更、通信、停止や回復の実作用はnone。"
+      },
+      "negative_class_ref": "SEC003-F01-OWNER-MATERIAL-UNRESOLVED",
+      "execution_state": "not_executed",
+      "test_citation": null,
+      "compact_whole_observation": {
+        "condition": "scope_unresolved",
+        "ordered_findings": [
+          {
+            "code": "owner_material_unresolved",
+            "return_owner": "scope-binding-owner"
+          }
+        ]
+      }
+    },
+    {
+      "id": "SEC003-L9-ORACLE-027",
+      "population_state": "negative",
+      "condition": "CONNECT owner materialだけがstaleであり、他ownerのcurrent状態から当該materialを補完しない。",
+      "expected": {
+        "condition": "scope_unresolved",
+        "finding_codes": [
+          "owner_material_unresolved"
+        ]
+      },
+      "expected_preserved": {
+        "original_identity": "原request identityと存在するfinding/pointer/return_ownerを保持し、他project等の値で補完しない。",
+        "unaffected_scope": "今回のrequest/operation以外の有効scopeを一律停止しない。",
+        "operation_effect": "実認可・credential・接続・state変更、通信、停止や回復の実作用はnone。"
+      },
+      "negative_class_ref": "SEC003-F01-OWNER-MATERIAL-UNRESOLVED",
+      "execution_state": "not_executed",
+      "test_citation": null,
+      "compact_whole_observation": {
+        "condition": "scope_unresolved",
+        "ordered_findings": [
+          {
+            "code": "owner_material_unresolved",
+            "return_owner": "scope-binding-owner"
+          }
+        ]
+      }
+    },
+    {
+      "id": "SEC003-L9-ORACLE-028",
+      "population_state": "negative",
+      "condition": "request targetのproject memberが明示nullである。",
+      "expected": {
+        "condition": "scope_unresolved",
+        "finding_codes": [
+          "scope_identity_unresolved"
+        ]
+      },
+      "expected_preserved": {
+        "original_identity": "原request identityと存在するfinding/pointer/return_ownerを保持し、他project等の値で補完しない。",
+        "unaffected_scope": "今回のrequest/operation以外の有効scopeを一律停止しない。",
+        "operation_effect": "実認可・credential・接続・state変更、通信、停止や回復の実作用はnone。"
+      },
+      "negative_class_ref": "SEC003-F01-IDENTITY-MISSING",
+      "execution_state": "not_executed",
+      "test_citation": null,
+      "compact_whole_observation": {
+        "condition": "scope_unresolved",
+        "ordered_findings": [
+          {
+            "code": "scope_identity_unresolved",
+            "return_owner": "scope-binding-owner"
+          }
+        ]
+      }
+    },
+    {
+      "id": "SEC003-L9-ORACLE-029",
+      "population_state": "negative",
+      "condition": "request originが単一recordでなく複数候補の配列として与えられる。",
+      "expected": {
+        "condition": "scope_unresolved",
+        "finding_codes": [
+          "scope_identity_unresolved"
+        ]
+      },
+      "expected_preserved": {
+        "original_identity": "原request identityと存在するfinding/pointer/return_ownerを保持し、他project等の値で補完しない。",
+        "unaffected_scope": "今回のrequest/operation以外の有効scopeを一律停止しない。",
+        "operation_effect": "実認可・credential・接続・state変更、通信、停止や回復の実作用はnone。"
+      },
+      "negative_class_ref": "SEC003-F01-IDENTITY-MISSING",
+      "execution_state": "not_executed",
+      "test_citation": null,
+      "compact_whole_observation": {
+        "condition": "scope_unresolved",
+        "ordered_findings": [
+          {
+            "code": "scope_identity_unresolved",
+            "return_owner": "scope-binding-owner"
+          }
+        ]
+      }
+    },
+    {
+      "id": "SEC003-CROSS-READ-ABSENT",
+      "population_state": "negative",
+      "condition": "cross_scope条件でoperation=\"read\"を要求し、connection_state=\"absent\"である。",
+      "expected": {
+        "condition": "isolation_violation",
+        "finding_codes": [
+          "explicit_connection_absent"
+        ]
+      },
+      "expected_preserved": {
+        "requested_operation": "今回のrequested operationとknown absentを保持する。",
+        "unaffected_scope": "無関係な有効scope/operationを全停止しない。",
+        "operation_effect": "実接続、認可、通信、変更はnone。"
+      },
+      "negative_class_ref": "SEC003-F02-EXPLICIT-CONNECTION-ABSENT",
+      "execution_state": "not_executed",
+      "test_citation": null,
+      "compact_whole_observation": {
+        "condition": "isolation_violation",
+        "ordered_findings": [
+          {
+            "code": "explicit_connection_absent",
+            "return_owner": "scope-binding-owner"
+          }
+        ]
+      }
+    },
+    {
+      "id": "SEC003-CROSS-WRITE-ABSENT",
+      "population_state": "negative",
+      "condition": "cross_scope条件でoperation=\"write\"を要求し、connection_state=\"absent\"である。",
+      "expected": {
+        "condition": "isolation_violation",
+        "finding_codes": [
+          "explicit_connection_absent"
+        ]
+      },
+      "expected_preserved": {
+        "requested_operation": "今回のrequested operationとknown absentを保持する。",
+        "unaffected_scope": "無関係な有効scope/operationを全停止しない。",
+        "operation_effect": "実接続、認可、通信、変更はnone。"
+      },
+      "negative_class_ref": "SEC003-F02-EXPLICIT-CONNECTION-ABSENT",
+      "execution_state": "not_executed",
+      "test_citation": null,
+      "compact_whole_observation": {
+        "condition": "isolation_violation",
+        "ordered_findings": [
+          {
+            "code": "explicit_connection_absent",
+            "return_owner": "scope-binding-owner"
+          }
+        ]
+      }
+    },
+    {
+      "id": "SEC003-CROSS-EXECUTE-ABSENT",
+      "population_state": "negative",
+      "condition": "cross_scope条件でoperation=\"execute\"を要求し、connection_state=\"absent\"である。",
+      "expected": {
+        "condition": "isolation_violation",
+        "finding_codes": [
+          "explicit_connection_absent"
+        ]
+      },
+      "expected_preserved": {
+        "requested_operation": "今回のrequested operationとknown absentを保持する。",
+        "unaffected_scope": "無関係な有効scope/operationを全停止しない。",
+        "operation_effect": "実接続、認可、通信、変更はnone。"
+      },
+      "negative_class_ref": "SEC003-F02-EXPLICIT-CONNECTION-ABSENT",
+      "execution_state": "not_executed",
+      "test_citation": null,
+      "compact_whole_observation": {
+        "condition": "isolation_violation",
+        "ordered_findings": [
+          {
+            "code": "explicit_connection_absent",
+            "return_owner": "scope-binding-owner"
+          }
+        ]
+      }
+    },
+    {
+      "id": "SEC003-CROSS-NETWORK-ABSENT",
+      "population_state": "negative",
+      "condition": "cross_scope条件でoperation=\"network\"を要求し、connection_state=\"absent\"である。",
+      "expected": {
+        "condition": "isolation_violation",
+        "finding_codes": [
+          "explicit_connection_absent"
+        ]
+      },
+      "expected_preserved": {
+        "requested_operation": "今回のrequested operationとknown absentを保持する。",
+        "unaffected_scope": "無関係な有効scope/operationを全停止しない。",
+        "operation_effect": "実接続、認可、通信、変更はnone。"
+      },
+      "negative_class_ref": "SEC003-F02-EXPLICIT-CONNECTION-ABSENT",
+      "execution_state": "not_executed",
+      "test_citation": null,
+      "compact_whole_observation": {
+        "condition": "isolation_violation",
+        "ordered_findings": [
+          {
+            "code": "explicit_connection_absent",
+            "return_owner": "scope-binding-owner"
+          }
+        ]
+      }
+    },
+    {
+      "id": "SEC003-CROSS-STATE-ABSENT",
+      "population_state": "negative",
+      "condition": "cross_scope条件でoperation=\"state\"を要求し、connection_state=\"absent\"である。",
+      "expected": {
+        "condition": "isolation_violation",
+        "finding_codes": [
+          "explicit_connection_absent"
+        ]
+      },
+      "expected_preserved": {
+        "requested_operation": "今回のrequested operationとknown absentを保持する。",
+        "unaffected_scope": "無関係な有効scope/operationを全停止しない。",
+        "operation_effect": "実接続、認可、通信、変更はnone。"
+      },
+      "negative_class_ref": "SEC003-F02-EXPLICIT-CONNECTION-ABSENT",
+      "execution_state": "not_executed",
+      "test_citation": null,
+      "compact_whole_observation": {
+        "condition": "isolation_violation",
+        "ordered_findings": [
+          {
+            "code": "explicit_connection_absent",
+            "return_owner": "scope-binding-owner"
+          }
+        ]
+      }
+    },
+    {
+      "id": "SEC003-CROSS-CREDENTIAL-ABSENT",
+      "population_state": "negative",
+      "condition": "cross_scope条件でoperation=\"credential\"を要求し、connection_state=\"absent\"である。",
+      "expected": {
+        "condition": "isolation_violation",
+        "finding_codes": [
+          "explicit_connection_absent"
+        ]
+      },
+      "expected_preserved": {
+        "requested_operation": "今回のrequested operationとknown absentを保持する。",
+        "unaffected_scope": "無関係な有効scope/operationを全停止しない。",
+        "operation_effect": "実接続、認可、通信、変更はnone。"
+      },
+      "negative_class_ref": "SEC003-F02-EXPLICIT-CONNECTION-ABSENT",
+      "execution_state": "not_executed",
+      "test_citation": null,
+      "compact_whole_observation": {
+        "condition": "isolation_violation",
+        "ordered_findings": [
+          {
+            "code": "explicit_connection_absent",
+            "return_owner": "scope-binding-owner"
+          }
+        ]
+      }
+    },
+    {
+      "id": "SEC003-CROSS-ARTIFACT-ABSENT",
+      "population_state": "negative",
+      "condition": "cross_scope条件でoperation=\"artifact\"を要求し、connection_state=\"absent\"である。",
+      "expected": {
+        "condition": "isolation_violation",
+        "finding_codes": [
+          "explicit_connection_absent"
+        ]
+      },
+      "expected_preserved": {
+        "requested_operation": "今回のrequested operationとknown absentを保持する。",
+        "unaffected_scope": "無関係な有効scope/operationを全停止しない。",
+        "operation_effect": "実接続、認可、通信、変更はnone。"
+      },
+      "negative_class_ref": "SEC003-F02-EXPLICIT-CONNECTION-ABSENT",
+      "execution_state": "not_executed",
+      "test_citation": null,
+      "compact_whole_observation": {
+        "condition": "isolation_violation",
+        "ordered_findings": [
+          {
+            "code": "explicit_connection_absent",
+            "return_owner": "scope-binding-owner"
+          }
+        ]
+      }
+    },
+    {
+      "id": "SEC003-PRIMARY-TREE-FALLBACK",
+      "population_state": "negative",
+      "condition": "Worker callerのstate operation=\"read\"でfallback=\"primary_tree\"を指定している。",
+      "expected": {
+        "condition": "isolation_violation",
+        "finding_codes": [
+          "implicit_fallback"
+        ]
+      },
+      "expected_preserved": {
+        "original_identity": "原request identityと存在するfinding/pointer/return_ownerを保持し、他project等の値で補完しない。",
+        "unaffected_scope": "今回のrequest/operation以外の有効scopeを一律停止しない。",
+        "operation_effect": "実認可・credential・接続・state変更、通信、停止や回復の実作用はnone。"
+      },
+      "negative_class_ref": "SEC003-F02-IMPLICIT-FALLBACK",
+      "execution_state": "not_executed",
+      "test_citation": null,
+      "compact_whole_observation": {
+        "condition": "isolation_violation",
+        "ordered_findings": [
+          {
+            "code": "implicit_fallback",
+            "return_owner": "scope-binding-owner"
+          }
+        ]
+      }
+    },
+    {
+      "id": "SEC003-OTHER-PROJECT-FALLBACK",
+      "population_state": "negative",
+      "condition": "Worker callerのstate operation=\"read\"でfallback=\"other_project\"を指定している。",
+      "expected": {
+        "condition": "isolation_violation",
+        "finding_codes": [
+          "implicit_fallback"
+        ]
+      },
+      "expected_preserved": {
+        "original_identity": "原request identityと存在するfinding/pointer/return_ownerを保持し、他project等の値で補完しない。",
+        "unaffected_scope": "今回のrequest/operation以外の有効scopeを一律停止しない。",
+        "operation_effect": "実認可・credential・接続・state変更、通信、停止や回復の実作用はnone。"
+      },
+      "negative_class_ref": "SEC003-F02-IMPLICIT-FALLBACK",
+      "execution_state": "not_executed",
+      "test_citation": null,
+      "compact_whole_observation": {
+        "condition": "isolation_violation",
+        "ordered_findings": [
+          {
+            "code": "implicit_fallback",
+            "return_owner": "scope-binding-owner"
+          }
+        ]
+      }
+    },
+    {
+      "id": "SEC003-OTHER-PROJECT-LATEST",
+      "population_state": "negative",
+      "condition": "Worker callerのlatest claim=trueに対し、projectがrequest側=\"PROJECT-B\"、expected_target側=\"PROJECT-A\"で異なる。",
+      "expected": {
+        "condition": "isolation_violation",
+        "finding_codes": [
+          "asset_scope_conflict"
+        ]
+      },
+      "expected_preserved": {
+        "original_identity": "原request identityと存在するfinding/pointer/return_ownerを保持し、他project等の値で補完しない。",
+        "unaffected_scope": "今回のrequest/operation以外の有効scopeを一律停止しない。",
+        "operation_effect": "実認可・credential・接続・state変更、通信、停止や回復の実作用はnone。"
+      },
+      "negative_class_ref": "SEC003-F02-FOREIGN-LATEST",
+      "execution_state": "not_executed",
+      "test_citation": null,
+      "compact_whole_observation": {
+        "condition": "isolation_violation",
+        "ordered_findings": [
+          {
+            "code": "asset_scope_conflict",
+            "return_owner": "scope-binding-owner"
+          }
+        ]
+      }
+    },
+    {
+      "id": "SEC003-CONNECTION-REVISION",
+      "population_state": "negative",
+      "condition": "request.connection.revision=\"old-connection\"とexpected_connection.revision=\"connection-r1\"が一致しない。",
+      "expected": {
+        "condition": "isolation_violation",
+        "finding_codes": [
+          "connection_content_conflict"
+        ]
+      },
+      "expected_preserved": {
+        "requested_operation": "接続identity/member差とrequested operationを保持する。",
+        "unaffected_scope": "無関係な有効scope/operationを全停止しない。",
+        "operation_effect": "実接続、認可、通信、変更はnone。"
+      },
+      "negative_class_ref": "SEC003-F02-CONNECTION-MATERIAL-CONFLICT",
+      "execution_state": "not_executed",
+      "test_citation": null,
+      "compact_whole_observation": {
+        "condition": "isolation_violation",
+        "ordered_findings": [
+          {
+            "code": "connection_content_conflict",
+            "return_owner": "scope-binding-owner"
+          }
+        ]
+      }
+    },
+    {
+      "id": "SEC003-CONNECTION-UNKNOWN",
+      "population_state": "negative",
+      "condition": "operation=\"read\"に対してconnection_state=\"unknown\"であり、connection materialを確定できない。",
+      "expected": {
+        "condition": "scope_unresolved",
+        "finding_codes": [
+          "connection_material_unresolved"
+        ]
+      },
+      "expected_preserved": {
+        "requested_operation": "unknown connection memberとrequested operationを保持する。",
+        "unaffected_scope": "無関係な有効scope/operationを全停止しない。",
+        "operation_effect": "実接続、認可、通信、変更はnone。"
+      },
+      "negative_class_ref": "SEC003-F02-CONNECTION-MATERIAL-UNRESOLVED",
+      "execution_state": "not_executed",
+      "test_citation": null,
+      "compact_whole_observation": {
+        "condition": "scope_unresolved",
+        "ordered_findings": [
+          {
+            "code": "connection_material_unresolved",
+            "return_owner": "scope-binding-owner"
+          }
+        ]
+      }
+    },
+    {
+      "id": "SEC003-READ-DOES-NOT-GRANT-WRITE",
+      "population_state": "negative",
+      "condition": "Worker callerのstate operation=\"write\"はallowed_operations=[\"read\"]に含まれない。",
+      "expected": {
+        "condition": "isolation_violation",
+        "finding_codes": [
+          "operation_scope_conflict"
+        ]
+      },
+      "expected_preserved": {
+        "original_identity": "原request identityと存在するfinding/pointer/return_ownerを保持し、他project等の値で補完しない。",
+        "unaffected_scope": "今回のrequest/operation以外の有効scopeを一律停止しない。",
+        "operation_effect": "実認可・credential・接続・state変更、通信、停止や回復の実作用はnone。"
+      },
+      "negative_class_ref": "SEC003-F02-OPERATION-SCOPE",
+      "execution_state": "not_executed",
+      "test_citation": null,
+      "compact_whole_observation": {
+        "condition": "isolation_violation",
+        "ordered_findings": [
+          {
+            "code": "operation_scope_conflict",
+            "return_owner": "scope-binding-owner"
+          }
+        ]
+      }
+    },
+    {
+      "id": "SEC003-READ-DOES-NOT-GRANT-EXECUTE",
+      "population_state": "negative",
+      "condition": "Worker callerのstate operation=\"execute\"はallowed_operations=[\"read\"]に含まれない。",
+      "expected": {
+        "condition": "isolation_violation",
+        "finding_codes": [
+          "operation_scope_conflict"
+        ]
+      },
+      "expected_preserved": {
+        "original_identity": "原request identityと存在するfinding/pointer/return_ownerを保持し、他project等の値で補完しない。",
+        "unaffected_scope": "今回のrequest/operation以外の有効scopeを一律停止しない。",
+        "operation_effect": "実認可・credential・接続・state変更、通信、停止や回復の実作用はnone。"
+      },
+      "negative_class_ref": "SEC003-F02-OPERATION-SCOPE",
+      "execution_state": "not_executed",
+      "test_citation": null,
+      "compact_whole_observation": {
+        "condition": "isolation_violation",
+        "ordered_findings": [
+          {
+            "code": "operation_scope_conflict",
+            "return_owner": "scope-binding-owner"
+          }
+        ]
+      }
+    },
+    {
+      "id": "SEC003-READ-DOES-NOT-GRANT-NETWORK",
+      "population_state": "negative",
+      "condition": "Worker callerのstate operation=\"network\"はallowed_operations=[\"read\"]に含まれない。",
+      "expected": {
+        "condition": "isolation_violation",
+        "finding_codes": [
+          "operation_scope_conflict"
+        ]
+      },
+      "expected_preserved": {
+        "original_identity": "原request identityと存在するfinding/pointer/return_ownerを保持し、他project等の値で補完しない。",
+        "unaffected_scope": "今回のrequest/operation以外の有効scopeを一律停止しない。",
+        "operation_effect": "実認可・credential・接続・state変更、通信、停止や回復の実作用はnone。"
+      },
+      "negative_class_ref": "SEC003-F02-OPERATION-SCOPE",
+      "execution_state": "not_executed",
+      "test_citation": null,
+      "compact_whole_observation": {
+        "condition": "isolation_violation",
+        "ordered_findings": [
+          {
+            "code": "operation_scope_conflict",
+            "return_owner": "scope-binding-owner"
+          }
+        ]
+      }
+    },
+    {
+      "id": "SEC003-READ-DOES-NOT-GRANT-STATE",
+      "population_state": "negative",
+      "condition": "Worker callerのstate operation=\"state\"はallowed_operations=[\"read\"]に含まれない。",
+      "expected": {
+        "condition": "isolation_violation",
+        "finding_codes": [
+          "operation_scope_conflict"
+        ]
+      },
+      "expected_preserved": {
+        "original_identity": "原request identityと存在するfinding/pointer/return_ownerを保持し、他project等の値で補完しない。",
+        "unaffected_scope": "今回のrequest/operation以外の有効scopeを一律停止しない。",
+        "operation_effect": "実認可・credential・接続・state変更、通信、停止や回復の実作用はnone。"
+      },
+      "negative_class_ref": "SEC003-F02-OPERATION-SCOPE",
+      "execution_state": "not_executed",
+      "test_citation": null,
+      "compact_whole_observation": {
+        "condition": "isolation_violation",
+        "ordered_findings": [
+          {
+            "code": "operation_scope_conflict",
+            "return_owner": "scope-binding-owner"
+          }
+        ]
+      }
+    },
+    {
+      "id": "SEC003-READ-DOES-NOT-GRANT-CREDENTIAL",
+      "population_state": "negative",
+      "condition": "Worker callerのstate operation=\"credential\"はallowed_operations=[\"read\"]に含まれない。",
+      "expected": {
+        "condition": "isolation_violation",
+        "finding_codes": [
+          "operation_scope_conflict"
+        ]
+      },
+      "expected_preserved": {
+        "original_identity": "原request identityと存在するfinding/pointer/return_ownerを保持し、他project等の値で補完しない。",
+        "unaffected_scope": "今回のrequest/operation以外の有効scopeを一律停止しない。",
+        "operation_effect": "実認可・credential・接続・state変更、通信、停止や回復の実作用はnone。"
+      },
+      "negative_class_ref": "SEC003-F02-OPERATION-SCOPE",
+      "execution_state": "not_executed",
+      "test_citation": null,
+      "compact_whole_observation": {
+        "condition": "isolation_violation",
+        "ordered_findings": [
+          {
+            "code": "operation_scope_conflict",
+            "return_owner": "scope-binding-owner"
+          }
+        ]
+      }
+    },
+    {
+      "id": "SEC003-READ-DOES-NOT-GRANT-ARTIFACT",
+      "population_state": "negative",
+      "condition": "Worker callerのstate operation=\"artifact\"はallowed_operations=[\"read\"]に含まれない。",
+      "expected": {
+        "condition": "isolation_violation",
+        "finding_codes": [
+          "operation_scope_conflict"
+        ]
+      },
+      "expected_preserved": {
+        "original_identity": "原request identityと存在するfinding/pointer/return_ownerを保持し、他project等の値で補完しない。",
+        "unaffected_scope": "今回のrequest/operation以外の有効scopeを一律停止しない。",
+        "operation_effect": "実認可・credential・接続・state変更、通信、停止や回復の実作用はnone。"
+      },
+      "negative_class_ref": "SEC003-F02-OPERATION-SCOPE",
+      "execution_state": "not_executed",
+      "test_citation": null,
+      "compact_whole_observation": {
+        "condition": "isolation_violation",
+        "ordered_findings": [
+          {
+            "code": "operation_scope_conflict",
+            "return_owner": "scope-binding-owner"
+          }
+        ]
+      }
+    },
+    {
+      "id": "SEC003-SAME-PROJECT-NO-CONNECTION",
+      "population_state": "negative",
+      "condition": "same_scope_tenant条件でoperation=\"read\"を要求し、connection_state=\"absent\"である。",
+      "expected": {
+        "condition": "isolation_violation",
+        "finding_codes": [
+          "explicit_connection_absent"
+        ]
+      },
+      "expected_preserved": {
+        "requested_operation": "今回のrequested operationとknown absentを保持する。",
+        "unaffected_scope": "無関係な有効scope/operationを全停止しない。",
+        "operation_effect": "実接続、認可、通信、変更はnone。"
+      },
+      "negative_class_ref": "SEC003-F02-EXPLICIT-CONNECTION-ABSENT",
+      "execution_state": "not_executed",
+      "test_citation": null,
+      "compact_whole_observation": {
+        "condition": "isolation_violation",
+        "ordered_findings": [
+          {
+            "code": "explicit_connection_absent",
+            "return_owner": "scope-binding-owner"
+          }
+        ]
+      }
+    },
+    {
+      "id": "SEC003-AGENT-PRIMARY-TREE-FALLBACK",
+      "population_state": "negative",
+      "condition": "Agent callerのstate operation=\"read\"でfallback=\"primary_tree\"を指定している。",
+      "expected": {
+        "condition": "isolation_violation",
+        "finding_codes": [
+          "implicit_fallback"
+        ]
+      },
+      "expected_preserved": {
+        "original_identity": "原request identityと存在するfinding/pointer/return_ownerを保持し、他project等の値で補完しない。",
+        "unaffected_scope": "今回のrequest/operation以外の有効scopeを一律停止しない。",
+        "operation_effect": "実認可・credential・接続・state変更、通信、停止や回復の実作用はnone。"
+      },
+      "negative_class_ref": "SEC003-F02-IMPLICIT-FALLBACK",
+      "execution_state": "not_executed",
+      "test_citation": null,
+      "compact_whole_observation": {
+        "condition": "isolation_violation",
+        "ordered_findings": [
+          {
+            "code": "implicit_fallback",
+            "return_owner": "scope-binding-owner"
+          }
+        ]
+      }
+    },
+    {
+      "id": "SEC003-AGENT-OTHER-PROJECT-LATEST",
+      "population_state": "negative",
+      "condition": "Agent callerのlatest claim=trueに対し、projectがrequest側=\"PROJECT-B\"、expected_target側=\"PROJECT-A\"で異なる。",
+      "expected": {
+        "condition": "isolation_violation",
+        "finding_codes": [
+          "asset_scope_conflict"
+        ]
+      },
+      "expected_preserved": {
+        "original_identity": "原request identityと存在するfinding/pointer/return_ownerを保持し、他project等の値で補完しない。",
+        "unaffected_scope": "今回のrequest/operation以外の有効scopeを一律停止しない。",
+        "operation_effect": "実認可・credential・接続・state変更、通信、停止や回復の実作用はnone。"
+      },
+      "negative_class_ref": "SEC003-F02-FOREIGN-LATEST",
+      "execution_state": "not_executed",
+      "test_citation": null,
+      "compact_whole_observation": {
+        "condition": "isolation_violation",
+        "ordered_findings": [
+          {
+            "code": "asset_scope_conflict",
+            "return_owner": "scope-binding-owner"
+          }
+        ]
+      }
+    },
+    {
+      "id": "SEC003-AGENT-READ-DOES-NOT-GRANT-NETWORK",
+      "population_state": "negative",
+      "condition": "Agent callerのstate operation=\"network\"はallowed_operations=[\"read\"]に含まれない。",
+      "expected": {
+        "condition": "isolation_violation",
+        "finding_codes": [
+          "operation_scope_conflict"
+        ]
+      },
+      "expected_preserved": {
+        "original_identity": "原request identityと存在するfinding/pointer/return_ownerを保持し、他project等の値で補完しない。",
+        "unaffected_scope": "今回のrequest/operation以外の有効scopeを一律停止しない。",
+        "operation_effect": "実認可・credential・接続・state変更、通信、停止や回復の実作用はnone。"
+      },
+      "negative_class_ref": "SEC003-F02-OPERATION-SCOPE",
+      "execution_state": "not_executed",
+      "test_citation": null,
+      "compact_whole_observation": {
+        "condition": "isolation_violation",
+        "ordered_findings": [
+          {
+            "code": "operation_scope_conflict",
+            "return_owner": "scope-binding-owner"
+          }
+        ]
+      }
+    },
+    {
+      "id": "SEC003-HOOK-PRIMARY-TREE-FALLBACK",
+      "population_state": "negative",
+      "condition": "Hook callerのstate operation=\"read\"でfallback=\"primary_tree\"を指定している。",
+      "expected": {
+        "condition": "isolation_violation",
+        "finding_codes": [
+          "implicit_fallback"
+        ]
+      },
+      "expected_preserved": {
+        "original_identity": "原request identityと存在するfinding/pointer/return_ownerを保持し、他project等の値で補完しない。",
+        "unaffected_scope": "今回のrequest/operation以外の有効scopeを一律停止しない。",
+        "operation_effect": "実認可・credential・接続・state変更、通信、停止や回復の実作用はnone。"
+      },
+      "negative_class_ref": "SEC003-F02-IMPLICIT-FALLBACK",
+      "execution_state": "not_executed",
+      "test_citation": null,
+      "compact_whole_observation": {
+        "condition": "isolation_violation",
+        "ordered_findings": [
+          {
+            "code": "implicit_fallback",
+            "return_owner": "scope-binding-owner"
+          }
+        ]
+      }
+    },
+    {
+      "id": "SEC003-HOOK-OTHER-PROJECT-LATEST",
+      "population_state": "negative",
+      "condition": "Hook callerのlatest claim=trueに対し、projectがrequest側=\"PROJECT-B\"、expected_target側=\"PROJECT-A\"で異なる。",
+      "expected": {
+        "condition": "isolation_violation",
+        "finding_codes": [
+          "asset_scope_conflict"
+        ]
+      },
+      "expected_preserved": {
+        "original_identity": "原request identityと存在するfinding/pointer/return_ownerを保持し、他project等の値で補完しない。",
+        "unaffected_scope": "今回のrequest/operation以外の有効scopeを一律停止しない。",
+        "operation_effect": "実認可・credential・接続・state変更、通信、停止や回復の実作用はnone。"
+      },
+      "negative_class_ref": "SEC003-F02-FOREIGN-LATEST",
+      "execution_state": "not_executed",
+      "test_citation": null,
+      "compact_whole_observation": {
+        "condition": "isolation_violation",
+        "ordered_findings": [
+          {
+            "code": "asset_scope_conflict",
+            "return_owner": "scope-binding-owner"
+          }
+        ]
+      }
+    },
+    {
+      "id": "SEC003-HOOK-READ-DOES-NOT-GRANT-NETWORK",
+      "population_state": "negative",
+      "condition": "Hook callerのstate operation=\"network\"はallowed_operations=[\"read\"]に含まれない。",
+      "expected": {
+        "condition": "isolation_violation",
+        "finding_codes": [
+          "operation_scope_conflict"
+        ]
+      },
+      "expected_preserved": {
+        "original_identity": "原request identityと存在するfinding/pointer/return_ownerを保持し、他project等の値で補完しない。",
+        "unaffected_scope": "今回のrequest/operation以外の有効scopeを一律停止しない。",
+        "operation_effect": "実認可・credential・接続・state変更、通信、停止や回復の実作用はnone。"
+      },
+      "negative_class_ref": "SEC003-F02-OPERATION-SCOPE",
+      "execution_state": "not_executed",
+      "test_citation": null,
+      "compact_whole_observation": {
+        "condition": "isolation_violation",
+        "ordered_findings": [
+          {
+            "code": "operation_scope_conflict",
+            "return_owner": "scope-binding-owner"
+          }
+        ]
+      }
+    },
+    {
+      "id": "SEC003-MEMORY-PRIMARY-TREE-FALLBACK",
+      "population_state": "negative",
+      "condition": "memory callerのstate operation=\"read\"でfallback=\"primary_tree\"を指定している。",
+      "expected": {
+        "condition": "isolation_violation",
+        "finding_codes": [
+          "implicit_fallback"
+        ]
+      },
+      "expected_preserved": {
+        "original_identity": "原request identityと存在するfinding/pointer/return_ownerを保持し、他project等の値で補完しない。",
+        "unaffected_scope": "今回のrequest/operation以外の有効scopeを一律停止しない。",
+        "operation_effect": "実認可・credential・接続・state変更、通信、停止や回復の実作用はnone。"
+      },
+      "negative_class_ref": "SEC003-F02-IMPLICIT-FALLBACK",
+      "execution_state": "not_executed",
+      "test_citation": null,
+      "compact_whole_observation": {
+        "condition": "isolation_violation",
+        "ordered_findings": [
+          {
+            "code": "implicit_fallback",
+            "return_owner": "scope-binding-owner"
+          }
+        ]
+      }
+    },
+    {
+      "id": "SEC003-MEMORY-OTHER-PROJECT-LATEST",
+      "population_state": "negative",
+      "condition": "memory callerのlatest claim=trueに対し、projectがrequest側=\"PROJECT-B\"、expected_target側=\"PROJECT-A\"で異なる。",
+      "expected": {
+        "condition": "isolation_violation",
+        "finding_codes": [
+          "asset_scope_conflict"
+        ]
+      },
+      "expected_preserved": {
+        "original_identity": "原request identityと存在するfinding/pointer/return_ownerを保持し、他project等の値で補完しない。",
+        "unaffected_scope": "今回のrequest/operation以外の有効scopeを一律停止しない。",
+        "operation_effect": "実認可・credential・接続・state変更、通信、停止や回復の実作用はnone。"
+      },
+      "negative_class_ref": "SEC003-F02-FOREIGN-LATEST",
+      "execution_state": "not_executed",
+      "test_citation": null,
+      "compact_whole_observation": {
+        "condition": "isolation_violation",
+        "ordered_findings": [
+          {
+            "code": "asset_scope_conflict",
+            "return_owner": "scope-binding-owner"
+          }
+        ]
+      }
+    },
+    {
+      "id": "SEC003-MEMORY-READ-DOES-NOT-GRANT-NETWORK",
+      "population_state": "negative",
+      "condition": "memory callerのstate operation=\"network\"はallowed_operations=[\"read\"]に含まれない。",
+      "expected": {
+        "condition": "isolation_violation",
+        "finding_codes": [
+          "operation_scope_conflict"
+        ]
+      },
+      "expected_preserved": {
+        "original_identity": "原request identityと存在するfinding/pointer/return_ownerを保持し、他project等の値で補完しない。",
+        "unaffected_scope": "今回のrequest/operation以外の有効scopeを一律停止しない。",
+        "operation_effect": "実認可・credential・接続・state変更、通信、停止や回復の実作用はnone。"
+      },
+      "negative_class_ref": "SEC003-F02-OPERATION-SCOPE",
+      "execution_state": "not_executed",
+      "test_citation": null,
+      "compact_whole_observation": {
+        "condition": "isolation_violation",
+        "ordered_findings": [
+          {
+            "code": "operation_scope_conflict",
+            "return_owner": "scope-binding-owner"
+          }
+        ]
+      }
+    },
+    {
+      "id": "SEC003-CREDENTIAL-PRIMARY-TREE-FALLBACK",
+      "population_state": "negative",
+      "condition": "credential callerのstate operation=\"read\"でfallback=\"primary_tree\"を指定している。",
+      "expected": {
+        "condition": "isolation_violation",
+        "finding_codes": [
+          "implicit_fallback"
+        ]
+      },
+      "expected_preserved": {
+        "original_identity": "原request identityと存在するfinding/pointer/return_ownerを保持し、他project等の値で補完しない。",
+        "unaffected_scope": "今回のrequest/operation以外の有効scopeを一律停止しない。",
+        "operation_effect": "実認可・credential・接続・state変更、通信、停止や回復の実作用はnone。"
+      },
+      "negative_class_ref": "SEC003-F02-IMPLICIT-FALLBACK",
+      "execution_state": "not_executed",
+      "test_citation": null,
+      "compact_whole_observation": {
+        "condition": "isolation_violation",
+        "ordered_findings": [
+          {
+            "code": "implicit_fallback",
+            "return_owner": "scope-binding-owner"
+          }
+        ]
+      }
+    },
+    {
+      "id": "SEC003-CREDENTIAL-OTHER-PROJECT-LATEST",
+      "population_state": "negative",
+      "condition": "credential callerのlatest claim=trueに対し、projectがrequest側=\"PROJECT-B\"、expected_target側=\"PROJECT-A\"で異なる。",
+      "expected": {
+        "condition": "isolation_violation",
+        "finding_codes": [
+          "asset_scope_conflict"
+        ]
+      },
+      "expected_preserved": {
+        "original_identity": "原request identityと存在するfinding/pointer/return_ownerを保持し、他project等の値で補完しない。",
+        "unaffected_scope": "今回のrequest/operation以外の有効scopeを一律停止しない。",
+        "operation_effect": "実認可・credential・接続・state変更、通信、停止や回復の実作用はnone。"
+      },
+      "negative_class_ref": "SEC003-F02-FOREIGN-LATEST",
+      "execution_state": "not_executed",
+      "test_citation": null,
+      "compact_whole_observation": {
+        "condition": "isolation_violation",
+        "ordered_findings": [
+          {
+            "code": "asset_scope_conflict",
+            "return_owner": "scope-binding-owner"
+          }
+        ]
+      }
+    },
+    {
+      "id": "SEC003-CREDENTIAL-READ-DOES-NOT-GRANT-NETWORK",
+      "population_state": "negative",
+      "condition": "credential callerのstate operation=\"network\"はallowed_operations=[\"read\"]に含まれない。",
+      "expected": {
+        "condition": "isolation_violation",
+        "finding_codes": [
+          "operation_scope_conflict"
+        ]
+      },
+      "expected_preserved": {
+        "original_identity": "原request identityと存在するfinding/pointer/return_ownerを保持し、他project等の値で補完しない。",
+        "unaffected_scope": "今回のrequest/operation以外の有効scopeを一律停止しない。",
+        "operation_effect": "実認可・credential・接続・state変更、通信、停止や回復の実作用はnone。"
+      },
+      "negative_class_ref": "SEC003-F02-OPERATION-SCOPE",
+      "execution_state": "not_executed",
+      "test_citation": null,
+      "compact_whole_observation": {
+        "condition": "isolation_violation",
+        "ordered_findings": [
+          {
+            "code": "operation_scope_conflict",
+            "return_owner": "scope-binding-owner"
+          }
+        ]
+      }
+    },
+    {
+      "id": "SEC003-CONFIGURATION-PRIMARY-TREE-FALLBACK",
+      "population_state": "negative",
+      "condition": "configuration callerのstate operation=\"read\"でfallback=\"primary_tree\"を指定している。",
+      "expected": {
+        "condition": "isolation_violation",
+        "finding_codes": [
+          "implicit_fallback"
+        ]
+      },
+      "expected_preserved": {
+        "original_identity": "原request identityと存在するfinding/pointer/return_ownerを保持し、他project等の値で補完しない。",
+        "unaffected_scope": "今回のrequest/operation以外の有効scopeを一律停止しない。",
+        "operation_effect": "実認可・credential・接続・state変更、通信、停止や回復の実作用はnone。"
+      },
+      "negative_class_ref": "SEC003-F02-IMPLICIT-FALLBACK",
+      "execution_state": "not_executed",
+      "test_citation": null,
+      "compact_whole_observation": {
+        "condition": "isolation_violation",
+        "ordered_findings": [
+          {
+            "code": "implicit_fallback",
+            "return_owner": "scope-binding-owner"
+          }
+        ]
+      }
+    },
+    {
+      "id": "SEC003-CONFIGURATION-OTHER-PROJECT-LATEST",
+      "population_state": "negative",
+      "condition": "configuration callerのlatest claim=trueに対し、projectがrequest側=\"PROJECT-B\"、expected_target側=\"PROJECT-A\"で異なる。",
+      "expected": {
+        "condition": "isolation_violation",
+        "finding_codes": [
+          "asset_scope_conflict"
+        ]
+      },
+      "expected_preserved": {
+        "original_identity": "原request identityと存在するfinding/pointer/return_ownerを保持し、他project等の値で補完しない。",
+        "unaffected_scope": "今回のrequest/operation以外の有効scopeを一律停止しない。",
+        "operation_effect": "実認可・credential・接続・state変更、通信、停止や回復の実作用はnone。"
+      },
+      "negative_class_ref": "SEC003-F02-FOREIGN-LATEST",
+      "execution_state": "not_executed",
+      "test_citation": null,
+      "compact_whole_observation": {
+        "condition": "isolation_violation",
+        "ordered_findings": [
+          {
+            "code": "asset_scope_conflict",
+            "return_owner": "scope-binding-owner"
+          }
+        ]
+      }
+    },
+    {
+      "id": "SEC003-CONFIGURATION-READ-DOES-NOT-GRANT-NETWORK",
+      "population_state": "negative",
+      "condition": "configuration callerのstate operation=\"network\"はallowed_operations=[\"read\"]に含まれない。",
+      "expected": {
+        "condition": "isolation_violation",
+        "finding_codes": [
+          "operation_scope_conflict"
+        ]
+      },
+      "expected_preserved": {
+        "original_identity": "原request identityと存在するfinding/pointer/return_ownerを保持し、他project等の値で補完しない。",
+        "unaffected_scope": "今回のrequest/operation以外の有効scopeを一律停止しない。",
+        "operation_effect": "実認可・credential・接続・state変更、通信、停止や回復の実作用はnone。"
+      },
+      "negative_class_ref": "SEC003-F02-OPERATION-SCOPE",
+      "execution_state": "not_executed",
+      "test_citation": null,
+      "compact_whole_observation": {
+        "condition": "isolation_violation",
+        "ordered_findings": [
+          {
+            "code": "operation_scope_conflict",
+            "return_owner": "scope-binding-owner"
+          }
+        ]
+      }
+    },
+    {
+      "id": "SEC003-L9-ORACLE-030",
+      "population_state": "negative",
+      "condition": "connection_stateがabsentであり、全体system判定では明示接続不在として扱う。",
+      "expected": {
+        "condition": "isolation_violation",
+        "finding_codes": [
+          "explicit_connection_absent"
+        ]
+      },
+      "expected_preserved": {
+        "requested_operation": "今回のrequested operationとknown absentを保持する。",
+        "unaffected_scope": "無関係な有効scope/operationを全停止しない。",
+        "operation_effect": "実接続、認可、通信、変更はnone。"
+      },
+      "negative_class_ref": "SEC003-F02-EXPLICIT-CONNECTION-ABSENT",
+      "execution_state": "not_executed",
+      "test_citation": null,
+      "compact_whole_observation": {
+        "condition": "isolation_violation",
+        "ordered_findings": [
+          {
+            "code": "explicit_connection_absent",
+            "return_owner": "scope-binding-owner"
+          }
+        ]
+      }
+    },
+    {
+      "id": "SEC003-L9-ORACLE-031",
+      "population_state": "negative",
+      "condition": "connection_stateがunknownであり、接続materialを確定できない状態を保持する。",
+      "expected": {
+        "condition": "scope_unresolved",
+        "finding_codes": [
+          "connection_material_unresolved"
+        ]
+      },
+      "expected_preserved": {
+        "requested_operation": "unknown connection memberとrequested operationを保持する。",
+        "unaffected_scope": "無関係な有効scope/operationを全停止しない。",
+        "operation_effect": "実接続、認可、通信、変更はnone。"
+      },
+      "negative_class_ref": "SEC003-F02-CONNECTION-MATERIAL-UNRESOLVED",
+      "execution_state": "not_executed",
+      "test_citation": null,
+      "compact_whole_observation": {
+        "condition": "scope_unresolved",
+        "ordered_findings": [
+          {
+            "code": "connection_material_unresolved",
+            "return_owner": "scope-binding-owner"
+          }
+        ]
+      }
+    },
+    {
+      "id": "SEC003-L9-ORACLE-032",
+      "population_state": "negative",
+      "condition": "connection_stateに未知のenum値が入り、既知状態へ読み替えない。",
+      "expected": {
+        "condition": "scope_unresolved",
+        "finding_codes": [
+          "connection_material_unresolved"
+        ]
+      },
+      "expected_preserved": {
+        "requested_operation": "unknown connection memberとrequested operationを保持する。",
+        "unaffected_scope": "無関係な有効scope/operationを全停止しない。",
+        "operation_effect": "実接続、認可、通信、変更はnone。"
+      },
+      "negative_class_ref": "SEC003-F02-CONNECTION-MATERIAL-UNRESOLVED",
+      "execution_state": "not_executed",
+      "test_citation": null,
+      "compact_whole_observation": {
+        "condition": "scope_unresolved",
+        "ordered_findings": [
+          {
+            "code": "connection_material_unresolved",
+            "return_owner": "scope-binding-owner"
+          }
+        ]
+      }
+    },
+    {
+      "id": "SEC003-L9-ORACLE-033",
+      "population_state": "negative",
+      "condition": "request connectionのidentity memberがindependent expected connectionの同memberと不一致であり、join結果を未解決/矛盾として保持する。",
+      "expected": {
+        "condition": "isolation_violation",
+        "finding_codes": [
+          "connection_content_conflict"
+        ]
+      },
+      "expected_preserved": {
+        "requested_operation": "接続identity/member差とrequested operationを保持する。",
+        "unaffected_scope": "無関係な有効scope/operationを全停止しない。",
+        "operation_effect": "実接続、認可、通信、変更はnone。"
+      },
+      "negative_class_ref": "SEC003-F02-CONNECTION-MATERIAL-CONFLICT",
+      "execution_state": "not_executed",
+      "test_citation": null,
+      "compact_whole_observation": {
+        "condition": "isolation_violation",
+        "ordered_findings": [
+          {
+            "code": "connection_content_conflict",
+            "return_owner": "scope-binding-owner"
+          }
+        ]
+      }
+    },
+    {
+      "id": "SEC003-L9-ORACLE-034",
+      "population_state": "negative",
+      "condition": "request connectionのrevision memberがindependent expected connectionの同memberと不一致であり、join結果を未解決/矛盾として保持する。",
+      "expected": {
+        "condition": "isolation_violation",
+        "finding_codes": [
+          "connection_content_conflict"
+        ]
+      },
+      "expected_preserved": {
+        "requested_operation": "接続identity/member差とrequested operationを保持する。",
+        "unaffected_scope": "無関係な有効scope/operationを全停止しない。",
+        "operation_effect": "実接続、認可、通信、変更はnone。"
+      },
+      "negative_class_ref": "SEC003-F02-CONNECTION-MATERIAL-CONFLICT",
+      "execution_state": "not_executed",
+      "test_citation": null,
+      "compact_whole_observation": {
+        "condition": "isolation_violation",
+        "ordered_findings": [
+          {
+            "code": "connection_content_conflict",
+            "return_owner": "scope-binding-owner"
+          }
+        ]
+      }
+    },
+    {
+      "id": "SEC003-L9-ORACLE-035",
+      "population_state": "negative",
+      "condition": "request connectionのallowed_operations memberがindependent expected connectionの同memberと不一致であり、join結果を未解決/矛盾として保持する。",
+      "expected": {
+        "condition": "isolation_violation",
+        "finding_codes": [
+          "connection_content_conflict"
+        ]
+      },
+      "expected_preserved": {
+        "requested_operation": "接続identity/member差とrequested operationを保持する。",
+        "unaffected_scope": "無関係な有効scope/operationを全停止しない。",
+        "operation_effect": "実接続、認可、通信、変更はnone。"
+      },
+      "negative_class_ref": "SEC003-F02-CONNECTION-MATERIAL-CONFLICT",
+      "execution_state": "not_executed",
+      "test_citation": null,
+      "compact_whole_observation": {
+        "condition": "isolation_violation",
+        "ordered_findings": [
+          {
+            "code": "connection_content_conflict",
+            "return_owner": "scope-binding-owner"
+          }
+        ]
+      }
+    },
+    {
+      "id": "SEC003-L9-ORACLE-036",
+      "population_state": "negative",
+      "condition": "request origin scopeとconnection同側scopeが一致せず、connection joinを成立扱いにしない。",
+      "expected": {
+        "condition": "isolation_violation",
+        "finding_codes": [
+          "connection_content_conflict"
+        ]
+      },
+      "expected_preserved": {
+        "requested_operation": "接続identity/member差とrequested operationを保持する。",
+        "unaffected_scope": "無関係な有効scope/operationを全停止しない。",
+        "operation_effect": "実接続、認可、通信、変更はnone。"
+      },
+      "negative_class_ref": "SEC003-F02-CONNECTION-MATERIAL-CONFLICT",
+      "execution_state": "not_executed",
+      "test_citation": null,
+      "compact_whole_observation": {
+        "condition": "isolation_violation",
+        "ordered_findings": [
+          {
+            "code": "connection_content_conflict",
+            "return_owner": "scope-binding-owner"
+          }
+        ]
+      }
+    },
+    {
+      "id": "SEC003-L9-ORACLE-037",
+      "population_state": "negative",
+      "condition": "request target scopeとconnection同側scopeが一致せず、connection joinを成立扱いにしない。",
+      "expected": {
+        "condition": "isolation_violation",
+        "finding_codes": [
+          "connection_content_conflict"
+        ]
+      },
+      "expected_preserved": {
+        "requested_operation": "接続identity/member差とrequested operationを保持する。",
+        "unaffected_scope": "無関係な有効scope/operationを全停止しない。",
+        "operation_effect": "実接続、認可、通信、変更はnone。"
+      },
+      "negative_class_ref": "SEC003-F02-CONNECTION-MATERIAL-CONFLICT",
+      "execution_state": "not_executed",
+      "test_citation": null,
+      "compact_whole_observation": {
+        "condition": "isolation_violation",
+        "ordered_findings": [
+          {
+            "code": "connection_content_conflict",
+            "return_owner": "scope-binding-owner"
+          }
+        ]
+      }
+    },
+    {
+      "id": "SEC003-L9-ORACLE-038",
+      "population_state": "negative",
+      "condition": "request connectionのidentity memberが欠落し、独立expected connectionへの同一性を解決できない。",
+      "expected": {
+        "condition": "scope_unresolved",
+        "finding_codes": [
+          "connection_material_unresolved"
+        ]
+      },
+      "expected_preserved": {
+        "requested_operation": "unknown connection memberとrequested operationを保持する。",
+        "unaffected_scope": "無関係な有効scope/operationを全停止しない。",
+        "operation_effect": "実接続、認可、通信、変更はnone。"
+      },
+      "negative_class_ref": "SEC003-F02-CONNECTION-MATERIAL-UNRESOLVED",
+      "execution_state": "not_executed",
+      "test_citation": null,
+      "compact_whole_observation": {
+        "condition": "scope_unresolved",
+        "ordered_findings": [
+          {
+            "code": "connection_material_unresolved",
+            "return_owner": "scope-binding-owner"
+          }
+        ]
+      }
+    },
+    {
+      "id": "SEC003-L9-ORACLE-039",
+      "population_state": "negative",
+      "condition": "requested operation=writeはallowed_operationsに含まれず、read許可を当該operationへ拡張しない。",
+      "expected": {
+        "condition": "isolation_violation",
+        "finding_codes": [
+          "operation_scope_conflict"
+        ]
+      },
+      "expected_preserved": {
+        "original_identity": "原request identityと存在するfinding/pointer/return_ownerを保持し、他project等の値で補完しない。",
+        "unaffected_scope": "今回のrequest/operation以外の有効scopeを一律停止しない。",
+        "operation_effect": "実認可・credential・接続・state変更、通信、停止や回復の実作用はnone。"
+      },
+      "negative_class_ref": "SEC003-F02-OPERATION-SCOPE",
+      "execution_state": "not_executed",
+      "test_citation": null,
+      "compact_whole_observation": {
+        "condition": "isolation_violation",
+        "ordered_findings": [
+          {
+            "code": "operation_scope_conflict",
+            "return_owner": "scope-binding-owner"
+          }
+        ]
+      }
+    },
+    {
+      "id": "SEC003-L9-ORACLE-040",
+      "population_state": "negative",
+      "condition": "requested operation=executeはallowed_operationsに含まれず、read許可を当該operationへ拡張しない。",
+      "expected": {
+        "condition": "isolation_violation",
+        "finding_codes": [
+          "operation_scope_conflict"
+        ]
+      },
+      "expected_preserved": {
+        "original_identity": "原request identityと存在するfinding/pointer/return_ownerを保持し、他project等の値で補完しない。",
+        "unaffected_scope": "今回のrequest/operation以外の有効scopeを一律停止しない。",
+        "operation_effect": "実認可・credential・接続・state変更、通信、停止や回復の実作用はnone。"
+      },
+      "negative_class_ref": "SEC003-F02-OPERATION-SCOPE",
+      "execution_state": "not_executed",
+      "test_citation": null,
+      "compact_whole_observation": {
+        "condition": "isolation_violation",
+        "ordered_findings": [
+          {
+            "code": "operation_scope_conflict",
+            "return_owner": "scope-binding-owner"
+          }
+        ]
+      }
+    },
+    {
+      "id": "SEC003-L9-ORACLE-041",
+      "population_state": "negative",
+      "condition": "requested operation=networkはallowed_operationsに含まれず、read許可を当該operationへ拡張しない。",
+      "expected": {
+        "condition": "isolation_violation",
+        "finding_codes": [
+          "operation_scope_conflict"
+        ]
+      },
+      "expected_preserved": {
+        "original_identity": "原request identityと存在するfinding/pointer/return_ownerを保持し、他project等の値で補完しない。",
+        "unaffected_scope": "今回のrequest/operation以外の有効scopeを一律停止しない。",
+        "operation_effect": "実認可・credential・接続・state変更、通信、停止や回復の実作用はnone。"
+      },
+      "negative_class_ref": "SEC003-F02-OPERATION-SCOPE",
+      "execution_state": "not_executed",
+      "test_citation": null,
+      "compact_whole_observation": {
+        "condition": "isolation_violation",
+        "ordered_findings": [
+          {
+            "code": "operation_scope_conflict",
+            "return_owner": "scope-binding-owner"
+          }
+        ]
+      }
+    },
+    {
+      "id": "SEC003-L9-ORACLE-042",
+      "population_state": "negative",
+      "condition": "requested operation=stateはallowed_operationsに含まれず、read許可を当該operationへ拡張しない。",
+      "expected": {
+        "condition": "isolation_violation",
+        "finding_codes": [
+          "operation_scope_conflict"
+        ]
+      },
+      "expected_preserved": {
+        "original_identity": "原request identityと存在するfinding/pointer/return_ownerを保持し、他project等の値で補完しない。",
+        "unaffected_scope": "今回のrequest/operation以外の有効scopeを一律停止しない。",
+        "operation_effect": "実認可・credential・接続・state変更、通信、停止や回復の実作用はnone。"
+      },
+      "negative_class_ref": "SEC003-F02-OPERATION-SCOPE",
+      "execution_state": "not_executed",
+      "test_citation": null,
+      "compact_whole_observation": {
+        "condition": "isolation_violation",
+        "ordered_findings": [
+          {
+            "code": "operation_scope_conflict",
+            "return_owner": "scope-binding-owner"
+          }
+        ]
+      }
+    },
+    {
+      "id": "SEC003-L9-ORACLE-043",
+      "population_state": "negative",
+      "condition": "requested operation=credentialはallowed_operationsに含まれず、read許可を当該operationへ拡張しない。",
+      "expected": {
+        "condition": "isolation_violation",
+        "finding_codes": [
+          "operation_scope_conflict"
+        ]
+      },
+      "expected_preserved": {
+        "original_identity": "原request identityと存在するfinding/pointer/return_ownerを保持し、他project等の値で補完しない。",
+        "unaffected_scope": "今回のrequest/operation以外の有効scopeを一律停止しない。",
+        "operation_effect": "実認可・credential・接続・state変更、通信、停止や回復の実作用はnone。"
+      },
+      "negative_class_ref": "SEC003-F02-OPERATION-SCOPE",
+      "execution_state": "not_executed",
+      "test_citation": null,
+      "compact_whole_observation": {
+        "condition": "isolation_violation",
+        "ordered_findings": [
+          {
+            "code": "operation_scope_conflict",
+            "return_owner": "scope-binding-owner"
+          }
+        ]
+      }
+    },
+    {
+      "id": "SEC003-L9-ORACLE-044",
+      "population_state": "negative",
+      "condition": "requested operation=artifactはallowed_operationsに含まれず、read許可を当該operationへ拡張しない。",
+      "expected": {
+        "condition": "isolation_violation",
+        "finding_codes": [
+          "operation_scope_conflict"
+        ]
+      },
+      "expected_preserved": {
+        "original_identity": "原request identityと存在するfinding/pointer/return_ownerを保持し、他project等の値で補完しない。",
+        "unaffected_scope": "今回のrequest/operation以外の有効scopeを一律停止しない。",
+        "operation_effect": "実認可・credential・接続・state変更、通信、停止や回復の実作用はnone。"
+      },
+      "negative_class_ref": "SEC003-F02-OPERATION-SCOPE",
+      "execution_state": "not_executed",
+      "test_citation": null,
+      "compact_whole_observation": {
+        "condition": "isolation_violation",
+        "ordered_findings": [
+          {
+            "code": "operation_scope_conflict",
+            "return_owner": "scope-binding-owner"
+          }
+        ]
+      }
+    },
+    {
+      "id": "SEC003-L9-ORACLE-045",
+      "population_state": "negative",
+      "condition": "operation値が未知であり、既知operationへ読み替えてscopeを確定しない。",
+      "expected": {
+        "condition": "scope_unresolved",
+        "finding_codes": [
+          "scope_input_unresolved"
+        ]
+      },
+      "expected_preserved": {
+        "original_identity": "原request identityと存在するfinding/pointer/return_ownerを保持し、他project等の値で補完しない。",
+        "unaffected_scope": "今回のrequest/operation以外の有効scopeを一律停止しない。",
+        "operation_effect": "実認可・credential・接続・state変更、通信、停止や回復の実作用はnone。"
+      },
+      "negative_class_ref": "SEC003-F02-OPERATION-INPUT-UNRESOLVED",
+      "execution_state": "not_executed",
+      "test_citation": null,
+      "compact_whole_observation": {
+        "condition": "scope_unresolved",
+        "ordered_findings": [
+          {
+            "code": "scope_input_unresolved",
+            "return_owner": "scope-binding-owner"
+          }
+        ]
+      }
+    },
+    {
+      "id": "SEC003-L9-ORACLE-046",
+      "population_state": "negative",
+      "condition": "operation=readに対してconnection_state=absentであり、局所deferをsystem許可へ拡張しない。",
+      "expected": {
+        "condition": "isolation_violation",
+        "finding_codes": [
+          "explicit_connection_absent"
+        ]
+      },
+      "expected_preserved": {
+        "requested_operation": "今回のrequested operationとknown absentを保持する。",
+        "unaffected_scope": "無関係な有効scope/operationを全停止しない。",
+        "operation_effect": "実接続、認可、通信、変更はnone。"
+      },
+      "negative_class_ref": "SEC003-F02-EXPLICIT-CONNECTION-ABSENT",
+      "execution_state": "not_executed",
+      "test_citation": null,
+      "compact_whole_observation": {
+        "condition": "isolation_violation",
+        "ordered_findings": [
+          {
+            "code": "explicit_connection_absent",
+            "return_owner": "scope-binding-owner"
+          }
+        ]
+      }
+    },
+    {
+      "id": "SEC003-L9-ORACLE-047",
+      "population_state": "negative",
+      "condition": "connection allowed_operationsが空であり、requested readを許可集合に含むと扱わない。",
+      "expected": {
+        "condition": "isolation_violation",
+        "finding_codes": [
+          "operation_scope_conflict"
+        ]
+      },
+      "expected_preserved": {
+        "original_identity": "原request identityと存在するfinding/pointer/return_ownerを保持し、他project等の値で補完しない。",
+        "unaffected_scope": "今回のrequest/operation以外の有効scopeを一律停止しない。",
+        "operation_effect": "実認可・credential・接続・state変更、通信、停止や回復の実作用はnone。"
+      },
+      "negative_class_ref": "SEC003-F02-OPERATION-SCOPE",
+      "execution_state": "not_executed",
+      "test_citation": null,
+      "compact_whole_observation": {
+        "condition": "isolation_violation",
+        "ordered_findings": [
+          {
+            "code": "operation_scope_conflict",
+            "return_owner": "scope-binding-owner"
+          }
+        ]
+      }
+    },
+    {
+      "id": "SEC003-L9-ORACLE-048",
+      "population_state": "negative",
+      "condition": "requested operation=listはallowed_operationsに含まれず、read許可を当該operationへ拡張しない。",
+      "expected": {
+        "condition": "scope_unresolved",
+        "finding_codes": [
+          "connection_material_unresolved"
+        ]
+      },
+      "expected_preserved": {
+        "requested_operation": "unknown connection memberとrequested operationを保持する。",
+        "unaffected_scope": "無関係な有効scope/operationを全停止しない。",
+        "operation_effect": "実接続、認可、通信、変更はnone。"
+      },
+      "negative_class_ref": "SEC003-F02-CONNECTION-MATERIAL-UNRESOLVED",
+      "execution_state": "not_executed",
+      "test_citation": null,
+      "compact_whole_observation": {
+        "condition": "scope_unresolved",
+        "ordered_findings": [
+          {
+            "code": "connection_material_unresolved",
+            "return_owner": "scope-binding-owner"
+          }
+        ]
+      }
+    },
+    {
+      "id": "SEC003-L9-ORACLE-049",
+      "population_state": "negative",
+      "condition": "fallback値が未知であり、既知のfallback先へ読み替えない。",
+      "expected": {
+        "condition": "scope_unresolved",
+        "finding_codes": [
+          "scope_input_unresolved"
+        ]
+      },
+      "expected_preserved": {
+        "original_identity": "原request identityと存在するfinding/pointer/return_ownerを保持し、他project等の値で補完しない。",
+        "unaffected_scope": "今回のrequest/operation以外の有効scopeを一律停止しない。",
+        "operation_effect": "実認可・credential・接続・state変更、通信、停止や回復の実作用はnone。"
+      },
+      "negative_class_ref": "SEC003-F02-FALLBACK-INPUT-UNRESOLVED",
+      "execution_state": "not_executed",
+      "test_citation": null,
+      "compact_whole_observation": {
+        "condition": "scope_unresolved",
+        "ordered_findings": [
+          {
+            "code": "scope_input_unresolved",
+            "return_owner": "scope-binding-owner"
+          }
+        ]
+      }
+    },
+    {
+      "id": "SEC003-L9-ORACLE-050",
+      "population_state": "negative",
+      "condition": "fallbackが明示nullであり、既定先で補完しない。",
+      "expected": {
+        "condition": "scope_unresolved",
+        "finding_codes": [
+          "scope_input_unresolved"
+        ]
+      },
+      "expected_preserved": {
+        "original_identity": "原request identityと存在するfinding/pointer/return_ownerを保持し、他project等の値で補完しない。",
+        "unaffected_scope": "今回のrequest/operation以外の有効scopeを一律停止しない。",
+        "operation_effect": "実認可・credential・接続・state変更、通信、停止や回復の実作用はnone。"
+      },
+      "negative_class_ref": "SEC003-F02-FALLBACK-INPUT-UNRESOLVED",
+      "execution_state": "not_executed",
+      "test_citation": null,
+      "compact_whole_observation": {
+        "condition": "scope_unresolved",
+        "ordered_findings": [
+          {
+            "code": "scope_input_unresolved",
+            "return_owner": "scope-binding-owner"
+          }
+        ]
+      }
     }
   ],
   "multi_contract_residual": {
