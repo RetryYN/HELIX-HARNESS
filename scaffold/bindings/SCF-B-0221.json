@@ -6,7 +6,7 @@
   "product": "HELIX-HARNESS",
   "owner_candidate": "HELIX-SECURITY SEC009 L4/L9 source projection evidence owner",
   "state": "registered",
-  "reason": "Issue #3510 WR255追補：285行のL4由来L9投影と308+308 nested pointer consumer監査を再現可能にする。positive 8行はL3/L10/L4契約とcase markerから最小期待を設計し、未観測・個別oracle未確認を明記する。authorityや実動作は生成しない。",
+  "reason": "Issue #3510 WR255追補：285行のL4由来L9投影と308+308 nested pointer consumer監査を再現可能にする。positive 8行はL3/L10/L4契約とcase markerから最小期待を設計し、未観測・個別oracle未確認を明記する。authorityや実動作は生成しない。 2026-11-01 L9 pointer-transfer追補では、L9の583参照中580を既存L4 canonical aliasへ移し、R2未割当の3参照を固定revisionへ保持した。L5の30参照とL4 nested payloadは残し、0209はpending。",
   "upstream": [
     {
       "path": "docs/helix-security/L3-requirements/business-requirements.json",
@@ -35,8 +35,8 @@
     },
     {
       "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
-      "sha256": "e918a289fe88446b3f84210577f0fe8094505d9dac9d9a8713cd074eb6776e5b",
-      "note": "Canonical L9 case inventory and independent L4 projection; expected_proposal retained; positive minimum expectations independently designed, but fixture observations and row citations are absent. Positive 8-row minimum expectations were added from L3/L10/L4 and case markers; no expected_proposal copying or observations. Current canonical L9 pin updated to revision e22b5c96a3ad60754f76cb23d7a2cd3cb79c37db, SHA-256 57c0197cd7ffbe7e6522aa67ee22f7b73e67504732ad6402cb7035e057f6610e; old pinned bytes 1ef45013e26e7c4e44ae942af60cf348fa17069ca3bdbf2498db7666bb62bad2 are preserved in prior note. Positive expectations are the independent L3/L10/L4-derived minimum and remain unobserved. 2026-11-01 PR #4008 R1で正例8行の未解決positive_expectation_refのみ削除し、source_pointersと期待値を保持。旧revision e22b5c96a3ad60754f76cb23d7a2cd3cb79c37db・SHA-256 57c0197cd7ffbe7e6522aa67ee22f7b73e67504732ad6402cb7035e057f6610eを保持。 最新origin/main 6a7fbfbe134e9163976fa67319044fa0bc03973fを基点にoverlay再測定。統合後のL9 revision 087f02dc637f6860e344e2bda9efa83c83506b72、同SHA e918a289fe88446b3f84210577f0fe8094505d9dac9d9a8713cd074eb6776e5b。"
+      "sha256": "8296d811f95f94d9391a15a597839ee7f9d47b32dd7c7b780312821fc1c52a19",
+      "note": "Canonical L9 case inventory and independent L4 projection; expected_proposal retained; positive minimum expectations independently designed, but fixture observations and row citations are absent. Positive 8-row minimum expectations were added from L3/L10/L4 and case markers; no expected_proposal copying or observations. Current canonical L9 pin updated to revision e22b5c96a3ad60754f76cb23d7a2cd3cb79c37db, SHA-256 57c0197cd7ffbe7e6522aa67ee22f7b73e67504732ad6402cb7035e057f6610e; old pinned bytes 1ef45013e26e7c4e44ae942af60cf348fa17069ca3bdbf2498db7666bb62bad2 are preserved in prior note. Positive expectations are the independent L3/L10/L4-derived minimum and remain unobserved. 2026-11-01 PR #4008 R1で正例8行の未解決positive_expectation_refのみ削除し、source_pointersと期待値を保持。旧revision e22b5c96a3ad60754f76cb23d7a2cd3cb79c37db・SHA-256 57c0197cd7ffbe7e6522aa67ee22f7b73e67504732ad6402cb7035e057f6610eを保持。 最新origin/main 6a7fbfbe134e9163976fa67319044fa0bc03973fを基点にoverlay再測定。統合後のL9 revision 087f02dc637f6860e344e2bda9efa83c83506b72、同SHA e918a289fe88446b3f84210577f0fe8094505d9dac9d9a8713cd074eb6776e5b。 L9 pointer transfer follow-up: 580 of the 583 R2 nested-class reference occurrences now target the existing current /failure_classifications alias, with type/value and expected_text reconstruction checked. Three unassigned R2 audit references remain anchored to fixed history c50eb21b34f034262ced3f8052d2502fb84c57c9 (the F01 14-element collection and two F02 alternatives). L5 30 nested references and L4 nested payloads remain; SCF-B-0209 stays pending. Current SHA-256 8296d811f95f94d9391a15a597839ee7f9d47b32dd7c7b780312821fc1c52a19; prior pin e918a289fe88446b3f84210577f0fe8094505d9dac9d9a8713cd074eb6776e5b is retained in this note."
     },
     {
       "path": "docs/helix-security/L10-verification/business-verification.json",
@@ -59,13 +59,14 @@
       "note": "Current static check-child implementation; no runtime/test/CI invoked."
     }
   ],
-  "role": "285行のL4由来L9投影、positive最小期待の独立設計、4way overlay測定とL8/L9各308 consumerの監査を再実行可能にするscaffold evidence。positive期待は未観測。",
+  "role": "285行のL4由来L9投影、positive最小期待の独立設計、移行前pointer inventoryの履歴保全、L9の583参照の段階移行とoverlay測定を再実行可能にするscaffold evidence。positive期待は未観測。",
   "obligations": [
     "285件のSEC009 L9 case IDと71件のmulti-contract residualを保持し、L9 expected_proposalを期待値の根拠にしない。",
     "negative行のcondition/expected/expected_preservedは参照先L4 failure_classificationsだけから導き、L9/L4 pointerとhashを行ごとに記録する。",
     "positive 8行はcase markerとL3/L10/L4契約から最小期待を設計し、fixture未観測と個別oracle/test citation未確認を明示する。",
     "L5/L8候補を別V-pairに保ち、固定Git commitからgit showで読み込む。scaffoldへlayer JSONを複製しない。",
-    "L8/L9のnested pointer consumerを1件ずつ監査し、代替先と移行阻害要因を記録する。SCF-B-0209はconsumer transferとcheck-replacement成立までretireしない。"
+    "L8/L9のnested pointer consumerを1件ずつ監査し、代替先と移行阻害要因を記録する。SCF-B-0209はconsumer transferとcheck-replacement成立までretireしない。",
+    "L9移行前583 nested pointerのうち580はL4 current canonical aliasへ移し、残る3件はR2固定historyへ解決する。L5 30 refsとL4 nested payloadが残る間、SCF-B-0209をpendingに維持する。"
   ],
   "connections": {
     "consumers": [
@@ -82,9 +83,10 @@
   },
   "operations": {
     "allowed": [
-      "Run this row projection validator and current static check-child",
+      "移行前のrow projection validatorとpointer inventoryは固定history。current L9 pointer transfer validatorおよび現行static check-childを実行する。",
       "Run scfctl validate/stale/check-replacement and static source/hash checks",
-      "Update current source pins while retaining prior revision/hash notes"
+      "Update current source pins while retaining prior revision/hash notes",
+      "現行L9 pointer dispositionはscaffold/research/wr255-sec009-l9-transfer-20261101/validate_l9_pointer_transfer.pyで検証する。旧308+308 inventoryは固定された過去測定として扱う。"
     ],
     "forbidden": [
       "Copy L9 expected_proposal to fill L8/L9 expectations",
@@ -106,7 +108,10 @@
     "scaffold/research/wr255-sec009-l4l9-supplement-20261101/pointer-consumer-audit-history.json",
     "scaffold/research/wr255-sec009-l4l9-supplement-20261101/pointer-consumer-audit-summary-e22b5c96-e918a289-24d7f00b-00376c40-b96c3f5e.json",
     "scaffold/research/wr255-sec009-l4l9-supplement-20261101/positive-source-review-e229b15df0e3cbcd.json",
-    "scaffold/research/wr255-sec009-l4l9-supplement-20261101/validate_l4_l9_supplement.py"
+    "scaffold/research/wr255-sec009-l4l9-supplement-20261101/validate_l4_l9_supplement.py",
+    "scaffold/research/wr255-sec009-l9-transfer-20261101/README.md",
+    "scaffold/research/wr255-sec009-l9-transfer-20261101/validate_l9_pointer_transfer.py",
+    "scaffold/research/wr255-sec009-l9-transfer-20261101/l9-pointer-transfer-audit-8296d811f95f94d9.json"
   ],
   "verification": {
     "evidence_kind": "scaffold",
@@ -120,7 +125,9 @@
       "L3/L10の契約最小positive根拠を記録し、個別行oracle/test citationと区別する。",
       "canonical L4/L9と固定L5/L8 candidate revision 24d7f00bdca41c3dfb1f3137655ffdbe3674cfb3 を対象にcurrent static check-childを実行。",
       "L8/L9各308 direct L4 nested pointerと各275 wrapperを一consumer一行で監査し、代替先と移行阻害要因を記録。",
-      "scfctl validate/staleおよびcheck-replacementの結果。"
+      "scfctl validate/staleおよびcheck-replacementの結果。",
+      "L9 pointer transfer validator checks 583 pre-transfer occurrences, 580 current alias redirects, 3 fixed R2 history references (including the ordered 14-class collection), all 30 class field aliases and expected_text reconstruction by type/value, unchanged L5 30 refs, and pending binding state.",
+      "移行前308+308 direct refsと275+275 wrappersは移行前時点の固定証拠。current treeのconsumer数として再掲しない。"
     ],
     "negative_cases": [
       "Do not claim positive rows or individual-row citations are established.",

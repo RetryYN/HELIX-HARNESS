@@ -1,5 +1,15 @@
 # WR255 SEC009 L4/L9独立投影とoverlay証拠
 
+## current transfer状態（2026-11-01追補）
+
+このREADME以下の「308 direct pointer」「275 wrapper」「未移行」という件数・状態は、L9 transfer前の固定監査です。current L9のpointer消費状態ではありません。移行前583件のL9 nested pointerのうち580件は現行L4 canonical aliasへ移し、R2未割当3件は固定revision `c50eb21b34f034262ced3f8052d2502fb84c57c9`の履歴参照として保持しています。L5にはnested pointer 30件が残り、L4 nested payloadは維持しています。SCF-B-0209はpendingで、`check-replacement`と`retire`は行っていません。
+
+current L9 pointer移行は次のread-only validatorで確かめます。旧validatorと旧308+308 pointer inventoryは過去時点の証拠としてGit履歴に保持し、current測定へ流用しません。
+
+```sh
+python3 scaffold/research/wr255-sec009-l9-transfer-20261101/validate_l9_pointer_transfer.py
+```
+
 このdirectoryはL4/L9 V-pair補足のscaffold evidenceです。authorityを持たず、実動作も生みません。L5/L8は別のV-pairです。checker用のL5/L8候補JSONをscaffoldへ複製せず、固定commitからvalidatorが `git show` で読み、実行中だけ一時fileに置きます。一時fileはvalidator終了時に削除します。
 
 ## 固定revisionと再現
