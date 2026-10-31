@@ -25,8 +25,8 @@
     },
     {
       "path": "docs/helix-connect/L8-unit-verification/composite-edge-terminal.json",
-      "sha256": "b1c52add989c3da48d76db40ff6fcfd95e59b098ccc7dfbce6195a8d8535e2e4",
-      "note": "対象U-ID表。91 L9 branch・27既存local probeへU-ID、L5 4 public functionと26 failure_ruleへ行別traceability"
+      "sha256": "715d77639a43e62300ff2182f54f606f5b44b408284f6e0cae13f2d0b9bce4d9",
+      "note": "対象U-ID表。91 L9 branchにL5契約由来expected/正常・反例・未検証を付与、27 local probeへU-ID、L5 4 function/26 rule coverage"
     },
     {
       "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",

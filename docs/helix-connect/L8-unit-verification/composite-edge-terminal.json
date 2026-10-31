@@ -241,7 +241,8 @@
       "qualification",
       "u_id",
       "l5_function_ref",
-      "l5_failure_rule_refs"
+      "l5_failure_rule_refs",
+      "expected"
     ],
     "rows": [
       [
@@ -259,7 +260,17 @@
         "synthetic_fixture_only",
         "U-C007-001",
         "FN-C007-01",
-        []
+        [],
+        {
+          "scenario_class": "normal",
+          "condition": "四つの合成端点/別能力・版・scopeの三辺を、宣言順序とoperation対応/全辺receiptへ対照。実接続集合を採用しない。",
+          "decision": "宣言された各辺の定義・receipt一対一性・条件・mappingが揃う場合だけfixture terminal successとする。",
+          "findings": [],
+          "l5_refs": [
+            "/contract_views/F01/terminal_predicate"
+          ],
+          "verification_status": "unverified"
+        }
       ],
       [
         "C007-F01-ORIGINAL-RECEIPT-EDGE-1-MISSING",
@@ -283,7 +294,29 @@
           "F01:edge_target",
           "F01:composite_target",
           "F01:edge_conditions"
-        ]
+        ],
+        {
+          "scenario_class": "negative",
+          "condition": "一辺原receiptの欠落は他辺greenで相殺しない。",
+          "decision": "列挙したL5 findingを宣言routeへ返し、terminal successを認めない。",
+          "findings": [
+            "receipt_cardinality_original|original_receipt_set+edge_identity=missing_original_receipt@edge_failure",
+            "receipt_cardinality_submitted|submitted_receipt_set+edge_identity=missing_submitted_receipt@edge_failure",
+            "receipt_content|receipt_content+edge_identity=result_not_corresponding@edge_failure",
+            "edge_target|edge_target_{edge_identity}+field_name=field_result_not_corresponding@edge_failure",
+            "composite_target|composite_target_{edge_identity}+field_name=field_result_not_corresponding@composite_failure",
+            "edge_conditions|edge_condition_{edge_identity}+field_name_or_receipt=condition_not_matching@condition_failure_by_field"
+          ],
+          "l5_refs": [
+            "/contract_views/F01/failure_rules/2",
+            "/contract_views/F01/failure_rules/3",
+            "/contract_views/F01/failure_rules/4",
+            "/contract_views/F01/failure_rules/5",
+            "/contract_views/F01/failure_rules/6",
+            "/contract_views/F01/failure_rules/7"
+          ],
+          "verification_status": "unverified"
+        }
       ],
       [
         "C007-F01-ORIGINAL-RECEIPT-EDGE-2-MISSING",
@@ -307,7 +340,29 @@
           "F01:edge_target",
           "F01:composite_target",
           "F01:edge_conditions"
-        ]
+        ],
+        {
+          "scenario_class": "negative",
+          "condition": "一辺原receiptの欠落は他辺greenで相殺しない。",
+          "decision": "列挙したL5 findingを宣言routeへ返し、terminal successを認めない。",
+          "findings": [
+            "receipt_cardinality_original|original_receipt_set+edge_identity=missing_original_receipt@edge_failure",
+            "receipt_cardinality_submitted|submitted_receipt_set+edge_identity=missing_submitted_receipt@edge_failure",
+            "receipt_content|receipt_content+edge_identity=result_not_corresponding@edge_failure",
+            "edge_target|edge_target_{edge_identity}+field_name=field_result_not_corresponding@edge_failure",
+            "composite_target|composite_target_{edge_identity}+field_name=field_result_not_corresponding@composite_failure",
+            "edge_conditions|edge_condition_{edge_identity}+field_name_or_receipt=condition_not_matching@condition_failure_by_field"
+          ],
+          "l5_refs": [
+            "/contract_views/F01/failure_rules/2",
+            "/contract_views/F01/failure_rules/3",
+            "/contract_views/F01/failure_rules/4",
+            "/contract_views/F01/failure_rules/5",
+            "/contract_views/F01/failure_rules/6",
+            "/contract_views/F01/failure_rules/7"
+          ],
+          "verification_status": "unverified"
+        }
       ],
       [
         "C007-F01-ORIGINAL-RECEIPT-EDGE-3-MISSING",
@@ -331,7 +386,29 @@
           "F01:edge_target",
           "F01:composite_target",
           "F01:edge_conditions"
-        ]
+        ],
+        {
+          "scenario_class": "negative",
+          "condition": "一辺原receiptの欠落は他辺greenで相殺しない。",
+          "decision": "列挙したL5 findingを宣言routeへ返し、terminal successを認めない。",
+          "findings": [
+            "receipt_cardinality_original|original_receipt_set+edge_identity=missing_original_receipt@edge_failure",
+            "receipt_cardinality_submitted|submitted_receipt_set+edge_identity=missing_submitted_receipt@edge_failure",
+            "receipt_content|receipt_content+edge_identity=result_not_corresponding@edge_failure",
+            "edge_target|edge_target_{edge_identity}+field_name=field_result_not_corresponding@edge_failure",
+            "composite_target|composite_target_{edge_identity}+field_name=field_result_not_corresponding@composite_failure",
+            "edge_conditions|edge_condition_{edge_identity}+field_name_or_receipt=condition_not_matching@condition_failure_by_field"
+          ],
+          "l5_refs": [
+            "/contract_views/F01/failure_rules/2",
+            "/contract_views/F01/failure_rules/3",
+            "/contract_views/F01/failure_rules/4",
+            "/contract_views/F01/failure_rules/5",
+            "/contract_views/F01/failure_rules/6",
+            "/contract_views/F01/failure_rules/7"
+          ],
+          "verification_status": "unverified"
+        }
       ],
       [
         "C007-F01-RECEIPT-TARGET-CONNECTION_IDENTITY-FOREIGN",
@@ -350,7 +427,19 @@
         "FN-C007-01",
         [
           "F01:edge_target"
-        ]
+        ],
+        {
+          "scenario_class": "negative",
+          "condition": "原/提出receiptが同値でも対象辺の契約/operation/attempt/scope等へ結ばれない場合は保留。",
+          "decision": "列挙したL5 findingを宣言routeへ返し、terminal successを認めない。",
+          "findings": [
+            "edge_target|edge_target_{edge_identity}+field_name=field_result_not_corresponding@edge_failure"
+          ],
+          "l5_refs": [
+            "/contract_views/F01/failure_rules/5"
+          ],
+          "verification_status": "unverified"
+        }
       ],
       [
         "C007-F01-RECEIPT-TARGET-CONTRACT_REVISION-FOREIGN",
@@ -369,7 +458,19 @@
         "FN-C007-01",
         [
           "F01:edge_target"
-        ]
+        ],
+        {
+          "scenario_class": "negative",
+          "condition": "原/提出receiptが同値でも対象辺の契約/operation/attempt/scope等へ結ばれない場合は保留。",
+          "decision": "列挙したL5 findingを宣言routeへ返し、terminal successを認めない。",
+          "findings": [
+            "edge_target|edge_target_{edge_identity}+field_name=field_result_not_corresponding@edge_failure"
+          ],
+          "l5_refs": [
+            "/contract_views/F01/failure_rules/5"
+          ],
+          "verification_status": "unverified"
+        }
       ],
       [
         "C007-F01-RECEIPT-TARGET-ABILITY_REF-FOREIGN",
@@ -388,7 +489,19 @@
         "FN-C007-01",
         [
           "F01:edge_target"
-        ]
+        ],
+        {
+          "scenario_class": "negative",
+          "condition": "原/提出receiptが同値でも対象辺の契約/operation/attempt/scope等へ結ばれない場合は保留。",
+          "decision": "列挙したL5 findingを宣言routeへ返し、terminal successを認めない。",
+          "findings": [
+            "edge_target|edge_target_{edge_identity}+field_name=field_result_not_corresponding@edge_failure"
+          ],
+          "l5_refs": [
+            "/contract_views/F01/failure_rules/5"
+          ],
+          "verification_status": "unverified"
+        }
       ],
       [
         "C007-F01-RECEIPT-TARGET-SCOPE-FOREIGN",
@@ -407,7 +520,19 @@
         "FN-C007-01",
         [
           "F01:edge_target"
-        ]
+        ],
+        {
+          "scenario_class": "negative",
+          "condition": "原/提出receiptが同値でも対象辺の契約/operation/attempt/scope等へ結ばれない場合は保留。",
+          "decision": "列挙したL5 findingを宣言routeへ返し、terminal successを認めない。",
+          "findings": [
+            "edge_target|edge_target_{edge_identity}+field_name=field_result_not_corresponding@edge_failure"
+          ],
+          "l5_refs": [
+            "/contract_views/F01/failure_rules/5"
+          ],
+          "verification_status": "unverified"
+        }
       ],
       [
         "C007-F01-RECEIPT-TARGET-OPERATION_IDENTITY-FOREIGN",
@@ -426,7 +551,19 @@
         "FN-C007-01",
         [
           "F01:edge_target"
-        ]
+        ],
+        {
+          "scenario_class": "negative",
+          "condition": "原/提出receiptが同値でも対象辺の契約/operation/attempt/scope等へ結ばれない場合は保留。",
+          "decision": "列挙したL5 findingを宣言routeへ返し、terminal successを認めない。",
+          "findings": [
+            "edge_target|edge_target_{edge_identity}+field_name=field_result_not_corresponding@edge_failure"
+          ],
+          "l5_refs": [
+            "/contract_views/F01/failure_rules/5"
+          ],
+          "verification_status": "unverified"
+        }
       ],
       [
         "C007-F01-RECEIPT-TARGET-ATTEMPT_IDENTITY-FOREIGN",
@@ -445,7 +582,19 @@
         "FN-C007-01",
         [
           "F01:edge_target"
-        ]
+        ],
+        {
+          "scenario_class": "negative",
+          "condition": "原/提出receiptが同値でも対象辺の契約/operation/attempt/scope等へ結ばれない場合は保留。",
+          "decision": "列挙したL5 findingを宣言routeへ返し、terminal successを認めない。",
+          "findings": [
+            "edge_target|edge_target_{edge_identity}+field_name=field_result_not_corresponding@edge_failure"
+          ],
+          "l5_refs": [
+            "/contract_views/F01/failure_rules/5"
+          ],
+          "verification_status": "unverified"
+        }
       ],
       [
         "C007-F01-RECEIPT-TARGET-CORRELATION-FOREIGN",
@@ -464,7 +613,19 @@
         "FN-C007-01",
         [
           "F01:edge_target"
-        ]
+        ],
+        {
+          "scenario_class": "negative",
+          "condition": "原/提出receiptが同値でも対象辺の契約/operation/attempt/scope等へ結ばれない場合は保留。",
+          "decision": "列挙したL5 findingを宣言routeへ返し、terminal successを認めない。",
+          "findings": [
+            "edge_target|edge_target_{edge_identity}+field_name=field_result_not_corresponding@edge_failure"
+          ],
+          "l5_refs": [
+            "/contract_views/F01/failure_rules/5"
+          ],
+          "verification_status": "unverified"
+        }
       ],
       [
         "C007-F01-RECEIPT-TARGET-EXPIRY_REF-FOREIGN",
@@ -483,7 +644,19 @@
         "FN-C007-01",
         [
           "F01:edge_target"
-        ]
+        ],
+        {
+          "scenario_class": "negative",
+          "condition": "原/提出receiptが同値でも対象辺の契約/operation/attempt/scope等へ結ばれない場合は保留。",
+          "decision": "列挙したL5 findingを宣言routeへ返し、terminal successを認めない。",
+          "findings": [
+            "edge_target|edge_target_{edge_identity}+field_name=field_result_not_corresponding@edge_failure"
+          ],
+          "l5_refs": [
+            "/contract_views/F01/failure_rules/5"
+          ],
+          "verification_status": "unverified"
+        }
       ],
       [
         "C007-F01-RECEIPT-TARGET-PERMISSION_REF-FOREIGN",
@@ -502,7 +675,19 @@
         "FN-C007-01",
         [
           "F01:edge_target"
-        ]
+        ],
+        {
+          "scenario_class": "negative",
+          "condition": "原/提出receiptが同値でも対象辺の契約/operation/attempt/scope等へ結ばれない場合は保留。",
+          "decision": "列挙したL5 findingを宣言routeへ返し、terminal successを認めない。",
+          "findings": [
+            "edge_target|edge_target_{edge_identity}+field_name=field_result_not_corresponding@edge_failure"
+          ],
+          "l5_refs": [
+            "/contract_views/F01/failure_rules/5"
+          ],
+          "verification_status": "unverified"
+        }
       ],
       [
         "C007-F01-RECEIPT-TARGET-IDEMPOTENCY-FOREIGN",
@@ -521,7 +706,19 @@
         "FN-C007-01",
         [
           "F01:edge_target"
-        ]
+        ],
+        {
+          "scenario_class": "negative",
+          "condition": "原/提出receiptが同値でも対象辺の契約/operation/attempt/scope等へ結ばれない場合は保留。",
+          "decision": "列挙したL5 findingを宣言routeへ返し、terminal successを認めない。",
+          "findings": [
+            "edge_target|edge_target_{edge_identity}+field_name=field_result_not_corresponding@edge_failure"
+          ],
+          "l5_refs": [
+            "/contract_views/F01/failure_rules/5"
+          ],
+          "verification_status": "unverified"
+        }
       ],
       [
         "C007-F01-RECEIPT-TARGET-CONTENT_DIGEST-FOREIGN",
@@ -540,7 +737,19 @@
         "FN-C007-01",
         [
           "F01:edge_target"
-        ]
+        ],
+        {
+          "scenario_class": "negative",
+          "condition": "原/提出receiptが同値でも対象辺の契約/operation/attempt/scope等へ結ばれない場合は保留。",
+          "decision": "列挙したL5 findingを宣言routeへ返し、terminal successを認めない。",
+          "findings": [
+            "edge_target|edge_target_{edge_identity}+field_name=field_result_not_corresponding@edge_failure"
+          ],
+          "l5_refs": [
+            "/contract_views/F01/failure_rules/5"
+          ],
+          "verification_status": "unverified"
+        }
       ],
       [
         "C007-F01-RECEIPT-TARGET-REGISTRATION_REVISION-FOREIGN",
@@ -559,7 +768,19 @@
         "FN-C007-01",
         [
           "F01:edge_target"
-        ]
+        ],
+        {
+          "scenario_class": "negative",
+          "condition": "原/提出receiptが同値でも対象辺の契約/operation/attempt/scope等へ結ばれない場合は保留。",
+          "decision": "列挙したL5 findingを宣言routeへ返し、terminal successを認めない。",
+          "findings": [
+            "edge_target|edge_target_{edge_identity}+field_name=field_result_not_corresponding@edge_failure"
+          ],
+          "l5_refs": [
+            "/contract_views/F01/failure_rules/5"
+          ],
+          "verification_status": "unverified"
+        }
       ],
       [
         "C007-F01-RECEIPT-TARGET-RECOVERY_REF-FOREIGN",
@@ -578,7 +799,19 @@
         "FN-C007-01",
         [
           "F01:edge_target"
-        ]
+        ],
+        {
+          "scenario_class": "negative",
+          "condition": "原/提出receiptが同値でも対象辺の契約/operation/attempt/scope等へ結ばれない場合は保留。",
+          "decision": "列挙したL5 findingを宣言routeへ返し、terminal successを認めない。",
+          "findings": [
+            "edge_target|edge_target_{edge_identity}+field_name=field_result_not_corresponding@edge_failure"
+          ],
+          "l5_refs": [
+            "/contract_views/F01/failure_rules/5"
+          ],
+          "verification_status": "unverified"
+        }
       ],
       [
         "C007-F01-RECEIPT-COMPOSITE-IDENTITY-FOREIGN",
@@ -597,7 +830,19 @@
         "FN-C007-01",
         [
           "F01:composite_target"
-        ]
+        ],
+        {
+          "scenario_class": "negative",
+          "condition": "別構成体revision/scope/要求/ownerの証拠を当該集合へ外挿しない。",
+          "decision": "列挙したL5 findingを宣言routeへ返し、terminal successを認めない。",
+          "findings": [
+            "composite_target|composite_target_{edge_identity}+field_name=field_result_not_corresponding@composite_failure"
+          ],
+          "l5_refs": [
+            "/contract_views/F01/failure_rules/6"
+          ],
+          "verification_status": "unverified"
+        }
       ],
       [
         "C007-F01-RECEIPT-COMPOSITE-REVISION-FOREIGN",
@@ -616,7 +861,19 @@
         "FN-C007-01",
         [
           "F01:composite_target"
-        ]
+        ],
+        {
+          "scenario_class": "negative",
+          "condition": "別構成体revision/scope/要求/ownerの証拠を当該集合へ外挿しない。",
+          "decision": "列挙したL5 findingを宣言routeへ返し、terminal successを認めない。",
+          "findings": [
+            "composite_target|composite_target_{edge_identity}+field_name=field_result_not_corresponding@composite_failure"
+          ],
+          "l5_refs": [
+            "/contract_views/F01/failure_rules/6"
+          ],
+          "verification_status": "unverified"
+        }
       ],
       [
         "C007-F01-RECEIPT-COMPOSITE-SCOPE-FOREIGN",
@@ -635,7 +892,19 @@
         "FN-C007-01",
         [
           "F01:composite_target"
-        ]
+        ],
+        {
+          "scenario_class": "negative",
+          "condition": "別構成体revision/scope/要求/ownerの証拠を当該集合へ外挿しない。",
+          "decision": "列挙したL5 findingを宣言routeへ返し、terminal successを認めない。",
+          "findings": [
+            "composite_target|composite_target_{edge_identity}+field_name=field_result_not_corresponding@composite_failure"
+          ],
+          "l5_refs": [
+            "/contract_views/F01/failure_rules/6"
+          ],
+          "verification_status": "unverified"
+        }
       ],
       [
         "C007-F01-RECEIPT-COMPOSITE-REQUIREMENT_REVISION-FOREIGN",
@@ -654,7 +923,19 @@
         "FN-C007-01",
         [
           "F01:composite_target"
-        ]
+        ],
+        {
+          "scenario_class": "negative",
+          "condition": "別構成体revision/scope/要求/ownerの証拠を当該集合へ外挿しない。",
+          "decision": "列挙したL5 findingを宣言routeへ返し、terminal successを認めない。",
+          "findings": [
+            "composite_target|composite_target_{edge_identity}+field_name=field_result_not_corresponding@composite_failure"
+          ],
+          "l5_refs": [
+            "/contract_views/F01/failure_rules/6"
+          ],
+          "verification_status": "unverified"
+        }
       ],
       [
         "C007-F01-RECEIPT-COMPOSITE-CORRELATION-FOREIGN",
@@ -673,7 +954,19 @@
         "FN-C007-01",
         [
           "F01:composite_target"
-        ]
+        ],
+        {
+          "scenario_class": "negative",
+          "condition": "別構成体revision/scope/要求/ownerの証拠を当該集合へ外挿しない。",
+          "decision": "列挙したL5 findingを宣言routeへ返し、terminal successを認めない。",
+          "findings": [
+            "composite_target|composite_target_{edge_identity}+field_name=field_result_not_corresponding@composite_failure"
+          ],
+          "l5_refs": [
+            "/contract_views/F01/failure_rules/6"
+          ],
+          "verification_status": "unverified"
+        }
       ],
       [
         "C007-F01-RECEIPT-COMPOSITE-OWNER-FOREIGN",
@@ -692,7 +985,19 @@
         "FN-C007-01",
         [
           "F01:composite_target"
-        ]
+        ],
+        {
+          "scenario_class": "negative",
+          "condition": "別構成体revision/scope/要求/ownerの証拠を当該集合へ外挿しない。",
+          "decision": "列挙したL5 findingを宣言routeへ返し、terminal successを認めない。",
+          "findings": [
+            "composite_target|composite_target_{edge_identity}+field_name=field_result_not_corresponding@composite_failure"
+          ],
+          "l5_refs": [
+            "/contract_views/F01/failure_rules/6"
+          ],
+          "verification_status": "unverified"
+        }
       ],
       [
         "C007-F01-ORIGINAL-REGISTRATION_STATE-UNKNOWN",
@@ -711,7 +1016,19 @@
         "FN-C007-01",
         [
           "F01:edge_conditions"
-        ]
+        ],
+        {
+          "scenario_class": "negative",
+          "condition": "内容同値でも元観測の未成立/失効/stale/部分/効果未観測は全体終端にならない。",
+          "decision": "列挙したL5 findingを宣言routeへ返し、terminal successを認めない。",
+          "findings": [
+            "edge_conditions|edge_condition_{edge_identity}+field_name_or_receipt=condition_not_matching@condition_failure_by_field"
+          ],
+          "l5_refs": [
+            "/contract_views/F01/failure_rules/7"
+          ],
+          "verification_status": "unverified"
+        }
       ],
       [
         "C007-F01-ORIGINAL-COMPATIBILITY_STATE-STALE",
@@ -730,7 +1047,19 @@
         "FN-C007-01",
         [
           "F01:edge_conditions"
-        ]
+        ],
+        {
+          "scenario_class": "negative",
+          "condition": "内容同値でも元観測の未成立/失効/stale/部分/効果未観測は全体終端にならない。",
+          "decision": "列挙したL5 findingを宣言routeへ返し、terminal successを認めない。",
+          "findings": [
+            "edge_conditions|edge_condition_{edge_identity}+field_name_or_receipt=condition_not_matching@condition_failure_by_field"
+          ],
+          "l5_refs": [
+            "/contract_views/F01/failure_rules/7"
+          ],
+          "verification_status": "unverified"
+        }
       ],
       [
         "C007-F01-ORIGINAL-EXPIRY_STATE-EXPIRED",
@@ -749,7 +1078,19 @@
         "FN-C007-01",
         [
           "F01:edge_conditions"
-        ]
+        ],
+        {
+          "scenario_class": "negative",
+          "condition": "内容同値でも元観測の未成立/失効/stale/部分/効果未観測は全体終端にならない。",
+          "decision": "列挙したL5 findingを宣言routeへ返し、terminal successを認めない。",
+          "findings": [
+            "edge_conditions|edge_condition_{edge_identity}+field_name_or_receipt=condition_not_matching@condition_failure_by_field"
+          ],
+          "l5_refs": [
+            "/contract_views/F01/failure_rules/7"
+          ],
+          "verification_status": "unverified"
+        }
       ],
       [
         "C007-F01-ORIGINAL-PERMISSION_STATE-REVOKED",
@@ -768,7 +1109,19 @@
         "FN-C007-01",
         [
           "F01:edge_conditions"
-        ]
+        ],
+        {
+          "scenario_class": "negative",
+          "condition": "内容同値でも元観測の未成立/失効/stale/部分/効果未観測は全体終端にならない。",
+          "decision": "列挙したL5 findingを宣言routeへ返し、terminal successを認めない。",
+          "findings": [
+            "edge_conditions|edge_condition_{edge_identity}+field_name_or_receipt=condition_not_matching@condition_failure_by_field"
+          ],
+          "l5_refs": [
+            "/contract_views/F01/failure_rules/7"
+          ],
+          "verification_status": "unverified"
+        }
       ],
       [
         "C007-F01-ORIGINAL-RESULT_STATE-PARTIAL_SUCCESS",
@@ -787,7 +1140,19 @@
         "FN-C007-01",
         [
           "F01:edge_conditions"
-        ]
+        ],
+        {
+          "scenario_class": "negative",
+          "condition": "内容同値でも元観測の未成立/失効/stale/部分/効果未観測は全体終端にならない。",
+          "decision": "列挙したL5 findingを宣言routeへ返し、terminal successを認めない。",
+          "findings": [
+            "edge_conditions|edge_condition_{edge_identity}+field_name_or_receipt=condition_not_matching@condition_failure_by_field"
+          ],
+          "l5_refs": [
+            "/contract_views/F01/failure_rules/7"
+          ],
+          "verification_status": "unverified"
+        }
       ],
       [
         "C007-F01-ORIGINAL-RECEIVER_EFFECT_STATE-NOT_OBSERVED",
@@ -806,7 +1171,19 @@
         "FN-C007-01",
         [
           "F01:edge_conditions"
-        ]
+        ],
+        {
+          "scenario_class": "negative",
+          "condition": "内容同値でも元観測の未成立/失効/stale/部分/効果未観測は全体終端にならない。",
+          "decision": "列挙したL5 findingを宣言routeへ返し、terminal successを認めない。",
+          "findings": [
+            "edge_conditions|edge_condition_{edge_identity}+field_name_or_receipt=condition_not_matching@condition_failure_by_field"
+          ],
+          "l5_refs": [
+            "/contract_views/F01/failure_rules/7"
+          ],
+          "verification_status": "unverified"
+        }
       ],
       [
         "C007-F01-ORIGINAL-EDGE-DEFINITION-MISSING",
@@ -827,7 +1204,23 @@
           "F01:required_edge_set",
           "F01:operation_mapping",
           "F01:unselected_receipts"
-        ]
+        ],
+        {
+          "scenario_class": "negative",
+          "condition": "宣言済み必須辺が未定義なら欠落/順序/mappingを推測で補わない。",
+          "decision": "列挙したL5 findingを宣言routeへ返し、terminal successを認めない。",
+          "findings": [
+            "required_edge_set|needed_edges+ordered_exact_set=result_not_corresponding@composite_failure",
+            "operation_mapping|handoff_mapping+edge_identity_and_mapping_axis=mapping_not_corresponding@composite_failure",
+            "unselected_receipts|receipt_set+outside_declared_edges=nonempty@composite_failure"
+          ],
+          "l5_refs": [
+            "/contract_views/F01/failure_rules/0",
+            "/contract_views/F01/failure_rules/8",
+            "/contract_views/F01/failure_rules/9"
+          ],
+          "verification_status": "unverified"
+        }
       ],
       [
         "C007-F01-SUBMITTED-EDGE-ORDER-REVERSED",
@@ -846,7 +1239,19 @@
         "FN-C007-01",
         [
           "F01:edge_definition"
-        ]
+        ],
+        {
+          "scenario_class": "negative",
+          "condition": "元構成体ownerの順序を提出順序で置換しない。",
+          "decision": "列挙したL5 findingを宣言routeへ返し、terminal successを認めない。",
+          "findings": [
+            "edge_definition|edge_definition+content=result_not_corresponding@composite_failure"
+          ],
+          "l5_refs": [
+            "/contract_views/F01/failure_rules/1"
+          ],
+          "verification_status": "unverified"
+        }
       ],
       [
         "C007-F01-ORIGINAL-MAPPING-SOURCE_OPERATION-UNKNOWN",
@@ -866,7 +1271,21 @@
         [
           "F01:edge_target",
           "F01:operation_mapping"
-        ]
+        ],
+        {
+          "scenario_class": "negative",
+          "condition": "元operation mappingの不明/別内容を原/提出同値で成立にしない。",
+          "decision": "列挙したL5 findingを宣言routeへ返し、terminal successを認めない。",
+          "findings": [
+            "edge_target|edge_target_{edge_identity}+field_name=field_result_not_corresponding@edge_failure",
+            "operation_mapping|handoff_mapping+edge_identity_and_mapping_axis=mapping_not_corresponding@composite_failure"
+          ],
+          "l5_refs": [
+            "/contract_views/F01/failure_rules/5",
+            "/contract_views/F01/failure_rules/8"
+          ],
+          "verification_status": "unverified"
+        }
       ],
       [
         "C007-F01-ORIGINAL-MAPPING-SOURCE_OPERATION-FOREIGN",
@@ -885,7 +1304,19 @@
         "FN-C007-01",
         [
           "F01:operation_mapping"
-        ]
+        ],
+        {
+          "scenario_class": "negative",
+          "condition": "元operation mappingの不明/別内容を原/提出同値で成立にしない。",
+          "decision": "列挙したL5 findingを宣言routeへ返し、terminal successを認めない。",
+          "findings": [
+            "operation_mapping|handoff_mapping+edge_identity_and_mapping_axis=mapping_not_corresponding@composite_failure"
+          ],
+          "l5_refs": [
+            "/contract_views/F01/failure_rules/8"
+          ],
+          "verification_status": "unverified"
+        }
       ],
       [
         "C007-F01-ORIGINAL-MAPPING-SOURCE_ENDPOINT-FOREIGN",
@@ -904,7 +1335,19 @@
         "FN-C007-01",
         [
           "F01:operation_mapping"
-        ]
+        ],
+        {
+          "scenario_class": "negative",
+          "condition": "元operation mappingの不明/別内容を原/提出同値で成立にしない。",
+          "decision": "列挙したL5 findingを宣言routeへ返し、terminal successを認めない。",
+          "findings": [
+            "operation_mapping|handoff_mapping+edge_identity_and_mapping_axis=mapping_not_corresponding@composite_failure"
+          ],
+          "l5_refs": [
+            "/contract_views/F01/failure_rules/8"
+          ],
+          "verification_status": "unverified"
+        }
       ],
       [
         "C007-F01-SUBMITTED-RECEIPT-MISSING",
@@ -924,7 +1367,21 @@
         [
           "F01:receipt_cardinality_submitted",
           "F01:receipt_content"
-        ]
+        ],
+        {
+          "scenario_class": "negative",
+          "condition": "独立原receiptがあっても提出欠落は内容不足として保持。",
+          "decision": "列挙したL5 findingを宣言routeへ返し、terminal successを認めない。",
+          "findings": [
+            "receipt_cardinality_submitted|submitted_receipt_set+edge_identity=missing_submitted_receipt@edge_failure",
+            "receipt_content|receipt_content+edge_identity=result_not_corresponding@edge_failure"
+          ],
+          "l5_refs": [
+            "/contract_views/F01/failure_rules/3",
+            "/contract_views/F01/failure_rules/4"
+          ],
+          "verification_status": "unverified"
+        }
       ],
       [
         "C007-F01-SUBMITTED-RECEIPT-DUPLICATE",
@@ -944,7 +1401,21 @@
         [
           "F01:receipt_cardinality_submitted",
           "F01:receipt_content"
-        ]
+        ],
+        {
+          "scenario_class": "negative",
+          "condition": "同辺receipt重複を欠落と混同せず、元と提出集合の個数を保持する。",
+          "decision": "列挙したL5 findingを宣言routeへ返し、terminal successを認めない。",
+          "findings": [
+            "receipt_cardinality_submitted|submitted_receipt_set+edge_identity=duplicate_submitted_receipt@edge_failure",
+            "receipt_content|receipt_content+edge_identity=result_not_corresponding@edge_failure"
+          ],
+          "l5_refs": [
+            "/contract_views/F01/failure_rules/3",
+            "/contract_views/F01/failure_rules/4"
+          ],
+          "verification_status": "unverified"
+        }
       ],
       [
         "C007-F01-ONE_EDGE_GREEN_IS_COMPOSITE",
@@ -968,7 +1439,29 @@
           "F01:edge_target",
           "F01:composite_target",
           "F01:edge_conditions"
-        ]
+        ],
+        {
+          "scenario_class": "negative",
+          "condition": "一辺green/欠落辺/未定mappingで構成完了claimを拒否。",
+          "decision": "列挙したL5 findingを宣言routeへ返し、terminal successを認めない。",
+          "findings": [
+            "receipt_cardinality_original|original_receipt_set+edge_identity=count_not_one@edge_failure",
+            "receipt_cardinality_submitted|submitted_receipt_set+edge_identity=count_not_one@edge_failure",
+            "receipt_content|receipt_content+edge_identity=result_not_corresponding@edge_failure",
+            "edge_target|edge_target_{edge_identity}+field_name=field_result_not_corresponding@edge_failure",
+            "composite_target|composite_target_{edge_identity}+field_name=field_result_not_corresponding@composite_failure",
+            "edge_conditions|edge_condition_{edge_identity}+field_name_or_receipt=condition_not_matching@condition_failure_by_field"
+          ],
+          "l5_refs": [
+            "/contract_views/F01/failure_rules/2",
+            "/contract_views/F01/failure_rules/3",
+            "/contract_views/F01/failure_rules/4",
+            "/contract_views/F01/failure_rules/5",
+            "/contract_views/F01/failure_rules/6",
+            "/contract_views/F01/failure_rules/7"
+          ],
+          "verification_status": "unverified"
+        }
       ],
       [
         "C007-F01-MISSING_EDGE_COMPLETE",
@@ -992,7 +1485,29 @@
           "F01:edge_target",
           "F01:composite_target",
           "F01:edge_conditions"
-        ]
+        ],
+        {
+          "scenario_class": "negative",
+          "condition": "一辺green/欠落辺/未定mappingで構成完了claimを拒否。",
+          "decision": "列挙したL5 findingを宣言routeへ返し、terminal successを認めない。",
+          "findings": [
+            "receipt_cardinality_original|original_receipt_set+edge_identity=missing_original_receipt@edge_failure",
+            "receipt_cardinality_submitted|submitted_receipt_set+edge_identity=missing_submitted_receipt@edge_failure",
+            "receipt_content|receipt_content+edge_identity=result_not_corresponding@edge_failure",
+            "edge_target|edge_target_{edge_identity}+field_name=field_result_not_corresponding@edge_failure",
+            "composite_target|composite_target_{edge_identity}+field_name=field_result_not_corresponding@composite_failure",
+            "edge_conditions|edge_condition_{edge_identity}+field_name_or_receipt=condition_not_matching@condition_failure_by_field"
+          ],
+          "l5_refs": [
+            "/contract_views/F01/failure_rules/2",
+            "/contract_views/F01/failure_rules/3",
+            "/contract_views/F01/failure_rules/4",
+            "/contract_views/F01/failure_rules/5",
+            "/contract_views/F01/failure_rules/6",
+            "/contract_views/F01/failure_rules/7"
+          ],
+          "verification_status": "unverified"
+        }
       ],
       [
         "C007-F01-UNKNOWN_MAPPING_COMPLETE",
@@ -1012,7 +1527,21 @@
         [
           "F01:edge_target",
           "F01:operation_mapping"
-        ]
+        ],
+        {
+          "scenario_class": "negative",
+          "condition": "一辺green/欠落辺/未定mappingで構成完了claimを拒否。",
+          "decision": "列挙したL5 findingを宣言routeへ返し、terminal successを認めない。",
+          "findings": [
+            "edge_target|edge_target_{edge_identity}+field_name=field_result_not_corresponding@edge_failure",
+            "operation_mapping|handoff_mapping+edge_identity_and_mapping_axis=mapping_not_corresponding@composite_failure"
+          ],
+          "l5_refs": [
+            "/contract_views/F01/failure_rules/5",
+            "/contract_views/F01/failure_rules/8"
+          ],
+          "verification_status": "unverified"
+        }
       ],
       [
         "C007-F02-STALE-MIDDLE-PREDECESSOR-RETAINED-NO-DOWNSTREAM",
@@ -1029,7 +1558,17 @@
         "synthetic_fixture_only",
         "U-C007-040",
         "FN-C007-02",
-        []
+        [],
+        {
+          "scenario_class": "negative",
+          "condition": "中間staleは先行成功/局所ownerと未完/後続未実行を保持し全体成功にしない。",
+          "decision": "中間故障を停止位置として保持し、先行成功と未完義務/ownerを残し、後続attemptを実行済みにしない。",
+          "findings": [],
+          "l5_refs": [
+            "/contract_views/F02"
+          ],
+          "verification_status": "unverified"
+        }
       ],
       [
         "C007-F02-MIDDLE-TIMEOUT",
@@ -1046,7 +1585,17 @@
         "synthetic_fixture_only",
         "U-C007-041",
         "FN-C007-02",
-        []
+        [],
+        {
+          "scenario_class": "negative",
+          "condition": "中間故障を個別保持。後続実行を捏造せず業務再計画は元ownerへ残す。",
+          "decision": "中間故障を停止位置として保持し、先行成功と未完義務/ownerを残し、後続attemptを実行済みにしない。",
+          "findings": [],
+          "l5_refs": [
+            "/contract_views/F02"
+          ],
+          "verification_status": "unverified"
+        }
       ],
       [
         "C007-F02-MIDDLE-DIGEST_CONFLICT",
@@ -1063,7 +1612,17 @@
         "synthetic_fixture_only",
         "U-C007-042",
         "FN-C007-02",
-        []
+        [],
+        {
+          "scenario_class": "negative",
+          "condition": "中間故障を個別保持。後続実行を捏造せず業務再計画は元ownerへ残す。",
+          "decision": "中間故障を停止位置として保持し、先行成功と未完義務/ownerを残し、後続attemptを実行済みにしない。",
+          "findings": [],
+          "l5_refs": [
+            "/contract_views/F02"
+          ],
+          "verification_status": "unverified"
+        }
       ],
       [
         "C007-F02-MIDDLE-EXPIRY",
@@ -1080,7 +1639,17 @@
         "synthetic_fixture_only",
         "U-C007-043",
         "FN-C007-02",
-        []
+        [],
+        {
+          "scenario_class": "negative",
+          "condition": "中間故障を個別保持。後続実行を捏造せず業務再計画は元ownerへ残す。",
+          "decision": "中間故障を停止位置として保持し、先行成功と未完義務/ownerを残し、後続attemptを実行済みにしない。",
+          "findings": [],
+          "l5_refs": [
+            "/contract_views/F02"
+          ],
+          "verification_status": "unverified"
+        }
       ],
       [
         "C007-F02-MIDDLE-CANCELLED",
@@ -1097,7 +1666,17 @@
         "synthetic_fixture_only",
         "U-C007-044",
         "FN-C007-02",
-        []
+        [],
+        {
+          "scenario_class": "negative",
+          "condition": "中間故障を個別保持。後続実行を捏造せず業務再計画は元ownerへ残す。",
+          "decision": "中間故障を停止位置として保持し、先行成功と未完義務/ownerを残し、後続attemptを実行済みにしない。",
+          "findings": [],
+          "l5_refs": [
+            "/contract_views/F02"
+          ],
+          "verification_status": "unverified"
+        }
       ],
       [
         "C007-F02-MIDDLE-PERMISSION_REVOKED",
@@ -1114,7 +1693,17 @@
         "synthetic_fixture_only",
         "U-C007-045",
         "FN-C007-02",
-        []
+        [],
+        {
+          "scenario_class": "negative",
+          "condition": "中間故障を個別保持。後続実行を捏造せず業務再計画は元ownerへ残す。",
+          "decision": "中間故障を停止位置として保持し、先行成功と未完義務/ownerを残し、後続attemptを実行済みにしない。",
+          "findings": [],
+          "l5_refs": [
+            "/contract_views/F02"
+          ],
+          "verification_status": "unverified"
+        }
       ],
       [
         "C007-F02-MIDDLE-PARTIAL_SUCCESS",
@@ -1131,7 +1720,17 @@
         "synthetic_fixture_only",
         "U-C007-046",
         "FN-C007-02",
-        []
+        [],
+        {
+          "scenario_class": "negative",
+          "condition": "中間故障を個別保持。後続実行を捏造せず業務再計画は元ownerへ残す。",
+          "decision": "中間故障を停止位置として保持し、先行成功と未完義務/ownerを残し、後続attemptを実行済みにしない。",
+          "findings": [],
+          "l5_refs": [
+            "/contract_views/F02"
+          ],
+          "verification_status": "unverified"
+        }
       ],
       [
         "C007-F02-MIDDLE-UNKNOWN",
@@ -1148,7 +1747,17 @@
         "synthetic_fixture_only",
         "U-C007-047",
         "FN-C007-02",
-        []
+        [],
+        {
+          "scenario_class": "negative",
+          "condition": "中間故障を個別保持。後続実行を捏造せず業務再計画は元ownerへ残す。",
+          "decision": "中間故障を停止位置として保持し、先行成功と未完義務/ownerを残し、後続attemptを実行済みにしない。",
+          "findings": [],
+          "l5_refs": [
+            "/contract_views/F02"
+          ],
+          "verification_status": "unverified"
+        }
       ],
       [
         "C007-F02-SUBMITTED-PRIOR_SUCCESSES-ERASED",
@@ -1167,7 +1776,19 @@
         "FN-C007-02",
         [
           "F02:prior_successes"
-        ]
+        ],
+        {
+          "scenario_class": "negative",
+          "condition": "失敗で先行成功/元未完を消去しない。",
+          "decision": "列挙したL5 findingを宣言routeへ返し、terminal successを認めない。",
+          "findings": [
+            "prior_successes|prior_successes_content+record=result_not_corresponding@trace_failure"
+          ],
+          "l5_refs": [
+            "/contract_views/F02/failure_rules/1"
+          ],
+          "verification_status": "unverified"
+        }
       ],
       [
         "C007-F02-SUBMITTED-UNFINISHED-ERASED",
@@ -1186,7 +1807,19 @@
         "FN-C007-02",
         [
           "F02:unfinished"
-        ]
+        ],
+        {
+          "scenario_class": "negative",
+          "condition": "失敗で先行成功/元未完を消去しない。",
+          "decision": "列挙したL5 findingを宣言routeへ返し、terminal successを認めない。",
+          "findings": [
+            "unfinished|unfinished_content+record=field_result_not_corresponding@trace_failure"
+          ],
+          "l5_refs": [
+            "/contract_views/F02/failure_rules/2"
+          ],
+          "verification_status": "unverified"
+        }
       ],
       [
         "C007-F02-SUBMITTED-DOWNSTREAM-ATTEMPT-INVENTED",
@@ -1205,7 +1838,19 @@
         "FN-C007-02",
         [
           "F02:downstream_attempts"
-        ]
+        ],
+        {
+          "scenario_class": "negative",
+          "condition": "未観測/未許可の後続を実行済みにしない。",
+          "decision": "列挙したL5 findingを宣言routeへ返し、terminal successを認めない。",
+          "findings": [
+            "downstream_attempts|downstream_attempts_content+record=original_submitted_content_not_corresponding@trace_failure"
+          ],
+          "l5_refs": [
+            "/contract_views/F02/failure_rules/3"
+          ],
+          "verification_status": "unverified"
+        }
       ],
       [
         "C007-F02-ORIGINAL-UNAUTHORIZED-DOWNSTREAM-ATTEMPT",
@@ -1224,7 +1869,19 @@
         "FN-C007-02",
         [
           "F02:unauthorized_attempt"
-        ]
+        ],
+        {
+          "scenario_class": "negative",
+          "condition": "原/提出同値でも先行条件なし後続attemptを許容せず保留。",
+          "decision": "列挙したL5 findingを宣言routeへ返し、terminal successを認めない。",
+          "findings": [
+            "unauthorized_attempt|downstream_authority+attempts=original_downstream_result_not_corresponding_to_zero@trace_failure"
+          ],
+          "l5_refs": [
+            "/contract_views/F02/failure_rules/5"
+          ],
+          "verification_status": "unverified"
+        }
       ],
       [
         "C007-F02-SUBMITTED-STOP-OWNER-FOREIGN",
@@ -1243,7 +1900,19 @@
         "FN-C007-02",
         [
           "F02:stop_content"
-        ]
+        ],
+        {
+          "scenario_class": "negative",
+          "condition": "停止の発生辺/operation/attempt/owner/recoveryを変えない。",
+          "decision": "列挙したL5 findingを宣言routeへ返し、terminal successを認めない。",
+          "findings": [
+            "stop_content|stop_content+record=result_not_corresponding@edge_failure"
+          ],
+          "l5_refs": [
+            "/contract_views/F02/failure_rules/6"
+          ],
+          "verification_status": "unverified"
+        }
       ],
       [
         "C007-F02-SUBMITTED-STOP-RECOVERY_REF-FOREIGN",
@@ -1262,7 +1931,19 @@
         "FN-C007-02",
         [
           "F02:stop_content"
-        ]
+        ],
+        {
+          "scenario_class": "negative",
+          "condition": "停止の発生辺/operation/attempt/owner/recoveryを変えない。",
+          "decision": "列挙したL5 findingを宣言routeへ返し、terminal successを認めない。",
+          "findings": [
+            "stop_content|stop_content+record=result_not_corresponding@edge_failure"
+          ],
+          "l5_refs": [
+            "/contract_views/F02/failure_rules/6"
+          ],
+          "verification_status": "unverified"
+        }
       ],
       [
         "C007-F02-SUBMITTED-STOP-EDGE_IDENTITY-FOREIGN",
@@ -1281,7 +1962,19 @@
         "FN-C007-02",
         [
           "F02:stop_content"
-        ]
+        ],
+        {
+          "scenario_class": "negative",
+          "condition": "停止の発生辺/operation/attempt/owner/recoveryを変えない。",
+          "decision": "列挙したL5 findingを宣言routeへ返し、terminal successを認めない。",
+          "findings": [
+            "stop_content|stop_content+record=result_not_corresponding@edge_failure"
+          ],
+          "l5_refs": [
+            "/contract_views/F02/failure_rules/6"
+          ],
+          "verification_status": "unverified"
+        }
       ],
       [
         "C007-F02-SUBMITTED-STOP-OPERATION_IDENTITY-FOREIGN",
@@ -1300,7 +1993,19 @@
         "FN-C007-02",
         [
           "F02:stop_content"
-        ]
+        ],
+        {
+          "scenario_class": "negative",
+          "condition": "停止の発生辺/operation/attempt/owner/recoveryを変えない。",
+          "decision": "列挙したL5 findingを宣言routeへ返し、terminal successを認めない。",
+          "findings": [
+            "stop_content|stop_content+record=result_not_corresponding@edge_failure"
+          ],
+          "l5_refs": [
+            "/contract_views/F02/failure_rules/6"
+          ],
+          "verification_status": "unverified"
+        }
       ],
       [
         "C007-F02-SUBMITTED-STOP-ATTEMPT_IDENTITY-FOREIGN",
@@ -1319,7 +2024,19 @@
         "FN-C007-02",
         [
           "F02:stop_content"
-        ]
+        ],
+        {
+          "scenario_class": "negative",
+          "condition": "停止の発生辺/operation/attempt/owner/recoveryを変えない。",
+          "decision": "列挙したL5 findingを宣言routeへ返し、terminal successを認めない。",
+          "findings": [
+            "stop_content|stop_content+record=result_not_corresponding@edge_failure"
+          ],
+          "l5_refs": [
+            "/contract_views/F02/failure_rules/6"
+          ],
+          "verification_status": "unverified"
+        }
       ],
       [
         "C007-F02-HANDOFF-COMPOSITE-SCOPE-FOREIGN",
@@ -1338,7 +2055,19 @@
         "FN-C007-02",
         [
           "F02:handoff_target"
-        ]
+        ],
+        {
+          "scenario_class": "negative",
+          "condition": "別構成scopeのhandoffで元未完を引継ぎ済みにしない。",
+          "decision": "列挙したL5 findingを宣言routeへ返し、terminal successを認めない。",
+          "findings": [
+            "handoff_target|handoff_composite_target+field_name=field_result_not_corresponding@trace_failure"
+          ],
+          "l5_refs": [
+            "/contract_views/F02/failure_rules/4"
+          ],
+          "verification_status": "unverified"
+        }
       ],
       [
         "C007-F02-ORIGINAL-STOP-OWNER-FOREIGN",
@@ -1357,7 +2086,19 @@
         "FN-C007-02",
         [
           "F02:stop_binding"
-        ]
+        ],
+        {
+          "scenario_class": "negative",
+          "condition": "原/提出停止記録が同値でも元辺owner/operation/attempt/recoveryを照合する。",
+          "decision": "列挙したL5 findingを宣言routeへ返し、terminal successを認めない。",
+          "findings": [
+            "stop_binding|stop_edge_binding+field_name=field_result_not_corresponding@trace_failure"
+          ],
+          "l5_refs": [
+            "/contract_views/F02/failure_rules/0"
+          ],
+          "verification_status": "unverified"
+        }
       ],
       [
         "C007-F02-ORIGINAL-STOP-RECOVERY_REF-FOREIGN",
@@ -1376,7 +2117,19 @@
         "FN-C007-02",
         [
           "F02:stop_binding"
-        ]
+        ],
+        {
+          "scenario_class": "negative",
+          "condition": "原/提出停止記録が同値でも元辺owner/operation/attempt/recoveryを照合する。",
+          "decision": "列挙したL5 findingを宣言routeへ返し、terminal successを認めない。",
+          "findings": [
+            "stop_binding|stop_edge_binding+field_name=field_result_not_corresponding@trace_failure"
+          ],
+          "l5_refs": [
+            "/contract_views/F02/failure_rules/0"
+          ],
+          "verification_status": "unverified"
+        }
       ],
       [
         "C007-F02-ORIGINAL-STOP-OPERATION_IDENTITY-FOREIGN",
@@ -1395,7 +2148,19 @@
         "FN-C007-02",
         [
           "F02:stop_binding"
-        ]
+        ],
+        {
+          "scenario_class": "negative",
+          "condition": "原/提出停止記録が同値でも元辺owner/operation/attempt/recoveryを照合する。",
+          "decision": "列挙したL5 findingを宣言routeへ返し、terminal successを認めない。",
+          "findings": [
+            "stop_binding|stop_edge_binding+field_name=field_result_not_corresponding@trace_failure"
+          ],
+          "l5_refs": [
+            "/contract_views/F02/failure_rules/0"
+          ],
+          "verification_status": "unverified"
+        }
       ],
       [
         "C007-F02-ORIGINAL-STOP-ATTEMPT_IDENTITY-FOREIGN",
@@ -1414,7 +2179,19 @@
         "FN-C007-02",
         [
           "F02:stop_binding"
-        ]
+        ],
+        {
+          "scenario_class": "negative",
+          "condition": "原/提出停止記録が同値でも元辺owner/operation/attempt/recoveryを照合する。",
+          "decision": "列挙したL5 findingを宣言routeへ返し、terminal successを認めない。",
+          "findings": [
+            "stop_binding|stop_edge_binding+field_name=field_result_not_corresponding@trace_failure"
+          ],
+          "l5_refs": [
+            "/contract_views/F02/failure_rules/0"
+          ],
+          "verification_status": "unverified"
+        }
       ],
       [
         "C007-F02-UNAUTHORIZED_DOWNSTREAM_RETRY",
@@ -1433,7 +2210,19 @@
         "FN-C007-02",
         [
           "F02:downstream_attempts"
-        ]
+        ],
+        {
+          "scenario_class": "negative",
+          "condition": "後続無許可再送/別辺green相殺/全trace消去claimを拒否。",
+          "decision": "列挙したL5 findingを宣言routeへ返し、terminal successを認めない。",
+          "findings": [
+            "downstream_attempts|downstream_attempts_content+record=original_submitted_content_not_corresponding@trace_failure"
+          ],
+          "l5_refs": [
+            "/contract_views/F02/failure_rules/3"
+          ],
+          "verification_status": "unverified"
+        }
       ],
       [
         "C007-F02-OTHER_EDGE_GREEN_OFFSETS",
@@ -1452,7 +2241,19 @@
         "FN-C007-02",
         [
           "F02:stop_content"
-        ]
+        ],
+        {
+          "scenario_class": "negative",
+          "condition": "後続無許可再送/別辺green相殺/全trace消去claimを拒否。",
+          "decision": "列挙したL5 findingを宣言routeへ返し、terminal successを認めない。",
+          "findings": [
+            "stop_content|stop_content+record=result_not_corresponding@edge_failure"
+          ],
+          "l5_refs": [
+            "/contract_views/F02/failure_rules/6"
+          ],
+          "verification_status": "unverified"
+        }
       ],
       [
         "C007-F02-ERASE_FULL_TRACE",
@@ -1472,7 +2273,21 @@
         [
           "F02:prior_successes",
           "F02:unfinished"
-        ]
+        ],
+        {
+          "scenario_class": "negative",
+          "condition": "後続無許可再送/別辺green相殺/全trace消去claimを拒否。",
+          "decision": "列挙したL5 findingを宣言routeへ返し、terminal successを認めない。",
+          "findings": [
+            "prior_successes|prior_successes_content+record=result_not_corresponding@trace_failure",
+            "unfinished|unfinished_content+record=field_result_not_corresponding@trace_failure"
+          ],
+          "l5_refs": [
+            "/contract_views/F02/failure_rules/1",
+            "/contract_views/F02/failure_rules/2"
+          ],
+          "verification_status": "unverified"
+        }
       ],
       [
         "C007-N01-EXACT-DECLARED-SCOPE-THREE-BOUNDARY-EVIDENCE",
@@ -1489,7 +2304,17 @@
         "synthetic_fixture_only",
         "U-C007-065",
         "FN-C007-03",
-        []
+        [],
+        {
+          "scenario_class": "normal",
+          "condition": "要求revision/構成/選択connection集合/登録/operation/attempt/効果停止への同対象結合。実source資格は未成立。",
+          "decision": "宣言された対象scopeの必要evidenceと同対象の境界情報が揃う場合だけfixture correspondenceとする。",
+          "findings": [],
+          "l5_refs": [
+            "/contract_views/N01/evidence_predicate"
+          ],
+          "verification_status": "unverified"
+        }
       ],
       [
         "C007-N01-EVIDENCE-TARGET-COMPOSITE_IDENTITY-FOREIGN",
@@ -1508,7 +2333,19 @@
         "FN-C007-03",
         [
           "N01:evidence_target"
-        ]
+        ],
+        {
+          "scenario_class": "negative",
+          "condition": "未見版/別scope/connection集合/登録/operation/attempt/効果停止証拠を外挿しない。",
+          "decision": "列挙したL5 findingを宣言routeへ返し、terminal successを認めない。",
+          "findings": [
+            "evidence_target|evidence_target_{identity}+field_name=field_result_not_corresponding@evidence_failure"
+          ],
+          "l5_refs": [
+            "/contract_views/N01/failure_rules/1"
+          ],
+          "verification_status": "unverified"
+        }
       ],
       [
         "C007-N01-EVIDENCE-TARGET-COMPOSITE_REVISION-FOREIGN",
@@ -1527,7 +2364,19 @@
         "FN-C007-03",
         [
           "N01:evidence_target"
-        ]
+        ],
+        {
+          "scenario_class": "negative",
+          "condition": "未見版/別scope/connection集合/登録/operation/attempt/効果停止証拠を外挿しない。",
+          "decision": "列挙したL5 findingを宣言routeへ返し、terminal successを認めない。",
+          "findings": [
+            "evidence_target|evidence_target_{identity}+field_name=field_result_not_corresponding@evidence_failure"
+          ],
+          "l5_refs": [
+            "/contract_views/N01/failure_rules/1"
+          ],
+          "verification_status": "unverified"
+        }
       ],
       [
         "C007-N01-EVIDENCE-TARGET-REQUIREMENT_REVISION-FOREIGN",
@@ -1546,7 +2395,19 @@
         "FN-C007-03",
         [
           "N01:evidence_target"
-        ]
+        ],
+        {
+          "scenario_class": "negative",
+          "condition": "未見版/別scope/connection集合/登録/operation/attempt/効果停止証拠を外挿しない。",
+          "decision": "列挙したL5 findingを宣言routeへ返し、terminal successを認めない。",
+          "findings": [
+            "evidence_target|evidence_target_{identity}+field_name=field_result_not_corresponding@evidence_failure"
+          ],
+          "l5_refs": [
+            "/contract_views/N01/failure_rules/1"
+          ],
+          "verification_status": "unverified"
+        }
       ],
       [
         "C007-N01-EVIDENCE-TARGET-SCOPE-FOREIGN",
@@ -1565,7 +2426,19 @@
         "FN-C007-03",
         [
           "N01:evidence_target"
-        ]
+        ],
+        {
+          "scenario_class": "negative",
+          "condition": "未見版/別scope/connection集合/登録/operation/attempt/効果停止証拠を外挿しない。",
+          "decision": "列挙したL5 findingを宣言routeへ返し、terminal successを認めない。",
+          "findings": [
+            "evidence_target|evidence_target_{identity}+field_name=field_result_not_corresponding@evidence_failure"
+          ],
+          "l5_refs": [
+            "/contract_views/N01/failure_rules/1"
+          ],
+          "verification_status": "unverified"
+        }
       ],
       [
         "C007-N01-EVIDENCE-TARGET-CONNECTION_EXACT_SET-FOREIGN",
@@ -1584,7 +2457,19 @@
         "FN-C007-03",
         [
           "N01:evidence_target"
-        ]
+        ],
+        {
+          "scenario_class": "negative",
+          "condition": "未見版/別scope/connection集合/登録/operation/attempt/効果停止証拠を外挿しない。",
+          "decision": "列挙したL5 findingを宣言routeへ返し、terminal successを認めない。",
+          "findings": [
+            "evidence_target|evidence_target_{identity}+field_name=field_result_not_corresponding@evidence_failure"
+          ],
+          "l5_refs": [
+            "/contract_views/N01/failure_rules/1"
+          ],
+          "verification_status": "unverified"
+        }
       ],
       [
         "C007-N01-EVIDENCE-TARGET-ENDPOINT_REGISTRATION_REVISIONS-FOREIGN",
@@ -1603,7 +2488,19 @@
         "FN-C007-03",
         [
           "N01:evidence_target"
-        ]
+        ],
+        {
+          "scenario_class": "negative",
+          "condition": "未見版/別scope/connection集合/登録/operation/attempt/効果停止証拠を外挿しない。",
+          "decision": "列挙したL5 findingを宣言routeへ返し、terminal successを認めない。",
+          "findings": [
+            "evidence_target|evidence_target_{identity}+field_name=field_result_not_corresponding@evidence_failure"
+          ],
+          "l5_refs": [
+            "/contract_views/N01/failure_rules/1"
+          ],
+          "verification_status": "unverified"
+        }
       ],
       [
         "C007-N01-EVIDENCE-TARGET-OPERATION_ATTEMPTS-FOREIGN",
@@ -1622,7 +2519,19 @@
         "FN-C007-03",
         [
           "N01:evidence_target"
-        ]
+        ],
+        {
+          "scenario_class": "negative",
+          "condition": "未見版/別scope/connection集合/登録/operation/attempt/効果停止証拠を外挿しない。",
+          "decision": "列挙したL5 findingを宣言routeへ返し、terminal successを認めない。",
+          "findings": [
+            "evidence_target|evidence_target_{identity}+field_name=field_result_not_corresponding@evidence_failure"
+          ],
+          "l5_refs": [
+            "/contract_views/N01/failure_rules/1"
+          ],
+          "verification_status": "unverified"
+        }
       ],
       [
         "C007-N01-EVIDENCE-TARGET-EFFECT_STOP_REF-FOREIGN",
@@ -1641,7 +2550,19 @@
         "FN-C007-03",
         [
           "N01:evidence_target"
-        ]
+        ],
+        {
+          "scenario_class": "negative",
+          "condition": "未見版/別scope/connection集合/登録/operation/attempt/効果停止証拠を外挿しない。",
+          "decision": "列挙したL5 findingを宣言routeへ返し、terminal successを認めない。",
+          "findings": [
+            "evidence_target|evidence_target_{identity}+field_name=field_result_not_corresponding@evidence_failure"
+          ],
+          "l5_refs": [
+            "/contract_views/N01/failure_rules/1"
+          ],
+          "verification_status": "unverified"
+        }
       ],
       [
         "C007-N01-ORIGINAL-BOUNDARY-EVIDENCE-MISSING",
@@ -1660,7 +2581,19 @@
         "FN-C007-03",
         [
           "N01:required_evidence_set"
-        ]
+        ],
+        {
+          "scenario_class": "negative",
+          "condition": "必須証拠一件不足をfield存在や件数で埋めない。",
+          "decision": "列挙したL5 findingを宣言routeへ返し、terminal successを認めない。",
+          "findings": [
+            "required_evidence_set|needed_evidence+exact_set=result_not_corresponding@composite_failure"
+          ],
+          "l5_refs": [
+            "/contract_views/N01/failure_rules/0"
+          ],
+          "verification_status": "unverified"
+        }
       ],
       [
         "C007-N01-ORIGINAL-BOUNDARY-NOT-EXECUTED",
@@ -1679,7 +2612,19 @@
         "FN-C007-03",
         [
           "N01:evidence_observation"
-        ]
+        ],
+        {
+          "scenario_class": "negative",
+          "condition": "未実行を実観測へ昇格させない。",
+          "decision": "列挙したL5 findingを宣言routeへ返し、terminal successを認めない。",
+          "findings": [
+            "evidence_observation|evidence_observation+identity=state_not_observed@evidence_failure"
+          ],
+          "l5_refs": [
+            "/contract_views/N01/failure_rules/3"
+          ],
+          "verification_status": "unverified"
+        }
       ],
       [
         "C007-N01-SUBMITTED-BOUNDARY-EVIDENCE-MISSING",
@@ -1698,7 +2643,19 @@
         "FN-C007-03",
         [
           "N01:evidence_cardinality_or_content"
-        ]
+        ],
+        {
+          "scenario_class": "negative",
+          "condition": "原必要証拠と提出集合の差を保持。",
+          "decision": "列挙したL5 findingを宣言routeへ返し、terminal successを認めない。",
+          "findings": [
+            "evidence_cardinality_or_content|evidence_content+records=result_not_corresponding@evidence_failure"
+          ],
+          "l5_refs": [
+            "/contract_views/N01/failure_rules/2"
+          ],
+          "verification_status": "unverified"
+        }
       ],
       [
         "C007-N01-ORIGINAL-EVIDENCE-EDGE-FOREIGN",
@@ -1717,7 +2674,19 @@
         "FN-C007-03",
         [
           "N01:edge_binding"
-        ]
+        ],
+        {
+          "scenario_class": "negative",
+          "condition": "証拠identityの元辺対応を独立mapへ結び、集合targetだけで別辺証拠を同じ辺にしない。",
+          "decision": "列挙したL5 findingを宣言routeへ返し、terminal successを認めない。",
+          "findings": [
+            "edge_binding|evidence_edge_binding+identity=result_not_corresponding@evidence_failure"
+          ],
+          "l5_refs": [
+            "/contract_views/N01/failure_rules/4"
+          ],
+          "verification_status": "unverified"
+        }
       ],
       [
         "C007-N01-FIELD_COUNT_COMPOSITE_COMPLETE",
@@ -1736,7 +2705,19 @@
         "FN-C007-03",
         [
           "N01:required_evidence_set"
-        ]
+        ],
+        {
+          "scenario_class": "negative",
+          "condition": "件数/別scope/fixtureだけで全構成完了claimを拒否。",
+          "decision": "列挙したL5 findingを宣言routeへ返し、terminal successを認めない。",
+          "findings": [
+            "required_evidence_set|needed_evidence+exact_set=result_not_corresponding@composite_failure"
+          ],
+          "l5_refs": [
+            "/contract_views/N01/failure_rules/0"
+          ],
+          "verification_status": "unverified"
+        }
       ],
       [
         "C007-N01-FOREIGN_SCOPE_SUCCESS_INHERITED",
@@ -1755,7 +2736,19 @@
         "FN-C007-03",
         [
           "N01:evidence_target"
-        ]
+        ],
+        {
+          "scenario_class": "negative",
+          "condition": "件数/別scope/fixtureだけで全構成完了claimを拒否。",
+          "decision": "列挙したL5 findingを宣言routeへ返し、terminal successを認めない。",
+          "findings": [
+            "evidence_target|evidence_target_{identity}+field_name=field_result_not_corresponding@evidence_failure"
+          ],
+          "l5_refs": [
+            "/contract_views/N01/failure_rules/1"
+          ],
+          "verification_status": "unverified"
+        }
       ],
       [
         "C007-N01-FIXTURE_ALL_CONNECTIONS_COMPLETE",
@@ -1772,7 +2765,17 @@
         "synthetic_fixture_only",
         "U-C007-080",
         "FN-C007-03",
-        []
+        [],
+        {
+          "scenario_class": "negative",
+          "condition": "件数/別scope/fixtureだけで全構成完了claimを拒否。",
+          "decision": "fixture全体の完了を根拠に対象scopeを拡張せず、未選択対象や実source資格を成立させない。",
+          "findings": [],
+          "l5_refs": [
+            "/contract_views/N01/evidence_predicate"
+          ],
+          "verification_status": "unverified"
+        }
       ],
       [
         "C007-B01-TECHNICAL-TERMINAL-BUSINESS-NOT-ACCEPTED",
@@ -1789,7 +2792,17 @@
         "synthetic_fixture_only",
         "U-C007-081",
         "FN-C007-04",
-        []
+        [],
+        {
+          "scenario_class": "normal",
+          "condition": "技術終端と元業務未受入/必要閉包/未選択交換を分ける。再送004は当該選択のみ。",
+          "decision": "技術終端と業務未受入を分け、元business record/ownerを保ち、Acceptedを生成しない。",
+          "findings": [],
+          "l5_refs": [
+            "/contract_views/B01/acceptance"
+          ],
+          "verification_status": "unverified"
+        }
       ],
       [
         "C007-B01-SUBMITTED-BUSINESS-OWNER-OVERRIDE",
@@ -1808,7 +2821,19 @@
         "FN-C007-04",
         [
           "B01:business_content"
-        ]
+        ],
+        {
+          "scenario_class": "negative",
+          "condition": "CONNECTが元業務判断/採否/受入を代筆しない。",
+          "decision": "列挙したL5 findingを宣言routeへ返し、terminal successを認めない。",
+          "findings": [
+            "business_content|business_content+record=result_not_corresponding@business_failure"
+          ],
+          "l5_refs": [
+            "/contract_views/B01/failure_rules/1"
+          ],
+          "verification_status": "unverified"
+        }
       ],
       [
         "C007-B01-SUBMITTED-BUSINESS-STATE-OVERRIDE",
@@ -1827,7 +2852,19 @@
         "FN-C007-04",
         [
           "B01:business_content"
-        ]
+        ],
+        {
+          "scenario_class": "negative",
+          "condition": "CONNECTが元業務判断/採否/受入を代筆しない。",
+          "decision": "列挙したL5 findingを宣言routeへ返し、terminal successを認めない。",
+          "findings": [
+            "business_content|business_content+record=result_not_corresponding@business_failure"
+          ],
+          "l5_refs": [
+            "/contract_views/B01/failure_rules/1"
+          ],
+          "verification_status": "unverified"
+        }
       ],
       [
         "C007-B01-SUBMITTED-BUSINESS-REQUIREMENT_ADOPTION-OVERRIDE",
@@ -1846,7 +2883,19 @@
         "FN-C007-04",
         [
           "B01:business_content"
-        ]
+        ],
+        {
+          "scenario_class": "negative",
+          "condition": "CONNECTが元業務判断/採否/受入を代筆しない。",
+          "decision": "列挙したL5 findingを宣言routeへ返し、terminal successを認めない。",
+          "findings": [
+            "business_content|business_content+record=result_not_corresponding@business_failure"
+          ],
+          "l5_refs": [
+            "/contract_views/B01/failure_rules/1"
+          ],
+          "verification_status": "unverified"
+        }
       ],
       [
         "C007-B01-SUBMITTED-BUSINESS-ACCEPTANCE_REF-OVERRIDE",
@@ -1865,7 +2914,19 @@
         "FN-C007-04",
         [
           "B01:business_content"
-        ]
+        ],
+        {
+          "scenario_class": "negative",
+          "condition": "CONNECTが元業務判断/採否/受入を代筆しない。",
+          "decision": "列挙したL5 findingを宣言routeへ返し、terminal successを認めない。",
+          "findings": [
+            "business_content|business_content+record=result_not_corresponding@business_failure"
+          ],
+          "l5_refs": [
+            "/contract_views/B01/failure_rules/1"
+          ],
+          "verification_status": "unverified"
+        }
       ],
       [
         "C007-B01-UNSELECTED-REPLACEMENT-REQUIRED",
@@ -1884,7 +2945,19 @@
         "FN-C007-04",
         [
           "B01:dependency_content"
-        ]
+        ],
+        {
+          "scenario_class": "negative",
+          "condition": "交換006は選択操作時に限る。",
+          "decision": "列挙したL5 findingを宣言routeへ返し、terminal successを認めない。",
+          "findings": [
+            "dependency_content|dependency_content+record=result_not_corresponding@dependency_failure"
+          ],
+          "l5_refs": [
+            "/contract_views/B01/failure_rules/2"
+          ],
+          "verification_status": "unverified"
+        }
       ],
       [
         "C007-B01-UNSELECTED-CONNECTION-ADDED",
@@ -1903,7 +2976,19 @@
         "FN-C007-04",
         [
           "B01:dependency_content"
-        ]
+        ],
+        {
+          "scenario_class": "negative",
+          "condition": "未棚卸の全接続完成待ちを当該閉包へ追加しない。",
+          "decision": "列挙したL5 findingを宣言routeへ返し、terminal successを認めない。",
+          "findings": [
+            "dependency_content|dependency_content+record=result_not_corresponding@dependency_failure"
+          ],
+          "l5_refs": [
+            "/contract_views/B01/failure_rules/2"
+          ],
+          "verification_status": "unverified"
+        }
       ],
       [
         "C007-B01-SELECTED-SEC-CONTRACT-ERASED",
@@ -1922,7 +3007,19 @@
         "FN-C007-04",
         [
           "B01:dependency_content"
-        ]
+        ],
+        {
+          "scenario_class": "negative",
+          "condition": "当該必要SEC境界を省いて成立にしない。",
+          "decision": "列挙したL5 findingを宣言routeへ返し、terminal successを認めない。",
+          "findings": [
+            "dependency_content|dependency_content+record=result_not_corresponding@dependency_failure"
+          ],
+          "l5_refs": [
+            "/contract_views/B01/failure_rules/2"
+          ],
+          "verification_status": "unverified"
+        }
       ],
       [
         "C007-B01-TECHNICAL_RECEIPT_IS_ACCEPTED",
@@ -1941,7 +3038,19 @@
         "FN-C007-04",
         [
           "B01:business_content"
-        ]
+        ],
+        {
+          "scenario_class": "negative",
+          "condition": "技術receiptでAccepted/全未棚卸接続完成待ち/未選択交換必須claimを拒否。",
+          "decision": "列挙したL5 findingを宣言routeへ返し、terminal successを認めない。",
+          "findings": [
+            "business_content|business_content+record=result_not_corresponding@business_failure"
+          ],
+          "l5_refs": [
+            "/contract_views/B01/failure_rules/1"
+          ],
+          "verification_status": "unverified"
+        }
       ],
       [
         "C007-B01-WAIT_ALL_UNINVENTORIED_CONNECTIONS",
@@ -1960,7 +3069,19 @@
         "FN-C007-04",
         [
           "B01:dependency_content"
-        ]
+        ],
+        {
+          "scenario_class": "negative",
+          "condition": "技術receiptでAccepted/全未棚卸接続完成待ち/未選択交換必須claimを拒否。",
+          "decision": "列挙したL5 findingを宣言routeへ返し、terminal successを認めない。",
+          "findings": [
+            "dependency_content|dependency_content+record=result_not_corresponding@dependency_failure"
+          ],
+          "l5_refs": [
+            "/contract_views/B01/failure_rules/2"
+          ],
+          "verification_status": "unverified"
+        }
       ],
       [
         "C007-B01-UNSELECTED_REPLACEMENT_REQUIRED",
@@ -1979,7 +3100,19 @@
         "FN-C007-04",
         [
           "B01:dependency_content"
-        ]
+        ],
+        {
+          "scenario_class": "negative",
+          "condition": "技術receiptでAccepted/全未棚卸接続完成待ち/未選択交換必須claimを拒否。",
+          "decision": "列挙したL5 findingを宣言routeへ返し、terminal successを認めない。",
+          "findings": [
+            "dependency_content|dependency_content+record=result_not_corresponding@dependency_failure"
+          ],
+          "l5_refs": [
+            "/contract_views/B01/failure_rules/2"
+          ],
+          "verification_status": "unverified"
+        }
       ]
     ],
     "count": 91
