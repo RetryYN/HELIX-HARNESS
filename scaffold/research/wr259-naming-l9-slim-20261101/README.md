@@ -17,7 +17,7 @@ authority_effect: none
 
 L5の37個のL9 literal/output pointerは全て調査した。各pointerは既存の`source_revision=b52ad0e1e954790ebe57b2d87da46ea6712a07d9`で解決し、canonical value hashが固定revisionの値に一致する。これらの意味と固定source参照は保持した。L8に直接のL9 pointerはない。
 
-WR251の`SCF-B-0211`は過去の時点証拠を変更せず、現行L9 upstream hashへのrebind情報を追記した。SCF-B-0222には各追補証拠を登録する。過去の監査・測定snapshotを上書きせず、今回の追補を別ファイルに記録する。証拠ファイルのSHA-256、作成commit、同一hashの重複名、git履歴からの復元手順は`evidence-history-index-r1.json`で追跡する。完全重複した初回check-child名は記録に残し、bindingのartifact一覧から代表ファイルへ整理する。
+WR251の`SCF-B-0211`は過去の時点証拠を変更せず、現行L9 upstream hashへのrebind情報を追記した。SCF-B-0222には各追補証拠を登録する。過去の監査・測定snapshotを上書きせず、今回の追補を別ファイルに記録する。証拠ファイルのSHA-256、作成commit、同一hashの重複名、git履歴からの復元手順は`evidence-history-index-r1.json`で追跡する。初回check-child名とr2はSHA-256が同一。旧名のfileは削除せず、正規artifactをr2に固定して旧名はbinding一覧から外す。ハッシュと復元コマンドは`evidence-history-index-r1.json`に記録した。
 
 ## 旧sourceと失敗起点
 

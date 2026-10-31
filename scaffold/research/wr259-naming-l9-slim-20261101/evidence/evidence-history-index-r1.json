@@ -1,0 +1,95 @@
+{
+  "schema": "wr259-evidence-history-index-r1.v1",
+  "evidence_kind": "scaffold",
+  "authority_effect": "none",
+  "fixed_history": {
+    "initial_commit": "2476cd359536c51143b2110604ed2e9b03c52c02",
+    "semantic_audit_commit": "03d77e54c3d141048b70c619fd9314f775980fd4",
+    "row_compaction_commit": "e412e5132553f4cb54eb7fab37ec3558a3c5d458",
+    "japanese_summary_commit": "73aa07487685d47d4093e90f295700f0fb35c26b"
+  },
+  "inventory": [
+    {
+      "path": "scaffold/research/wr259-naming-l9-slim-20261101/evidence/validation-results-r1.json",
+      "sha256": "bf97156a9bde5ace57ecc49f6e6a41f747e0c9e4a44a9f3b1d2e26239d549863",
+      "introduced_commit": "2476cd359536c51143b2110604ed2e9b03c52c02"
+    },
+    {
+      "path": "scaffold/research/wr259-naming-l9-slim-20261101/evidence/validation-results-r2.json",
+      "sha256": "04988361fdf240a31ca3e5078f0d305d33943237bea79c24564b3d4e3d467187",
+      "introduced_commit": "2476cd359536c51143b2110604ed2e9b03c52c02"
+    },
+    {
+      "path": "scaffold/research/wr259-naming-l9-slim-20261101/evidence/validation-results-r3.json",
+      "sha256": "6194ea10347e386933a4e557348d03daae832ddd7e8efde9b9cbed20fbeaaecb",
+      "introduced_commit": "03d77e54c3d141048b70c619fd9314f775980fd4"
+    },
+    {
+      "path": "scaffold/research/wr259-naming-l9-slim-20261101/evidence/validation-results-r4.json",
+      "sha256": "4f857d8a88ee7674a6aa6ca708e98a363983b64b7ad6f5e930f548d408ca69e4",
+      "introduced_commit": "03d77e54c3d141048b70c619fd9314f775980fd4"
+    },
+    {
+      "path": "scaffold/research/wr259-naming-l9-slim-20261101/evidence/validation-results-r5.json",
+      "sha256": "7a93bbe0ed71d9c873451bbf36f5c12d237053f4eef42806e7660b862e3705e7",
+      "introduced_commit": "03d77e54c3d141048b70c619fd9314f775980fd4"
+    },
+    {
+      "path": "scaffold/research/wr259-naming-l9-slim-20261101/evidence/validation-results-r6.json",
+      "sha256": "27328bbc52ee2fd8a54b12ff50119a98e0957fad8303e9e1ff0f144604a8586b",
+      "introduced_commit": "03d77e54c3d141048b70c619fd9314f775980fd4"
+    },
+    {
+      "path": "scaffold/research/wr259-naming-l9-slim-20261101/evidence/validation-results-r7.json",
+      "sha256": "c7583ccac3cb077e7c5f96714e7a4d675218125308d7d4a0f7dc23d0f0aba2af",
+      "introduced_commit": "03d77e54c3d141048b70c619fd9314f775980fd4"
+    },
+    {
+      "path": "scaffold/research/wr259-naming-l9-slim-20261101/evidence/merge-overlay-check-child.json",
+      "sha256": "55c6e3329b55308f83e98c95588a95ecc29b9bb77855bc394951aea75c6e68c2",
+      "introduced_commit": "2476cd359536c51143b2110604ed2e9b03c52c02"
+    },
+    {
+      "path": "scaffold/research/wr259-naming-l9-slim-20261101/evidence/merge-overlay-check-child-r2.json",
+      "sha256": "55c6e3329b55308f83e98c95588a95ecc29b9bb77855bc394951aea75c6e68c2",
+      "introduced_commit": "2476cd359536c51143b2110604ed2e9b03c52c02"
+    },
+    {
+      "path": "scaffold/research/wr259-naming-l9-slim-20261101/evidence/merge-overlay-check-child-r3.json",
+      "sha256": "f14b949311a45d57d07cc3097f3378c2f2a6da65b5869d72f9974097f81d8ea2",
+      "introduced_commit": "03d77e54c3d141048b70c619fd9314f775980fd4"
+    },
+    {
+      "path": "scaffold/research/wr259-naming-l9-slim-20261101/evidence/merge-overlay-check-child-r4.json",
+      "sha256": "2078bcc3ae1db1ddb037d9130fe7c4af76e03557c22f0aaa94ab03e440da8c0f",
+      "introduced_commit": "03d77e54c3d141048b70c619fd9314f775980fd4"
+    },
+    {
+      "path": "scaffold/research/wr259-naming-l9-slim-20261101/evidence/merge-overlay-check-child-r5.json",
+      "sha256": "b7917c19c1e8ae60861def1cf82abebe779a325402f4f939739b0d704f78da2e",
+      "introduced_commit": "e412e5132553f4cb54eb7fab37ec3558a3c5d458"
+    }
+  ],
+  "exact_duplicate_groups": [
+    {
+      "sha256": "55c6e3329b55308f83e98c95588a95ecc29b9bb77855bc394951aea75c6e68c2",
+      "paths": [
+        "scaffold/research/wr259-naming-l9-slim-20261101/evidence/merge-overlay-check-child.json",
+        "scaffold/research/wr259-naming-l9-slim-20261101/evidence/merge-overlay-check-child-r2.json"
+      ],
+      "canonical_artifact": "scaffold/research/wr259-naming-l9-slim-20261101/evidence/merge-overlay-check-child-r2.json"
+    }
+  ],
+  "organization": "過去snapshotは削除・書換えせず保持。完全同一hashのmerge-overlay-check-child.jsonとmerge-overlay-check-child-r2.jsonのうちr2を正規のbinding artifactとして残し、旧名はSCF-B-0222のartifact一覧から外して重複参照だけ整理した。両bytesはGit履歴に残る。",
+  "restore_procedure": {
+    "command_pattern": "git show <introduced_commit>:<path> > <path>",
+    "verification": "復元後にsha256sum <path>を実行しinventory.sha256と照合する。",
+    "example": "git show 2476cd359536c51143b2110604ed2e9b03c52c02:scaffold/research/wr259-naming-l9-slim-20261101/evidence/validation-results-r1.json > scaffold/research/wr259-naming-l9-slim-20261101/evidence/validation-results-r1.json"
+  },
+  "merge_overlay_current": {
+    "kind": "merge_overlay",
+    "origin_main_revision": "569bde0bc5792349f0833461f0bb1bb6db33c592",
+    "source_branch_commit": "73aa07487685d47d4093e90f295700f0fb35c26b",
+    "merge_tree": "78ca79118e630414f506ec4444c4640aae399e5c"
+  }
+}
