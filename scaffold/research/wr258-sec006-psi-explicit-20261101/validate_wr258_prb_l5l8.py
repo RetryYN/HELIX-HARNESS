@@ -51,10 +51,11 @@ def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--record", type=Path, help="新しい追補記録先。既存ファイルは上書きしない。")
     args = parser.parse_args()
+    record_target = None
     if args.record:
-        target = args.record if args.record.is_absolute() else ROOT / args.record
-        if target.exists():
-            raise FileExistsError(f"record_path_must_be_new:{target}")
+        record_target = args.record if args.record.is_absolute() else ROOT / args.record
+        if record_target.exists():
+            raise FileExistsError(f"record_path_must_be_new:{record_target}")
     failures: list[str] = []
     def check(ok: bool, label: str):
         if not ok:
@@ -97,6 +98,8 @@ def main() -> int:
     check("scaffold/bindings/SCF-B-0224.json" in prb_binding.get("artifacts", []), "PR-B binding records itself")
     check("scaffold/research/wr258-sec006-psi-explicit-20261101/validate_wr258_prb_l5l8.py" in prb_binding.get("artifacts", []),
           "PR-B binding registers its current validator")
+    check("scaffold/research/wr258-sec006-psi-explicit-20261101/prb-l5l8-current-measurement.json" in prb_binding.get("artifacts", []),
+          "PR-B binding registers its current measurement")
 
     for cid, cls in l4_by_id.items():
         rule = l5_by_class.get(cid)
@@ -305,8 +308,8 @@ def main() -> int:
         "sha256": {path: sha(path) for path in (L3, L10, L4, L5, L8, L9, QA, MAPPING, ROWWISE)},
     }
     encoded = json.dumps(report, ensure_ascii=False, indent=2) + "\n"
-    if args.record:
-        with target.open("x", encoding="utf-8") as stream:
+    if record_target:
+        with record_target.open("x", encoding="utf-8") as stream:
             stream.write(encoded)
     print(encoded, end="")
     return 0 if not failures else 1

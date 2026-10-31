@@ -98,7 +98,8 @@
     "scaffold/bindings/SCF-B-0218.json",
     "scaffold/bindings/SCF-B-0224.json",
     "scaffold/research/wr258-sec006-psi-explicit-20261101/README.md",
-    "scaffold/research/wr258-sec006-psi-explicit-20261101/validate_wr258_prb_l5l8.py"
+    "scaffold/research/wr258-sec006-psi-explicit-20261101/validate_wr258_prb_l5l8.py",
+    "scaffold/research/wr258-sec006-psi-explicit-20261101/prb-l5l8-current-measurement.json"
   ],
   "verification": {
     "evidence_kind": "scaffold",
