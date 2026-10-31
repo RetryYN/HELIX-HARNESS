@@ -94,7 +94,7 @@
       "PR #4018 R1前の固定測定（source commit 8dc4891e8d613c173afff5b37ed7236918c5d095）: L8に30 canonical taxonomy aliasesと3 fixed R2参照、L9に583 nested-pointer文字列（cases 550、audit 33）、L5に30 nested pointer strings。この時点inventoryはGit履歴に保存し、現行件数とは区別する。",
       "R1前の固定L8 auditは30 aliasと3 R2履歴参照を照合し、当時のL9/L5 consumersを未解決として記録。最新main 4b3dbea7185bb9720112e878da0f9922da32d9ad overlayではPR #4022がL5 nested 30参照を移行済み。今回のL9 follow-up候補は3 nested sectionsを撤去し、現行integration_cases 285件、L8 group envelope refs 3件、taxonomy aliases 30件、固定R2 history refs 3件を検証。L4 nested payloadとR2 history refsが残るためSCF-B-0209はpending。",
       "PR #4018 R1 nested-section audit: three L9 case sections were removed; all 285 row IDs map bijectively to integration_cases, with condition/expected/expected_preserved unchanged. The former given and when fields each had one repeated value across all rows. L3/L10 system-oracle chain is verified for B01/F01/F02; per-row oracle_id/test_citation remain null and all cases unobserved. See scaffold/research/wr255-sec009-l9-transfer-20261101/validate_l9_nested_retirement.py and the hash-named audit artifact.",
-      "Static L4/L9 current validator `scaffold/research/wr255-sec009-l9-transfer-20261101/validate_l9_nested_retirement.py` resolves 285 previous nested case IDs into the unchanged 285 `integration_cases`, checks common given/when cardinality, current L8 group/unit refs, L3/L10 oracle chain, prior audit pointers at fixed revision, 30 canonical aliases and three R2 history refs. Current hash-named summary: `scaffold/research/wr255-sec009-l9-transfer-20261101/l9-nested-retirement-audit-bfcdd2c297c08458.json`. Latest-main overlay 2026-11-02 evidence: scaffold/research/wr255-sec009-l9-transfer-20261101/latest-main-overlay-0975d8dc-49f5647f.json."
+      "Static L4/L9 current validator `scaffold/research/wr255-sec009-l9-transfer-20261101/validate_l9_nested_retirement.py` resolves 285 previous nested case IDs into the unchanged 285 `integration_cases`, checks common given/when cardinality, current L8 group/unit refs, L3/L10 oracle chain, prior audit pointers at fixed revision, 30 canonical aliases and three R2 history refs. Current hash-named summary: `scaffold/research/wr255-sec009-l9-transfer-20261101/l9-nested-retirement-audit-bfcdd2c297c08458.json`. Latest-main overlay 2026-11-02 evidence: scaffold/research/wr255-sec009-l9-transfer-20261101/latest-main-overlay-0e218828-1ba440f8.json."
     ],
     "negative_cases": [
       "Do not report 275 rows as blind matches; WR236 frozen comparison includes one mismatch.",
@@ -195,6 +195,6 @@
     "scaffold/research/wr255-sec009-l9-transfer-20261101/validate_l9_pointer_transfer.py",
     "scaffold/research/wr255-sec009-l9-transfer-20261101/historical-artifact-disposition.json",
     "scaffold/research/wr255-sec009-l9-transfer-20261101/l9-nested-retirement-audit-bfcdd2c297c08458.json",
-    "scaffold/research/wr255-sec009-l9-transfer-20261101/latest-main-overlay-0975d8dc-49f5647f.json"
+    "scaffold/research/wr255-sec009-l9-transfer-20261101/latest-main-overlay-0e218828-1ba440f8.json"
   ]
 }

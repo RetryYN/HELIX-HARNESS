@@ -4,7 +4,7 @@
 
 ## 現行状態
 
-最新mainは `0975d8dc51c2fbbd377dcc905b052bcb6a5b368f`（PR #4022を含む）です。PR #4018 R1修正後の現行L9 SHA-256は `bfcdd2c297c08458043b7a78dd483faf7c87873774d3b0c321e65ca6cf1f5a6c` です。
+最新mainは `0e218828fbb3b487eff1469cd57ead8e3dfa7b67`（PR #4022を含む）です。PR #4018 R1修正後の現行L9 SHA-256は `bfcdd2c297c08458043b7a78dd483faf7c87873774d3b0c321e65ca6cf1f5a6c` です。
 
 - L9の `cases[].negative_cases`、`positive_cases`、`source_case_refs` はありません。L9 `integration_cases` の285 IDと行ごとのcondition/expected/expected_preservedは維持され、L9 integration self pointerは0件です。
 - L8のgroup envelope参照3件と285 `unit_cases.integration_case_ref` は現行L9へ解決します。
@@ -24,7 +24,7 @@ python3 -B scaffold/tools/scfctl.py validate
 python3 -B scaffold/tools/scfctl.py stale
 ```
 
-現行L9 retirement summaryは[l9-nested-retirement-audit-bfcdd2c297c08458.json](l9-nested-retirement-audit-bfcdd2c297c08458.json)、最新main overlayの現行測定は[overlay report](latest-main-overlay-0975d8dc-49f5647f.json)です。最新overlayでは両pair PASS、4way 277 matched/0 failures、scfctl validate 209 bindings/0 failures、stale 0を確認します。これは静的source/pointer照合で、security runtimeの挙動は証明しません。
+現行L9 retirement summaryは[l9-nested-retirement-audit-bfcdd2c297c08458.json](l9-nested-retirement-audit-bfcdd2c297c08458.json)、最新main overlayの現行測定は[overlay report](latest-main-overlay-0e218828-1ba440f8.json)です。最新overlayでは両pair PASS、4way 277 matched/0 failures、scfctl validate 210 bindings/0 failures、stale 0を確認します。これは静的source/pointer照合で、security runtimeの挙動は証明しません。
 
 ## 固定履歴
 
