@@ -65,7 +65,8 @@
     "Measure current check-child, scfctl validate, and stale results. A four-way failure remains a measured incomplete state, not pass or completion.",
     "Preserve historical source revision/hash evidence; keep the previous SCF-B-0201 L4/L9 hashes in binding notes.",
     "Record the L5 local operation-defer observation separately from the L9 system-level absent-connection finding; any component-observation schema and empty-owner checker behavior remain a separate QA/checker V-pair candidate, not canonical changes.",
-    "PR #4007 R1: remove the local-only empty-finding DEFERRED row from L4 failure classes; add the 50 L9 short system oracles from L3/L10/L4, direct negative_class_ref on all 148 L9 rows, and L4/L9 explicit markers. L5/L8 remain unmarked; report the actual four-way partial-marker failure without claiming PASS."
+    "PR #4007 R1: remove the local-only empty-finding DEFERRED row from L4 failure classes; add the 50 L9 short system oracles from L3/L10/L4, direct negative_class_ref on all 148 L9 rows, and L4/L9 explicit markers. L5/L8 remain unmarked; report the actual four-way partial-marker failure without claiming PASS.",
+    "R1 final record: 98 prior L9 rows remain exact except the new direct negative_class_ref; 50 L3/L10/L4-derived system-oracle rows are not executed fixtures; L4/L9 pair passes and four-way partial-marker result is 0 matched/79 failures. Keep that FAIL visible until PR-B completes L5/L8."
   ],
   "connections": {
     "consumers": [
@@ -122,7 +123,8 @@
     "scaffold/research/wr258-sec006-psi-explicit-20261101/overlay-reconstruction-r2.json",
     "scaffold/research/wr258-sec006-psi-explicit-20261101/operation-defer-and-pr-split-candidate-r1.json",
     "scaffold/research/wr258-sec006-psi-explicit-20261101/validate_pr4007_r1_followup.py",
-    "scaffold/research/wr258-sec006-psi-explicit-20261101/pr4007-r1-static-validation.json"
+    "scaffold/research/wr258-sec006-psi-explicit-20261101/pr4007-r1-static-validation.json",
+    "scaffold/research/wr258-sec006-psi-explicit-20261101/pr4007-r1-followup-20261101.json"
   ],
   "verification": {
     "evidence_kind": "scaffold",

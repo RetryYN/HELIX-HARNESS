@@ -32,3 +32,5 @@ PR #4007 R1指摘を反映した正本の現状は次のとおり。`operation-d
 - L4/L9にexplicit class markerを置き、L9全148 rowsへ`negative_class_ref`を設定した。L5/L8 markerはなく、QA/checkerは変更していない。#3996の部分marker事例に合わせ、check-childのpartial-marker FAILをそのまま記録し、4way PASSとはしない。
 
 `validate_pr4007_r1_followup.py`は従前98行の変更範囲、追加50行のL3/L10/L4参照とexpected/class対応、15 class、148 total、16 residual、caller/old nested label保持を独立に静的照合する。checker実測、latest-main merge overlay、scfctlの結果は別の`pr4007-r1-followup-20261101.json`に記録する。
+
+R1の実装・統合測定・98旧行保持と50 oracleの静的検証を `pr4007-r1-followup-20261101.json` に追加した。最新main `569bde0bc5792349f0833461f0bb1bb6db33c592` との一時squash overlayでもL4/L9・L5/L8 pairはPASS、4wayは0 matched/79 failures、validate 200/0、stale 0を実測した。これは完全な4way合格を示さず、L5/L8後続pairを要する中間状態である。
