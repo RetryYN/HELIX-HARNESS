@@ -165,6 +165,9 @@ def concise_expected_label(group, sets, removes):
     candidates = []
     for path, value in sets.items():
         leaf = path.rsplit("/", 1)[-1]
+        if path == "/claim_results" and value is None:
+            candidates.append((1, "claim結果はnull（未解釈）"))
+            continue
         if leaf in ("actual_authority", "actual_operation", "actual_implementation_ready", "actual_acceptance", "actual_business_completion", "actual_transmission", "actual_storage", "actual_append") or leaf == "business_completion":
             continue
         priority = 0 if leaf in ("candidate_trace_state", "candidate_handoff_state", "candidate_reference_state") else 1
@@ -276,15 +279,12 @@ def failure_rule_emissions(function_name, rule_index, projection):
 
 
 EVIDENCE_DIR = "scaffold/research/wr256-connect-trace-l8-slim-20261031/evidence/records"
-CURRENT_RECORD_ID = "wr256-rule-link-32794-append-only-r2"
-
-
-def verify_evidence_lineage(failures):
+def verify_evidence_lineage(failures, verify_current=True):
     """Check first-path restoration and immutable historical/current evidence pins."""
     research = ROOT / "scaffold/research/wr256-connect-trace-l8-slim-20261031"
     evidence = research / "evidence"
     history = json.loads((evidence / "evidence-history.json").read_text(encoding="utf-8"))
-    addendum = json.loads((evidence / "evidence-history-addendum-20261101-r3.json").read_text(encoding="utf-8"))
+    addendum = json.loads((evidence / "evidence-history-addendum-20261101-r6.json").read_text(encoding="utf-8"))
     summary_path = "scaffold/research/wr256-connect-trace-l8-slim-20261031/verification-summary.json"
     audit_path = "scaffold/research/wr256-connect-trace-l8-slim-20261031/source-semantic-audit.json"
     expected = {
@@ -325,20 +325,19 @@ def verify_evidence_lineage(failures):
             verify_pinned_blob(commit, path, pin, f"checkpoint:{commit}:{kind}")
 
     record_info = addendum.get("current_immutable_record", {})
-    record_id = record_info.get("record_id")
-    if record_id != CURRENT_RECORD_ID:
-        failures.append({"check": "current_immutable_record_id", "expected": CURRENT_RECORD_ID, "actual": record_id})
-    record_dir = evidence / "records" / CURRENT_RECORD_ID
-    manifest_path = record_dir / "record.json"
-    manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
-    for field in ("record_id", "validator_sha256", "artifacts"):
-        if manifest.get(field) != record_info.get(field):
-            failures.append({"check": "current_record_manifest_matches_addendum", "field": field})
-    for artifact in manifest.get("artifacts", {}).values():
-        path = ROOT / artifact["path"]
-        data = path.read_bytes()
-        if hashlib.sha256(data).hexdigest() != artifact.get("sha256") or len(data) != artifact.get("bytes"):
-            failures.append({"check": "current_record_artifact_pin", "path": artifact["path"]})
+    if verify_current:
+        record_id = record_info.get("record_id")
+        record_dir = evidence / "records" / record_id
+        manifest_path = record_dir / "record.json"
+        manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+        for field in ("record_id", "validator_sha256", "artifacts"):
+            if manifest.get(field) != record_info.get(field):
+                failures.append({"check": "current_record_manifest_matches_addendum", "field": field})
+        for artifact in manifest.get("artifacts", {}).values():
+            path = ROOT / artifact["path"]
+            data = path.read_bytes()
+            if hashlib.sha256(data).hexdigest() != artifact.get("sha256") or len(data) != artifact.get("bytes"):
+                failures.append({"check": "current_record_artifact_pin", "path": artifact["path"]})
 
     dispositions = {entry["path"]: entry for entry in addendum.get("full_projection_copy_disposition", [])}
     prior_record = addendum.get("prior_r1_record_manifest", {})
@@ -374,6 +373,25 @@ def verify_evidence_lineage(failures):
     for artifact in prior_manifest.get("artifacts", {}).values():
         verify_record_artifact(artifact, "previous_r1")
 
+    prior_current = addendum.get("prior_r2_record_manifest", {})
+    prior_current_path = research / prior_current.get("path", "")
+    prior_current_bytes = prior_current_path.read_bytes()
+    if hashlib.sha256(prior_current_bytes).hexdigest() != prior_current.get("sha256"):
+        failures.append({"check": "previous_r2_record_manifest_pin", "path": str(prior_current_path.relative_to(ROOT))})
+    prior_current_manifest = json.loads(prior_current_bytes)
+    for artifact in prior_current_manifest.get("artifacts", {}).values():
+        verify_record_artifact(artifact, "previous_r2")
+
+    previous_currents = addendum.get("previous_current_record_manifests", [addendum.get("previous_current_record_manifest", {})])
+    for index, previous_current in enumerate(previous_currents):
+        previous_current_path = research / previous_current.get("path", "")
+        previous_current_bytes = previous_current_path.read_bytes()
+        if hashlib.sha256(previous_current_bytes).hexdigest() != previous_current.get("sha256"):
+            failures.append({"check": "previous_current_record_manifest_pin", "index": index, "path": str(previous_current_path.relative_to(ROOT))})
+        previous_current_manifest = json.loads(previous_current_bytes)
+        for artifact in previous_current_manifest.get("artifacts", {}).values():
+            verify_record_artifact(artifact, f"previous_current_{index}")
+
     for disposition in dispositions.values():
         removed_path = ROOT / disposition["path"]
         if removed_path.exists():
@@ -398,7 +416,9 @@ def main(argv=None) -> int:
         parser.error("--record-id is only valid with --record")
     if args.record and not re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9._-]{0,127}", args.record_id):
         parser.error("--record-id must be a simple unique filename token")
-    record_id = args.record_id if args.record else CURRENT_RECORD_ID
+    lineage_path = ROOT / "scaffold/research/wr256-connect-trace-l8-slim-20261031/evidence/evidence-history-addendum-20261101-r6.json"
+    lineage_record_id = json.loads(lineage_path.read_text(encoding="utf-8"))["current_immutable_record"]["record_id"]
+    record_id = args.record_id if args.record else lineage_record_id
     record_dir = ROOT / EVIDENCE_DIR / record_id
     if args.record and record_dir.exists():
         parser.error(f"immutable evidence record already exists: {record_dir}")
@@ -412,19 +432,22 @@ def main(argv=None) -> int:
     counts = {"L9_basic_branch": 90, "local_domain_probe": 61, "independent_semantic_probe": 68, "independent_cross_field_probe": 5}
     observed = {kind: sum(row.get("source_kind") == kind for row in rows) for kind in counts}
     failures = []
-    verify_evidence_lineage(failures)
+    verify_evidence_lineage(failures, verify_current=not args.record)
 
     preserved_top_level = (
         "parent", "source_main", "scope", "full_goal_scope_preserved", "implementation_readiness",
         "authority_effect", "operation_effect", "source_pin_limit", "status", "approval_basis",
         "upstream_pins", "document_id", "layer", "layer_id", "pair", "pair_id", "design_ref",
-        "integration_ref", "source_pair_pins", "preserved_l9_oracle", "fixture_coverage_limits",
+        "integration_ref", "source_pair_pins", "fixture_coverage_limits",
         "unresolved", "approved_document_pins", "source_revision_roles",
     )
     changed_boundary_fields = [key for key in preserved_top_level if current.get(key) != old8.get(key)]
     if changed_boundary_fields:
         failures.append({"check": "existing_boundary_and_unverified_state_preserved", "fields": changed_boundary_fields})
-    expected_method = "候補U-ID表は、固定されたL3/L4/L5/L10の契約と参照されたL9/probeの反例・期待差分を対応づける。全行はnot_executed。L5 AST評価、test実行、L8 pass/fail判定は行わず、行別意味監査はscaffold/research/wr256-connect-trace-l8-slim-20261031/evidence/records/wr256-rule-link-32794-append-only-r2/source-semantic-audit.jsonに記録する。"
+    expected_oracle_pin = {key: old8.get("preserved_l9_oracle", {}).get(key) for key in ("path", "revision", "sha256")}
+    if current.get("preserved_l9_oracle") != expected_oracle_pin:
+        failures.append({"check": "l9_oracle_contains_only_path_revision_file_pin", "expected": expected_oracle_pin, "actual_keys": sorted(current.get("preserved_l9_oracle", {}))})
+    expected_method = "候補U-ID表は、固定されたL3/L4/L5/L10の契約と参照されたL9/probeの反例・期待差分を対応づける。全行はnot_executed。L5 AST評価、test実行、L8 pass/fail判定は行わず、行別意味監査はscaffold/research/wr256-connect-trace-l8-slim-20261031/evidence/records/wr256-pr4006-r1-r4-20261101/source-semantic-audit.jsonに記録する。"
     if current.get("method") != expected_method:
         failures.append({"check": "method_matches_static_candidate_role_and_unexecuted_boundary"})
 
@@ -434,6 +457,9 @@ def main(argv=None) -> int:
     l10_cases = {item["id"]: item for item in l10_functional["cases"]}
     l10_cases.update({item["id"]: item for item in l10_nfr["cases"]})
     output_literals = l5["output_literals"]
+    claim_presence_semantics = l5.get("result_domain_contract", {}).get("input_presence_domains", "")
+    if "claim_results（未解釈）" not in claim_presence_semantics or "null/Absent" not in claim_presence_semantics:
+        failures.append({"check": "explicit_null_claim_result_label_grounded_in_fixed_l5_domain_contract"})
     expected_contract_outcomes = {
         "qualification_boundary": {
             "authority_effect": l4["authority_effect"],
@@ -481,15 +507,15 @@ def main(argv=None) -> int:
     if actual_sources != expected_sources:
         failures.append({"check": "source_id_and_order_preservation"})
 
-    expected_whole_hashes = current.get("preserved_l9_oracle", {}).get("whole_sha256_by_case", {})
+    expected_whole_hashes = old8.get("preserved_l9_oracle", {}).get("whole_sha256_by_case", {})
     actual_whole_hashes = {}
     for obligation in l9["verification_obligations"]:
         for case in obligation["concrete_cases"]:
             canonical = json.dumps(case["expected_material"], ensure_ascii=False, sort_keys=True, separators=(",", ":")).encode("utf-8")
             actual_whole_hashes[case["id"]] = hashlib.sha256(canonical).hexdigest()
     whole_hash_mismatches = [case_id for case_id, digest in actual_whole_hashes.items() if expected_whole_hashes.get(case_id) != digest]
-    if len(expected_whole_hashes) != 90 or whole_hash_mismatches:
-        failures.append({"check": "l9_whole_oracle_preserved", "expected_count": 90, "actual_count": len(expected_whole_hashes), "mismatch_count": len(whole_hash_mismatches), "sample": whole_hash_mismatches[:5]})
+    if len(expected_whole_hashes) != 90 or len(actual_whole_hashes) != 90 or whole_hash_mismatches:
+        failures.append({"check": "l9_whole_oracle_hashes_verified_from_fixed_historical_l8", "source_revision": BASE, "expected_count": 90, "historical_hash_count": len(expected_whole_hashes), "computed_count": len(actual_whole_hashes), "mismatch_count": len(whole_hash_mismatches), "sample": whole_hash_mismatches[:5]})
 
     def source_projection(row):
         kind = row["source_kind"]
@@ -570,6 +596,10 @@ def main(argv=None) -> int:
     array_placeholder_count = len(re.findall(r"array\(\d+ items\)", expectation_text))
     if ellipsis_count or array_placeholder_count:
         failures.append({"check": "no_truncated_or_array_count_only_expectation", "ellipsis_count": ellipsis_count, "array_placeholder_count": array_placeholder_count})
+    null_claim_rows = [uid for uid, (_, projection) in source_projections.items() if "claim_results" in projection and projection["claim_results"] is None]
+    null_claim_labels = [row["u_id"] for row in rows if row.get("expected_result", "").endswith("claim結果はnull（未解釈）.")]
+    if len(null_claim_rows) != 19 or set(null_claim_rows) != set(null_claim_labels):
+        failures.append({"check": "explicit_null_claim_result_rows_and_meaning_label", "source_null_count": len(null_claim_rows), "label_count": len(null_claim_labels), "source_only": sorted(set(null_claim_rows) - set(null_claim_labels)), "label_only": sorted(set(null_claim_labels) - set(null_claim_rows))})
 
     for row in rows:
         function_suffix = row.get("target", {}).get("function_ref", "").rsplit("-", 1)[-1]
@@ -760,7 +790,8 @@ def main(argv=None) -> int:
         "l5": {"public_functions": len(expected_functions), "failure_rules": all_rules, "rules_with_fixed_source_emissions": sum(bool(item["fixed_source_candidate_u_ids"]) for item in failure_rule_semantic_audit), "rules_without_fixed_source_emission": [item["pointer"] for item in failure_rule_semantic_audit if not item["fixed_source_candidate_u_ids"]]},
         "failure_rule_semantic_audit": {"rule_count": len(failure_rule_semantic_audit), "candidate_row_links": sum(len(item["fixed_source_candidate_u_ids"]) for item in failure_rule_semantic_audit), "unsupported_links": sum(item.get("check") == "l5_failure_rule_semantic_candidate_mapping" for item in failures), "unexecuted": True},
         "source_pointers_resolved": sum(1 for r in rows if r.get("source_ref")),
-        "preserved_l9_whole_oracle": {"expected_count": 90, "recorded_count": len(expected_whole_hashes), "mismatch_count": len(whole_hash_mismatches)},
+        "preserved_l9_whole_oracle": {"expected_count": 90, "hashes_read_from_fixed_historical_l8": len(expected_whole_hashes), "computed_from_fixed_l9_expected_material": len(actual_whole_hashes), "mismatch_count": len(whole_hash_mismatches), "historical_l8_revision": BASE, "historical_l8_path": L8},
+        "claim_results_null_semantics": {"source_count": len(null_claim_rows), "l5_domain_contract_path": L5 + "#/result_domain_contract/input_presence_domains", "l5_defines_null_and_absent_as_uninterpreted": "claim_results（未解釈）" in claim_presence_semantics and "null/Absent" in claim_presence_semantics, "formal_label_count": len(null_claim_labels)},
         "l10_contract_oracles": {
             "used_ids": sorted(used_contract_oracle_ids),
             "resolved_ids": sorted(used_contract_oracle_ids & contract_oracle_ids),
