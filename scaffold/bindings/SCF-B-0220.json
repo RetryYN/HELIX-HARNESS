@@ -113,7 +113,10 @@
     "scaffold/research/wr255-sec009-l5l8-audit-20261101/check-child-report-24d7f00bdca4-91da3af2.json",
     "scaffold/research/wr255-sec009-l5l8-audit-20261101/verification-summary-cb44877e1db6-91da3af2.json",
     "scaffold/research/wr255-sec009-l5l8-audit-20261101/duplicate-check-report-disposition.json",
-    "scaffold/research/wr255-sec009-l5l8-audit-20261101/validate_pointer_transfer.py"
+    "scaffold/research/wr255-sec009-l5l8-audit-20261101/validate_pointer_transfer.py",
+    "scaffold/research/wr255-sec009-l5l8-audit-20261101/verification-summary-l4-d670496eeb-00376c40-l5-ea8e3c2510-1aefb9b6-l8-69fbb3e2f0-18df6dce-l9-087f02dc63-e918a289-validator-7b7544bc.json",
+    "scaffold/research/wr255-sec009-l5l8-audit-20261101/check-child-report-l4-d670496eeb-00376c40-l5-ea8e3c2510-1aefb9b6-l8-69fbb3e2f0-18df6dce-l9-087f02dc63-e918a289.json",
+    "scaffold/research/wr255-sec009-l5l8-audit-20261101/pointer-transfer-audit-18df6dce679d-e918a289fe88.json"
   ],
   "verification": {
     "evidence_kind": "scaffold",

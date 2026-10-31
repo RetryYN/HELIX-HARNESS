@@ -42,6 +42,24 @@ latest `origin/main` をmergeしたL5/L8候補とcanonical L4/L9を照合したs
 
 277件のmatchedは現行static checkerの構造照合結果です。positive 8件は契約最小期待を設計した段階であり、fixture観測ではありません。個別 `oracle_id` と `test_citation` は引き続きnullです。この計測はruntime動作やsecurity behaviorの証明ではありません。
 
+## 最新main overlayと固定証拠
+
+PR #4008 merge commit `cd4208605f2a4e77e85f8d34317ff44c7218ad41` を含むoverlayで再計測しました。32 class、285 U-ID/source ID、277 negative、positive最小期待8件を照合し、check-childは277 matched / 0 failuresです。positive 8件は設計済み・未観測、個別oracleとtest citationはnullです。
+
+- [verification summary](verification-summary-l4-d670496eeb-00376c40-l5-ea8e3c2510-1aefb9b6-l8-69fbb3e2f0-18df6dce-l9-087f02dc63-e918a289-validator-7b7544bc.json)
+- [check-child report](check-child-report-l4-d670496eeb-00376c40-l5-ea8e3c2510-1aefb9b6-l8-69fbb3e2f0-18df6dce-l9-087f02dc63-e918a289.json)
+- [L8 pointer transfer audit](pointer-transfer-audit-18df6dce679d-e918a289fe88.json)
+
+summaryは正本285行の内容を再複製せず、validatorで再計算したrow/class audit digestを記録します。詳細値は固定revision・SHAを持つL4/L5/L8/L9正本にあり、再現validatorは285行すべてのpointerと期待を検査します。
+
+事前に生成した展開版summary（SHA-256 `7e09863b58053b03e833df14d034f7c8d52b5a9ff3e0344a996aa0a82c9d4446`）は現在のcommit `69fbb3e2f0` のvalidatorから完全一致で再生成できることを確認しました。大きな重複ファイルはcommitせず、必要時は同commitのvalidatorを一時的にこのディレクトリへ復元し、`--audit-dir` を一時directoryに指定してください。
+
+```sh
+git show 69fbb3e2f0:scaffold/research/wr255-sec009-l5l8-audit-20261101/validate_wr255_l5l8.py > scaffold/research/wr255-sec009-l5l8-audit-20261101/.reconstruct-precompact.py
+python3 scaffold/research/wr255-sec009-l5l8-audit-20261101/.reconstruct-precompact.py --audit-dir /tmp/wr255-precompact-rebuild
+rm scaffold/research/wr255-sec009-l5l8-audit-20261101/.reconstruct-precompact.py
+```
+
 ## SCF-B-0209 pointer移行
 
 L5/L8 V-pair側の308参照は、ケースwrapperの275件とtaxonomy pointerの30件を現在のcanonical L4 `/failure_classifications/{index}` へ移しました。class IDはnested `code` とcanonical `class_id` で一致します。残る旧nested値もclassごとに照合し、`change`/`axis`/`state`/`backflow_owner`/`expected`/`expected_preserved`/`expected_side_effect_count`/`source_pointers` は30 classすべてで型と値が一致します。旧`expected_text`はcanonical側に同名fieldがないため、`condition + " " + expected_preserved.contract_detail`で再構成し、元の30文字列と型が一致することをvalidatorが確認します。

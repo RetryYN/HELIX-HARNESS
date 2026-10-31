@@ -356,8 +356,22 @@ def main() -> int:
         "source_revisions": source_revisions,
         "source_hashes": {name: sha256(path) for name, path in FILES.items()},
         "counts": {"classes_per_layer": 32, "l8_u_ids": 285, "l9_source_case_ids": 285, "negative": negative_count, "positive_contract_minimum_designed_not_observed": len(positives)},
-        "class_audit": class_audit,
-        "row_audit": row_audit,
+        "class_audit_summary": {
+            "count": len(class_audit),
+            "canonical_sha256": hashlib.sha256(json.dumps(
+                class_audit, ensure_ascii=False, sort_keys=True, separators=(",", ":")
+            ).encode()).hexdigest(),
+            "identity_and_projection_checks": "recomputed by this validator; full class values remain in the pinned L4/L5/L8/L9 source documents",
+        },
+        "row_audit_summary": {
+            "count": len(row_audit),
+            "negative_count": negative_count,
+            "positive_count": len(positives),
+            "canonical_sha256": hashlib.sha256(json.dumps(
+                row_audit, ensure_ascii=False, sort_keys=True, separators=(",", ":")
+            ).encode()).hexdigest(),
+            "row_details": "recomputed by this validator from the pinned 285 source/unit rows; positive minimum expectations are retained below, while negative expected fields and pointers remain in the canonical documents",
+        },
         "negative_source_review": {
             "summary": "Each negative L9 nested source pointer was resolved individually. Every `given` object contains only the shared evidence_limit notice; no concrete field values or paired conflicting values are present. Counterexamples therefore state the source ID's missing/conflict dimension plus the L4 class meaning, and conflict rows explicitly avoid inventing values.",
             "negative_case_count": negative_count,
@@ -391,7 +405,8 @@ def main() -> int:
             "interpretation": "L4/L9 and L5/L8 pair checks pass, with 277 matched cases and zero 4-way checker failures. The eight positive rows remain contract-minimum designs, not observed fixture outcomes; this evidence does not claim runtime behavior or formal security verification.",
         },
     }
-    report_name = f"verification-summary-{report_stem}.json"
+    validator_hash = sha256("scaffold/research/wr255-sec009-l5l8-audit-20261101/validate_wr255_l5l8.py")[:8]
+    report_name = f"verification-summary-{report_stem}-validator-{validator_hash}.json"
     write_immutable_json(audit_dir / report_name, report)
     print(json.dumps({"passed": True, "summary": str(audit_dir / report_name), "check_child_failures": expected_failure_count}, ensure_ascii=False))
     return 0

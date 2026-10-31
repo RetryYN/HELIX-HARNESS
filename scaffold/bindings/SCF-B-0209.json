@@ -91,7 +91,8 @@
       "PR #3996 R1 correction artifact separately records source-backed composite formation, two ordered-axis class definitions, and c50 historical R2 validator/artifact state.",
       "Current R1 projection: L4/L9 32 classes, L9 285 integration rows (8 positive and 277 negative), both ambiguous rows assigned through new L4/L9 composite classes; original R2 audit is preserved and R1 effective counts live in an additive audit entry.",
       "R1 check-child is intentionally partial: 448 failures, matched 0; L5/L8 remain unmodified.",
-      "Current WR255 transfer audit checks 305 L8 case/taxonomy aliases to canonical L4 classes (including `code`→`class_id` and exact `expected_text` reconstruction), pins the three R2 unassigned consumers to c50eb21b34f034262ced3f8052d2502fb84c57c9, and records that L9 still has 308 nested-path consumers."
+      "Current WR255 transfer audit checks 305 L8 case/taxonomy aliases to canonical L4 classes (including `code`→`class_id` and exact `expected_text` reconstruction), pins the three R2 unassigned consumers to c50eb21b34f034262ced3f8052d2502fb84c57c9, and records that L9 still has 308 nested-path consumers.",
+      "WR255 L8 transfer audit resolves 305 current aliases (275 case wrappers and 30 class taxonomy pointers) with type/value equality and reconstructs 30 legacy expected_text values; three R2 historical refs resolve at fixed L4 revision c50eb21b34f034262ced3f8052d2502fb84c57c9, including the 14-item collection. L9 still has 308 current nested refs, so replacement remains pending and no retire is allowed."
     ],
     "negative_cases": [
       "Do not report 275 rows as blind matches; WR236 frozen comparison includes one mismatch.",
@@ -185,6 +186,7 @@
     "scaffold/research/wr245-sec009-explicit-pair-measurement-20261031/validate_pr_a_r1_correction.py",
     "scaffold/research/wr245-sec009-explicit-pair-measurement-20261031/checker-trials/reports/pr-a-r1-correction-check-child-report.json",
     "scaffold/research/wr255-sec009-l5l8-audit-20261101/validate_pointer_transfer.py",
-    "scaffold/research/wr255-sec009-l5l8-audit-20261101/README.md"
+    "scaffold/research/wr255-sec009-l5l8-audit-20261101/README.md",
+    "scaffold/research/wr255-sec009-l5l8-audit-20261101/pointer-transfer-audit-18df6dce679d-e918a289fe88.json"
   ]
 }
