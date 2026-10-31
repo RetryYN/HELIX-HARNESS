@@ -42,3 +42,7 @@ negative givenは全行が共通 `evidence_limit` だけで、同一digestです
 collection consumerは同じ順序の14 class IDと代替pointer一覧まで照合しましたが、contract内のこのsubsetを指す単一top-level JSON Pointerはありません。一つのcollection pointerを複数class pointerへ展開するconsumer変更が要ります。現時点では全consumer移行が未成立なので、SCF-B-0209はpendingを維持します。`check-replacement` の `E_REPL: transfer（対応表）が無い` を確認し、退役していません。
 
 `pointer-consumer-audit-d646a09e-e7dd88b8-00376c40-0dae5023.json` は行別JSONLの集計です。L4/L9補足branchはL5/L8 pairから分離しています。
+
+## 同一bytesのcommit前後測定の整理
+
+commit `d646a09e` と確定L9 commit `e22b5c96` の間で、L9 SHA-256・L5/L8固定commit・validatorが同一の測定を比較しました。L9 285行監査、checker全文、pointer consumerの1,166行JSONL、positive source reviewは内容SHAが同一のため、HEADには後続commit時点の一組だけを残しました。overlay summaryとpointer集計はpath・revision参照が異なるため、後続commit後の報告に整理しました。旧artifactごとのGit commit/blob/SHA-256、同一性または後続測定との関係、`git show <commit>:<path> > <path>`復元commandは [`duplicate-measurement-disposition.json`](duplicate-measurement-disposition.json) に記録しました。確定時点のsummaryは `overlay-summary-e22b5c96-57c0197c-24d7f00b-00376c40-e540f13f.json` です。

@@ -121,18 +121,13 @@
     "scaffold/research/wr255-sec009-l4l9-supplement-20261101/positive-source-review-d646a09e-e7dd88b8-00376c40-0dae5023.json",
     "scaffold/research/wr255-sec009-l4l9-supplement-20261101/overlay-check-child-d646a09e-e7dd88b8-00376c40-0dae5023.json",
     "scaffold/research/wr255-sec009-l4l9-supplement-20261101/overlay-summary-d646a09e-e7dd88b8-00376c40-0dae5023.json",
-    "scaffold/research/wr255-sec009-l4l9-supplement-20261101/l9-row-audit-d646a09e-57c0197c-24d7f00b-00376c40-e540f13f.jsonl",
-    "scaffold/research/wr255-sec009-l4l9-supplement-20261101/overlay-check-child-d646a09e-57c0197c-24d7f00b-00376c40-e540f13f.json",
-    "scaffold/research/wr255-sec009-l4l9-supplement-20261101/overlay-summary-d646a09e-57c0197c-24d7f00b-00376c40-e540f13f.json",
-    "scaffold/research/wr255-sec009-l4l9-supplement-20261101/pointer-consumer-audit-d646a09e-57c0197c-24d7f00b-00376c40-e540f13f.json",
-    "scaffold/research/wr255-sec009-l4l9-supplement-20261101/pointer-consumer-audit-d646a09e-57c0197c-24d7f00b-00376c40-e540f13f.jsonl",
-    "scaffold/research/wr255-sec009-l4l9-supplement-20261101/positive-source-review-d646a09e-57c0197c-24d7f00b-00376c40-e540f13f.json",
     "scaffold/research/wr255-sec009-l4l9-supplement-20261101/l9-row-audit-e22b5c96-57c0197c-24d7f00b-00376c40-e540f13f.jsonl",
     "scaffold/research/wr255-sec009-l4l9-supplement-20261101/overlay-check-child-e22b5c96-57c0197c-24d7f00b-00376c40-e540f13f.json",
     "scaffold/research/wr255-sec009-l4l9-supplement-20261101/overlay-summary-e22b5c96-57c0197c-24d7f00b-00376c40-e540f13f.json",
     "scaffold/research/wr255-sec009-l4l9-supplement-20261101/pointer-consumer-audit-e22b5c96-57c0197c-24d7f00b-00376c40-e540f13f.json",
     "scaffold/research/wr255-sec009-l4l9-supplement-20261101/pointer-consumer-audit-e22b5c96-57c0197c-24d7f00b-00376c40-e540f13f.jsonl",
-    "scaffold/research/wr255-sec009-l4l9-supplement-20261101/positive-source-review-e22b5c96-57c0197c-24d7f00b-00376c40-e540f13f.json"
+    "scaffold/research/wr255-sec009-l4l9-supplement-20261101/positive-source-review-e22b5c96-57c0197c-24d7f00b-00376c40-e540f13f.json",
+    "scaffold/research/wr255-sec009-l4l9-supplement-20261101/duplicate-measurement-disposition.json"
   ],
   "verification": {
     "evidence_kind": "scaffold",
