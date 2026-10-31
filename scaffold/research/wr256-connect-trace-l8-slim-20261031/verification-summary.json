@@ -50,6 +50,27 @@
   },
   "expected_result_audit": {
     "row_count": 224,
+    "baseline_groups": {
+      "F01": {
+        "rows": 69,
+        "baseline_fields": 22
+      },
+      "F02": {
+        "rows": 87,
+        "baseline_fields": 47
+      },
+      "N01": {
+        "rows": 63,
+        "baseline_fields": 39
+      },
+      "independent_cross_field_probe": {
+        "rows": 5,
+        "baseline_fields": 2
+      }
+    },
+    "baseline_field_total": 110,
+    "total_row_delta_fields": 834,
+    "max_row_delta_fields": 14,
     "ellipsis_count": 0,
     "array_count_placeholder_count": 0,
     "source_semantic_mismatch_count": 0

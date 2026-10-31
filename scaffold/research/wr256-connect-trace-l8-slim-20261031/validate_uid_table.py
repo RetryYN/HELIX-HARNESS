@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+import re
 import hashlib
 import subprocess
 import sys
@@ -66,24 +67,18 @@ def scalar_text(value):
     return None
 
 
-def result_map_text(label, value):
+def project_structure(value):
+    """Keep result field names and order while excluding raw fixture values."""
     if isinstance(value, dict):
-        pairs = [(key, scalar_text(item)) for key, item in value.items() if scalar_text(item) is not None]
-        different = [f"{key}={item}" for key, item in pairs if item != "content_corresponding_in_fixture"]
-        if not different:
-            return f"{label}=all {len(pairs)} fields content_corresponding_in_fixture"
-        return f"{label} non-corresponding: " + ", ".join(different)
+        return {key: project_structure(item) for key, item in value.items()}
     if isinstance(value, list):
-        different = []
-        for index, item in enumerate(value):
-            if isinstance(item, dict):
-                states = [f"{key}={scalar_text(entry)}" for key, entry in item.items() if scalar_text(entry) not in (None, "content_corresponding_in_fixture")]
-                if states:
-                    different.append(f"[{index}] " + ",".join(states))
-        if not different:
-            return f"{label}=all {len(value)} entries content_corresponding_in_fixture"
-        return f"{label} non-corresponding: " + ", ".join(different)
-    return f"{label}={scalar_text(value)}"
+        return {"$array": {str(index): project_structure(item) for index, item in enumerate(value)}}
+    return value
+
+
+def result_map_text(label, value):
+    """Return named result fields as structure, never a field-count placeholder."""
+    return project_structure(value)
 
 
 def failure_reasons_text(items):
@@ -101,55 +96,56 @@ def failure_reasons_text(items):
 
 
 def expected_summary(expected, function_ref):
-    """Compact, readable result semantics derived from the fixed source oracle."""
-    parts = []
+    """Project source outcome distinctions into a compact structured expectation."""
+    result = {}
     if function_ref.endswith("F01"):
-        for key in ("history_prefix_result", "submitted_sequence_result", "missing_original_event_ids", "original_order_known_in_fixture", "original_predecessor_chain_corresponds", "retained_original_result_state", "result_content_result", "candidate_trace_state", "business_completion"):
-            if key not in expected:
-                continue
-            value = expected[key]
-            if key == "missing_original_event_ids":
-                parts.append(key + "=" + (",".join(map(str, value)) if value else "[]"))
-            else:
-                parts.append(key + "=" + str(scalar_text(value)))
+        for key in ("history_prefix_result", "submitted_sequence_result", "missing_original_event_ids", "original_order_known_in_fixture", "original_predecessor_chain_corresponds", "retained_original_result_state", "result_content_result", "candidate_trace_state", "business_completion", "claim_results"):
+            if key in expected:
+                result[key] = project_structure(expected[key])
     elif function_ref.endswith("F02"):
         for key in ("content_results", "handoff_target_results", "unfinished_target_results"):
             if key in expected:
-                parts.append(result_map_text(key, expected[key]))
-        for key in ("unfinished_link_result", "stop_link_result", "receipt_link_result", "resolution_link_result", "handoff_receipt_generates_resolution", "business_completion", "candidate_handoff_state"):
+                result[key] = result_map_text(key, expected[key])
+        for key in ("unfinished_link_result", "stop_link_result", "receipt_link_result", "resolution_link_result", "handoff_receipt_generates_resolution", "business_completion", "candidate_handoff_state", "claim_results"):
             if key in expected:
-                parts.append(key + "=" + str(scalar_text(expected[key])))
+                result[key] = project_structure(expected[key])
         for key in ("retained_prior_successes", "retained_unfinished", "retained_handoff", "retained_handoff_receipt", "retained_resolution"):
             if key not in expected:
                 continue
             value = expected[key]
             if value is None or isinstance(value, (bool, int, str)):
-                parts.append(key + "=" + str(scalar_text(value)))
+                result[key] = value
             elif isinstance(value, list):
-                parts.append(f"{key}={len(value)} entries retained")
+                result[key] = "all original items retained" if value else "no original items"
             elif isinstance(value, dict):
-                parts.append(key + "=record retained")
+                result[key] = "original record retained" if value else "no original record"
     else:
         for key in ("trace_target_results", "trace_reference_results", "custody_reference_results"):
             if key in expected:
-                parts.append(result_map_text(key, expected[key]))
-        for key in ("trace_custody_data_use_result", "payload_persistence_required_for_trace", "classification_retention_deletion_authority", "candidate_reference_state"):
+                result[key] = result_map_text(key, expected[key])
+        for key in ("trace_custody_data_use_result", "payload_persistence_required_for_trace", "classification_retention_deletion_authority", "candidate_reference_state", "claim_results"):
             if key in expected:
-                parts.append(key + "=" + str(scalar_text(expected[key])))
+                result[key] = project_structure(expected[key])
         for key in ("outside_reference_fields", "forbidden_value_field_names"):
             if key in expected:
-                value = expected[key]
-                parts.append(key + "=" + (",".join(map(str, value)) if value else "[]"))
+                result[key] = project_structure(expected[key])
     if "failure_reasons" in expected:
-        parts.append(failure_reasons_text(expected["failure_reasons"]))
+        result["failure_reasons"] = failure_reasons_text(expected["failure_reasons"])
     effects = expected.get("effects")
     if isinstance(effects, dict):
-        actual = [(key, value) for key, value in effects.items() if key.startswith("actual_")]
-        if actual and all(value is False for _, value in actual):
-            parts.append("effects: all actual effects false")
-        elif actual:
-            parts.append("effects: " + ",".join(f"{key}={scalar_text(value)}" for key, value in actual))
-    return "期待: " + "; ".join(parts) + "."
+        result["effects"] = {key: value for key, value in effects.items() if key.startswith("actual_")}
+    return result
+
+
+def flatten_projection(value, prefix=""):
+    """Flatten only object structure; values remain semantic result leaves."""
+    if isinstance(value, dict) and value:
+        result = {}
+        for key, item in value.items():
+            escaped = str(key).replace("~", "~0").replace("/", "~1")
+            result.update(flatten_projection(item, prefix + "/" + escaped))
+        return result
+    return {prefix: value}
 
 
 def main() -> int:
@@ -206,6 +202,58 @@ def main() -> int:
     if len(expected_whole_hashes) != 90 or whole_hash_mismatches:
         failures.append({"check": "l9_whole_oracle_preserved", "expected_count": 90, "actual_count": len(expected_whole_hashes), "mismatch_count": len(whole_hash_mismatches), "sample": whole_hash_mismatches[:5]})
 
+    def source_projection(row):
+        kind = row["source_kind"]
+        if kind == "L9_basic_branch":
+            expected = pointer(l9, row["expected_ref"]["pointer"])
+            group = row["target"]["function_ref"].rsplit("-", 1)[-1]
+            return group, expected_summary(expected, row["target"]["function_ref"])
+        if kind == "local_domain_probe":
+            index = int(row["source_ref"]["pointer"].rsplit("/", 1)[1])
+            probe = old8["local_domain_probes"]["cases"][index]
+            expected = patch_value(pointer(l9, probe["expected_base_ref"]["pointer"]), probe["expected_whole_overlay"])
+            group = row["target"]["function_ref"].rsplit("-", 1)[-1]
+            return group, expected_summary(expected, row["target"]["function_ref"])
+        if kind == "independent_semantic_probe":
+            index = int(row["source_ref"]["pointer"].rsplit("/", 1)[1])
+            probe = old8["independent_semantic_probes"][index]
+            group = row["target"]["function_ref"].rsplit("-", 1)[-1]
+            return group, expected_summary(probe["expected_whole"], row["target"]["function_ref"])
+        index = int(row["source_ref"]["pointer"].rsplit("/", 1)[1])
+        probe = cross_probes[index]
+        return "independent_cross_field_probe", probe["expected_constraints"]
+
+    source_projections = {}
+    grouped = {}
+    for row in rows:
+        try:
+            group, projection = source_projection(row)
+            source_projections[row["u_id"]] = (group, projection)
+            grouped.setdefault(group, []).append(projection)
+        except Exception as exc:
+            failures.append({"check": "row_expected_semantics_resolution", "u_id": row.get("u_id"), "error": str(exc)})
+    expected_baselines = {}
+    for group, projections in grouped.items():
+        flattened = [flatten_projection(item) for item in projections]
+        paths = set().union(*(item.keys() for item in flattened))
+        baseline_fields = {}
+        for path in paths:
+            encoded = [json.dumps({"value": item[path]}, ensure_ascii=False, sort_keys=True, separators=(",", ":")) if path in item else "<MISSING>" for item in flattened]
+            frequencies = {}
+            for value in encoded:
+                frequencies[value] = frequencies.get(value, 0) + 1
+            mode = sorted(frequencies.items(), key=lambda pair: (-pair[1], pair[0]))[0][0]
+            if mode != "<MISSING>":
+                baseline_fields[path] = json.loads(mode)["value"]
+        expected_baselines[group] = {"fields": baseline_fields, "selection": "per-result-path modal source projection; rows store only deviations"}
+    if current.get("expected_result_baselines") != expected_baselines:
+        failures.append({"check": "common_expected_result_baselines_match_source", "expected_groups": sorted(expected_baselines), "actual_groups": sorted(current.get("expected_result_baselines", {}))})
+    expectation_text = json.dumps({"baselines": current.get("expected_result_baselines", {}), "rows": [row.get("expected_result") for row in rows]}, ensure_ascii=False)
+    ellipsis_count = expectation_text.count("...") + expectation_text.count("…")
+    array_placeholder_count = len(re.findall(r"array\(\d+ items\)", expectation_text))
+    if ellipsis_count or array_placeholder_count:
+        failures.append({"check": "no_truncated_or_array_count_only_expectation", "ellipsis_count": ellipsis_count, "array_placeholder_count": array_placeholder_count})
+
     for row in rows:
         function_suffix = row.get("target", {}).get("function_ref", "").rsplit("-", 1)[-1]
         if row.get("target", {}).get("requirement_ref") != f"HELIXCONNECT-L3-005-{function_suffix}" or row.get("target", {}).get("l4_ref") != f"HELIXCONNECT-L4-005-{function_suffix}":
@@ -225,7 +273,7 @@ def main() -> int:
             doc = l9 if src["path"] == L9 else old8
             pointer(doc, src["pointer"])
             pointer((l9 if exp["path"] == L9 else old8), exp["pointer"])
-        except Exception as exc:  # pointer resolution is an audit result, not a source mutation
+        except Exception as exc:
             failures.append({"check": "fixed_source_pointer_resolution", "u_id": row.get("u_id"), "error": str(exc)})
         for ref in row.get("l5_failure_rule_refs", []):
             try:
@@ -236,37 +284,34 @@ def main() -> int:
             except Exception as exc:
                 failures.append({"check": "l5_failure_rule_pointer_resolution", "u_id": row.get("u_id"), "reference": ref, "error": str(exc)})
 
-        if "..." in row.get("expected_result", "") or "…" in row.get("expected_result", ""):
-            failures.append({"check": "no_truncated_expected_result", "u_id": row.get("u_id")})
-        if "array(" in row.get("expected_result", "") or "items)" in row.get("expected_result", ""):
-            failures.append({"check": "no_array_count_only_expected_result", "u_id": row.get("u_id")})
         try:
-            if row["source_kind"] == "L9_basic_branch":
-                expected = pointer(l9, row["expected_ref"]["pointer"])
-                want_summary = expected_summary(expected, row["target"]["function_ref"])
-                if row["expected_result"] != want_summary:
-                    failures.append({"check": "row_expected_semantics_match_fixed_l9_oracle", "u_id": row["u_id"]})
-            elif row["source_kind"] == "local_domain_probe":
-                index = int(row["source_ref"]["pointer"].rsplit("/", 1)[1])
-                probe = old8["local_domain_probes"]["cases"][index]
-                expected = patch_value(pointer(l9, probe["expected_base_ref"]["pointer"]), probe["expected_whole_overlay"])
-                want_summary = expected_summary(expected, row["target"]["function_ref"])
-                if row["expected_result"] != want_summary:
-                    failures.append({"check": "row_expected_semantics_match_fixed_domain_probe", "u_id": row["u_id"]})
-            elif row["source_kind"] == "independent_semantic_probe":
-                index = int(row["source_ref"]["pointer"].rsplit("/", 1)[1])
-                probe = old8["independent_semantic_probes"][index]
-                want_summary = expected_summary(probe["expected_whole"], row["target"]["function_ref"])
-                if row["expected_result"] != want_summary:
-                    failures.append({"check": "row_expected_semantics_match_fixed_independent_probe", "u_id": row["u_id"]})
-            elif row["source_kind"] == "independent_cross_field_probe":
+            group, projection = source_projections[row["u_id"]]
+            baseline = expected_baselines[group]["fields"]
+            flat_projection = flatten_projection(projection)
+            sets = {path: value for path, value in flat_projection.items() if path not in baseline or baseline[path] != value}
+            removes = sorted(path for path in baseline if path not in flat_projection)
+            wanted = {"baseline_ref": group, "set": sets, "remove": removes}
+            actual = row["expected_result"]
+            reconstructed = dict(baseline)
+            for path in actual.get("remove", []):
+                reconstructed.pop(path, None)
+            reconstructed.update(actual.get("set", {}))
+            if actual != wanted or reconstructed != flat_projection:
+                failures.append({"check": "row_expected_delta_reconstructs_source_projection", "u_id": row["u_id"]})
+            flat = json.dumps(actual, ensure_ascii=False)
+            if "..." in flat or "…" in flat or "array(" in flat or "items)" in flat:
+                failures.append({"check": "no_truncated_or_count_only_expectation", "u_id": row["u_id"]})
+        except Exception as exc:
+            failures.append({"check": "row_expected_delta_resolution", "u_id": row.get("u_id"), "error": str(exc)})
+
+        if row["source_kind"] == "independent_cross_field_probe":
+            try:
                 index = int(row["source_ref"]["pointer"].rsplit("/", 1)[1])
                 probe = cross_probes[index]
                 values = [None, False, 0, "", {}]
                 value = probe["input_patch"][0]["value"]
                 literal = json.dumps(value, ensure_ascii=False, separators=(",", ":"))
                 want_counterexample = f"{probe['id']}: original_prior_successes={literal} (non-array), original_stop.stop_event_ref=null."
-                want_expected = "例外なし; stop_link_result=unknown_original_information; 非配列priorを既知emptyとして扱わず、null stop refからstop eventを解決しない。"
                 valid_shape = (
                     probe["id"] == row["source_id"]
                     and probe["input_patch"] == [
@@ -278,13 +323,12 @@ def main() -> int:
                     and row["expected_ref"]["pointer"] == f"/cross_field_type_constraints/probes/{index}/expected_constraints"
                     and row["contract_oracle_id"] == "HELIXCONNECT-L10-005-F02"
                     and row["counterexample"] == want_counterexample
-                    and row["expected_result"] == want_expected
                     and row["execution_state"] == "not_executed"
                 )
                 if type(value) is not type(values[index]) or value != values[index] or not valid_shape:
                     failures.append({"check": "independent_cross_field_probe_semantics", "u_id": row["u_id"], "probe_id": probe.get("id")})
-        except Exception as exc:
-            failures.append({"check": "row_expected_semantics_resolution", "u_id": row.get("u_id"), "error": str(exc)})
+            except Exception as exc:
+                failures.append({"check": "independent_cross_field_probe_resolution", "u_id": row.get("u_id"), "error": str(exc)})
 
     expected_cross_uids = [f"U-CONNECT005-{i:03d}" for i in range(220, 225)]
     actual_cross_uids = [row["u_id"] for row in rows if row.get("source_kind") == "independent_cross_field_probe"]
@@ -370,7 +414,7 @@ def main() -> int:
             "wrong_target_mapping_count": len(wrong_contract_oracles),
         },
         "preserved_boundary_fields": {"checked": len(preserved_top_level), "changed": changed_boundary_fields},
-        "expected_result_audit": {"row_count": len(rows), "ellipsis_count": sum("..." in row.get("expected_result", "") or "…" in row.get("expected_result", "") for row in rows), "array_count_placeholder_count": sum("array(" in row.get("expected_result", "") or "items)" in row.get("expected_result", "") for row in rows), "source_semantic_mismatch_count": sum(any(f.get("u_id") == row.get("u_id") and f.get("check", "").startswith(("row_expected_semantics", "independent_cross_field_probe")) for f in failures) for row in rows)},
+        "expected_result_audit": {"row_count": len(rows), "baseline_groups": {group: {"rows": len(grouped[group]), "baseline_fields": len(expected_baselines[group]["fields"])} for group in sorted(grouped)}, "baseline_field_total": sum(len(group["fields"]) for group in expected_baselines.values()), "total_row_delta_fields": sum(len(row["expected_result"].get("set", {})) + len(row["expected_result"].get("remove", [])) for row in rows), "max_row_delta_fields": max((len(row["expected_result"].get("set", {})) + len(row["expected_result"].get("remove", [])) for row in rows), default=0), "ellipsis_count": ellipsis_count, "array_count_placeholder_count": array_placeholder_count, "source_semantic_mismatch_count": sum(any(f.get("u_id") == row.get("u_id") and f.get("check", "").startswith(("row_expected_delta", "row_expected_semantics_resolution", "independent_cross_field_probe")) for f in failures) for row in rows)},
         "row_oracle_and_test_citation": "null; not found at fixed source; not invented",
         "ownership_cap": {"passed": not cap.get("failures"), "failure_count": len(cap.get("failures", []))},
         "check_child": {
