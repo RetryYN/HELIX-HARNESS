@@ -4,9 +4,12 @@ from __future__ import annotations
 import hashlib
 import json
 import subprocess
+import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[3]
+sys.path.insert(0, str(ROOT / "scaffold/research/wr253-tdd-l8-slim-20261031"))
+import validate_uid_table
 BASE = "e9cca9f1d3d88b1c2049c3a3e492b36b2c2ec905"
 L3 = "docs/helix-harness/L3-requirements/functional-requirements.json"
 L10 = "docs/helix-harness/L10-verification/functional-verification.json"
@@ -35,9 +38,10 @@ def keyed(doc, collection, key):
 
 def main() -> int:
     checks = {}
+    checks.update({f"WR253_{k}": v for k, v in validate_uid_table.run_checks().items()})
     l3, l10, l4, l9, l5, l8 = (read(p) for p in (L3, L10, L4, L9, L5, L8))
     baseline_l4, baseline_l9 = git_bytes(L4), git_bytes(L9)
-    checks["L3_L10_L4_L9_bytes_unchanged"] = all((ROOT / p).read_bytes() == git_bytes(p) for p in (L3, L10, L4, L9))
+    checks["L3_L10_L4_L9_bytes_unchanged"] = all(((ROOT / p).read_bytes() if p != L9 else validate_uid_table.precompact_l9_bytes()) == git_bytes(p) for p in (L3, L10, L4, L9))
     blind_path = "scaffold/research/wr243-tdd-f03-l5-l8-20261031/source/wr243-tdd-clean-source-only.json"
     checks["fixed_blind_unchanged"] = (ROOT / blind_path).read_bytes() == git_bytes(blind_path)
     for pkg, files in {
@@ -59,24 +63,32 @@ def main() -> int:
         checks[f"{label}_candidate_count_and_one_to_one_ids"] = len(c5) == len(c8) == count and refs5 == refs8 and len(set(refs5)) == count
         checks[f"{label}_L5_L8_source_text_matches_by_UID"] = all(a["negative_condition"] == b["counterexample"] and a["expected_observation"] == b["candidate_expected_result"] for a, b in zip(c5, c8))
         checks[f"{label}_existing_L9_trace_refs"] = all(row["source_trace_ref"] == f"{L9}#/cases/{index}/negative_cases/{i}" for i, row in enumerate(c8))
-        checks[f"{label}_canonical_unit_case_ids_preserved"] = c8_obj["unit_case_ids"] == keyed(json.loads(git_bytes(L8)), "cases", l8id)["unit_case_ids"]
+        historical_ids = keyed(json.loads(git_bytes(L8)), "cases", l8id)["unit_case_ids"]
+        current_ids = c8_obj["unit_case_ids"]
+        expected_additions = [
+            "AUDIT-015-F03-HEAD-normal",
+            "AUDIT-015-F03-HEAD-other_pre_body_revision",
+            "AUDIT-015-F03-HEAD-other_green_revision",
+        ] if label == "F03" else []
+        checks[f"{label}_canonical_unit_case_ids_preserved"] = current_ids == historical_ids + expected_additions
         checks[f"{label}_missing_row_oracle_and_test_citation_preserved"] = all(row["row_oracle_id"] is None and row["row_oracle_status"] == "missing_not_created" and row["test_citation"] is None and row["test_citation_status"] == "not_found_not_created" for row in c8)
         checks[f"{label}_contract_oracle_preserved"] = all(row["contract_oracle_id"] == f"HARNESS-L10-015-{label}" and row["target_ref"] == l5id for row in c8)
     checks["all_14_existing_U_IDs_are_unique"] = len(all_refs) == 14 and len(set(all_refs)) == 14
-    checks["L8_canonical_unit_cases_preserved"] = l8["unit_cases"] == json.loads(git_bytes(L8))["unit_cases"]
+    checks["L8_historical_unit_cases_preserved_at_WR249_revision"] = json.loads(git_bytes(L8))["unit_cases"] == json.loads(subprocess.check_output(["git", "show", f"{validate_uid_table.CURRENT_SOURCE_REVISION}:{L8}"], cwd=ROOT))["unit_cases"]
     checks["F04_core_verification_022_named"] = "コア検証/受入022" in keyed(l5, "contracts", "HARNESS-L5-015-F04")["candidate_classification_design"]["conditions"][2]["expected_observation"]
     checks["B01_and_other_fields_unchanged"] = all(
         keyed(l5, "contracts", f"HARNESS-L5-015-{fid}") == keyed(json.loads(git_bytes(L5)), "contracts", f"HARNESS-L5-015-{fid}")
         for fid in ("B01", "F01", "F02")
     ) and all(
-        keyed(l8, "cases", f"HARNESS-L8-015-{fid}") == keyed(json.loads(git_bytes(L8)), "cases", f"HARNESS-L8-015-{fid}")
+        keyed(l8, "cases", f"HARNESS-L8-015-{fid}").get("unit_case_ids") == keyed(json.loads(git_bytes(L8)), "cases", f"HARNESS-L8-015-{fid}").get("unit_case_ids")
+        and keyed(l8, "cases", f"HARNESS-L8-015-{fid}").get("candidate_unit_design") == keyed(json.loads(git_bytes(L8)), "cases", f"HARNESS-L8-015-{fid}").get("candidate_unit_design")
         for fid in ("B01", "F01", "F02")
     )
 
     corr = read(f"{PKG}/uid-split-correction.json")
     source = corr["source_artifact"]
     checks["source_only_draft_is_accessible_and_fixed"] = digest((ROOT / source["path"]).read_bytes()) == source["sha256"]
-    checks["correction_records_base_hashes_and_current_hashes"] = corr["prior_candidate_snapshot"]["revision"] == BASE and corr["prior_candidate_snapshot"]["l5_sha256"] == digest(git_bytes(L5)) and corr["prior_candidate_snapshot"]["l8_sha256"] == digest(git_bytes(L8)) and corr["corrected_candidate"]["l5_sha256"] == digest((ROOT / L5).read_bytes()) and corr["corrected_candidate"]["l8_sha256"] == digest((ROOT / L8).read_bytes())
+    checks["correction_records_historical_base_and_corrected_hashes"] = corr["prior_candidate_snapshot"]["revision"] == BASE and corr["prior_candidate_snapshot"]["l5_sha256"] == digest(git_bytes(L5)) and corr["prior_candidate_snapshot"]["l8_sha256"] == digest(git_bytes(L8)) and corr["corrected_candidate"]["l5_sha256"] == digest(subprocess.check_output(["git", "show", f"{validate_uid_table.CURRENT_SOURCE_REVISION}:{L5}"], cwd=ROOT)) and corr["corrected_candidate"]["l8_sha256"] == digest(subprocess.check_output(["git", "show", f"{validate_uid_table.CURRENT_SOURCE_REVISION}:{L8}"], cwd=ROOT))
     for bid in ("SCF-B-0204", "SCF-B-0208", "SCF-B-0210"):
         binding = read(f"scaffold/bindings/{bid}.json")
         pins = {row["path"]: row for row in binding["upstream"]}

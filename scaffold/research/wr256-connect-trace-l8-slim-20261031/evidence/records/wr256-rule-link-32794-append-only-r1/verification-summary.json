@@ -1,0 +1,122 @@
+{
+  "schema": "wr256-connect-l8-u-id-audit.v1",
+  "evidence_kind": "scaffold",
+  "authority_effect": "none",
+  "base_revision": "c14adddf2678c7a69d76420c451df3f05b1251ab",
+  "rows": {
+    "before": {
+      "l9_cases": 90,
+      "local_domain_probes": 61,
+      "independent_semantic_probes": 68,
+      "independent_cross_field_probes": 5,
+      "u_id_total": 224
+    },
+    "after": {
+      "l9_basic_branches": 90,
+      "local_domain_probes": 61,
+      "independent_semantic_probes": 68,
+      "independent_cross_field_probes": 5,
+      "u_id_total": 224
+    }
+  },
+  "l5": {
+    "public_functions": 3,
+    "failure_rules": 27,
+    "rules_with_fixed_source_emissions": 27,
+    "rules_without_fixed_source_emission": []
+  },
+  "failure_rule_semantic_audit": {
+    "rule_count": 27,
+    "candidate_row_links": 184,
+    "unsupported_links": 0,
+    "unexecuted": true
+  },
+  "source_pointers_resolved": 224,
+  "preserved_l9_whole_oracle": {
+    "expected_count": 90,
+    "recorded_count": 90,
+    "mismatch_count": 0
+  },
+  "l10_contract_oracles": {
+    "used_ids": [
+      "HELIXCONNECT-L10-005-F01",
+      "HELIXCONNECT-L10-005-F02",
+      "HELIXCONNECT-L10-005-N01"
+    ],
+    "resolved_ids": [
+      "HELIXCONNECT-L10-005-F01",
+      "HELIXCONNECT-L10-005-F02",
+      "HELIXCONNECT-L10-005-N01"
+    ],
+    "missing_ids": [],
+    "wrong_target_mapping_count": 0
+  },
+  "preserved_boundary_fields": {
+    "checked": 24,
+    "changed": []
+  },
+  "method_boundary": {
+    "passed": true,
+    "L5_AST_test_execution_or_L8_pass_fail": "not_performed"
+  },
+  "contract_outcome_boundaries": {
+    "checked_functions": [
+      "F01",
+      "F02",
+      "N01"
+    ],
+    "mismatch_count": 0
+  },
+  "source_semantic_audit": {
+    "path": "scaffold/research/wr256-connect-trace-l8-slim-20261031/evidence/records/wr256-rule-link-32794-append-only-r1/source-semantic-audit.json",
+    "row_count": 224,
+    "sha256": "7b113b55c3d54676e759bc6acc3448b56dd4386dceafaa336695b73b8754e7ab"
+  },
+  "contract_outcome_boundary_count": 14,
+  "expected_result_audit": {
+    "row_count": 224,
+    "baseline_groups": {
+      "F01": {
+        "rows": 69,
+        "audit_baseline_fields": 22
+      },
+      "F02": {
+        "rows": 87,
+        "audit_baseline_fields": 47
+      },
+      "N01": {
+        "rows": 63,
+        "audit_baseline_fields": 39
+      },
+      "independent_cross_field_probe": {
+        "rows": 5,
+        "audit_baseline_fields": 2
+      }
+    },
+    "audit_baseline_field_total": 110,
+    "audit_row_delta_fields": 834,
+    "max_audit_row_delta_fields": 14,
+    "formal_expected_result_kind": "concise row-specific semantic statement",
+    "formal_expected_result_length_max": 159,
+    "ellipsis_count": 0,
+    "array_count_placeholder_count": 0,
+    "source_semantic_mismatch_count": 0
+  },
+  "row_oracle_and_test_citation": "null; not found at fixed source; not invented",
+  "ownership_cap": {
+    "passed": true,
+    "failure_count": 0
+  },
+  "check_child": {
+    "status": "not_evaluated",
+    "reported_passed": false,
+    "l5_l8_pair_reason": "empty_pair_entities:left=0,right=0",
+    "negative_4way_reason": "zero_negative_case_counts_without_rationale",
+    "limitation": "The generic checker did not evaluate this CONNECT L5/L8 document shape; its false result is not a pass or a semantic finding."
+  },
+  "passed": true,
+  "failures": [],
+  "limits": [
+    "This static check does not evaluate L4/L5 algorithms, tests, runtime, CI, independent semantic equivalence, or approval."
+  ]
+}

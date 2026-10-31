@@ -1,0 +1,51 @@
+{
+  "schema": "wr256-evidence-checkpoint.v1",
+  "evidence_kind": "scaffold",
+  "authority_effect": "none",
+  "revision": "684fa076bdbc7c586d60d04b8208fa4bb6a463fd",
+  "artifacts": {
+    "verification-summary": {
+      "historical_path": "scaffold/research/wr256-connect-trace-l8-slim-20261031/verification-summary.json",
+      "git_blob": "33a2281adb0195edfbe69830caef1c593a18d44b",
+      "sha256": "53291e9c30bdf5e6da3692bb6d6d93213974ee7627c60a2b21672ef3aff75181",
+      "bytes": 2949,
+      "observations": {
+        "passed": true,
+        "rows": {
+          "before": {
+            "l9_cases": 90,
+            "local_domain_probes": 61,
+            "independent_semantic_probes": 68,
+            "independent_cross_field_probes": 5,
+            "u_id_total": 224
+          },
+          "after": {
+            "l9_basic_branches": 90,
+            "local_domain_probes": 61,
+            "independent_semantic_probes": 68,
+            "independent_cross_field_probes": 5,
+            "u_id_total": 224
+          }
+        },
+        "l5": {
+          "public_functions": 3,
+          "failure_rules": 27,
+          "unmapped_failure_rules": 0
+        },
+        "failure_rule_semantic_audit": null,
+        "source_semantic_audit": {
+          "path": "scaffold/research/wr256-connect-trace-l8-slim-20261031/source-semantic-audit.json",
+          "row_count": 224,
+          "sha256": "123ea24eb172f535f598ccd8d8f02baddbc314b7be1ca53ec994f32fb2b50af4"
+        }
+      }
+    },
+    "source-semantic-audit": {
+      "historical_path": "scaffold/research/wr256-connect-trace-l8-slim-20261031/source-semantic-audit.json",
+      "git_blob": "84a9cafdb7eb028f071683e1e5cc742db84d41ae",
+      "sha256": "123ea24eb172f535f598ccd8d8f02baddbc314b7be1ca53ec994f32fb2b50af4",
+      "bytes": 878810,
+      "row_count": 224
+    }
+  }
+}

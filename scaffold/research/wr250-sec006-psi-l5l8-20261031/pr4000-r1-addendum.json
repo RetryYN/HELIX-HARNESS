@@ -1,0 +1,105 @@
+{
+  "schema": "wr250-sec006-pr4000-r1-addendum.v1",
+  "authority_effect": "none",
+  "request_id": "WR250-SEC-PSI-PR4000-R1",
+  "review_source": "scaffold/review-handoff/local/brain032-l8-d27-3547-20261023/root-wr250-pr4000-response-R1.json",
+  "review_packet_sha256": "3c059cb581e46f45592a4502dc1e3c284ab67c20d22e46888831a6910aeb1501",
+  "reviewed_head": "f9c64394d93d102324da9d02a39f7bbbff77f231",
+  "frozen_commit_time_artifacts": {
+    "scaffold/research/wr250-sec006-psi-l5l8-20261031/rowwise-comparison.json": "c2fd03316b2d20f5ea462ee87e89716d4bc62615a0984e3745452338e5e81603",
+    "scaffold/research/wr250-sec006-psi-l5l8-20261031/verification-summary.json": "a8404eaff894c37ef1dcd4a86595e09873b6c3c0fa1a5b1fd59a2608c1f23079"
+  },
+  "findings": {
+    "F1": {
+      "severity": "Major",
+      "resolution": "9 rows now have no receiving L4 class with per-row grade/finding/pointer evidence; other 43 reasons are row-specific. L4 taxonomy gap is recorded for later source-level decision; L4 unchanged."
+    },
+    "F2": {
+      "severity": "Major",
+      "resolution": "Corrected 7 fallback candidates to compare_fallback and 6 latest-claim candidates to compare_asset_scope. New audit records function read_fields for each L8 row and candidate row."
+    },
+    "F3": {
+      "severity": "Major",
+      "resolution": "Added 52 L8 and 98 L9 rowwise records with function read_fields and present/null/omitted input states. Removed only seven fallback candidates with exact compare_fallback input value and matching local outcome. Operation candidates remain because L9 omits request.connection_state, a field compare_operation_scope reads. Removed duplicate root candidate assignment rows."
+    },
+    "F4": {
+      "severity": "Major",
+      "resolution": "Updated exactly 32 current_candidate L5 pin file_sha256 values to 41c49bc0b62b415422067297bd9accf848e4f14e253fab9779e778c49c2e1edd; historical WR244 hashes and fixed evidence remain."
+    },
+    "F5": {
+      "severity": "Minor",
+      "resolution": "CAND-065 preserves comparison_shape_id=cross_scope; CAND-083 preserves comparison_shape_id=same_scope_tenant in candidate text and explicit input_field_audit."
+    }
+  },
+  "measurements": {
+    "l8_negative_rows": 52,
+    "no_receiving_l4_class": 9,
+    "unique_reasons_for_remaining_rows": 43,
+    "l9_negative_main_rows": 98,
+    "confirmed_duplicate_candidates_removed": 7,
+    "retained_l9_candidate_designs": 91,
+    "l9_residual_negative_case_count": 16,
+    "l4_sha256_before_after": "unchanged",
+    "l9_sha256_before_after": {
+      "before": "e73518018f836294df326a75d48c344085252a81b302a6cc54fd24efb2332412",
+      "after": "e73518018f836294df326a75d48c344085252a81b302a6cc54fd24efb2332412"
+    },
+    "frozen_commit_artifact_hashes": {
+      "scaffold/research/wr250-sec006-psi-l5l8-20261031/rowwise-comparison.json": "c2fd03316b2d20f5ea462ee87e89716d4bc62615a0984e3745452338e5e81603",
+      "scaffold/research/wr250-sec006-psi-l5l8-20261031/verification-summary.json": "a8404eaff894c37ef1dcd4a86595e09873b6c3c0fa1a5b1fd59a2608c1f23079"
+    },
+    "current_l5_sha256": "41c49bc0b62b415422067297bd9accf848e4f14e253fab9779e778c49c2e1edd",
+    "current_l8_sha256_before": "3e9ba62e992bf99e38a85003bcddc06f93f21d6a4041a56fa2a255739dcf51fb",
+    "current_l8_sha256_after": "6d093e482b013e733bc3eb5950aef5b8385b3288dc85bbcb9854bea92830900d",
+    "operation_rows_retained_due_to_omitted_connection_state": 11
+  },
+  "limits": [
+    "No L4 algorithm, runtime, tests, legacy CLI/hook/CI were run.",
+    "oracle_id and test_citation remain null; candidates are not execution evidence.",
+    "Only L9 condition and ordered finding-code comparisons in the frozen matrix are claimed. Full expected object equivalence is not claimed.",
+    "L4 taxonomy gap is not resolved by this scaffold addendum."
+  ],
+  "verification_measurements": {
+    "check_child_before": {
+      "comparison_mode": "legacy_casewise_four_layer",
+      "counts": {
+        "L4": 10,
+        "L9": 98,
+        "L8": 52,
+        "L5": 10
+      },
+      "matched_case_count": 0,
+      "failure_count": 172,
+      "L4_L9_pair_passed": true,
+      "L5_L8_pair_passed": true,
+      "all_ownership_caps_passed": true,
+      "all_source_pin_checks_passed": true
+    },
+    "check_child_after": {
+      "comparison_mode": "legacy_casewise_four_layer",
+      "counts": {
+        "L4": 10,
+        "L9": 98,
+        "L8": 52,
+        "L5": 10
+      },
+      "matched_case_count": 0,
+      "failure_count": 172,
+      "L4_L9_pair_passed": true,
+      "L5_L8_pair_passed": true,
+      "all_ownership_caps_passed": true,
+      "all_source_pin_checks_passed": true
+    },
+    "new_static_validator": "pass",
+    "scfctl_validate": {
+      "bindings": 194,
+      "failures": 0,
+      "status": "pass"
+    },
+    "scfctl_stale": {
+      "stale": 0,
+      "status": "pass"
+    },
+    "git_diff_check": "pass"
+  }
+}

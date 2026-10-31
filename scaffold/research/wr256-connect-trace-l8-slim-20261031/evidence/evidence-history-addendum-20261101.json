@@ -1,0 +1,53 @@
+{
+  "schema": "wr256-evidence-history-addendum.v1",
+  "evidence_kind": "scaffold",
+  "authority_effect": "none",
+  "supersedes_index": "evidence/evidence-history.json",
+  "reason": "The initial history index identified the earlier current-path copy as latest. This addendum records the immutable rerun after restoring first-committed evidence paths and changing validator behavior.",
+  "restored_initial_paths": {
+    "verification-summary.json": {
+      "first_revision": "4e2995c454b84f73b5e12d46e807a4b26831630b",
+      "sha256": "529a7b9156f4b50d8df5eea224e17e5216791efdccb486d41db34edf215b4810"
+    },
+    "source-semantic-audit.json": {
+      "first_revision": "684fa076bdbc7c586d60d04b8208fa4bb6a463fd",
+      "sha256": "123ea24eb172f535f598ccd8d8f02baddbc314b7be1ca53ec994f32fb2b50af4"
+    }
+  },
+  "current_immutable_record": {
+    "path": "evidence/records/wr256-rule-link-32794-append-only-r1/record.json",
+    "schema": "wr256-immutable-evidence-record.v1",
+    "evidence_kind": "scaffold",
+    "authority_effect": "none",
+    "record_id": "wr256-rule-link-32794-append-only-r1",
+    "head_revision_at_recording": "32794e1ca8ce4f4f7508533992b69fcff4e669b0",
+    "validator_sha256": "ea25caba44ab057f8e9d70914d241e3dcdda01ad972bbeb213a03685b1d7e014",
+    "worktree_dirty_at_recording": true,
+    "artifacts": {
+      "source_semantic_audit": {
+        "path": "scaffold/research/wr256-connect-trace-l8-slim-20261031/evidence/records/wr256-rule-link-32794-append-only-r1/source-semantic-audit.json",
+        "sha256": "7b113b55c3d54676e759bc6acc3448b56dd4386dceafaa336695b73b8754e7ab",
+        "bytes": 1014510
+      },
+      "verification_summary": {
+        "path": "scaffold/research/wr256-connect-trace-l8-slim-20261031/evidence/records/wr256-rule-link-32794-append-only-r1/verification-summary.json",
+        "sha256": "93e8570fdbf9f1c0f284917e71b7b78c54671fc03835db7fc90ab7565b21a555",
+        "bytes": 3493
+      }
+    },
+    "note": "Created with exclusive file creation. Existing evidence is never overwritten; add this record to an append-only lineage artifact in the accompanying change."
+  },
+  "previous_copy_retained_as_noncurrent": {
+    "path": "evidence/records/32794e1ca8ce4f4f7508533992b69fcff4e669b0",
+    "source_revision": "32794e1ca8ce4f4f7508533992b69fcff4e669b0",
+    "meaning": "Byte-preserving copy of the commit-time outputs before the validator was changed to use dedicated immutable evidence paths. Its summary refers to the old audit pathname; it is retained for history and is not the validator default comparison target."
+  },
+  "validator_policy": {
+    "normal_run": "Regenerate both JSON values in memory and compare byte-for-byte to the current immutable record; do not write evidence.",
+    "record_run": "--record --record-id <unique-id> creates a new directory and each artifact with exclusive creation; existing paths fail instead of overwriting."
+  },
+  "limits": [
+    "All snapshots are static source/document checks; none records execution or approval.",
+    "Historical full audits remain in their original Git commit blobs and are identified by the checkpoint manifests; no projection payload was discarded."
+  ]
+}
