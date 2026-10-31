@@ -13,6 +13,10 @@ L8 = 'docs/helix-connect/L8-unit-verification/composite-edge-terminal.json'
 L5 = 'docs/helix-connect/L5-detail-design/composite-edge-terminal.json'
 L4 = 'docs/helix-connect/L4-basic-design/composite-edge-terminal.json'
 L9 = 'docs/helix-connect/L9-integration-verification/composite-edge-terminal.json'
+L3F = 'docs/helix-connect/L3-requirements/functional-requirements.json'
+L10F = 'docs/helix-connect/L10-verification/functional-verification.json'
+L3B = 'docs/helix-connect/L3-requirements/business-requirements.json'
+L10B = 'docs/helix-connect/L10-verification/business-verification.json'
 EVIDENCE = 'scaffold/research/wr257-connect-composite-l8-slim-20261101/static-evidence.json'
 
 
@@ -65,6 +69,7 @@ def main() -> None:
     assert len(current['local_probe_source_reuse']) == len(prior['local_probe_source_reuse']) == 1
     assert len(current['pure_primitive_cases']) == len(prior['pure_primitive_cases']) == 7
     assert len(current['typed_carrier_boundary_cases']) == len(prior['typed_carrier_boundary_cases']) == 1
+    assert sum(current['preserved_inventory'][key] for key in ('source_cases', 'local_probes', 'local_probe_source_reuse', 'pure_primitive_cases', 'typed_carrier_boundary_cases')) == 127
     assert [row[0] for row in current['cases']['rows']] == [row['id'] for row in prior['cases']]
     assert [row[0] for row in current['local_probes']['rows']] == [row['id'] for row in prior['local_probes']]
     assert [row['id'] for row in current['pure_primitive_cases']] == [row['id'] for row in prior['pure_primitive_cases']]
@@ -87,6 +92,7 @@ def main() -> None:
 
     trace = current['l5_unit_traceability']
     trace_pins = {item['path']: item for item in trace['source_pins']}
+    assert set(trace_pins) == {L3F, L10F, L3B, L10B, L4, L5, L9}
     for path, pin in trace_pins.items():
         assert sha(subprocess.check_output(['git', 'show', f"{pin['revision']}:{path}"], cwd=ROOT)) == pin['sha256']
     l5pin, l9pin = trace_pins[L5], trace_pins[L9]
@@ -132,14 +138,8 @@ def main() -> None:
         source = resolve(l5, rule['source_ref']['pointer'])
         assert source['id'] == rule['rule_id']
         assert rule['function_ref'] == f'FN-C007-{["F01","F02","N01","B01"].index(tag_rule[0])+1:02d}'
-        if rule['case_u_ids']:
-            assert rule['coverage_status'] == 'l9_oracle_witnessed'
-            assert 'needed_u_id' not in rule
-            for uid in rule['case_u_ids']:
-                assert uid in rows_by_uid and f'{tag_rule[0]}:{rule["rule_id"]}' in rows_by_uid[uid][-1]
-        else:
-            assert rule['coverage_status'] == 'no_l9_oracle_witness; derived_needed_u_id'
-            assert rule['needed_u_id'].startswith('U-C007-RULE-') and rule['unverified_reason']
+        for uid in rule['case_u_ids']:
+            assert uid in rows_by_uid and f'{tag_rule[0]}:{rule["rule_id"]}' in rows_by_uid[uid][-1]
     assert seen_rules == declared_rules
     assert len(trace['l9_basic_branches']) == 91
     for branch in trace['l9_basic_branches']:
@@ -149,6 +149,10 @@ def main() -> None:
 
     columns = current['local_probes']['columns']
     ix = {name: i for i, name in enumerate(columns)}
+    assert columns[-1] == 'u_id'
+    assert len({row[ix['u_id']] for row in current['local_probes']['rows']}) == 27
+    local_probe_uid_by_id = {}
+    local_rule_uids = {}
     for row, source in zip(current['local_probes']['rows'], prior['local_probes']):
         assert row[ix['role_id']] == source['function_ref']
         assert row[ix['source_case_id']] == source.get('source_case_id')
@@ -174,6 +178,75 @@ def main() -> None:
             expected_delta.append(actual)
         assert expected_delta == source.get('expected_delta_from_source_oracle', []), source['id']
         assert row[ix['execution_state']] == 'not_executed'
+        uid = row[ix['u_id']]
+        assert uid.startswith('U-C007-LP-')
+        local_probe_uid_by_id[row[ix['id']]] = uid
+        tag = row[ix['id']].split('-')[2]
+        reasons = []
+        for change in expected_delta:
+            if change['path'] == '/failure_reasons' and isinstance(change.get('value'), list):
+                reasons = change['value']
+        for rule in l5['contract_views'][tag]['failure_rules']:
+            prefix = rule.get('area', '').split('{', 1)[0]
+            if any(reason.get('area', '').startswith(prefix) for reason in reasons):
+                local_rule_uids.setdefault((tag, rule['id']), []).append(uid)
+
+    assert len(local_probe_uid_by_id) == 27
+    function_by_id = {item['function_ref']: item for item in trace['l5_public_functions']}
+    for fn, function in function_by_id.items():
+        expected_local_uids = [row[ix['u_id']] for row in current['local_probes']['rows'] if row[ix['role_id']] == fn]
+        assert function['local_probe_u_ids'] == expected_local_uids
+    for rule in trace['l5_failure_rules']:
+        tag = rule['source_ref']['pointer'].split('/')[2]
+        key = (tag, rule['rule_id'])
+        ids = [row[ix['id']] for row in current['local_probes']['rows'] if row[ix['u_id']] in local_rule_uids.get(key, [])]
+        assert rule['local_probe_u_ids'] == local_rule_uids.get(key, [])
+        assert rule['local_probe_ids'] == ids
+        if rule['case_u_ids'] and rule['local_probe_u_ids']:
+            expected_status = 'l9_and_local_probe_witnessed'
+        elif rule['case_u_ids']:
+            expected_status = 'l9_oracle_witnessed'
+        elif rule['local_probe_u_ids']:
+            expected_status = 'local_probe_witnessed'
+        else:
+            expected_status = 'uncovered'
+        assert rule['coverage_status'] == expected_status, key
+    assert all(rule['coverage_status'] != 'uncovered' for rule in trace['l5_failure_rules'])
+    assert len(trace['l5_failure_rules']) == 26
+    assert trace['local_probe_rule_derivations']
+    expected_derivation_sources = {
+        'F02:stop_position': [(L3F, '/requirements/14'), (L10F, '/cases/14'), (L4, '/contracts/1'), (L5, '/contract_views/F02/failure_rules/7')],
+        'B01:technical_content': [(L3B, '/requirements/1'), (L10B, '/cases/1'), (L4, '/contracts/3'), (L5, '/contract_views/B01/failure_rules/0')],
+    }
+    for derivation in trace['local_probe_rule_derivations']:
+        assert all(pid in local_probe_uid_by_id for pid in derivation['local_probe_ids'])
+        assert derivation['local_probe_u_ids'] == [local_probe_uid_by_id[pid] for pid in derivation['local_probe_ids']]
+        assert all(resolve(load(ref['path']), ref['pointer']) is not None for ref in derivation['basis_refs'])
+        assert [(ref['path'], ref['pointer']) for ref in derivation['basis_refs']] == expected_derivation_sources[derivation['rule_ref']]
+        expected_source_ids = {
+            'F02:stop_position': [
+                'HELIXCONNECT-L3-007-F02', 'HELIXCONNECT-L10-007-F02',
+                'HELIXCONNECT-L4-007-F02', 'stop_position'],
+            'B01:technical_content': [
+                'HELIXCONNECT-L3-007-B01', 'HELIXCONNECT-L10-007-B01',
+                'HELIXCONNECT-L4-007-B01', 'technical_content'],
+        }[derivation['rule_ref']]
+        assert [resolve(load(ref['path']), ref['pointer']).get('id') for ref in derivation['basis_refs']] == expected_source_ids
+        expected_rows = {row[ix['id']]: row for row in current['local_probes']['rows']}
+        if derivation['rule_ref'] == 'F02:stop_position':
+            result_by_probe = {}
+            for pid in derivation['local_probe_ids']:
+                probe = expected_rows[pid]
+                delta = probe[ix['expected_delta']]
+                reasons = next(item['value'] for item in delta if item['path'] == '/failure_reasons')
+                assert len(reasons) == 1 and reasons[0]['area'] == 'stop_position' and reasons[0]['return_owner'] == 'composite-owner'
+                result_by_probe[pid] = reasons[0]['result']
+            assert set(result_by_probe.values()) == {'missing', 'ambiguous_duplicate_not_compared'}
+        elif derivation['rule_ref'] == 'B01:technical_content':
+            probe = expected_rows[derivation['local_probe_ids'][0]]
+            delta = probe[ix['expected_delta']]
+            reason = next(item['value'] for item in delta if item['path'] == '/failure_reasons')[0]
+            assert (reason['area'], reason['field'], reason['result'], reason['return_owner']) == ('technical_content', 'record', 'content_conflict', 'composite-owner')
 
     assert 'unit_case_refs' not in json.dumps(l5, ensure_ascii=False)
     assert current['traceability_boundary']['l5_unit_case_refs'] == 'absent_in_source_document'
@@ -202,19 +275,21 @@ def main() -> None:
             L5: current['candidate_design_binding']['sha256_of_saved_file_bytes'],
             L9: current['preserved_l9_oracle']['sha256'],
         },
+        'traceability_source_pins': {path: pin['sha256'] for path, pin in trace_pins.items()},
         'inventory': current['preserved_inventory'],
         'l5_traceability': {
             'public_functions': len(trace['l5_public_functions']),
             'l9_branch_u_ids': len(trace['l9_basic_branches']),
+            'predeclared_local_probe_u_ids': len(current['local_probes']['rows']),
             'failure_rules': len(trace['l5_failure_rules']),
-            'l9_oracle_witnessed_rules': sum(bool(rule['case_u_ids']) for rule in trace['l5_failure_rules']),
-            'rules_without_l9_oracle_witness': [f"{rule['function_ref']}:{rule['rule_id']} ({rule['needed_u_id']})" for rule in trace['l5_failure_rules'] if not rule['case_u_ids']],
+            'covered_failure_rules': sum(rule['coverage_status'] != 'uncovered' for rule in trace['l5_failure_rules']),
+            'uncovered_failure_rules': [f"{rule['function_ref']}:{rule['rule_id']}" for rule in trace['l5_failure_rules'] if rule['coverage_status'] == 'uncovered'],
         },
         'checks': [
             'all prior L8 source case IDs and order retained; exact L9 source/expected pointers and scenario basis resolve',
             'all 27 local probe IDs, roles, source cases, patch paths and independent expected deltas match prior bytes; L4/L9 source_ref revision+pointer resolve against exact pins',
             '1 source reuse, 7 primitive cases and 1 typed carrier boundary retain identity and intended oracle boundary',
-            '91 L9 basic branches map to unique U-IDs and exact L9 pointers; all four L5 public functions map by source refs; all 26 L5 failure rules have oracle-witnessed U-IDs or explicit derived-needed U-IDs when no witness exists',
+            '91 L9 branches and 27 predeclared local probes carry U-IDs without changing the 127 declaration count; all four L5 public functions map by exact source refs; all 26 L5 failure rules are covered by fixed L9 oracle branches and/or predeclared local expected deltas',
             'L5 has no unit_case_refs; absence is recorded without synthetic references',
             'fixture hashes are absent from case/probe inventories; retained digests are source/authority pins',
             'removed_materials has six required keys and names DT-VT-105 boundary',

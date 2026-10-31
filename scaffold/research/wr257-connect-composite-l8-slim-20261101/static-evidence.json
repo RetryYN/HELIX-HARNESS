@@ -5,9 +5,18 @@
   "request_id": "WR257-CONNECT-COMPOSITE-L8-SLIM",
   "base_revision": "663b75324810a6f004668a1451de5b03acc542c3",
   "target_path": "docs/helix-connect/L8-unit-verification/composite-edge-terminal.json",
-  "target_sha256": "540f286cc5ed7aeb7453b21f0e0b0278082f61e35bb4ff8c4839067d4935e784",
-  "target_bytes": 271965,
+  "target_sha256": "b1c52add989c3da48d76db40ff6fcfd95e59b098ccc7dfbce6195a8d8535e2e4",
+  "target_bytes": 284688,
   "source_pins": {
+    "docs/helix-connect/L4-basic-design/composite-edge-terminal.json": "166a7800eac7427983ccc716a2472e9017cb9510a19ade5e9f07f63c11785030",
+    "docs/helix-connect/L5-detail-design/composite-edge-terminal.json": "0f672d5d2a8abc906a0c61139359ac41f1725635b2d2a43aef8fa3b08e2f85cd",
+    "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json": "313757d63a2afdbfa2bfd7d9ceff8db0f294131e393ac360fcf96b3938635f72"
+  },
+  "traceability_source_pins": {
+    "docs/helix-connect/L3-requirements/functional-requirements.json": "fb04683632d92e5c51c46fdc2eecf388a58e406856f243b8105513e075a49421",
+    "docs/helix-connect/L10-verification/functional-verification.json": "8728cf7c2730a29375f3c7dad75c77157a119d603e52b46f775ede8f1eae474d",
+    "docs/helix-connect/L3-requirements/business-requirements.json": "29ca195ff54d61f422050f28740c2cf887defaf21a3ad7da4c37f3ef797bd0ed",
+    "docs/helix-connect/L10-verification/business-verification.json": "b01cdbd03885b523254aba339bd166ad235382402942527e4e7844825ea05fcd",
     "docs/helix-connect/L4-basic-design/composite-edge-terminal.json": "166a7800eac7427983ccc716a2472e9017cb9510a19ade5e9f07f63c11785030",
     "docs/helix-connect/L5-detail-design/composite-edge-terminal.json": "0f672d5d2a8abc906a0c61139359ac41f1725635b2d2a43aef8fa3b08e2f85cd",
     "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json": "313757d63a2afdbfa2bfd7d9ceff8db0f294131e393ac360fcf96b3938635f72"
@@ -23,18 +32,16 @@
   "l5_traceability": {
     "public_functions": 4,
     "l9_branch_u_ids": 91,
+    "predeclared_local_probe_u_ids": 27,
     "failure_rules": 26,
-    "l9_oracle_witnessed_rules": 24,
-    "rules_without_l9_oracle_witness": [
-      "FN-C007-02:stop_position (U-C007-RULE-F02-08)",
-      "FN-C007-04:technical_content (U-C007-RULE-B01-01)"
-    ]
+    "covered_failure_rules": 26,
+    "uncovered_failure_rules": []
   },
   "checks": [
     "all prior L8 source case IDs and order retained; exact L9 source/expected pointers and scenario basis resolve",
     "all 27 local probe IDs, roles, source cases, patch paths and independent expected deltas match prior bytes; L4/L9 source_ref revision+pointer resolve against exact pins",
     "1 source reuse, 7 primitive cases and 1 typed carrier boundary retain identity and intended oracle boundary",
-    "91 L9 basic branches map to unique U-IDs and exact L9 pointers; all four L5 public functions map by source refs; all 26 L5 failure rules have oracle-witnessed U-IDs or explicit derived-needed U-IDs when no witness exists",
+    "91 L9 branches and 27 predeclared local probes carry U-IDs without changing the 127 declaration count; all four L5 public functions map by exact source refs; all 26 L5 failure rules are covered by fixed L9 oracle branches and/or predeclared local expected deltas",
     "L5 has no unit_case_refs; absence is recorded without synthetic references",
     "fixture hashes are absent from case/probe inventories; retained digests are source/authority pins",
     "removed_materials has six required keys and names DT-VT-105 boundary"

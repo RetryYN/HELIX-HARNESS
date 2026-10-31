@@ -2024,7 +2024,8 @@
       "expected_basis",
       "independent_basis",
       "boundary",
-      "execution_state"
+      "execution_state",
+      "u_id"
     ],
     "rows": [
       [
@@ -2123,7 +2124,8 @@
         "L4 N01: 原required setを基準に保持し、両側record欠落を内容資格にしない。原/提出の同じ2件は相互content対応のまま、required 3件との差をcontent_conflictとして返し、candidateをheldへ置く。evidence result/retained original evidenceはrawに残る2 recordを値保持する。 期待wholeはbaseline L9 expectedを原caseの現正本として保持し、原L4の個別比較・未観測/保留・failure owner境界から上記field deltaを先に固定した。candidate evaluatorの出力は期待値の作成に使わない。",
         null,
         "synthetic local mutation only; qualification/effect unestablished",
-        "not_executed"
+        "not_executed",
+        "U-C007-LP-001"
       ],
       [
         "LOCAL-C007-B01-TECHNICAL-TERMINAL-BUSINESS-NOT-ACCEPTED-READONLY-OWNER-PROBE",
@@ -2199,7 +2201,8 @@
         "L4 B01: 技術状態、元business acceptance、必要dependencyは別軸で照合し、同時不一致は宣言順を保持する。business failureはoriginal_business_record.ownerへ結び、technical/dependency候補へ統合しない。technical terminalからbusiness completion/acceptanceを生成しない。 期待wholeはbaseline L9 expectedを原caseの現正本として保持し、原L4の個別比較・未観測/保留・failure owner境界から上記field deltaを先に固定した。candidate evaluatorの出力は期待値の作成に使わない。",
         null,
         "synthetic local mutation only; qualification/effect unestablished",
-        "not_executed"
+        "not_executed",
+        "U-C007-LP-002"
       ],
       [
         "LOCAL-C007-N01-EXACT-DECLARED-SCOPE-THREE-BOUNDARY-EVIDENCE-Empty-Required-Evidence",
@@ -2275,7 +2278,8 @@
         "L4 N01は元対象と必要証拠集合を比較し、field/countを内容資格へ読み替えない。一意に指定された証拠が空の場合は未観測でありcandidateを成立させず、空collectionを原/提出同一という理由だけで成功へ昇格しない。",
         null,
         "synthetic local mutation only; qualification/effect unestablished",
-        "not_executed"
+        "not_executed",
+        "U-C007-LP-003"
       ],
       [
         "LOCAL-C007-F01-FOUR-MECHANISMS-THREE-DISTINCT-EDGES-Source-Operation-Absent",
@@ -2344,7 +2348,8 @@
         "L4-F01は辺をまたぐoperation対応と各receiptのtarget束縛を独立に要求する。両側の中間辺source operation欠落はAbsentのまま保持しnullへ変換しない。必須mappingの不足を合成終端成功へ補完せず、原辺ownerと構成体ownerの所見へ結ぶ。",
         null,
         "synthetic local mutation only; qualification/effect unestablished",
-        "not_executed"
+        "not_executed",
+        "U-C007-LP-004"
       ],
       [
         "LOCAL-C007-F02-DUPLICATE-ORIGINAL-STOP-EDGE-NO-OWNER-FALLBACK",
@@ -2430,7 +2435,8 @@
         "L4 F02の停止edge bindingはoriginal edgeへ一意に結び、duplicateを先頭選択せず曖昧として保持する。stop_return_ownerはunique original edge ownerのみであり、duplicate時はAbsent。failure原因はL5 failure rule orderに従い、trace failureは原composite ownerのsource pathへ返す。実資格の主張ではない。 原unfinished rowも同じedge identityに対して一意なoriginal definitionがなくなるため、3 fieldをambiguous_duplicate_not_comparedとして保持する。",
         null,
         "synthetic local mutation only; qualification/effect unestablished",
-        "not_executed"
+        "not_executed",
+        "U-C007-LP-005"
       ],
       [
         "LOCAL-C007-F01-SINGLE-SUBMITTED-RESULT",
@@ -2541,7 +2547,8 @@
           ]
         },
         "synthetic local mutation only; qualification/effect unestablished",
-        "not_executed"
+        "not_executed",
+        "U-C007-LP-006"
       ],
       [
         "LOCAL-C007-F01-SINGLE-SUBMITTED-SCOPE",
@@ -2652,7 +2659,8 @@
           ]
         },
         "synthetic local mutation only; qualification/effect unestablished",
-        "not_executed"
+        "not_executed",
+        "U-C007-LP-007"
       ],
       [
         "LOCAL-C007-F02-STOP-POSITION-ABSENT",
@@ -2733,7 +2741,8 @@
           ]
         },
         "synthetic local mutation only; qualification/effect unestablished",
-        "not_executed"
+        "not_executed",
+        "U-C007-LP-008"
       ],
       [
         "LOCAL-C007-F02-STOP-POSITION-DUPLICATE",
@@ -2816,7 +2825,8 @@
           ]
         },
         "synthetic local mutation only; qualification/effect unestablished",
-        "not_executed"
+        "not_executed",
+        "U-C007-LP-009"
       ],
       [
         "LOCAL-C007-F02-DOWNSTREAM-MISSING",
@@ -2884,7 +2894,8 @@
           ]
         },
         "synthetic local mutation only; qualification/effect unestablished",
-        "not_executed"
+        "not_executed",
+        "U-C007-LP-010"
       ],
       [
         "LOCAL-C007-F02-DOWNSTREAM-DOT",
@@ -2946,7 +2957,8 @@
           ]
         },
         "synthetic local mutation only; qualification/effect unestablished",
-        "not_executed"
+        "not_executed",
+        "U-C007-LP-011"
       ],
       [
         "LOCAL-C007-F02-DOWNSTREAM-PLAIN",
@@ -3008,7 +3020,8 @@
           ]
         },
         "synthetic local mutation only; qualification/effect unestablished",
-        "not_executed"
+        "not_executed",
+        "U-C007-LP-012"
       ],
       [
         "LOCAL-C007-F02-DOWNSTREAM-NULL",
@@ -3094,7 +3107,8 @@
           ]
         },
         "synthetic local mutation only; qualification/effect unestablished",
-        "not_executed"
+        "not_executed",
+        "U-C007-LP-013"
       ],
       [
         "LOCAL-C007-N01-LITERAL-MAP-DOT",
@@ -3211,7 +3225,8 @@
           ]
         },
         "synthetic local mutation only; qualification/effect unestablished",
-        "not_executed"
+        "not_executed",
+        "U-C007-LP-014"
       ],
       [
         "LOCAL-C007-N01-LITERAL-MAP-PLAIN",
@@ -3328,7 +3343,8 @@
           ]
         },
         "synthetic local mutation only; qualification/effect unestablished",
-        "not_executed"
+        "not_executed",
+        "U-C007-LP-015"
       ],
       [
         "LOCAL-C007-N01-MISSING-BEFORE-CONFLICT",
@@ -3478,7 +3494,8 @@
           ]
         },
         "synthetic local mutation only; qualification/effect unestablished",
-        "not_executed"
+        "not_executed",
+        "U-C007-LP-016"
       ],
       [
         "LOCAL-C007-F01-SUBMITTED-MAPPING-ONLY",
@@ -3552,7 +3569,8 @@
           ]
         },
         "synthetic local mutation only; qualification/effect unestablished",
-        "not_executed"
+        "not_executed",
+        "U-C007-LP-017"
       ],
       [
         "LOCAL-C007-N01-SUBMITTED-EDGE-BINDING",
@@ -3647,7 +3665,8 @@
           ]
         },
         "synthetic local mutation only; qualification/effect unestablished",
-        "not_executed"
+        "not_executed",
+        "U-C007-LP-018"
       ],
       [
         "LOCAL-C007-F01-RAW-TIMEOUT-STATE",
@@ -3797,7 +3816,8 @@
           ]
         },
         "synthetic local mutation only; qualification/effect unestablished",
-        "not_executed"
+        "not_executed",
+        "U-C007-LP-019"
       ],
       [
         "LOCAL-C007-F02-OWNER-FIRST-APPEARANCE",
@@ -3874,7 +3894,8 @@
           ]
         },
         "synthetic local mutation only; qualification/effect unestablished",
-        "not_executed"
+        "not_executed",
+        "U-C007-LP-020"
       ],
       [
         "LOCAL-C007-F02-DOWNSTREAM-NEGATIVE",
@@ -3942,7 +3963,8 @@
           ]
         },
         "synthetic local mutation only; qualification/effect unestablished",
-        "not_executed"
+        "not_executed",
+        "U-C007-LP-021"
       ],
       [
         "LOCAL-C007-F02-DOWNSTREAM-FRACTION",
@@ -4010,7 +4032,8 @@
           ]
         },
         "synthetic local mutation only; qualification/effect unestablished",
-        "not_executed"
+        "not_executed",
+        "U-C007-LP-022"
       ],
       [
         "LOCAL-C007-F02-DOWNSTREAM-BOOLEAN",
@@ -4078,7 +4101,8 @@
           ]
         },
         "synthetic local mutation only; qualification/effect unestablished",
-        "not_executed"
+        "not_executed",
+        "U-C007-LP-023"
       ],
       [
         "LOCAL-C007-F02-DOWNSTREAM-LARGE-EXACT-NUMBER",
@@ -4145,7 +4169,8 @@
           ]
         },
         "synthetic local mutation only; qualification/effect unestablished",
-        "not_executed"
+        "not_executed",
+        "U-C007-LP-024"
       ],
       [
         "LOCAL-C007-F02-STOP-AT-LAST",
@@ -4185,7 +4210,8 @@
           ]
         },
         "synthetic local mutation only; qualification/effect unestablished",
-        "not_executed"
+        "not_executed",
+        "U-C007-LP-025"
       ],
       [
         "LOCAL-C007-F01-ORIGINAL-ZERO-SUBMITTED-ONE",
@@ -4491,7 +4517,8 @@
           ]
         },
         "synthetic local mutation only; qualification/effect unestablished",
-        "not_executed"
+        "not_executed",
+        "U-C007-LP-026"
       ],
       [
         "LOCAL-C007-F01-ORIGINAL-RECEIPT-DUPLICATE",
@@ -4786,7 +4813,8 @@
           ]
         },
         "synthetic local mutation only; qualification/effect unestablished",
-        "not_executed"
+        "not_executed",
+        "U-C007-LP-027"
       ]
     ],
     "count": 27
@@ -4966,6 +4994,31 @@
   "l5_unit_traceability": {
     "source_pins": [
       {
+        "path": "docs/helix-connect/L3-requirements/functional-requirements.json",
+        "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+        "sha256": "fb04683632d92e5c51c46fdc2eecf388a58e406856f243b8105513e075a49421"
+      },
+      {
+        "path": "docs/helix-connect/L10-verification/functional-verification.json",
+        "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+        "sha256": "8728cf7c2730a29375f3c7dad75c77157a119d603e52b46f775ede8f1eae474d"
+      },
+      {
+        "path": "docs/helix-connect/L3-requirements/business-requirements.json",
+        "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+        "sha256": "29ca195ff54d61f422050f28740c2cf887defaf21a3ad7da4c37f3ef797bd0ed"
+      },
+      {
+        "path": "docs/helix-connect/L10-verification/business-verification.json",
+        "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+        "sha256": "b01cdbd03885b523254aba339bd166ad235382402942527e4e7844825ea05fcd"
+      },
+      {
+        "path": "docs/helix-connect/L4-basic-design/composite-edge-terminal.json",
+        "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
+        "sha256": "166a7800eac7427983ccc716a2472e9017cb9510a19ade5e9f07f63c11785030"
+      },
+      {
         "path": "docs/helix-connect/L5-detail-design/composite-edge-terminal.json",
         "revision": "5e596eed9e7b0910b132d4a859e9c76fc2e8eac9",
         "sha256": "0f672d5d2a8abc906a0c61139359ac41f1725635b2d2a43aef8fa3b08e2f85cd"
@@ -5035,6 +5088,15 @@
           "U-C007-037",
           "U-C007-038",
           "U-C007-039"
+        ],
+        "local_probe_u_ids": [
+          "U-C007-LP-004",
+          "U-C007-LP-006",
+          "U-C007-LP-007",
+          "U-C007-LP-017",
+          "U-C007-LP-019",
+          "U-C007-LP-026",
+          "U-C007-LP-027"
         ]
       },
       {
@@ -5081,6 +5143,21 @@
           "U-C007-062",
           "U-C007-063",
           "U-C007-064"
+        ],
+        "local_probe_u_ids": [
+          "U-C007-LP-005",
+          "U-C007-LP-008",
+          "U-C007-LP-009",
+          "U-C007-LP-010",
+          "U-C007-LP-011",
+          "U-C007-LP-012",
+          "U-C007-LP-013",
+          "U-C007-LP-020",
+          "U-C007-LP-021",
+          "U-C007-LP-022",
+          "U-C007-LP-023",
+          "U-C007-LP-024",
+          "U-C007-LP-025"
         ]
       },
       {
@@ -5118,6 +5195,14 @@
           "U-C007-078",
           "U-C007-079",
           "U-C007-080"
+        ],
+        "local_probe_u_ids": [
+          "U-C007-LP-001",
+          "U-C007-LP-003",
+          "U-C007-LP-014",
+          "U-C007-LP-015",
+          "U-C007-LP-016",
+          "U-C007-LP-018"
         ]
       },
       {
@@ -5150,6 +5235,9 @@
           "U-C007-089",
           "U-C007-090",
           "U-C007-091"
+        ],
+        "local_probe_u_ids": [
+          "U-C007-LP-002"
         ]
       }
     ],
@@ -5165,7 +5253,9 @@
         "case_u_ids": [
           "U-C007-030"
         ],
-        "coverage_status": "l9_oracle_witnessed"
+        "coverage_status": "l9_oracle_witnessed",
+        "local_probe_u_ids": [],
+        "local_probe_ids": []
       },
       {
         "rule_id": "edge_definition",
@@ -5178,7 +5268,13 @@
         "case_u_ids": [
           "U-C007-031"
         ],
-        "coverage_status": "l9_oracle_witnessed"
+        "coverage_status": "l9_and_local_probe_witnessed",
+        "local_probe_u_ids": [
+          "U-C007-LP-017"
+        ],
+        "local_probe_ids": [
+          "LOCAL-C007-F01-SUBMITTED-MAPPING-ONLY"
+        ]
       },
       {
         "rule_id": "receipt_cardinality_original",
@@ -5195,7 +5291,15 @@
           "U-C007-037",
           "U-C007-038"
         ],
-        "coverage_status": "l9_oracle_witnessed"
+        "coverage_status": "l9_and_local_probe_witnessed",
+        "local_probe_u_ids": [
+          "U-C007-LP-026",
+          "U-C007-LP-027"
+        ],
+        "local_probe_ids": [
+          "LOCAL-C007-F01-ORIGINAL-ZERO-SUBMITTED-ONE",
+          "LOCAL-C007-F01-ORIGINAL-RECEIPT-DUPLICATE"
+        ]
       },
       {
         "rule_id": "receipt_cardinality_submitted",
@@ -5214,7 +5318,9 @@
           "U-C007-037",
           "U-C007-038"
         ],
-        "coverage_status": "l9_oracle_witnessed"
+        "coverage_status": "l9_oracle_witnessed",
+        "local_probe_u_ids": [],
+        "local_probe_ids": []
       },
       {
         "rule_id": "receipt_content",
@@ -5233,7 +5339,19 @@
           "U-C007-037",
           "U-C007-038"
         ],
-        "coverage_status": "l9_oracle_witnessed"
+        "coverage_status": "l9_and_local_probe_witnessed",
+        "local_probe_u_ids": [
+          "U-C007-LP-006",
+          "U-C007-LP-007",
+          "U-C007-LP-026",
+          "U-C007-LP-027"
+        ],
+        "local_probe_ids": [
+          "LOCAL-C007-F01-SINGLE-SUBMITTED-RESULT",
+          "LOCAL-C007-F01-SINGLE-SUBMITTED-SCOPE",
+          "LOCAL-C007-F01-ORIGINAL-ZERO-SUBMITTED-ONE",
+          "LOCAL-C007-F01-ORIGINAL-RECEIPT-DUPLICATE"
+        ]
       },
       {
         "rule_id": "edge_target",
@@ -5265,7 +5383,17 @@
           "U-C007-038",
           "U-C007-039"
         ],
-        "coverage_status": "l9_oracle_witnessed"
+        "coverage_status": "l9_and_local_probe_witnessed",
+        "local_probe_u_ids": [
+          "U-C007-LP-004",
+          "U-C007-LP-026",
+          "U-C007-LP-027"
+        ],
+        "local_probe_ids": [
+          "LOCAL-C007-F01-FOUR-MECHANISMS-THREE-DISTINCT-EDGES-Source-Operation-Absent",
+          "LOCAL-C007-F01-ORIGINAL-ZERO-SUBMITTED-ONE",
+          "LOCAL-C007-F01-ORIGINAL-RECEIPT-DUPLICATE"
+        ]
       },
       {
         "rule_id": "composite_target",
@@ -5288,7 +5416,15 @@
           "U-C007-037",
           "U-C007-038"
         ],
-        "coverage_status": "l9_oracle_witnessed"
+        "coverage_status": "l9_and_local_probe_witnessed",
+        "local_probe_u_ids": [
+          "U-C007-LP-026",
+          "U-C007-LP-027"
+        ],
+        "local_probe_ids": [
+          "LOCAL-C007-F01-ORIGINAL-ZERO-SUBMITTED-ONE",
+          "LOCAL-C007-F01-ORIGINAL-RECEIPT-DUPLICATE"
+        ]
       },
       {
         "rule_id": "edge_conditions",
@@ -5311,7 +5447,17 @@
           "U-C007-037",
           "U-C007-038"
         ],
-        "coverage_status": "l9_oracle_witnessed"
+        "coverage_status": "l9_and_local_probe_witnessed",
+        "local_probe_u_ids": [
+          "U-C007-LP-019",
+          "U-C007-LP-026",
+          "U-C007-LP-027"
+        ],
+        "local_probe_ids": [
+          "LOCAL-C007-F01-RAW-TIMEOUT-STATE",
+          "LOCAL-C007-F01-ORIGINAL-ZERO-SUBMITTED-ONE",
+          "LOCAL-C007-F01-ORIGINAL-RECEIPT-DUPLICATE"
+        ]
       },
       {
         "rule_id": "operation_mapping",
@@ -5328,7 +5474,15 @@
           "U-C007-034",
           "U-C007-039"
         ],
-        "coverage_status": "l9_oracle_witnessed"
+        "coverage_status": "l9_and_local_probe_witnessed",
+        "local_probe_u_ids": [
+          "U-C007-LP-004",
+          "U-C007-LP-017"
+        ],
+        "local_probe_ids": [
+          "LOCAL-C007-F01-FOUR-MECHANISMS-THREE-DISTINCT-EDGES-Source-Operation-Absent",
+          "LOCAL-C007-F01-SUBMITTED-MAPPING-ONLY"
+        ]
       },
       {
         "rule_id": "unselected_receipts",
@@ -5341,7 +5495,9 @@
         "case_u_ids": [
           "U-C007-030"
         ],
-        "coverage_status": "l9_oracle_witnessed"
+        "coverage_status": "l9_oracle_witnessed",
+        "local_probe_u_ids": [],
+        "local_probe_ids": []
       },
       {
         "rule_id": "stop_binding",
@@ -5357,7 +5513,13 @@
           "U-C007-060",
           "U-C007-061"
         ],
-        "coverage_status": "l9_oracle_witnessed"
+        "coverage_status": "l9_and_local_probe_witnessed",
+        "local_probe_u_ids": [
+          "U-C007-LP-005"
+        ],
+        "local_probe_ids": [
+          "LOCAL-C007-F02-DUPLICATE-ORIGINAL-STOP-EDGE-NO-OWNER-FALLBACK"
+        ]
       },
       {
         "rule_id": "prior_successes",
@@ -5371,7 +5533,9 @@
           "U-C007-048",
           "U-C007-064"
         ],
-        "coverage_status": "l9_oracle_witnessed"
+        "coverage_status": "l9_oracle_witnessed",
+        "local_probe_u_ids": [],
+        "local_probe_ids": []
       },
       {
         "rule_id": "unfinished",
@@ -5385,7 +5549,9 @@
           "U-C007-049",
           "U-C007-064"
         ],
-        "coverage_status": "l9_oracle_witnessed"
+        "coverage_status": "l9_oracle_witnessed",
+        "local_probe_u_ids": [],
+        "local_probe_ids": []
       },
       {
         "rule_id": "downstream_attempts",
@@ -5399,7 +5565,9 @@
           "U-C007-050",
           "U-C007-062"
         ],
-        "coverage_status": "l9_oracle_witnessed"
+        "coverage_status": "l9_oracle_witnessed",
+        "local_probe_u_ids": [],
+        "local_probe_ids": []
       },
       {
         "rule_id": "handoff_target",
@@ -5412,7 +5580,13 @@
         "case_u_ids": [
           "U-C007-057"
         ],
-        "coverage_status": "l9_oracle_witnessed"
+        "coverage_status": "l9_and_local_probe_witnessed",
+        "local_probe_u_ids": [
+          "U-C007-LP-020"
+        ],
+        "local_probe_ids": [
+          "LOCAL-C007-F02-OWNER-FIRST-APPEARANCE"
+        ]
       },
       {
         "rule_id": "unauthorized_attempt",
@@ -5425,7 +5599,23 @@
         "case_u_ids": [
           "U-C007-051"
         ],
-        "coverage_status": "l9_oracle_witnessed"
+        "coverage_status": "l9_and_local_probe_witnessed",
+        "local_probe_u_ids": [
+          "U-C007-LP-010",
+          "U-C007-LP-013",
+          "U-C007-LP-021",
+          "U-C007-LP-022",
+          "U-C007-LP-023",
+          "U-C007-LP-024"
+        ],
+        "local_probe_ids": [
+          "LOCAL-C007-F02-DOWNSTREAM-MISSING",
+          "LOCAL-C007-F02-DOWNSTREAM-NULL",
+          "LOCAL-C007-F02-DOWNSTREAM-NEGATIVE",
+          "LOCAL-C007-F02-DOWNSTREAM-FRACTION",
+          "LOCAL-C007-F02-DOWNSTREAM-BOOLEAN",
+          "LOCAL-C007-F02-DOWNSTREAM-LARGE-EXACT-NUMBER"
+        ]
       },
       {
         "rule_id": "stop_content",
@@ -5443,7 +5633,13 @@
           "U-C007-056",
           "U-C007-063"
         ],
-        "coverage_status": "l9_oracle_witnessed"
+        "coverage_status": "l9_and_local_probe_witnessed",
+        "local_probe_u_ids": [
+          "U-C007-LP-020"
+        ],
+        "local_probe_ids": [
+          "LOCAL-C007-F02-OWNER-FIRST-APPEARANCE"
+        ]
       },
       {
         "rule_id": "stop_position",
@@ -5454,9 +5650,37 @@
           "pointer": "/contract_views/F02/failure_rules/7"
         },
         "case_u_ids": [],
-        "coverage_status": "no_l9_oracle_witness; derived_needed_u_id",
-        "needed_u_id": "U-C007-RULE-F02-08",
-        "unverified_reason": "No L9 concrete case failure_reasons area was found for this rule; a dedicated unit oracle case is still needed."
+        "coverage_status": "local_probe_witnessed",
+        "local_probe_u_ids": [
+          "U-C007-LP-008",
+          "U-C007-LP-009"
+        ],
+        "local_probe_ids": [
+          "LOCAL-C007-F02-STOP-POSITION-ABSENT",
+          "LOCAL-C007-F02-STOP-POSITION-DUPLICATE"
+        ],
+        "upstream_basis_refs": [
+          {
+            "path": "docs/helix-connect/L3-requirements/functional-requirements.json",
+            "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+            "pointer": "/requirements/14"
+          },
+          {
+            "path": "docs/helix-connect/L10-verification/functional-verification.json",
+            "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+            "pointer": "/cases/14"
+          },
+          {
+            "path": "docs/helix-connect/L4-basic-design/composite-edge-terminal.json",
+            "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
+            "pointer": "/contracts/1"
+          },
+          {
+            "path": "docs/helix-connect/L5-detail-design/composite-edge-terminal.json",
+            "revision": "5e596eed9e7b0910b132d4a859e9c76fc2e8eac9",
+            "pointer": "/contract_views/F02/failure_rules/7"
+          }
+        ]
       },
       {
         "rule_id": "required_evidence_set",
@@ -5470,7 +5694,15 @@
           "U-C007-074",
           "U-C007-078"
         ],
-        "coverage_status": "l9_oracle_witnessed"
+        "coverage_status": "l9_and_local_probe_witnessed",
+        "local_probe_u_ids": [
+          "U-C007-LP-001",
+          "U-C007-LP-003"
+        ],
+        "local_probe_ids": [
+          "LOCAL-C007-N01-EXACT-DECLARED-SCOPE-THREE-BOUNDARY-EVIDENCE-READONLY-OWNER-PROBE",
+          "LOCAL-C007-N01-EXACT-DECLARED-SCOPE-THREE-BOUNDARY-EVIDENCE-Empty-Required-Evidence"
+        ]
       },
       {
         "rule_id": "evidence_target",
@@ -5491,7 +5723,13 @@
           "U-C007-073",
           "U-C007-079"
         ],
-        "coverage_status": "l9_oracle_witnessed"
+        "coverage_status": "l9_and_local_probe_witnessed",
+        "local_probe_u_ids": [
+          "U-C007-LP-016"
+        ],
+        "local_probe_ids": [
+          "LOCAL-C007-N01-MISSING-BEFORE-CONFLICT"
+        ]
       },
       {
         "rule_id": "evidence_cardinality_or_content",
@@ -5504,7 +5742,15 @@
         "case_u_ids": [
           "U-C007-076"
         ],
-        "coverage_status": "l9_oracle_witnessed"
+        "coverage_status": "l9_and_local_probe_witnessed",
+        "local_probe_u_ids": [
+          "U-C007-LP-016",
+          "U-C007-LP-018"
+        ],
+        "local_probe_ids": [
+          "LOCAL-C007-N01-MISSING-BEFORE-CONFLICT",
+          "LOCAL-C007-N01-SUBMITTED-EDGE-BINDING"
+        ]
       },
       {
         "rule_id": "evidence_observation",
@@ -5517,7 +5763,9 @@
         "case_u_ids": [
           "U-C007-075"
         ],
-        "coverage_status": "l9_oracle_witnessed"
+        "coverage_status": "l9_oracle_witnessed",
+        "local_probe_u_ids": [],
+        "local_probe_ids": []
       },
       {
         "rule_id": "edge_binding",
@@ -5530,7 +5778,13 @@
         "case_u_ids": [
           "U-C007-077"
         ],
-        "coverage_status": "l9_oracle_witnessed"
+        "coverage_status": "l9_and_local_probe_witnessed",
+        "local_probe_u_ids": [
+          "U-C007-LP-018"
+        ],
+        "local_probe_ids": [
+          "LOCAL-C007-N01-SUBMITTED-EDGE-BINDING"
+        ]
       },
       {
         "rule_id": "technical_content",
@@ -5541,9 +5795,35 @@
           "pointer": "/contract_views/B01/failure_rules/0"
         },
         "case_u_ids": [],
-        "coverage_status": "no_l9_oracle_witness; derived_needed_u_id",
-        "needed_u_id": "U-C007-RULE-B01-01",
-        "unverified_reason": "No L9 concrete case failure_reasons area was found for this rule; a dedicated unit oracle case is still needed."
+        "coverage_status": "local_probe_witnessed",
+        "local_probe_u_ids": [
+          "U-C007-LP-002"
+        ],
+        "local_probe_ids": [
+          "LOCAL-C007-B01-TECHNICAL-TERMINAL-BUSINESS-NOT-ACCEPTED-READONLY-OWNER-PROBE"
+        ],
+        "upstream_basis_refs": [
+          {
+            "path": "docs/helix-connect/L3-requirements/business-requirements.json",
+            "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+            "pointer": "/requirements/1"
+          },
+          {
+            "path": "docs/helix-connect/L10-verification/business-verification.json",
+            "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+            "pointer": "/cases/1"
+          },
+          {
+            "path": "docs/helix-connect/L4-basic-design/composite-edge-terminal.json",
+            "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
+            "pointer": "/contracts/3"
+          },
+          {
+            "path": "docs/helix-connect/L5-detail-design/composite-edge-terminal.json",
+            "revision": "5e596eed9e7b0910b132d4a859e9c76fc2e8eac9",
+            "pointer": "/contract_views/B01/failure_rules/0"
+          }
+        ]
       },
       {
         "rule_id": "business_content",
@@ -5560,7 +5840,13 @@
           "U-C007-085",
           "U-C007-089"
         ],
-        "coverage_status": "l9_oracle_witnessed"
+        "coverage_status": "l9_and_local_probe_witnessed",
+        "local_probe_u_ids": [
+          "U-C007-LP-002"
+        ],
+        "local_probe_ids": [
+          "LOCAL-C007-B01-TECHNICAL-TERMINAL-BUSINESS-NOT-ACCEPTED-READONLY-OWNER-PROBE"
+        ]
       },
       {
         "rule_id": "dependency_content",
@@ -5577,7 +5863,13 @@
           "U-C007-090",
           "U-C007-091"
         ],
-        "coverage_status": "l9_oracle_witnessed"
+        "coverage_status": "l9_and_local_probe_witnessed",
+        "local_probe_u_ids": [
+          "U-C007-LP-002"
+        ],
+        "local_probe_ids": [
+          "LOCAL-C007-B01-TECHNICAL-TERMINAL-BUSINESS-NOT-ACCEPTED-READONLY-OWNER-PROBE"
+        ]
       }
     ],
     "l9_basic_branches": [
@@ -6674,6 +6966,76 @@
         "fixture_only": true
       }
     ],
-    "coverage_boundary": "L9 expected failure_reasons are the only evidence used to attach a branch U-ID to an L5 failure_rule. A missing witness is explicitly marked and assigned a derived needed U-ID; this does not claim the missing case is present or executed."
+    "coverage_boundary": "All 91 L9 branches and 27 predeclared local probes are the same retained inventory (91+27+1+7+1=127); U-IDs are labels on those declarations, not additional cases. Rule evidence is attached only when its fixed L9 oracle or an already-recorded local expected_delta names the matching failure area. Unavailable expected source values are not synthesized.",
+    "local_probe_rule_derivations": [
+      {
+        "rule_ref": "F02:stop_position",
+        "local_probe_ids": [
+          "LOCAL-C007-F02-STOP-POSITION-ABSENT",
+          "LOCAL-C007-F02-STOP-POSITION-DUPLICATE"
+        ],
+        "local_probe_u_ids": [
+          "U-C007-LP-008",
+          "U-C007-LP-009"
+        ],
+        "basis_refs": [
+          {
+            "path": "docs/helix-connect/L3-requirements/functional-requirements.json",
+            "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+            "pointer": "/requirements/14"
+          },
+          {
+            "path": "docs/helix-connect/L10-verification/functional-verification.json",
+            "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+            "pointer": "/cases/14"
+          },
+          {
+            "path": "docs/helix-connect/L4-basic-design/composite-edge-terminal.json",
+            "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
+            "pointer": "/contracts/1"
+          },
+          {
+            "path": "docs/helix-connect/L5-detail-design/composite-edge-terminal.json",
+            "revision": "5e596eed9e7b0910b132d4a859e9c76fc2e8eac9",
+            "pointer": "/contract_views/F02/failure_rules/7"
+          }
+        ],
+        "expected_delta_source": "pre-existing expected_delta in the pinned base L8; static validator compares every delta byte-equivalent after source_ref expansion",
+        "boundary": "synthetic mutation only; not executed; no behavior qualification or effect"
+      },
+      {
+        "rule_ref": "B01:technical_content",
+        "local_probe_ids": [
+          "LOCAL-C007-B01-TECHNICAL-TERMINAL-BUSINESS-NOT-ACCEPTED-READONLY-OWNER-PROBE"
+        ],
+        "local_probe_u_ids": [
+          "U-C007-LP-002"
+        ],
+        "basis_refs": [
+          {
+            "path": "docs/helix-connect/L3-requirements/business-requirements.json",
+            "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+            "pointer": "/requirements/1"
+          },
+          {
+            "path": "docs/helix-connect/L10-verification/business-verification.json",
+            "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+            "pointer": "/cases/1"
+          },
+          {
+            "path": "docs/helix-connect/L4-basic-design/composite-edge-terminal.json",
+            "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
+            "pointer": "/contracts/3"
+          },
+          {
+            "path": "docs/helix-connect/L5-detail-design/composite-edge-terminal.json",
+            "revision": "5e596eed9e7b0910b132d4a859e9c76fc2e8eac9",
+            "pointer": "/contract_views/B01/failure_rules/0"
+          }
+        ],
+        "expected_delta_source": "pre-existing expected_delta in the pinned base L8; static validator compares every delta byte-equivalent after source_ref expansion",
+        "boundary": "synthetic mutation only; not executed; no behavior qualification or effect"
+      }
+    ]
   }
 }
