@@ -94,3 +94,21 @@
      - 順序付き state: `use_binding_state=conflict`（Join 1、`SEC005_F01_REQUEST_BINDING_CONFLICT`）、`use_binding_state=unresolved`（独立 class 集合照合、`SEC005_F01_CREDENTIAL_CLASS_UNRESOLVED_UNIT`）。2 件目の `unresolved` を縮約せず `contract_detail` に保持し、scalar `expected_state` は先頭 finding の `"conflict"`。
   4. `[6] SEC005_F01_CAPABILITY_TUPLE_BINDING_CONFLICT`、`[15] SEC005_F01_DUAL_OPERAND_CREDENTIAL_BINDING_UNRESOLVED`、`[16] SEC005_F01_BINDING_CONFLICT_WITH_INDEPENDENT_BINDING_UNRESOLVED`:
      - `expected_axis`: いずれも `["use_binding_state", "use_binding_state"]` とし、各 finding の順序付き state（`conflict`+`conflict`、`unresolved`+`unresolved`、`conflict`+`unresolved`）を保持。
+
+## 7. PR-B（`WR264-SEC005-L5L8-EXPLICIT`）：`explicit_negative_equivalence_classes` への移行・L4 二重表の折り畳み・L9 nested 撤去・L8 cap 1 解消
+
+- **コミット順序と pin 更新**:
+  1. **L4**（commit `504acbf6bb85ac50f4b2bb4216f18388a76fdefe`、SHA-256 `4c29fa8f0fd4d546fb6bbebcb70fa19f6743f09d516ef975e4c2e1dc0791a036`、`222,017` → `95,006` bytes、`-127,011` bytes）:
+     - `contracts[0..2].negative_classifications` とトップレベル `failure_classifications` の二重表を畳み、`failure_classifications`（26 class）を一本の表に統合（`new_parent_link`：`failure_classifications[*].design_ref` と `contracts[0..2].negative_class_refs`（17/9/0 件）、`"negative_equivalence_classes": {"source_rows": "failure_classifications"}`）。
+     - `unit_only_negative_classifications` は explicit 4-way に枠がないため L5 の `unit_only_negative_classifications` へ移管し、L4 から L8・旧 L9 nested への参照および冗長な自己参照 `source_pointers` を撤去。
+  2. **L9**（commit `4b77a14582c9c53ef93cc0ddeb67086c7bc1c83d`、SHA-256 `9f49e8a8d85fd64f05d01b2770263b0603505bc023e68509a2b2532145b79fa9`、`755,453` → `222,630` bytes、`-532,823` bytes）:
+     - `source_pins` に L4 pin を追加し、`negative_equivalence_classes`（26 class）と `integration_cases`（単一契約負例 69 行）を追加。
+     - `cases[0..2]` の nested 3 種（`negative_cases`・`positive_cases`・`source_case_refs`）および旧 `negative_class_assignment_audit`・L8 pointer を撤去し、`removed_materials` 6 keys に記録（`#4007` R2、`#4020` R1 F2）。
+  3. **L5**（commit `800d444b202c5dc17c1da22ce8e3d33d27cc0200`、SHA-256 `677f2ca980b1af08365b06447026d35403284b59fc5039321b5c0a8b8744da0c`、`122,989` → `137,775` bytes、`+14,786` bytes）:
+     - L4/L9 pin を更新し、`"negative_equivalence_classes": {"source_rows": "failure_rules"}`、`failure_rules`（L4 26 class と class key 一致）、および L4 から移した単体固有の負例分類 `unit_only_negative_classifications`（3 件）を追加。L5 に `unit_case_rows`・`expected_contract`・L8 case ID は置かない（`#4020` R1 F1）。
+  4. **L8**（SHA-256 `fb7f75101fb4e2444d66c8e0f17e0d6106b952520be967e4fd1373a86b3a7014`、`6,325,300` → `301,241` bytes、`-6,024,059` bytes）:
+     - L4/L9/L5 pin を更新し、`negative_equivalence_classes`（26 class）、L9 `integration_cases` 69 行と 1:1 の `unit_cases`（`U-SEC005-001..069`）、および L8 単独で保持する `standalone_unit_cases`（`U-SEC005-070..106`：正例 18 件＋unit 固有・複数契約負例 19 件）へ整理。
+     - U-ID 行と期待は L8 だけが持ち、期待は L3/L10/L4 と L5 の入出力の型から独立に導出（`DT-VT-105` 同源化禁止）。`l5_contract_expectation`・`expected_property`・`literal_materialization_contract`（L8 ownership cap failure 1 件を解消）・`original_case_chains`・`multi_contract_residual`・raw fixture・全返却・RFC6902 COPY・hash を撤去（`#4020` R1 F1）。
+- **検証結果**:
+  - `design_verification_checker.py check-child`: `comparison_mode = explicit_negative_equivalence_classes`、`parent_link_mode = new_parent_link`、`passed = true`、4way failures = 0、全層 ownership cap failures = 0、全層 pin failures = 0。
+  - 証拠ファイルは現行各 1 本とし、過去 revision・snapshot の commit と SHA-256 は `comparison.json#/pr_b_wr264_explicit_transition/historical_evidence_disposition` 1 本に集約（`#4008` R2、`#4009` R1）。

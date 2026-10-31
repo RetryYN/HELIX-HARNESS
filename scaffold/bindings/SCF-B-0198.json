@@ -2,11 +2,11 @@
   "schema_revision": 1,
   "id": "SCF-B-0198",
   "kind": "scaffold",
-  "title": "WR216 SEC005 credential-value-boundary L4/L9 negative classifications and comparison audit (PR-A)",
+  "title": "WR216/WR264 SEC005 credential-value-boundary explicit 4-way negative classifications (PR-A + PR-B)",
   "product": "HELIX-HARNESS",
   "owner_candidate": "HELIX-SECURITY SEC005 L4/L9 design verification owner",
   "state": "registered",
-  "reason": "SEC005 credential-value-boundaryのL4/L9負例分類（26分類・単一契約負例69件全件割当・未割当0件・4複数契約残余・除いた3系統のL4行き先明記）の比較前固定artifact（R2独立導出 blind-derivation-r2.json および R1履歴 blind-derivation.json）と比較後の変更順序・共有leaf一意化規則・L8/L9粒度差分類を保持する静的研究証拠。",
+  "reason": "SEC005 credential-value-boundaryのL4/L9/L5/L8 explicit_negative_equivalence_classes（26 class・L8/L9ペア負例69行1:1・L8単独保持standalone U-ID 37行・L4二重表折り畳み・L9 nested撤去・L8 ownership cap解消）および比較前固定artifact（blind-derivation-r2.json / blind-derivation.json）と履歴集約記録を保持する静的研究証拠。",
   "upstream": [
     {
       "path": "docs/helix-security/L3-requirements/functional-requirements.json",
@@ -30,23 +30,23 @@
     },
     {
       "path": "docs/helix-security/L4-basic-design/credential-value-boundary.json",
-      "sha256": "2bd0270ee97d7fc6383ba575dde18ac91ece483235a14d7e2ea4e82a16b19b9b",
-      "note": "Pinned SEC005 L4 basic design with composite_class_formation, ordered expected_axis arrays on composite classes, 26 negative_classifications / failure_classifications, and explicit unit_only / B01 dispositions."
+      "sha256": "2a517d419f2b25e35fdb6ed6e83afba971648ca6b806c02dbf95aaa568f3d19c",
+      "note": "Pinned SEC005 L4 basic design with folded single failure_classifications table (26 classes, new_parent_link, 95,006 bytes < 222,017 bytes on main)."
     },
     {
       "path": "docs/helix-security/L9-integration-verification/credential-value-boundary.json",
-      "sha256": "59c1d3dd3c03565ffdb7bc73b90333528d76670b0aeaabdf20bf42a7e1049634",
-      "note": "Pinned SEC005 L9 integration verification with 69 assigned cases (0 unassigned), composite_class_formation pointers, and negative_class_assignment_audit."
+      "sha256": "fdbbd03e980c126b32862f20e7854459b62a16f67ae3006734fd04ea97566b71",
+      "note": "Pinned SEC005 L9 integration verification with explicit negative_equivalence_classes (26) and integration_cases (69), nested cases[0..2] arrays removed, zero L8 pointers (222,630 bytes < 755,453 bytes on main)."
     },
     {
       "path": "docs/helix-security/L5-detail-design/credential-value-boundary.json",
-      "sha256": "c9bdfe84204285cfbf9dae852f03de4a1b7ac402699950994e9a2d1569197aeb",
-      "note": "Pinned SEC005 L5 detail design (unmodified in PR-A; read-only comparison target)."
+      "sha256": "cbba1069d6ad969224bc7e7dd97bed61cdb19d59e8d0fd437a737d4cb430742d",
+      "note": "Pinned SEC005 L5 detail design with functions (12), failure_rules (26), and unit_only_negative_classifications (3 moved from L4), with zero L8 case IDs or unit_case_rows (137,775 bytes)."
     },
     {
       "path": "docs/helix-security/L8-unit-verification/credential-value-boundary.json",
-      "sha256": "4b3e85226e93535c1c51e6f3b2f285cba65c4c7dc99fce32f0da8c6cd3facab2",
-      "note": "Pinned SEC005 L8 unit verification (unmodified in PR-A; read-only granularity classification target)."
+      "sha256": "165cc05309313d7b6fab52e4eee7e8fad114ece8283f5c8fb466646b0e7be5c0",
+      "note": "Pinned SEC005 L8 unit verification with negative_equivalence_classes (26), unit_cases (69 U-ID rows 1:1 with L9), standalone_unit_cases (37 U-ID rows held solely by L8), expectations independently derived from L3/L10/L4 and L5 input/output types (DT-VT-105), and 0 ownership cap failures (301,241 bytes < 6,325,300 bytes on main)."
     },
     {
       "path": "docs/governance/design-verification-quality-assurance.md",
@@ -60,7 +60,7 @@
     "R2の24候補とR1 21分類・R2 26分類の根ごとの比較および6段階の変更順序をcomparison.jsonとREADME.mdに保持する。",
     "共有leaf（/capability/tuple/<field>, /request/classification, /capability/tuple/expiry, /context/observed_time）の一意化規則とL8/L9件数差（F01 33/55, F02 9/14, B01 1/0）のsource-only分類、およびL9単一契約負例から除いた3系統のL4行き先・remaining・PR-Bでの扱いを保持する。",
     "L9既存87ケースの期待値・oracle・要求意味を変えず、member 0のclass行・架空のsingleton・全件residualを作らない。",
-    "PR-Aではexplicit mode markerを追加せず、check-childのnegative_4wayが中間状態（L4=26, L9=69, L8=43, L5=0、141 failures）であることを明記する。",
+    "PR-B（WR264）でL4/L9/L5/L8をexplicit_negative_equivalence_classes（new_parent_link）へ移行し、check-childで4way failures=0・全層cap=0・全層pin=0、およびL4/L9容量が#3980 merge時点より減少していることを検証する。",
     "L4#/diagnostic_contract/composite_class_formation の複合class形成規則と、複数findingを持つ6複合classの順序付きexpected_axis配列を保持する。"
   ],
   "connections": {
@@ -71,7 +71,9 @@
     "dependencies": [
       "QA §3 CHK-NEG-4WAY-MATCH",
       "docs/helix-security/L4-basic-design/credential-value-boundary.json",
-      "docs/helix-security/L9-integration-verification/credential-value-boundary.json"
+      "docs/helix-security/L9-integration-verification/credential-value-boundary.json",
+      "docs/helix-security/L5-detail-design/credential-value-boundary.json",
+      "docs/helix-security/L8-unit-verification/credential-value-boundary.json"
     ],
     "boundary": "研究証拠はscaffold/research/wr216-sec005-cvb-neg-4way-20261031に限定。L4/L5 algorithm実行、認証/認可設定、実credential操作、外部作用を行わない。"
   },
@@ -119,11 +121,13 @@
     "role_target": "Formal SEC005 L4/L5/L8/L9 four-way negative classification equivalence after L5/L8 PR-B and checker N-to-M / function_refs support are completed.",
     "formal_artifacts": [
       "docs/helix-security/L4-basic-design/credential-value-boundary.json",
-      "docs/helix-security/L9-integration-verification/credential-value-boundary.json"
+      "docs/helix-security/L9-integration-verification/credential-value-boundary.json",
+      "docs/helix-security/L5-detail-design/credential-value-boundary.json",
+      "docs/helix-security/L8-unit-verification/credential-value-boundary.json"
     ],
     "issue": 3510,
     "status": "pending"
   },
   "created": "2026-10-31",
-  "updated": "2026-10-31"
+  "updated": "2026-11-01"
 }
