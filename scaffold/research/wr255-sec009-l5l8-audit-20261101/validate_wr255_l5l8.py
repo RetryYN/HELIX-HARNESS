@@ -220,6 +220,8 @@ def main() -> int:
         if class_id not in l4_class_by_id or rule_id != class_id:
             fail(f"negative U-ID does not resolve to same L4 class/L5 rule: {case_id}")
         c4, rule = l4_class_by_id[class_id], l5_rule_by_id[rule_id]
+        if unit.get("function_ref") != rule.get("function_ref") or unit.get("target") != unit.get("function_ref"):
+            fail(f"negative U-ID function_ref does not resolve to its L5 owner: {case_id}")
         source_row = source_index_by_uid[unit["id"]]
         l9_pointer = source_row["l9_pointer"]
         l9_source_case = resolve_pointer(l9, l9_pointer)
