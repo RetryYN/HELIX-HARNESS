@@ -30,7 +30,7 @@
     },
     {
       "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
-      "sha256": "4a770515153fb97e2f5915af8308868450a22014d5739b996bc0ebf4a62db7db",
+      "sha256": "3f51b6af5c04d62fbda14e1e81b60c61871f114144b936c598af699767a264af",
       "note": "HARNESS-009 current L4 prose read in Step A R2 without algorithm execution; unchanged."
     },
     {
@@ -45,7 +45,7 @@
     },
     {
       "path": "docs/helix-harness/L9-integration-verification/product-template-application.json",
-      "sha256": "06c255043e143a0ddd23da750fede31ff6d3b4b1c94d854de22d07ff109c0d8b",
+      "sha256": "6cb7327279efccffc7f1978ae8d470bd854027aab27c2bc07d796490982d94d5",
       "note": "HARNESS-009 L9 cases/3 (HARNESS-L9-009-F05-EVIDENCE-DEF-LOOKUP-MISS) compared in Step B R2; unchanged."
     }
   ],
