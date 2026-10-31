@@ -80,3 +80,10 @@ python3 -B scaffold/tools/scfctl.py stale
 validatorは通常read-onlyでstdoutへ要約を出します。監査artifactを作るときだけ`--record`を付けます。出力先はcurrent L9 SHAを含む新規pathで、既存ファイルは上書きしません。
 
 今回の監査は[case section retirement audit](l9-nested-retirement-audit-bfcdd2c297c08458.json)です。285 nested rowの原文を再複製せず、固定revision/SHA、285 ID対応、共通given/when、現行L3/L10参照、L8 consumer、30 aliasと3履歴参照の検査結果を要約します。
+
+
+## R1修正版のlatest-main overlay
+
+2026-11-02にfresh `git fetch origin main` と `git ls-remote origin refs/heads/main` がともに `4b3dbea7185bb9720112e878da0f9922da32d9ad` を示したため、そのcommitを第1親に候補 `7996290b8987d148f1f87b2c133ceb16cb3932ae` をno-commit mergeし検証しました。L9撤去validator、L5/L8独立validator、両pair、4way 277 matched/0 failures、`scfctl validate` 208 bindings/0 failures、`scfctl stale` 0が通過し、read-only validator実行前後のworktree statusは不変でした。詳細は[overlay evidence](latest-main-overlay-4b3dbea-7996290b.json)を参照してください。
+
+L9 current SHA-256は`bfcdd2c297c08458043b7a78dd483faf7c87873774d3b0c321e65ca6cf1f5a6c`です。PR #4022で更新されたL5 pinとこのL9 pinを含めstale 0を確認しました。SCF-B-0209はR2固定参照とL4 nested payloadが残るためpendingです。

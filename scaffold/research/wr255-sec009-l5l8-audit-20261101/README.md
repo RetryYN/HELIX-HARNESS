@@ -88,6 +88,11 @@ python3 scaffold/research/wr255-sec009-l5l8-audit-20261101/validate_pointer_tran
 現行検証は `validate_l5_pointer_redirect.py` です。通常実行はread-onlyで、`--record PATH` は新規ファイルのみexclusive createします。 [current redirect audit](l5-pointer-redirect-audit-r2-13f16113cafb-00376c402930.json) は30件の型・値projection、30 nested pointer除去、30 canonical pointer保持、32 L5 ruleのうち変更対象30行だけpointer-only変更を確認します。既存 `validate_pointer_transfer.py` と `pointer-transfer-audit-49875dcdb4bc-e918a289fe88.json` は変更せず移行前の時点証拠として保持します。この監査のL9 583件という記述は当時値です。現行L9は別V-pair監査 `../wr255-sec009-l9-transfer-20261101/validate_l9_nested_retirement.py` で確認します。L4 nested payloadとSCF-B-0209は保持します。
 
 
-## latest-main overlay (2026-11-01)
+## 固定履歴: latest-main overlay (2026-11-01)
 
-`origin/main` `8ca99d8afcfcca2e5240afb992289ea8c80c41a6` をno-commit overlayした時点でredirect validatorとL5/L8 validatorがpass。`check-child`はL4/L9 pair、L5/L8 pairともpass、negative 277 matched / 0 failures。`scfctl validate`は208 bindings / 0 failures、`scfctl stale`は0。測定時のsource SHAとコマンドは[統合disposition](measurement-artifact-disposition.json)に記録しています。L9 nested pointer 583件は残存し、SCF-B-0209はregisteredのままです。
+`origin/main` `8ca99d8afcfcca2e5240afb992289ea8c80c41a6` をno-commit overlayした時点でredirect validatorとL5/L8 validatorがpass。`check-child`はL4/L9 pair、L5/L8 pairともpass、negative 277 matched / 0 failures。`scfctl validate`は208 bindings / 0 failures、`scfctl stale`は0。測定時のsource SHAとコマンドは[統合disposition](measurement-artifact-disposition.json)に記録しています。これはPR #4018 R1前の固定時点です。L9 nested case sections撤去後の現行overlayは[2026-11-02 evidence](../wr255-sec009-l9-transfer-20261101/latest-main-overlay-4b3dbea-7996290b.json)で再測定し、L9 nested case sourceは固定revisionから、現行integration rowsはL8 U-IDから照合します。
+
+
+## 2026-11-02 latest-main overlay
+
+L9 case section撤去後、latest `origin/main` `4b3dbea7185bb9720112e878da0f9922da32d9ad`を第1親にL9/L5-L8候補をno-commit mergeして検証しました。L9 validator、L5/L8 validator、check-childの両pair、4way 277 matched/0 failures、`scfctl validate` 208 bindings/0 failures、`scfctl stale` 0です。L9 nested `given`だけは固定revision `22076e0c0f5aa3fe7b8933dfa556565900623487`から読み、現行L8 `integration_case_ref`と現行L9 `integration_cases` 285件を独立比較しています。詳細とoverlay treeは[別L4/L9 pair evidence](../wr255-sec009-l9-transfer-20261101/latest-main-overlay-4b3dbea-7996290b.json)を参照してください。
