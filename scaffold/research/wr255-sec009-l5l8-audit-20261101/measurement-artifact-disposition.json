@@ -742,5 +742,45 @@
       "pointer-transfer-audit-5ecefbc3aa0c-e918a289fe88.json",
       "l5-pointer-redirect-audit-r3-13f16113cafb-00376c402930-5ecefbc3.json"
     ]
+  },
+  "final_committed_candidate_overlay": {
+    "overlay_base_commit": "0e218828fbb3b487eff1469cd57ead8e3dfa7b67",
+    "tested_candidate_commit": "48eb36d7b",
+    "overlay_construction": "fresh fetch/ls-remoteでorigin/mainを確認し、latest mainを第1親にした一時worktreeで候補commitをgit merge --no-commit --no-ff。自動merge成功、overlay commitなし。",
+    "commands": [
+      "python3 scaffold/research/wr255-sec009-l5l8-audit-20261101/validate_wr255_l5l8.py",
+      "python3 scaffold/research/wr255-sec009-l5l8-audit-20261101/validate_pointer_transfer.py",
+      "python3 scaffold/research/wr255-sec009-l5l8-audit-20261101/validate_l5_pointer_redirect.py",
+      "python3 scaffold/tools/design_verification_checker.py check-child --root . --l4 docs/helix-security/L4-basic-design/revoke-quarantine-propagation.json --l9 docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json --l5 docs/helix-security/L5-detail-design/revoke-quarantine-propagation.json --l8 docs/helix-security/L8-unit-verification/revoke-quarantine-propagation.json",
+      "python3 -B scaffold/tools/scfctl.py validate",
+      "python3 -B scaffold/tools/scfctl.py stale"
+    ],
+    "source_sha256": {
+      "L4": "00376c402930e1287e9e0e896804b1de8a20390f8abbea8377b70712f868b9da",
+      "L5": "13f16113cafb4b27b6f03c6a79797a260776c022c48f75ebaaf0220b8830baec",
+      "L8": "5ecefbc3aa0c140ba0b77a2e28194f98deebb641ce04435f42d16dc267c71f39",
+      "L9": "e918a289fe88446b3f84210577f0fe8094505d9dac9d9a8713cd074eb6776e5b",
+      "checker": "e751526d67cd8df11e5aac1c5a1a178dfbd0fecc3f2ed21f995b7dda11ea4d5d"
+    },
+    "results": {
+      "L4_L9_pair": "pass",
+      "L5_L8_pair": "pass",
+      "negative_4way_matched": 277,
+      "negative_4way_failures": 0,
+      "fixed_L9_old_refs_resolved": 13,
+      "current_integration_rows_resolved": 10,
+      "negative_type_value_comparisons": 5,
+      "CHK_JSON_POINTER_checked": 969,
+      "CHK_JSON_POINTER_failures": 0,
+      "L9_raw_nested_pointer_strings_remaining": 583,
+      "SCF_B_0209": "registered; not retired",
+      "scfctl_validate_bindings": 210,
+      "scfctl_validate_failures": 0,
+      "scfctl_stale": 0,
+      "read_only_worktree_status_unchanged": true,
+      "positive_contract_minimum_designed_not_observed": 8,
+      "individual_oracle_and_test_citation": "null"
+    },
+    "read_only_status_sha256": "e0dd6786b1ffc18f5603631c8894372e97f37f5522b4fb5bf4fda2ee3a223847"
   }
 }
