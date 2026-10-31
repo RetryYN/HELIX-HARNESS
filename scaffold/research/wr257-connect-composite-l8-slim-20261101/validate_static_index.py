@@ -347,7 +347,7 @@ def main() -> None:
     assert 'coverage' not in current['l5_unit_traceability']['coverage_boundary']
     for derivation in current['l5_unit_traceability']['local_probe_rule_derivations']:
         assert '固定基準revision' in derivation['expected_delta_source']
-        assert 'not_executed' in derivation['boundary'] and 'DT-VT-105' in derivation['boundary']
+        assert '未実行' in derivation['boundary'] and 'DT-VT-105' in derivation['boundary']
     head = subprocess.check_output(['git', 'rev-parse', 'HEAD'], cwd=ROOT, text=True).strip()
     check_child_candidates = []
     for report_path in sorted((ROOT / CHECK_CHILD_DIR).glob('merge-overlay-check-child-*.json')):
