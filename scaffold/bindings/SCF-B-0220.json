@@ -6,7 +6,7 @@
   "product": "HELIX-HARNESS",
   "owner_candidate": "SEC009 L5/L8 independent row and class audit evidence owner",
   "state": "registered",
-  "reason": "Issue #3510 WR255 follow-up: retain the 285-row L8 to L9 source-ID crosswalk under unique U-IDs, audit all 32 classes against L4/L5/L8/L9, record unresolved positive expectations and the current check-child result without claiming four-way completion.",
+  "reason": "Issue #3510 WR255追補: 285行のL8-L9 source ID対応を専用U-IDで保持し、32 classをL4/L5/L8/L9で監査する。positive 8行はL3/L10/L4と抽象case markerから契約最小期待を設計し、未観測と個別oracle未確認を区別して記録する。4way完了は主張しない。",
   "upstream": [
     {
       "path": "docs/helix-security/L3-requirements/business-requirements.json",
@@ -44,6 +44,11 @@
       "note": "Pinned source for static SEC009 L5/L8 ID, class, contract-source, or child-check comparison; no runtime semantics are executed."
     },
     {
+      "path": "docs/helix-security/L10-verification/functional-verification.json",
+      "sha256": "e6da7eaff29a623b5d069801280c295d9dd7cc43b51d9cde25b12a8110e5072a",
+      "note": "F02契約oracleと局所性の確認元。実行・case別観測の根拠ではない。"
+    },
+    {
       "path": "docs/governance/design-verification-quality-assurance.md",
       "sha256": "f5751e236dc073fe67114c1fcb4b0f64b3d746290b25d75b61e60a08e3c99c85",
       "note": "Pinned source for static SEC009 L5/L8 ID, class, contract-source, or child-check comparison; no runtime semantics are executed."
@@ -60,7 +65,7 @@
     "Resolve all 285 L8 U-IDs through the L8 shared source index to exactly 285 current L9 integration source IDs and pointers.",
     "Independently compare all 32 L4/L5/L8/L9 class identities and shared values; retain stable L5 rule IDs and validate the L5 owner function against its contract declarations.",
     "For each negative U-ID, compare condition, expected, and expected_preserved to its L4 classification; do not derive these fields from L9 expected_proposal.",
-    "Keep eight positive expectations unclosed unless case-specific L3/L10/L4 source facts support an independent expected result; keep row oracle_id and test_citation null where no row source is provided.",
+    "case markerとL3/L10/L4契約から導いたpositive 8行の最小期待を保持し、実測未観測とcase-specific入力不足を明示する。個別oracle_idとtest_citationは根拠がない行でnullのままにする。",
     "Record contract-level L10 oracle refs separately from individual U-ID oracle IDs and preserve the current static check-child report, including its failures.",
     "Keep this evidence scaffold-only; do not treat static results as runtime, security behavior, approval, or formal 4-way completion."
   ],
@@ -110,9 +115,9 @@
     "oracles": [
       "Validator checks 32 stable class IDs and shared classifications across L4/L5/L8/L9, plus L4/L5 condition/preserved values and owner resolution.",
       "Validator checks 285 unique L8 U-IDs in one-to-one order with 285 L9 source IDs and resolves each shared source pointer.",
-      "Validator checks 277 negative row expectations against the referenced L4 class; eight positive row expected fields remain null.",
+      "Validator checks 277 negative row expectations against the referenced L4 class and each positive minimum expectation against its shared contract basis; individual oracle/test citation remain null.",
       "Validator resolves positive source identities at L3 business /requirements/2, L3 functional /requirements/21 and /requirements/22, L10 business /cases/2, and L4 /contracts/0.",
-      "Validator reruns static check-child and stores the full report: L4/L9 pass, L5/L8 pass, 4-way matched count 0, failures 2235."
+      "positive期待を含む現candidateのpair-only check-childはL4/L9 pass、L5/L8 pass、4way matched 0、negative_4way failures 2243。L9補足を含む統合計測は別V-pair validatorで行う。"
     ],
     "negative_cases": [
       "Do not infer individual oracle IDs or test citations from a contract-level L10 ref.",

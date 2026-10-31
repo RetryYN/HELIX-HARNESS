@@ -22,11 +22,13 @@ class tableをaxis、state、owner、expected classificationの共有元とし�
 
 validatorはnegative 277行それぞれのL9 nested pointerを解決します。全givenに共通の `evidence_limit` があるだけで、具体的なidentity値やconflict値は含まれていません。そこでcounterexampleはsource case markerにある対象・不足またはconflictの種類とL4 classの意味を説明します。実際値は記録・推測していません。
 
-## positive行の根拠境界
+## positive行の最小期待と根拠境界
 
-8件のpositive IDすべてについてcanonical L9 nested sourceを読み直しました。各 `given` は同じ `evidence_limit` fieldだけを持ち、`when` も契約単位のphase/recipient処理を記すにとどまり、行固有の入力事実を補いません。L3とL10には契約単位の義務・oracleがあり、L4には契約がありますが対応するpositive class rowはありません。別V-pairのL4/L9候補もpositive行を未確定のまま残します。そのためL8の `condition`、`expected`、`expected_preserved` はnullです。L9 `expected_proposal` から期待値を推測していません。
+8件のpositive IDについてcanonical L9 nested sourceを確認しました。各 `given` は共通 `evidence_limit` のみで、case-specific fixture値や実観測を含みません。L9 `expected_proposal` は期待値の根拠に使っていません。代わりにcase markerの抽象条件とL3/L10/L4契約から、結果値を作らない最小意味を設計し、各U-IDに `condition`、`expected`、`expected_preserved` と共有の `positive_expectation_ref` を記録しました。
 
-各positive U-IDについてL3 business/functional source identity、L10 business case、L4 B01 contract、L9 nested pointer、given digestを `verification-summary.json` に記録します。`HELIXSECURITY-L10-009-B01` は契約単位system oracleです。個別U-IDのoracleは未確認でnullです。test citationも根拠に見つからないためnullです。
+5件の `ONLY-…-UNSELECTED-ABSENT` は、case markerが示す対象recipientの不在を選択閉包の不足や任意operation開始条件へ広げない期待です。`EMPTY-RECIPIENT-SET` は、独立期待集合と選択集合が空として解決する場合のrecipient別空出力を扱います。`OS-OFFLINE-INDEPENDENT-RECOVERY-SELECTION` は、独立復旧経路に停止中OSや通常009応答を普遍的前提とせず、隔離と復旧素材を分ける期待です。F02の一般文書meaning unknownは全操作・全scope停止へ拡張せず、unknownから安全分類を作らない期待です。
+
+これらは契約最小期待の設計であり、行固有fixtureによる実測ではありません。期待の共有根拠pointerはL3 B01/F02、L10 B01/F02、L4 B01/F02とF02 architectureです。`HELIXSECURITY-L10-009-B01/F02` は契約単位system oracleであり、個別U-ID oracleは未確認でnullです。test citationも根拠に見つからないためnullです。
 
 ## check-childの計測結果
 
@@ -36,6 +38,6 @@ validatorはnegative 277行それぞれのL9 nested pointerを解決します。
 - L5/L8 pair: pass
 - 4層matched cases: 0
 - 4層のfailure: 2,235
-- positive未確定: 8
+- positive最小期待の設計済み（実測未観測）: 8
 
 このpair単独の結果ではL9行のcondition/expected/expected_preservedとcompact observationが不足するため、negative行はmatchedになりません。L4/L9補足を組み合わせたoverlayは別の候補と検証結果として扱い、正式な4層検証やsecurity behaviorの証明とはしません。

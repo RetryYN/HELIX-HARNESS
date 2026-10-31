@@ -24,6 +24,7 @@ FILES = {
     "l8": "docs/helix-security/L8-unit-verification/revoke-quarantine-propagation.json",
     "l9": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
     "l10_business": "docs/helix-security/L10-verification/business-verification.json",
+    "l10_functional": "docs/helix-security/L10-verification/functional-verification.json",
     "checker": "scaffold/tools/design_verification_checker.py",
 }
 SHARED_CLASS_FIELDS = (
@@ -34,6 +35,16 @@ SHARED_CLASS_FIELDS = (
     "expected_state",
     "side_effect_count",
 )
+POSITIVE_EXPECTATION_REFS = {
+    "SEC009-ONLY-OS_ASSIGNMENT-UNSELECTED-ABSENT": "positive_expectation_basis/rules/B01_UNSELECTED_ABSENT",
+    "SEC009-ONLY-WORKER_EXECUTION-UNSELECTED-ABSENT": "positive_expectation_basis/rules/B01_UNSELECTED_ABSENT",
+    "SEC009-ONLY-CONNECT_COMMUNICATION-UNSELECTED-ABSENT": "positive_expectation_basis/rules/B01_UNSELECTED_ABSENT",
+    "SEC009-ONLY-CREDENTIAL_USE-UNSELECTED-ABSENT": "positive_expectation_basis/rules/B01_UNSELECTED_ABSENT",
+    "SEC009-ONLY-ARTIFACT_ACCESS-UNSELECTED-ABSENT": "positive_expectation_basis/rules/B01_UNSELECTED_ABSENT",
+    "SEC009-EMPTY-RECIPIENT-SET": "positive_expectation_basis/rules/B01_EMPTY_RECIPIENT_SET",
+    "SEC009-OS-OFFLINE-INDEPENDENT-RECOVERY-SELECTION": "positive_expectation_basis/rules/B01_INDEPENDENT_RECOVERY",
+    "SEC009-GENERAL-MEANING-UNKNOWN": "positive_expectation_basis/rules/F02_GENERAL_MEANING_UNKNOWN",
+}
 
 
 def fail(message: str) -> None:
@@ -87,7 +98,7 @@ def main() -> int:
 
     sources = {name: load_json(path) for name, path in FILES.items() if name != "checker"}
     l3b, l3f = sources["l3_business"], sources["l3_functional"]
-    l4, l5, l8, l9, l10 = (sources[k] for k in ("l4", "l5", "l8", "l9", "l10_business"))
+    l4, l5, l8, l9, l10, l10f = (sources[k] for k in ("l4", "l5", "l8", "l9", "l10_business", "l10_functional"))
 
     rows_by_layer = {
         "L4": l4.get("failure_classifications", []),
@@ -194,8 +205,15 @@ def main() -> int:
         if unit["population_state"] == "positive":
             if any(key in unit for key in ("negative_class_ref", "rule_ref")):
                 fail(f"positive case has a negative class/rule ref: {case_id}")
-            if unit.get("expected") is not None or unit.get("expected_preserved") is not None or unit.get("condition") is not None:
-                fail(f"unresolved positive case contains an invented expected result: {case_id}")
+            expectation_ref = POSITIVE_EXPECTATION_REFS.get(case_id)
+            if unit.get("positive_expectation_ref") != expectation_ref:
+                fail(f"positive minimum expectation does not resolve to its contract rule: {case_id}")
+            if not isinstance(unit.get("condition"), dict) or not isinstance(unit.get("expected"), dict) or not isinstance(unit.get("expected_preserved"), dict):
+                fail(f"positive minimum contract expectation is missing: {case_id}")
+            if unit.get("expected_result_status") != "contract_minimum_designed_not_observed":
+                fail(f"positive expectation is not marked as unobserved: {case_id}")
+            if unit.get("oracle_id") is not None or unit.get("test_citation") is not None:
+                fail(f"positive row has a fabricated individual oracle or test citation: {case_id}")
             if unit.get("counterexample") is not None:
                 fail(f"positive U-ID has a counterexample label: {case_id}")
             source_pointer = next(x["pointer"] for x in source["source_pointers"] if x["path"].endswith("revoke-quarantine-propagation.json"))
@@ -208,11 +226,15 @@ def main() -> int:
                 "l9_given_keys": sorted(given),
                 "l9_given_sha256": hashlib.sha256(json.dumps(given, ensure_ascii=False, sort_keys=True, separators=(",", ":")).encode()).hexdigest(),
                 "l3_sources": ["business-requirements.json:/requirements/2", "functional-requirements.json:/requirements/21", "functional-requirements.json:/requirements/22"],
-                "l10_source": "business-verification.json:/cases/2",
-                "l4_source": "revoke-quarantine-propagation.json:/contracts/0",
-                "individual_expected_result": "unclosed; L9 given exposes only the shared evidence_limit field, and L3/L10/L4 sources provide contract-level obligations without these case-specific input facts",
+                "l10_source": "business-verification.json:/cases/2" if unit["contract_ref"].endswith("B01") else "functional-verification.json:/cases/22",
+                "l4_source": "revoke-quarantine-propagation.json:/contracts/0" if unit["contract_ref"].endswith("B01") else "revoke-quarantine-propagation.json:/contracts/2",
+                "condition": unit["condition"],
+                "expected": unit["expected"],
+                "expected_preserved": unit["expected_preserved"],
+                "expectation_ref": expectation_ref,
+                "individual_expected_result": "contract-derived minimum meaning is designed from the case marker and L3/L10/L4; case-specific inputs are absent, so this is not a measured result",
             })
-            row_audit.append({"uid": unit["id"], "case_id": case_id, "population_state": "positive", "expectation": "unclosed"})
+            row_audit.append({"uid": unit["id"], "case_id": case_id, "population_state": "positive", "expectation": unit["expected"], "expectation_status": unit["expected_result_status"]})
             continue
         if unit["population_state"] != "negative":
             fail(f"unknown population state: {case_id}")
@@ -257,7 +279,7 @@ def main() -> int:
 
     l3_ids = {row.get("id") for row in l3b.get("requirements", [])}
     l3_ids |= {row.get("id") for row in l3f.get("requirements", [])}
-    l10_ids = {row.get("id") for row in l10.get("cases", [])}
+    l10_ids = {row.get("id") for row in l10.get("cases", [])} | {row.get("id") for row in l10f.get("cases", [])}
     if not {"HELIXSECURITY-L3-009-B01", "HELIXSECURITY-L3-009-F01", "HELIXSECURITY-L3-009-F02"}.issubset(l3_ids):
         fail("positive review L3 source identities do not resolve")
     if "HELIXSECURITY-L10-009-B01" not in l10_ids:
@@ -267,11 +289,23 @@ def main() -> int:
         (l3f, "/requirements/21", "HELIXSECURITY-L3-009-F01"),
         (l3f, "/requirements/22", "HELIXSECURITY-L3-009-F02"),
         (l10, "/cases/2", "HELIXSECURITY-L10-009-B01"),
+        (l10f, "/cases/22", "HELIXSECURITY-L10-009-F02"),
         (l4, "/contracts/0", "HELIXSECURITY-L4-009-B01"),
     ]
     for source_doc, pointer, expected_id in positive_source_checks:
         if resolve_pointer(source_doc, pointer).get("id") != expected_id:
             fail(f"positive review pointer does not resolve to {expected_id}: {pointer}")
+    positive_basis = l8.get("positive_expectation_basis", {})
+    if positive_basis.get("authority_effect") != "none" or not positive_basis.get("source_refs"):
+        fail("positive minimum expectation source basis is missing or has authority effect")
+    for ref in positive_basis["source_refs"]:
+        source_doc = sources.get(next((key for key, path in FILES.items() if path == ref["path"]), ""))
+        if source_doc is None or resolve_pointer(source_doc, ref["pointer"]) is None:
+            fail(f"positive expectation source pointer does not resolve: {ref}")
+    for key in set(POSITIVE_EXPECTATION_REFS.values()):
+        rule_key = key.rsplit("/", 1)[-1]
+        if rule_key not in positive_basis.get("rules", {}):
+            fail(f"positive expectation basis rule is missing: {key}")
 
     checker_args = [
         sys.executable,
@@ -292,7 +326,9 @@ def main() -> int:
     write_immutable_json(audit_dir / check_report_name, checker_report)
     negative = checker_report["negative_4way"]
     reasons = Counter(item.get("reason", "unknown") for item in negative.get("failures", []))
-    expected_failure_count = 2235
+    # This pair-only comparison includes one unmatched row-level condition per
+    # positive case because the L5/L8 branch does not consume the L4/L9 overlay.
+    expected_failure_count = 2243
     if check.returncode != 1 or checker_report.get("passed") is not False or negative.get("matched_case_count") != 0 or len(negative.get("failures", [])) != expected_failure_count:
         fail("check-child observation differs from the recorded incomplete outcome")
     if not checker_report.get("L5_L8_pair", {}).get("passed"):
@@ -304,7 +340,7 @@ def main() -> int:
         "authority_effect": "none",
         "source_revision": source_revision,
         "source_hashes": {name: sha256(path) for name, path in FILES.items()},
-        "counts": {"classes_per_layer": 32, "l8_u_ids": 285, "l9_source_case_ids": 285, "negative": negative_count, "positive_unclosed": len(positives)},
+        "counts": {"classes_per_layer": 32, "l8_u_ids": 285, "l9_source_case_ids": 285, "negative": negative_count, "positive_contract_minimum_designed_not_observed": len(positives)},
         "class_audit": class_audit,
         "row_audit": row_audit,
         "negative_source_review": {
@@ -315,7 +351,7 @@ def main() -> int:
             "case_id_and_pointer_are_in_row_audit": True,
         },
         "positive_source_review": {
-            "summary": "No positive expected values were copied from L9 expected_proposal. The eight current L9 source cases provide only the shared evidence_limit input field; no case-specific input facts support independent expected/preserved values under the cited L3/L10/L4 contracts.",
+            "summary": "No positive expected values were copied from L9 expected_proposal. A minimum positive contract expectation was derived independently from each abstract case marker and the cited L3/L10/L4 meaning. L9 given still provides only the shared evidence_limit field, so the designed expectations are not fixture-backed or observed outcomes.",
             "contract_oracle": "HELIXSECURITY-L10-009-B01 is resolved at contract level; individual oracle_id is null for each U-ID.",
             "resolved_contract_sources": [
                 {"layer": "L3", "id": "HELIXSECURITY-L3-009-B01", "path": FILES["l3_business"], "pointer": "/requirements/2"},
@@ -337,7 +373,7 @@ def main() -> int:
             "negative_4way_failure_count": len(negative.get("failures", [])),
             "negative_4way_failure_reasons": dict(sorted(reasons.items())),
             "full_report": check_report_name,
-            "interpretation": "L5/L8 pair passes; 4-way remains incomplete because L9 row-level expected/condition/preserved and compact observations are absent, plus class key alignment failures. This evidence does not claim formal verification.",
+            "interpretation": "L5/L8 pair passes; 4-way remains incomplete because the canonical L9 branch has not yet been refreshed with matching positive minimum expectations and compact observations, plus class key alignment failures. This evidence does not claim formal verification.",
         },
     }
     report_name = f"verification-summary-{report_stem}.json"

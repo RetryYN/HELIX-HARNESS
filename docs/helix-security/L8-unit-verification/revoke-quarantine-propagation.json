@@ -31737,10 +31737,24 @@
       "test_citation": null,
       "contract_ref": "HELIXSECURITY-L5-009-B01",
       "population_state": "positive",
-      "condition": null,
-      "expected": null,
-      "expected_preserved": null,
-      "expected_result_status": "unclosed_no_case_specific_positive_expectation_in_L3_L10_L4"
+      "condition": {
+        "scenario": "unselected_recipient_absent",
+        "recipient": "os_assignment",
+        "premise_status": "case_marker_only_not_observed"
+      },
+      "expected": {
+        "recipient_scope": "選択recipientだけを照合する。未選択recipientの能力不在を選択閉包の不足にしない。",
+        "operation_start": "全recipient能力の完成を任意operation開始条件にしない。"
+      },
+      "expected_preserved": {
+        "unrelated_scope": "全scope停止へ広げない。",
+        "actual_stop": "none",
+        "actual_recovery": "none",
+        "resume_authorized": false,
+        "operation_effect": "none"
+      },
+      "expected_result_status": "contract_minimum_designed_not_observed",
+      "positive_expectation_ref": "positive_expectation_basis/rules/B01_UNSELECTED_ABSENT"
     },
     {
       "id": "SEC009-U0002",
@@ -31753,10 +31767,24 @@
       "test_citation": null,
       "contract_ref": "HELIXSECURITY-L5-009-B01",
       "population_state": "positive",
-      "condition": null,
-      "expected": null,
-      "expected_preserved": null,
-      "expected_result_status": "unclosed_no_case_specific_positive_expectation_in_L3_L10_L4"
+      "condition": {
+        "scenario": "unselected_recipient_absent",
+        "recipient": "worker_execution",
+        "premise_status": "case_marker_only_not_observed"
+      },
+      "expected": {
+        "recipient_scope": "選択recipientだけを照合する。未選択recipientの能力不在を選択閉包の不足にしない。",
+        "operation_start": "全recipient能力の完成を任意operation開始条件にしない。"
+      },
+      "expected_preserved": {
+        "unrelated_scope": "全scope停止へ広げない。",
+        "actual_stop": "none",
+        "actual_recovery": "none",
+        "resume_authorized": false,
+        "operation_effect": "none"
+      },
+      "expected_result_status": "contract_minimum_designed_not_observed",
+      "positive_expectation_ref": "positive_expectation_basis/rules/B01_UNSELECTED_ABSENT"
     },
     {
       "id": "SEC009-U0003",
@@ -31769,10 +31797,24 @@
       "test_citation": null,
       "contract_ref": "HELIXSECURITY-L5-009-B01",
       "population_state": "positive",
-      "condition": null,
-      "expected": null,
-      "expected_preserved": null,
-      "expected_result_status": "unclosed_no_case_specific_positive_expectation_in_L3_L10_L4"
+      "condition": {
+        "scenario": "unselected_recipient_absent",
+        "recipient": "connect_communication",
+        "premise_status": "case_marker_only_not_observed"
+      },
+      "expected": {
+        "recipient_scope": "選択recipientだけを照合する。未選択recipientの能力不在を選択閉包の不足にしない。",
+        "operation_start": "全recipient能力の完成を任意operation開始条件にしない。"
+      },
+      "expected_preserved": {
+        "unrelated_scope": "全scope停止へ広げない。",
+        "actual_stop": "none",
+        "actual_recovery": "none",
+        "resume_authorized": false,
+        "operation_effect": "none"
+      },
+      "expected_result_status": "contract_minimum_designed_not_observed",
+      "positive_expectation_ref": "positive_expectation_basis/rules/B01_UNSELECTED_ABSENT"
     },
     {
       "id": "SEC009-U0004",
@@ -31785,10 +31827,24 @@
       "test_citation": null,
       "contract_ref": "HELIXSECURITY-L5-009-B01",
       "population_state": "positive",
-      "condition": null,
-      "expected": null,
-      "expected_preserved": null,
-      "expected_result_status": "unclosed_no_case_specific_positive_expectation_in_L3_L10_L4"
+      "condition": {
+        "scenario": "unselected_recipient_absent",
+        "recipient": "credential_use",
+        "premise_status": "case_marker_only_not_observed"
+      },
+      "expected": {
+        "recipient_scope": "選択recipientだけを照合する。未選択recipientの能力不在を選択閉包の不足にしない。",
+        "operation_start": "全recipient能力の完成を任意operation開始条件にしない。"
+      },
+      "expected_preserved": {
+        "unrelated_scope": "全scope停止へ広げない。",
+        "actual_stop": "none",
+        "actual_recovery": "none",
+        "resume_authorized": false,
+        "operation_effect": "none"
+      },
+      "expected_result_status": "contract_minimum_designed_not_observed",
+      "positive_expectation_ref": "positive_expectation_basis/rules/B01_UNSELECTED_ABSENT"
     },
     {
       "id": "SEC009-U0005",
@@ -31801,10 +31857,24 @@
       "test_citation": null,
       "contract_ref": "HELIXSECURITY-L5-009-B01",
       "population_state": "positive",
-      "condition": null,
-      "expected": null,
-      "expected_preserved": null,
-      "expected_result_status": "unclosed_no_case_specific_positive_expectation_in_L3_L10_L4"
+      "condition": {
+        "scenario": "unselected_recipient_absent",
+        "recipient": "artifact_access",
+        "premise_status": "case_marker_only_not_observed"
+      },
+      "expected": {
+        "recipient_scope": "選択recipientだけを照合する。未選択recipientの能力不在を選択閉包の不足にしない。",
+        "operation_start": "全recipient能力の完成を任意operation開始条件にしない。"
+      },
+      "expected_preserved": {
+        "unrelated_scope": "全scope停止へ広げない。",
+        "actual_stop": "none",
+        "actual_recovery": "none",
+        "resume_authorized": false,
+        "operation_effect": "none"
+      },
+      "expected_result_status": "contract_minimum_designed_not_observed",
+      "positive_expectation_ref": "positive_expectation_basis/rules/B01_UNSELECTED_ABSENT"
     },
     {
       "id": "SEC009-U0006",
@@ -31817,10 +31887,24 @@
       "test_citation": null,
       "contract_ref": "HELIXSECURITY-L5-009-B01",
       "population_state": "positive",
-      "condition": null,
-      "expected": null,
-      "expected_preserved": null,
-      "expected_result_status": "unclosed_no_case_specific_positive_expectation_in_L3_L10_L4"
+      "condition": {
+        "scenario": "empty_recipient_set",
+        "premise": "独立期待集合とpolicy.selected_recipientsが空として解決する場合",
+        "premise_status": "case_marker_only_not_observed"
+      },
+      "expected": {
+        "recipient_output": "recipient別の照合結果を空集合として出力する。",
+        "missing_recipient": "空集合だけを理由にrecipient不足を生成しない。"
+      },
+      "expected_preserved": {
+        "unrelated_scope": "全scope停止へ広げない。",
+        "actual_stop": "none",
+        "actual_recovery": "none",
+        "resume_authorized": false,
+        "operation_effect": "none"
+      },
+      "expected_result_status": "contract_minimum_designed_not_observed",
+      "positive_expectation_ref": "positive_expectation_basis/rules/B01_EMPTY_RECIPIENT_SET"
     },
     {
       "id": "SEC009-U0007",
@@ -31833,10 +31917,24 @@
       "test_citation": null,
       "contract_ref": "HELIXSECURITY-L5-009-B01",
       "population_state": "positive",
-      "condition": null,
-      "expected": null,
-      "expected_preserved": null,
-      "expected_result_status": "unclosed_no_case_specific_positive_expectation_in_L3_L10_L4"
+      "condition": {
+        "scenario": "os_offline_independent_recovery_selection",
+        "phase": "recovery",
+        "premise_status": "case_marker_only_not_observed"
+      },
+      "expected": {
+        "selection": "独立復旧経路の選択条件に従ってrecipientを照合する。",
+        "prerequisite": "停止中OSまたは通常009応答を普遍的な開始前提にしない。",
+        "state_separation": "隔離素材と復旧素材を別状態として示す。"
+      },
+      "expected_preserved": {
+        "actual_stop": "none",
+        "actual_recovery": "none",
+        "resume_authorized": false,
+        "operation_effect": "none"
+      },
+      "expected_result_status": "contract_minimum_designed_not_observed",
+      "positive_expectation_ref": "positive_expectation_basis/rules/B01_INDEPENDENT_RECOVERY"
     },
     {
       "id": "SEC009-U0008",
@@ -38373,10 +38471,23 @@
       "test_citation": null,
       "contract_ref": "HELIXSECURITY-L5-009-F02",
       "population_state": "positive",
-      "condition": null,
-      "expected": null,
-      "expected_preserved": null,
-      "expected_result_status": "unclosed_no_case_specific_positive_expectation_in_L3_L10_L4"
+      "condition": {
+        "scenario": "general_document_meaning_unknown",
+        "premise_status": "case_marker_only_not_observed"
+      },
+      "expected": {
+        "locality": "一般文書の意味unknownを全操作/全scope停止へ拡張しない。",
+        "classification": "unknownだけから安全trigger分類を生成しない。"
+      },
+      "expected_preserved": {
+        "unrelated_scope": "全scope停止へ広げない。",
+        "actual_stop": "none",
+        "actual_recovery": "none",
+        "resume_authorized": false,
+        "operation_effect": "none"
+      },
+      "expected_result_status": "contract_minimum_designed_not_observed",
+      "positive_expectation_ref": "positive_expectation_basis/rules/F02_GENERAL_MEANING_UNKNOWN"
     },
     {
       "id": "SEC009-U0242",
@@ -42129,5 +42240,63 @@
       "l4_class_pointer": "/failure_classifications/31",
       "l5_rule_pointer": "/failure_rules/31"
     }
-  ]
+  ],
+  "positive_expectation_basis": {
+    "schema": "sec009-positive-contract-minimum.v1",
+    "authority_effect": "none",
+    "source_refs": [
+      {
+        "path": "docs/helix-security/L3-requirements/business-requirements.json",
+        "pointer": "/requirements/2",
+        "id": "HELIXSECURITY-L3-009-B01"
+      },
+  {
+   "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+   "pointer": "/requirements/21",
+   "id": "HELIXSECURITY-L3-009-F01"
+  },
+      {
+        "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+        "pointer": "/requirements/22",
+        "id": "HELIXSECURITY-L3-009-F02"
+      },
+      {
+        "path": "docs/helix-security/L10-verification/business-verification.json",
+        "pointer": "/cases/2",
+        "id": "HELIXSECURITY-L10-009-B01"
+      },
+      {
+        "path": "docs/helix-security/L10-verification/functional-verification.json",
+        "pointer": "/cases/22",
+        "id": "HELIXSECURITY-L10-009-F02"
+      },
+      {
+        "path": "docs/helix-security/L4-basic-design/revoke-quarantine-propagation.json",
+        "pointer": "/contracts/0",
+        "id": "HELIXSECURITY-L4-009-B01"
+      },
+      {
+        "path": "docs/helix-security/L4-basic-design/revoke-quarantine-propagation.json",
+        "pointer": "/contracts/2",
+        "id": "HELIXSECURITY-L4-009-F02"
+      },
+      {
+        "path": "docs/helix-security/L4-basic-design/revoke-quarantine-propagation.json",
+        "pointer": "/architecture/independent_recovery",
+        "id": "HELIXSECURITY-L4-009-F02"
+      },
+      {
+        "path": "docs/helix-security/L4-basic-design/revoke-quarantine-propagation.json",
+        "pointer": "/architecture/locality",
+        "id": "HELIXSECURITY-L4-009-F02"
+      }
+    ],
+    "rules": {
+      "B01_UNSELECTED_ABSENT": "対象recipientが未選択かつ能力不在というcase markerを前提に、その不在を選択recipientの不足や任意operation開始条件へ広げない。",
+      "B01_EMPTY_RECIPIENT_SET": "独立期待と選択集合がともに空として解決した場合、recipient別の照合結果も空にし、空集合だけから全操作停止を生成しない。",
+      "B01_INDEPENDENT_RECOVERY": "独立復旧経路のrecipient選択は選択条件に従い、停止中OSまたは通常009応答を普遍的前提にしない。隔離/復旧素材を別状態に保つ。",
+      "F02_GENERAL_MEANING_UNKNOWN": "一般文書の意味unknownを全操作/全scope停止へ拡張しない。安全分類や実停止をunknownだけから生成しない。"
+    },
+    "measurement_limit": "case markerは抽象条件の出典であり、givenに行固有入力値はない。各期待は設計上の最小契約であり未実行。個別oracle_id/test_citationはnull。"
+  }
 }
