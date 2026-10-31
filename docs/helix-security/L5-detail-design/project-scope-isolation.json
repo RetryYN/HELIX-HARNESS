@@ -5896,5 +5896,487 @@
         ]
       }
     ]
-  }
+  },
+  "failure_rules": [
+    {
+      "id": "SEC003-F01-IDENTITY-CONFLICT",
+      "class_id": "SEC003-F01-IDENTITY-CONFLICT",
+      "contract_ref": "HELIXSECURITY-L5-003-F01",
+      "l4_class_ref": "SEC003-F01-IDENTITY-CONFLICT",
+      "code": "isolation_violation",
+      "condition": "明示されたidentity軸の既知値どうしが相反し、同一scope対応を成立させない。",
+      "expected_classification": "isolation_violation",
+      "expected": {
+        "condition": "isolation_violation",
+        "finding_codes": [
+          "asset_scope_conflict"
+        ]
+      },
+      "expected_axis": "scope_identity",
+      "expected_state": "violation",
+      "backflow_owner": "scope-binding-owner",
+      "side_effect_count": 0,
+      "expected_preserved": {
+        "original_identity": "原request identityと存在するfinding/pointer/return_ownerを保持し、他project等の値で補完しない。",
+        "unaffected_scope": "今回のrequest/operation以外の有効scopeを一律停止しない。",
+        "operation_effect": "実認可・credential・接続・state変更、通信、停止や回復の実作用はnone。"
+      },
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+          "pointer": "/requirements/3"
+        },
+        {
+          "path": "docs/helix-security/L10-verification/functional-verification.json",
+          "pointer": "/cases/3"
+        },
+        {
+          "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+          "pointer": "/contracts/0/content_comparison"
+        },
+        {
+          "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+          "pointer": "/contracts/0/output_meanings"
+        },
+        {
+          "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+          "pointer": "/diagnostic_contract/return_owner"
+        }
+      ],
+      "authority_effect": "none",
+      "operation_effect": "none"
+    },
+    {
+      "id": "SEC003-F01-IDENTITY-MISSING",
+      "class_id": "SEC003-F01-IDENTITY-MISSING",
+      "contract_ref": "HELIXSECURITY-L5-003-F01",
+      "l4_class_ref": "SEC003-F01-IDENTITY-MISSING",
+      "code": "scope_unresolved",
+      "condition": "必要なidentity軸が欠落し、primary tree/別projectで補完せずscope対応を未解決に保つ。",
+      "expected_classification": "scope_unresolved",
+      "expected": {
+        "condition": "scope_unresolved",
+        "finding_codes": [
+          "scope_identity_unresolved"
+        ]
+      },
+      "expected_axis": "scope_identity",
+      "expected_state": "unknown",
+      "backflow_owner": "scope-binding-owner",
+      "side_effect_count": 0,
+      "expected_preserved": {
+        "original_identity": "原request identityと存在するfinding/pointer/return_ownerを保持し、他project等の値で補完しない。",
+        "unaffected_scope": "今回のrequest/operation以外の有効scopeを一律停止しない。",
+        "operation_effect": "実認可・credential・接続・state変更、通信、停止や回復の実作用はnone。"
+      },
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+          "pointer": "/requirements/3"
+        },
+        {
+          "path": "docs/helix-security/L10-verification/functional-verification.json",
+          "pointer": "/cases/3"
+        },
+        {
+          "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+          "pointer": "/contracts/0/content_comparison"
+        },
+        {
+          "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+          "pointer": "/contracts/0/output_meanings"
+        },
+        {
+          "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+          "pointer": "/diagnostic_contract/return_owner"
+        }
+      ],
+      "authority_effect": "none",
+      "operation_effect": "none"
+    },
+    {
+      "id": "SEC003-F01-TENANT-APPLICABILITY-UNRESOLVED",
+      "class_id": "SEC003-F01-TENANT-APPLICABILITY-UNRESOLVED",
+      "contract_ref": "HELIXSECURITY-L5-003-F01",
+      "l4_class_ref": "SEC003-F01-TENANT-APPLICABILITY-UNRESOLVED",
+      "code": "scope_unresolved",
+      "condition": "tenant適用条件または適用tenant identityが未解決であり、非適用へ推定せず比較を未解決に保つ。",
+      "expected_classification": "scope_unresolved",
+      "expected": {
+        "condition": "scope_unresolved",
+        "finding_codes": [
+          "tenant_applicability_unresolved"
+        ]
+      },
+      "expected_axis": "tenant_applicability",
+      "expected_state": "unknown",
+      "backflow_owner": "scope-binding-owner",
+      "side_effect_count": 0,
+      "expected_preserved": {
+        "original_identity": "原request identityと存在するfinding/pointer/return_ownerを保持し、他project等の値で補完しない。",
+        "unaffected_scope": "今回のrequest/operation以外の有効scopeを一律停止しない。",
+        "operation_effect": "実認可・credential・接続・state変更、通信、停止や回復の実作用はnone。"
+      },
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+          "pointer": "/requirements/3"
+        },
+        {
+          "path": "docs/helix-security/L10-verification/functional-verification.json",
+          "pointer": "/cases/3"
+        },
+        {
+          "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+          "pointer": "/contracts/0/content_comparison"
+        },
+        {
+          "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+          "pointer": "/contracts/0/output_meanings"
+        },
+        {
+          "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+          "pointer": "/diagnostic_contract/return_owner"
+        }
+      ],
+      "authority_effect": "none",
+      "operation_effect": "none"
+    },
+    {
+      "id": "SEC003-F01-TENANT-INVENTED",
+      "class_id": "SEC003-F01-TENANT-INVENTED",
+      "contract_ref": "HELIXSECURITY-L5-003-F01",
+      "l4_class_ref": "SEC003-F01-TENANT-INVENTED",
+      "code": "isolation_violation",
+      "condition": "非適用対象へtenantを付与しており、tenant値を生成せず要求scopeに一致しないものとして扱う。",
+      "expected_classification": "isolation_violation",
+      "expected": {
+        "condition": "isolation_violation",
+        "finding_codes": [
+          "tenant_invented"
+        ]
+      },
+      "expected_axis": "tenant_applicability",
+      "expected_state": "violation",
+      "backflow_owner": "scope-binding-owner",
+      "side_effect_count": 0,
+      "expected_preserved": {
+        "original_identity": "原request identityと存在するfinding/pointer/return_ownerを保持し、他project等の値で補完しない。",
+        "unaffected_scope": "今回のrequest/operation以外の有効scopeを一律停止しない。",
+        "operation_effect": "実認可・credential・接続・state変更、通信、停止や回復の実作用はnone。"
+      },
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+          "pointer": "/requirements/3"
+        },
+        {
+          "path": "docs/helix-security/L10-verification/functional-verification.json",
+          "pointer": "/cases/3"
+        },
+        {
+          "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+          "pointer": "/contracts/0/content_comparison"
+        },
+        {
+          "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+          "pointer": "/contracts/0/output_meanings"
+        },
+        {
+          "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+          "pointer": "/diagnostic_contract/return_owner"
+        }
+      ],
+      "authority_effect": "none",
+      "operation_effect": "none"
+    },
+    {
+      "id": "SEC003-F02-IMPLICIT-FALLBACK",
+      "class_id": "SEC003-F02-IMPLICIT-FALLBACK",
+      "contract_ref": "HELIXSECURITY-L5-003-F02",
+      "l4_class_ref": "SEC003-F02-IMPLICIT-FALLBACK",
+      "code": "isolation_violation",
+      "condition": "primary treeまたはother projectへの暗黙fallbackを明示接続として扱わない。",
+      "expected_classification": "isolation_violation",
+      "expected": {
+        "condition": "isolation_violation",
+        "finding_codes": [
+          "implicit_fallback"
+        ]
+      },
+      "expected_axis": "explicit_connection",
+      "expected_state": "violation",
+      "backflow_owner": "scope-binding-owner",
+      "side_effect_count": 0,
+      "expected_preserved": {
+        "original_identity": "原request identityと存在するfinding/pointer/return_ownerを保持し、他project等の値で補完しない。",
+        "unaffected_scope": "今回のrequest/operation以外の有効scopeを一律停止しない。",
+        "operation_effect": "実認可・credential・接続・state変更、通信、停止や回復の実作用はnone。"
+      },
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+          "pointer": "/requirements/4"
+        },
+        {
+          "path": "docs/helix-security/L10-verification/functional-verification.json",
+          "pointer": "/cases/4"
+        },
+        {
+          "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+          "pointer": "/contracts/1/content_comparison"
+        },
+        {
+          "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+          "pointer": "/contracts/1/output_meanings"
+        },
+        {
+          "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+          "pointer": "/diagnostic_contract/return_owner"
+        }
+      ],
+      "authority_effect": "none",
+      "operation_effect": "none"
+    },
+    {
+      "id": "SEC003-F02-FOREIGN-LATEST",
+      "class_id": "SEC003-F02-FOREIGN-LATEST",
+      "contract_ref": "HELIXSECURITY-L5-003-F02",
+      "l4_class_ref": "SEC003-F02-FOREIGN-LATEST",
+      "code": "isolation_violation",
+      "condition": "別project/environmentのasset/stateに付されたlatest自己申告を現scopeの根拠として採用しない。",
+      "expected_classification": "isolation_violation",
+      "expected": {
+        "condition": "isolation_violation",
+        "finding_codes": [
+          "asset_scope_conflict"
+        ]
+      },
+      "expected_axis": "asset_state_scope",
+      "expected_state": "violation",
+      "backflow_owner": "scope-binding-owner",
+      "side_effect_count": 0,
+      "expected_preserved": {
+        "original_identity": "原request identityと存在するfinding/pointer/return_ownerを保持し、他project等の値で補完しない。",
+        "unaffected_scope": "今回のrequest/operation以外の有効scopeを一律停止しない。",
+        "operation_effect": "実認可・credential・接続・state変更、通信、停止や回復の実作用はnone。"
+      },
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+          "pointer": "/requirements/4"
+        },
+        {
+          "path": "docs/helix-security/L10-verification/functional-verification.json",
+          "pointer": "/cases/4"
+        },
+        {
+          "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+          "pointer": "/contracts/1/content_comparison"
+        },
+        {
+          "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+          "pointer": "/contracts/1/output_meanings"
+        },
+        {
+          "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+          "pointer": "/diagnostic_contract/return_owner"
+        }
+      ],
+      "authority_effect": "none",
+      "operation_effect": "none"
+    },
+    {
+      "id": "SEC003-F02-OPERATION-SCOPE",
+      "class_id": "SEC003-F02-OPERATION-SCOPE",
+      "contract_ref": "HELIXSECURITY-L5-003-F02",
+      "l4_class_ref": "SEC003-F02-OPERATION-SCOPE",
+      "code": "isolation_violation",
+      "condition": "あるoperationの明示許可を別operationへ拡張せず、requested operationをallowed operation集合と照合する。",
+      "expected_classification": "isolation_violation",
+      "expected": {
+        "condition": "isolation_violation",
+        "finding_codes": [
+          "operation_scope_conflict"
+        ]
+      },
+      "expected_axis": "operation_scope",
+      "expected_state": "violation",
+      "backflow_owner": "scope-binding-owner",
+      "side_effect_count": 0,
+      "expected_preserved": {
+        "original_identity": "原request identityと存在するfinding/pointer/return_ownerを保持し、他project等の値で補完しない。",
+        "unaffected_scope": "今回のrequest/operation以外の有効scopeを一律停止しない。",
+        "operation_effect": "実認可・credential・接続・state変更、通信、停止や回復の実作用はnone。"
+      },
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+          "pointer": "/requirements/4"
+        },
+        {
+          "path": "docs/helix-security/L10-verification/functional-verification.json",
+          "pointer": "/cases/4"
+        },
+        {
+          "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+          "pointer": "/contracts/1/content_comparison"
+        },
+        {
+          "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+          "pointer": "/contracts/1/output_meanings"
+        },
+        {
+          "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+          "pointer": "/diagnostic_contract/return_owner"
+        }
+      ],
+      "authority_effect": "none",
+      "operation_effect": "none"
+    },
+    {
+      "id": "SEC003-F02-EXPLICIT-CONNECTION-ABSENT",
+      "class_id": "SEC003-F02-EXPLICIT-CONNECTION-ABSENT",
+      "contract_ref": "HELIXSECURITY-L5-003-F02",
+      "l4_class_ref": "SEC003-F02-EXPLICIT-CONNECTION-ABSENT",
+      "code": "isolation_violation",
+      "condition": "要求された作用のconnection_stateがabsentである。L3 F02は明示接続なしの越境作用を認めず、L4 F02はsame-projectを含む明示接続を照合対象とするため、known absentはscope violationとして扱い、unknownとは分ける。",
+      "expected_classification": "isolation_violation",
+      "expected": {
+        "condition": "isolation_violation",
+        "finding_codes": [
+          "explicit_connection_absent"
+        ]
+      },
+      "expected_axis": "explicit_connection",
+      "expected_state": "violation",
+      "backflow_owner": "scope-binding-owner",
+      "side_effect_count": 0,
+      "expected_preserved": {
+        "requested_operation": "今回のrequested operationとknown absentを保持する。",
+        "unaffected_scope": "無関係な有効scope/operationを全停止しない。",
+        "operation_effect": "実接続、認可、通信、変更はnone。"
+      },
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+          "pointer": "/requirements/4/obligation"
+        },
+        {
+          "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+          "pointer": "/contracts/1/content_comparison/0"
+        },
+        {
+          "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+          "pointer": "/contracts/1/output_meanings/0"
+        },
+        {
+          "path": "docs/helix-security/L10-verification/functional-verification.json",
+          "pointer": "/cases/4/expected_observation"
+        },
+        {
+          "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+          "pointer": "/diagnostic_contract/return_owner"
+        }
+      ],
+      "authority_effect": "none",
+      "operation_effect": "none"
+    },
+    {
+      "id": "SEC003-F02-CONNECTION-MATERIAL-CONFLICT",
+      "class_id": "SEC003-F02-CONNECTION-MATERIAL-CONFLICT",
+      "contract_ref": "HELIXSECURITY-L5-003-F02",
+      "l4_class_ref": "SEC003-F02-CONNECTION-MATERIAL-CONFLICT",
+      "code": "isolation_violation",
+      "condition": "実connection memberが独立expected connectionの同じmemberと既知値で相反する。",
+      "expected_classification": "isolation_violation",
+      "expected": {
+        "condition": "isolation_violation",
+        "finding_codes": [
+          "connection_content_conflict"
+        ]
+      },
+      "expected_axis": "explicit_connection",
+      "expected_state": "violation",
+      "backflow_owner": "scope-binding-owner",
+      "side_effect_count": 0,
+      "expected_preserved": {
+        "requested_operation": "接続identity/member差とrequested operationを保持する。",
+        "unaffected_scope": "無関係な有効scope/operationを全停止しない。",
+        "operation_effect": "実接続、認可、通信、変更はnone。"
+      },
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+          "pointer": "/requirements/4/obligation"
+        },
+        {
+          "path": "docs/helix-security/L10-verification/functional-verification.json",
+          "pointer": "/cases/4/expected_observation"
+        },
+        {
+          "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+          "pointer": "/contracts/1/content_comparison/1"
+        },
+        {
+          "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+          "pointer": "/contracts/1/output_meanings/0"
+        },
+        {
+          "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+          "pointer": "/diagnostic_contract/return_owner"
+        }
+      ],
+      "authority_effect": "none",
+      "operation_effect": "none"
+    },
+    {
+      "id": "SEC003-F02-CONNECTION-MATERIAL-UNRESOLVED",
+      "class_id": "SEC003-F02-CONNECTION-MATERIAL-UNRESOLVED",
+      "contract_ref": "HELIXSECURITY-L5-003-F02",
+      "l4_class_ref": "SEC003-F02-CONNECTION-MATERIAL-UNRESOLVED",
+      "code": "scope_unresolved",
+      "condition": "実connection memberが不明または欠落し、独立expected connectionとの同member比較を解決できない。",
+      "expected_classification": "scope_unresolved",
+      "expected": {
+        "condition": "scope_unresolved",
+        "finding_codes": [
+          "connection_material_unresolved"
+        ]
+      },
+      "expected_axis": "explicit_connection",
+      "expected_state": "unknown",
+      "backflow_owner": "scope-binding-owner",
+      "side_effect_count": 0,
+      "expected_preserved": {
+        "requested_operation": "unknown connection memberとrequested operationを保持する。",
+        "unaffected_scope": "無関係な有効scope/operationを全停止しない。",
+        "operation_effect": "実接続、認可、通信、変更はnone。"
+      },
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+          "pointer": "/requirements/4/obligation"
+        },
+        {
+          "path": "docs/helix-security/L10-verification/functional-verification.json",
+          "pointer": "/cases/4/expected_observation"
+        },
+        {
+          "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+          "pointer": "/contracts/1/content_comparison/1"
+        },
+        {
+          "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+          "pointer": "/contracts/1/output_meanings/0"
+        },
+        {
+          "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+          "pointer": "/diagnostic_contract/return_owner"
+        }
+      ],
+      "authority_effect": "none",
+      "operation_effect": "none"
+    }
+  ]
 }

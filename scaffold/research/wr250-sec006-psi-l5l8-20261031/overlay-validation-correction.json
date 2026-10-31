@@ -1,0 +1,12 @@
+{
+  "schema": "wr250-overlay-validation-correction.v1",
+  "evidence_kind": "scaffold",
+  "authority_effect": "none",
+  "previous_head": "17c2b114dd0c75ed54d75db9a71b9fee180c80dd",
+  "reviewed_snapshot": "f9c64394d93d102324da9d02a39f7bbbff77f231",
+  "finding": "R1 validator compared historical frozen artifacts and unchanged L4/L9 to git HEAD, which is the merge target in an uncommitted latest-main overlay and may not contain the PR files. That caused failure and, on the branch head, compared against itself.",
+  "resolution": "Both comparisons now resolve the fixed reviewed_head in the R1 addendum. The historical artifact digests remain unchanged.",
+  "validator": "scaffold/research/wr250-sec006-psi-l5l8-20261031/validate_pr4000_r1.py",
+  "old_sha256": "add37370ecec71a8dae3695b47e9479ea5b133797f2378d4727b9b1d5fa30e92",
+  "new_sha256": "9a779f23045ea41dd61ad455c250bcf58836c6475051dd59f50500d07919a1fe"
+}
