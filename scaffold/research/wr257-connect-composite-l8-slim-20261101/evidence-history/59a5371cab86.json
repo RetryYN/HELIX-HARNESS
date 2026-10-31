@@ -1,0 +1,71 @@
+{
+  "schema": "wr257-static-evidence-history.v1",
+  "evidence_kind": "scaffold",
+  "authority_effect": "none",
+  "recorded_source_revision": "59a5371cab86ece0d68d82a8490454b030481b9d",
+  "source_path": "scaffold/research/wr257-connect-composite-l8-slim-20261101/static-evidence.json",
+  "source_blob_sha256": "b1ae2acecc959bc5986be6717cfdf64a9164223fa5b73cd7838c75cbbbc62a7d",
+  "source_blob_bytes": 3772,
+  "historical_artifact": {
+    "schema": "wr257-static-index-evidence.v1",
+    "evidence_kind": "scaffold",
+    "authority_effect": "none",
+    "request_id": "WR257-CONNECT-COMPOSITE-L8-SLIM",
+    "base_revision": "663b75324810a6f004668a1451de5b03acc542c3",
+    "target_path": "docs/helix-connect/L8-unit-verification/composite-edge-terminal.json",
+    "target_sha256": "715d77639a43e62300ff2182f54f606f5b44b408284f6e0cae13f2d0b9bce4d9",
+    "target_bytes": 340192,
+    "source_pins": {
+      "docs/helix-connect/L4-basic-design/composite-edge-terminal.json": "166a7800eac7427983ccc716a2472e9017cb9510a19ade5e9f07f63c11785030",
+      "docs/helix-connect/L5-detail-design/composite-edge-terminal.json": "0f672d5d2a8abc906a0c61139359ac41f1725635b2d2a43aef8fa3b08e2f85cd",
+      "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json": "313757d63a2afdbfa2bfd7d9ceff8db0f294131e393ac360fcf96b3938635f72"
+    },
+    "traceability_source_pins": {
+      "docs/helix-connect/L3-requirements/functional-requirements.json": "fb04683632d92e5c51c46fdc2eecf388a58e406856f243b8105513e075a49421",
+      "docs/helix-connect/L10-verification/functional-verification.json": "8728cf7c2730a29375f3c7dad75c77157a119d603e52b46f775ede8f1eae474d",
+      "docs/helix-connect/L3-requirements/business-requirements.json": "29ca195ff54d61f422050f28740c2cf887defaf21a3ad7da4c37f3ef797bd0ed",
+      "docs/helix-connect/L10-verification/business-verification.json": "b01cdbd03885b523254aba339bd166ad235382402942527e4e7844825ea05fcd",
+      "docs/helix-connect/L4-basic-design/composite-edge-terminal.json": "166a7800eac7427983ccc716a2472e9017cb9510a19ade5e9f07f63c11785030",
+      "docs/helix-connect/L5-detail-design/composite-edge-terminal.json": "0f672d5d2a8abc906a0c61139359ac41f1725635b2d2a43aef8fa3b08e2f85cd",
+      "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json": "313757d63a2afdbfa2bfd7d9ceff8db0f294131e393ac360fcf96b3938635f72"
+    },
+    "inventory": {
+      "source_cases": 91,
+      "local_probes": 27,
+      "local_probe_source_reuse": 1,
+      "pure_primitive_cases": 7,
+      "typed_carrier_boundary_cases": 1,
+      "meaning": "ID inventory only; counts are not coverage or completion claims."
+    },
+    "l5_traceability": {
+      "public_functions": 4,
+      "l9_branch_u_ids": 91,
+      "predeclared_local_probe_u_ids": 27,
+      "failure_rules": 26,
+      "covered_failure_rules": 26,
+      "case_expected_classes": {
+        "normal": 3,
+        "negative": 88
+      },
+      "uncovered_failure_rules": []
+    },
+    "checks": [
+      "all prior L8 source case IDs and order retained; exact L9 source/expected pointers and scenario basis resolve",
+      "all 27 local probe IDs, roles, source cases, patch paths and independent expected deltas match prior bytes; L4/L9 source_ref revision+pointer resolve against exact pins",
+      "1 source reuse, 7 primitive cases and 1 typed carrier boundary retain identity and intended oracle boundary",
+      "91 L9 branches and 27 predeclared local probes carry U-IDs without changing the 127 declaration count; each branch row has a short L5-derived expected decision, L5 citation, normal/negative class, and unverified state (3 normal, 88 negative)",
+      "all four L5 public functions map by exact source refs; all 26 L5 failure rules are covered by fixed L9 oracle branches and/or predeclared local expected deltas",
+      "L5 has no unit_case_refs; absence is recorded without synthetic references",
+      "fixture hashes are absent from case/probe inventories; retained digests are source/authority pins",
+      "removed_materials has six required keys and names DT-VT-105 boundary"
+    ],
+    "not_established": [
+      "product test execution",
+      "runtime behavior",
+      "source/owner qualification",
+      "L7 test citation",
+      "design or implementation readiness",
+      "full mutation-family coverage"
+    ]
+  }
+}

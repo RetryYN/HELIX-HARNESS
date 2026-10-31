@@ -4,6 +4,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import os
 import subprocess
 from pathlib import Path
 
@@ -18,6 +19,8 @@ L10F = 'docs/helix-connect/L10-verification/functional-verification.json'
 L3B = 'docs/helix-connect/L3-requirements/business-requirements.json'
 L10B = 'docs/helix-connect/L10-verification/business-verification.json'
 EVIDENCE = 'scaffold/research/wr257-connect-composite-l8-slim-20261101/static-evidence.json'
+EVIDENCE_DIR = 'scaffold/research/wr257-connect-composite-l8-slim-20261101'
+BINDING = 'scaffold/bindings/SCF-B-0216.json'
 
 
 def sha(raw: bytes) -> str:
@@ -67,6 +70,169 @@ def derive_case_expectation(case_id: str, function_ref: str, rule_refs: list[str
     raise AssertionError((case_id, function_ref, rule_refs))
 
 
+def _identity(item):
+    if isinstance(item, dict):
+        if isinstance(item.get('edge_target'), dict) and 'edge_identity' in item['edge_target']:
+            return str(item['edge_target']['edge_identity'])
+        for key in ('edge_identity', 'identity', 'connection_identity', 'contract_id', 'id'):
+            if key in item:
+                return str(item[key])
+    return str(item)
+
+
+def _source_changes(before, after, pointer=''):
+    if type(before) is not type(after):
+        return [(pointer, before, after)]
+    if isinstance(before, dict):
+        found = []
+        for key in sorted(set(before) | set(after)):
+            token = str(key).replace('~', '~0').replace('/', '~1')
+            child = f'{pointer}/{token}'
+            if key not in before:
+                found.append((child, '<absent>', after[key]))
+            elif key not in after:
+                found.append((child, before[key], '<absent>'))
+            else:
+                found.extend(_source_changes(before[key], after[key], child))
+        return found
+    if isinstance(before, list):
+        if before == after:
+            return []
+        left, right = [_identity(item) for item in before], [_identity(item) for item in after]
+        if len(before) == len(after) and sorted(left) == sorted(right) and left != right:
+            return [(pointer, {'order': left}, {'order': right})]
+        if len(left) != len(right):
+            return [(pointer, {'members': left}, {'members': right})]
+        found = []
+        for index, (old, new) in enumerate(zip(before, after)):
+            found.extend(_source_changes(old, new, f'{pointer}/{index}'))
+        return found
+    return [] if before == after else [(pointer, before, after)]
+
+
+def _compact(value):
+    if isinstance(value, dict):
+        if set(value) == {'value'}:
+            return _compact(value['value'])
+        if set(value) == {'order'}:
+            return '順序[' + '、'.join(value['order']) + ']'
+        if set(value) == {'members'}:
+            return '[' + '、'.join(value['members']) + ']'
+        return '{…}'
+    if isinstance(value, list):
+        return '[' + '、'.join(map(str, value)) + ']'
+    return str(value)
+
+
+def derive_case_focus(case_id: str, tag: str, packet: dict, baseline_packet: dict,
+                      rule_refs: list[str], l5_doc) -> dict:
+    changes = _source_changes(baseline_packet, packet)
+    changes.sort(key=lambda item: (
+        0 if any(part in item[0] for part in ('business_record', 'dependency', 'receipts', 'evidence', 'stop', 'edges', 'trace')) else 1,
+        len(item[0]),
+    ))
+    if not changes:
+        if tag == 'F01':
+            pointer, value, subject = '/original_edges', [x['edge_identity'] for x in packet.get('original_edges', [])], 'declared edge set'
+        elif tag == 'F02':
+            pointer, value, subject = '/original_trace', 'failure/stop trace', 'stop trace'
+        elif tag == 'N01':
+            pointer, value, subject = '/original_evidence', [x['identity'] for x in packet.get('original_evidence', [])], 'declared evidence set'
+        else:
+            pointer, value, subject = '/original_business_record', packet.get('original_business_record', {}), 'business record'
+        source_basis = {'packet_pointer': pointer, 'subject': subject, 'field': '基準宣言',
+                        'baseline': {'value': value}, 'observed': {'value': value}}
+    else:
+        pointer, before, after = changes[0]
+        tokens = pointer.strip('/').split('/') if pointer else []
+        subject = '対象record'
+        if isinstance(before, dict) and set(before) == {'members'}:
+            old, new = set(before['members']), set(after['members'])
+            missing, added = sorted(old - new), sorted(new - old)
+            if missing:
+                subject = missing[0] if len(missing) == 1 else '対象集合'
+                detail = '欠落 ' + '、'.join(missing)
+            elif added:
+                subject = added[0] if len(added) == 1 else '対象集合'
+                detail = '追加 ' + '、'.join(added)
+            else:
+                detail = '順序変更'
+            field = tokens[-1] + ' ' + detail
+            expected, observed = {'members': before['members']}, {'members': after['members']}
+        else:
+            if tokens and tokens[-1] in packet and isinstance(packet[tokens[-1]], dict):
+                subject = tokens[-1]
+            if len(tokens) > 1 and tokens[-2] in packet and isinstance(packet[tokens[-2]], dict):
+                subject = tokens[-2]
+            for index, token in enumerate(tokens[:-1]):
+                if token.isdigit() and index > 0:
+                    parent = tokens[index - 1]
+                    try:
+                        record = resolve(packet, '/' + '/'.join(tokens[:index]))[int(token)]
+                        if isinstance(record, dict):
+                            subject = record.get('edge_identity') or record.get('identity') or record.get('edge_target', {}).get('edge_identity') or subject
+                    except (KeyError, IndexError, TypeError, ValueError):
+                        pass
+                    if parent in ('original_receipts', 'submitted_receipts'):
+                        try:
+                            subject = packet[parent][int(token)]['edge_target'].get('edge_identity', subject)
+                        except (KeyError, IndexError, TypeError):
+                            pass
+                    elif parent in ('original_evidence', 'submitted_evidence'):
+                        try:
+                            subject = packet[parent][int(token)].get('edge_identity', subject)
+                        except (KeyError, IndexError, TypeError):
+                            pass
+            for end in range(len(tokens) - 1, 0, -1):
+                try:
+                    record = resolve(packet, '/' + '/'.join(tokens[:end]))
+                except (KeyError, IndexError, TypeError, ValueError):
+                    continue
+                if isinstance(record, dict):
+                    subject = record.get('edge_identity') or record.get('identity') or record.get('edge_target', {}).get('edge_identity') or subject
+                    if subject != '対象record':
+                        break
+            if tokens and tokens[-1] in ('identity', 'edge_identity', 'connection_identity', 'operation_identity', 'attempt_identity'):
+                try:
+                    baseline_record = resolve(baseline_packet, '/' + '/'.join(tokens[:-1]))
+                    if isinstance(baseline_record, dict):
+                        source_subject = baseline_record.get('edge_identity') or baseline_record.get('identity') or baseline_record.get('edge_target', {}).get('edge_identity')
+                        if source_subject:
+                            subject = source_subject
+                except (KeyError, IndexError, TypeError, ValueError):
+                    pass
+            if subject == '対象record' and tokens and tokens[0] in ('original_stop', 'submitted_stop'):
+                subject = '停止辺'
+            field = tokens[-1] if tokens else 'record'
+            expected, observed = {'value': before}, {'value': after}
+        source_basis = {'packet_pointer': pointer, 'subject': str(subject), 'field': field,
+                        'baseline': expected, 'observed': observed}
+
+    if rule_refs:
+        rules = []
+        for ref in rule_refs:
+            rule_id = ref.split(':', 1)[1]
+            rule = next(item for item in l5_doc['contract_views'][tag]['failure_rules'] if item['id'] == rule_id)
+            rules.append(f"{rule_id}@{rule['owner_route']}")
+        outcome = 'Accepted生成なし' if tag == 'B01' else 'success不可'
+        judgment = f"L5 {','.join(rules)}: {source_basis['subject']}.{source_basis['field']} を失敗返却。{outcome}。"
+    else:
+        if source_basis['field'] == '基準宣言':
+            judgment = derive_case_expectation(case_id, f'FN-C007-{["F01", "F02", "N01", "B01"].index(tag)+1:02d}', [], '', l5_doc)['decision']
+        elif tag == 'F02':
+            judgment = (f"{source_basis['subject']} cause={_compact(source_basis['observed'])}: 停止位置を保持し、"
+                        "先行成功・未完義務・ownerを残して後続attemptを実行済みにしない。")
+        elif tag == 'N01':
+            judgment = (f"{source_basis['subject']}.{source_basis['field']} の対象外/未観測を保持し、"
+                        "scope外挿と実作用を認めない。")
+        elif tag == 'B01':
+            judgment = (f"技術終端でも業務未受入を保ち、{source_basis['subject']}.{source_basis['field']} を"
+                        "業務ownerへ返し、Acceptedを生成しない。")
+        else:
+            judgment = derive_case_expectation(case_id, f'FN-C007-{["F01", "F02", "N01", "B01"].index(tag)+1:02d}', [], '', l5_doc)['decision']
+    return {'source_basis': source_basis, 'decision': judgment}
+
+
 def has_fixture_hash_member(value) -> bool:
     if isinstance(value, dict):
         for key, child in value.items():
@@ -82,7 +248,8 @@ def has_fixture_hash_member(value) -> bool:
 
 def main() -> None:
     parser = argparse.ArgumentParser()
-    parser.add_argument('--record', action='store_true', help='write scaffold-only static evidence')
+    parser.add_argument('--record', action='store_true', help='create a new scaffold-only static evidence appendix')
+    parser.add_argument('--record-path', help='new appendix path; must not already exist')
     args = parser.parse_args()
     current = load(L8)
     prior = base_load(L8)
@@ -102,9 +269,14 @@ def main() -> None:
     assert [row['id'] for row in current['typed_carrier_boundary_cases']] == [row['id'] for row in prior['typed_carrier_boundary_cases']]
 
     l9_by_id = {case['id']: (oi, ci, case) for oi, ob in enumerate(l9['verification_obligations']) for ci, case in enumerate(ob['concrete_cases'])}
+    baseline_packet_by_tag = {
+        ob['id'].rsplit('-', 1)[1]: json.loads(ob['concrete_cases'][0]['independent_source_packet']['raw_utf8'])
+        for ob in l9['verification_obligations']
+    }
     case_columns = current['cases']['columns']
     cix = {name: i for i, name in enumerate(case_columns)}
     assert case_columns[-4:] == ['u_id', 'l5_function_ref', 'l5_failure_rule_refs', 'expected']
+    duplicate_expectation_groups = {}
     for row in current['cases']['rows']:
         cid, role, req, l4_ref, l9_ref, oracle, source_ptr, expected_ptr, basis, boundary, state, qualification = row[:12]
         oi, ci, source_case = l9_by_id[cid]
@@ -134,7 +306,14 @@ def main() -> None:
         assert uid.startswith('U-C007-') and uid not in rows_by_uid
         assert fn in function_refs
         rows_by_uid[uid] = row
-        assert expected == derive_case_expectation(row[0], fn, rule_refs, row[8], l5)
+        derived = derive_case_expectation(row[0], fn, rule_refs, row[8], l5)
+        assert {key: value for key, value in expected.items() if key not in ('source_basis', 'decision')} == {key: value for key, value in derived.items() if key != 'decision'}
+        _, _, source_case = l9_by_id[row[0]]
+        packet = json.loads(source_case['independent_source_packet']['raw_utf8'])
+        focus = derive_case_focus(row[0], row[0].split('-')[1], packet,
+                                  baseline_packet_by_tag[row[0].split('-')[1]], rule_refs, l5)
+        assert expected['source_basis'] == focus['source_basis']
+        assert expected['decision'] == focus['decision']
         assert expected['scenario_class'] in expected_class_counts
         expected_class_counts[expected['scenario_class']] += 1
         assert expected['verification_status'] == 'unverified'
@@ -142,6 +321,8 @@ def main() -> None:
         assert all(resolve(l5, pointer) is not None for pointer in expected['l5_refs'])
         assert expected['verification_status'] == 'unverified'
         branch_case_ids.append(row[0])
+        group_key = (row[8], json.dumps(derived, ensure_ascii=False, sort_keys=True))
+        duplicate_expectation_groups.setdefault(group_key, []).append((row[0], focus))
         tag = row[0].split('-')[1]
         ob_index = next(i for i, ob in enumerate(l9['verification_obligations']) if ob['id'].endswith('-' + tag))
         case_index = next(i for i, c in enumerate(l9['verification_obligations'][ob_index]['concrete_cases']) if c['id'] == row[0])
@@ -155,6 +336,11 @@ def main() -> None:
         assert rule_refs == expected_rule_refs, row[0]
     assert len(set(branch_case_ids)) == 91
     assert expected_class_counts == {'normal': 3, 'negative': 88}
+    duplicated_groups = [group for group in duplicate_expectation_groups.values() if len(group) > 1]
+    assert len(duplicated_groups) == 11 and sum(len(group) for group in duplicated_groups) == 60
+    for group in duplicated_groups:
+        assert len({json.dumps(focus['source_basis'], ensure_ascii=False, sort_keys=True) for _, focus in group}) == len(group)
+        assert len({focus['decision'] for _, focus in group}) == len(group)
     declared_rules = {(tag, rule['id']) for tag, view in l5['contract_views'].items() for rule in view['failure_rules']}
     assert len(declared_rules) == 26
     seen_rules = set()
@@ -319,6 +505,9 @@ def main() -> None:
             'failure_rules': len(trace['l5_failure_rules']),
             'covered_failure_rules': sum(rule['coverage_status'] != 'uncovered' for rule in trace['l5_failure_rules']),
             'case_expected_classes': expected_class_counts,
+            'case_focus_rows': len(current['cases']['rows']),
+            'distinguished_duplicate_groups': len(duplicated_groups),
+            'distinguished_duplicate_rows': sum(len(group) for group in duplicated_groups),
             'uncovered_failure_rules': [f"{rule['function_ref']}:{rule['rule_id']}" for rule in trace['l5_failure_rules'] if rule['coverage_status'] == 'uncovered'],
         },
         'checks': [
@@ -326,6 +515,7 @@ def main() -> None:
             'all 27 local probe IDs, roles, source cases, patch paths and independent expected deltas match prior bytes; L4/L9 source_ref revision+pointer resolve against exact pins',
             '1 source reuse, 7 primitive cases and 1 typed carrier boundary retain identity and intended oracle boundary',
             '91 L9 branches and 27 predeclared local probes carry U-IDs without changing the 127 declaration count; each branch row has a short L5-derived expected decision, L5 citation, normal/negative class, and unverified state (3 normal, 88 negative)',
+            'all 91 branch expectations include source-packet field/target/baseline/observed values and a row-specific expected decision; 11 previously duplicated expectation groups (60 rows) are distinguished and validated against fixed L9 packet bytes and L5 return routes',
             'all four L5 public functions map by exact source refs; all 26 L5 failure rules are covered by fixed L9 oracle branches and/or predeclared local expected deltas',
             'L5 has no unit_case_refs; absence is recorded without synthetic references',
             'fixture hashes are absent from case/probe inventories; retained digests are source/authority pins',
@@ -334,7 +524,42 @@ def main() -> None:
         'not_established': ['product test execution', 'runtime behavior', 'source/owner qualification', 'L7 test citation', 'design or implementation readiness', 'full mutation-family coverage'],
     }
     if args.record:
-        (ROOT / EVIDENCE).write_text(json.dumps(payload, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+        target_hash = payload['target_sha256']
+        output = args.record_path or f'{EVIDENCE_DIR}/static-evidence-measurement-{target_hash[:12]}.json'
+        if output == EVIDENCE:
+            raise SystemExit('refusing to overwrite the initial static-evidence.json; choose a new appendix path')
+        out_path = (ROOT / output).resolve()
+        out_path.relative_to((ROOT / EVIDENCE_DIR).resolve())
+        wrapper = {
+            'schema': 'wr257-static-evidence-appendix.v1',
+            'evidence_kind': 'scaffold',
+            'authority_effect': 'none',
+            'recorded_against_revision': subprocess.check_output(['git', 'rev-parse', 'HEAD'], cwd=ROOT, text=True).strip(),
+            'source_path': L8,
+            'target_sha256': target_hash,
+            'payload': payload,
+        }
+        wrapper['appendix_sha256'] = sha(json.dumps(wrapper, ensure_ascii=False, sort_keys=True).encode('utf-8'))
+        out_path.parent.mkdir(parents=True, exist_ok=True)
+        try:
+            with out_path.open('x', encoding='utf-8') as handle:
+                handle.write(json.dumps(wrapper, ensure_ascii=False, indent=2) + '\n')
+        except FileExistsError as error:
+            raise SystemExit(f'refusing to overwrite existing evidence appendix: {output}') from error
+        payload['recorded_appendix'] = output
+    else:
+        binding = load(BINDING)
+        measurement_paths = [path for path in binding.get('artifacts', []) if 'static-evidence-measurement-' in path]
+        matching = [(path, load(path)) for path in measurement_paths if load(path).get('target_sha256') == payload['target_sha256']]
+        assert len(matching) == 1, 'binding must point to exactly one measurement appendix for the current L8 bytes'
+        latest_path, appendix = matching[0]
+        assert appendix['schema'] == 'wr257-static-evidence-appendix.v1'
+        appendix_body = dict(appendix)
+        recorded_appendix_hash = appendix_body.pop('appendix_sha256')
+        assert sha(json.dumps(appendix_body, ensure_ascii=False, sort_keys=True).encode('utf-8')) == recorded_appendix_hash
+        assert appendix['target_sha256'] == payload['target_sha256']
+        assert appendix['payload'] == payload
+        payload['compared_appendix'] = latest_path
     print(json.dumps(payload, ensure_ascii=False, sort_keys=True))
 
 

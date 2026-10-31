@@ -25,8 +25,8 @@
     },
     {
       "path": "docs/helix-connect/L8-unit-verification/composite-edge-terminal.json",
-      "sha256": "715d77639a43e62300ff2182f54f606f5b44b408284f6e0cae13f2d0b9bce4d9",
-      "note": "対象U-ID表。91 L9 branchにL5契約由来expected/正常・反例・未検証を付与、27 local probeへU-ID、L5 4 function/26 rule coverage"
+      "sha256": "eab8c07c187fe84da434f571f3a6faa5e0b393a84841089dc8d8c07082dcd950",
+      "note": "対象U-ID表。91行に固定L9 source差分・L5由来の行別期待を保持"
     },
     {
       "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
@@ -62,7 +62,8 @@
     "fixture digest、raw fixture、inline mutated bytes、full return wholeをL8に再配置しない。残すhashはsource/authority bytes pinに限る。",
     "removed_materialsの6 key、DT-VT-105適用境界、L5 unit_case_refsとL7 test citationの未確認を保持する。",
     "すべての結果をscaffold証拠として扱い、設計/実装ready、製品test、source qualification、要求承認、合格を生成しない。",
-    "91 L9 basic branchと既存27 local probeへ固有U-IDを割当て、L5 4 public functionと26 failure_ruleを個々の固定source pointerへ照合する。各ruleはL9 oracleおよび/または既存local expected deltaで根拠を確認し、uncovered=0をvalidatorで確かめる。probe U-IDは既存宣言のラベルであり総数127を変えない。"
+    "91 L9 basic branchと既存27 local probeへ固有U-IDを割当て、L5 4 public functionと26 failure_ruleを個々の固定source pointerへ照合する。各ruleはL9 oracleおよび/または既存local expected deltaで根拠を確認し、uncovered=0をvalidatorで確かめる。probe U-IDは既存宣言のラベルであり総数127を変えない。",
+    "91行の期待には固定L9 source packet差分、対象field/edge/状態、基準/観測値、L5返却先を短く保持する。完全同一だった11群60行もsource差分により区別し、validatorが固定sourceから再導出する。"
   ],
   "connections": {
     "consumers": [
@@ -82,15 +83,16 @@
   "operations": {
     "allowed": [
       "python3 -B scaffold/research/wr257-connect-composite-l8-slim-20261101/validate_static_index.py",
-      "python3 -B scaffold/research/wr257-connect-composite-l8-slim-20261101/validate_static_index.py --record",
       "python3 -B scaffold/tools/scfctl.py validate|stale",
-      "git diff --check"
+      "git diff --check",
+      "python3 -B scaffold/research/wr257-connect-composite-l8-slim-20261101/validate_static_index.py --record (新規evidence appendixを排他的に作成し、既存物は上書きしない)"
     ],
     "forbidden": [
       "旧runtime・test・CI・CLI・hook・workflowの実行",
       "L3/L4/L5/L9/L10意味の変更、L7 fixture/test/oracleの生成",
       "fixture raw/digestやfull returnsを別pathへ複製",
-      "scaffold evidenceから実装Ready、test pass、authority、approval、完了を推論"
+      "scaffold evidenceから実装Ready、test pass、authority、approval、完了を推論",
+      "初回static-evidence.jsonおよび既存evidence appendixの上書き"
     ]
   },
   "artifacts": [
@@ -98,7 +100,12 @@
     "scaffold/research/wr257-connect-composite-l8-slim-20261101/README.md",
     "scaffold/research/wr257-connect-composite-l8-slim-20261101/validate_static_index.py",
     "scaffold/research/wr257-connect-composite-l8-slim-20261101/static-evidence.json",
-    "scaffold/bindings/SCF-B-0216.json"
+    "scaffold/bindings/SCF-B-0216.json",
+    "scaffold/research/wr257-connect-composite-l8-slim-20261101/evidence-history/3d39410235d0.json",
+    "scaffold/research/wr257-connect-composite-l8-slim-20261101/evidence-history/4730e5a072b6.json",
+    "scaffold/research/wr257-connect-composite-l8-slim-20261101/evidence-history/59a5371cab86.json",
+    "scaffold/research/wr257-connect-composite-l8-slim-20261101/static-evidence-measurement-66c0ba8f0011.json",
+    "scaffold/research/wr257-connect-composite-l8-slim-20261101/static-evidence-measurement-eab8c07c187f.json"
   ],
   "verification": {
     "evidence_kind": "scaffold",
