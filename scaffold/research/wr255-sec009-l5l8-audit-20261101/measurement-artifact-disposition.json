@@ -394,5 +394,40 @@
       "L8": "3ba4b60efba174b9fad773f86637e58166626643",
       "L9": "087f02dc637f6860e344e2bda9efa83c83506b72"
     }
+  },
+  "final_head_overlay_read_only_validation": {
+    "overlay_base_commit": "9cce1cc5238de71231b1fcd37727391113e17956",
+    "feature_head_tested": "a79a98c89c50fa5156a0d97ee118679d4a8ee0ae",
+    "source_candidate_commit": "0451f67e4b94451b7258078f49df3cb34db36098",
+    "base_confirmation": "git fetch origin main と git ls-remote origin refs/heads/main が同じ9cce1cc5238de71231b1fcd37727391113e17956を返した。",
+    "overlay_construction": "latest mainを第1親とするgit merge --no-commit --no-ff。overlay worktreeにcommitせず静的read-only検証。",
+    "commands": [
+      "python3 scaffold/research/wr255-sec009-l5l8-audit-20261101/validate_wr255_l5l8.py (2回)",
+      "python3 scaffold/research/wr255-sec009-l5l8-audit-20261101/validate_pointer_transfer.py",
+      "python3 scaffold/tools/design_verification_checker.py check-child --root . --l4 docs/helix-security/L4-basic-design/revoke-quarantine-propagation.json --l9 docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json --l5 docs/helix-security/L5-detail-design/revoke-quarantine-propagation.json --l8 docs/helix-security/L8-unit-verification/revoke-quarantine-propagation.json",
+      "python3 scaffold/tools/scfctl.py validate",
+      "python3 scaffold/tools/scfctl.py stale"
+    ],
+    "source_hashes": {
+      "L4": "00376c402930e1287e9e0e896804b1de8a20390f8abbea8377b70712f868b9da",
+      "L5": "1aefb9b64fb52abc8cf6eec7d32312bfcb9a07359d7406c2ca4e9fa9717fa190",
+      "L8": "49875dcdb4bcec85ebffbad678127e90a61db329c9cccae96f0090cd260f698d",
+      "L9": "e918a289fe88446b3f84210577f0fe8094505d9dac9d9a8713cd074eb6776e5b"
+    },
+    "results": {
+      "validator_runs": 2,
+      "validator_pass": true,
+      "L4_L9_pair_pass": true,
+      "L5_L8_pair_pass": true,
+      "negative_4way_matched": 277,
+      "negative_4way_failures": 0,
+      "pointer_transfer_pass": true,
+      "scfctl_bindings": 207,
+      "scfctl_fail": 0,
+      "stale": 0,
+      "overlay_status_before_after_identical": true,
+      "positive_contract_minimum_designed_not_observed": 8,
+      "positive_individual_oracle_and_test_citation": "null"
+    }
   }
 }

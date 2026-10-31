@@ -50,7 +50,7 @@ latest `origin/main` をmergeしたL5/L8候補とcanonical L4/L9を照合したs
 
 ## 最新main overlayと固定証拠
 
-fresh fetch/ls-remoteで一致確認したlatest main `9cce1cc5238de71231b1fcd37727391113e17956`を第1親にPR-B HEAD `11ccad81240e243a42392e29c15677772ff6526d`をno-commit overlayして再検証しました。L4/L9・L5/L8 pair pass、4wayは277 matched / 0 failures、pointer移行validator pass、scfctl validate 207/fail 0・stale 0です。validatorを2回とpointer validatorをread-only実行し、overlay worktreeのstatus不変を確認しました。次のsummary/reportはfeature branchのcurrent sourceを測った保存証拠です。positive 8件は設計済み・未観測、個別oracleとtest citationはnullです。
+fresh fetch/ls-remoteで一致確認したlatest main `9cce1cc5238de71231b1fcd37727391113e17956`を第1親にPR-B HEAD `a79a98c89c50fa5156a0d97ee118679d4a8ee0ae`をno-commit overlayして再検証しました。L4/L9・L5/L8 pair pass、4wayは277 matched / 0 failures、pointer移行validator pass、scfctl validate 207/fail 0・stale 0です。validatorを2回とpointer validatorをread-only実行し、overlay worktreeのstatus不変を確認しました。次のsummary/reportはfeature branchのcurrent sourceを測った保存証拠です。positive 8件は設計済み・未観測、個別oracleとtest citationはnullです。
 
 - [verification summary](verification-summary-l4-d670496eeb-00376c40-l5-ea8e3c2510-1aefb9b6-l8-0451f67e4b-49875dcd-l9-087f02dc63-e918a289-validator-b2cd66c3-record-1793485186690215383-388303.json)
 - [check-child report](check-child-report-l4-d670496eeb-00376c40-l5-ea8e3c2510-1aefb9b6-l8-0451f67e4b-49875dcd-l9-087f02dc63-e918a289-record-1793485186690215383-388303.json)
