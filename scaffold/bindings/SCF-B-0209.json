@@ -20,8 +20,8 @@
     },
     {
       "path": "docs/helix-security/L8-unit-verification/revoke-quarantine-propagation.json",
-      "sha256": "91da3af2c6ad997fdf265871f9776c5bed41f196fbccfc2276e1a41f42a267bb",
-      "note": "Nested L8 case inventory measured read-only; no source edits. Current pin updated to 73f253a76363fe6f936c3f5707c8b3e43f46f75bec5483925fad96982740293c at source revision d8e48de751c04f4250326dd049763c08dce3eaac; prior registered pin ebfb5a50360fbcf4c0df262a4c31c87870b963b9d4e557888d63aef74699c777 is retained in this note. WR255 follow-up added dedicated U-IDs and a shared L9 source index; PR-B changes no L4 nested payload and performs no pointer redirect. Previous pin was fixed at c14adddf2678c7a69d76420c451df3f05b1251ab. Replacement remains pending: the 308 L8 plus 308 L9 pointer redirect/audit condition is unmet and check-replacement reports the missing transfer map; do not retire SCF-B-0209. Current pin updated to a585b1c7ad53a6043caa9944aa41a804d026376d42a76e949c0c8f1a87061ba3 at source revision 2c8fdde45255e07794ce2cf3153bf696765258b4; previous pin 73f253a76363fe6f936c3f5707c8b3e43f46f75bec5483925fad96982740293c at source revision d8e48de751c04f4250326dd049763c08dce3eaac is retained. Counterexamples now state row-specific target/discrepancy plus L4 class meaning, and each negative U-ID has resolvable L4/L5 class source pointers; actual conflict values remain explicitly absent where L9 given does not provide them. Current pin updated to 32901b747531048246aa6149b2619dda0a478fff2037511a8c25ddfff4847f9a at source revision a5d6088b9c8cf1c7da543b75ba2f010c2a6db183; previous pin a585b1c7ad53a6043caa9944aa41a804d026376d42a76e949c0c8f1a87061ba3 at source revision 2c8fdde45255e07794ce2cf3153bf696765258b4 is retained. Explicit L8 U-ID rows retain function_ref matching their resolved L5 owner, as required by CHK-NEG-4WAY-MATCH. Current pin refreshed after translating all 277 negative row counterexamples into Japanese without changing their source-derived targets, discrepancies, class expectations, rule IDs, or unresolved concrete-value limits. Previous current pin sha256 32901b747531048246aa6149b2619dda0a478fff2037511a8c25ddfff4847f9a at source revision a5d6088b9c8cf1c7da543b75ba2f010c2a6db183 is retained here. 現行pinをL8 positive最小期待・根拠表の設計追補後へ更新。旧revision cb44877e1db60a872f3fa3d241260487028fe159・SHA-256 27531334c998af878f98714b89878ca23c41f75cfd130bae13c817eee9d1ce2c を履歴として保持。新revision 24d7f00bdca41c3dfb1f3137655ffdbe3674cfb3・SHA-256 91da3af2c6ad997fdf265871f9776c5bed41f196fbccfc2276e1a41f42a267bb。positive 8行は契約最小期待を設計したが未観測で、individual oracle/test citationはnull。"
+      "sha256": "18df6dce679dbfe0c169eb7bcadb8457f52b30915595d3b171e6be310ec8c72a",
+      "note": "Nested L8 case inventory measured read-only; no source edits. Current pin updated to 73f253a76363fe6f936c3f5707c8b3e43f46f75bec5483925fad96982740293c at source revision d8e48de751c04f4250326dd049763c08dce3eaac; prior registered pin ebfb5a50360fbcf4c0df262a4c31c87870b963b9d4e557888d63aef74699c777 is retained in this note. WR255 follow-up added dedicated U-IDs and a shared L9 source index; PR-B changes no L4 nested payload and performs no pointer redirect. Previous pin was fixed at c14adddf2678c7a69d76420c451df3f05b1251ab. Replacement remains pending: the 308 L8 plus 308 L9 pointer redirect/audit condition is unmet and check-replacement reports the missing transfer map; do not retire SCF-B-0209. Current pin updated to a585b1c7ad53a6043caa9944aa41a804d026376d42a76e949c0c8f1a87061ba3 at source revision 2c8fdde45255e07794ce2cf3153bf696765258b4; previous pin 73f253a76363fe6f936c3f5707c8b3e43f46f75bec5483925fad96982740293c at source revision d8e48de751c04f4250326dd049763c08dce3eaac is retained. Counterexamples now state row-specific target/discrepancy plus L4 class meaning, and each negative U-ID has resolvable L4/L5 class source pointers; actual conflict values remain explicitly absent where L9 given does not provide them. Current pin updated to 32901b747531048246aa6149b2619dda0a478fff2037511a8c25ddfff4847f9a at source revision a5d6088b9c8cf1c7da543b75ba2f010c2a6db183; previous pin a585b1c7ad53a6043caa9944aa41a804d026376d42a76e949c0c8f1a87061ba3 at source revision 2c8fdde45255e07794ce2cf3153bf696765258b4 is retained. Explicit L8 U-ID rows retain function_ref matching their resolved L5 owner, as required by CHK-NEG-4WAY-MATCH. Current pin refreshed after translating all 277 negative row counterexamples into Japanese without changing their source-derived targets, discrepancies, class expectations, rule IDs, or unresolved concrete-value limits. Previous current pin sha256 32901b747531048246aa6149b2619dda0a478fff2037511a8c25ddfff4847f9a at source revision a5d6088b9c8cf1c7da543b75ba2f010c2a6db183 is retained here. 現行pinをL8 positive最小期待・根拠表の設計追補後へ更新。旧revision cb44877e1db60a872f3fa3d241260487028fe159・SHA-256 27531334c998af878f98714b89878ca23c41f75cfd130bae13c817eee9d1ce2c を履歴として保持。新revision 24d7f00bdca41c3dfb1f3137655ffdbe3674cfb3・SHA-256 91da3af2c6ad997fdf265871f9776c5bed41f196fbccfc2276e1a41f42a267bb。positive 8行は契約最小期待を設計したが未観測で、individual oracle/test citationはnull。 旧pin revision 24d7f00bdca41c3dfb1f3137655ffdbe3674cfb3・SHA-256 91da3af2c6ad997fdf265871f9776c5bed41f196fbccfc2276e1a41f42a267bbを変更前時点として保持。 WR255追補でL8側308 consumerを305 canonical alias＋3固定R2履歴参照へ振り分け、未解決F02 locality pointerを正しいL4 pathへ訂正した。 新current SHA-256 18df6dce679dbfe0c169eb7bcadb8457f52b30915595d3b171e6be310ec8c72a。 WR255 follow-up: L8-side transfer is measured as 305 current canonical aliases plus three fixed R2 unassigned references; L9 remains 308 current nested-path consumers. SCF-B-0209 remains pending, and L4 nested payloads are retained. 旧noteの「read-only; no source edits」「no pointer redirect」は2026-11-01以前の履歴記録。現時点ではL8側308 consumerを305 current aliases＋3 fixed R2 referencesへ移行済み。L9側308 referencesは未移行でありSCF-B-0209はpendingのまま。"
     },
     {
       "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
@@ -61,7 +61,7 @@
     "Apply PR #3996 R1 response as a separate source-derived update: two L4 composite classes from reusable finding/axis formation rules and two L9 case assignments; no L9 expected_proposal changes.",
     "Keep stable existing class_id/rule IDs; project L4 code to expected_classification as the R1 schema decision specifies.",
     "Preserve all 71 multi-contract residuals and all 285 nested L9 given/when/expected_proposal rows.",
-    "Keep L4 nested consumer payloads and all 308 L8 plus 308 L9 RFC6901 targets value/type/field-equivalent; retire only after explicit redirects and a full reviewed pointer/field audit.",
+    "Keep all 308 L8 and 308 L9 consumer references resolvable and field-semantically equivalent through explicit current aliases or fixed revision references; retire only after both V-pair transfers and the full reviewed pointer/field audit.",
     "Keep L5/L8 unchanged in PR-A; partial marker checker remains FAIL until PR-B.",
     "Do not execute old runtime/test/CI or L4 algorithm; no commit/push from this lane."
   ],
@@ -85,11 +85,13 @@
       "Source-first two ambiguous candidate validator checks historical input/source pins, L3/L10/L4 crosswalk, case input facts, class options, and singleton count; it does not execute algorithm or generate expected results.",
       "R2 measures 30 existing classes, 283 explicit integration rows (8 positive and 275 assigned negative), two unassigned ambiguous cases, 285 unchanged nested expectations and 71 unchanged multi-contract residuals.",
       "L8 and L9 each retain 308 RFC6901 references to unchanged L4 nested classification targets; value, type and required fields are checked.",
+      "Historical R2 baseline: L8 and L9 each had 308 RFC6901 references to L4 nested classification targets; the baseline result is retained in Git history.",
       "Current PR-A partial marker checker: 436 failures, matched 0; PR #3992 historical trial remains fixed at its recorded 438 failures.",
       "The simultaneous omission of two unassigned rows from explicit arrays is not detected by the checker; independently audit original nested inventory and do not claim full 285-row coverage.",
       "PR #3996 R1 correction artifact separately records source-backed composite formation, two ordered-axis class definitions, and c50 historical R2 validator/artifact state.",
       "Current R1 projection: L4/L9 32 classes, L9 285 integration rows (8 positive and 277 negative), both ambiguous rows assigned through new L4/L9 composite classes; original R2 audit is preserved and R1 effective counts live in an additive audit entry.",
-      "R1 check-child is intentionally partial: 448 failures, matched 0; L5/L8 remain unmodified."
+      "R1 check-child is intentionally partial: 448 failures, matched 0; L5/L8 remain unmodified.",
+      "Current WR255 transfer audit checks 305 L8 case/taxonomy aliases to canonical L4 classes (including `code`→`class_id` and exact `expected_text` reconstruction), pins the three R2 unassigned consumers to c50eb21b34f034262ced3f8052d2502fb84c57c9, and records that L9 still has 308 nested-path consumers."
     ],
     "negative_cases": [
       "Do not report 275 rows as blind matches; WR236 frozen comparison includes one mismatch.",
@@ -124,7 +126,7 @@
       "QA §3 explicit class mode",
       "existing SEC009 L8/L9 nested case inventories"
     ],
-    "boundary": "Scaffold evidence plus uncommitted PR-A R1 L4/L9 proposal; no authority/operation effect; L5/L8 unchanged."
+    "boundary": "元PR-Aのblind measurement範囲とL5/L8未変更条件を履歴として保持する。 今回rootが明示した後続L5/L8 consumer移行はSCF-B-0220の別follow-up scopeで扱い、L9変更は別V-pairとする。 いずれもauthority・操作・正式検証を生成しない。"
   },
   "operations": {
     "allowed": [
@@ -181,6 +183,8 @@
     "scaffold/research/wr245-sec009-explicit-pair-measurement-20261031/checker-trials/reports/pr-a-r2-check-child-report.json",
     "scaffold/research/wr245-sec009-explicit-pair-measurement-20261031/pr3996-r1-correction.json",
     "scaffold/research/wr245-sec009-explicit-pair-measurement-20261031/validate_pr_a_r1_correction.py",
-    "scaffold/research/wr245-sec009-explicit-pair-measurement-20261031/checker-trials/reports/pr-a-r1-correction-check-child-report.json"
+    "scaffold/research/wr245-sec009-explicit-pair-measurement-20261031/checker-trials/reports/pr-a-r1-correction-check-child-report.json",
+    "scaffold/research/wr255-sec009-l5l8-audit-20261101/validate_pointer_transfer.py",
+    "scaffold/research/wr255-sec009-l5l8-audit-20261101/README.md"
   ]
 }

@@ -30,13 +30,13 @@
     },
     {
       "path": "docs/helix-security/L8-unit-verification/revoke-quarantine-propagation.json",
-      "sha256": "91da3af2c6ad997fdf265871f9776c5bed41f196fbccfc2276e1a41f42a267bb",
-      "note": "Pinned source for static SEC009 L5/L8 ID, class, contract-source, or child-check comparison; no runtime semantics are executed. Current pin updated to a585b1c7ad53a6043caa9944aa41a804d026376d42a76e949c0c8f1a87061ba3 at source revision 2c8fdde45255e07794ce2cf3153bf696765258b4; previous pin 73f253a76363fe6f936c3f5707c8b3e43f46f75bec5483925fad96982740293c at source revision d8e48de751c04f4250326dd049763c08dce3eaac is retained. Counterexamples now state row-specific target/discrepancy plus L4 class meaning, and each negative U-ID has resolvable L4/L5 class source pointers; actual conflict values remain explicitly absent where L9 given does not provide them. Current pin updated to 32901b747531048246aa6149b2619dda0a478fff2037511a8c25ddfff4847f9a at source revision a5d6088b9c8cf1c7da543b75ba2f010c2a6db183; previous pin a585b1c7ad53a6043caa9944aa41a804d026376d42a76e949c0c8f1a87061ba3 at source revision 2c8fdde45255e07794ce2cf3153bf696765258b4 is retained. Explicit L8 U-ID rows retain function_ref matching their resolved L5 owner, as required by CHK-NEG-4WAY-MATCH. Current pin refreshed after translating all 277 negative row counterexamples into Japanese without changing their source-derived targets, discrepancies, class expectations, rule IDs, or unresolved concrete-value limits. Previous current pin sha256 32901b747531048246aa6149b2619dda0a478fff2037511a8c25ddfff4847f9a at source revision a5d6088b9c8cf1c7da543b75ba2f010c2a6db183 is retained here. 現行pinはpositive 8件の契約最小期待・共有根拠表を追加したrevision 24d7f00bdca41c3dfb1f3137655ffdbe3674cfb3へ更新。旧revision cb44877e1db60a872f3fa3d241260487028fe159・SHA-256 27531334c998af878f98714b89878ca23c41f75cfd130bae13c817eee9d1ce2c を保持し、新SHA-256 91da3af2c6ad997fdf265871f9776c5bed41f196fbccfc2276e1a41f42a267bb を記録。期待は未観測で個別oracle/test citationはnull。"
+      "sha256": "18df6dce679dbfe0c169eb7bcadb8457f52b30915595d3b171e6be310ec8c72a",
+      "note": "Pinned source for static SEC009 L5/L8 ID, class, contract-source, or child-check comparison; no runtime semantics are executed. Current pin updated to a585b1c7ad53a6043caa9944aa41a804d026376d42a76e949c0c8f1a87061ba3 at source revision 2c8fdde45255e07794ce2cf3153bf696765258b4; previous pin 73f253a76363fe6f936c3f5707c8b3e43f46f75bec5483925fad96982740293c at source revision d8e48de751c04f4250326dd049763c08dce3eaac is retained. Counterexamples now state row-specific target/discrepancy plus L4 class meaning, and each negative U-ID has resolvable L4/L5 class source pointers; actual conflict values remain explicitly absent where L9 given does not provide them. Current pin updated to 32901b747531048246aa6149b2619dda0a478fff2037511a8c25ddfff4847f9a at source revision a5d6088b9c8cf1c7da543b75ba2f010c2a6db183; previous pin a585b1c7ad53a6043caa9944aa41a804d026376d42a76e949c0c8f1a87061ba3 at source revision 2c8fdde45255e07794ce2cf3153bf696765258b4 is retained. Explicit L8 U-ID rows retain function_ref matching their resolved L5 owner, as required by CHK-NEG-4WAY-MATCH. Current pin refreshed after translating all 277 negative row counterexamples into Japanese without changing their source-derived targets, discrepancies, class expectations, rule IDs, or unresolved concrete-value limits. Previous current pin sha256 32901b747531048246aa6149b2619dda0a478fff2037511a8c25ddfff4847f9a at source revision a5d6088b9c8cf1c7da543b75ba2f010c2a6db183 is retained here. 現行pinはpositive 8件の契約最小期待・共有根拠表を追加したrevision 24d7f00bdca41c3dfb1f3137655ffdbe3674cfb3へ更新。旧revision cb44877e1db60a872f3fa3d241260487028fe159・SHA-256 27531334c998af878f98714b89878ca23c41f75cfd130bae13c817eee9d1ce2c を保持し、新SHA-256 91da3af2c6ad997fdf265871f9776c5bed41f196fbccfc2276e1a41f42a267bb を記録。期待は未観測で個別oracle/test citationはnull。 旧pin revision 24d7f00bdca41c3dfb1f3137655ffdbe3674cfb3・SHA-256 91da3af2c6ad997fdf265871f9776c5bed41f196fbccfc2276e1a41f42a267bbを変更前時点として保持。 WR255追補でL8側308 consumerを305 canonical alias＋3固定R2履歴参照へ振り分け、未解決F02 locality pointerを正しいL4 pathへ訂正した。 新current SHA-256 18df6dce679dbfe0c169eb7bcadb8457f52b30915595d3b171e6be310ec8c72a。"
     },
     {
       "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
-      "sha256": "af0f3e68683233ee1caa68b816ee7221b1fd4359442b179b4eaa0052068548e1",
-      "note": "Pinned source for static SEC009 L5/L8 ID, class, contract-source, or child-check comparison; no runtime semantics are executed."
+      "sha256": "e918a289fe88446b3f84210577f0fe8094505d9dac9d9a8713cd074eb6776e5b",
+      "note": "Pinned source for static SEC009 L5/L8 ID, class, contract-source, or child-check comparison; no runtime semantics are executed. 旧pin revision 087f02dc637f6860e344e2bda9efa83c83506b72・SHA-256 af0f3e68683233ee1caa68b816ee7221b1fd4359442b179b4eaa0052068548e1を変更前時点として保持。 PR #4008 R1を含むlatest mainのL9 bytesへ追随し、L9旧revision/expected履歴は既存noteに保持した。 新current SHA-256 e918a289fe88446b3f84210577f0fe8094505d9dac9d9a8713cd074eb6776e5b。"
     },
     {
       "path": "docs/helix-security/L10-verification/business-verification.json",
@@ -85,13 +85,18 @@
     "allowed": [
       "Run validate_wr255_l5l8.py from the repository root.",
       "Run current design_verification_checker.py check-child through that validator.",
-      "Review source hashes, row/class audit, positive source facts, and saved checker report."
+      "Review source hashes, row/class audit, positive source facts, and saved checker report.",
+      "Apply and audit L8-only SCF-B-0209 consumer redirects in the WR255 L5/L8 V-pair worktree: 305 current canonical aliases with exact class field projection and three explicit fixed-R2 references; keep L9 in its separate V-pair.",
+      "Correct a source pointer only when its intended current L4 source target and prior broken pointer are both recorded and validated.",
+      "Update current pins after preserving previous revision/hash and the reason for the change."
     ],
     "forbidden": [
       "Generate L9 expected values or per-U-ID oracle/test citations.",
       "Change L3/L10 requirements or oracle meaning.",
       "Treat check-child failures as a pass or claim formal 4-way completion.",
-      "Execute old runtime, CLI, hook, test, CI, product runtime, or security algorithm."
+      "Execute old runtime, CLI, hook, test, CI, product runtime, or security algorithm.",
+      "Edit the separate L4/L9 worktree or transfer its 308 consumers from this V-pair.",
+      "Run check-replacement or retire SCF-B-0209 while L9 transfer and full consumer review remain incomplete."
     ]
   },
   "artifacts": [
@@ -107,7 +112,8 @@
     "scaffold/research/wr255-sec009-l5l8-audit-20261101/verification-summary-24d7f00bdca4-91da3af2.json",
     "scaffold/research/wr255-sec009-l5l8-audit-20261101/check-child-report-24d7f00bdca4-91da3af2.json",
     "scaffold/research/wr255-sec009-l5l8-audit-20261101/verification-summary-cb44877e1db6-91da3af2.json",
-    "scaffold/research/wr255-sec009-l5l8-audit-20261101/duplicate-check-report-disposition.json"
+    "scaffold/research/wr255-sec009-l5l8-audit-20261101/duplicate-check-report-disposition.json",
+    "scaffold/research/wr255-sec009-l5l8-audit-20261101/validate_pointer_transfer.py"
   ],
   "verification": {
     "evidence_kind": "scaffold",

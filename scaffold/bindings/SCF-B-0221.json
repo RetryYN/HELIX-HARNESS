@@ -25,13 +25,13 @@
     },
     {
       "path": "docs/helix-security/L5-detail-design/revoke-quarantine-propagation.json",
-      "sha256": "90c3761e88ea76fefe1222372ffa1218afcf2fc8cb4dec666ca8b7ca98bd8734",
-      "note": "L5 function and rule declarations used by fixed L5/L8 overlay snapshot checker measurement."
+      "sha256": "1aefb9b64fb52abc8cf6eec7d32312bfcb9a07359d7406c2ca4e9fa9717fa190",
+      "note": "L5 function and rule declarations used by fixed L5/L8 overlay snapshot checker measurement. 旧pin revision 24d7f00bdca41c3dfb1f3137655ffdbe3674cfb3・SHA-256 90c3761e88ea76fefe1222372ffa1218afcf2fc8cb4dec666ca8b7ca98bd8734を変更前時点として保持。 WR255のL5/L8候補source bytesをcurrent pinに反映し、固定overlay入力revisionは既存noteで区別する。 新current SHA-256 1aefb9b64fb52abc8cf6eec7d32312bfcb9a07359d7406c2ca4e9fa9717fa190。"
     },
     {
       "path": "docs/helix-security/L8-unit-verification/revoke-quarantine-propagation.json",
-      "sha256": "ebfb5a50360fbcf4c0df262a4c31c87870b963b9d4e557888d63aef74699c777",
-      "note": "Current L8 source and consumer pointers at the L4/L9 branch base. The independent L5/L8 candidate checker inputs are read by git show from fixed revision e7dd88b8f987de4cb5af6707489ea356a0c4c79a and are not duplicated under scaffold/. Current canonical L8 in this worktree remains SHA-256 ebfb5a50360fbcf4c0df262a4c31c87870b963b9d4e557888d63aef74699c777. Overlay uses fixed candidate L5/L8 revision 24d7f00bdca41c3dfb1f3137655ffdbe3674cfb3, L8 SHA-256 91da3af2c6ad997fdf265871f9776c5bed41f196fbccfc2276e1a41f42a267bb; source snapshot is read via git show, not copied."
+      "sha256": "18df6dce679dbfe0c169eb7bcadb8457f52b30915595d3b171e6be310ec8c72a",
+      "note": "Current L8 source and consumer pointers at the L4/L9 branch base. The independent L5/L8 candidate checker inputs are read by git show from fixed revision e7dd88b8f987de4cb5af6707489ea356a0c4c79a and are not duplicated under scaffold/. Current canonical L8 in this worktree remains SHA-256 ebfb5a50360fbcf4c0df262a4c31c87870b963b9d4e557888d63aef74699c777. Overlay uses fixed candidate L5/L8 revision 24d7f00bdca41c3dfb1f3137655ffdbe3674cfb3, L8 SHA-256 91da3af2c6ad997fdf265871f9776c5bed41f196fbccfc2276e1a41f42a267bb; source snapshot is read via git show, not copied. 変更前pin SHA-256 ebfb5a50360fbcf4c0df262a4c31c87870b963b9d4e557888d63aef74699c777を過去時点として保持。 WR255追補でL8側308 consumerを305 canonical alias＋3固定R2履歴参照へ振り分け、未解決F02 locality pointerを正しいL4 pathへ訂正した。 新current SHA-256 18df6dce679dbfe0c169eb7bcadb8457f52b30915595d3b171e6be310ec8c72a。 旧noteの「Current canonical L8 ... ebfb...」はmain時点の記録。WR255 L5/L8 branchではcurrent pathを18df6dce679dbfe0c169eb7bcadb8457f52b30915595d3b171e6be310ec8c72aへ更新。overlayが読む固定L5/L8 source revision 24d7f00bdca41c3dfb1f3137655ffdbe3674cfb3とその旧SHAは別履歴として保持。"
     },
     {
       "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",

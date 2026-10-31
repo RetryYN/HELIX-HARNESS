@@ -319,18 +319,32 @@ def main() -> int:
         checker_report = json.loads(check.stdout)
     except json.JSONDecodeError as exc:
         fail(f"static checker did not emit JSON: {exc}; stderr={check.stderr[-500:]}")
-    source_revision = git_text("log", "-1", "--format=%H", "--", FILES["l8"])
+    source_revisions = {
+        layer: git_text("log", "-1", "--format=%H", "--", FILES[layer])
+        for layer in ("l4", "l5", "l8", "l9")
+    }
+    source_revision = source_revisions["l8"]
     l8_digest = sha256(FILES["l8"])
-    report_stem = f"{source_revision[:12]}-{l8_digest[:8]}"
+    pair_revision_stem = "-".join(
+        f"{layer}-{source_revisions[layer][:10]}-{sha256(FILES[layer])[:8]}"
+        for layer in ("l4", "l5", "l8", "l9")
+    )
+    report_stem = pair_revision_stem
     check_report_name = f"check-child-report-{report_stem}.json"
     write_immutable_json(audit_dir / check_report_name, checker_report)
     negative = checker_report["negative_4way"]
     reasons = Counter(item.get("reason", "unknown") for item in negative.get("failures", []))
-    # This pair-only comparison includes one unmatched row-level condition per
-    # positive case because the L5/L8 branch does not consume the L4/L9 overlay.
-    expected_failure_count = 2243
-    if check.returncode != 1 or checker_report.get("passed") is not False or negative.get("matched_case_count") != 0 or len(negative.get("failures", [])) != expected_failure_count:
-        fail("check-child observation differs from the recorded incomplete outcome")
+    expected_matched_case_count = 277
+    expected_failure_count = 0
+    if (
+        check.returncode != 0
+        or checker_report.get("passed") is not True
+        or negative.get("matched_case_count") != expected_matched_case_count
+        or len(negative.get("failures", [])) != expected_failure_count
+    ):
+        fail("latest-main overlay check-child is not 277 matched / 0 failures")
+    if not checker_report.get("L4_L9_pair", {}).get("passed"):
+        fail("latest-main L4/L9 pair check-child failed")
     if not checker_report.get("L5_L8_pair", {}).get("passed"):
         fail("L5/L8 pair no longer passes its current static pair check")
 
@@ -339,6 +353,7 @@ def main() -> int:
         "evidence_kind": "scaffold",
         "authority_effect": "none",
         "source_revision": source_revision,
+        "source_revisions": source_revisions,
         "source_hashes": {name: sha256(path) for name, path in FILES.items()},
         "counts": {"classes_per_layer": 32, "l8_u_ids": 285, "l9_source_case_ids": 285, "negative": negative_count, "positive_contract_minimum_designed_not_observed": len(positives)},
         "class_audit": class_audit,
@@ -373,7 +388,7 @@ def main() -> int:
             "negative_4way_failure_count": len(negative.get("failures", [])),
             "negative_4way_failure_reasons": dict(sorted(reasons.items())),
             "full_report": check_report_name,
-            "interpretation": "L5/L8 pair passes; 4-way remains incomplete because the canonical L9 branch has not yet been refreshed with matching positive minimum expectations and compact observations, plus class key alignment failures. This evidence does not claim formal verification.",
+            "interpretation": "L4/L9 and L5/L8 pair checks pass, with 277 matched cases and zero 4-way checker failures. The eight positive rows remain contract-minimum designs, not observed fixture outcomes; this evidence does not claim runtime behavior or formal security verification.",
         },
     }
     report_name = f"verification-summary-{report_stem}.json"
