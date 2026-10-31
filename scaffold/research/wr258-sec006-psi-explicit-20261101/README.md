@@ -34,7 +34,7 @@ PR #4007 merge後の基準mainは`151713275e2c2aa65bb23a8fe38eb63c46d570c8`。�
 
 PR-B候補との一時overlayでは、class keyとL8↔L9 ID対応は15 class・148行が揃い、148 case pairが比較対象になった。期待値と保持内容は148/148一致した。L9の日本語case conditionは入力根拠から独立導出したため、現PR-B候補の旧98件英語condition文字列とはQAの完全一致がなく、その98 IDだけがcase-condition FAILとなる。追加50件は50/50一致した。英語文字列をL9へ機械複写して解消しない。L8候補側の条件も同じcounterexampleから日本語で独立に記述する必要がある。正式4way `matched_case_count`と失敗内訳は`l4l9-supplement-current-overlay.json`に実測を保存する。
 
-行別source/期待照合は`l4l9-casewise-source-audit.json`、読取専用validatorは`validate_wr258_l4l9_supplement.py`、新しい専用bindingは`SCF-B-0226`で登録する。SCF-B-0201/0218のL9 current pinを更新し、旧hashを各noteへ保全する。これらの変更はL4/L9 V-pairとそのscaffold evidenceの範囲内であり、L3/L10/QA/L5/L8はこのbranchで編集しない。
+行別source/期待照合は`l4l9-casewise-source-audit.json`に148行の固定JSON Pointer・導出結果として記録し、conditionやsource本文はL9正本への重複コピーを避ける。読取専用validatorは`validate_wr258_l4l9_supplement.py`、新しい専用bindingは`SCF-B-0226`で登録する。SCF-B-0201/0218のL9 current pinを更新し、旧hashを各noteへ保全する。これらの変更はL4/L9 V-pairとそのscaffold evidenceの範囲内であり、L3/L10/QA/L5/L8はこのbranchで編集しない。
 
 
 ### 最新origin/main overlayの再測定
