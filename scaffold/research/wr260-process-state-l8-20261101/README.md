@@ -1,29 +1,29 @@
 # WR260 HARNESS-015 L8 process-state 軽量化
 
-status: scaffold。静的な候補整理であり、`authority_effect=none`。
+status: scaffold。静的な文書整理・照合であり、`authority_effect=none`。
 
-## 変更
+## 整理内容
 
-`docs/helix-harness/L8-unit-verification/process-state-port.json`を、既存7 canonical case groupのままU-ID中心へ整理した。215 U-IDの識別子・固有条件・入力との対応・期待差分を残し、共通期待は各groupに一度だけ置いた。172 qualification rowもIDと変異条件・期待差分を維持した。qualification matrix 141行、mixed qualification 12行、content counterexample 14行、valley counterexample 10行、source-binding control 7行、source group 305行、source pin 16行、legacy comparison 10行を数えて保持した。
+固定base `569bde0bc5792349f0833461f0bb1bb6db33c592` のL8を由来として、canonicalな7件の`cases` listを維持した。本文は9,811,684 bytesから606,439 bytesへ縮小した。215 U-IDごとにID、機能参照、固有条件、基準行との差分期待、ownerの根拠、元行参照を保ち、7機能の共通契約は各groupに一度だけ置いた。expected欄は固定base差分を省かず、state/valueの重複表現を統合した。期待差が基準行と同じ48行は、差がない事実を残して行単位で未検証とした。172 qualification行のうち差がない17行も未検証と記録し、固有の期待を推測で埋めていない。
 
-qualification matrix 141行はID・資格変化・変更path/state/value・期待owner refを元rowと照合した。共通のnot_executed/effectと、2種の共通理由をmatrix親に集約した。mixed red-missing + green-stale行は2条件を保ち、集約値unknownと両診断保持を明記した。14 content counterexampleは短い入力path/changeとtyped state/value、owner return/affected scopeを保持し、10 valley counterexampleは短いpath/change、partial state/value、owner targetを保持した。7 source-binding controlはbase caller U-ID参照、selected role、短いpath/operation、期待state/rule、source-binding限定境界を保ち、JSON Patch列とfixture値は残していない。これらの根拠は各`base_row_ref`から固定baseの行へ追跡できる。
+他の節も別々に固定baseと照合した。qualification matrix 141行では各条件・型付き状態・明示されたowner状態を保ち、共通effectとexecution stateを一度だけ保持した。mixed red/missing + green/stale等の12行は両条件と集約結果を残した。content counterexample 14行、valley content counterexample 10行、source-binding control 7行はID・短い意味条件・固定baseとの差分期待・provenanceを残した。source-binding conditionは有効なJSON Pointerを含む単一文字列であり、patch列、入力値配列、全返却は残さない。source groupは305行で、各keyと存在するrole/state/member/affected field/source identity/scope/owner情報を保った。legacy comparisonは10行、source pinは16行を維持した。
 
-L5の公開関数7件とL9 branch 7件をcanonical case groupへ維持した。L5 failure ruleとL4 negative classificationの対応を調査し、34負例行をL8へ追加した。各行の条件は既存U-ID入力から書き、期待分類・axis/state・expected/preserved・owner/side effectはL4とL5双方の値が一致するものを採用した。L9のnegative値やrow IDを転記せず、L9へ対応根拠がない2分類には対応付けを作っていない。F02の2個の既存L5 ruleは、L8既存ID `H003-L8-F02-POC-RESULT-MISSING` の独立した入力条件を使う。
+L5の公開関数7件、L9 branch 7件と既存canonical listを維持した。34負例行はL4 classificationとL5 failure ruleから個別条件を記述した。L9の行値を転記せず、厳密な現行case IDを結べる32行だけを対応済みとした。`H003-L8-B01-QUAL-GROUNDING_PURPOSE-UNKNOWN`と`H003-L8-F02-POC-RESULT-MISSING`の2件は正確なL9 counterpartが見つからず、未解決として残した。
 
-実行payload、fixture/raw source、全件materialization・比較snapshot、private-call record実体、重複reference index、L9分類写し、非pin digestを撤去した。`removed_materials`は要求どおり6 keyで、`use_boundary`にDT-VT-105を指定した。before/after byte・row種別・削除宣言を主文書の`pre_removal_inventory`に記録した。固定revisionは由来・期待差分の照合に限り、fixture復元・実行・L7 oracleとして使わない。
+旧実行payload、fixture/raw source、full return、patch/recipe、巨大なmaterializationや比較複写、重複source reference index、非pin digestを撤去し、種類別件数を記録した。`removed_materials`は6 key、境界は`DT-VT-105`。固定revisionは由来・期待差分の静的照合にだけ使い、fixture復元・実行には使っていない。
 
-旧材料内のL9 TDD symbolic pseudo-ID pointer 78件（`cases/3` 26件、`cases/4` 52件。key別では`packet_source_pointer` 24、`payload_source_pointer` 30、`source_packet_pointer` 24）は、PR #4005より前からRFC6901として無効だった。削除する実行材料中の参照として件数と経緯を記録し、対応する現行L9行が確認できない参照を残さず、代替pointerも作らない。
+旧L8にあるL9 TDD向けsymbolic pseudo-ID参照78件は、PR #4005以前からRFC6901として無効だった。内訳は`cases/3` 26件、`cases/4` 52件、key別は`packet_source_pointer` 24件、`payload_source_pointer` 30件、`source_packet_pointer` 24件。実行材料とともに撤去し、現行L9で裏付けられない代替pointerは作っていない。
 
-## 起点・保持境界
+## 根拠と差分
 
-Issue #3510の軽量化依頼と、PR #4006のdigest/repr指摘、PR #4002の共通値重複、PR #3998の行別意味・期待確認を起点にした。cap 0を軽量化完了の証拠とせず、固有条件・期待の行単位保持、削除material inventory、残件測定を行った。旧HELIXでは旧設計のtraceと期待を保ちつつ実行機構・test fixtureは隔離する区別を参照し、旧sourceを現行の実行・oracleへ転用しない。
+起点はIssue #3510、PR #4006のdigest/repr指摘、PR #4002の重複、PR #3998の行別意味・期待確認である。旧HELIXの対応箇所`archive/legacy-generation-2026-09-14/root/docs/governance/ddd-tdd-rules.md:21-33,112-121`を読み、公開契約とfailure semanticsを先に固定し、複雑さを減らせるか記録する点を参照した。旧sourceのtest、fixture、oracleは現行へ持ち込んでいない。
 
-旧HELIXでは`archive/legacy-generation-2026-09-14/root/docs/governance/ddd-tdd-rules.md:21-33,112-121`が、公開契約とfailure semanticsの先行固定、Red/Green/Refactorの意味、net complexity、削減可能性の記録を定める。本件はこの「契約と意味は保ち、重複・実行材料を減らす」点を保持する。旧sourceのtest実行・fixture・oracleを現行へ持ち込まない。今回の文書差分は旧HELIXと異なり、L8候補の静的整理だけである。
+L4↔L9 pairとL5↔L8 pairはそれぞれ7対7でpassし、4way成立を意味しない。`check-child`のnegative 4wayは223 failuresで、依頼記録上の従前223件から変化なしだった。属性別は`presence` 216件、`negative_case_count` 7件。層別行数はL4=34、L8=34、L5=34、L9=182。件数差や未対応caseが残るため、34行追加による失敗減少は主張しない。現在の行別結果、未検証ID、未解決L9対応は[`verification-summary-r4.json`](verification-summary-r4.json)に記録した。
 
-本変更はL8文書と対応するscaffold検証資料だけを対象にする。L4/L9の意味・件数・case IDは変更しない。L4↔L9、L5↔L8のpair check passはnegative 4wayの成立を意味しない。
+source groupの実数は305 map entry。従前の332はrule stringの27文字を行として数えた誤りだったため、L8のinventoryに訂正根拠を残した。L8入力に対応する現行L9 pointerは209件で、6件は根拠がなく未対応のまま保持した。
 
-## 実測と残件
+## 検証
 
-詳細なbefore/after件数、hash、check-childのattribute別実測と4way残件ID一覧は[`verification-summary.json`](verification-summary.json)に記録する。L8の6 U-IDには現行L9 numeric input pointerを置く根拠がなく、既存L8の条件だけを保持した。L4/L9 negative 4wayはL9 182行と他層34行のID不一致および7親branchの件数差が残る。checker実測では変更前として依頼に記録された223 failuresから今回223 failuresへ変化なし。L8の34行追加を失敗数の減少とは扱わない。source groupの実体は305 map rowsであり、旧初期集計332はtemplate rule stringの文字数27を行数に数えていたため、主文書の`count_correction`へ訂正根拠を記録した。
+`validate_process_state_l8.py`は固定baseとの行別意味差分、識別子、owner、参照、空期待・patch/full-return形、壊れたpointer、負例根拠を調べる静的validatorである。既定では記録ファイルを書かず、`--record PATH`指定時も新規pathをexclusive-createする。今回の実測は全検査pass。`design_verification_checker.py check-child`では両pair、4層pin、ownership capがpassし、negative 4wayは上記223 failures。`scfctl validate`は202 bindings / fail 0、`scfctl stale`はstale 0。旧CLI、hook、runtime、CIは起動していない。
 
-`validate_process_state_l8.py`は読取専用の静的validatorで、既定では記録ファイルを書かない。`--record PATH`を明示した場合も新規pathをexclusive-createし、既存ファイルを上書きしない。固定revisionの文書との構造・期待差分比較、現行参照の解決、L4/L5負例対応を検査する。実行結果、承認、formal oracle、受入、4way成立を生成しない。`scfctl validate`は200 bindings / fail 0、`scfctl stale`はstale 0。L8を参照する既存SCF-B-0186/0188/0202のcurrent pinはcandidate SHAへ更新し、旧SHAを各noteに履歴として残した。
+`verification-summary.json`、`verification-summary-r2.json`、`verification-summary-r3.json`はそれぞれ前段候補の記録として不変の履歴に保持する。現候補の実測は`verification-summary-r4.json`を参照する。L8を参照するSCF-B-0186/0188/0202/0223は最終L8 SHAをstale検出用pinとして持ち、直前のpin hashを注記に履歴として残した。
