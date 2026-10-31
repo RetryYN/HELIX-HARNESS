@@ -32,16 +32,16 @@ PR #4007 merge後の基準mainは`151713275e2c2aa65bb23a8fe38eb63c46d570c8`。�
 
 各integration rowにはQA §58の`compact_whole_observation`を置く。既存98行は元の`expected_observation`からordered `code`/`return_owner`を射影し、新規50行はL9 rowのsystem expectationとL4 class ownerから未実行のcompact oracleを構成する。148行すべて`not_executed`で、実行結果やraw fixtureを追加しない。ORACLE-046はoperation read/connection absentのsystem oracleとして既存class `SEC003-F02-EXPLICIT-CONNECTION-ABSENT`へ接続し、局所operation-deferをnegative caseとして紐付けない。
 
-PR-B候補の初回overlay（origin/main `fe6232a6062685aeb15e1b8641533ea86fa712f4`）では、148 case pairのexpected/preservedが148/148一致し、conditionは50一致・98不一致だった。これはR1前の時点証拠として`l4l9-supplement-current-overlay.json`に固定してある。QA §58は`condition`をcase単位で完全一致比較するため、L8 `change`はL9 `condition`と同じ文字列にする。`expected`と`expected_preserved`はL3/L10/L4からL8側で独立導出し、L9値の複写ではなく意味一致を検証する。現行PR-B候補との最新照合はR1 overlay測定に記録する。
+PR-B候補の初回overlay（origin/main `fe6232a6062685aeb15e1b8641533ea86fa712f4`）では、148 case pairのexpected/preservedが148/148一致し、conditionは50一致・98不一致だった。このR1前の測定内容はGit履歴に固定し、本文と復元方法を`pr4017-r1-review-disposition.json`に記録する。QA §58は`condition`をcase単位で完全一致比較するため、L8 `change`はL9 `condition`と同じ文字列にする。`expected`と`expected_preserved`はL3/L10/L4からL8側で独立導出し、L9値の複写ではなく意味一致を検証する。現行PR-B候補との最新照合はR1 overlay測定に記録する。
 
-R1後の行別source/期待照合は`l4l9-casewise-source-audit-r1.json`に148行の固定JSON Pointer・導出結果として記録し、condition、source本文、class共通pointerを複製しない。R1前の`l4l9-casewise-source-audit.json`と`l4l9-supplement-current-overlay.json`は当時の証拠として不変保持し、Git commit/blob/SHAと復元手順を`pr4017-r1-review-disposition.json`へ記録する。読取専用validatorは`validate_wr258_l4l9_supplement.py`、専用bindingは`SCF-B-0226`で登録する。SCF-B-0201/0218/0226のL9 current pinを更新し、旧hashをnotesとdispositionに保全する。これらの変更はL4/L9 V-pairとそのscaffold evidenceの範囲内であり、L3/L10/QA/L5/L8 canonical sourceはこのbranchで編集しない。
+R1後の行別source/期待照合は`l4l9-casewise-source-audit-r1.json`に148行の固定JSON Pointer・導出結果として記録し、condition、source本文、class共通pointerを複製しない。現行treeにはR1のaudit/overlay各1本を置く。R1前のaudit/overlay本体は重複を避けて現行treeから外し、Git commit/blob/SHAと復元手順のみを`pr4017-r1-review-disposition.json`へ記録した。読取専用validatorは`validate_wr258_l4l9_supplement.py`、専用bindingは`SCF-B-0226`で登録する。SCF-B-0201/0218/0226のL9 current pinを更新し、旧hashをnotesとdispositionに保全する。これらの変更はL4/L9 V-pairとそのscaffold evidenceの範囲内であり、L3/L10/QA/L5/L8 canonical sourceはこのbranchで編集しない。
 
 
 ### 最新origin/main overlayの再測定
 
 `origin/main`は本補足の起点`151713275e2c2aa65bb23a8fe38eb63c46d570c8`から`fe6232a6062685aeb15e1b8641533ea86fa712f4`へ進んでいた。SEC006のL4/L9/L5/L8正本にはその間の変更がないことを確認し、PR-B候補commit `12ce2fe821`、`7da2d1a1b5`、`89a91dfb80cabc206004b50beb825c0461f5c9a1`を一時worktreeで最新mainへ適用して再測定した。SCF-B-0201/0218のL5/L8候補pinとSCF-B-0224のL9 pinを測定overlay内だけで更新し、その前のpin値を各noteに残した。
 
-このR1前overlayではL4/L9 pairとL5/L8 pairがともにPASS。explicit 4wayは148件を対応付けたが、98件のL8/L9 condition不一致でFAILした。条件以外の期待値と保持内容はそれぞれ148/148一致した。condition不一致は独立した日本語表現にすることで解消するものではなく、QA §58の完全一致に合わせL8 `change`をL9 `condition`と同じ文字列にする。expected/expected_preservedはL3/L10/L4から独立導出する。`scfctl validate`は208 bindings・失敗0、`scfctl stale`は0 stale。実測は[`l4l9-supplement-current-overlay.json`](l4l9-supplement-current-overlay.json)にR1前の時点証拠として固定した。
+このR1前overlayではL4/L9 pairとL5/L8 pairがともにPASS。explicit 4wayは148件を対応付けたが、98件のL8/L9 condition不一致でFAILした。条件以外の期待値と保持内容はそれぞれ148/148一致した。condition不一致は独立した日本語表現にすることで解消するものではなく、QA §58の完全一致に合わせL8 `change`をL9 `condition`と同じ文字列にする。expected/expected_preservedはL3/L10/L4から独立導出する。`scfctl validate`は208 bindings・失敗0、`scfctl stale`は0 stale。測定本文はGit履歴から復元でき、commit/blob/SHAと復元手順を`pr4017-r1-review-disposition.json`に記録した。
 
 
 ## PR #4017 R1追補

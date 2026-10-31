@@ -70,7 +70,7 @@
     "scaffold/research/wr258-sec006-psi-explicit-20261101/l4l9-supplement-current-overlay-r1.json",
     "scaffold/research/wr258-sec006-psi-explicit-20261101/pr-b-l8-integration-case-ref-candidate-r2.json"
   ],
-  "restoration_semantics": "変更前の時点証拠は固定commit/blob/SHAをGit履歴に保全し、このdispositionのrestore_commandで再取得できる。新しいcurrent audit/overlayは別pathに追補し、旧ファイルbytesは変更しない。",
+  "restoration_semantics": "変更前の時点証拠は固定commit/blob/SHAをGit履歴に保全し、このdispositionのrestore_commandで再取得できる。現行treeにはcurrent audit/overlay各1本だけを置き、旧audit/overlay本文の現行コピーは除去した。復元は必要時にGit履歴から行い、このdisposition自体は旧本文を複製しない。",
   "latest_overlay_revision": "ad2dfaf6f434fbb81cd34988d4bd76212380f3a5",
   "current_overlay_artifact": "scaffold/research/wr258-sec006-psi-explicit-20261101/l4l9-supplement-current-overlay-r1.json"
 }
