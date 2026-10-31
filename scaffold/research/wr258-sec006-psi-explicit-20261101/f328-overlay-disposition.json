@@ -1,0 +1,111 @@
+{
+  "schema": "wr258-f328-overlay-full-copy-disposition.v1",
+  "evidence_kind": "scaffold",
+  "authority_effect": "none",
+  "commit": "f32812ea08cc88545ea228e71146738553ae1e35",
+  "files": [
+    {
+      "path": "scaffold/research/wr258-sec006-psi-explicit-20261101/integrated-overlay-candidate/l4.json",
+      "git_blob": "07c1d1221d9d7fe52950142fc92d3101fa06cc30",
+      "sha256": "1fe24d7d9b44f0db13feb35a9ff5621c6b3d11a8e32ae41b3bc148aa1ca3f483",
+      "bytes": 111135,
+      "lines": 2065,
+      "disposition": "remove_full_copy_reconstruct_in_temporary_worktree"
+    },
+    {
+      "path": "scaffold/research/wr258-sec006-psi-explicit-20261101/integrated-overlay-candidate/l5.json",
+      "git_blob": "64cee59f197f8d5013f251c66773416eff7e1a57",
+      "sha256": "d20a06a4ef955e3deb8e804791693544a920b89aab43a4fa9ddf28144ca37eed",
+      "bytes": 334646,
+      "lines": 6491,
+      "disposition": "remove_full_copy_reconstruct_in_temporary_worktree"
+    },
+    {
+      "path": "scaffold/research/wr258-sec006-psi-explicit-20261101/integrated-overlay-candidate/l8.json",
+      "git_blob": "bcc42016836f88b1d718473cd165d970be1a38f6",
+      "sha256": "b8e5fbd3a76754331707425190cbeaae403d40a99754f29a22f2da31e664f652",
+      "bytes": 8395441,
+      "lines": 210748,
+      "disposition": "remove_full_copy_reconstruct_in_temporary_worktree"
+    },
+    {
+      "path": "scaffold/research/wr258-sec006-psi-explicit-20261101/integrated-overlay-candidate/l9.json",
+      "git_blob": "3b406116bccb170b640e63c37f2b070d7b649a6f",
+      "sha256": "68f60371b1a0e45181fd3a4c93001c978763c18fd950c2f82807f69b84fab7fd",
+      "bytes": 923607,
+      "lines": 20677,
+      "disposition": "remove_full_copy_reconstruct_in_temporary_worktree"
+    },
+    {
+      "path": "scaffold/research/wr258-sec006-psi-explicit-20261101/caller-provenance-overlay-candidate/l4.json",
+      "git_blob": "07c1d1221d9d7fe52950142fc92d3101fa06cc30",
+      "sha256": "1fe24d7d9b44f0db13feb35a9ff5621c6b3d11a8e32ae41b3bc148aa1ca3f483",
+      "bytes": 111135,
+      "lines": 2065,
+      "disposition": "remove_full_copy_reconstruct_in_temporary_worktree"
+    },
+    {
+      "path": "scaffold/research/wr258-sec006-psi-explicit-20261101/caller-provenance-overlay-candidate/l5.json",
+      "git_blob": "fdd8cbb068d804c44d1af8c77bfb86e9686cddef",
+      "sha256": "085693b33e41b5e87986d7b8fdce9215f5ff493b34d58d77cceb1918effe17b5",
+      "bytes": 335177,
+      "lines": 6497,
+      "disposition": "remove_full_copy_reconstruct_in_temporary_worktree"
+    },
+    {
+      "path": "scaffold/research/wr258-sec006-psi-explicit-20261101/caller-provenance-overlay-candidate/l8.json",
+      "git_blob": "7da935f270e731f8aac68c6f6a347a319a03cc01",
+      "sha256": "47d69fc013bfa7911d003e5f93b8d460e54cd2b229d8ae6f8c41f5b7798339e4",
+      "bytes": 8408880,
+      "lines": 211039,
+      "disposition": "remove_full_copy_reconstruct_in_temporary_worktree"
+    },
+    {
+      "path": "scaffold/research/wr258-sec006-psi-explicit-20261101/caller-provenance-overlay-candidate/l9.json",
+      "git_blob": "5f177756b52c78ebc985a8c01c32bf696dc0c0a8",
+      "sha256": "ac6c223ddb8837ea48724fc92db9e30d25499a09fd3636231053fbc2eb58cd55",
+      "bytes": 925149,
+      "lines": 20701,
+      "disposition": "remove_full_copy_reconstruct_in_temporary_worktree"
+    }
+  ],
+  "initial_artifact_restored": {
+    "path": "scaffold/research/wr258-sec006-psi-explicit-20261101/integration-candidate.json",
+    "commit": "031d530f0e55f8ab264fa4fabeb6285e6e30fd49",
+    "sha256": "908f176f5b0c130b2cec452334c1244b372bcdc7a30eb2d704ffe4bb102d66c7",
+    "f328_sha256": "3d2dd7694a35a61a9a45b5a68d612f5a4fb1130bd4e7ee422f77eb65274df920"
+  },
+  "reproduction": "At the recorded fixed commit, run the registered temp-worktree reconstruction script; it uses the recorded build scripts and checker, never materializes output into the repository working tree.",
+  "reconstruction_inputs": [
+    {
+      "path": "scaffold/research/wr258-sec006-psi-explicit-20261101/build_overlay_probe.py",
+      "git_blob": "48b08b20eee858c3e4101a66e9415ccc1cfaf914",
+      "sha256": "ebf6bbd51fc5def46a7dca0f7028cde00632c545439ba104475fda3a4126cccc"
+    },
+    {
+      "path": "scaffold/research/wr258-sec006-psi-explicit-20261101/build_caller_provenance_overlay.py",
+      "git_blob": "11fa516aab1a30666966a4eb700488b0dbe07ea2",
+      "sha256": "64323b3bbf061d5c9b48cbdc9e042bfb3475527796d52ac14534774da10dc6e4"
+    },
+    {
+      "path": "scaffold/tools/design_verification_checker.py",
+      "git_blob": "c3b2f0d6d8d066195ae362339602843ce2d0fc48",
+      "sha256": "e751526d67cd8df11e5aac1c5a1a178dfbd0fecc3f2ed21f995b7dda11ea4d5d"
+    },
+    {
+      "path": "scaffold/research/wr258-sec006-psi-explicit-20261101/integration-candidate.json",
+      "git_blob": "7d006addccd9d3f12f5fd02749c0c0bb93af00f0",
+      "sha256": "3d2dd7694a35a61a9a45b5a68d612f5a4fb1130bd4e7ee422f77eb65274df920"
+    },
+    {
+      "path": "scaffold/research/wr258-sec006-psi-explicit-20261101/rowwise-integration-design.json",
+      "git_blob": "a29776ee2d054341a924bc2ad4bc44e33183319f",
+      "sha256": "567ba03eff6607c3603b10c9bb443bf06c890364c0aa2106299cc92a81583004"
+    }
+  ],
+  "reconstruction_procedure": [
+    "Run scaffold/research/wr258-sec006-psi-explicit-20261101/reconstruct_overlays_in_temp_worktree.py from the working repository; it checks out the recorded commit detached and verifies HEAD.",
+    "Inside that temporary worktree only, delete the two historical overlay directories, then run the pinned build_overlay_probe.py once for each overlay directory. The caller-provenance overlay additionally applies the pinned build_caller_provenance_overlay.py delta.",
+    "Run the pinned scaffold/tools/design_verification_checker.py check-child against each four-file output set, summarize the returned JSON, then remove the temporary worktree. A requested report path is opened with exclusive-create mode and is never overwritten."
+  ]
+}

@@ -1,0 +1,380 @@
+{
+  "schema": "wr258-pr4007-r2-evidence-disposition.v1",
+  "evidence_kind": "scaffold",
+  "authority_effect": "none",
+  "current_revision_before_r2": "d3b0b1777f3cf35d604d20ad18a177cc9f85caa3",
+  "purpose": "重複・時点違いのPR4007 R1記録と再生成可能な大容量rowwise出力を現行pathから除き、正確な履歴参照と復元経路を残す。",
+  "retired_files": [
+    {
+      "path": "scaffold/research/wr258-sec006-psi-explicit-20261101/rowwise-integration-design.json",
+      "source_revision": "d3b0b1777f3cf35d604d20ad18a177cc9f85caa3",
+      "git_blob": "a29776ee2d054341a924bc2ad4bc44e33183319f",
+      "sha256": "567ba03eff6607c3603b10c9bb443bf06c890364c0aa2106299cc92a81583004",
+      "bytes": 772941,
+      "disposition": "現行scaffoldから退役。履歴上の正確なbyte列を次の手順で復元できる: git show d3b0b1777f3cf35d604d20ad18a177cc9f85caa3:scaffold/research/wr258-sec006-psi-explicit-20261101/rowwise-integration-design.json > scaffold/research/wr258-sec006-psi-explicit-20261101/rowwise-integration-design.json",
+      "rebuild": {
+        "fixed_commit": "f32812ea08cc88545ea228e71146738553ae1e35",
+        "fixed_commit_blob": "a29776ee2d054341a924bc2ad4bc44e33183319f",
+        "fixed_commit_sha256": "567ba03eff6607c3603b10c9bb443bf06c890364c0aa2106299cc92a81583004",
+        "exact_reconstruction_verified": true,
+        "command": "git worktree add --detach <persistent-temp-under-helix-worktrees> f32812ea08cc88545ea228e71146738553ae1e35; cd <worktree>; python3 scaffold/research/wr258-sec006-psi-explicit-20261101/build_rowwise_design.py; git worktree remove --force <worktree>",
+        "measured_counts": {
+          "canonical_l8_negative_rows": 52,
+          "exact_projection_l8_rows": 2,
+          "exact_projection_pairs": 7,
+          "unmatched_l8_rows": 50,
+          "l9_negative_rows": 98,
+          "retained_l8_candidate_rows": 91,
+          "confirmed_duplicate_candidates_removed": 7,
+          "l9_skeletons": 50
+        },
+        "output_bytes": 772941
+      }
+    },
+    {
+      "path": "scaffold/research/wr258-sec006-psi-explicit-20261101/pr4007-r1-oracle-uniqueness-validation.json",
+      "source_revision": "d3b0b1777f3cf35d604d20ad18a177cc9f85caa3",
+      "git_blob": "421416080dcf373a0d8d112d1da9a8574918e999",
+      "sha256": "c7e535b5f792bc85adc00b8e938a50b3c336826b665ceb649950960eef0b089d",
+      "bytes": 18279,
+      "disposition": "現行scaffoldから退役。履歴上の正確なbyte列を次の手順で復元できる: git show d3b0b1777f3cf35d604d20ad18a177cc9f85caa3:scaffold/research/wr258-sec006-psi-explicit-20261101/pr4007-r1-oracle-uniqueness-validation.json > scaffold/research/wr258-sec006-psi-explicit-20261101/pr4007-r1-oracle-uniqueness-validation.json"
+    },
+    {
+      "path": "scaffold/research/wr258-sec006-psi-explicit-20261101/pr4007-r1-oracle-uniqueness-validation-r2.json",
+      "source_revision": "d3b0b1777f3cf35d604d20ad18a177cc9f85caa3",
+      "git_blob": "421416080dcf373a0d8d112d1da9a8574918e999",
+      "sha256": "c7e535b5f792bc85adc00b8e938a50b3c336826b665ceb649950960eef0b089d",
+      "bytes": 18279,
+      "disposition": "現行scaffoldから退役。履歴上の正確なbyte列を次の手順で復元できる: git show d3b0b1777f3cf35d604d20ad18a177cc9f85caa3:scaffold/research/wr258-sec006-psi-explicit-20261101/pr4007-r1-oracle-uniqueness-validation-r2.json > scaffold/research/wr258-sec006-psi-explicit-20261101/pr4007-r1-oracle-uniqueness-validation-r2.json"
+    },
+    {
+      "path": "scaffold/research/wr258-sec006-psi-explicit-20261101/pr4007-r1-case-specific-overlay-check-child.json",
+      "source_revision": "d3b0b1777f3cf35d604d20ad18a177cc9f85caa3",
+      "git_blob": "63a551e10fd57d2bcafbdfcc51c46e70e00115b4",
+      "sha256": "10d46ff9e53bd7fd89fa859a10ec52f5ec0b43fd57dfa54db7d57675bbe539cf",
+      "bytes": 4028,
+      "disposition": "現行scaffoldから退役。履歴上の正確なbyte列を次の手順で復元できる: git show d3b0b1777f3cf35d604d20ad18a177cc9f85caa3:scaffold/research/wr258-sec006-psi-explicit-20261101/pr4007-r1-case-specific-overlay-check-child.json > scaffold/research/wr258-sec006-psi-explicit-20261101/pr4007-r1-case-specific-overlay-check-child.json"
+    },
+    {
+      "path": "scaffold/research/wr258-sec006-psi-explicit-20261101/pr4007-r1-latest-main-overlay-r1.json",
+      "source_revision": "d3b0b1777f3cf35d604d20ad18a177cc9f85caa3",
+      "git_blob": "27514585f461bbc6e862106958afbbe5bc0c850f",
+      "sha256": "21b3890400fc0e8fc639d0d4e96f266129932c143c8de87ab3c910a89e0f8b53",
+      "bytes": 3593,
+      "disposition": "現行scaffoldから退役。履歴上の正確なbyte列を次の手順で復元できる: git show d3b0b1777f3cf35d604d20ad18a177cc9f85caa3:scaffold/research/wr258-sec006-psi-explicit-20261101/pr4007-r1-latest-main-overlay-r1.json > scaffold/research/wr258-sec006-psi-explicit-20261101/pr4007-r1-latest-main-overlay-r1.json"
+    },
+    {
+      "path": "scaffold/research/wr258-sec006-psi-explicit-20261101/pr4007-r1-latest-main-overlay-r2.json",
+      "source_revision": "d3b0b1777f3cf35d604d20ad18a177cc9f85caa3",
+      "git_blob": "ce614d723bc2189c9a67cc130cb6381b2a5f476c",
+      "sha256": "d62d390edd6ee45625de86ccbbb6e8d7af848d870e4236b2607aa17ec3ab4ad3",
+      "bytes": 3683,
+      "disposition": "現行scaffoldから退役。履歴上の正確なbyte列を次の手順で復元できる: git show d3b0b1777f3cf35d604d20ad18a177cc9f85caa3:scaffold/research/wr258-sec006-psi-explicit-20261101/pr4007-r1-latest-main-overlay-r2.json > scaffold/research/wr258-sec006-psi-explicit-20261101/pr4007-r1-latest-main-overlay-r2.json"
+    },
+    {
+      "path": "scaffold/research/wr258-sec006-psi-explicit-20261101/pr4007-r1-main-overlay-r2-20261101.json",
+      "source_revision": "d3b0b1777f3cf35d604d20ad18a177cc9f85caa3",
+      "git_blob": "a101a6a5b76872615b360f9d6d74e42f2bc47ade",
+      "sha256": "bcb0e93c49f85effcf3fc09bc59c4a77d7cca6225558a2c809e88a6661810e7b",
+      "bytes": 3340,
+      "disposition": "現行scaffoldから退役。履歴上の正確なbyte列を次の手順で復元できる: git show d3b0b1777f3cf35d604d20ad18a177cc9f85caa3:scaffold/research/wr258-sec006-psi-explicit-20261101/pr4007-r1-main-overlay-r2-20261101.json > scaffold/research/wr258-sec006-psi-explicit-20261101/pr4007-r1-main-overlay-r2-20261101.json"
+    },
+    {
+      "path": "scaffold/research/wr258-sec006-psi-explicit-20261101/pr4007-r1-followup-20261101.json",
+      "source_revision": "d3b0b1777f3cf35d604d20ad18a177cc9f85caa3",
+      "git_blob": "e57d341cf75a1ec8285f2f0a7a971f122154e372",
+      "sha256": "d76cabfefa993e5e4db3a98d9e0a00c12d65b9d1b2c7736426269ee5c9a571a4",
+      "bytes": 12084,
+      "disposition": "現行scaffoldから退役。履歴上の正確なbyte列を次の手順で復元できる: git show d3b0b1777f3cf35d604d20ad18a177cc9f85caa3:scaffold/research/wr258-sec006-psi-explicit-20261101/pr4007-r1-followup-20261101.json > scaffold/research/wr258-sec006-psi-explicit-20261101/pr4007-r1-followup-20261101.json"
+    },
+    {
+      "path": "scaffold/research/wr258-sec006-psi-explicit-20261101/pr4007-r1-static-validation.json",
+      "source_revision": "d3b0b1777f3cf35d604d20ad18a177cc9f85caa3",
+      "git_blob": "4babf8b7eaf56059f4eaa63c19acb520430a779b",
+      "sha256": "e95d0a567e40fffdb5c4dcec05534d45052be5d93da287d2107b1708f92856d5",
+      "bytes": 1592,
+      "disposition": "現行scaffoldから退役。履歴上の正確なbyte列を次の手順で復元できる: git show d3b0b1777f3cf35d604d20ad18a177cc9f85caa3:scaffold/research/wr258-sec006-psi-explicit-20261101/pr4007-r1-static-validation.json > scaffold/research/wr258-sec006-psi-explicit-20261101/pr4007-r1-static-validation.json"
+    }
+  ],
+  "duplicate_blob_groups": [
+    {
+      "git_blob": "421416080dcf373a0d8d112d1da9a8574918e999",
+      "files": [
+        "scaffold/research/wr258-sec006-psi-explicit-20261101/pr4007-r1-oracle-uniqueness-validation.json",
+        "scaffold/research/wr258-sec006-psi-explicit-20261101/pr4007-r1-oracle-uniqueness-validation-r2.json"
+      ],
+      "sha256": "c7e535b5f792"
+    }
+  ],
+  "replacement_current_artifacts": [
+    "scaffold/research/wr258-sec006-psi-explicit-20261101/pr4007-r2-static-validation.json",
+    "scaffold/research/wr258-sec006-psi-explicit-20261101/pr4007-r2-latest-main-overlay.json",
+    "scaffold/research/wr258-sec006-psi-explicit-20261101/pr-b-l8-integration-case-ref-candidate-r2.json"
+  ],
+  "retired_current_tools": [
+    {
+      "path": "scaffold/research/wr258-sec006-psi-explicit-20261101/validate_pr4007_r1_oracle_uniqueness.py",
+      "historical_revision": "d3b0b1777f3cf35d604d20ad18a177cc9f85caa3",
+      "git_blob": "7d96d37f12390bc0d94382c43f3b14b9a40df743",
+      "sha256": "a948b7cd383a7c9973aea6b3664db04747311a3ed272ae57b2b799f0b7ddbfa2",
+      "bytes": 11987,
+      "retirement_reason": "R1専用validatorはrowwise artifactを通常pathから読み込んでいた。R2でartifactを現行pathから退役したため、過去時点専用toolとして現行scaffoldから退役。",
+      "replacement_or_successor": "validate_pr4007_r2.py と PR-B compact mapping validator",
+      "restore_exact_bytes": "git show d3b0b1777f3cf35d604d20ad18a177cc9f85caa3:scaffold/research/wr258-sec006-psi-explicit-20261101/validate_pr4007_r1_oracle_uniqueness.py > scaffold/research/wr258-sec006-psi-explicit-20261101/validate_pr4007_r1_oracle_uniqueness.py",
+      "execution_scope": "過去時点の再現に限る。現行treeへ単独で復元して実行しない。"
+    },
+    {
+      "path": "scaffold/research/wr258-sec006-psi-explicit-20261101/build_rowwise_design.py",
+      "historical_revision": "d3b0b1777f3cf35d604d20ad18a177cc9f85caa3",
+      "git_blob": "5307366f82e0108885374b5643be80251e54e80b",
+      "sha256": "3bfa9914ea45ef57a5c08873e4b5d55a55fe927d0267eaa37f3f45983415ae1e",
+      "bytes": 21459,
+      "retirement_reason": "現行L4/L9を入力に巨大rowwise artifactを作るbuilderを現行scaffoldから退役。byte-identical再構成は固定f328 worktree内のbuilderでのみ行う。",
+      "replacement_or_successor": "固定f328 commitからの一時worktree再構成とR2固定Git blob検証",
+      "restore_exact_bytes": "git show d3b0b1777f3cf35d604d20ad18a177cc9f85caa3:scaffold/research/wr258-sec006-psi-explicit-20261101/build_rowwise_design.py > scaffold/research/wr258-sec006-psi-explicit-20261101/build_rowwise_design.py",
+      "execution_scope": "過去時点の再現に限る。現行treeへ単独で復元して実行しない。"
+    }
+  ],
+  "retained_historical_path_references": [
+    {
+      "path": "scaffold/research/wr258-sec006-psi-explicit-20261101/integration-overlay-measurement.json",
+      "field": "rowwise_design",
+      "kind": "時点測定記録中のpath label。実行時consumerではない。対応blob/SHAはretired_filesのrowwise artifact entryに記録。"
+    },
+    {
+      "path": "scaffold/research/wr258-sec006-psi-explicit-20261101/post-f328-followup-r1.json",
+      "field": "files",
+      "kind": "f328後の履歴調査で使った入力一覧。実行時consumerではない。"
+    },
+    {
+      "path": "scaffold/research/wr258-sec006-psi-explicit-20261101/operation-defer-and-pr-split-candidate-r1.json",
+      "field": "additional_50 / rowwise-integration-design.json hash",
+      "kind": "R1時点の候補記録とその時点hash。現在のoracleではない。"
+    },
+    {
+      "path": "scaffold/research/wr258-sec006-psi-explicit-20261101/f328-overlay-disposition.json",
+      "field": "path",
+      "kind": "f328固定時点の旧出力blob記録。復元・照合経路を表し、通常pathで読むconsumerではない。"
+    },
+    {
+      "path": "scaffold/research/wr258-sec006-psi-explicit-20261101/validate_pr4007_r2.py",
+      "field": "ROWWISE / git show",
+      "kind": "現行validatorは通常pathを読まず、固定commitのGit blobをhash検証し、現行path不存在を検査する。"
+    }
+  ],
+  "retired_current_measurement_reports": [
+    {
+      "path": "scaffold/research/wr258-sec006-psi-explicit-20261101/pr4007-r2-latest-main-overlay.json",
+      "source_revision": "4a3d26f2756f87b91bdcae4481025c4beb5413ed",
+      "git_blob": "540ad2452bf92e34a3885ed47cf00db007daebea",
+      "sha256": "e2f2199329631bf0266211636705e87a5710733602bf9305d4ae6e85e39e85e6",
+      "bytes": 6234,
+      "disposition": "同じorigin/mainを測定した新しいconsumer overlayに統合して現行pathから退役。完全な当時byte列はgit showで復元できる。",
+      "restore_exact_bytes": "git show 4a3d26f2756f87b91bdcae4481025c4beb5413ed:scaffold/research/wr258-sec006-psi-explicit-20261101/pr4007-r2-latest-main-overlay.json > scaffold/research/wr258-sec006-psi-explicit-20261101/pr4007-r2-latest-main-overlay.json",
+      "superseded_by": "scaffold/research/wr258-sec006-psi-explicit-20261101/pr4007-r2-consumer-overlay.json",
+      "unique_facts_preserved_in_disposition": {
+        "synthetic_overlay_source": {
+          "r2_candidate_commit": "787d34f40289cb28e71b511b2abaf81e81428c21",
+          "synthetic_merge_commit": "fe7ab4f1f60947cd3db4ae91b3023eaff3b5470c",
+          "synthetic_merge_tree": "a3cb1429440e70496a71fca8d4a40b31ec33b292"
+        },
+        "additional_sha256": {
+          "docs/helix-security/L5-detail-design/project-scope-isolation.json": "41c49bc0b62b415422067297bd9accf848e4f14e253fab9779e778c49c2e1edd",
+          "docs/helix-security/L8-unit-verification/project-scope-isolation.json": "6d093e482b013e733bc3eb5950aef5b8385b3288dc85bbcb9854bea92830900d",
+          "scaffold/tools/design_verification_checker.py": "e751526d67cd8df11e5aac1c5a1a178dfbd0fecc3f2ed21f995b7dda11ea4d5d"
+        },
+        "candidate_pair_statuses": {
+          "L4_L9": true,
+          "L5_L8": true
+        },
+        "candidate_fourway_counts": {
+          "L4": 15,
+          "L9": 15,
+          "L8": 15,
+          "L5": 15
+        },
+        "candidate_case_rows": {
+          "L8": 143,
+          "L9": 148
+        }
+      }
+    },
+    {
+      "path": "scaffold/research/wr258-sec006-psi-explicit-20261101/pr4007-r2-consumer-overlay.json",
+      "source_revision": "4a3d26f2756f87b91bdcae4481025c4beb5413ed",
+      "git_blob": "ecc9d4b381e89cb825757cedaf23736f1d1f9a86",
+      "sha256": "dcb110e62ccf71b9a9a1981903bc5906e5dd09bbc82628774b0a3b0941204bf6",
+      "bytes": 6732,
+      "disposition": "旧current consumer overlay。validator/builder退役の確認と当時の同一main測定を記録した履歴報告。最終候補treeを測定する唯一の現行overlay reportに置き換え、完全な当時byte列をGit履歴と以下の復元手順で保持。",
+      "restore_exact_bytes": "git show 4a3d26f2756f87b91bdcae4481025c4beb5413ed:scaffold/research/wr258-sec006-psi-explicit-20261101/pr4007-r2-consumer-overlay.json > scaffold/research/wr258-sec006-psi-explicit-20261101/pr4007-r2-consumer-overlay.json",
+      "superseded_by": "scaffold/research/wr258-sec006-psi-explicit-20261101/pr4007-r2-final-overlay.json",
+      "preserved_prior_measurement": {
+        "origin_main": "cd4208605f2a4e77e85f8d34317ff44c7218ad41",
+        "candidate_commit": "1be4656f9fdf7241b9a2aa0e0286458280a09ed8",
+        "synthetic_merge_commit": "9940355ffe0639475161f5816c4edf3f65db8ffb",
+        "synthetic_merge_tree": "6ebc89b01c1318aceed6453c99c873f56a7a10fe",
+        "r2_validator": {
+          "exit": 0,
+          "passed": true,
+          "counts": {
+            "l4_classes": 15,
+            "l9_old_rows": 98,
+            "l9_r1_additions": 50,
+            "l9_total_rows": 148,
+            "unique_conditions": 50,
+            "python_repr_occurrences": 0,
+            "prb_candidate_rows": 50
+          },
+          "retired_r1_tools": [
+            "scaffold/research/wr258-sec006-psi-explicit-20261101/validate_pr4007_r1_oracle_uniqueness.py",
+            "scaffold/research/wr258-sec006-psi-explicit-20261101/build_rowwise_design.py"
+          ],
+          "rowwise_rebuild_source": {
+            "git_blob": "a29776ee2d054341a924bc2ad4bc44e33183319f",
+            "sha256": "567ba03eff6607c3603b10c9bb443bf06c890364c0aa2106299cc92a81583004",
+            "current_path_absent": true
+          }
+        },
+        "r1_followup_validator": {
+          "exit": 0,
+          "passed": true,
+          "counts": {
+            "l4_classes": 15,
+            "l9_old_rows_preserved": 98,
+            "l9_added_short_oracles": 50,
+            "l9_total_negative_rows": 148,
+            "l9_by_contract": [
+              93,
+              55
+            ],
+            "l9_class_table": 15,
+            "new_class_case_counts": {
+              "SEC003-F01-ASSET-KIND-UNRESOLVED": 1,
+              "SEC003-F01-OWNER-MATERIAL-UNRESOLVED": 3,
+              "SEC003-F01-SIDE-INPUT-UNRESOLVED": 1,
+              "SEC003-F02-FALLBACK-INPUT-UNRESOLVED": 2,
+              "SEC003-F02-OPERATION-INPUT-UNRESOLVED": 1
+            },
+            "multi_contract_residual_negative_rows": 16
+          },
+          "assertion_failures": []
+        },
+        "retired_path_checks": {
+          "r1_uniqueness_validator_exists": false,
+          "rowwise_builder_exists": false,
+          "large_rowwise_artifact_exists": false
+        },
+        "scfctl": {
+          "validate_exit": 0,
+          "validate_summary": "bindings=203 fail=0",
+          "stale_exit": 0,
+          "stale_summary": "stale=0"
+        },
+        "formal_check_child": {
+          "exit": 1,
+          "passed": false,
+          "pair_statuses": {
+            "L4_L9": true,
+            "L5_L8": true
+          },
+          "fourway_counts": {
+            "L4": 15,
+            "L9": 15,
+            "L8": 0,
+            "L5": 0
+          },
+          "case_rows": {
+            "L8": 0,
+            "L9": 0
+          },
+          "matched_case_count": 0,
+          "failure_count": 79,
+          "failure_groups": {
+            "L5|explicit_mode|class_source_marker_invalid": 1,
+            "L8|explicit_mode|class_table_marker_missing": 1,
+            "L8|case_identity|unit_cases_missing_or_not_array": 1,
+            "L9|case_identity|integration_cases_missing_or_not_array": 1,
+            "L4|owner_ref|class_owner_ref_unresolved": 15,
+            "L8|equivalence_key|class_key_missing_from_layer": 15,
+            "L8|equivalence_class|class_key_missing_from_layer": 15,
+            "L5|equivalence_key|class_key_missing_from_layer": 15,
+            "L5|equivalence_class|class_key_missing_from_layer": 15
+          }
+        },
+        "candidate_check_child": {
+          "matched": 141,
+          "failures": [
+            {
+              "check": "CHK-NEG-4WAY-MATCH",
+              "attribute": "expected",
+              "reason": "case_attribute_differs_across_l8_l9",
+              "case_id": "SEC003-L8-OPERATION-DEFER"
+            },
+            {
+              "check": "CHK-NEG-4WAY-MATCH",
+              "attribute": "expected_preserved",
+              "reason": "case_attribute_differs_across_l8_l9",
+              "case_id": "SEC003-L8-OPERATION-DEFER"
+            },
+            {
+              "check": "CHK-NEG-4WAY-MATCH",
+              "attribute": "negative_class_ref",
+              "reason": "negative_case_class_ref_missing_or_unresolved",
+              "layer": "L8",
+              "case_id": "SEC003-L8-OPERATION-DEFER"
+            },
+            {
+              "check": "CHK-NEG-4WAY-MATCH",
+              "attribute": "integration_case_ref",
+              "reason": "integration_case_ref_unresolved",
+              "layer": "L8",
+              "case_id": "SEC003-L8-FALLBACK-PRIMARY"
+            },
+            {
+              "check": "CHK-NEG-4WAY-MATCH",
+              "attribute": "integration_case_ref",
+              "reason": "integration_case_not_referenced_from_l8",
+              "layer": "L9",
+              "case_id": "SEC003-AGENT-PRIMARY-TREE-FALLBACK"
+            },
+            {
+              "check": "CHK-NEG-4WAY-MATCH",
+              "attribute": "integration_case_ref",
+              "reason": "integration_case_not_referenced_from_l8",
+              "layer": "L9",
+              "case_id": "SEC003-CONFIGURATION-PRIMARY-TREE-FALLBACK"
+            },
+            {
+              "check": "CHK-NEG-4WAY-MATCH",
+              "attribute": "integration_case_ref",
+              "reason": "integration_case_not_referenced_from_l8",
+              "layer": "L9",
+              "case_id": "SEC003-CREDENTIAL-PRIMARY-TREE-FALLBACK"
+            },
+            {
+              "check": "CHK-NEG-4WAY-MATCH",
+              "attribute": "integration_case_ref",
+              "reason": "integration_case_not_referenced_from_l8",
+              "layer": "L9",
+              "case_id": "SEC003-HOOK-PRIMARY-TREE-FALLBACK"
+            },
+            {
+              "check": "CHK-NEG-4WAY-MATCH",
+              "attribute": "integration_case_ref",
+              "reason": "integration_case_not_referenced_from_l8",
+              "layer": "L9",
+              "case_id": "SEC003-MEMORY-PRIMARY-TREE-FALLBACK"
+            },
+            {
+              "check": "CHK-NEG-4WAY-MATCH",
+              "attribute": "integration_case_ref",
+              "reason": "integration_case_not_referenced_from_l8",
+              "layer": "L9",
+              "case_id": "SEC003-PRIMARY-TREE-FALLBACK"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

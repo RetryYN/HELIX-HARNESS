@@ -1,0 +1,218 @@
+{
+  "schema": "wr258-pr4007-r2-final-overlay.v1",
+  "evidence_kind": "scaffold",
+  "authority_effect": "none",
+  "source": {
+    "origin_main": "7d4145ac41ce8aa8d442b6fbb3981c7e83e338c6",
+    "candidate_commit": "9f6cad52df163b765c45d05245bd434db0d1e92c",
+    "synthetic_merge_commit": "9805be6e6aeb64e01f8c16cc1e2c247a21d1d7bc",
+    "synthetic_merge_tree": "156b36ed483dfbe23f5777717d6af81e5f5d711a",
+    "temporary_worktree": true,
+    "artifact_placeholder_for_scfctl_only": true
+  },
+  "executed_current_validators": {
+    "validate_pr4007_r2.py": {
+      "exit": 0,
+      "passed": true,
+      "counts": {
+        "l4_classes": 15,
+        "l9_old_rows": 98,
+        "l9_r1_additions": 50,
+        "l9_total_rows": 148,
+        "unique_conditions": 50,
+        "python_repr_occurrences": 0,
+        "prb_candidate_rows": 50
+      },
+      "retired_r1_tools": [
+        "scaffold/research/wr258-sec006-psi-explicit-20261101/validate_pr4007_r1_oracle_uniqueness.py",
+        "scaffold/research/wr258-sec006-psi-explicit-20261101/build_rowwise_design.py"
+      ],
+      "rowwise_rebuild_source": {
+        "git_blob": "a29776ee2d054341a924bc2ad4bc44e33183319f",
+        "sha256": "567ba03eff6607c3603b10c9bb443bf06c890364c0aa2106299cc92a81583004",
+        "current_path_absent": true
+      }
+    },
+    "validate_pr4007_r1_followup.py": {
+      "exit": 0,
+      "passed": true,
+      "counts": {
+        "l4_classes": 15,
+        "l9_old_rows_preserved": 98,
+        "l9_added_short_oracles": 50,
+        "l9_total_negative_rows": 148,
+        "l9_by_contract": [
+          93,
+          55
+        ],
+        "l9_class_table": 15,
+        "new_class_case_counts": {
+          "SEC003-F01-ASSET-KIND-UNRESOLVED": 1,
+          "SEC003-F01-OWNER-MATERIAL-UNRESOLVED": 3,
+          "SEC003-F01-SIDE-INPUT-UNRESOLVED": 1,
+          "SEC003-F02-FALLBACK-INPUT-UNRESOLVED": 2,
+          "SEC003-F02-OPERATION-INPUT-UNRESOLVED": 1
+        },
+        "multi_contract_residual_negative_rows": 16
+      },
+      "assertion_failures": []
+    }
+  },
+  "retired_path_checks": {
+    "scaffold/research/wr258-sec006-psi-explicit-20261101/validate_pr4007_r1_oracle_uniqueness.py": false,
+    "scaffold/research/wr258-sec006-psi-explicit-20261101/build_rowwise_design.py": false,
+    "scaffold/research/wr258-sec006-psi-explicit-20261101/rowwise-integration-design.json": false
+  },
+  "scfctl": {
+    "validate_exit": 0,
+    "validate_summary": "bindings=204 fail=0",
+    "stale_exit": 0,
+    "stale_summary": "stale=0"
+  },
+  "formal_document_check_child": {
+    "exit": 1,
+    "passed": false,
+    "pair_statuses": {
+      "L4_L9": true,
+      "L5_L8": true
+    },
+    "fourway_counts": {
+      "L4": 15,
+      "L9": 15,
+      "L8": 0,
+      "L5": 0
+    },
+    "case_rows": {
+      "L8": 0,
+      "L9": 0
+    },
+    "matched_case_count": 0,
+    "failure_count": 79,
+    "failure_groups": {
+      "L5|explicit_mode|class_source_marker_invalid": 1,
+      "L8|explicit_mode|class_table_marker_missing": 1,
+      "L8|case_identity|unit_cases_missing_or_not_array": 1,
+      "L9|case_identity|integration_cases_missing_or_not_array": 1,
+      "L4|owner_ref|class_owner_ref_unresolved": 15,
+      "L8|equivalence_key|class_key_missing_from_layer": 15,
+      "L8|equivalence_class|class_key_missing_from_layer": 15,
+      "L5|equivalence_key|class_key_missing_from_layer": 15,
+      "L5|equivalence_class|class_key_missing_from_layer": 15
+    }
+  },
+  "generated_integration_candidate": {
+    "build_summary": {
+      "out": "tmp-wr258-overlay-generated",
+      "case_rows": {
+        "L8": 143,
+        "L9": 148
+      },
+      "class_rows": {
+        "L4": 15,
+        "L5": 15,
+        "L8": 15,
+        "L9": 15
+      },
+      "retained_l8_candidates_mapped": 91,
+      "canonical_l8_rows_unmapped": 1,
+      "l9_legacy_assignment_classifications_preserved": true
+    },
+    "check_child_exit": 1,
+    "passed": false,
+    "pair_statuses": {
+      "L4_L9": true,
+      "L5_L8": true
+    },
+    "fourway_counts": {
+      "L4": 15,
+      "L9": 15,
+      "L8": 15,
+      "L5": 15
+    },
+    "case_rows": {
+      "L8": 143,
+      "L9": 148
+    },
+    "matched_case_count": 141,
+    "failure_count": 10,
+    "failures": [
+      {
+        "check": "CHK-NEG-4WAY-MATCH",
+        "attribute": "expected",
+        "reason": "case_attribute_differs_across_l8_l9",
+        "case_id": "SEC003-L8-OPERATION-DEFER"
+      },
+      {
+        "check": "CHK-NEG-4WAY-MATCH",
+        "attribute": "expected_preserved",
+        "reason": "case_attribute_differs_across_l8_l9",
+        "case_id": "SEC003-L8-OPERATION-DEFER"
+      },
+      {
+        "check": "CHK-NEG-4WAY-MATCH",
+        "attribute": "negative_class_ref",
+        "reason": "negative_case_class_ref_missing_or_unresolved",
+        "layer": "L8",
+        "case_id": "SEC003-L8-OPERATION-DEFER"
+      },
+      {
+        "check": "CHK-NEG-4WAY-MATCH",
+        "attribute": "integration_case_ref",
+        "reason": "integration_case_ref_unresolved",
+        "layer": "L8",
+        "case_id": "SEC003-L8-FALLBACK-PRIMARY"
+      },
+      {
+        "check": "CHK-NEG-4WAY-MATCH",
+        "attribute": "integration_case_ref",
+        "reason": "integration_case_not_referenced_from_l8",
+        "layer": "L9",
+        "case_id": "SEC003-AGENT-PRIMARY-TREE-FALLBACK"
+      },
+      {
+        "check": "CHK-NEG-4WAY-MATCH",
+        "attribute": "integration_case_ref",
+        "reason": "integration_case_not_referenced_from_l8",
+        "layer": "L9",
+        "case_id": "SEC003-CONFIGURATION-PRIMARY-TREE-FALLBACK"
+      },
+      {
+        "check": "CHK-NEG-4WAY-MATCH",
+        "attribute": "integration_case_ref",
+        "reason": "integration_case_not_referenced_from_l8",
+        "layer": "L9",
+        "case_id": "SEC003-CREDENTIAL-PRIMARY-TREE-FALLBACK"
+      },
+      {
+        "check": "CHK-NEG-4WAY-MATCH",
+        "attribute": "integration_case_ref",
+        "reason": "integration_case_not_referenced_from_l8",
+        "layer": "L9",
+        "case_id": "SEC003-HOOK-PRIMARY-TREE-FALLBACK"
+      },
+      {
+        "check": "CHK-NEG-4WAY-MATCH",
+        "attribute": "integration_case_ref",
+        "reason": "integration_case_not_referenced_from_l8",
+        "layer": "L9",
+        "case_id": "SEC003-MEMORY-PRIMARY-TREE-FALLBACK"
+      },
+      {
+        "check": "CHK-NEG-4WAY-MATCH",
+        "attribute": "integration_case_ref",
+        "reason": "integration_case_not_referenced_from_l8",
+        "layer": "L9",
+        "case_id": "SEC003-PRIMARY-TREE-FALLBACK"
+      }
+    ]
+  },
+  "sha256": {
+    "docs/helix-security/L4-basic-design/project-scope-isolation.json": "16d4fc5e3fcf0c677703b694b538f6d8f5542db36291850ed7f72865f0d9c72c",
+    "docs/helix-security/L5-detail-design/project-scope-isolation.json": "41c49bc0b62b415422067297bd9accf848e4f14e253fab9779e778c49c2e1edd",
+    "docs/helix-security/L8-unit-verification/project-scope-isolation.json": "6d093e482b013e733bc3eb5950aef5b8385b3288dc85bbcb9854bea92830900d",
+    "docs/helix-security/L9-integration-verification/project-scope-isolation.json": "eda71cc49c10ddf0681ae7ab629c6862b3e0c984854cecf0fdf8fc9faa0a0e5c",
+    "scaffold/tools/design_verification_checker.py": "e751526d67cd8df11e5aac1c5a1a178dfbd0fecc3f2ed21f995b7dda11ea4d5d",
+    "scaffold/bindings/SCF-B-0201.json": "e0748eedd80472ef6067fc3014437375794c4520e10cad03cf4cc49f25eb8a56",
+    "scaffold/bindings/SCF-B-0218.json": "bc1a43db455f6e432e805d13a6bb967b94112bdfa80bdedb720607582ae88ae0"
+  }
+}
