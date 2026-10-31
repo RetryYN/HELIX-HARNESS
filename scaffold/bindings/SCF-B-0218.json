@@ -2,11 +2,11 @@
   "schema_revision": 1,
   "id": "SCF-B-0218",
   "kind": "scaffold",
-  "title": "WR258 SEC006 project-scope-isolation staged L4/L9 classes and integration candidate",
+  "title": "WR258 SEC006 project-scope-isolation staged L4/L9 class and integration candidate",
   "product": "HELIX-HARNESS",
   "owner_candidate": "HELIX-HARNESS SEC006 L4/L9 source comparison owner",
   "state": "registered",
-  "reason": "Register WR258 source-based L4/L9 class rows and the unresolved one-to-one integration candidate as scaffold-only evidence. This does not change L3/L10 meaning, QA, L5/L8, runtime behavior, or authority.",
+  "reason": "SCF-B-0218はWR258のL4/L9 source-based class rowsと未解決の一対一integration候補を、scaffold限定の証拠として登録する。L3/L10の意味、QA、L5/L8、runtime、authorityは変更しない。",
   "upstream": [
     {
       "path": "docs/helix-security/L3-requirements/functional-requirements.json",
@@ -20,13 +20,13 @@
     },
     {
       "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
-      "sha256": "2fdd1427779e4a848a12b23c4cdc1517d08578e3946f83823f10a57db8c49d98",
-      "note": "WR258 current L4 source classes; only L4↔L9 pair changed. Prior staged pre-parent-refinement current pin SHA-256 9be1999cce6dd72349d0f359f7ebb8f7dee3c18e8d408d4650ec7e5ba65e0e42 retained here."
+      "sha256": "4777e0714cd7c09135c5b2fae65d6ed26f96ca632b255708a822ff97f9784911",
+      "note": "WR258で更新したL4 class。直前のpin 2fdd1427779e4a848a12b23c4cdc1517d08578e3946f83823f10a57db8c49d98 と初期stage pin 9be1999cce6dd72349d0f359f7ebb8f7dee3c18e8d408d4650ec7e5ba65e0e42 は履歴として保持。"
     },
     {
       "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
       "sha256": "fb5895c299f3f14ecbc41fde01bdac605a20b98275e56cb6176b12693c12df72",
-      "note": "WR258 98 existing row class identities/projections; case IDs, expected observations, residual rows unchanged."
+      "note": "WR258 98行のclass identity/projection。既存case ID・期待観測は変更せず、履歴hashを保持。"
     },
     {
       "path": "docs/governance/design-verification-quality-assurance.md",
@@ -42,16 +42,26 @@
       "path": "scaffold/research/wr250-sec006-psi-l5l8-20261031/validate_pr4000_r1.py",
       "sha256": "9a779f23045ea41dd61ad455c250bcf58836c6475051dd59f50500d07919a1fe",
       "note": "Read for R1 scope and frozen constraints; not executed."
+    },
+    {
+      "path": "docs/helix-security/L5-detail-design/project-scope-isolation.json",
+      "sha256": "41c49bc0b62b415422067297bd9accf848e4f14e253fab9779e778c49c2e1edd",
+      "note": "一時overlayでL5 rule owner keyを投影。正本は未変更。"
+    },
+    {
+      "path": "docs/helix-security/L8-unit-verification/project-scope-isolation.json",
+      "sha256": "6d093e482b013e733bc3eb5950aef5b8385b3288dc85bbcb9854bea92830900d",
+      "note": "52 unit rowsと入力projectionの候補比較に使用。正本は未変更。"
     }
   ],
-  "role": "Hold WR258 rowwise source-derived L4 class and L9 class-key mapping, staged marker boundary, and unresolved L8/L9 caller-case correspondence.",
+  "role": "WR258の行別L4 class、L9 class-key対応、4層候補overlayと残課題を保持する。",
   "obligations": [
     "Read blind source from the specified base with git show and verify the preserved SHA-256; do not edit WR244 fixed artifacts.",
     "Classify all nine no-receiving-L4-class L8 rows from L3/L10 and L4 source meaning; do not infer meaning from L9 expected observations.",
     "Keep L4 code equal to expected_classification and preserve ordered expected_axis, ordered finding_codes, backflow owner, expected state, and side-effect count zero.",
     "Add L9 row class references without changing case IDs, expected observations, L8/L9 counts, or the 16-row multi-contract residual.",
     "Do not add an explicit marker until all four L4/L5/L8/L9 layers are complete in an admissible coordinated transition.",
-    "Record the six L9 primary-tree caller cases and the six exact candidate rows removed by PR #4000 R1; do not claim a one-to-one pairing or reintroduce duplicates as formal unit cases.",
+    "Record the six L9 primary-tree caller cases and the six exact candidate rows removed by PR #4000 R1; do not reintroduce duplicate compare_fallback projections as formal unit cases. A separate provenance-only L5/L8 candidate may use six distinct caller inputs, but remains noncanonical and unapproved.",
     "Measure current check-child, scfctl validate, and stale results. A four-way failure remains a measured incomplete state, not pass or completion.",
     "Preserve historical source revision/hash evidence; keep the previous SCF-B-0201 L4/L9 hashes in binding notes."
   ],
@@ -91,7 +101,27 @@
     "scaffold/research/wr258-sec006-psi-explicit-20261101/README.md",
     "scaffold/research/wr258-sec006-psi-explicit-20261101/integration-candidate.json",
     "scaffold/bindings/SCF-B-0218.json",
-    "scaffold/bindings/SCF-B-0201.json"
+    "scaffold/bindings/SCF-B-0201.json",
+    "scaffold/research/wr258-sec006-psi-explicit-20261101/build_overlay_probe.py",
+    "scaffold/research/wr258-sec006-psi-explicit-20261101/integration-overlay-check-child.json",
+    "scaffold/research/wr258-sec006-psi-explicit-20261101/integration-overlay-measurement.json",
+    "scaffold/research/wr258-sec006-psi-explicit-20261101/legacy-classification-crosswalk.json",
+    "scaffold/research/wr258-sec006-psi-explicit-20261101/rowwise-integration-design.json",
+    "scaffold/research/wr258-sec006-psi-explicit-20261101/build_rowwise_design.py",
+    "scaffold/research/wr258-sec006-psi-explicit-20261101/integrated-overlay-candidate/l4.json",
+    "scaffold/research/wr258-sec006-psi-explicit-20261101/integrated-overlay-candidate/l5.json",
+    "scaffold/research/wr258-sec006-psi-explicit-20261101/integrated-overlay-candidate/l8.json",
+    "scaffold/research/wr258-sec006-psi-explicit-20261101/integrated-overlay-candidate/l9.json",
+    "scaffold/research/wr258-sec006-psi-explicit-20261101/checker-empty-finding-owner-candidate.json",
+    "scaffold/research/wr258-sec006-psi-explicit-20261101/checker-empty-finding-owner-static-check.json",
+    "scaffold/research/wr258-sec006-psi-explicit-20261101/checker-empty-owner-candidate.py",
+    "scaffold/research/wr258-sec006-psi-explicit-20261101/build_caller_provenance_overlay.py",
+    "scaffold/research/wr258-sec006-psi-explicit-20261101/caller-provenance-overlay-check-child.json",
+    "scaffold/research/wr258-sec006-psi-explicit-20261101/caller-provenance-overlay-measurement.json",
+    "scaffold/research/wr258-sec006-psi-explicit-20261101/caller-provenance-overlay-candidate/l4.json",
+    "scaffold/research/wr258-sec006-psi-explicit-20261101/caller-provenance-overlay-candidate/l5.json",
+    "scaffold/research/wr258-sec006-psi-explicit-20261101/caller-provenance-overlay-candidate/l8.json",
+    "scaffold/research/wr258-sec006-psi-explicit-20261101/caller-provenance-overlay-candidate/l9.json"
   ],
   "verification": {
     "evidence_kind": "scaffold",
@@ -105,7 +135,7 @@
       "All nine previously unassigned L8 rows map to six source-derived L4 classes; none is dropped.",
       "L4 top-level code equals expected_classification; each class has ordered expected.finding_codes and expected_axis, backflow owner, state, and side_effect_count=0.",
       "L9 existing negative row count remains 98; each current row retains its ID and expectation; 16 residual negatives remain unchanged.",
-      "All six primary-tree L9 rows retain distinct IDs and share the same implicit-fallback class. Their one-to-one L8 pairing remains unresolved pending separate L5/L8 or source-level resolution.",
+      "All six primary-tree L9 rows retain distinct IDs and share the same implicit-fallback class. Canonical one-to-one pairing remains unresolved; a disposable separate L5/L8 provenance candidate and integrated checker measurement are recorded without changing canonical files.",
       "No explicit marker is present; QA all-four-layer marker rule is respected.",
       "check-child four-way result is reported from actual post-overlay execution; it is not converted to pass.",
       "Historical blind and WR244/WR250 fixed evidence files remain byte-identical."

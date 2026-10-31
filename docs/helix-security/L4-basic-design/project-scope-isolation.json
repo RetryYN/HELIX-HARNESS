@@ -1809,9 +1809,7 @@
         ]
       },
       "backflow_owner": "scope-binding-owner",
-      "expected_axis": [
-        "scope_identity"
-      ],
+      "expected_axis": "scope_identity",
       "expected_state": "unknown",
       "side_effect_count": 0,
       "expected_preserved": {
@@ -1855,9 +1853,7 @@
         ]
       },
       "backflow_owner": "scope-binding-owner",
-      "expected_axis": [
-        "asset_kind"
-      ],
+      "expected_axis": "asset_kind",
       "expected_state": "unknown",
       "side_effect_count": 0,
       "expected_preserved": {
@@ -1901,9 +1897,7 @@
         ]
       },
       "backflow_owner": "scope-binding-owner",
-      "expected_axis": [
-        "owner_material_state"
-      ],
+      "expected_axis": "owner_material_state",
       "expected_state": "unknown",
       "side_effect_count": 0,
       "expected_preserved": {
@@ -1947,9 +1941,7 @@
         ]
       },
       "backflow_owner": "scope-binding-owner",
-      "expected_axis": [
-        "operation"
-      ],
+      "expected_axis": "operation",
       "expected_state": "unknown",
       "side_effect_count": 0,
       "expected_preserved": {
@@ -1991,9 +1983,7 @@
         "finding_codes": []
       },
       "backflow_owner": "scope-binding-owner",
-      "expected_axis": [
-        "explicit_connection"
-      ],
+      "expected_axis": "explicit_connection",
       "expected_state": "unknown",
       "side_effect_count": 0,
       "expected_preserved": {
@@ -2037,9 +2027,7 @@
         ]
       },
       "backflow_owner": "scope-binding-owner",
-      "expected_axis": [
-        "explicit_connection"
-      ],
+      "expected_axis": "explicit_connection",
       "expected_state": "unknown",
       "side_effect_count": 0,
       "expected_preserved": {

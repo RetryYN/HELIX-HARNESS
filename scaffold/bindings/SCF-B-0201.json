@@ -20,8 +20,8 @@
     },
     {
       "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
-      "sha256": "2fdd1427779e4a848a12b23c4cdc1517d08578e3946f83823f10a57db8c49d98",
-      "note": "WR244/WR250 historical current pin SHA-256 6f64b6d9654f596d5597a056b4ded9288854640411c8ffccc2b0e6822306193a preserved; WR258 staged taxonomy classes and L4 class-key alignment at base 3e469f273817af640a2adafa50b8548b22a107fd. No explicit four-layer marker. Intermediate WR258 current-pin SHA-256 4ffa408392e77b355dc8b4b43b4876a0bbfb3b0bbd745a581408635f5ac82b9c preserved before class-label refinement. Prior staged pre-parent-refinement current pin SHA-256 9be1999cce6dd72349d0f359f7ebb8f7dee3c18e8d408d4650ec7e5ba65e0e42 retained here."
+      "sha256": "4777e0714cd7c09135c5b2fae65d6ed26f96ca632b255708a822ff97f9784911",
+      "note": "WR244/WR250 historical current pin SHA-256 6f64b6d9654f596d5597a056b4ded9288854640411c8ffccc2b0e6822306193a preserved; WR258 prior current pins 9be1999cce6dd72349d0f359f7ebb8f7dee3c18e8d408d4650ec7e5ba65e0e42, 4ffa408392e77b355dc8b4b43b4876a0bbfb3b0bbd745a581408635f5ac82b9c, 2fdd1427779e4a848a12b23c4cdc1517d08578e3946f83823f10a57db8c49d98, and 2fdd1427779e4a848a12b23c4cdc1517d08578e3946f83823f10a57db8c49d98 retained as revision history. Current pin includes singleton expected_axis normalization for six source classes; no explicit four-layer marker."
     },
     {
       "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",

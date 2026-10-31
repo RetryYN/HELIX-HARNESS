@@ -1,0 +1,152 @@
+{
+  "schema": "wr258-sec006-classification-reference-crosswalk.v1",
+  "evidence_kind": "scaffold",
+  "authority_effect": "none",
+  "source_paths": [
+    "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+    "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
+    "scaffold/tools/design_verification_checker.py",
+    "docs/governance/design-verification-quality-assurance.md"
+  ],
+  "source_hashes": {
+    "docs/helix-security/L4-basic-design/project-scope-isolation.json": "2fdd1427779e4a848a12b23c4cdc1517d08578e3946f83823f10a57db8c49d98",
+    "docs/helix-security/L9-integration-verification/project-scope-isolation.json": "fb5895c299f3f14ecbc41fde01bdac605a20b98275e56cb6176b12693c12df72",
+    "scaffold/tools/design_verification_checker.py": "e751526d67cd8df11e5aac1c5a1a178dfbd0fecc3f2ed21f995b7dda11ea4d5d",
+    "docs/governance/design-verification-quality-assurance.md": "f5751e236dc073fe67114c1fcb4b0f64b3d746290b25d75b61e60a08e3c99c85"
+  },
+  "row_total": 98,
+  "interpretation": "L9 negative_class_assignment.classification retains the old nested L4 negative_classifications[].code label used by its source_pointers. Each of the 98 assignments separately carries class_id and expected_classification for the current top-level taxonomy. The labels are intentionally both preserved; this field is not itself the explicit-mode negative_class_ref.",
+  "consumer_audit": [
+    {
+      "consumer": "legacy CHK-NEG-4WAY-MATCH",
+      "use": "reads L4 contracts[].negative_classifications and L9 cases[].negative_cases; does not read negative_class_assignment.classification."
+    },
+    {
+      "consumer": "explicit CHK-NEG-4WAY-MATCH",
+      "use": "reads negative_equivalence_classes plus L8 unit_cases/L9 integration_cases negative_class_ref; does not read legacy assignment classification."
+    },
+    {
+      "consumer": "QA §3/58, §4/82",
+      "use": "defines class tables, typed owner_ref and new_parent_link checks; no negative_class_assignment.classification consumer."
+    },
+    {
+      "consumer": "WR250 PR #4000 R1 validator",
+      "use": "reads L8 no-class assignment status; it does not read L9 legacy classification."
+    }
+  ],
+  "crosswalk": [
+    {
+      "l9_legacy_classification": "SEC003_F01_IDENTITY_CONFLICT",
+      "rows": 48,
+      "l9_current_class_id": "SEC003-F01-IDENTITY-CONFLICT",
+      "l9_current_expected_classification": "isolation_violation",
+      "l4_top_level_code": "isolation_violation",
+      "l4_parent": "HELIXSECURITY-L4-003-F01",
+      "l9_source_pointer_counts": {
+        "/contracts/0/negative_classifications/0": 48
+      }
+    },
+    {
+      "l9_legacy_classification": "SEC003_F01_IDENTITY_UNRESOLVED",
+      "rows": 12,
+      "l9_current_class_id": "SEC003-F01-IDENTITY-MISSING",
+      "l9_current_expected_classification": "scope_unresolved",
+      "l4_top_level_code": "scope_unresolved",
+      "l4_parent": "HELIXSECURITY-L4-003-F01",
+      "l9_source_pointer_counts": {
+        "/contracts/0/negative_classifications/1": 12
+      }
+    },
+    {
+      "l9_legacy_classification": "SEC003_F01_TENANT_APPLICABILITY_UNRESOLVED",
+      "rows": 3,
+      "l9_current_class_id": "SEC003-F01-TENANT-APPLICABILITY-UNRESOLVED",
+      "l9_current_expected_classification": "scope_unresolved",
+      "l4_top_level_code": "scope_unresolved",
+      "l4_parent": "HELIXSECURITY-L4-003-F01",
+      "l9_source_pointer_counts": {
+        "/contracts/0/negative_classifications/2": 3
+      }
+    },
+    {
+      "l9_legacy_classification": "SEC003_F01_TENANT_INVENTED",
+      "rows": 1,
+      "l9_current_class_id": "SEC003-F01-TENANT-INVENTED",
+      "l9_current_expected_classification": "isolation_violation",
+      "l4_top_level_code": "isolation_violation",
+      "l4_parent": "HELIXSECURITY-L4-003-F01",
+      "l9_source_pointer_counts": {
+        "/contracts/0/negative_classifications/3": 1
+      }
+    },
+    {
+      "l9_legacy_classification": "SEC003_F02_CONNECTION_MATERIAL_CONFLICT",
+      "rows": 1,
+      "l9_current_class_id": "SEC003-F02-CONNECTION-MATERIAL-CONFLICT",
+      "l9_current_expected_classification": "isolation_violation",
+      "l4_top_level_code": "isolation_violation",
+      "l4_parent": "HELIXSECURITY-L4-003-F02",
+      "l9_source_pointer_counts": {
+        "/contracts/1/negative_classifications/4": 1
+      }
+    },
+    {
+      "l9_legacy_classification": "SEC003_F02_CONNECTION_MATERIAL_UNRESOLVED",
+      "rows": 1,
+      "l9_current_class_id": "SEC003-F02-CONNECTION-MATERIAL-UNRESOLVED",
+      "l9_current_expected_classification": "scope_unresolved",
+      "l4_top_level_code": "scope_unresolved",
+      "l4_parent": "HELIXSECURITY-L4-003-F02",
+      "l9_source_pointer_counts": {
+        "/contracts/1/negative_classifications/5": 1
+      }
+    },
+    {
+      "l9_legacy_classification": "SEC003_F02_EXPLICIT_CONNECTION_ABSENT",
+      "rows": 8,
+      "l9_current_class_id": "SEC003-F02-EXPLICIT-CONNECTION-ABSENT",
+      "l9_current_expected_classification": "isolation_violation",
+      "l4_top_level_code": "isolation_violation",
+      "l4_parent": "HELIXSECURITY-L4-003-F02",
+      "l9_source_pointer_counts": {
+        "/contracts/1/negative_classifications/3": 8
+      }
+    },
+    {
+      "l9_legacy_classification": "SEC003_F02_FOREIGN_LATEST_NOT_SCOPE_EVIDENCE",
+      "rows": 6,
+      "l9_current_class_id": "SEC003-F02-FOREIGN-LATEST",
+      "l9_current_expected_classification": "isolation_violation",
+      "l4_top_level_code": "isolation_violation",
+      "l4_parent": "HELIXSECURITY-L4-003-F02",
+      "l9_source_pointer_counts": {
+        "/contracts/1/negative_classifications/1": 6
+      }
+    },
+    {
+      "l9_legacy_classification": "SEC003_F02_IMPLICIT_FALLBACK",
+      "rows": 7,
+      "l9_current_class_id": "SEC003-F02-IMPLICIT-FALLBACK",
+      "l9_current_expected_classification": "isolation_violation",
+      "l4_top_level_code": "isolation_violation",
+      "l4_parent": "HELIXSECURITY-L4-003-F02",
+      "l9_source_pointer_counts": {
+        "/contracts/1/negative_classifications/0": 7
+      }
+    },
+    {
+      "l9_legacy_classification": "SEC003_F02_OPERATION_SCOPE_CONFLICT",
+      "rows": 11,
+      "l9_current_class_id": "SEC003-F02-OPERATION-SCOPE",
+      "l9_current_expected_classification": "isolation_violation",
+      "l4_top_level_code": "isolation_violation",
+      "l4_parent": "HELIXSECURITY-L4-003-F02",
+      "l9_source_pointer_counts": {
+        "/contracts/1/negative_classifications/2": 11
+      }
+    }
+  ],
+  "legacy_nested_ids": [],
+  "nested_top_level_id_intersection": [],
+  "result": "L4 nested negative_classifications entries have code only and no id/class_id; current top-level class IDs do not overlap with nested IDs. Checker source confirms duplicate-definition FAIL is raised for equal nested id/class_id and top-level class_id. The integrated overlay produced zero l4_class_dual_definition_nested_and_top_level failures."
+}
