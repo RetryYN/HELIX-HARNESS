@@ -1,0 +1,3277 @@
+{
+  "schema": "wr258-l4l9-casewise-source-audit.r1.v1",
+  "evidence_kind": "scaffold",
+  "authority_effect": "none",
+  "base_revision": "151713275e2c2aa65bb23a8fe38eb63c46d570c8",
+  "reviewed_main_revision": "ad2dfaf6f434fbb81cd34988d4bd76212380f3a5",
+  "source_sha256": {
+    "base_revision": "151713275e2c2aa65bb23a8fe38eb63c46d570c8",
+    "l4_sha256": "16d4fc5e3fcf0c677703b694b538f6d8f5542db36291850ed7f72865f0d9c72c",
+    "l9_sha256": "0d46617674373fb9b1677c02eac2766765aafb448192b5c6fc1674b4e7fa88da",
+    "l3_sha256": "e4eeb70cc303e44199c7d898281e91c22dba89b47666353b9c80a4c634e898b5",
+    "l10_sha256": "e6da7eaff29a623b5d069801280c295d9dd7cc43b51d9cde25b12a8110e5072a",
+    "qa_sha256": "f5751e236dc073fe67114c1fcb4b0f64b3d746290b25d75b61e60a08e3c99c85"
+  },
+  "validator_sha256": "ec339c9fe1a8e42a78e3264937923e4ddd450fca1f3fbd458f183b64ab1e3a33",
+  "static_validation": {
+    "passed": true,
+    "failure_count": 0,
+    "failures": [],
+    "integration_case_count": 148,
+    "existing_98": 98,
+    "added_50": 50,
+    "class_rows": {
+      "L4": 15,
+      "L9": 15
+    },
+    "unique_condition_count": 148,
+    "source_input_conflict_count": 0,
+    "system_oracle_mismatch_count": 0,
+    "compact_observation_mismatch_count": 0,
+    "unresolved_source_pointer_count": 0,
+    "source_layer_failure_count": 0,
+    "l3_requirement_ids": [
+      "HELIXSECURITY-L3-003-F01",
+      "HELIXSECURITY-L3-003-F02"
+    ],
+    "l10_oracle_ids": [
+      "HELIXSECURITY-L10-003-F01",
+      "HELIXSECURITY-L10-003-F02"
+    ]
+  },
+  "source_input_conflicts": [],
+  "l9_system_oracle_mismatches": [],
+  "compact_observation_mismatches": [],
+  "source_pointer_failures": [],
+  "source_layer_failures": [],
+  "counts": {
+    "case_rows": 148,
+    "old98": 98,
+    "added50": 50,
+    "classes": 15,
+    "integration_case_level_source_pointers": 0,
+    "work_qualified_ids": 0,
+    "source_pointer_bytes_removed_from_integration_rows": 176217,
+    "integration_case_rows_with_source_pointers": 0
+  },
+  "renamed_id_mapping": {
+    "old_prefix": "SEC003-WR258-L9-ORACLE-",
+    "current_prefix": "SEC003-L9-ORACLE-",
+    "count": 50
+  },
+  "prb_candidate_mapping": {
+    "artifact": "scaffold/research/wr258-sec006-psi-explicit-20261101/pr-b-l8-integration-case-ref-candidate-r2.json",
+    "rows": 50,
+    "resolved_l9_refs": 50,
+    "candidate_only": true
+  },
+  "per_case": [
+    {
+      "id": "SEC003-PERMISSION-ASSET-PROJECT-DRIFT",
+      "negative_class_ref": "SEC003-F01-IDENTITY-CONFLICT",
+      "l9_casewise_pointer": "/integration_cases/0",
+      "l9_nested_pointer": "/cases/0/negative_cases/0",
+      "l4_class_pointer": "/failure_classifications/0",
+      "l3_requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "condition_sha256": "f3ba79eb415525c198fd67d34c23c6737af67c7942bde187dfd148930b21bd24",
+      "condition_source_derived_match": true,
+      "expected_matches_l4_class": true,
+      "expected_preserved_matches_l4_class": true,
+      "compact_observation_matches_l4_class": true,
+      "execution_state": "not_executed",
+      "source_pointer_basis": {
+        "L9_nested_row_pointer_count": 7,
+        "L4_class_pointer_count": 5,
+        "integration_row_pointer_count": 0
+      }
+    },
+    {
+      "id": "SEC003-PERMISSION-ASSET-TENANT-DRIFT",
+      "negative_class_ref": "SEC003-F01-IDENTITY-CONFLICT",
+      "l9_casewise_pointer": "/integration_cases/1",
+      "l9_nested_pointer": "/cases/0/negative_cases/1",
+      "l4_class_pointer": "/failure_classifications/0",
+      "l3_requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "condition_sha256": "16bd07cda803dd9ed5cf8b910e1cca683a371831048d1056368c83b4e78b5cb6",
+      "condition_source_derived_match": true,
+      "expected_matches_l4_class": true,
+      "expected_preserved_matches_l4_class": true,
+      "compact_observation_matches_l4_class": true,
+      "execution_state": "not_executed",
+      "source_pointer_basis": {
+        "L9_nested_row_pointer_count": 7,
+        "L4_class_pointer_count": 5,
+        "integration_row_pointer_count": 0
+      }
+    },
+    {
+      "id": "SEC003-PERMISSION-ASSET-ENVIRONMENT-DRIFT",
+      "negative_class_ref": "SEC003-F01-IDENTITY-CONFLICT",
+      "l9_casewise_pointer": "/integration_cases/2",
+      "l9_nested_pointer": "/cases/0/negative_cases/2",
+      "l4_class_pointer": "/failure_classifications/0",
+      "l3_requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "condition_sha256": "4a46e585912b255cf17a3e71c4974340c8ece560fd46b26fec75a7dd6cdc3d06",
+      "condition_source_derived_match": true,
+      "expected_matches_l4_class": true,
+      "expected_preserved_matches_l4_class": true,
+      "compact_observation_matches_l4_class": true,
+      "execution_state": "not_executed",
+      "source_pointer_basis": {
+        "L9_nested_row_pointer_count": 7,
+        "L4_class_pointer_count": 5,
+        "integration_row_pointer_count": 0
+      }
+    },
+    {
+      "id": "SEC003-PERMISSION-ASSET-ASSIGNMENT-DRIFT",
+      "negative_class_ref": "SEC003-F01-IDENTITY-CONFLICT",
+      "l9_casewise_pointer": "/integration_cases/3",
+      "l9_nested_pointer": "/cases/0/negative_cases/3",
+      "l4_class_pointer": "/failure_classifications/0",
+      "l3_requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "condition_sha256": "8e7e791042920ed9e4346fac68562cc8330f0a1162e1b8f4e9dd42541c6bb00b",
+      "condition_source_derived_match": true,
+      "expected_matches_l4_class": true,
+      "expected_preserved_matches_l4_class": true,
+      "compact_observation_matches_l4_class": true,
+      "execution_state": "not_executed",
+      "source_pointer_basis": {
+        "L9_nested_row_pointer_count": 7,
+        "L4_class_pointer_count": 5,
+        "integration_row_pointer_count": 0
+      }
+    },
+    {
+      "id": "SEC003-PERMISSION-ASSET-WORKTREE-DRIFT",
+      "negative_class_ref": "SEC003-F01-IDENTITY-CONFLICT",
+      "l9_casewise_pointer": "/integration_cases/4",
+      "l9_nested_pointer": "/cases/0/negative_cases/4",
+      "l4_class_pointer": "/failure_classifications/0",
+      "l3_requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "condition_sha256": "cb5348b61e5b5feae10b1c253ef962bdbcd8a13572f748448a3817cb43c892d0",
+      "condition_source_derived_match": true,
+      "expected_matches_l4_class": true,
+      "expected_preserved_matches_l4_class": true,
+      "compact_observation_matches_l4_class": true,
+      "execution_state": "not_executed",
+      "source_pointer_basis": {
+        "L9_nested_row_pointer_count": 7,
+        "L4_class_pointer_count": 5,
+        "integration_row_pointer_count": 0
+      }
+    },
+    {
+      "id": "SEC003-PERMISSION-ASSET-REVISION-DRIFT",
+      "negative_class_ref": "SEC003-F01-IDENTITY-CONFLICT",
+      "l9_casewise_pointer": "/integration_cases/5",
+      "l9_nested_pointer": "/cases/0/negative_cases/5",
+      "l4_class_pointer": "/failure_classifications/0",
+      "l3_requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "condition_sha256": "31d585358f2537ef3bf2c2c58cb78978dafaad21ecb6f791dcc2f8662b5d16fa",
+      "condition_source_derived_match": true,
+      "expected_matches_l4_class": true,
+      "expected_preserved_matches_l4_class": true,
+      "compact_observation_matches_l4_class": true,
+      "execution_state": "not_executed",
+      "source_pointer_basis": {
+        "L9_nested_row_pointer_count": 7,
+        "L4_class_pointer_count": 5,
+        "integration_row_pointer_count": 0
+      }
+    },
+    {
+      "id": "SEC003-STATE-ASSET-PROJECT-DRIFT",
+      "negative_class_ref": "SEC003-F01-IDENTITY-CONFLICT",
+      "l9_casewise_pointer": "/integration_cases/6",
+      "l9_nested_pointer": "/cases/0/negative_cases/6",
+      "l4_class_pointer": "/failure_classifications/0",
+      "l3_requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "condition_sha256": "069d94bbed5d7d3a9421680632665d2b1631e98cdaa25d687dca296b25f5dc48",
+      "condition_source_derived_match": true,
+      "expected_matches_l4_class": true,
+      "expected_preserved_matches_l4_class": true,
+      "compact_observation_matches_l4_class": true,
+      "execution_state": "not_executed",
+      "source_pointer_basis": {
+        "L9_nested_row_pointer_count": 7,
+        "L4_class_pointer_count": 5,
+        "integration_row_pointer_count": 0
+      }
+    },
+    {
+      "id": "SEC003-STATE-ASSET-TENANT-DRIFT",
+      "negative_class_ref": "SEC003-F01-IDENTITY-CONFLICT",
+      "l9_casewise_pointer": "/integration_cases/7",
+      "l9_nested_pointer": "/cases/0/negative_cases/7",
+      "l4_class_pointer": "/failure_classifications/0",
+      "l3_requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "condition_sha256": "6e6760715c640898334edab342466a12a9b1014b84d59bdf6796b80a8132f7e7",
+      "condition_source_derived_match": true,
+      "expected_matches_l4_class": true,
+      "expected_preserved_matches_l4_class": true,
+      "compact_observation_matches_l4_class": true,
+      "execution_state": "not_executed",
+      "source_pointer_basis": {
+        "L9_nested_row_pointer_count": 7,
+        "L4_class_pointer_count": 5,
+        "integration_row_pointer_count": 0
+      }
+    },
+    {
+      "id": "SEC003-STATE-ASSET-ENVIRONMENT-DRIFT",
+      "negative_class_ref": "SEC003-F01-IDENTITY-CONFLICT",
+      "l9_casewise_pointer": "/integration_cases/8",
+      "l9_nested_pointer": "/cases/0/negative_cases/8",
+      "l4_class_pointer": "/failure_classifications/0",
+      "l3_requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "condition_sha256": "190b3559ab8cee421f5d52fdb19329f34b1860e0d8cf1ea5e3ca99cf3e002556",
+      "condition_source_derived_match": true,
+      "expected_matches_l4_class": true,
+      "expected_preserved_matches_l4_class": true,
+      "compact_observation_matches_l4_class": true,
+      "execution_state": "not_executed",
+      "source_pointer_basis": {
+        "L9_nested_row_pointer_count": 7,
+        "L4_class_pointer_count": 5,
+        "integration_row_pointer_count": 0
+      }
+    },
+    {
+      "id": "SEC003-STATE-ASSET-ASSIGNMENT-DRIFT",
+      "negative_class_ref": "SEC003-F01-IDENTITY-CONFLICT",
+      "l9_casewise_pointer": "/integration_cases/9",
+      "l9_nested_pointer": "/cases/0/negative_cases/9",
+      "l4_class_pointer": "/failure_classifications/0",
+      "l3_requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "condition_sha256": "e4590e67afcb2f4d484a5496a8bf64050f187366e4f6014ec8d175ccb7c244db",
+      "condition_source_derived_match": true,
+      "expected_matches_l4_class": true,
+      "expected_preserved_matches_l4_class": true,
+      "compact_observation_matches_l4_class": true,
+      "execution_state": "not_executed",
+      "source_pointer_basis": {
+        "L9_nested_row_pointer_count": 7,
+        "L4_class_pointer_count": 5,
+        "integration_row_pointer_count": 0
+      }
+    },
+    {
+      "id": "SEC003-STATE-ASSET-WORKTREE-DRIFT",
+      "negative_class_ref": "SEC003-F01-IDENTITY-CONFLICT",
+      "l9_casewise_pointer": "/integration_cases/10",
+      "l9_nested_pointer": "/cases/0/negative_cases/10",
+      "l4_class_pointer": "/failure_classifications/0",
+      "l3_requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "condition_sha256": "00f5473cf4865c78c274b87cae08983d7181f649863d58e4ab2d1c9325517be8",
+      "condition_source_derived_match": true,
+      "expected_matches_l4_class": true,
+      "expected_preserved_matches_l4_class": true,
+      "compact_observation_matches_l4_class": true,
+      "execution_state": "not_executed",
+      "source_pointer_basis": {
+        "L9_nested_row_pointer_count": 7,
+        "L4_class_pointer_count": 5,
+        "integration_row_pointer_count": 0
+      }
+    },
+    {
+      "id": "SEC003-STATE-ASSET-REVISION-DRIFT",
+      "negative_class_ref": "SEC003-F01-IDENTITY-CONFLICT",
+      "l9_casewise_pointer": "/integration_cases/11",
+      "l9_nested_pointer": "/cases/0/negative_cases/11",
+      "l4_class_pointer": "/failure_classifications/0",
+      "l3_requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "condition_sha256": "dd1d04d3efecd05e1debb79ceb0f73caf806c7e65689e45019877e9d32db98e4",
+      "condition_source_derived_match": true,
+      "expected_matches_l4_class": true,
+      "expected_preserved_matches_l4_class": true,
+      "compact_observation_matches_l4_class": true,
+      "execution_state": "not_executed",
+      "source_pointer_basis": {
+        "L9_nested_row_pointer_count": 7,
+        "L4_class_pointer_count": 5,
+        "integration_row_pointer_count": 0
+      }
+    },
+    {
+      "id": "SEC003-DATA-ASSET-PROJECT-DRIFT",
+      "negative_class_ref": "SEC003-F01-IDENTITY-CONFLICT",
+      "l9_casewise_pointer": "/integration_cases/12",
+      "l9_nested_pointer": "/cases/0/negative_cases/12",
+      "l4_class_pointer": "/failure_classifications/0",
+      "l3_requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "condition_sha256": "015bce33506b20bc1b07d51a5c13fcf741701525599cf6b6d8e63f4ac962f6f6",
+      "condition_source_derived_match": true,
+      "expected_matches_l4_class": true,
+      "expected_preserved_matches_l4_class": true,
+      "compact_observation_matches_l4_class": true,
+      "execution_state": "not_executed",
+      "source_pointer_basis": {
+        "L9_nested_row_pointer_count": 7,
+        "L4_class_pointer_count": 5,
+        "integration_row_pointer_count": 0
+      }
+    },
+    {
+      "id": "SEC003-DATA-ASSET-TENANT-DRIFT",
+      "negative_class_ref": "SEC003-F01-IDENTITY-CONFLICT",
+      "l9_casewise_pointer": "/integration_cases/13",
+      "l9_nested_pointer": "/cases/0/negative_cases/13",
+      "l4_class_pointer": "/failure_classifications/0",
+      "l3_requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "condition_sha256": "a7715f2366afc7dbf0b9881b00ffde8ac9847292881a1ce506a60bf4255899dd",
+      "condition_source_derived_match": true,
+      "expected_matches_l4_class": true,
+      "expected_preserved_matches_l4_class": true,
+      "compact_observation_matches_l4_class": true,
+      "execution_state": "not_executed",
+      "source_pointer_basis": {
+        "L9_nested_row_pointer_count": 7,
+        "L4_class_pointer_count": 5,
+        "integration_row_pointer_count": 0
+      }
+    },
+    {
+      "id": "SEC003-DATA-ASSET-ENVIRONMENT-DRIFT",
+      "negative_class_ref": "SEC003-F01-IDENTITY-CONFLICT",
+      "l9_casewise_pointer": "/integration_cases/14",
+      "l9_nested_pointer": "/cases/0/negative_cases/14",
+      "l4_class_pointer": "/failure_classifications/0",
+      "l3_requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "condition_sha256": "50a4bb803e6206124d472a9c2763519c92e66cec402b2b5f57ecf86b4400bc64",
+      "condition_source_derived_match": true,
+      "expected_matches_l4_class": true,
+      "expected_preserved_matches_l4_class": true,
+      "compact_observation_matches_l4_class": true,
+      "execution_state": "not_executed",
+      "source_pointer_basis": {
+        "L9_nested_row_pointer_count": 7,
+        "L4_class_pointer_count": 5,
+        "integration_row_pointer_count": 0
+      }
+    },
+    {
+      "id": "SEC003-DATA-ASSET-ASSIGNMENT-DRIFT",
+      "negative_class_ref": "SEC003-F01-IDENTITY-CONFLICT",
+      "l9_casewise_pointer": "/integration_cases/15",
+      "l9_nested_pointer": "/cases/0/negative_cases/15",
+      "l4_class_pointer": "/failure_classifications/0",
+      "l3_requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "condition_sha256": "07788f2f11bffcfc609908e2af52cb17a2c99120fe35334de946208d91f86c01",
+      "condition_source_derived_match": true,
+      "expected_matches_l4_class": true,
+      "expected_preserved_matches_l4_class": true,
+      "compact_observation_matches_l4_class": true,
+      "execution_state": "not_executed",
+      "source_pointer_basis": {
+        "L9_nested_row_pointer_count": 7,
+        "L4_class_pointer_count": 5,
+        "integration_row_pointer_count": 0
+      }
+    },
+    {
+      "id": "SEC003-DATA-ASSET-WORKTREE-DRIFT",
+      "negative_class_ref": "SEC003-F01-IDENTITY-CONFLICT",
+      "l9_casewise_pointer": "/integration_cases/16",
+      "l9_nested_pointer": "/cases/0/negative_cases/16",
+      "l4_class_pointer": "/failure_classifications/0",
+      "l3_requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "condition_sha256": "0289bebd60937b8462612b5576f713dfaa6d629905e3fae7d0b9baf27cfdf21b",
+      "condition_source_derived_match": true,
+      "expected_matches_l4_class": true,
+      "expected_preserved_matches_l4_class": true,
+      "compact_observation_matches_l4_class": true,
+      "execution_state": "not_executed",
+      "source_pointer_basis": {
+        "L9_nested_row_pointer_count": 7,
+        "L4_class_pointer_count": 5,
+        "integration_row_pointer_count": 0
+      }
+    },
+    {
+      "id": "SEC003-DATA-ASSET-REVISION-DRIFT",
+      "negative_class_ref": "SEC003-F01-IDENTITY-CONFLICT",
+      "l9_casewise_pointer": "/integration_cases/17",
+      "l9_nested_pointer": "/cases/0/negative_cases/17",
+      "l4_class_pointer": "/failure_classifications/0",
+      "l3_requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "condition_sha256": "78f4e0314b28e7f1d2c3bd5385cc566dbf6b3f408289b70abc142e80a8b509f6",
+      "condition_source_derived_match": true,
+      "expected_matches_l4_class": true,
+      "expected_preserved_matches_l4_class": true,
+      "compact_observation_matches_l4_class": true,
+      "execution_state": "not_executed",
+      "source_pointer_basis": {
+        "L9_nested_row_pointer_count": 7,
+        "L4_class_pointer_count": 5,
+        "integration_row_pointer_count": 0
+      }
+    },
+    {
+      "id": "SEC003-WORKER-ASSET-PROJECT-DRIFT",
+      "negative_class_ref": "SEC003-F01-IDENTITY-CONFLICT",
+      "l9_casewise_pointer": "/integration_cases/18",
+      "l9_nested_pointer": "/cases/0/negative_cases/18",
+      "l4_class_pointer": "/failure_classifications/0",
+      "l3_requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "condition_sha256": "31ea526a9e85fb35c024bffa8d50ed3c9df2a5a78580f21d401ea348f04e0ae1",
+      "condition_source_derived_match": true,
+      "expected_matches_l4_class": true,
+      "expected_preserved_matches_l4_class": true,
+      "compact_observation_matches_l4_class": true,
+      "execution_state": "not_executed",
+      "source_pointer_basis": {
+        "L9_nested_row_pointer_count": 7,
+        "L4_class_pointer_count": 5,
+        "integration_row_pointer_count": 0
+      }
+    },
+    {
+      "id": "SEC003-WORKER-ASSET-TENANT-DRIFT",
+      "negative_class_ref": "SEC003-F01-IDENTITY-CONFLICT",
+      "l9_casewise_pointer": "/integration_cases/19",
+      "l9_nested_pointer": "/cases/0/negative_cases/19",
+      "l4_class_pointer": "/failure_classifications/0",
+      "l3_requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "condition_sha256": "b309143eefd9eed279cfe7c7d1dd681dd93806683d8a75e127e32c2b5413c904",
+      "condition_source_derived_match": true,
+      "expected_matches_l4_class": true,
+      "expected_preserved_matches_l4_class": true,
+      "compact_observation_matches_l4_class": true,
+      "execution_state": "not_executed",
+      "source_pointer_basis": {
+        "L9_nested_row_pointer_count": 7,
+        "L4_class_pointer_count": 5,
+        "integration_row_pointer_count": 0
+      }
+    },
+    {
+      "id": "SEC003-WORKER-ASSET-ENVIRONMENT-DRIFT",
+      "negative_class_ref": "SEC003-F01-IDENTITY-CONFLICT",
+      "l9_casewise_pointer": "/integration_cases/20",
+      "l9_nested_pointer": "/cases/0/negative_cases/20",
+      "l4_class_pointer": "/failure_classifications/0",
+      "l3_requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "condition_sha256": "9eb5a4910be450b39db3c9b700f581af6e040ab217f102be1a45ca5a4442688b",
+      "condition_source_derived_match": true,
+      "expected_matches_l4_class": true,
+      "expected_preserved_matches_l4_class": true,
+      "compact_observation_matches_l4_class": true,
+      "execution_state": "not_executed",
+      "source_pointer_basis": {
+        "L9_nested_row_pointer_count": 7,
+        "L4_class_pointer_count": 5,
+        "integration_row_pointer_count": 0
+      }
+    },
+    {
+      "id": "SEC003-WORKER-ASSET-ASSIGNMENT-DRIFT",
+      "negative_class_ref": "SEC003-F01-IDENTITY-CONFLICT",
+      "l9_casewise_pointer": "/integration_cases/21",
+      "l9_nested_pointer": "/cases/0/negative_cases/21",
+      "l4_class_pointer": "/failure_classifications/0",
+      "l3_requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "condition_sha256": "4368182f558ae4abce8fe34e95a7eb7557dbb2bb977b9fd3b253468ad8f0357d",
+      "condition_source_derived_match": true,
+      "expected_matches_l4_class": true,
+      "expected_preserved_matches_l4_class": true,
+      "compact_observation_matches_l4_class": true,
+      "execution_state": "not_executed",
+      "source_pointer_basis": {
+        "L9_nested_row_pointer_count": 7,
+        "L4_class_pointer_count": 5,
+        "integration_row_pointer_count": 0
+      }
+    },
+    {
+      "id": "SEC003-WORKER-ASSET-WORKTREE-DRIFT",
+      "negative_class_ref": "SEC003-F01-IDENTITY-CONFLICT",
+      "l9_casewise_pointer": "/integration_cases/22",
+      "l9_nested_pointer": "/cases/0/negative_cases/22",
+      "l4_class_pointer": "/failure_classifications/0",
+      "l3_requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "condition_sha256": "c68b195638c6d4cf37c589a146695edbb717eb283cc5e946738f1a92695db114",
+      "condition_source_derived_match": true,
+      "expected_matches_l4_class": true,
+      "expected_preserved_matches_l4_class": true,
+      "compact_observation_matches_l4_class": true,
+      "execution_state": "not_executed",
+      "source_pointer_basis": {
+        "L9_nested_row_pointer_count": 7,
+        "L4_class_pointer_count": 5,
+        "integration_row_pointer_count": 0
+      }
+    },
+    {
+      "id": "SEC003-WORKER-ASSET-REVISION-DRIFT",
+      "negative_class_ref": "SEC003-F01-IDENTITY-CONFLICT",
+      "l9_casewise_pointer": "/integration_cases/23",
+      "l9_nested_pointer": "/cases/0/negative_cases/23",
+      "l4_class_pointer": "/failure_classifications/0",
+      "l3_requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "condition_sha256": "ced66fe1105d72d263a322282317d8d5a9b7e67207f5889b9636d2440fe850e6",
+      "condition_source_derived_match": true,
+      "expected_matches_l4_class": true,
+      "expected_preserved_matches_l4_class": true,
+      "compact_observation_matches_l4_class": true,
+      "execution_state": "not_executed",
+      "source_pointer_basis": {
+        "L9_nested_row_pointer_count": 7,
+        "L4_class_pointer_count": 5,
+        "integration_row_pointer_count": 0
+      }
+    },
+    {
+      "id": "SEC003-CREDENTIAL-ASSET-PROJECT-DRIFT",
+      "negative_class_ref": "SEC003-F01-IDENTITY-CONFLICT",
+      "l9_casewise_pointer": "/integration_cases/24",
+      "l9_nested_pointer": "/cases/0/negative_cases/24",
+      "l4_class_pointer": "/failure_classifications/0",
+      "l3_requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "condition_sha256": "af8ae1473de22b7c3f807902db33582ba87e8cd19b3c8d8eee32084a5648ce15",
+      "condition_source_derived_match": true,
+      "expected_matches_l4_class": true,
+      "expected_preserved_matches_l4_class": true,
+      "compact_observation_matches_l4_class": true,
+      "execution_state": "not_executed",
+      "source_pointer_basis": {
+        "L9_nested_row_pointer_count": 7,
+        "L4_class_pointer_count": 5,
+        "integration_row_pointer_count": 0
+      }
+    },
+    {
+      "id": "SEC003-CREDENTIAL-ASSET-TENANT-DRIFT",
+      "negative_class_ref": "SEC003-F01-IDENTITY-CONFLICT",
+      "l9_casewise_pointer": "/integration_cases/25",
+      "l9_nested_pointer": "/cases/0/negative_cases/25",
+      "l4_class_pointer": "/failure_classifications/0",
+      "l3_requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "condition_sha256": "d2acb94ee14a99a50a4451353a01234eccc1e70c18ed93bef10cfbed942695de",
+      "condition_source_derived_match": true,
+      "expected_matches_l4_class": true,
+      "expected_preserved_matches_l4_class": true,
+      "compact_observation_matches_l4_class": true,
+      "execution_state": "not_executed",
+      "source_pointer_basis": {
+        "L9_nested_row_pointer_count": 7,
+        "L4_class_pointer_count": 5,
+        "integration_row_pointer_count": 0
+      }
+    },
+    {
+      "id": "SEC003-CREDENTIAL-ASSET-ENVIRONMENT-DRIFT",
+      "negative_class_ref": "SEC003-F01-IDENTITY-CONFLICT",
+      "l9_casewise_pointer": "/integration_cases/26",
+      "l9_nested_pointer": "/cases/0/negative_cases/26",
+      "l4_class_pointer": "/failure_classifications/0",
+      "l3_requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "condition_sha256": "73c766dc736be49b346d626c3cf4f8d1aced18773127759be265865f4a2c115e",
+      "condition_source_derived_match": true,
+      "expected_matches_l4_class": true,
+      "expected_preserved_matches_l4_class": true,
+      "compact_observation_matches_l4_class": true,
+      "execution_state": "not_executed",
+      "source_pointer_basis": {
+        "L9_nested_row_pointer_count": 7,
+        "L4_class_pointer_count": 5,
+        "integration_row_pointer_count": 0
+      }
+    },
+    {
+      "id": "SEC003-CREDENTIAL-ASSET-ASSIGNMENT-DRIFT",
+      "negative_class_ref": "SEC003-F01-IDENTITY-CONFLICT",
+      "l9_casewise_pointer": "/integration_cases/27",
+      "l9_nested_pointer": "/cases/0/negative_cases/27",
+      "l4_class_pointer": "/failure_classifications/0",
+      "l3_requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "condition_sha256": "3215142d489d9a49bd01972e46419269cf66c54e0341ba9fec1088af3c0074b7",
+      "condition_source_derived_match": true,
+      "expected_matches_l4_class": true,
+      "expected_preserved_matches_l4_class": true,
+      "compact_observation_matches_l4_class": true,
+      "execution_state": "not_executed",
+      "source_pointer_basis": {
+        "L9_nested_row_pointer_count": 7,
+        "L4_class_pointer_count": 5,
+        "integration_row_pointer_count": 0
+      }
+    },
+    {
+      "id": "SEC003-CREDENTIAL-ASSET-WORKTREE-DRIFT",
+      "negative_class_ref": "SEC003-F01-IDENTITY-CONFLICT",
+      "l9_casewise_pointer": "/integration_cases/28",
+      "l9_nested_pointer": "/cases/0/negative_cases/28",
+      "l4_class_pointer": "/failure_classifications/0",
+      "l3_requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "condition_sha256": "45e05083ef1a640806f6959db5a92e69bbbb2d6767e278fe8f5da188330dcc9c",
+      "condition_source_derived_match": true,
+      "expected_matches_l4_class": true,
+      "expected_preserved_matches_l4_class": true,
+      "compact_observation_matches_l4_class": true,
+      "execution_state": "not_executed",
+      "source_pointer_basis": {
+        "L9_nested_row_pointer_count": 7,
+        "L4_class_pointer_count": 5,
+        "integration_row_pointer_count": 0
+      }
+    },
+    {
+      "id": "SEC003-CREDENTIAL-ASSET-REVISION-DRIFT",
+      "negative_class_ref": "SEC003-F01-IDENTITY-CONFLICT",
+      "l9_casewise_pointer": "/integration_cases/29",
+      "l9_nested_pointer": "/cases/0/negative_cases/29",
+      "l4_class_pointer": "/failure_classifications/0",
+      "l3_requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "condition_sha256": "628e997d09728b755c8a8f7097280dc18ff41148916f6bfcaeea9635f6e548c9",
+      "condition_source_derived_match": true,
+      "expected_matches_l4_class": true,
+      "expected_preserved_matches_l4_class": true,
+      "compact_observation_matches_l4_class": true,
+      "execution_state": "not_executed",
+      "source_pointer_basis": {
+        "L9_nested_row_pointer_count": 7,
+        "L4_class_pointer_count": 5,
+        "integration_row_pointer_count": 0
+      }
+    },
+    {
+      "id": "SEC003-ARTIFACT-ASSET-PROJECT-DRIFT",
+      "negative_class_ref": "SEC003-F01-IDENTITY-CONFLICT",
+      "l9_casewise_pointer": "/integration_cases/30",
+      "l9_nested_pointer": "/cases/0/negative_cases/30",
+      "l4_class_pointer": "/failure_classifications/0",
+      "l3_requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "condition_sha256": "d13301623470a48d7d1d2424706b0f1b1add6c0adde0170a7f86348014665ef4",
+      "condition_source_derived_match": true,
+      "expected_matches_l4_class": true,
+      "expected_preserved_matches_l4_class": true,
+      "compact_observation_matches_l4_class": true,
+      "execution_state": "not_executed",
+      "source_pointer_basis": {
+        "L9_nested_row_pointer_count": 7,
+        "L4_class_pointer_count": 5,
+        "integration_row_pointer_count": 0
+      }
+    },
+    {
+      "id": "SEC003-ARTIFACT-ASSET-TENANT-DRIFT",
+      "negative_class_ref": "SEC003-F01-IDENTITY-CONFLICT",
+      "l9_casewise_pointer": "/integration_cases/31",
+      "l9_nested_pointer": "/cases/0/negative_cases/31",
+      "l4_class_pointer": "/failure_classifications/0",
+      "l3_requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "condition_sha256": "e7b784a43a933fd3653a4ffd7e2992a51a2f1ad48443b9433186faa0d8d52431",
+      "condition_source_derived_match": true,
+      "expected_matches_l4_class": true,
+      "expected_preserved_matches_l4_class": true,
+      "compact_observation_matches_l4_class": true,
+      "execution_state": "not_executed",
+      "source_pointer_basis": {
+        "L9_nested_row_pointer_count": 7,
+        "L4_class_pointer_count": 5,
+        "integration_row_pointer_count": 0
+      }
+    },
+    {
+      "id": "SEC003-ARTIFACT-ASSET-ENVIRONMENT-DRIFT",
+      "negative_class_ref": "SEC003-F01-IDENTITY-CONFLICT",
+      "l9_casewise_pointer": "/integration_cases/32",
+      "l9_nested_pointer": "/cases/0/negative_cases/32",
+      "l4_class_pointer": "/failure_classifications/0",
+      "l3_requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "condition_sha256": "15ce5b8ea5fd94fee589f0ffbdd771d5f618681463a92536c9a7e1fc5a08e276",
+      "condition_source_derived_match": true,
+      "expected_matches_l4_class": true,
+      "expected_preserved_matches_l4_class": true,
+      "compact_observation_matches_l4_class": true,
+      "execution_state": "not_executed",
+      "source_pointer_basis": {
+        "L9_nested_row_pointer_count": 7,
+        "L4_class_pointer_count": 5,
+        "integration_row_pointer_count": 0
+      }
+    },
+    {
+      "id": "SEC003-ARTIFACT-ASSET-ASSIGNMENT-DRIFT",
+      "negative_class_ref": "SEC003-F01-IDENTITY-CONFLICT",
+      "l9_casewise_pointer": "/integration_cases/33",
+      "l9_nested_pointer": "/cases/0/negative_cases/33",
+      "l4_class_pointer": "/failure_classifications/0",
+      "l3_requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "condition_sha256": "bbdbf190873c3e41ef79a1115a721417b0d84c0c22aa2245e8f85284cf4ca2eb",
+      "condition_source_derived_match": true,
+      "expected_matches_l4_class": true,
+      "expected_preserved_matches_l4_class": true,
+      "compact_observation_matches_l4_class": true,
+      "execution_state": "not_executed",
+      "source_pointer_basis": {
+        "L9_nested_row_pointer_count": 7,
+        "L4_class_pointer_count": 5,
+        "integration_row_pointer_count": 0
+      }
+    },
+    {
+      "id": "SEC003-ARTIFACT-ASSET-WORKTREE-DRIFT",
+      "negative_class_ref": "SEC003-F01-IDENTITY-CONFLICT",
+      "l9_casewise_pointer": "/integration_cases/34",
+      "l9_nested_pointer": "/cases/0/negative_cases/34",
+      "l4_class_pointer": "/failure_classifications/0",
+      "l3_requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "condition_sha256": "afe23912c8cb27b0267ae4cf7d4b4643bf91e4c2e3aa5eb7159cf04711f26105",
+      "condition_source_derived_match": true,
+      "expected_matches_l4_class": true,
+      "expected_preserved_matches_l4_class": true,
+      "compact_observation_matches_l4_class": true,
+      "execution_state": "not_executed",
+      "source_pointer_basis": {
+        "L9_nested_row_pointer_count": 7,
+        "L4_class_pointer_count": 5,
+        "integration_row_pointer_count": 0
+      }
+    },
+    {
+      "id": "SEC003-ARTIFACT-ASSET-REVISION-DRIFT",
+      "negative_class_ref": "SEC003-F01-IDENTITY-CONFLICT",
+      "l9_casewise_pointer": "/integration_cases/35",
+      "l9_nested_pointer": "/cases/0/negative_cases/35",
+      "l4_class_pointer": "/failure_classifications/0",
+      "l3_requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "condition_sha256": "5e76671e5660d284ea08949ca710cd2f48a60bd908b53f8816e89c6dcd23e4a4",
+      "condition_source_derived_match": true,
+      "expected_matches_l4_class": true,
+      "expected_preserved_matches_l4_class": true,
+      "compact_observation_matches_l4_class": true,
+      "execution_state": "not_executed",
+      "source_pointer_basis": {
+        "L9_nested_row_pointer_count": 7,
+        "L4_class_pointer_count": 5,
+        "integration_row_pointer_count": 0
+      }
+    },
+    {
+      "id": "SEC003-MEMORY-ASSET-PROJECT-DRIFT",
+      "negative_class_ref": "SEC003-F01-IDENTITY-CONFLICT",
+      "l9_casewise_pointer": "/integration_cases/36",
+      "l9_nested_pointer": "/cases/0/negative_cases/36",
+      "l4_class_pointer": "/failure_classifications/0",
+      "l3_requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "condition_sha256": "194f6261afcfbb013f79d192005429cce0907c8b897a64a182f3c6616ab083c8",
+      "condition_source_derived_match": true,
+      "expected_matches_l4_class": true,
+      "expected_preserved_matches_l4_class": true,
+      "compact_observation_matches_l4_class": true,
+      "execution_state": "not_executed",
+      "source_pointer_basis": {
+        "L9_nested_row_pointer_count": 7,
+        "L4_class_pointer_count": 5,
+        "integration_row_pointer_count": 0
+      }
+    },
+    {
+      "id": "SEC003-MEMORY-ASSET-TENANT-DRIFT",
+      "negative_class_ref": "SEC003-F01-IDENTITY-CONFLICT",
+      "l9_casewise_pointer": "/integration_cases/37",
+      "l9_nested_pointer": "/cases/0/negative_cases/37",
+      "l4_class_pointer": "/failure_classifications/0",
+      "l3_requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "condition_sha256": "861ecaf4fa0e38a748b0cad3d98143572355c7c804e6580c055e09a54c8551b8",
+      "condition_source_derived_match": true,
+      "expected_matches_l4_class": true,
+      "expected_preserved_matches_l4_class": true,
+      "compact_observation_matches_l4_class": true,
+      "execution_state": "not_executed",
+      "source_pointer_basis": {
+        "L9_nested_row_pointer_count": 7,
+        "L4_class_pointer_count": 5,
+        "integration_row_pointer_count": 0
+      }
+    },
+    {
+      "id": "SEC003-MEMORY-ASSET-ENVIRONMENT-DRIFT",
+      "negative_class_ref": "SEC003-F01-IDENTITY-CONFLICT",
+      "l9_casewise_pointer": "/integration_cases/38",
+      "l9_nested_pointer": "/cases/0/negative_cases/38",
+      "l4_class_pointer": "/failure_classifications/0",
+      "l3_requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "condition_sha256": "73d14aa1a56796275da307c4fc515076c3f573d6d8de0f60a369e979bcb98075",
+      "condition_source_derived_match": true,
+      "expected_matches_l4_class": true,
+      "expected_preserved_matches_l4_class": true,
+      "compact_observation_matches_l4_class": true,
+      "execution_state": "not_executed",
+      "source_pointer_basis": {
+        "L9_nested_row_pointer_count": 7,
+        "L4_class_pointer_count": 5,
+        "integration_row_pointer_count": 0
+      }
+    },
+    {
+      "id": "SEC003-MEMORY-ASSET-ASSIGNMENT-DRIFT",
+      "negative_class_ref": "SEC003-F01-IDENTITY-CONFLICT",
+      "l9_casewise_pointer": "/integration_cases/39",
+      "l9_nested_pointer": "/cases/0/negative_cases/39",
+      "l4_class_pointer": "/failure_classifications/0",
+      "l3_requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "condition_sha256": "c9ac070e0b22f5bc94c45f1afd747964840c83dba856502f96322c049aa62263",
+      "condition_source_derived_match": true,
+      "expected_matches_l4_class": true,
+      "expected_preserved_matches_l4_class": true,
+      "compact_observation_matches_l4_class": true,
+      "execution_state": "not_executed",
+      "source_pointer_basis": {
+        "L9_nested_row_pointer_count": 7,
+        "L4_class_pointer_count": 5,
+        "integration_row_pointer_count": 0
+      }
+    },
+    {
+      "id": "SEC003-MEMORY-ASSET-WORKTREE-DRIFT",
+      "negative_class_ref": "SEC003-F01-IDENTITY-CONFLICT",
+      "l9_casewise_pointer": "/integration_cases/40",
+      "l9_nested_pointer": "/cases/0/negative_cases/40",
+      "l4_class_pointer": "/failure_classifications/0",
+      "l3_requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "condition_sha256": "cc53f2a97dd6a9fd4784bbcfac5164ee62fab47352b3ad51d36d583c31336263",
+      "condition_source_derived_match": true,
+      "expected_matches_l4_class": true,
+      "expected_preserved_matches_l4_class": true,
+      "compact_observation_matches_l4_class": true,
+      "execution_state": "not_executed",
+      "source_pointer_basis": {
+        "L9_nested_row_pointer_count": 7,
+        "L4_class_pointer_count": 5,
+        "integration_row_pointer_count": 0
+      }
+    },
+    {
+      "id": "SEC003-MEMORY-ASSET-REVISION-DRIFT",
+      "negative_class_ref": "SEC003-F01-IDENTITY-CONFLICT",
+      "l9_casewise_pointer": "/integration_cases/41",
+      "l9_nested_pointer": "/cases/0/negative_cases/41",
+      "l4_class_pointer": "/failure_classifications/0",
+      "l3_requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "condition_sha256": "7c8d6676569782c24541b80341592e108c8b24cefb0d57e3552263f3abca39b6",
+      "condition_source_derived_match": true,
+      "expected_matches_l4_class": true,
+      "expected_preserved_matches_l4_class": true,
+      "compact_observation_matches_l4_class": true,
+      "execution_state": "not_executed",
+      "source_pointer_basis": {
+        "L9_nested_row_pointer_count": 7,
+        "L4_class_pointer_count": 5,
+        "integration_row_pointer_count": 0
+      }
+    },
+    {
+      "id": "SEC003-EXECUTION_TARGET-ASSET-PROJECT-DRIFT",
+      "negative_class_ref": "SEC003-F01-IDENTITY-CONFLICT",
+      "l9_casewise_pointer": "/integration_cases/42",
+      "l9_nested_pointer": "/cases/0/negative_cases/42",
+      "l4_class_pointer": "/failure_classifications/0",
+      "l3_requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "condition_sha256": "77f602b6455e607fd5c72c6efde41eafebfd7112c1f54d71e15de78b5cf2918d",
+      "condition_source_derived_match": true,
+      "expected_matches_l4_class": true,
+      "expected_preserved_matches_l4_class": true,
+      "compact_observation_matches_l4_class": true,
+      "execution_state": "not_executed",
+      "source_pointer_basis": {
+        "L9_nested_row_pointer_count": 7,
+        "L4_class_pointer_count": 5,
+        "integration_row_pointer_count": 0
+      }
+    },
+    {
+      "id": "SEC003-EXECUTION_TARGET-ASSET-TENANT-DRIFT",
+      "negative_class_ref": "SEC003-F01-IDENTITY-CONFLICT",
+      "l9_casewise_pointer": "/integration_cases/43",
+      "l9_nested_pointer": "/cases/0/negative_cases/43",
+      "l4_class_pointer": "/failure_classifications/0",
+      "l3_requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "condition_sha256": "892c5cae5220b23a6072512453d913761d3c62d48efde31383565ecf37d9bedf",
+      "condition_source_derived_match": true,
+      "expected_matches_l4_class": true,
+      "expected_preserved_matches_l4_class": true,
+      "compact_observation_matches_l4_class": true,
+      "execution_state": "not_executed",
+      "source_pointer_basis": {
+        "L9_nested_row_pointer_count": 7,
+        "L4_class_pointer_count": 5,
+        "integration_row_pointer_count": 0
+      }
+    },
+    {
+      "id": "SEC003-EXECUTION_TARGET-ASSET-ENVIRONMENT-DRIFT",
+      "negative_class_ref": "SEC003-F01-IDENTITY-CONFLICT",
+      "l9_casewise_pointer": "/integration_cases/44",
+      "l9_nested_pointer": "/cases/0/negative_cases/44",
+      "l4_class_pointer": "/failure_classifications/0",
+      "l3_requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "condition_sha256": "a236a39324d5e54732a75c827e0760c955236a4a734740a19e0d02e8f08d215f",
+      "condition_source_derived_match": true,
+      "expected_matches_l4_class": true,
+      "expected_preserved_matches_l4_class": true,
+      "compact_observation_matches_l4_class": true,
+      "execution_state": "not_executed",
+      "source_pointer_basis": {
+        "L9_nested_row_pointer_count": 7,
+        "L4_class_pointer_count": 5,
+        "integration_row_pointer_count": 0
+      }
+    },
+    {
+      "id": "SEC003-EXECUTION_TARGET-ASSET-ASSIGNMENT-DRIFT",
+      "negative_class_ref": "SEC003-F01-IDENTITY-CONFLICT",
+      "l9_casewise_pointer": "/integration_cases/45",
+      "l9_nested_pointer": "/cases/0/negative_cases/45",
+      "l4_class_pointer": "/failure_classifications/0",
+      "l3_requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "condition_sha256": "34f668a906409973a09d3cab42c975c1ade9bf474e26ab05fbb102d38e0e4d38",
+      "condition_source_derived_match": true,
+      "expected_matches_l4_class": true,
+      "expected_preserved_matches_l4_class": true,
+      "compact_observation_matches_l4_class": true,
+      "execution_state": "not_executed",
+      "source_pointer_basis": {
+        "L9_nested_row_pointer_count": 7,
+        "L4_class_pointer_count": 5,
+        "integration_row_pointer_count": 0
+      }
+    },
+    {
+      "id": "SEC003-EXECUTION_TARGET-ASSET-WORKTREE-DRIFT",
+      "negative_class_ref": "SEC003-F01-IDENTITY-CONFLICT",
+      "l9_casewise_pointer": "/integration_cases/46",
+      "l9_nested_pointer": "/cases/0/negative_cases/46",
+      "l4_class_pointer": "/failure_classifications/0",
+      "l3_requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "condition_sha256": "f33cee4f88028d60af865300fc1332051fb219e2813186dc0b0a3afdf5f9250b",
+      "condition_source_derived_match": true,
+      "expected_matches_l4_class": true,
+      "expected_preserved_matches_l4_class": true,
+      "compact_observation_matches_l4_class": true,
+      "execution_state": "not_executed",
+      "source_pointer_basis": {
+        "L9_nested_row_pointer_count": 7,
+        "L4_class_pointer_count": 5,
+        "integration_row_pointer_count": 0
+      }
+    },
+    {
+      "id": "SEC003-EXECUTION_TARGET-ASSET-REVISION-DRIFT",
+      "negative_class_ref": "SEC003-F01-IDENTITY-CONFLICT",
+      "l9_casewise_pointer": "/integration_cases/47",
+      "l9_nested_pointer": "/cases/0/negative_cases/47",
+      "l4_class_pointer": "/failure_classifications/0",
+      "l3_requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "condition_sha256": "411a1f001dded694ff191b06f76af66b8b058080fbefbd095793c365d32dc381",
+      "condition_source_derived_match": true,
+      "expected_matches_l4_class": true,
+      "expected_preserved_matches_l4_class": true,
+      "compact_observation_matches_l4_class": true,
+      "execution_state": "not_executed",
+      "source_pointer_basis": {
+        "L9_nested_row_pointer_count": 7,
+        "L4_class_pointer_count": 5,
+        "integration_row_pointer_count": 0
+      }
+    },
+    {
+      "id": "SEC003-TARGET-PROJECT-MISSING",
+      "negative_class_ref": "SEC003-F01-IDENTITY-MISSING",
+      "l9_casewise_pointer": "/integration_cases/48",
+      "l9_nested_pointer": "/cases/0/negative_cases/48",
+      "l4_class_pointer": "/failure_classifications/1",
+      "l3_requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "condition_sha256": "8c78b0401f8074ecc150d1975aa1e82a36b77b428051d586bf4a02f3224818d9",
+      "condition_source_derived_match": true,
+      "expected_matches_l4_class": true,
+      "expected_preserved_matches_l4_class": true,
+      "compact_observation_matches_l4_class": true,
+      "execution_state": "not_executed",
+      "source_pointer_basis": {
+        "L9_nested_row_pointer_count": 7,
+        "L4_class_pointer_count": 5,
+        "integration_row_pointer_count": 0
+      }
+    },
+    {
+      "id": "SEC003-TARGET-TENANT-MISSING",
+      "negative_class_ref": "SEC003-F01-IDENTITY-MISSING",
+      "l9_casewise_pointer": "/integration_cases/49",
+      "l9_nested_pointer": "/cases/0/negative_cases/49",
+      "l4_class_pointer": "/failure_classifications/1",
+      "l3_requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "condition_sha256": "560ebc69c6560654e34764680dbbc1bc7387bf2e3f19a57ae21498ef805940b9",
+      "condition_source_derived_match": true,
+      "expected_matches_l4_class": true,
+      "expected_preserved_matches_l4_class": true,
+      "compact_observation_matches_l4_class": true,
+      "execution_state": "not_executed",
+      "source_pointer_basis": {
+        "L9_nested_row_pointer_count": 7,
+        "L4_class_pointer_count": 5,
+        "integration_row_pointer_count": 0
+      }
+    },
+    {
+      "id": "SEC003-TARGET-ENVIRONMENT-MISSING",
+      "negative_class_ref": "SEC003-F01-IDENTITY-MISSING",
+      "l9_casewise_pointer": "/integration_cases/50",
+      "l9_nested_pointer": "/cases/0/negative_cases/50",
+      "l4_class_pointer": "/failure_classifications/1",
+      "l3_requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "condition_sha256": "b63321e7663e93ef121c15d16ec71b216fefd2bacb3c65a5036b8bde635a9df6",
+      "condition_source_derived_match": true,
+      "expected_matches_l4_class": true,
+      "expected_preserved_matches_l4_class": true,
+      "compact_observation_matches_l4_class": true,
+      "execution_state": "not_executed",
+      "source_pointer_basis": {
+        "L9_nested_row_pointer_count": 7,
+        "L4_class_pointer_count": 5,
+        "integration_row_pointer_count": 0
+      }
+    },
+    {
+      "id": "SEC003-TARGET-ASSIGNMENT-MISSING",
+      "negative_class_ref": "SEC003-F01-IDENTITY-MISSING",
+      "l9_casewise_pointer": "/integration_cases/51",
+      "l9_nested_pointer": "/cases/0/negative_cases/51",
+      "l4_class_pointer": "/failure_classifications/1",
+      "l3_requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "condition_sha256": "4794aa4793b26c806e0664623bf613a8fe118bce617737443f3de86c2a13d42f",
+      "condition_source_derived_match": true,
+      "expected_matches_l4_class": true,
+      "expected_preserved_matches_l4_class": true,
+      "compact_observation_matches_l4_class": true,
+      "execution_state": "not_executed",
+      "source_pointer_basis": {
+        "L9_nested_row_pointer_count": 7,
+        "L4_class_pointer_count": 5,
+        "integration_row_pointer_count": 0
+      }
+    },
+    {
+      "id": "SEC003-TARGET-WORKTREE-MISSING",
+      "negative_class_ref": "SEC003-F01-IDENTITY-MISSING",
+      "l9_casewise_pointer": "/integration_cases/52",
+      "l9_nested_pointer": "/cases/0/negative_cases/52",
+      "l4_class_pointer": "/failure_classifications/1",
+      "l3_requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "condition_sha256": "fc881ea81f7772707e01a771708a06ef619ebdb85f7b749b8ecca760ed589fed",
+      "condition_source_derived_match": true,
+      "expected_matches_l4_class": true,
+      "expected_preserved_matches_l4_class": true,
+      "compact_observation_matches_l4_class": true,
+      "execution_state": "not_executed",
+      "source_pointer_basis": {
+        "L9_nested_row_pointer_count": 7,
+        "L4_class_pointer_count": 5,
+        "integration_row_pointer_count": 0
+      }
+    },
+    {
+      "id": "SEC003-TARGET-REVISION-MISSING",
+      "negative_class_ref": "SEC003-F01-IDENTITY-MISSING",
+      "l9_casewise_pointer": "/integration_cases/53",
+      "l9_nested_pointer": "/cases/0/negative_cases/53",
+      "l4_class_pointer": "/failure_classifications/1",
+      "l3_requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "condition_sha256": "0ce50e89e7c4bd7320afdf4c76e2c33ee4dcc4ac046d8630c8a54528c1d21dd1",
+      "condition_source_derived_match": true,
+      "expected_matches_l4_class": true,
+      "expected_preserved_matches_l4_class": true,
+      "compact_observation_matches_l4_class": true,
+      "execution_state": "not_executed",
+      "source_pointer_basis": {
+        "L9_nested_row_pointer_count": 7,
+        "L4_class_pointer_count": 5,
+        "integration_row_pointer_count": 0
+      }
+    },
+    {
+      "id": "SEC003-TENANT-INVENTED",
+      "negative_class_ref": "SEC003-F01-TENANT-INVENTED",
+      "l9_casewise_pointer": "/integration_cases/54",
+      "l9_nested_pointer": "/cases/0/negative_cases/54",
+      "l4_class_pointer": "/failure_classifications/3",
+      "l3_requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "condition_sha256": "ac0cad124a54384e38d4d6122cf1b3532608ea3f553bd514bdfe1ba8688ca7cf",
+      "condition_source_derived_match": true,
+      "expected_matches_l4_class": true,
+      "expected_preserved_matches_l4_class": true,
+      "compact_observation_matches_l4_class": true,
+      "execution_state": "not_executed",
+      "source_pointer_basis": {
+        "L9_nested_row_pointer_count": 7,
+        "L4_class_pointer_count": 5,
+        "integration_row_pointer_count": 0
+      }
+    },
+    {
+      "id": "SEC003-TENANT-APPLICABILITY-UNKNOWN",
+      "negative_class_ref": "SEC003-F01-TENANT-APPLICABILITY-UNRESOLVED",
+      "l9_casewise_pointer": "/integration_cases/55",
+      "l9_nested_pointer": "/cases/0/negative_cases/55",
+      "l4_class_pointer": "/failure_classifications/2",
+      "l3_requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "condition_sha256": "190072ef330162f5a02442d154605362b3718b86af411bb3ca6b4dd36a32feeb",
+      "condition_source_derived_match": true,
+      "expected_matches_l4_class": true,
+      "expected_preserved_matches_l4_class": true,
+      "compact_observation_matches_l4_class": true,
+      "execution_state": "not_executed",
+      "source_pointer_basis": {
+        "L9_nested_row_pointer_count": 7,
+        "L4_class_pointer_count": 5,
+        "integration_row_pointer_count": 0
+      }
+    },
+    {
+      "id": "SEC003-ORIGIN-PROJECT-MISSING",
+      "negative_class_ref": "SEC003-F01-IDENTITY-MISSING",
+      "l9_casewise_pointer": "/integration_cases/56",
+      "l9_nested_pointer": "/cases/0/negative_cases/56",
+      "l4_class_pointer": "/failure_classifications/1",
+      "l3_requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "condition_sha256": "8d6bfdfab5e7eb69dc4edd77c34d6a930039423ee16f118c5637a4b2d07b6e89",
+      "condition_source_derived_match": true,
+      "expected_matches_l4_class": true,
+      "expected_preserved_matches_l4_class": true,
+      "compact_observation_matches_l4_class": true,
+      "execution_state": "not_executed",
+      "source_pointer_basis": {
+        "L9_nested_row_pointer_count": 7,
+        "L4_class_pointer_count": 5,
+        "integration_row_pointer_count": 0
+      }
+    },
+    {
+      "id": "SEC003-ORIGIN-TENANT-MISSING",
+      "negative_class_ref": "SEC003-F01-IDENTITY-MISSING",
+      "l9_casewise_pointer": "/integration_cases/57",
+      "l9_nested_pointer": "/cases/0/negative_cases/57",
+      "l4_class_pointer": "/failure_classifications/1",
+      "l3_requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "condition_sha256": "4867e404719fb72f646862f0b6f87a27700f0cb6bf6fd99f81f97512be0b3507",
+      "condition_source_derived_match": true,
+      "expected_matches_l4_class": true,
+      "expected_preserved_matches_l4_class": true,
+      "compact_observation_matches_l4_class": true,
+      "execution_state": "not_executed",
+      "source_pointer_basis": {
+        "L9_nested_row_pointer_count": 7,
+        "L4_class_pointer_count": 5,
+        "integration_row_pointer_count": 0
+      }
+    },
+    {
+      "id": "SEC003-ORIGIN-ENVIRONMENT-MISSING",
+      "negative_class_ref": "SEC003-F01-IDENTITY-MISSING",
+      "l9_casewise_pointer": "/integration_cases/58",
+      "l9_nested_pointer": "/cases/0/negative_cases/58",
+      "l4_class_pointer": "/failure_classifications/1",
+      "l3_requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "condition_sha256": "2c00641e8cb3ba9bd6379f2ba2fd6e9ff626519a5d6e00c570ecc023759aafd8",
+      "condition_source_derived_match": true,
+      "expected_matches_l4_class": true,
+      "expected_preserved_matches_l4_class": true,
+      "compact_observation_matches_l4_class": true,
+      "execution_state": "not_executed",
+      "source_pointer_basis": {
+        "L9_nested_row_pointer_count": 7,
+        "L4_class_pointer_count": 5,
+        "integration_row_pointer_count": 0
+      }
+    },
+    {
+      "id": "SEC003-ORIGIN-ASSIGNMENT-MISSING",
+      "negative_class_ref": "SEC003-F01-IDENTITY-MISSING",
+      "l9_casewise_pointer": "/integration_cases/59",
+      "l9_nested_pointer": "/cases/0/negative_cases/59",
+      "l4_class_pointer": "/failure_classifications/1",
+      "l3_requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "condition_sha256": "266b0dc0c02c9fc76217f3c37e809243564975a54a835745f14031dccb53c0e6",
+      "condition_source_derived_match": true,
+      "expected_matches_l4_class": true,
+      "expected_preserved_matches_l4_class": true,
+      "compact_observation_matches_l4_class": true,
+      "execution_state": "not_executed",
+      "source_pointer_basis": {
+        "L9_nested_row_pointer_count": 7,
+        "L4_class_pointer_count": 5,
+        "integration_row_pointer_count": 0
+      }
+    },
+    {
+      "id": "SEC003-ORIGIN-WORKTREE-MISSING",
+      "negative_class_ref": "SEC003-F01-IDENTITY-MISSING",
+      "l9_casewise_pointer": "/integration_cases/60",
+      "l9_nested_pointer": "/cases/0/negative_cases/60",
+      "l4_class_pointer": "/failure_classifications/1",
+      "l3_requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "condition_sha256": "e90d92585655b085c1fd0c734b7139eb74acc1c9775014be30e4aa154580bdd3",
+      "condition_source_derived_match": true,
+      "expected_matches_l4_class": true,
+      "expected_preserved_matches_l4_class": true,
+      "compact_observation_matches_l4_class": true,
+      "execution_state": "not_executed",
+      "source_pointer_basis": {
+        "L9_nested_row_pointer_count": 7,
+        "L4_class_pointer_count": 5,
+        "integration_row_pointer_count": 0
+      }
+    },
+    {
+      "id": "SEC003-ORIGIN-REVISION-MISSING",
+      "negative_class_ref": "SEC003-F01-IDENTITY-MISSING",
+      "l9_casewise_pointer": "/integration_cases/61",
+      "l9_nested_pointer": "/cases/0/negative_cases/61",
+      "l4_class_pointer": "/failure_classifications/1",
+      "l3_requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "condition_sha256": "a3bc51ee76b4ca73e8b5a7c864deda398326f20ec3144085a075567a092bdcae",
+      "condition_source_derived_match": true,
+      "expected_matches_l4_class": true,
+      "expected_preserved_matches_l4_class": true,
+      "compact_observation_matches_l4_class": true,
+      "execution_state": "not_executed",
+      "source_pointer_basis": {
+        "L9_nested_row_pointer_count": 7,
+        "L4_class_pointer_count": 5,
+        "integration_row_pointer_count": 0
+      }
+    },
+    {
+      "id": "SEC003-ORIGIN-TENANT-UNKNOWN-VALUES",
+      "negative_class_ref": "SEC003-F01-TENANT-APPLICABILITY-UNRESOLVED",
+      "l9_casewise_pointer": "/integration_cases/62",
+      "l9_nested_pointer": "/cases/0/negative_cases/62",
+      "l4_class_pointer": "/failure_classifications/2",
+      "l3_requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "condition_sha256": "650ff2312538c4608c19bb603ca47e71f6278c196cade0fa75aeadc7581c0fd8",
+      "condition_source_derived_match": true,
+      "expected_matches_l4_class": true,
+      "expected_preserved_matches_l4_class": true,
+      "compact_observation_matches_l4_class": true,
+      "execution_state": "not_executed",
+      "source_pointer_basis": {
+        "L9_nested_row_pointer_count": 7,
+        "L4_class_pointer_count": 5,
+        "integration_row_pointer_count": 0
+      }
+    },
+    {
+      "id": "SEC003-TARGET-TENANT-UNKNOWN-VALUES",
+      "negative_class_ref": "SEC003-F01-TENANT-APPLICABILITY-UNRESOLVED",
+      "l9_casewise_pointer": "/integration_cases/63",
+      "l9_nested_pointer": "/cases/0/negative_cases/63",
+      "l4_class_pointer": "/failure_classifications/2",
+      "l3_requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "condition_sha256": "02c84bfaaf2c3dc68837c4513f9b8a8889212f3704a1b3e1b487d0e5805d19f6",
+      "condition_source_derived_match": true,
+      "expected_matches_l4_class": true,
+      "expected_preserved_matches_l4_class": true,
+      "compact_observation_matches_l4_class": true,
+      "execution_state": "not_executed",
+      "source_pointer_basis": {
+        "L9_nested_row_pointer_count": 7,
+        "L4_class_pointer_count": 5,
+        "integration_row_pointer_count": 0
+      }
+    },
+    {
+      "id": "SEC003-L9-ORACLE-001",
+      "negative_class_ref": "SEC003-F01-IDENTITY-MISSING",
+      "l9_casewise_pointer": "/integration_cases/64",
+      "l9_nested_pointer": "/cases/0/negative_cases/64",
+      "l4_class_pointer": "/failure_classifications/1",
+      "l3_requirement_refs": [
+        "HELIXSECURITY-L3-003-F01"
+      ],
+      "condition_sha256": "a79736c7f46e8b95a9664340c1025a0db4e1a5886ab1dc2d9aec5d4573e90d7d",
+      "condition_source_derived_match": true,
+      "expected_matches_l4_class": true,
+      "expected_preserved_matches_l4_class": true,
+      "compact_observation_matches_l4_class": true,
+      "execution_state": "not_executed",
+      "source_pointer_basis": {
+        "L9_nested_row_pointer_count": 8,
+        "L4_class_pointer_count": 5,
+        "integration_row_pointer_count": 0
+      }
+    },
+    {
+      "id": "SEC003-L9-ORACLE-002",
+      "negative_class_ref": "SEC003-F01-IDENTITY-CONFLICT",
+      "l9_casewise_pointer": "/integration_cases/65",
+      "l9_nested_pointer": "/cases/0/negative_cases/65",
+      "l4_class_pointer": "/failure_classifications/0",
+      "l3_requirement_refs": [
+        "HELIXSECURITY-L3-003-F01"
+      ],
+      "condition_sha256": "4a950d6ce5d1e3e060b142268b3c624b55ceec2fdc092c6de7326ce57b204b71",
+      "condition_source_derived_match": true,
+      "expected_matches_l4_class": true,
+      "expected_preserved_matches_l4_class": true,
+      "compact_observation_matches_l4_class": true,
+      "execution_state": "not_executed",
+      "source_pointer_basis": {
+        "L9_nested_row_pointer_count": 8,
+        "L4_class_pointer_count": 5,
+        "integration_row_pointer_count": 0
+      }
+    },
+    {
+      "id": "SEC003-L9-ORACLE-003",
+      "negative_class_ref": "SEC003-F01-IDENTITY-MISSING",
+      "l9_casewise_pointer": "/integration_cases/66",
+      "l9_nested_pointer": "/cases/0/negative_cases/66",
+      "l4_class_pointer": "/failure_classifications/1",
+      "l3_requirement_refs": [
+        "HELIXSECURITY-L3-003-F01"
+      ],
+      "condition_sha256": "a56b4c20004aa8c77de9a7b30680cc0de27b5cc8626414457bc3516e403594b9",
+      "condition_source_derived_match": true,
+      "expected_matches_l4_class": true,
+      "expected_preserved_matches_l4_class": true,
+      "compact_observation_matches_l4_class": true,
+      "execution_state": "not_executed",
+      "source_pointer_basis": {
+        "L9_nested_row_pointer_count": 8,
+        "L4_class_pointer_count": 5,
+        "integration_row_pointer_count": 0
+      }
+    },
+    {
+      "id": "SEC003-L9-ORACLE-004",
+      "negative_class_ref": "SEC003-F01-IDENTITY-CONFLICT",
+      "l9_casewise_pointer": "/integration_cases/67",
+      "l9_nested_pointer": "/cases/0/negative_cases/67",
+      "l4_class_pointer": "/failure_classifications/0",
+      "l3_requirement_refs": [
+        "HELIXSECURITY-L3-003-F01"
+      ],
+      "condition_sha256": "84899bffc3eddf7aafc6ad1f1e326da3480b6e35849f30d702b35874fa27dc91",
+      "condition_source_derived_match": true,
+      "expected_matches_l4_class": true,
+      "expected_preserved_matches_l4_class": true,
+      "compact_observation_matches_l4_class": true,
+      "execution_state": "not_executed",
+      "source_pointer_basis": {
+        "L9_nested_row_pointer_count": 8,
+        "L4_class_pointer_count": 5,
+        "integration_row_pointer_count": 0
+      }
+    },
+    {
+      "id": "SEC003-L9-ORACLE-005",
+      "negative_class_ref": "SEC003-F01-IDENTITY-MISSING",
+      "l9_casewise_pointer": "/integration_cases/68",
+      "l9_nested_pointer": "/cases/0/negative_cases/68",
+      "l4_class_pointer": "/failure_classifications/1",
+      "l3_requirement_refs": [
+        "HELIXSECURITY-L3-003-F01"
+      ],
+      "condition_sha256": "47e98091146822d1d48d296bc4e3242fcc8b5a8ef2fc9ddff7f7b31c6b01c213",
+      "condition_source_derived_match": true,
+      "expected_matches_l4_class": true,
+      "expected_preserved_matches_l4_class": true,
+      "compact_observation_matches_l4_class": true,
+      "execution_state": "not_executed",
+      "source_pointer_basis": {
+        "L9_nested_row_pointer_count": 8,
+        "L4_class_pointer_count": 5,
+        "integration_row_pointer_count": 0
+      }
+    },
+    {
+      "id": "SEC003-L9-ORACLE-006",
+      "negative_class_ref": "SEC003-F01-IDENTITY-CONFLICT",
+      "l9_casewise_pointer": "/integration_cases/69",
+      "l9_nested_pointer": "/cases/0/negative_cases/69",
+      "l4_class_pointer": "/failure_classifications/0",
+      "l3_requirement_refs": [
+        "HELIXSECURITY-L3-003-F01"
+      ],
+      "condition_sha256": "4d0770f5ac7e5c2d51915cfc89703c8a52fa16d376a2adc2b25d897f1b4624c0",
+      "condition_source_derived_match": true,
+      "expected_matches_l4_class": true,
+      "expected_preserved_matches_l4_class": true,
+      "compact_observation_matches_l4_class": true,
+      "execution_state": "not_executed",
+      "source_pointer_basis": {
+        "L9_nested_row_pointer_count": 8,
+        "L4_class_pointer_count": 5,
+        "integration_row_pointer_count": 0
+      }
+    },
+    {
+      "id": "SEC003-L9-ORACLE-007",
+      "negative_class_ref": "SEC003-F01-IDENTITY-MISSING",
+      "l9_casewise_pointer": "/integration_cases/70",
+      "l9_nested_pointer": "/cases/0/negative_cases/70",
+      "l4_class_pointer": "/failure_classifications/1",
+      "l3_requirement_refs": [
+        "HELIXSECURITY-L3-003-F01"
+      ],
+      "condition_sha256": "19d64b22a0d9fb8c7f6ca2900b448f3ef2968ce214ca05eac75f454dc68234a4",
+      "condition_source_derived_match": true,
+      "expected_matches_l4_class": true,
+      "expected_preserved_matches_l4_class": true,
+      "compact_observation_matches_l4_class": true,
+      "execution_state": "not_executed",
+      "source_pointer_basis": {
+        "L9_nested_row_pointer_count": 8,
+        "L4_class_pointer_count": 5,
+        "integration_row_pointer_count": 0
+      }
+    },
+    {
+      "id": "SEC003-L9-ORACLE-008",
+      "negative_class_ref": "SEC003-F01-IDENTITY-CONFLICT",
+      "l9_casewise_pointer": "/integration_cases/71",
+      "l9_nested_pointer": "/cases/0/negative_cases/71",
+      "l4_class_pointer": "/failure_classifications/0",
+      "l3_requirement_refs": [
+        "HELIXSECURITY-L3-003-F01"
+      ],
+      "condition_sha256": "a93247bb318216bb44fa94fd0e84a9f0a61076b6e7ecca2b0760c9b264f3c917",
+      "condition_source_derived_match": true,
+      "expected_matches_l4_class": true,
+      "expected_preserved_matches_l4_class": true,
+      "compact_observation_matches_l4_class": true,
+      "execution_state": "not_executed",
+      "source_pointer_basis": {
+        "L9_nested_row_pointer_count": 8,
+        "L4_class_pointer_count": 5,
+        "integration_row_pointer_count": 0
+      }
+    },
+    {
+      "id": "SEC003-L9-ORACLE-009",
+      "negative_class_ref": "SEC003-F01-IDENTITY-MISSING",
+      "l9_casewise_pointer": "/integration_cases/72",
+      "l9_nested_pointer": "/cases/0/negative_cases/72",
+      "l4_class_pointer": "/failure_classifications/1",
+      "l3_requirement_refs": [
+        "HELIXSECURITY-L3-003-F01"
+      ],
+      "condition_sha256": "0cd23f4aab2b98aefec7f57ceb921ff922ab40e170e32258973bf6c81dd9c78d",
+      "condition_source_derived_match": true,
+      "expected_matches_l4_class": true,
+      "expected_preserved_matches_l4_class": true,
+      "compact_observation_matches_l4_class": true,
+      "execution_state": "not_executed",
+      "source_pointer_basis": {
+        "L9_nested_row_pointer_count": 8,
+        "L4_class_pointer_count": 5,
+        "integration_row_pointer_count": 0
+      }
+    },
+    {
+      "id": "SEC003-L9-ORACLE-010",
+      "negative_class_ref": "SEC003-F01-IDENTITY-CONFLICT",
+      "l9_casewise_pointer": "/integration_cases/73",
+      "l9_nested_pointer": "/cases/0/negative_cases/73",
+      "l4_class_pointer": "/failure_classifications/0",
+      "l3_requirement_refs": [
+        "HELIXSECURITY-L3-003-F01"
+      ],
+      "condition_sha256": "1fa02c8ca60b77894746cc8ced24d8a5f2886530204f0f2436de804547b8e259",
+      "condition_source_derived_match": true,
+      "expected_matches_l4_class": true,
+      "expected_preserved_matches_l4_class": true,
+      "compact_observation_matches_l4_class": true,
+      "execution_state": "not_executed",
+      "source_pointer_basis": {
+        "L9_nested_row_pointer_count": 8,
+        "L4_class_pointer_count": 5,
+        "integration_row_pointer_count": 0
+      }
+    },
+    {
+      "id": "SEC003-L9-ORACLE-011",
+      "negative_class_ref": "SEC003-F01-IDENTITY-MISSING",
+      "l9_casewise_pointer": "/integration_cases/74",
+      "l9_nested_pointer": "/cases/0/negative_cases/74",
+      "l4_class_pointer": "/failure_classifications/1",
+      "l3_requirement_refs": [
+        "HELIXSECURITY-L3-003-F01"
+      ],
+      "condition_sha256": "ceb276d1195588ab7e58aa5475f10b3e246c6e37ebecb897ffcbe0922a80ac84",
+      "condition_source_derived_match": true,
+      "expected_matches_l4_class": true,
+      "expected_preserved_matches_l4_class": true,
+      "compact_observation_matches_l4_class": true,
+      "execution_state": "not_executed",
+      "source_pointer_basis": {
+        "L9_nested_row_pointer_count": 8,
+        "L4_class_pointer_count": 5,
+        "integration_row_pointer_count": 0
+      }
+    },
+    {
+      "id": "SEC003-L9-ORACLE-012",
+      "negative_class_ref": "SEC003-F01-IDENTITY-CONFLICT",
+      "l9_casewise_pointer": "/integration_cases/75",
+      "l9_nested_pointer": "/cases/0/negative_cases/75",
+      "l4_class_pointer": "/failure_classifications/0",
+      "l3_requirement_refs": [
+        "HELIXSECURITY-L3-003-F01"
+      ],
+      "condition_sha256": "0464d435f8d01e8c58e72aca4cc24a64015e90aa096f1840d1f0ec947bc4932c",
+      "condition_source_derived_match": true,
+      "expected_matches_l4_class": true,
+      "expected_preserved_matches_l4_class": true,
+      "compact_observation_matches_l4_class": true,
+      "execution_state": "not_executed",
+      "source_pointer_basis": {
+        "L9_nested_row_pointer_count": 8,
+        "L4_class_pointer_count": 5,
+        "integration_row_pointer_count": 0
+      }
+    },
+    {
+      "id": "SEC003-L9-ORACLE-013",
+      "negative_class_ref": "SEC003-F01-TENANT-INVENTED",
+      "l9_casewise_pointer": "/integration_cases/76",
+      "l9_nested_pointer": "/cases/0/negative_cases/76",
+      "l4_class_pointer": "/failure_classifications/3",
+      "l3_requirement_refs": [
+        "HELIXSECURITY-L3-003-F01"
+      ],
+      "condition_sha256": "84e8bd9aca6ecf14086b220662bbe9ac4a480ad95c10abef017f0bc5795a84a6",
+      "condition_source_derived_match": true,
+      "expected_matches_l4_class": true,
+      "expected_preserved_matches_l4_class": true,
+      "compact_observation_matches_l4_class": true,
+      "execution_state": "not_executed",
+      "source_pointer_basis": {
+        "L9_nested_row_pointer_count": 8,
+        "L4_class_pointer_count": 5,
+        "integration_row_pointer_count": 0
+      }
+    },
+    {
+      "id": "SEC003-L9-ORACLE-014",
+      "negative_class_ref": "SEC003-F01-TENANT-APPLICABILITY-UNRESOLVED",
+      "l9_casewise_pointer": "/integration_cases/77",
+      "l9_nested_pointer": "/cases/0/negative_cases/77",
+      "l4_class_pointer": "/failure_classifications/2",
+      "l3_requirement_refs": [
+        "HELIXSECURITY-L3-003-F01"
+      ],
+      "condition_sha256": "42ae8a0db26ffe8044f1740d164ad731609e4dc3045cea36055b30f1f55a3776",
+      "condition_source_derived_match": true,
+      "expected_matches_l4_class": true,
+      "expected_preserved_matches_l4_class": true,
+      "compact_observation_matches_l4_class": true,
+      "execution_state": "not_executed",
+      "source_pointer_basis": {
+        "L9_nested_row_pointer_count": 8,
+        "L4_class_pointer_count": 5,
+        "integration_row_pointer_count": 0
+      }
+    },
+    {
+      "id": "SEC003-L9-ORACLE-015",
+      "negative_class_ref": "SEC003-F01-IDENTITY-MISSING",
+      "l9_casewise_pointer": "/integration_cases/78",
+      "l9_nested_pointer": "/cases/0/negative_cases/78",
+      "l4_class_pointer": "/failure_classifications/1",
+      "l3_requirement_refs": [
+        "HELIXSECURITY-L3-003-F01"
+      ],
+      "condition_sha256": "5e5b118baa10c8e007839841e62e5091efb49ba4b007761f701a3ed694ad2ee9",
+      "condition_source_derived_match": true,
+      "expected_matches_l4_class": true,
+      "expected_preserved_matches_l4_class": true,
+      "compact_observation_matches_l4_class": true,
+      "execution_state": "not_executed",
+      "source_pointer_basis": {
+        "L9_nested_row_pointer_count": 8,
+        "L4_class_pointer_count": 5,
+        "integration_row_pointer_count": 0
+      }
+    },
+    {
+      "id": "SEC003-L9-ORACLE-016",
+      "negative_class_ref": "SEC003-F01-SIDE-INPUT-UNRESOLVED",
+      "l9_casewise_pointer": "/integration_cases/79",
+      "l9_nested_pointer": "/cases/0/negative_cases/79",
+      "l4_class_pointer": "/failure_classifications/10",
+      "l3_requirement_refs": [
+        "HELIXSECURITY-L3-003-F01"
+      ],
+      "condition_sha256": "575088531235e0caf3e3111cdce48646b4cb50478c2e95aaa05a1f05d5b6ad53",
+      "condition_source_derived_match": true,
+      "expected_matches_l4_class": true,
+      "expected_preserved_matches_l4_class": true,
+      "compact_observation_matches_l4_class": true,
+      "execution_state": "not_executed",
+      "source_pointer_basis": {
+        "L9_nested_row_pointer_count": 8,
+        "L4_class_pointer_count": 5,
+        "integration_row_pointer_count": 0
+      }
+    },
+    {
+      "id": "SEC003-L9-ORACLE-017",
+      "negative_class_ref": "SEC003-F01-IDENTITY-MISSING",
+      "l9_casewise_pointer": "/integration_cases/80",
+      "l9_nested_pointer": "/cases/0/negative_cases/80",
+      "l4_class_pointer": "/failure_classifications/1",
+      "l3_requirement_refs": [
+        "HELIXSECURITY-L3-003-F01"
+      ],
+      "condition_sha256": "90fd45218abac964141680bf02a4f80332514d5aa21b81449f13f68c50c222e5",
+      "condition_source_derived_match": true,
+      "expected_matches_l4_class": true,
+      "expected_preserved_matches_l4_class": true,
+      "compact_observation_matches_l4_class": true,
+      "execution_state": "not_executed",
+      "source_pointer_basis": {
+        "L9_nested_row_pointer_count": 8,
+        "L4_class_pointer_count": 5,
+        "integration_row_pointer_count": 0
+      }
+    },
+    {
+      "id": "SEC003-L9-ORACLE-018",
+      "negative_class_ref": "SEC003-F01-IDENTITY-CONFLICT",
+      "l9_casewise_pointer": "/integration_cases/81",
+      "l9_nested_pointer": "/cases/0/negative_cases/81",
+      "l4_class_pointer": "/failure_classifications/0",
+      "l3_requirement_refs": [
+        "HELIXSECURITY-L3-003-F01"
+      ],
+      "condition_sha256": "559064e6fa9e08eff4fea960114a34e29d84a1f6b75ab8f9746b64513f154d98",
+      "condition_source_derived_match": true,
+      "expected_matches_l4_class": true,
+      "expected_preserved_matches_l4_class": true,
+      "compact_observation_matches_l4_class": true,
+      "execution_state": "not_executed",
+      "source_pointer_basis": {
+        "L9_nested_row_pointer_count": 8,
+        "L4_class_pointer_count": 5,
+        "integration_row_pointer_count": 0
+      }
+    },
+    {
+      "id": "SEC003-L9-ORACLE-019",
+      "negative_class_ref": "SEC003-F01-IDENTITY-CONFLICT",
+      "l9_casewise_pointer": "/integration_cases/82",
+      "l9_nested_pointer": "/cases/0/negative_cases/82",
+      "l4_class_pointer": "/failure_classifications/0",
+      "l3_requirement_refs": [
+        "HELIXSECURITY-L3-003-F01"
+      ],
+      "condition_sha256": "59d439f5829702f3e9ed7a0374a57fec10181cdf0b12223429cbdaa8e80530b2",
+      "condition_source_derived_match": true,
+      "expected_matches_l4_class": true,
+      "expected_preserved_matches_l4_class": true,
+      "compact_observation_matches_l4_class": true,
+      "execution_state": "not_executed",
+      "source_pointer_basis": {
+        "L9_nested_row_pointer_count": 8,
+        "L4_class_pointer_count": 5,
+        "integration_row_pointer_count": 0
+      }
+    },
+    {
+      "id": "SEC003-L9-ORACLE-020",
+      "negative_class_ref": "SEC003-F01-IDENTITY-CONFLICT",
+      "l9_casewise_pointer": "/integration_cases/83",
+      "l9_nested_pointer": "/cases/0/negative_cases/83",
+      "l4_class_pointer": "/failure_classifications/0",
+      "l3_requirement_refs": [
+        "HELIXSECURITY-L3-003-F01"
+      ],
+      "condition_sha256": "e12090077b4fb50f02e786cde2f83b7f415ed017ef3562bcc17f1c1bd95b5b86",
+      "condition_source_derived_match": true,
+      "expected_matches_l4_class": true,
+      "expected_preserved_matches_l4_class": true,
+      "compact_observation_matches_l4_class": true,
+      "execution_state": "not_executed",
+      "source_pointer_basis": {
+        "L9_nested_row_pointer_count": 8,
+        "L4_class_pointer_count": 5,
+        "integration_row_pointer_count": 0
+      }
+    },
+    {
+      "id": "SEC003-L9-ORACLE-021",
+      "negative_class_ref": "SEC003-F01-IDENTITY-CONFLICT",
+      "l9_casewise_pointer": "/integration_cases/84",
+      "l9_nested_pointer": "/cases/0/negative_cases/84",
+      "l4_class_pointer": "/failure_classifications/0",
+      "l3_requirement_refs": [
+        "HELIXSECURITY-L3-003-F01"
+      ],
+      "condition_sha256": "7b0b7e2ee0cdbec155188cf1dfb4ed34fd1ee557582bba6cc0a4fc5980b4544c",
+      "condition_source_derived_match": true,
+      "expected_matches_l4_class": true,
+      "expected_preserved_matches_l4_class": true,
+      "compact_observation_matches_l4_class": true,
+      "execution_state": "not_executed",
+      "source_pointer_basis": {
+        "L9_nested_row_pointer_count": 8,
+        "L4_class_pointer_count": 5,
+        "integration_row_pointer_count": 0
+      }
+    },
+    {
+      "id": "SEC003-L9-ORACLE-022",
+      "negative_class_ref": "SEC003-F01-IDENTITY-CONFLICT",
+      "l9_casewise_pointer": "/integration_cases/85",
+      "l9_nested_pointer": "/cases/0/negative_cases/85",
+      "l4_class_pointer": "/failure_classifications/0",
+      "l3_requirement_refs": [
+        "HELIXSECURITY-L3-003-F01"
+      ],
+      "condition_sha256": "8128f10760e1323086abb9652f8f29f83e63f2b7b7a072fc20552f96f4ff2750",
+      "condition_source_derived_match": true,
+      "expected_matches_l4_class": true,
+      "expected_preserved_matches_l4_class": true,
+      "compact_observation_matches_l4_class": true,
+      "execution_state": "not_executed",
+      "source_pointer_basis": {
+        "L9_nested_row_pointer_count": 8,
+        "L4_class_pointer_count": 5,
+        "integration_row_pointer_count": 0
+      }
+    },
+    {
+      "id": "SEC003-L9-ORACLE-023",
+      "negative_class_ref": "SEC003-F01-IDENTITY-CONFLICT",
+      "l9_casewise_pointer": "/integration_cases/86",
+      "l9_nested_pointer": "/cases/0/negative_cases/86",
+      "l4_class_pointer": "/failure_classifications/0",
+      "l3_requirement_refs": [
+        "HELIXSECURITY-L3-003-F01"
+      ],
+      "condition_sha256": "599167d2b1a8c485b3eaef0a60e2d2885c3b79330660a716392e6f1bd309f587",
+      "condition_source_derived_match": true,
+      "expected_matches_l4_class": true,
+      "expected_preserved_matches_l4_class": true,
+      "compact_observation_matches_l4_class": true,
+      "execution_state": "not_executed",
+      "source_pointer_basis": {
+        "L9_nested_row_pointer_count": 8,
+        "L4_class_pointer_count": 5,
+        "integration_row_pointer_count": 0
+      }
+    },
+    {
+      "id": "SEC003-L9-ORACLE-024",
+      "negative_class_ref": "SEC003-F01-ASSET-KIND-UNRESOLVED",
+      "l9_casewise_pointer": "/integration_cases/87",
+      "l9_nested_pointer": "/cases/0/negative_cases/87",
+      "l4_class_pointer": "/failure_classifications/11",
+      "l3_requirement_refs": [
+        "HELIXSECURITY-L3-003-F01"
+      ],
+      "condition_sha256": "409b6d63393944429df59809b0b06a677954735531681539c8f31f2d4ede4433",
+      "condition_source_derived_match": true,
+      "expected_matches_l4_class": true,
+      "expected_preserved_matches_l4_class": true,
+      "compact_observation_matches_l4_class": true,
+      "execution_state": "not_executed",
+      "source_pointer_basis": {
+        "L9_nested_row_pointer_count": 8,
+        "L4_class_pointer_count": 5,
+        "integration_row_pointer_count": 0
+      }
+    },
+    {
+      "id": "SEC003-L9-ORACLE-025",
+      "negative_class_ref": "SEC003-F01-OWNER-MATERIAL-UNRESOLVED",
+      "l9_casewise_pointer": "/integration_cases/88",
+      "l9_nested_pointer": "/cases/0/negative_cases/88",
+      "l4_class_pointer": "/failure_classifications/12",
+      "l3_requirement_refs": [
+        "HELIXSECURITY-L3-003-F01"
+      ],
+      "condition_sha256": "ec7c5517f976e2dab295332c2b337529f905771c373e07c2db02d1cbec4a8970",
+      "condition_source_derived_match": true,
+      "expected_matches_l4_class": true,
+      "expected_preserved_matches_l4_class": true,
+      "compact_observation_matches_l4_class": true,
+      "execution_state": "not_executed",
+      "source_pointer_basis": {
+        "L9_nested_row_pointer_count": 8,
+        "L4_class_pointer_count": 5,
+        "integration_row_pointer_count": 0
+      }
+    },
+    {
+      "id": "SEC003-L9-ORACLE-026",
+      "negative_class_ref": "SEC003-F01-OWNER-MATERIAL-UNRESOLVED",
+      "l9_casewise_pointer": "/integration_cases/89",
+      "l9_nested_pointer": "/cases/0/negative_cases/89",
+      "l4_class_pointer": "/failure_classifications/12",
+      "l3_requirement_refs": [
+        "HELIXSECURITY-L3-003-F01"
+      ],
+      "condition_sha256": "a010d333b2e4e461dd1d1da48a23811a9c1b6d6739baecd4bd4da13faeebefc6",
+      "condition_source_derived_match": true,
+      "expected_matches_l4_class": true,
+      "expected_preserved_matches_l4_class": true,
+      "compact_observation_matches_l4_class": true,
+      "execution_state": "not_executed",
+      "source_pointer_basis": {
+        "L9_nested_row_pointer_count": 8,
+        "L4_class_pointer_count": 5,
+        "integration_row_pointer_count": 0
+      }
+    },
+    {
+      "id": "SEC003-L9-ORACLE-027",
+      "negative_class_ref": "SEC003-F01-OWNER-MATERIAL-UNRESOLVED",
+      "l9_casewise_pointer": "/integration_cases/90",
+      "l9_nested_pointer": "/cases/0/negative_cases/90",
+      "l4_class_pointer": "/failure_classifications/12",
+      "l3_requirement_refs": [
+        "HELIXSECURITY-L3-003-F01"
+      ],
+      "condition_sha256": "6d076336b695ac0be7cef9dc89bdc8cd023136de63f9ebc24a4d9ebf9893c13a",
+      "condition_source_derived_match": true,
+      "expected_matches_l4_class": true,
+      "expected_preserved_matches_l4_class": true,
+      "compact_observation_matches_l4_class": true,
+      "execution_state": "not_executed",
+      "source_pointer_basis": {
+        "L9_nested_row_pointer_count": 8,
+        "L4_class_pointer_count": 5,
+        "integration_row_pointer_count": 0
+      }
+    },
+    {
+      "id": "SEC003-L9-ORACLE-028",
+      "negative_class_ref": "SEC003-F01-IDENTITY-MISSING",
+      "l9_casewise_pointer": "/integration_cases/91",
+      "l9_nested_pointer": "/cases/0/negative_cases/91",
+      "l4_class_pointer": "/failure_classifications/1",
+      "l3_requirement_refs": [
+        "HELIXSECURITY-L3-003-F01"
+      ],
+      "condition_sha256": "656747dba85e23e71eb0fd63e2ad91cdc5ecbfaad5216f37b60e477d20bb37c4",
+      "condition_source_derived_match": true,
+      "expected_matches_l4_class": true,
+      "expected_preserved_matches_l4_class": true,
+      "compact_observation_matches_l4_class": true,
+      "execution_state": "not_executed",
+      "source_pointer_basis": {
+        "L9_nested_row_pointer_count": 8,
+        "L4_class_pointer_count": 5,
+        "integration_row_pointer_count": 0
+      }
+    },
+    {
+      "id": "SEC003-L9-ORACLE-029",
+      "negative_class_ref": "SEC003-F01-IDENTITY-MISSING",
+      "l9_casewise_pointer": "/integration_cases/92",
+      "l9_nested_pointer": "/cases/0/negative_cases/92",
+      "l4_class_pointer": "/failure_classifications/1",
+      "l3_requirement_refs": [
+        "HELIXSECURITY-L3-003-F01"
+      ],
+      "condition_sha256": "fbe343780bda5fb0cbf7875b8e28b17c2f63ef846ede81dcc314b07079c0ad29",
+      "condition_source_derived_match": true,
+      "expected_matches_l4_class": true,
+      "expected_preserved_matches_l4_class": true,
+      "compact_observation_matches_l4_class": true,
+      "execution_state": "not_executed",
+      "source_pointer_basis": {
+        "L9_nested_row_pointer_count": 8,
+        "L4_class_pointer_count": 5,
+        "integration_row_pointer_count": 0
+      }
+    },
+    {
+      "id": "SEC003-CROSS-READ-ABSENT",
+      "negative_class_ref": "SEC003-F02-EXPLICIT-CONNECTION-ABSENT",
+      "l9_casewise_pointer": "/integration_cases/93",
+      "l9_nested_pointer": "/cases/1/negative_cases/0",
+      "l4_class_pointer": "/failure_classifications/7",
+      "l3_requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "condition_sha256": "584d2dd5912666e42236371e6686aa4b164a9872df035cddad19ce4a6b4d7ed4",
+      "condition_source_derived_match": true,
+      "expected_matches_l4_class": true,
+      "expected_preserved_matches_l4_class": true,
+      "compact_observation_matches_l4_class": true,
+      "execution_state": "not_executed",
+      "source_pointer_basis": {
+        "L9_nested_row_pointer_count": 7,
+        "L4_class_pointer_count": 5,
+        "integration_row_pointer_count": 0
+      }
+    },
+    {
+      "id": "SEC003-CROSS-WRITE-ABSENT",
+      "negative_class_ref": "SEC003-F02-EXPLICIT-CONNECTION-ABSENT",
+      "l9_casewise_pointer": "/integration_cases/94",
+      "l9_nested_pointer": "/cases/1/negative_cases/1",
+      "l4_class_pointer": "/failure_classifications/7",
+      "l3_requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "condition_sha256": "8d1a661c0b0a428511d85b34ef89226cf8eb15a6962d5c249b7d7f46e307cc7c",
+      "condition_source_derived_match": true,
+      "expected_matches_l4_class": true,
+      "expected_preserved_matches_l4_class": true,
+      "compact_observation_matches_l4_class": true,
+      "execution_state": "not_executed",
+      "source_pointer_basis": {
+        "L9_nested_row_pointer_count": 7,
+        "L4_class_pointer_count": 5,
+        "integration_row_pointer_count": 0
+      }
+    },
+    {
+      "id": "SEC003-CROSS-EXECUTE-ABSENT",
+      "negative_class_ref": "SEC003-F02-EXPLICIT-CONNECTION-ABSENT",
+      "l9_casewise_pointer": "/integration_cases/95",
+      "l9_nested_pointer": "/cases/1/negative_cases/2",
+      "l4_class_pointer": "/failure_classifications/7",
+      "l3_requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "condition_sha256": "5be940ebe4eff08c59d00c93d070571b62e46bb9c872e3adc71ca338c3ad53e5",
+      "condition_source_derived_match": true,
+      "expected_matches_l4_class": true,
+      "expected_preserved_matches_l4_class": true,
+      "compact_observation_matches_l4_class": true,
+      "execution_state": "not_executed",
+      "source_pointer_basis": {
+        "L9_nested_row_pointer_count": 7,
+        "L4_class_pointer_count": 5,
+        "integration_row_pointer_count": 0
+      }
+    },
+    {
+      "id": "SEC003-CROSS-NETWORK-ABSENT",
+      "negative_class_ref": "SEC003-F02-EXPLICIT-CONNECTION-ABSENT",
+      "l9_casewise_pointer": "/integration_cases/96",
+      "l9_nested_pointer": "/cases/1/negative_cases/3",
+      "l4_class_pointer": "/failure_classifications/7",
+      "l3_requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "condition_sha256": "82aac1e41357b311923b64b436d1a6fed45d32b6d6e3427947a5b6c7e42ad924",
+      "condition_source_derived_match": true,
+      "expected_matches_l4_class": true,
+      "expected_preserved_matches_l4_class": true,
+      "compact_observation_matches_l4_class": true,
+      "execution_state": "not_executed",
+      "source_pointer_basis": {
+        "L9_nested_row_pointer_count": 7,
+        "L4_class_pointer_count": 5,
+        "integration_row_pointer_count": 0
+      }
+    },
+    {
+      "id": "SEC003-CROSS-STATE-ABSENT",
+      "negative_class_ref": "SEC003-F02-EXPLICIT-CONNECTION-ABSENT",
+      "l9_casewise_pointer": "/integration_cases/97",
+      "l9_nested_pointer": "/cases/1/negative_cases/4",
+      "l4_class_pointer": "/failure_classifications/7",
+      "l3_requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "condition_sha256": "58be236424f60feebbd395fb769b37831b5996c82aaf9a666f941d152dd5fbd1",
+      "condition_source_derived_match": true,
+      "expected_matches_l4_class": true,
+      "expected_preserved_matches_l4_class": true,
+      "compact_observation_matches_l4_class": true,
+      "execution_state": "not_executed",
+      "source_pointer_basis": {
+        "L9_nested_row_pointer_count": 7,
+        "L4_class_pointer_count": 5,
+        "integration_row_pointer_count": 0
+      }
+    },
+    {
+      "id": "SEC003-CROSS-CREDENTIAL-ABSENT",
+      "negative_class_ref": "SEC003-F02-EXPLICIT-CONNECTION-ABSENT",
+      "l9_casewise_pointer": "/integration_cases/98",
+      "l9_nested_pointer": "/cases/1/negative_cases/5",
+      "l4_class_pointer": "/failure_classifications/7",
+      "l3_requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "condition_sha256": "240aad124516b52a98d351c3b5f03d5021624bfdf18af947acca9f2f5527c043",
+      "condition_source_derived_match": true,
+      "expected_matches_l4_class": true,
+      "expected_preserved_matches_l4_class": true,
+      "compact_observation_matches_l4_class": true,
+      "execution_state": "not_executed",
+      "source_pointer_basis": {
+        "L9_nested_row_pointer_count": 7,
+        "L4_class_pointer_count": 5,
+        "integration_row_pointer_count": 0
+      }
+    },
+    {
+      "id": "SEC003-CROSS-ARTIFACT-ABSENT",
+      "negative_class_ref": "SEC003-F02-EXPLICIT-CONNECTION-ABSENT",
+      "l9_casewise_pointer": "/integration_cases/99",
+      "l9_nested_pointer": "/cases/1/negative_cases/6",
+      "l4_class_pointer": "/failure_classifications/7",
+      "l3_requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "condition_sha256": "d0d6ac13062cc90fd5d886b71a92952fd588b9163e4a1874fc70b92a22f463a9",
+      "condition_source_derived_match": true,
+      "expected_matches_l4_class": true,
+      "expected_preserved_matches_l4_class": true,
+      "compact_observation_matches_l4_class": true,
+      "execution_state": "not_executed",
+      "source_pointer_basis": {
+        "L9_nested_row_pointer_count": 7,
+        "L4_class_pointer_count": 5,
+        "integration_row_pointer_count": 0
+      }
+    },
+    {
+      "id": "SEC003-PRIMARY-TREE-FALLBACK",
+      "negative_class_ref": "SEC003-F02-IMPLICIT-FALLBACK",
+      "l9_casewise_pointer": "/integration_cases/100",
+      "l9_nested_pointer": "/cases/1/negative_cases/7",
+      "l4_class_pointer": "/failure_classifications/4",
+      "l3_requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "condition_sha256": "aa7610bd3f774c8379601c53d7486ccaadc920ff74fa151a35429bdcf1899a72",
+      "condition_source_derived_match": true,
+      "expected_matches_l4_class": true,
+      "expected_preserved_matches_l4_class": true,
+      "compact_observation_matches_l4_class": true,
+      "execution_state": "not_executed",
+      "source_pointer_basis": {
+        "L9_nested_row_pointer_count": 7,
+        "L4_class_pointer_count": 5,
+        "integration_row_pointer_count": 0
+      }
+    },
+    {
+      "id": "SEC003-OTHER-PROJECT-FALLBACK",
+      "negative_class_ref": "SEC003-F02-IMPLICIT-FALLBACK",
+      "l9_casewise_pointer": "/integration_cases/101",
+      "l9_nested_pointer": "/cases/1/negative_cases/8",
+      "l4_class_pointer": "/failure_classifications/4",
+      "l3_requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "condition_sha256": "5e06ebb05ed16cf4fd7d7f577640b1a34e83681dd00809e3b8236f91311a1593",
+      "condition_source_derived_match": true,
+      "expected_matches_l4_class": true,
+      "expected_preserved_matches_l4_class": true,
+      "compact_observation_matches_l4_class": true,
+      "execution_state": "not_executed",
+      "source_pointer_basis": {
+        "L9_nested_row_pointer_count": 7,
+        "L4_class_pointer_count": 5,
+        "integration_row_pointer_count": 0
+      }
+    },
+    {
+      "id": "SEC003-OTHER-PROJECT-LATEST",
+      "negative_class_ref": "SEC003-F02-FOREIGN-LATEST",
+      "l9_casewise_pointer": "/integration_cases/102",
+      "l9_nested_pointer": "/cases/1/negative_cases/9",
+      "l4_class_pointer": "/failure_classifications/5",
+      "l3_requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "condition_sha256": "71c8402209e052ce9ca304a430a26f51360755698616f5beb3c34912c5ebbaf5",
+      "condition_source_derived_match": true,
+      "expected_matches_l4_class": true,
+      "expected_preserved_matches_l4_class": true,
+      "compact_observation_matches_l4_class": true,
+      "execution_state": "not_executed",
+      "source_pointer_basis": {
+        "L9_nested_row_pointer_count": 7,
+        "L4_class_pointer_count": 5,
+        "integration_row_pointer_count": 0
+      }
+    },
+    {
+      "id": "SEC003-CONNECTION-REVISION",
+      "negative_class_ref": "SEC003-F02-CONNECTION-MATERIAL-CONFLICT",
+      "l9_casewise_pointer": "/integration_cases/103",
+      "l9_nested_pointer": "/cases/1/negative_cases/10",
+      "l4_class_pointer": "/failure_classifications/8",
+      "l3_requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "condition_sha256": "7af393a7a6ffe13bb6b4dd5890efd115d76efeace3cef8d721f55e839a571b88",
+      "condition_source_derived_match": true,
+      "expected_matches_l4_class": true,
+      "expected_preserved_matches_l4_class": true,
+      "compact_observation_matches_l4_class": true,
+      "execution_state": "not_executed",
+      "source_pointer_basis": {
+        "L9_nested_row_pointer_count": 7,
+        "L4_class_pointer_count": 5,
+        "integration_row_pointer_count": 0
+      }
+    },
+    {
+      "id": "SEC003-CONNECTION-UNKNOWN",
+      "negative_class_ref": "SEC003-F02-CONNECTION-MATERIAL-UNRESOLVED",
+      "l9_casewise_pointer": "/integration_cases/104",
+      "l9_nested_pointer": "/cases/1/negative_cases/11",
+      "l4_class_pointer": "/failure_classifications/9",
+      "l3_requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "condition_sha256": "3e84b059532a0e633f82ff236eabb999ecc00e813d95a73e5cc646a68b23f6ab",
+      "condition_source_derived_match": true,
+      "expected_matches_l4_class": true,
+      "expected_preserved_matches_l4_class": true,
+      "compact_observation_matches_l4_class": true,
+      "execution_state": "not_executed",
+      "source_pointer_basis": {
+        "L9_nested_row_pointer_count": 7,
+        "L4_class_pointer_count": 5,
+        "integration_row_pointer_count": 0
+      }
+    },
+    {
+      "id": "SEC003-READ-DOES-NOT-GRANT-WRITE",
+      "negative_class_ref": "SEC003-F02-OPERATION-SCOPE",
+      "l9_casewise_pointer": "/integration_cases/105",
+      "l9_nested_pointer": "/cases/1/negative_cases/12",
+      "l4_class_pointer": "/failure_classifications/6",
+      "l3_requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "condition_sha256": "1a66fa26967653c6134ef9f35f874b3d45ea0ad0a7f1755f805a289a166a98c1",
+      "condition_source_derived_match": true,
+      "expected_matches_l4_class": true,
+      "expected_preserved_matches_l4_class": true,
+      "compact_observation_matches_l4_class": true,
+      "execution_state": "not_executed",
+      "source_pointer_basis": {
+        "L9_nested_row_pointer_count": 7,
+        "L4_class_pointer_count": 5,
+        "integration_row_pointer_count": 0
+      }
+    },
+    {
+      "id": "SEC003-READ-DOES-NOT-GRANT-EXECUTE",
+      "negative_class_ref": "SEC003-F02-OPERATION-SCOPE",
+      "l9_casewise_pointer": "/integration_cases/106",
+      "l9_nested_pointer": "/cases/1/negative_cases/13",
+      "l4_class_pointer": "/failure_classifications/6",
+      "l3_requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "condition_sha256": "a049f30a41a6d6c53586c6ac6ca81539cf937c4255f60c0099d02f24e9e32991",
+      "condition_source_derived_match": true,
+      "expected_matches_l4_class": true,
+      "expected_preserved_matches_l4_class": true,
+      "compact_observation_matches_l4_class": true,
+      "execution_state": "not_executed",
+      "source_pointer_basis": {
+        "L9_nested_row_pointer_count": 7,
+        "L4_class_pointer_count": 5,
+        "integration_row_pointer_count": 0
+      }
+    },
+    {
+      "id": "SEC003-READ-DOES-NOT-GRANT-NETWORK",
+      "negative_class_ref": "SEC003-F02-OPERATION-SCOPE",
+      "l9_casewise_pointer": "/integration_cases/107",
+      "l9_nested_pointer": "/cases/1/negative_cases/14",
+      "l4_class_pointer": "/failure_classifications/6",
+      "l3_requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "condition_sha256": "2d65a7a01f7c77f440a2a934178b5fe3ff5713ed2dd38d23c9f67e9595468d3f",
+      "condition_source_derived_match": true,
+      "expected_matches_l4_class": true,
+      "expected_preserved_matches_l4_class": true,
+      "compact_observation_matches_l4_class": true,
+      "execution_state": "not_executed",
+      "source_pointer_basis": {
+        "L9_nested_row_pointer_count": 7,
+        "L4_class_pointer_count": 5,
+        "integration_row_pointer_count": 0
+      }
+    },
+    {
+      "id": "SEC003-READ-DOES-NOT-GRANT-STATE",
+      "negative_class_ref": "SEC003-F02-OPERATION-SCOPE",
+      "l9_casewise_pointer": "/integration_cases/108",
+      "l9_nested_pointer": "/cases/1/negative_cases/15",
+      "l4_class_pointer": "/failure_classifications/6",
+      "l3_requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "condition_sha256": "3801f49960d17d3b53be72ed661a535ae24c2df1a2adb1a17bf5f00477f86a44",
+      "condition_source_derived_match": true,
+      "expected_matches_l4_class": true,
+      "expected_preserved_matches_l4_class": true,
+      "compact_observation_matches_l4_class": true,
+      "execution_state": "not_executed",
+      "source_pointer_basis": {
+        "L9_nested_row_pointer_count": 7,
+        "L4_class_pointer_count": 5,
+        "integration_row_pointer_count": 0
+      }
+    },
+    {
+      "id": "SEC003-READ-DOES-NOT-GRANT-CREDENTIAL",
+      "negative_class_ref": "SEC003-F02-OPERATION-SCOPE",
+      "l9_casewise_pointer": "/integration_cases/109",
+      "l9_nested_pointer": "/cases/1/negative_cases/16",
+      "l4_class_pointer": "/failure_classifications/6",
+      "l3_requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "condition_sha256": "c10a017270b8a9bb8f0f42b6db334566d347b7ea31d76f7e75acad41a2d4f917",
+      "condition_source_derived_match": true,
+      "expected_matches_l4_class": true,
+      "expected_preserved_matches_l4_class": true,
+      "compact_observation_matches_l4_class": true,
+      "execution_state": "not_executed",
+      "source_pointer_basis": {
+        "L9_nested_row_pointer_count": 7,
+        "L4_class_pointer_count": 5,
+        "integration_row_pointer_count": 0
+      }
+    },
+    {
+      "id": "SEC003-READ-DOES-NOT-GRANT-ARTIFACT",
+      "negative_class_ref": "SEC003-F02-OPERATION-SCOPE",
+      "l9_casewise_pointer": "/integration_cases/110",
+      "l9_nested_pointer": "/cases/1/negative_cases/17",
+      "l4_class_pointer": "/failure_classifications/6",
+      "l3_requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "condition_sha256": "db303e139dc327caf13558357cbf844619176927ec0744445a76482e3b907c31",
+      "condition_source_derived_match": true,
+      "expected_matches_l4_class": true,
+      "expected_preserved_matches_l4_class": true,
+      "compact_observation_matches_l4_class": true,
+      "execution_state": "not_executed",
+      "source_pointer_basis": {
+        "L9_nested_row_pointer_count": 7,
+        "L4_class_pointer_count": 5,
+        "integration_row_pointer_count": 0
+      }
+    },
+    {
+      "id": "SEC003-SAME-PROJECT-NO-CONNECTION",
+      "negative_class_ref": "SEC003-F02-EXPLICIT-CONNECTION-ABSENT",
+      "l9_casewise_pointer": "/integration_cases/111",
+      "l9_nested_pointer": "/cases/1/negative_cases/18",
+      "l4_class_pointer": "/failure_classifications/7",
+      "l3_requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "condition_sha256": "ddcb70cdb8bb71ffb24e5bdf4edd06eb4f031aa841d27d15d546ae3dc4894872",
+      "condition_source_derived_match": true,
+      "expected_matches_l4_class": true,
+      "expected_preserved_matches_l4_class": true,
+      "compact_observation_matches_l4_class": true,
+      "execution_state": "not_executed",
+      "source_pointer_basis": {
+        "L9_nested_row_pointer_count": 7,
+        "L4_class_pointer_count": 5,
+        "integration_row_pointer_count": 0
+      }
+    },
+    {
+      "id": "SEC003-AGENT-PRIMARY-TREE-FALLBACK",
+      "negative_class_ref": "SEC003-F02-IMPLICIT-FALLBACK",
+      "l9_casewise_pointer": "/integration_cases/112",
+      "l9_nested_pointer": "/cases/1/negative_cases/19",
+      "l4_class_pointer": "/failure_classifications/4",
+      "l3_requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "condition_sha256": "159f8f890775ed49011587b99afe34537d661c313fee3b63225069a66ab0cbc8",
+      "condition_source_derived_match": true,
+      "expected_matches_l4_class": true,
+      "expected_preserved_matches_l4_class": true,
+      "compact_observation_matches_l4_class": true,
+      "execution_state": "not_executed",
+      "source_pointer_basis": {
+        "L9_nested_row_pointer_count": 7,
+        "L4_class_pointer_count": 5,
+        "integration_row_pointer_count": 0
+      }
+    },
+    {
+      "id": "SEC003-AGENT-OTHER-PROJECT-LATEST",
+      "negative_class_ref": "SEC003-F02-FOREIGN-LATEST",
+      "l9_casewise_pointer": "/integration_cases/113",
+      "l9_nested_pointer": "/cases/1/negative_cases/20",
+      "l4_class_pointer": "/failure_classifications/5",
+      "l3_requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "condition_sha256": "d6bc900d2f518e35671947dafb6dd34041859f6784ead91202a6ffc392d7375d",
+      "condition_source_derived_match": true,
+      "expected_matches_l4_class": true,
+      "expected_preserved_matches_l4_class": true,
+      "compact_observation_matches_l4_class": true,
+      "execution_state": "not_executed",
+      "source_pointer_basis": {
+        "L9_nested_row_pointer_count": 7,
+        "L4_class_pointer_count": 5,
+        "integration_row_pointer_count": 0
+      }
+    },
+    {
+      "id": "SEC003-AGENT-READ-DOES-NOT-GRANT-NETWORK",
+      "negative_class_ref": "SEC003-F02-OPERATION-SCOPE",
+      "l9_casewise_pointer": "/integration_cases/114",
+      "l9_nested_pointer": "/cases/1/negative_cases/21",
+      "l4_class_pointer": "/failure_classifications/6",
+      "l3_requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "condition_sha256": "70fc34427e3c141156a9213d2c9fe505cfcc376e5b2e727c5fcb26152827c480",
+      "condition_source_derived_match": true,
+      "expected_matches_l4_class": true,
+      "expected_preserved_matches_l4_class": true,
+      "compact_observation_matches_l4_class": true,
+      "execution_state": "not_executed",
+      "source_pointer_basis": {
+        "L9_nested_row_pointer_count": 7,
+        "L4_class_pointer_count": 5,
+        "integration_row_pointer_count": 0
+      }
+    },
+    {
+      "id": "SEC003-HOOK-PRIMARY-TREE-FALLBACK",
+      "negative_class_ref": "SEC003-F02-IMPLICIT-FALLBACK",
+      "l9_casewise_pointer": "/integration_cases/115",
+      "l9_nested_pointer": "/cases/1/negative_cases/22",
+      "l4_class_pointer": "/failure_classifications/4",
+      "l3_requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "condition_sha256": "e23d34b6b0043477adcfcaaf71b2b0421f52a4326e657fedb764461778d967d1",
+      "condition_source_derived_match": true,
+      "expected_matches_l4_class": true,
+      "expected_preserved_matches_l4_class": true,
+      "compact_observation_matches_l4_class": true,
+      "execution_state": "not_executed",
+      "source_pointer_basis": {
+        "L9_nested_row_pointer_count": 7,
+        "L4_class_pointer_count": 5,
+        "integration_row_pointer_count": 0
+      }
+    },
+    {
+      "id": "SEC003-HOOK-OTHER-PROJECT-LATEST",
+      "negative_class_ref": "SEC003-F02-FOREIGN-LATEST",
+      "l9_casewise_pointer": "/integration_cases/116",
+      "l9_nested_pointer": "/cases/1/negative_cases/23",
+      "l4_class_pointer": "/failure_classifications/5",
+      "l3_requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "condition_sha256": "624a4b034f9a2f20fd8f4f42904928ce41048364f38fb0ff34532dfb50f9892c",
+      "condition_source_derived_match": true,
+      "expected_matches_l4_class": true,
+      "expected_preserved_matches_l4_class": true,
+      "compact_observation_matches_l4_class": true,
+      "execution_state": "not_executed",
+      "source_pointer_basis": {
+        "L9_nested_row_pointer_count": 7,
+        "L4_class_pointer_count": 5,
+        "integration_row_pointer_count": 0
+      }
+    },
+    {
+      "id": "SEC003-HOOK-READ-DOES-NOT-GRANT-NETWORK",
+      "negative_class_ref": "SEC003-F02-OPERATION-SCOPE",
+      "l9_casewise_pointer": "/integration_cases/117",
+      "l9_nested_pointer": "/cases/1/negative_cases/24",
+      "l4_class_pointer": "/failure_classifications/6",
+      "l3_requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "condition_sha256": "e0c97b67af3ec6fba4540e5bf45c49d125aba6e2ed7b0f5cf59b5c0c7ebda6b8",
+      "condition_source_derived_match": true,
+      "expected_matches_l4_class": true,
+      "expected_preserved_matches_l4_class": true,
+      "compact_observation_matches_l4_class": true,
+      "execution_state": "not_executed",
+      "source_pointer_basis": {
+        "L9_nested_row_pointer_count": 7,
+        "L4_class_pointer_count": 5,
+        "integration_row_pointer_count": 0
+      }
+    },
+    {
+      "id": "SEC003-MEMORY-PRIMARY-TREE-FALLBACK",
+      "negative_class_ref": "SEC003-F02-IMPLICIT-FALLBACK",
+      "l9_casewise_pointer": "/integration_cases/118",
+      "l9_nested_pointer": "/cases/1/negative_cases/25",
+      "l4_class_pointer": "/failure_classifications/4",
+      "l3_requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "condition_sha256": "6795223a30260af4b7220afb3bf4914e1abe57e12a748e53c1fb487f6fcf0251",
+      "condition_source_derived_match": true,
+      "expected_matches_l4_class": true,
+      "expected_preserved_matches_l4_class": true,
+      "compact_observation_matches_l4_class": true,
+      "execution_state": "not_executed",
+      "source_pointer_basis": {
+        "L9_nested_row_pointer_count": 7,
+        "L4_class_pointer_count": 5,
+        "integration_row_pointer_count": 0
+      }
+    },
+    {
+      "id": "SEC003-MEMORY-OTHER-PROJECT-LATEST",
+      "negative_class_ref": "SEC003-F02-FOREIGN-LATEST",
+      "l9_casewise_pointer": "/integration_cases/119",
+      "l9_nested_pointer": "/cases/1/negative_cases/26",
+      "l4_class_pointer": "/failure_classifications/5",
+      "l3_requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "condition_sha256": "f67903d01a71c1219b76b0a96fd80f61ecf564a88a0647f2665e6cd39a65d09e",
+      "condition_source_derived_match": true,
+      "expected_matches_l4_class": true,
+      "expected_preserved_matches_l4_class": true,
+      "compact_observation_matches_l4_class": true,
+      "execution_state": "not_executed",
+      "source_pointer_basis": {
+        "L9_nested_row_pointer_count": 7,
+        "L4_class_pointer_count": 5,
+        "integration_row_pointer_count": 0
+      }
+    },
+    {
+      "id": "SEC003-MEMORY-READ-DOES-NOT-GRANT-NETWORK",
+      "negative_class_ref": "SEC003-F02-OPERATION-SCOPE",
+      "l9_casewise_pointer": "/integration_cases/120",
+      "l9_nested_pointer": "/cases/1/negative_cases/27",
+      "l4_class_pointer": "/failure_classifications/6",
+      "l3_requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "condition_sha256": "d44165d28b846a21d0f2065dc73e1549141936af3c0378d1f0b70c4e6a8d5df4",
+      "condition_source_derived_match": true,
+      "expected_matches_l4_class": true,
+      "expected_preserved_matches_l4_class": true,
+      "compact_observation_matches_l4_class": true,
+      "execution_state": "not_executed",
+      "source_pointer_basis": {
+        "L9_nested_row_pointer_count": 7,
+        "L4_class_pointer_count": 5,
+        "integration_row_pointer_count": 0
+      }
+    },
+    {
+      "id": "SEC003-CREDENTIAL-PRIMARY-TREE-FALLBACK",
+      "negative_class_ref": "SEC003-F02-IMPLICIT-FALLBACK",
+      "l9_casewise_pointer": "/integration_cases/121",
+      "l9_nested_pointer": "/cases/1/negative_cases/28",
+      "l4_class_pointer": "/failure_classifications/4",
+      "l3_requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "condition_sha256": "b7cd49070e560a1c0fe38fcee404a385a0fd6a494f5ddd33cce5c8fc525a644c",
+      "condition_source_derived_match": true,
+      "expected_matches_l4_class": true,
+      "expected_preserved_matches_l4_class": true,
+      "compact_observation_matches_l4_class": true,
+      "execution_state": "not_executed",
+      "source_pointer_basis": {
+        "L9_nested_row_pointer_count": 7,
+        "L4_class_pointer_count": 5,
+        "integration_row_pointer_count": 0
+      }
+    },
+    {
+      "id": "SEC003-CREDENTIAL-OTHER-PROJECT-LATEST",
+      "negative_class_ref": "SEC003-F02-FOREIGN-LATEST",
+      "l9_casewise_pointer": "/integration_cases/122",
+      "l9_nested_pointer": "/cases/1/negative_cases/29",
+      "l4_class_pointer": "/failure_classifications/5",
+      "l3_requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "condition_sha256": "c7240929ff224d43751f4b0a37a4735648f6303fe385229095909306054212f0",
+      "condition_source_derived_match": true,
+      "expected_matches_l4_class": true,
+      "expected_preserved_matches_l4_class": true,
+      "compact_observation_matches_l4_class": true,
+      "execution_state": "not_executed",
+      "source_pointer_basis": {
+        "L9_nested_row_pointer_count": 7,
+        "L4_class_pointer_count": 5,
+        "integration_row_pointer_count": 0
+      }
+    },
+    {
+      "id": "SEC003-CREDENTIAL-READ-DOES-NOT-GRANT-NETWORK",
+      "negative_class_ref": "SEC003-F02-OPERATION-SCOPE",
+      "l9_casewise_pointer": "/integration_cases/123",
+      "l9_nested_pointer": "/cases/1/negative_cases/30",
+      "l4_class_pointer": "/failure_classifications/6",
+      "l3_requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "condition_sha256": "fa4727ecb4b9b693f67fb77efe427ee39af16c70f7f253a364a39f7764b386e9",
+      "condition_source_derived_match": true,
+      "expected_matches_l4_class": true,
+      "expected_preserved_matches_l4_class": true,
+      "compact_observation_matches_l4_class": true,
+      "execution_state": "not_executed",
+      "source_pointer_basis": {
+        "L9_nested_row_pointer_count": 7,
+        "L4_class_pointer_count": 5,
+        "integration_row_pointer_count": 0
+      }
+    },
+    {
+      "id": "SEC003-CONFIGURATION-PRIMARY-TREE-FALLBACK",
+      "negative_class_ref": "SEC003-F02-IMPLICIT-FALLBACK",
+      "l9_casewise_pointer": "/integration_cases/124",
+      "l9_nested_pointer": "/cases/1/negative_cases/31",
+      "l4_class_pointer": "/failure_classifications/4",
+      "l3_requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "condition_sha256": "91234f00b1d370eab798ecd8a210f2a4578813161fbee4781101e6c7e14c81a2",
+      "condition_source_derived_match": true,
+      "expected_matches_l4_class": true,
+      "expected_preserved_matches_l4_class": true,
+      "compact_observation_matches_l4_class": true,
+      "execution_state": "not_executed",
+      "source_pointer_basis": {
+        "L9_nested_row_pointer_count": 7,
+        "L4_class_pointer_count": 5,
+        "integration_row_pointer_count": 0
+      }
+    },
+    {
+      "id": "SEC003-CONFIGURATION-OTHER-PROJECT-LATEST",
+      "negative_class_ref": "SEC003-F02-FOREIGN-LATEST",
+      "l9_casewise_pointer": "/integration_cases/125",
+      "l9_nested_pointer": "/cases/1/negative_cases/32",
+      "l4_class_pointer": "/failure_classifications/5",
+      "l3_requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "condition_sha256": "2cb0568dd5e0e1b71b53184721b3d6681b76dd23df0872d6a5f272cd6cf5e577",
+      "condition_source_derived_match": true,
+      "expected_matches_l4_class": true,
+      "expected_preserved_matches_l4_class": true,
+      "compact_observation_matches_l4_class": true,
+      "execution_state": "not_executed",
+      "source_pointer_basis": {
+        "L9_nested_row_pointer_count": 7,
+        "L4_class_pointer_count": 5,
+        "integration_row_pointer_count": 0
+      }
+    },
+    {
+      "id": "SEC003-CONFIGURATION-READ-DOES-NOT-GRANT-NETWORK",
+      "negative_class_ref": "SEC003-F02-OPERATION-SCOPE",
+      "l9_casewise_pointer": "/integration_cases/126",
+      "l9_nested_pointer": "/cases/1/negative_cases/33",
+      "l4_class_pointer": "/failure_classifications/6",
+      "l3_requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "condition_sha256": "c7aac4f5dbfe6cbd1bb543ed3d330a04b8e94d5a39e3657032e3ee51913deafc",
+      "condition_source_derived_match": true,
+      "expected_matches_l4_class": true,
+      "expected_preserved_matches_l4_class": true,
+      "compact_observation_matches_l4_class": true,
+      "execution_state": "not_executed",
+      "source_pointer_basis": {
+        "L9_nested_row_pointer_count": 7,
+        "L4_class_pointer_count": 5,
+        "integration_row_pointer_count": 0
+      }
+    },
+    {
+      "id": "SEC003-L9-ORACLE-030",
+      "negative_class_ref": "SEC003-F02-EXPLICIT-CONNECTION-ABSENT",
+      "l9_casewise_pointer": "/integration_cases/127",
+      "l9_nested_pointer": "/cases/1/negative_cases/34",
+      "l4_class_pointer": "/failure_classifications/7",
+      "l3_requirement_refs": [
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "condition_sha256": "441c302cd131902669e952b754fc68242c4d4054c5d30213c26026c509f7ee5d",
+      "condition_source_derived_match": true,
+      "expected_matches_l4_class": true,
+      "expected_preserved_matches_l4_class": true,
+      "compact_observation_matches_l4_class": true,
+      "execution_state": "not_executed",
+      "source_pointer_basis": {
+        "L9_nested_row_pointer_count": 8,
+        "L4_class_pointer_count": 5,
+        "integration_row_pointer_count": 0
+      }
+    },
+    {
+      "id": "SEC003-L9-ORACLE-031",
+      "negative_class_ref": "SEC003-F02-CONNECTION-MATERIAL-UNRESOLVED",
+      "l9_casewise_pointer": "/integration_cases/128",
+      "l9_nested_pointer": "/cases/1/negative_cases/35",
+      "l4_class_pointer": "/failure_classifications/9",
+      "l3_requirement_refs": [
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "condition_sha256": "5e5b76e92d9fa3ff2966118e9ee2fdace8f33fa4e577d3b1abcabd4fefa94a9d",
+      "condition_source_derived_match": true,
+      "expected_matches_l4_class": true,
+      "expected_preserved_matches_l4_class": true,
+      "compact_observation_matches_l4_class": true,
+      "execution_state": "not_executed",
+      "source_pointer_basis": {
+        "L9_nested_row_pointer_count": 8,
+        "L4_class_pointer_count": 5,
+        "integration_row_pointer_count": 0
+      }
+    },
+    {
+      "id": "SEC003-L9-ORACLE-032",
+      "negative_class_ref": "SEC003-F02-CONNECTION-MATERIAL-UNRESOLVED",
+      "l9_casewise_pointer": "/integration_cases/129",
+      "l9_nested_pointer": "/cases/1/negative_cases/36",
+      "l4_class_pointer": "/failure_classifications/9",
+      "l3_requirement_refs": [
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "condition_sha256": "5020576b520691164add1b5a1b5fc383de8918c2118c36c138c00ef34e87b044",
+      "condition_source_derived_match": true,
+      "expected_matches_l4_class": true,
+      "expected_preserved_matches_l4_class": true,
+      "compact_observation_matches_l4_class": true,
+      "execution_state": "not_executed",
+      "source_pointer_basis": {
+        "L9_nested_row_pointer_count": 8,
+        "L4_class_pointer_count": 5,
+        "integration_row_pointer_count": 0
+      }
+    },
+    {
+      "id": "SEC003-L9-ORACLE-033",
+      "negative_class_ref": "SEC003-F02-CONNECTION-MATERIAL-CONFLICT",
+      "l9_casewise_pointer": "/integration_cases/130",
+      "l9_nested_pointer": "/cases/1/negative_cases/37",
+      "l4_class_pointer": "/failure_classifications/8",
+      "l3_requirement_refs": [
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "condition_sha256": "8f13d481b71ecc3dc326e3c4921334788ab3229fea4ded320fc41b6219f30557",
+      "condition_source_derived_match": true,
+      "expected_matches_l4_class": true,
+      "expected_preserved_matches_l4_class": true,
+      "compact_observation_matches_l4_class": true,
+      "execution_state": "not_executed",
+      "source_pointer_basis": {
+        "L9_nested_row_pointer_count": 8,
+        "L4_class_pointer_count": 5,
+        "integration_row_pointer_count": 0
+      }
+    },
+    {
+      "id": "SEC003-L9-ORACLE-034",
+      "negative_class_ref": "SEC003-F02-CONNECTION-MATERIAL-CONFLICT",
+      "l9_casewise_pointer": "/integration_cases/131",
+      "l9_nested_pointer": "/cases/1/negative_cases/38",
+      "l4_class_pointer": "/failure_classifications/8",
+      "l3_requirement_refs": [
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "condition_sha256": "7126f62bd55de92ba261e622b7387bba0af91ee76a3a0a3af75f06225e0253b2",
+      "condition_source_derived_match": true,
+      "expected_matches_l4_class": true,
+      "expected_preserved_matches_l4_class": true,
+      "compact_observation_matches_l4_class": true,
+      "execution_state": "not_executed",
+      "source_pointer_basis": {
+        "L9_nested_row_pointer_count": 8,
+        "L4_class_pointer_count": 5,
+        "integration_row_pointer_count": 0
+      }
+    },
+    {
+      "id": "SEC003-L9-ORACLE-035",
+      "negative_class_ref": "SEC003-F02-CONNECTION-MATERIAL-CONFLICT",
+      "l9_casewise_pointer": "/integration_cases/132",
+      "l9_nested_pointer": "/cases/1/negative_cases/39",
+      "l4_class_pointer": "/failure_classifications/8",
+      "l3_requirement_refs": [
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "condition_sha256": "8db71fbe644dc387a67f124bcb9d6b1a3b21d6737f8f674d579abf046a85b3d1",
+      "condition_source_derived_match": true,
+      "expected_matches_l4_class": true,
+      "expected_preserved_matches_l4_class": true,
+      "compact_observation_matches_l4_class": true,
+      "execution_state": "not_executed",
+      "source_pointer_basis": {
+        "L9_nested_row_pointer_count": 8,
+        "L4_class_pointer_count": 5,
+        "integration_row_pointer_count": 0
+      }
+    },
+    {
+      "id": "SEC003-L9-ORACLE-036",
+      "negative_class_ref": "SEC003-F02-CONNECTION-MATERIAL-CONFLICT",
+      "l9_casewise_pointer": "/integration_cases/133",
+      "l9_nested_pointer": "/cases/1/negative_cases/40",
+      "l4_class_pointer": "/failure_classifications/8",
+      "l3_requirement_refs": [
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "condition_sha256": "15c8b376f4b84b6ab5cca87ca8ea36e9de0e8a2bd3fd9a247d8915370a648206",
+      "condition_source_derived_match": true,
+      "expected_matches_l4_class": true,
+      "expected_preserved_matches_l4_class": true,
+      "compact_observation_matches_l4_class": true,
+      "execution_state": "not_executed",
+      "source_pointer_basis": {
+        "L9_nested_row_pointer_count": 8,
+        "L4_class_pointer_count": 5,
+        "integration_row_pointer_count": 0
+      }
+    },
+    {
+      "id": "SEC003-L9-ORACLE-037",
+      "negative_class_ref": "SEC003-F02-CONNECTION-MATERIAL-CONFLICT",
+      "l9_casewise_pointer": "/integration_cases/134",
+      "l9_nested_pointer": "/cases/1/negative_cases/41",
+      "l4_class_pointer": "/failure_classifications/8",
+      "l3_requirement_refs": [
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "condition_sha256": "ffa054edc1636f85a9c92c6f25a1fea430ec89a243d4a654f35b26145d1724db",
+      "condition_source_derived_match": true,
+      "expected_matches_l4_class": true,
+      "expected_preserved_matches_l4_class": true,
+      "compact_observation_matches_l4_class": true,
+      "execution_state": "not_executed",
+      "source_pointer_basis": {
+        "L9_nested_row_pointer_count": 8,
+        "L4_class_pointer_count": 5,
+        "integration_row_pointer_count": 0
+      }
+    },
+    {
+      "id": "SEC003-L9-ORACLE-038",
+      "negative_class_ref": "SEC003-F02-CONNECTION-MATERIAL-UNRESOLVED",
+      "l9_casewise_pointer": "/integration_cases/135",
+      "l9_nested_pointer": "/cases/1/negative_cases/42",
+      "l4_class_pointer": "/failure_classifications/9",
+      "l3_requirement_refs": [
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "condition_sha256": "0db8204f4190e422b19fe51e9e5da0574c16c26cb0d59560801d845baec4e997",
+      "condition_source_derived_match": true,
+      "expected_matches_l4_class": true,
+      "expected_preserved_matches_l4_class": true,
+      "compact_observation_matches_l4_class": true,
+      "execution_state": "not_executed",
+      "source_pointer_basis": {
+        "L9_nested_row_pointer_count": 8,
+        "L4_class_pointer_count": 5,
+        "integration_row_pointer_count": 0
+      }
+    },
+    {
+      "id": "SEC003-L9-ORACLE-039",
+      "negative_class_ref": "SEC003-F02-OPERATION-SCOPE",
+      "l9_casewise_pointer": "/integration_cases/136",
+      "l9_nested_pointer": "/cases/1/negative_cases/43",
+      "l4_class_pointer": "/failure_classifications/6",
+      "l3_requirement_refs": [
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "condition_sha256": "568ebb0629e229e71f614cf09cdcdfb7e48fa159277f0b74c48e96d758333c9f",
+      "condition_source_derived_match": true,
+      "expected_matches_l4_class": true,
+      "expected_preserved_matches_l4_class": true,
+      "compact_observation_matches_l4_class": true,
+      "execution_state": "not_executed",
+      "source_pointer_basis": {
+        "L9_nested_row_pointer_count": 8,
+        "L4_class_pointer_count": 5,
+        "integration_row_pointer_count": 0
+      }
+    },
+    {
+      "id": "SEC003-L9-ORACLE-040",
+      "negative_class_ref": "SEC003-F02-OPERATION-SCOPE",
+      "l9_casewise_pointer": "/integration_cases/137",
+      "l9_nested_pointer": "/cases/1/negative_cases/44",
+      "l4_class_pointer": "/failure_classifications/6",
+      "l3_requirement_refs": [
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "condition_sha256": "7c04d4acd224412465462b12a5f16b4c3741017ece9738fb1e4f08d092a92c51",
+      "condition_source_derived_match": true,
+      "expected_matches_l4_class": true,
+      "expected_preserved_matches_l4_class": true,
+      "compact_observation_matches_l4_class": true,
+      "execution_state": "not_executed",
+      "source_pointer_basis": {
+        "L9_nested_row_pointer_count": 8,
+        "L4_class_pointer_count": 5,
+        "integration_row_pointer_count": 0
+      }
+    },
+    {
+      "id": "SEC003-L9-ORACLE-041",
+      "negative_class_ref": "SEC003-F02-OPERATION-SCOPE",
+      "l9_casewise_pointer": "/integration_cases/138",
+      "l9_nested_pointer": "/cases/1/negative_cases/45",
+      "l4_class_pointer": "/failure_classifications/6",
+      "l3_requirement_refs": [
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "condition_sha256": "0b798e02f26bc397b0a274314cc3ac27934370bc452585da3a833e4260d68567",
+      "condition_source_derived_match": true,
+      "expected_matches_l4_class": true,
+      "expected_preserved_matches_l4_class": true,
+      "compact_observation_matches_l4_class": true,
+      "execution_state": "not_executed",
+      "source_pointer_basis": {
+        "L9_nested_row_pointer_count": 8,
+        "L4_class_pointer_count": 5,
+        "integration_row_pointer_count": 0
+      }
+    },
+    {
+      "id": "SEC003-L9-ORACLE-042",
+      "negative_class_ref": "SEC003-F02-OPERATION-SCOPE",
+      "l9_casewise_pointer": "/integration_cases/139",
+      "l9_nested_pointer": "/cases/1/negative_cases/46",
+      "l4_class_pointer": "/failure_classifications/6",
+      "l3_requirement_refs": [
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "condition_sha256": "c41ef19d4ff48b4bf95a3c92cd4e541de1fb0df57004d742b4bfcdf83c1dea13",
+      "condition_source_derived_match": true,
+      "expected_matches_l4_class": true,
+      "expected_preserved_matches_l4_class": true,
+      "compact_observation_matches_l4_class": true,
+      "execution_state": "not_executed",
+      "source_pointer_basis": {
+        "L9_nested_row_pointer_count": 8,
+        "L4_class_pointer_count": 5,
+        "integration_row_pointer_count": 0
+      }
+    },
+    {
+      "id": "SEC003-L9-ORACLE-043",
+      "negative_class_ref": "SEC003-F02-OPERATION-SCOPE",
+      "l9_casewise_pointer": "/integration_cases/140",
+      "l9_nested_pointer": "/cases/1/negative_cases/47",
+      "l4_class_pointer": "/failure_classifications/6",
+      "l3_requirement_refs": [
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "condition_sha256": "eadddbb15f9c7a2297f542b5859ca7fdac451be8ae7ea08109cffc50fa0e2feb",
+      "condition_source_derived_match": true,
+      "expected_matches_l4_class": true,
+      "expected_preserved_matches_l4_class": true,
+      "compact_observation_matches_l4_class": true,
+      "execution_state": "not_executed",
+      "source_pointer_basis": {
+        "L9_nested_row_pointer_count": 8,
+        "L4_class_pointer_count": 5,
+        "integration_row_pointer_count": 0
+      }
+    },
+    {
+      "id": "SEC003-L9-ORACLE-044",
+      "negative_class_ref": "SEC003-F02-OPERATION-SCOPE",
+      "l9_casewise_pointer": "/integration_cases/141",
+      "l9_nested_pointer": "/cases/1/negative_cases/48",
+      "l4_class_pointer": "/failure_classifications/6",
+      "l3_requirement_refs": [
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "condition_sha256": "f47e2c5d061076ad95c872440ba7bea244706865bcc4a5cbc5911df078a698fc",
+      "condition_source_derived_match": true,
+      "expected_matches_l4_class": true,
+      "expected_preserved_matches_l4_class": true,
+      "compact_observation_matches_l4_class": true,
+      "execution_state": "not_executed",
+      "source_pointer_basis": {
+        "L9_nested_row_pointer_count": 8,
+        "L4_class_pointer_count": 5,
+        "integration_row_pointer_count": 0
+      }
+    },
+    {
+      "id": "SEC003-L9-ORACLE-045",
+      "negative_class_ref": "SEC003-F02-OPERATION-INPUT-UNRESOLVED",
+      "l9_casewise_pointer": "/integration_cases/142",
+      "l9_nested_pointer": "/cases/1/negative_cases/49",
+      "l4_class_pointer": "/failure_classifications/13",
+      "l3_requirement_refs": [
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "condition_sha256": "a143727ac02a782fb5c5aa9049f421967b9a3007da1705bd1c3a186662971d82",
+      "condition_source_derived_match": true,
+      "expected_matches_l4_class": true,
+      "expected_preserved_matches_l4_class": true,
+      "compact_observation_matches_l4_class": true,
+      "execution_state": "not_executed",
+      "source_pointer_basis": {
+        "L9_nested_row_pointer_count": 8,
+        "L4_class_pointer_count": 5,
+        "integration_row_pointer_count": 0
+      }
+    },
+    {
+      "id": "SEC003-L9-ORACLE-046",
+      "negative_class_ref": "SEC003-F02-EXPLICIT-CONNECTION-ABSENT",
+      "l9_casewise_pointer": "/integration_cases/143",
+      "l9_nested_pointer": "/cases/1/negative_cases/50",
+      "l4_class_pointer": "/failure_classifications/7",
+      "l3_requirement_refs": [
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "condition_sha256": "506ee8f45622e28e9f4c21d35c703c22100f677f60465c1c47fc18efe2de4044",
+      "condition_source_derived_match": true,
+      "expected_matches_l4_class": true,
+      "expected_preserved_matches_l4_class": true,
+      "compact_observation_matches_l4_class": true,
+      "execution_state": "not_executed",
+      "source_pointer_basis": {
+        "L9_nested_row_pointer_count": 8,
+        "L4_class_pointer_count": 5,
+        "integration_row_pointer_count": 0
+      }
+    },
+    {
+      "id": "SEC003-L9-ORACLE-047",
+      "negative_class_ref": "SEC003-F02-OPERATION-SCOPE",
+      "l9_casewise_pointer": "/integration_cases/144",
+      "l9_nested_pointer": "/cases/1/negative_cases/51",
+      "l4_class_pointer": "/failure_classifications/6",
+      "l3_requirement_refs": [
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "condition_sha256": "8ca3870a3bb1162a95cbce510089f1c93c455be55e2ecdb9f67eec6fbae51695",
+      "condition_source_derived_match": true,
+      "expected_matches_l4_class": true,
+      "expected_preserved_matches_l4_class": true,
+      "compact_observation_matches_l4_class": true,
+      "execution_state": "not_executed",
+      "source_pointer_basis": {
+        "L9_nested_row_pointer_count": 8,
+        "L4_class_pointer_count": 5,
+        "integration_row_pointer_count": 0
+      }
+    },
+    {
+      "id": "SEC003-L9-ORACLE-048",
+      "negative_class_ref": "SEC003-F02-CONNECTION-MATERIAL-UNRESOLVED",
+      "l9_casewise_pointer": "/integration_cases/145",
+      "l9_nested_pointer": "/cases/1/negative_cases/52",
+      "l4_class_pointer": "/failure_classifications/9",
+      "l3_requirement_refs": [
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "condition_sha256": "137f75db1dc636ab078659c4b1e9e803cde5991bd49267c08229b1bf79e8002f",
+      "condition_source_derived_match": true,
+      "expected_matches_l4_class": true,
+      "expected_preserved_matches_l4_class": true,
+      "compact_observation_matches_l4_class": true,
+      "execution_state": "not_executed",
+      "source_pointer_basis": {
+        "L9_nested_row_pointer_count": 8,
+        "L4_class_pointer_count": 5,
+        "integration_row_pointer_count": 0
+      }
+    },
+    {
+      "id": "SEC003-L9-ORACLE-049",
+      "negative_class_ref": "SEC003-F02-FALLBACK-INPUT-UNRESOLVED",
+      "l9_casewise_pointer": "/integration_cases/146",
+      "l9_nested_pointer": "/cases/1/negative_cases/53",
+      "l4_class_pointer": "/failure_classifications/14",
+      "l3_requirement_refs": [
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "condition_sha256": "888ba166f4e43b444e4f275b508df5eda508f69a5b14df076f65207a12128db2",
+      "condition_source_derived_match": true,
+      "expected_matches_l4_class": true,
+      "expected_preserved_matches_l4_class": true,
+      "compact_observation_matches_l4_class": true,
+      "execution_state": "not_executed",
+      "source_pointer_basis": {
+        "L9_nested_row_pointer_count": 8,
+        "L4_class_pointer_count": 5,
+        "integration_row_pointer_count": 0
+      }
+    },
+    {
+      "id": "SEC003-L9-ORACLE-050",
+      "negative_class_ref": "SEC003-F02-FALLBACK-INPUT-UNRESOLVED",
+      "l9_casewise_pointer": "/integration_cases/147",
+      "l9_nested_pointer": "/cases/1/negative_cases/54",
+      "l4_class_pointer": "/failure_classifications/14",
+      "l3_requirement_refs": [
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "condition_sha256": "33099381782b2af4066d4f2dad0ec5e3e6205875a3acf8b924e4d25fb7af8922",
+      "condition_source_derived_match": true,
+      "expected_matches_l4_class": true,
+      "expected_preserved_matches_l4_class": true,
+      "compact_observation_matches_l4_class": true,
+      "execution_state": "not_executed",
+      "source_pointer_basis": {
+        "L9_nested_row_pointer_count": 8,
+        "L4_class_pointer_count": 5,
+        "integration_row_pointer_count": 0
+      }
+    }
+  ],
+  "interpretation": "casewise条件と期待はL9正本に保持し、source pointerは重複せず固定JSON PointerでL9 nested rowとL4 classを参照する。nested rowおよびclassにあるL3/L10/L4根拠はvalidatorで解決済み。L8はcasewise生成の根拠にしていない。"
+}

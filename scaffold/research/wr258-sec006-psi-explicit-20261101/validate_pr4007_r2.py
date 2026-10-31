@@ -20,6 +20,8 @@ ROWWISE_SHA='567ba03eff6607c3603b10c9bb443bf06c890364c0aa2106299cc92a81583004'
 PRE_R1='cf983f81ff09cd90fb3f8f781bdb7c7445923ee6'
 PRE_R2='d3b0b1777f3cf35d604d20ad18a177cc9f85caa3'
 REMOVED_FIELDS=('input_condition','source_derived_condition','case_input_ref','rowwise_candidate_ref','candidate_disposition','expected_observation')
+CURRENT_ORACLE_PREFIX='SEC003-L9-ORACLE-'
+HISTORICAL_ORACLE_PREFIX='SEC003-WR258-L9-ORACLE-'
 
 def load(path): return json.loads((ROOT/path).read_text())
 def git_json(rev,path): return json.loads(subprocess.check_output(['git','show',f'{rev}:{path}'],cwd=ROOT))
@@ -39,7 +41,7 @@ def main():
     l9rows={r['id']:r for c in l9['cases'] for r in c['negative_cases']}
     oldrows={r['id']:r for c in git_json(PRE_R1,L9)['cases'] for r in c['negative_cases']}
     pre_r2={r['id']:r for c in git_json(PRE_R2,L9)['cases'] for r in c['negative_cases']}
-    added=[r for r in l9rows.values() if r['id'].startswith('SEC003-WR258-L9-ORACLE-')]
+    added=[r for r in l9rows.values() if r['id'].startswith(CURRENT_ORACLE_PREFIX)]
     check(len(l4classes)==15,'L4 class count is 15')
     check(len(oldrows)==98,'frozen pre-R1 L9 row count is 98')
     check(len(added)==50,'R1 additions remain 50 rows')
@@ -51,13 +53,15 @@ def main():
         current=l9rows.get(case_id); expected=dict(original); expected['negative_class_ref']=(original.get('negative_class_assignment') or {}).get('class_id')
         check(current==expected,f'old row preserved except direct class ref: {case_id}')
     condition_set=set(); repr_count=0
+    expected_added_ids={f"{CURRENT_ORACLE_PREFIX}{i:03d}" for i in range(1,51)}
+    check({r['id'] for r in added}==expected_added_ids,'stable L9 oracle ID range is exactly 001..050')
     for row in added:
-        rid=row['id']; prior=pre_r2.get(rid)
-        check(prior is not None,f'R1 source row exists: {rid}')
+        rid=row['id']; old_rid=rid.replace(CURRENT_ORACLE_PREFIX,HISTORICAL_ORACLE_PREFIX,1); prior=pre_r2.get(old_rid)
+        check(prior is not None,f'pre-R2 source row exists under historical ID: {rid}')
         if prior:
-            reduced=dict(prior)
+            reduced=dict(prior); reduced['id']=rid
             for field in REMOVED_FIELDS: reduced.pop(field,None)
-            check(row==reduced,f'R2 row changes only by removing duplicated/directional metadata: {rid}')
+            check(row==reduced,f'R2 row changes only by reviewed ID rename and removing duplicated/directional metadata: {rid}')
         condition=row.get('condition')
         check(isinstance(condition,str) and bool(condition.strip()),f'case-specific condition present: {rid}')
         check(condition not in condition_set,f'case-specific condition unique: {rid}')
@@ -87,10 +91,12 @@ def main():
     check(not (ROOT/RETIRED_R1_VALIDATOR).exists(),'R1-only validator is retired from current tree')
     check(not (ROOT/RETIRED_ROWWISE_BUILDER).exists(),'large-artifact builder is retired from current tree')
     historical=json.loads(blob)
-    expected_pairs={x['candidate_id']:(x['intended_l8_case_ref'],f"SEC003-WR258-L9-ORACLE-{x['candidate_id'].rsplit('-',1)[1]}") for x in historical['candidate_l9_skeletons_for_50_unmatched_l8_rows']}
+    expected_pairs={x['candidate_id']:(x['intended_l8_case_ref'],f"{CURRENT_ORACLE_PREFIX}{x['candidate_id'].rsplit('-',1)[1]}") for x in historical['candidate_l9_skeletons_for_50_unmatched_l8_rows']}
     mapped={x['candidate_id']:(x['l8_case_id'],x['l9_integration_case_ref']) for x in mapping.get('rows',[])}
     check(len(mapped)==50 and mapped==expected_pairs,'PR-B candidate mapping is exactly the fixed rowwise pair set')
     check(mapping.get('counts')=={'rows':50,'unique_l8_ids':50,'unique_l9_refs':50},'PR-B candidate has 50 unique L8 and L9 refs')
+    check(not any('source_pointers' in x for x in load(L9).get('integration_cases',[])),'L9 integration cases do not repeat common class/source pointers')
+    check(not any(r['id'].startswith(HISTORICAL_ORACLE_PREFIX) for r in l9rows.values()),'no work-qualified L9 oracle IDs remain in canonical rows')
     for row in mapping.get('rows',[]):
         check(row.get('status')=='candidate_not_applied','PR-B mapping remains unapplied')
         target=l9rows.get(row.get('l9_integration_case_ref'))

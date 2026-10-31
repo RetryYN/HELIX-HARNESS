@@ -15,8 +15,8 @@
     },
     {
       "path": "docs/helix-security/L5-detail-design/revoke-quarantine-propagation.json",
-      "sha256": "1aefb9b64fb52abc8cf6eec7d32312bfcb9a07359d7406c2ca4e9fa9717fa190",
-      "note": "Current L5 rule function_ref and contract_ref declarations; contract function_refs arrays exposed in the checker/schema comparison. Current pin updated to 1aefb9b64fb52abc8cf6eec7d32312bfcb9a07359d7406c2ca4e9fa9717fa190 at source revision ea8e3c251069f64ca96a060a183693ab1bdfc08d; prior registered pin 90c3761e88ea76fefe1222372ffa1218afcf2fc8cb4dec666ca8b7ca98bd8734 is retained in this note. WR255 PR-B added the explicit 32-rule L5 projection; prior pin was fixed at c14adddf2678c7a69d76420c451df3f05b1251ab."
+      "sha256": "13f16113cafb4b27b6f03c6a79797a260776c022c48f75ebaaf0220b8830baec",
+      "note": "Current L5 rule function_ref and contract_ref declarations; contract function_refs arrays exposed in the checker/schema comparison. Current pin updated to 1aefb9b64fb52abc8cf6eec7d32312bfcb9a07359d7406c2ca4e9fa9717fa190 at source revision ea8e3c251069f64ca96a060a183693ab1bdfc08d; prior registered pin 90c3761e88ea76fefe1222372ffa1218afcf2fc8cb4dec666ca8b7ca98bd8734 is retained in this note. WR255 PR-B added the explicit 32-rule L5 projection; prior pin was fixed at c14adddf2678c7a69d76420c451df3f05b1251ab. WR255 SEC009 L5 pointer redirect at fixed base ad2dfaf6f434fbb81cd34988d4bd76212380f3a5; prior pin SHA-256 1aefb9b64fb52abc8cf6eec7d32312bfcb9a07359d7406c2ca4e9fa9717fa190 retained as history. The 30 duplicate nested references were removed while all rule fields and other refs were preserved. Current SHA-256 13f16113cafb4b27b6f03c6a79797a260776c022c48f75ebaaf0220b8830baec."
     },
     {
       "path": "docs/helix-security/L8-unit-verification/revoke-quarantine-propagation.json",
