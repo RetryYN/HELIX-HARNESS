@@ -2,7 +2,7 @@
   "schema_revision": 1,
   "id": "SCF-B-0224",
   "kind": "scaffold",
-  "title": "WR258 SEC006 L5/L8 caller provenance and case mapping candidate",
+  "title": "WR258 SEC006 L5/L8 caller来歴とcase対応候補",
   "product": "HELIX-HARNESS",
   "owner_candidate": "HELIX-HARNESS SEC006 L5/L8 source comparison owner",
   "state": "registered",
