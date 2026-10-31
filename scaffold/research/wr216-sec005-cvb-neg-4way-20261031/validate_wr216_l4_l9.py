@@ -87,13 +87,9 @@ def main() -> int:
 
     # 3. Verify L4 folded single table, new_parent_link, and byte reduction vs #3980 merge
     if len(l4_bytes) >= PR3980_L4_BYTES:
-        failures.append(
-            f"l4_bytes_not_reduced: {len(l4_bytes)} >= {PR3980_L4_BYTES}"
-        )
+        failures.append(f"l4_bytes_not_reduced: {len(l4_bytes)} >= {PR3980_L4_BYTES}")
     if len(l9_bytes) >= PR3980_L9_BYTES:
-        failures.append(
-            f"l9_bytes_not_reduced: {len(l9_bytes)} >= {PR3980_L9_BYTES}"
-        )
+        failures.append(f"l9_bytes_not_reduced: {len(l9_bytes)} >= {PR3980_L9_BYTES}")
     for ci, c in enumerate(l4.get("contracts", [])):
         if "negative_classifications" in c:
             failures.append(f"l4_contract_{ci}_still_has_negative_classifications")
@@ -120,9 +116,13 @@ def main() -> int:
     if l5.get("negative_equivalence_classes") != {"source_rows": "failure_rules"}:
         failures.append("l5_missing_negative_equivalence_classes_marker")
     if len(l5.get("failure_rules", [])) != 26:
-        failures.append(f"l5_failure_rules_count_mismatch: {len(l5.get('failure_rules', []))}")
+        failures.append(
+            f"l5_failure_rules_count_mismatch: {len(l5.get('failure_rules', []))}"
+        )
     if len(l5.get("unit_case_rows", [])) != 37:
-        failures.append(f"l5_unit_case_rows_count_mismatch: {len(l5.get('unit_case_rows', []))}")
+        failures.append(
+            f"l5_unit_case_rows_count_mismatch: {len(l5.get('unit_case_rows', []))}"
+        )
     if len(l9.get("negative_equivalence_classes", [])) != 26:
         failures.append("l9_neg_eq_classes_count_mismatch")
     if len(l9.get("integration_cases", [])) != 69:
