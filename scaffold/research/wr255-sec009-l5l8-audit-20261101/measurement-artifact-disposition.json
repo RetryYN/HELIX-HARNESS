@@ -8,35 +8,37 @@
     "verification_summary_count": 1,
     "pointer_transfer_audit_count": 1,
     "default_validator_mode": "read-only stdout",
-    "record_mode": "明示 --record のみ。runごとの一意pathをexclusive createし、既存pathを上書きしない。"
+    "record_mode": "明示 --record のみ。runごとの一意pathをexclusive createし、既存pathを上書きしない。",
+    "l5_pointer_redirect_audit_count": 1
   },
   "retained_current_measurements": [
     {
-      "path": "scaffold/research/wr255-sec009-l5l8-audit-20261101/verification-summary-l4-d670496eeb-00376c40-l5-ea8e3c2510-1aefb9b6-l8-0451f67e4b-49875dcd-l9-087f02dc63-e918a289-validator-b2cd66c3-record-1793485186690215383-388303.json",
-      "commit": "96b5e7ea5d456f40279a8adc4473ad6be28a8d1b",
-      "git_blob_sha1": "6b02a278939939b823e56a34491f92aba4e0d475",
-      "content_sha256": "c87f8f17aa2403c4ac7adc43796a56d83f7c87eaf887f0aba6443fb52a399fdc",
-      "byte_length": 18910,
-      "source_revision": "0451f67e4b94451b7258078f49df3cb34db36098",
-      "role": "R1修正後L5/L8 canonical sourceのlatest-main overlayにおける277/0 summary。positive 8件は契約最小期待の設計で未観測。"
+      "path": "scaffold/research/wr255-sec009-l5l8-audit-20261101/verification-summary-l4-d670496eeb-00376c40-l5-c5c7ef4d98-13f16113-l8-daa028d9d6-5ecefbc3-l9-087f02dc63-e918a289-validator-bc4e9e82-record-1793489073223499018-501665.json",
+      "git_blob_sha1": "8a3371edabd2cd633fd307cceee0ff40f29171dd",
+      "content_sha256": "beffc0fab3d134118c1e519153b129d799ad500d083fe1c552ac790efdd9d38c",
+      "byte_length": 20372,
+      "source_revision": "daa028d9d666d604c270cd693c5d9376dbdc7835"
     },
     {
-      "path": "scaffold/research/wr255-sec009-l5l8-audit-20261101/check-child-report-l4-d670496eeb-00376c40-l5-ea8e3c2510-1aefb9b6-l8-0451f67e4b-49875dcd-l9-087f02dc63-e918a289-record-1793485186690215383-388303.json",
-      "commit": "96b5e7ea5d456f40279a8adc4473ad6be28a8d1b",
+      "path": "scaffold/research/wr255-sec009-l5l8-audit-20261101/check-child-report-l4-d670496eeb-00376c40-l5-c5c7ef4d98-13f16113-l8-daa028d9d6-5ecefbc3-l9-087f02dc63-e918a289-record-1793489073223499018-501665.json",
       "git_blob_sha1": "41025125846a9a32087844e457e0fc42bb41bb33",
       "content_sha256": "879fe62b0c75d6081f1754e50130ffe3c9af8561037fe58a33df5c8bfecd3e7f",
       "byte_length": 15503,
-      "source_revision": "0451f67e4b94451b7258078f49df3cb34db36098",
-      "role": "上記summaryに対応するcurrent check-child report。old reportと同一blobであり、重複bytesをGit objectとして再保存していない。"
+      "source_revision": "daa028d9d666d604c270cd693c5d9376dbdc7835"
     },
     {
-      "path": "scaffold/research/wr255-sec009-l5l8-audit-20261101/pointer-transfer-audit-49875dcdb4bc-e918a289fe88.json",
-      "commit": "96b5e7ea5d456f40279a8adc4473ad6be28a8d1b",
-      "git_blob_sha1": "0d66d606af2f9381890398c33febde48ada87cad",
-      "content_sha256": "b1b5fca158a0bfa6353ff97b9226030bb1ae943e65e69b730bc8e5991e6848fc",
-      "byte_length": 75671,
-      "source_revision": "0451f67e4b94451b7258078f49df3cb34db36098",
-      "role": "WR255 L5 redirect以前の固定stage監査。base時点でL5 nested refs=30を記録した旧時点証拠で、現行raw-pointer inventoryを表さない。validator/report bytesは変更せず保持。"
+      "path": "scaffold/research/wr255-sec009-l5l8-audit-20261101/pointer-transfer-audit-5ecefbc3aa0c-e918a289fe88.json",
+      "git_blob_sha1": "97cbcb9e6caed081ac5c9957961030eaf4e68d0a",
+      "content_sha256": "e121e1377499edbeee6d85ee87e1e6f6486b89d19e8cb985f5edf4ee33aef261",
+      "byte_length": 86874,
+      "source_revision": "daa028d9d666d604c270cd693c5d9376dbdc7835"
+    },
+    {
+      "path": "scaffold/research/wr255-sec009-l5l8-audit-20261101/l5-pointer-redirect-audit-r3-13f16113cafb-00376c402930-5ecefbc3.json",
+      "git_blob_sha1": "d7fb7c43c2fa3e697987cd4817b6c3003554d429",
+      "content_sha256": "d1f1d05207887aace8dff5d56937d714e9de0a7a8c15273f344ee86b46ac71ea",
+      "byte_length": 2657,
+      "source_revision": "daa028d9d666d604c270cd693c5d9376dbdc7835"
     }
   ],
   "historical_measurements_removed_from_head": [
@@ -280,6 +282,46 @@
       "disposition": "R1修正後のcurrent measurementと置換し、current treeから除去。固定時点のbytesは指定commit/blobから復元可能。",
       "restore_command": "git show de63303ea8129a667834ccdc1d70e8adc831ed9e:scaffold/research/wr255-sec009-l5l8-audit-20261101/pointer-transfer-audit-18df6dce679d-e918a289fe88.json > scaffold/research/wr255-sec009-l5l8-audit-20261101/pointer-transfer-audit-18df6dce679d-e918a289fe88.json",
       "meaning": "R1修正前のL8 308 recognized-consumer subset監査。raw pointer 275件を含む全ファイル走査ではなく、固定時点の部分inventory。"
+    },
+    {
+      "path": "scaffold/research/wr255-sec009-l5l8-audit-20261101/check-child-report-l4-d670496eeb-00376c40-l5-ea8e3c2510-1aefb9b6-l8-0451f67e4b-49875dcd-l9-087f02dc63-e918a289-record-1793485186690215383-388303.json",
+      "commit": "96b5e7ea5d456f40279a8adc4473ad6be28a8d1b",
+      "git_blob_sha1": "41025125846a9a32087844e457e0fc42bb41bb33",
+      "content_sha256": "879fe62b0c75d6081f1754e50130ffe3c9af8561037fe58a33df5c8bfecd3e7f",
+      "byte_length": 15503,
+      "role": "R1現行summaryに対応した唯一copy。今回のcheck-child reportとbytesは同一。",
+      "disposition": "今回のR2 current測定と置換してcurrent treeから除去。元のcommit/blobから復元可能。",
+      "restore_command": "git show 96b5e7ea5d456f40279a8adc4473ad6be28a8d1b:scaffold/research/wr255-sec009-l5l8-audit-20261101/check-child-report-l4-d670496eeb-00376c40-l5-ea8e3c2510-1aefb9b6-l8-0451f67e4b-49875dcd-l9-087f02dc63-e918a289-record-1793485186690215383-388303.json > scaffold/research/wr255-sec009-l5l8-audit-20261101/check-child-report-l4-d670496eeb-00376c40-l5-ea8e3c2510-1aefb9b6-l8-0451f67e4b-49875dcd-l9-087f02dc63-e918a289-record-1793485186690215383-388303.json"
+    },
+    {
+      "path": "scaffold/research/wr255-sec009-l5l8-audit-20261101/verification-summary-l4-d670496eeb-00376c40-l5-ea8e3c2510-1aefb9b6-l8-0451f67e4b-49875dcd-l9-087f02dc63-e918a289-validator-b2cd66c3-record-1793485186690215383-388303.json",
+      "commit": "96b5e7ea5d456f40279a8adc4473ad6be28a8d1b",
+      "git_blob_sha1": "6b02a278939939b823e56a34491f92aba4e0d475",
+      "content_sha256": "c87f8f17aa2403c4ac7adc43796a56d83f7c87eaf887f0aba6443fb52a399fdc",
+      "byte_length": 18910,
+      "role": "R1修正後・L8 R2参照補正前のcurrent summary。",
+      "disposition": "今回のR2 current測定と置換してcurrent treeから除去。元のcommit/blobから復元可能。",
+      "restore_command": "git show 96b5e7ea5d456f40279a8adc4473ad6be28a8d1b:scaffold/research/wr255-sec009-l5l8-audit-20261101/verification-summary-l4-d670496eeb-00376c40-l5-ea8e3c2510-1aefb9b6-l8-0451f67e4b-49875dcd-l9-087f02dc63-e918a289-validator-b2cd66c3-record-1793485186690215383-388303.json > scaffold/research/wr255-sec009-l5l8-audit-20261101/verification-summary-l4-d670496eeb-00376c40-l5-ea8e3c2510-1aefb9b6-l8-0451f67e4b-49875dcd-l9-087f02dc63-e918a289-validator-b2cd66c3-record-1793485186690215383-388303.json"
+    },
+    {
+      "path": "scaffold/research/wr255-sec009-l5l8-audit-20261101/pointer-transfer-audit-49875dcdb4bc-e918a289fe88.json",
+      "commit": "96b5e7ea5d456f40279a8adc4473ad6be28a8d1b",
+      "git_blob_sha1": "0d66d606af2f9381890398c33febde48ada87cad",
+      "content_sha256": "b1b5fca158a0bfa6353ff97b9226030bb1ae943e65e69b730bc8e5991e6848fc",
+      "byte_length": 75671,
+      "role": "L8 R2参照補正前のpointer-transfer測定。",
+      "disposition": "今回のR2 current測定と置換してcurrent treeから除去。元のcommit/blobから復元可能。",
+      "restore_command": "git show 96b5e7ea5d456f40279a8adc4473ad6be28a8d1b:scaffold/research/wr255-sec009-l5l8-audit-20261101/pointer-transfer-audit-49875dcdb4bc-e918a289fe88.json > scaffold/research/wr255-sec009-l5l8-audit-20261101/pointer-transfer-audit-49875dcdb4bc-e918a289fe88.json"
+    },
+    {
+      "path": "scaffold/research/wr255-sec009-l5l8-audit-20261101/l5-pointer-redirect-audit-r2-13f16113cafb-00376c402930.json",
+      "commit": "c5c7ef4d98aa665acb00e1bb3dd8173796b25400",
+      "git_blob_sha1": "a18d9dfcdfb4846e3361f7a89efe444a57b39b77",
+      "content_sha256": "db35078d93b8a354414786d6abf07f3f7846a067c43f431aad0fe86a05c3d737",
+      "byte_length": 1813,
+      "role": "L8不変を前提としていた旧L5 redirect measurement。",
+      "disposition": "今回のR2 current測定と置換してcurrent treeから除去。元のcommit/blobから復元可能。",
+      "restore_command": "git show c5c7ef4d98aa665acb00e1bb3dd8173796b25400:scaffold/research/wr255-sec009-l5l8-audit-20261101/l5-pointer-redirect-audit-r2-13f16113cafb-00376c402930.json > scaffold/research/wr255-sec009-l5l8-audit-20261101/l5-pointer-redirect-audit-r2-13f16113cafb-00376c402930.json"
     }
   ],
   "previously_removed_historical_alias": {
@@ -335,7 +377,7 @@
       "status_sha256": "e53ef0d6c7f24dde3fc3c995d1ec6bf4b2575a03073cde0bf85930b91bbea13a"
     }
   },
-  "historical_measurement_count": 11,
+  "historical_measurement_count": 15,
   "superseded_disposition": {
     "path": "scaffold/research/wr255-sec009-l5l8-audit-20261101/duplicate-check-report-disposition.json",
     "historical_commit": "6dae0cc2be5de23ee25fd9f27d7187da36ab13c0",
@@ -473,7 +515,9 @@
     },
     "historical_validator_policy": "validate_pointer_transfer.py and its report remain unchanged as the pre-redirect measurement; do not treat their hard-coded L5=30 check as current-state validation.",
     "authority_effect": "none",
-    "report_sha256": "db35078d93b8a354414786d6abf07f3f7846a067c43f431aad0fe86a05c3d737"
+    "report_sha256": "db35078d93b8a354414786d6abf07f3f7846a067c43f431aad0fe86a05c3d737",
+    "status": "historical; superseded by R3 validator which checks the exact L8 R2 update",
+    "superseded_by": "l5-pointer-redirect-audit-r3-13f16113cafb-00376c402930-5ecefbc3.json"
   },
   "latest_main_overlay_read_only_validation_wr255_l5_redirect": {
     "overlay_base_commit": "8ca99d8afcfcca2e5240afb992289ea8c80c41a6",
@@ -510,5 +554,193 @@
       "content_sha256": "db35078d93b8a354414786d6abf07f3f7846a067c43f431aad0fe86a05c3d737"
     },
     "historical_validator_policy": "validate_pointer_transfer.py and its fixed pre-redirect report remain unchanged and are not counted as a current-state validator; its L5=30 expectation is historical."
+  },
+  "r2_l8_l9_pointer_resolution": {
+    "base_confirmation": "git fetch origin main と git ls-remote origin refs/heads/main が同じ0e218828fbb3b487eff1469cd57ead8e3dfa7b67を返した。",
+    "overlay_base_commit": "0e218828fbb3b487eff1469cd57ead8e3dfa7b67",
+    "feature_head_tested": "daa028d9d666d604c270cd693c5d9376dbdc7835",
+    "overlay_construction": "latest mainを第1親とする別worktreeでgit merge --no-commit --no-ff <feature HEAD>。automatic merge成功、commitせず照合。",
+    "commands": [
+      "python3 scaffold/research/wr255-sec009-l5l8-audit-20261101/validate_wr255_l5l8.py (read-only, 2回)",
+      "python3 scaffold/research/wr255-sec009-l5l8-audit-20261101/validate_pointer_transfer.py",
+      "python3 scaffold/research/wr255-sec009-l5l8-audit-20261101/validate_l5_pointer_redirect.py",
+      "python3 -B scaffold/tools/scfctl.py validate",
+      "python3 -B scaffold/tools/scfctl.py stale"
+    ],
+    "source_revisions": {
+      "l4": "d670496eebc5a28469ac3da0e2f9be1bcd7a37ce",
+      "l5": "c5c7ef4d98aa665acb00e1bb3dd8173796b25400",
+      "l8": "daa028d9d666d604c270cd693c5d9376dbdc7835",
+      "l9": "087f02dc637f6860e344e2bda9efa83c83506b72"
+    },
+    "source_sha256": {
+      "l3_business": "f1668180a3daccb38da15f471ade0806c64f094a77b0d7a5cef25edc9b6ce901",
+      "l3_functional": "e4eeb70cc303e44199c7d898281e91c22dba89b47666353b9c80a4c634e898b5",
+      "l4": "00376c402930e1287e9e0e896804b1de8a20390f8abbea8377b70712f868b9da",
+      "l5": "13f16113cafb4b27b6f03c6a79797a260776c022c48f75ebaaf0220b8830baec",
+      "l8": "5ecefbc3aa0c140ba0b77a2e28194f98deebb641ce04435f42d16dc267c71f39",
+      "l9": "e918a289fe88446b3f84210577f0fe8094505d9dac9d9a8713cd074eb6776e5b",
+      "l10_business": "c34b8f9a99f8f240558458dd63033acd0d756dfe61ad9cd3aac0e8e1c8193f42",
+      "l10_functional": "e6da7eaff29a623b5d069801280c295d9dd7cc43b51d9cde25b12a8110e5072a",
+      "checker": "e751526d67cd8df11e5aac1c5a1a178dfbd0fecc3f2ed21f995b7dda11ea4d5d"
+    },
+    "results": {
+      "validator_runs": 2,
+      "validator_pass": true,
+      "L4_L9_pair_pass": true,
+      "L5_L8_pair_pass": true,
+      "negative_4way_matched": 277,
+      "negative_4way_failures": 0,
+      "L8_historical_L9_refs_resolved": 13,
+      "L8_current_integration_refs_resolved": 10,
+      "negative_value_type_comparisons": 5,
+      "fixed_L9_revision": {
+        "revision": "e0a1a9b9c0449759e1aebb8664fd70bd5ea25b5d",
+        "blob": "e20e059dfe4ea6435921a8e2c9b7ee05da32c196",
+        "sha256": "e918a289fe88446b3f84210577f0fe8094505d9dac9d9a8713cd074eb6776e5b"
+      },
+      "CHK_JSON_POINTER_checked": 969,
+      "CHK_JSON_POINTER_failures": 0,
+      "L5_nested_pointer_strings": 0,
+      "L9_nested_pointer_strings_remaining": 583,
+      "L8_raw_nested_l4_pointer_strings": 3,
+      "scfctl_validate_bindings": 210,
+      "scfctl_validate_failures": 0,
+      "scfctl_stale": 0,
+      "overlay_worktree_status_unchanged": true,
+      "positive_contract_minimum_designed_not_observed": 8,
+      "individual_oracle_and_test_citation": "null",
+      "SCF-B-0209": "registered; not retired"
+    },
+    "current_artifacts": [
+      {
+        "path": "scaffold/research/wr255-sec009-l5l8-audit-20261101/verification-summary-l4-d670496eeb-00376c40-l5-c5c7ef4d98-13f16113-l8-daa028d9d6-5ecefbc3-l9-087f02dc63-e918a289-validator-bc4e9e82-record-1793489073223499018-501665.json",
+        "git_blob_sha1": "8a3371edabd2cd633fd307cceee0ff40f29171dd",
+        "content_sha256": "beffc0fab3d134118c1e519153b129d799ad500d083fe1c552ac790efdd9d38c",
+        "byte_length": 20372,
+        "source_revision": "daa028d9d666d604c270cd693c5d9376dbdc7835"
+      },
+      {
+        "path": "scaffold/research/wr255-sec009-l5l8-audit-20261101/check-child-report-l4-d670496eeb-00376c40-l5-c5c7ef4d98-13f16113-l8-daa028d9d6-5ecefbc3-l9-087f02dc63-e918a289-record-1793489073223499018-501665.json",
+        "git_blob_sha1": "41025125846a9a32087844e457e0fc42bb41bb33",
+        "content_sha256": "879fe62b0c75d6081f1754e50130ffe3c9af8561037fe58a33df5c8bfecd3e7f",
+        "byte_length": 15503,
+        "source_revision": "daa028d9d666d604c270cd693c5d9376dbdc7835"
+      },
+      {
+        "path": "scaffold/research/wr255-sec009-l5l8-audit-20261101/pointer-transfer-audit-5ecefbc3aa0c-e918a289fe88.json",
+        "git_blob_sha1": "97cbcb9e6caed081ac5c9957961030eaf4e68d0a",
+        "content_sha256": "e121e1377499edbeee6d85ee87e1e6f6486b89d19e8cb985f5edf4ee33aef261",
+        "byte_length": 86874,
+        "source_revision": "daa028d9d666d604c270cd693c5d9376dbdc7835"
+      },
+      {
+        "path": "scaffold/research/wr255-sec009-l5l8-audit-20261101/l5-pointer-redirect-audit-r3-13f16113cafb-00376c402930-5ecefbc3.json",
+        "git_blob_sha1": "d7fb7c43c2fa3e697987cd4817b6c3003554d429",
+        "content_sha256": "d1f1d05207887aace8dff5d56937d714e9de0a7a8c15273f344ee86b46ac71ea",
+        "byte_length": 2657,
+        "source_revision": "daa028d9d666d604c270cd693c5d9376dbdc7835"
+      }
+    ],
+    "superseded_current_artifacts": [
+      {
+        "path": "scaffold/research/wr255-sec009-l5l8-audit-20261101/check-child-report-l4-d670496eeb-00376c40-l5-ea8e3c2510-1aefb9b6-l8-0451f67e4b-49875dcd-l9-087f02dc63-e918a289-record-1793485186690215383-388303.json",
+        "commit": "96b5e7ea5d456f40279a8adc4473ad6be28a8d1b",
+        "git_blob_sha1": "41025125846a9a32087844e457e0fc42bb41bb33",
+        "content_sha256": "879fe62b0c75d6081f1754e50130ffe3c9af8561037fe58a33df5c8bfecd3e7f",
+        "byte_length": 15503,
+        "role": "R1現行summaryに対応した唯一copy。今回のcheck-child reportとbytesは同一。",
+        "disposition": "今回のR2 current測定と置換してcurrent treeから除去。元のcommit/blobから復元可能。",
+        "restore_command": "git show 96b5e7ea5d456f40279a8adc4473ad6be28a8d1b:scaffold/research/wr255-sec009-l5l8-audit-20261101/check-child-report-l4-d670496eeb-00376c40-l5-ea8e3c2510-1aefb9b6-l8-0451f67e4b-49875dcd-l9-087f02dc63-e918a289-record-1793485186690215383-388303.json > scaffold/research/wr255-sec009-l5l8-audit-20261101/check-child-report-l4-d670496eeb-00376c40-l5-ea8e3c2510-1aefb9b6-l8-0451f67e4b-49875dcd-l9-087f02dc63-e918a289-record-1793485186690215383-388303.json"
+      },
+      {
+        "path": "scaffold/research/wr255-sec009-l5l8-audit-20261101/verification-summary-l4-d670496eeb-00376c40-l5-ea8e3c2510-1aefb9b6-l8-0451f67e4b-49875dcd-l9-087f02dc63-e918a289-validator-b2cd66c3-record-1793485186690215383-388303.json",
+        "commit": "96b5e7ea5d456f40279a8adc4473ad6be28a8d1b",
+        "git_blob_sha1": "6b02a278939939b823e56a34491f92aba4e0d475",
+        "content_sha256": "c87f8f17aa2403c4ac7adc43796a56d83f7c87eaf887f0aba6443fb52a399fdc",
+        "byte_length": 18910,
+        "role": "R1修正後・L8 R2参照補正前のcurrent summary。",
+        "disposition": "今回のR2 current測定と置換してcurrent treeから除去。元のcommit/blobから復元可能。",
+        "restore_command": "git show 96b5e7ea5d456f40279a8adc4473ad6be28a8d1b:scaffold/research/wr255-sec009-l5l8-audit-20261101/verification-summary-l4-d670496eeb-00376c40-l5-ea8e3c2510-1aefb9b6-l8-0451f67e4b-49875dcd-l9-087f02dc63-e918a289-validator-b2cd66c3-record-1793485186690215383-388303.json > scaffold/research/wr255-sec009-l5l8-audit-20261101/verification-summary-l4-d670496eeb-00376c40-l5-ea8e3c2510-1aefb9b6-l8-0451f67e4b-49875dcd-l9-087f02dc63-e918a289-validator-b2cd66c3-record-1793485186690215383-388303.json"
+      },
+      {
+        "path": "scaffold/research/wr255-sec009-l5l8-audit-20261101/pointer-transfer-audit-49875dcdb4bc-e918a289fe88.json",
+        "commit": "96b5e7ea5d456f40279a8adc4473ad6be28a8d1b",
+        "git_blob_sha1": "0d66d606af2f9381890398c33febde48ada87cad",
+        "content_sha256": "b1b5fca158a0bfa6353ff97b9226030bb1ae943e65e69b730bc8e5991e6848fc",
+        "byte_length": 75671,
+        "role": "L8 R2参照補正前のpointer-transfer測定。",
+        "disposition": "今回のR2 current測定と置換してcurrent treeから除去。元のcommit/blobから復元可能。",
+        "restore_command": "git show 96b5e7ea5d456f40279a8adc4473ad6be28a8d1b:scaffold/research/wr255-sec009-l5l8-audit-20261101/pointer-transfer-audit-49875dcdb4bc-e918a289fe88.json > scaffold/research/wr255-sec009-l5l8-audit-20261101/pointer-transfer-audit-49875dcdb4bc-e918a289fe88.json"
+      },
+      {
+        "path": "scaffold/research/wr255-sec009-l5l8-audit-20261101/l5-pointer-redirect-audit-r2-13f16113cafb-00376c402930.json",
+        "commit": "c5c7ef4d98aa665acb00e1bb3dd8173796b25400",
+        "git_blob_sha1": "a18d9dfcdfb4846e3361f7a89efe444a57b39b77",
+        "content_sha256": "db35078d93b8a354414786d6abf07f3f7846a067c43f431aad0fe86a05c3d737",
+        "byte_length": 1813,
+        "role": "L8不変を前提としていた旧L5 redirect measurement。",
+        "disposition": "今回のR2 current測定と置換してcurrent treeから除去。元のcommit/blobから復元可能。",
+        "restore_command": "git show c5c7ef4d98aa665acb00e1bb3dd8173796b25400:scaffold/research/wr255-sec009-l5l8-audit-20261101/l5-pointer-redirect-audit-r2-13f16113cafb-00376c402930.json > scaffold/research/wr255-sec009-l5l8-audit-20261101/l5-pointer-redirect-audit-r2-13f16113cafb-00376c402930.json"
+      }
+    ],
+    "check_child_report_sha256_shared_with_previous_report": true
+  },
+  "latest_main_overlay_read_only_validation_wr255_l5_redirect_r2_pointer_fix": {
+    "overlay_base_commit": "0e218828fbb3b487eff1469cd57ead8e3dfa7b67",
+    "feature_head_tested": "daa028d9d666d604c270cd693c5d9376dbdc7835",
+    "overlay_construction": "latest mainを第1親とする別worktreeでgit merge --no-commit --no-ff <feature HEAD>。automatic merge成功、commitせず照合。",
+    "commands": [
+      "python3 scaffold/research/wr255-sec009-l5l8-audit-20261101/validate_wr255_l5l8.py (read-only, 2回)",
+      "python3 scaffold/research/wr255-sec009-l5l8-audit-20261101/validate_pointer_transfer.py",
+      "python3 scaffold/research/wr255-sec009-l5l8-audit-20261101/validate_l5_pointer_redirect.py",
+      "python3 -B scaffold/tools/scfctl.py validate",
+      "python3 -B scaffold/tools/scfctl.py stale"
+    ],
+    "source_sha256": {
+      "l3_business": "f1668180a3daccb38da15f471ade0806c64f094a77b0d7a5cef25edc9b6ce901",
+      "l3_functional": "e4eeb70cc303e44199c7d898281e91c22dba89b47666353b9c80a4c634e898b5",
+      "l4": "00376c402930e1287e9e0e896804b1de8a20390f8abbea8377b70712f868b9da",
+      "l5": "13f16113cafb4b27b6f03c6a79797a260776c022c48f75ebaaf0220b8830baec",
+      "l8": "5ecefbc3aa0c140ba0b77a2e28194f98deebb641ce04435f42d16dc267c71f39",
+      "l9": "e918a289fe88446b3f84210577f0fe8094505d9dac9d9a8713cd074eb6776e5b",
+      "l10_business": "c34b8f9a99f8f240558458dd63033acd0d756dfe61ad9cd3aac0e8e1c8193f42",
+      "l10_functional": "e6da7eaff29a623b5d069801280c295d9dd7cc43b51d9cde25b12a8110e5072a",
+      "checker": "e751526d67cd8df11e5aac1c5a1a178dfbd0fecc3f2ed21f995b7dda11ea4d5d"
+    },
+    "results": {
+      "validator_runs": 2,
+      "validator_pass": true,
+      "L4_L9_pair_pass": true,
+      "L5_L8_pair_pass": true,
+      "negative_4way_matched": 277,
+      "negative_4way_failures": 0,
+      "L8_historical_L9_refs_resolved": 13,
+      "L8_current_integration_refs_resolved": 10,
+      "negative_value_type_comparisons": 5,
+      "fixed_L9_revision": {
+        "revision": "e0a1a9b9c0449759e1aebb8664fd70bd5ea25b5d",
+        "blob": "e20e059dfe4ea6435921a8e2c9b7ee05da32c196",
+        "sha256": "e918a289fe88446b3f84210577f0fe8094505d9dac9d9a8713cd074eb6776e5b"
+      },
+      "CHK_JSON_POINTER_checked": 969,
+      "CHK_JSON_POINTER_failures": 0,
+      "L5_nested_pointer_strings": 0,
+      "L9_nested_pointer_strings_remaining": 583,
+      "L8_raw_nested_l4_pointer_strings": 3,
+      "scfctl_validate_bindings": 210,
+      "scfctl_validate_failures": 0,
+      "scfctl_stale": 0,
+      "overlay_worktree_status_unchanged": true,
+      "positive_contract_minimum_designed_not_observed": 8,
+      "individual_oracle_and_test_citation": "null",
+      "SCF-B-0209": "registered; not retired"
+    },
+    "current_artifacts": [
+      "verification-summary-l4-d670496eeb-00376c40-l5-c5c7ef4d98-13f16113-l8-daa028d9d6-5ecefbc3-l9-087f02dc63-e918a289-validator-bc4e9e82-record-1793489073223499018-501665.json",
+      "check-child-report-l4-d670496eeb-00376c40-l5-c5c7ef4d98-13f16113-l8-daa028d9d6-5ecefbc3-l9-087f02dc63-e918a289-record-1793489073223499018-501665.json",
+      "pointer-transfer-audit-5ecefbc3aa0c-e918a289fe88.json",
+      "l5-pointer-redirect-audit-r3-13f16113cafb-00376c402930-5ecefbc3.json"
+    ]
   }
 }

@@ -5,19 +5,24 @@
   "operation_effect": "none",
   "source_hashes": {
     "docs/helix-security/L4-basic-design/revoke-quarantine-propagation.json": "00376c402930e1287e9e0e896804b1de8a20390f8abbea8377b70712f868b9da",
-    "docs/helix-security/L8-unit-verification/revoke-quarantine-propagation.json": "49875dcdb4bcec85ebffbad678127e90a61db329c9cccae96f0090cd260f698d",
+    "docs/helix-security/L8-unit-verification/revoke-quarantine-propagation.json": "5ecefbc3aa0c140ba0b77a2e28194f98deebb641ce04435f42d16dc267c71f39",
     "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json": "e918a289fe88446b3f84210577f0fe8094505d9dac9d9a8713cd074eb6776e5b",
     "scaffold/tools/design_verification_checker.py": "e751526d67cd8df11e5aac1c5a1a178dfbd0fecc3f2ed21f995b7dda11ea4d5d"
   },
   "source_revisions": {
     "docs/helix-security/L4-basic-design/revoke-quarantine-propagation.json": "d670496eebc5a28469ac3da0e2f9be1bcd7a37ce",
-    "docs/helix-security/L8-unit-verification/revoke-quarantine-propagation.json": "0451f67e4b94451b7258078f49df3cb34db36098",
+    "docs/helix-security/L8-unit-verification/revoke-quarantine-propagation.json": "daa028d9d666d604c270cd693c5d9376dbdc7835",
     "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json": "087f02dc637f6860e344e2bda9efa83c83506b72",
     "scaffold/tools/design_verification_checker.py": "ca68470df10793319d290fefdf240cde6cfa3ba3"
   },
   "historical_l4": {
     "revision": "c50eb21b34f034262ced3f8052d2502fb84c57c9",
     "sha256": "d46e39cad2e2a90cfc532fa57226a4d650336e794a375f07e1cc2e6cbba15eb3"
+  },
+  "historical_l9": {
+    "revision": "e0a1a9b9c0449759e1aebb8664fd70bd5ea25b5d",
+    "blob": "e20e059dfe4ea6435921a8e2c9b7ee05da32c196",
+    "sha256": "e918a289fe88446b3f84210577f0fe8094505d9dac9d9a8713cd074eb6776e5b"
   },
   "corrected_prior_pointer": {
     "source_revision": "24d7f00bdca41c3dfb1f3137655ffdbe3674cfb3",
@@ -38,6 +43,8 @@
     "L8_counterexamples_with_generated_colon_artifact_current": 0,
     "L8_fixed_taxonomy_pointers": 30,
     "L8_historical_unassigned_refs": 3,
+    "L8_to_L9_fixed_historical_source_refs": 13,
+    "L8_to_L9_current_integration_case_refs": 10,
     "L8_historic_collection_fanout": 14,
     "L9_prior_recognized_consumer_subset": 308,
     "L9_all_raw_nested_pointer_strings": 583,
@@ -45,16 +52,16 @@
       "cases": 550,
       "negative_class_assignment_audit": 33
     },
-    "L5_failure_rule_raw_nested_pointer_strings": 30,
+    "L5_failure_rule_raw_nested_pointer_strings": 0,
     "canonical_classes_projection_checked": 30,
-    "CHK_JSON_POINTER_checked": 959,
-    "CHK_JSON_POINTER_expanded": 959
+    "CHK_JSON_POINTER_checked": 969,
+    "CHK_JSON_POINTER_expanded": 969
   },
   "read_behavior": {
     "active_mode": "explicit_negative_equivalence_classes",
     "explicit_mode_uses_top_level_class_tables": true,
     "CHK_JSON_POINTER": "参照先の存在解決を行う。構造化referenceのrevision fieldをgit showの固定revisionとして解決する。",
-    "legacy_mode": "checkerはmarkerがない場合にnested negative_classificationsを読む。L8の重複case groupsは削除済みだが、L5 30件とL9 583件のnested pointer文字列が残るため、全consumer移行前にL4 nestedを撤去しない。",
+    "legacy_mode": "checkerはmarkerがない場合にnested negative_classificationsを読む。L8の重複case groupsとL5のnested pointer stringsは現行treeから除去済みだが、L9の583 nested pointer stringsが残るため、全consumer移行前にL4 nestedを撤去しない。",
     "expected_text_reader": "現行CHK-JSON-POINTERとexplicit 4-way checkerはnested expected_textを消費しない。人間向けsource意味は下記のfield projection表で検証する。",
     "explicit_marker_all_layers": true,
     "pointer_check_passed": true
@@ -2316,6 +2323,239 @@
       "meaning": "R2時点の未割当根拠を維持する固定参照"
     }
   ],
+  "L8_L9_source_transition": {
+    "fixed_historical_l9": {
+      "revision": "e0a1a9b9c0449759e1aebb8664fd70bd5ea25b5d",
+      "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+      "blob": "e20e059dfe4ea6435921a8e2c9b7ee05da32c196",
+      "sha256": "e918a289fe88446b3f84210577f0fe8094505d9dac9d9a8713cd074eb6776e5b"
+    },
+    "fixed_historical_source_refs": [
+      {
+        "consumer_location": "/negative_class_assignment_audit/unassigned_single_contract_negative_cases/0/source_pointers/3",
+        "case_id": "SEC009-COMPOUND-OS-UNKNOWN-CREDENTIAL-UNAPPLIED-WORKER-CONTINUES",
+        "revision": "e0a1a9b9c0449759e1aebb8664fd70bd5ea25b5d",
+        "pointer": "/cases/1/negative_cases/205/expected_proposal/recipient_correspondence",
+        "target_type": "dict"
+      },
+      {
+        "consumer_location": "/negative_class_assignment_audit/unassigned_single_contract_negative_cases/0/source_pointers/4",
+        "case_id": "SEC009-COMPOUND-OS-UNKNOWN-CREDENTIAL-UNAPPLIED-WORKER-CONTINUES",
+        "revision": "e0a1a9b9c0449759e1aebb8664fd70bd5ea25b5d",
+        "pointer": "/cases/1/negative_cases/205/expected_proposal/findings",
+        "target_type": "list"
+      },
+      {
+        "consumer_location": "/negative_class_assignment_audit/unassigned_single_contract_negative_cases/1/source_pointers/6",
+        "case_id": "SEC009-RECOVERY-PRIOR-SOURCE-MISSING",
+        "revision": "e0a1a9b9c0449759e1aebb8664fd70bd5ea25b5d",
+        "pointer": "/cases/2/negative_cases/40/expected_proposal/isolation_correspondence",
+        "target_type": "str"
+      },
+      {
+        "consumer_location": "/negative_class_assignment_audit/unassigned_single_contract_negative_cases/1/source_pointers/7",
+        "case_id": "SEC009-RECOVERY-PRIOR-SOURCE-MISSING",
+        "revision": "e0a1a9b9c0449759e1aebb8664fd70bd5ea25b5d",
+        "pointer": "/cases/2/negative_cases/40/expected_proposal/recovery_correspondence",
+        "target_type": "str"
+      },
+      {
+        "consumer_location": "/negative_class_assignment_audit/unassigned_single_contract_negative_cases/1/source_pointers/8",
+        "case_id": "SEC009-RECOVERY-PRIOR-SOURCE-MISSING",
+        "revision": "e0a1a9b9c0449759e1aebb8664fd70bd5ea25b5d",
+        "pointer": "/cases/2/negative_cases/40/expected_proposal/findings",
+        "target_type": "list"
+      },
+      {
+        "consumer_location": "/positive_case_expectation_source_review/positive_cases/0/L9_primary_source_observed/pointer",
+        "case_id": "SEC009-ONLY-OS_ASSIGNMENT-UNSELECTED-ABSENT",
+        "revision": "e0a1a9b9c0449759e1aebb8664fd70bd5ea25b5d",
+        "pointer": "/cases/0/positive_cases/0",
+        "target_type": "dict",
+        "given_keys": [
+          "evidence_limit"
+        ]
+      },
+      {
+        "consumer_location": "/positive_case_expectation_source_review/positive_cases/1/L9_primary_source_observed/pointer",
+        "case_id": "SEC009-ONLY-WORKER_EXECUTION-UNSELECTED-ABSENT",
+        "revision": "e0a1a9b9c0449759e1aebb8664fd70bd5ea25b5d",
+        "pointer": "/cases/0/positive_cases/1",
+        "target_type": "dict",
+        "given_keys": [
+          "evidence_limit"
+        ]
+      },
+      {
+        "consumer_location": "/positive_case_expectation_source_review/positive_cases/2/L9_primary_source_observed/pointer",
+        "case_id": "SEC009-ONLY-CONNECT_COMMUNICATION-UNSELECTED-ABSENT",
+        "revision": "e0a1a9b9c0449759e1aebb8664fd70bd5ea25b5d",
+        "pointer": "/cases/0/positive_cases/2",
+        "target_type": "dict",
+        "given_keys": [
+          "evidence_limit"
+        ]
+      },
+      {
+        "consumer_location": "/positive_case_expectation_source_review/positive_cases/3/L9_primary_source_observed/pointer",
+        "case_id": "SEC009-ONLY-CREDENTIAL_USE-UNSELECTED-ABSENT",
+        "revision": "e0a1a9b9c0449759e1aebb8664fd70bd5ea25b5d",
+        "pointer": "/cases/0/positive_cases/3",
+        "target_type": "dict",
+        "given_keys": [
+          "evidence_limit"
+        ]
+      },
+      {
+        "consumer_location": "/positive_case_expectation_source_review/positive_cases/4/L9_primary_source_observed/pointer",
+        "case_id": "SEC009-ONLY-ARTIFACT_ACCESS-UNSELECTED-ABSENT",
+        "revision": "e0a1a9b9c0449759e1aebb8664fd70bd5ea25b5d",
+        "pointer": "/cases/0/positive_cases/4",
+        "target_type": "dict",
+        "given_keys": [
+          "evidence_limit"
+        ]
+      },
+      {
+        "consumer_location": "/positive_case_expectation_source_review/positive_cases/5/L9_primary_source_observed/pointer",
+        "case_id": "SEC009-EMPTY-RECIPIENT-SET",
+        "revision": "e0a1a9b9c0449759e1aebb8664fd70bd5ea25b5d",
+        "pointer": "/cases/0/positive_cases/5",
+        "target_type": "dict",
+        "given_keys": [
+          "evidence_limit"
+        ]
+      },
+      {
+        "consumer_location": "/positive_case_expectation_source_review/positive_cases/6/L9_primary_source_observed/pointer",
+        "case_id": "SEC009-OS-OFFLINE-INDEPENDENT-RECOVERY-SELECTION",
+        "revision": "e0a1a9b9c0449759e1aebb8664fd70bd5ea25b5d",
+        "pointer": "/cases/0/positive_cases/6",
+        "target_type": "dict",
+        "given_keys": [
+          "evidence_limit"
+        ]
+      },
+      {
+        "consumer_location": "/positive_case_expectation_source_review/positive_cases/7/L9_primary_source_observed/pointer",
+        "case_id": "SEC009-GENERAL-MEANING-UNKNOWN",
+        "revision": "e0a1a9b9c0449759e1aebb8664fd70bd5ea25b5d",
+        "pointer": "/cases/2/positive_cases/0",
+        "target_type": "dict",
+        "given_keys": [
+          "evidence_limit"
+        ]
+      }
+    ],
+    "current_integration_case_refs": [
+      {
+        "case_id": "SEC009-COMPOUND-OS-UNKNOWN-CREDENTIAL-UNAPPLIED-WORKER-CONTINUES",
+        "pointer": "/integration_cases/283",
+        "population_state": "negative"
+      },
+      {
+        "case_id": "SEC009-RECOVERY-PRIOR-SOURCE-MISSING",
+        "pointer": "/integration_cases/284",
+        "population_state": "negative"
+      },
+      {
+        "case_id": "SEC009-ONLY-OS_ASSIGNMENT-UNSELECTED-ABSENT",
+        "pointer": "/integration_cases/0",
+        "population_state": "positive",
+        "relation": "current projection; not historical given evidence"
+      },
+      {
+        "case_id": "SEC009-ONLY-WORKER_EXECUTION-UNSELECTED-ABSENT",
+        "pointer": "/integration_cases/1",
+        "population_state": "positive",
+        "relation": "current projection; not historical given evidence"
+      },
+      {
+        "case_id": "SEC009-ONLY-CONNECT_COMMUNICATION-UNSELECTED-ABSENT",
+        "pointer": "/integration_cases/2",
+        "population_state": "positive",
+        "relation": "current projection; not historical given evidence"
+      },
+      {
+        "case_id": "SEC009-ONLY-CREDENTIAL_USE-UNSELECTED-ABSENT",
+        "pointer": "/integration_cases/3",
+        "population_state": "positive",
+        "relation": "current projection; not historical given evidence"
+      },
+      {
+        "case_id": "SEC009-ONLY-ARTIFACT_ACCESS-UNSELECTED-ABSENT",
+        "pointer": "/integration_cases/4",
+        "population_state": "positive",
+        "relation": "current projection; not historical given evidence"
+      },
+      {
+        "case_id": "SEC009-EMPTY-RECIPIENT-SET",
+        "pointer": "/integration_cases/5",
+        "population_state": "positive",
+        "relation": "current projection; not historical given evidence"
+      },
+      {
+        "case_id": "SEC009-OS-OFFLINE-INDEPENDENT-RECOVERY-SELECTION",
+        "pointer": "/integration_cases/6",
+        "population_state": "positive",
+        "relation": "current projection; not historical given evidence"
+      },
+      {
+        "case_id": "SEC009-GENERAL-MEANING-UNKNOWN",
+        "pointer": "/integration_cases/240",
+        "population_state": "positive",
+        "relation": "current projection; not historical given evidence"
+      }
+    ],
+    "field_value_type_comparisons": [
+      {
+        "case_id": "SEC009-COMPOUND-OS-UNKNOWN-CREDENTIAL-UNAPPLIED-WORKER-CONTINUES",
+        "historical_pointer": "/cases/1/negative_cases/205/expected_proposal/recipient_correspondence",
+        "current_pointer": "/integration_cases/283/expected",
+        "historical_type": "object",
+        "current_type": "object",
+        "value_relation": "not_equal",
+        "comparison": "非同値。旧recipient別対応辞書は現行expectedに同型フィールドがない。"
+      },
+      {
+        "case_id": "SEC009-COMPOUND-OS-UNKNOWN-CREDENTIAL-UNAPPLIED-WORKER-CONTINUES",
+        "historical_pointer": "/cases/1/negative_cases/205/expected_proposal/findings",
+        "current_pointer": "/integration_cases/283/expected/finding_codes",
+        "historical_type": "array<object>",
+        "current_type": "array<string>",
+        "value_relation": "not_equal",
+        "comparison": "順序付きcode列は対応するが、旧objectのpointer/return_owner値は現行code列に含まれない。"
+      },
+      {
+        "case_id": "SEC009-RECOVERY-PRIOR-SOURCE-MISSING",
+        "historical_pointer": "/cases/2/negative_cases/40/expected_proposal/isolation_correspondence",
+        "current_pointer": "/integration_cases/284/expected/finding_codes",
+        "historical_type": "string",
+        "current_type": "array<string>",
+        "value_relation": "not_equal",
+        "comparison": "非同値。隔離axisのunknown状態を示す旧scalarに対し、現行fieldはfinding codeの配列。"
+      },
+      {
+        "case_id": "SEC009-RECOVERY-PRIOR-SOURCE-MISSING",
+        "historical_pointer": "/cases/2/negative_cases/40/expected_proposal/recovery_correspondence",
+        "current_pointer": "/integration_cases/284/expected/finding_codes",
+        "historical_type": "string",
+        "current_type": "array<string>",
+        "value_relation": "not_equal",
+        "comparison": "非同値。復旧axisのunknown状態を示す旧scalarに対し、現行fieldはfinding codeの配列。"
+      },
+      {
+        "case_id": "SEC009-RECOVERY-PRIOR-SOURCE-MISSING",
+        "historical_pointer": "/cases/2/negative_cases/40/expected_proposal/findings",
+        "current_pointer": "/integration_cases/284/expected/finding_codes",
+        "historical_type": "array<object>",
+        "current_type": "array<string>",
+        "value_relation": "not_equal",
+        "comparison": "codeは対応するが、旧objectのpointer/return_owner値は現行code列に含まれない。"
+      }
+    ],
+    "interpretation": "旧L9 expected_proposalとcurrent integration_casesは意味上の対応を持つが、field型・値に差があるため同値な置換として扱わない。positiveの旧givenはevidence_limitのみという観測を固定し、current integration rowは別projectionとして参照する。"
+  },
   "L9_pending_transfer": {
     "status": "separate_l4_l9_v_pair_required",
     "recognized_subset_count": 308,
@@ -2327,6 +2567,6 @@
     "SCF-B-0209_status": "pending",
     "check_replacement_performed": false,
     "retire_performed": false,
-    "reason": "L9の583 raw nested pointer strings、L5の30 raw nested pointer strings、履歴consumerの移行・全件reviewが未完了。L4 nested payloadを保持する。"
+    "reason": "L9の583 raw nested pointer stringsとL4/L9 pairでの移行確認が未完了。L5はlatest mainでnested pointer string 0件を実測。L4 nested payloadを保持する。"
   }
 }

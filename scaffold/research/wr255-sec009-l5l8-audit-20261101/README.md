@@ -50,13 +50,14 @@ latest `origin/main` をmergeしたL5/L8候補とcanonical L4/L9を照合したs
 
 ## 最新main overlayと固定証拠
 
-fresh fetch/ls-remoteで一致確認したlatest main `9cce1cc5238de71231b1fcd37727391113e17956`を第1親にread-only再検証対象のPR-B HEAD `71da6687f8664adc1bb7ddcec262559ba16e3aec`をno-commit overlayして再検証しました。L4/L9・L5/L8 pair pass、4wayは277 matched / 0 failures、pointer移行validator pass、scfctl validate 207/fail 0・stale 0です。validatorを2回とpointer validatorをread-only実行し、overlay worktreeのstatus不変を確認しました。次のsummary/reportはfeature branchのcurrent sourceを測った保存証拠です。positive 8件は設計済み・未観測、個別oracleとtest citationはnullです。
+fresh fetch/ls-remoteの両方で確認したlatest main `0e218828fbb3b487eff1469cd57ead8e3dfa7b67`を第1親とする一時worktreeで、候補HEAD `daa028d9d666d604c270cd693c5d9376dbdc7835`を`git merge --no-commit --no-ff`しました。L4/L9 pairとL5/L8 pairはpass、4wayは277 matched / 0 failures、L8→L9 pointer移行validatorとL5 redirect validatorはpass、scfctl validateは210 bindings / 0 failures、staleは0でした。overlayで各read-only validatorを実行し、実行前後のgit statusが一致することも確認しました。正例8件は契約最小期待を設計した未観測状態で、個別oracleとtest citationはnullです。
 
-- [verification summary](verification-summary-l4-d670496eeb-00376c40-l5-ea8e3c2510-1aefb9b6-l8-0451f67e4b-49875dcd-l9-087f02dc63-e918a289-validator-b2cd66c3-record-1793485186690215383-388303.json)
-- [check-child report](check-child-report-l4-d670496eeb-00376c40-l5-ea8e3c2510-1aefb9b6-l8-0451f67e4b-49875dcd-l9-087f02dc63-e918a289-record-1793485186690215383-388303.json)
-- [L8 pointer transfer audit](pointer-transfer-audit-49875dcdb4bc-e918a289fe88.json)
+- [verification summary](verification-summary-l4-d670496eeb-00376c40-l5-c5c7ef4d98-13f16113-l8-daa028d9d6-5ecefbc3-l9-087f02dc63-e918a289-validator-bc4e9e82-record-1793489073223499018-501665.json)
+- [check-child report](check-child-report-l4-d670496eeb-00376c40-l5-c5c7ef4d98-13f16113-l8-daa028d9d6-5ecefbc3-l9-087f02dc63-e918a289-record-1793489073223499018-501665.json)
+- [L8 pointer transfer audit](pointer-transfer-audit-5ecefbc3aa0c-e918a289fe88.json)
+- [L5 redirect and L8 R2 scope audit](l5-pointer-redirect-audit-r3-13f16113cafb-00376c402930-5ecefbc3.json)
 
-summaryは正本285行の内容を再複製せず、validatorで再計算したrow/class audit digestを記録します。詳細値は固定revision・SHAを持つL4/L5/L8/L9正本にあり、再現validatorは285行すべてのpointerと期待を検査します。
+summaryは正本285行の内容を再複製せず、validatorが再計算したrow/class audit digestを記録します。以前のcurrent summary/reportとpointer auditは別の固定時点としてGit履歴から復元できるようdispositionへ記録し、current treeには上記測定だけを保持します。過去reportと今回のcheck-child reportは同じ内容SHA-256 `879fe62b0c75d6081f1754e50130ffe3c9af8561037fe58a33df5c8bfecd3e7f`ですが、currentの唯一copyはこのoverlay測定pathです。
 
 事前生成の展開版summaryはSHA-256 `7e09863b58053b03e833df14d034f7c8d52b5a9ff3e0344a996aa0a82c9d4446` で、commit `69fbb3e2f0` のvalidatorから完全一致で再生成可能です。復元手順は[統合disposition](measurement-artifact-disposition.json)にあります。
 
@@ -87,11 +88,10 @@ python3 scaffold/research/wr255-sec009-l5l8-audit-20261101/validate_pointer_tran
 
 ## L5 source pointer redirect（WR255 follow-up）
 
-固定base `ad2dfaf6f434fbb81cd34988d4bd76212380f3a5` を照合し、30個のL5 `failure_rules`それぞれに、L4 nested classificationと同じclassのtop-level canonical pointerが既に存在したことを確認しました。各ruleからnested pointerだけを除去し、canonical pointerと他のsource refs、意味字段は保持しています。L4/L8のsource bytesは不変です。
+固定base `ad2dfaf6f434fbb81cd34988d4bd76212380f3a5` を照合し、30個のL5 `failure_rules`それぞれに、L4 nested classificationと同じclassのtop-level canonical pointerが既に存在したことを確認しました。各ruleからnested pointerだけを除去し、canonical pointerと他のsource refs、意味字段は保持しています。L5差分はnested重複pointerの除去です。
 
-現行検証は `validate_l5_pointer_redirect.py` です。通常実行はread-onlyで、`--record PATH` は新規ファイルのみexclusive createします。 [current redirect audit](l5-pointer-redirect-audit-r2-13f16113cafb-00376c402930.json) は30件の型・値projection、30 nested pointer除去、30 canonical pointer保持、32 L5 ruleのうち変更対象30行だけpointer-only変更を確認します。既存 `validate_pointer_transfer.py` と `pointer-transfer-audit-49875dcdb4bc-e918a289fe88.json` は変更せず移行前の時点証拠として保持します。L9の583 nested pointer stringsは対象外で、L4 nested payloadとSCF-B-0209も保持します。
+current検証は `validate_l5_pointer_redirect.py` です。通常実行はread-onlyで、`--record PATH` は新規ファイルのみexclusive createします。[現行redirect audit](l5-pointer-redirect-audit-r3-13f16113cafb-00376c402930-5ecefbc3.json) は30件の型・値projection、30 nested pointer除去、30 canonical pointer保持、32 L5 ruleのうち変更対象30行だけpointer-only変更を確認します。L8は後続R2で更新済みで、validatorはそのR2変更が13固定履歴参照と10 current integration参照に限定されることも照合します。L4は不変です。旧R2 auditは固定時点として[統合disposition](measurement-artifact-disposition.json)から復元できます。
 
+## 過去overlay測定の扱い
 
-## latest-main overlay (2026-11-01)
-
-`origin/main` `8ca99d8afcfcca2e5240afb992289ea8c80c41a6` をno-commit overlayした時点でredirect validatorとL5/L8 validatorがpass。`check-child`はL4/L9 pair、L5/L8 pairともpass、negative 277 matched / 0 failures。`scfctl validate`は208 bindings / 0 failures、`scfctl stale`は0。測定時のsource SHAとコマンドは[統合disposition](measurement-artifact-disposition.json)に記録しています。L9 nested pointer 583件は残存し、SCF-B-0209はregisteredのままです。
+旧main `8ca99d8afcfcca2e5240afb992289ea8c80c41a6` を基準としたoverlay結果は、その時点の測定として統合dispositionに残しています。current overlayは同じmain `0e218828fbb3b487eff1469cd57ead8e3dfa7b67`を第1親としてfeature HEAD `daa028d9d666d604c270cd693c5d9376dbdc7835`を重ねて再計測しました。現行結果は本文前段「最新main overlayと固定証拠」とdisposition `r2_l8_l9_pointer_resolution` に記録しています。L9 nested pointer 583件は別L4/L9 pairで未移行のため、SCF-B-0209はregisteredのままです。

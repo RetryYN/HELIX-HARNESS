@@ -11,7 +11,13 @@
   "current_sha256": {
     "L4": "00376c402930e1287e9e0e896804b1de8a20390f8abbea8377b70712f868b9da",
     "L5": "13f16113cafb4b27b6f03c6a79797a260776c022c48f75ebaaf0220b8830baec",
-    "L8": "49875dcdb4bcec85ebffbad678127e90a61db329c9cccae96f0090cd260f698d"
+    "L8": "5ecefbc3aa0c140ba0b77a2e28194f98deebb641ce04435f42d16dc267c71f39",
+    "L9": "e918a289fe88446b3f84210577f0fe8094505d9dac9d9a8713cd074eb6776e5b"
+  },
+  "fixed_historical_l9": {
+    "revision": "e0a1a9b9c0449759e1aebb8664fd70bd5ea25b5d",
+    "blob": "e20e059dfe4ea6435921a8e2c9b7ee05da32c196",
+    "sha256": "e918a289fe88446b3f84210577f0fe8094505d9dac9d9a8713cd074eb6776e5b"
   },
   "counts": {
     "nested_classes_checked": 30,
@@ -22,7 +28,12 @@
     "L5_nested_pointer_strings_before": 30,
     "L5_nested_pointer_strings_after": 0,
     "L4_bytes_unchanged": true,
-    "L8_bytes_unchanged": true
+    "L8_non_R2_reference_content_unchanged": true,
+    "L8_R2_historical_refs_resolved": 13,
+    "L8_R2_current_integration_refs_resolved": 10,
+    "L8_R2_value_type_comparisons": 5,
+    "L9_current_bytes_sha256_matches_fixed_history": true,
+    "L5_redirect_validator": "validated separately from the exact L8 R2 reference transformation"
   },
   "field_projection": {
     "code": "class_id",
@@ -37,6 +48,7 @@
   },
   "limitations": [
     "固定L4 nested classと同class canonical aliasの型・値、および各L5参照配列の差分を照合した静的証拠。実行動作の証明ではない。",
+    "L8の変更はR2で指摘された13固定履歴参照と10 current integration row参照、およびpositive givenの分離説明に限定され、その他のL8内容が固定baseと一致することを照合した。",
     "L9側の583 nested参照はこの変更の対象外で未移行。SCF-B-0209はregisteredのまま。",
     "source classとの対応は固定baseで既に存在するL5の同class canonical pointerに基づく。"
   ]

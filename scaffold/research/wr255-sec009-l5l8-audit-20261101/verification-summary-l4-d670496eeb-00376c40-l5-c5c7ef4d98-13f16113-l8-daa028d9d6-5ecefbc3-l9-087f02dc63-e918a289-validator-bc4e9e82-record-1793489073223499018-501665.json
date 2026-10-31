@@ -2,19 +2,19 @@
   "schema": "sec009-l5l8-independent-audit.v1",
   "evidence_kind": "scaffold",
   "authority_effect": "none",
-  "source_revision": "0451f67e4b94451b7258078f49df3cb34db36098",
+  "source_revision": "daa028d9d666d604c270cd693c5d9376dbdc7835",
   "source_revisions": {
     "l4": "d670496eebc5a28469ac3da0e2f9be1bcd7a37ce",
-    "l5": "ea8e3c251069f64ca96a060a183693ab1bdfc08d",
-    "l8": "0451f67e4b94451b7258078f49df3cb34db36098",
+    "l5": "c5c7ef4d98aa665acb00e1bb3dd8173796b25400",
+    "l8": "daa028d9d666d604c270cd693c5d9376dbdc7835",
     "l9": "087f02dc637f6860e344e2bda9efa83c83506b72"
   },
   "source_hashes": {
     "l3_business": "f1668180a3daccb38da15f471ade0806c64f094a77b0d7a5cef25edc9b6ce901",
     "l3_functional": "e4eeb70cc303e44199c7d898281e91c22dba89b47666353b9c80a4c634e898b5",
     "l4": "00376c402930e1287e9e0e896804b1de8a20390f8abbea8377b70712f868b9da",
-    "l5": "1aefb9b64fb52abc8cf6eec7d32312bfcb9a07359d7406c2ca4e9fa9717fa190",
-    "l8": "49875dcdb4bcec85ebffbad678127e90a61db329c9cccae96f0090cd260f698d",
+    "l5": "13f16113cafb4b27b6f03c6a79797a260776c022c48f75ebaaf0220b8830baec",
+    "l8": "5ecefbc3aa0c140ba0b77a2e28194f98deebb641ce04435f42d16dc267c71f39",
     "l9": "e918a289fe88446b3f84210577f0fe8094505d9dac9d9a8713cd074eb6776e5b",
     "l10_business": "c34b8f9a99f8f240558458dd63033acd0d756dfe61ad9cd3aac0e8e1c8193f42",
     "l10_functional": "e6da7eaff29a623b5d069801280c295d9dd7cc43b51d9cde25b12a8110e5072a",
@@ -40,7 +40,7 @@
     "row_details": "recomputed by joining the 285 canonical L8 U-ID rows to L9 integration source IDs; no duplicate unit_case_source_index or L8 nested case groups are used"
   },
   "negative_source_review": {
-    "summary": "Each negative L9 nested source was resolved by joining the U-ID row's integration_case_ref to the canonical L9 integration inventory and case ID. Every `given` object contains only the shared evidence_limit notice; no concrete field values or paired conflicting values are present. Counterexamples therefore state the source ID's missing/conflict dimension plus the L4 class meaning, and conflict rows explicitly avoid inventing values.",
+    "summary": "Current source identity is resolved by joining each U-ID row to L9 integration_cases. Historical nested given observations are read from the fixed L9 revision recorded below; each given contains only the shared evidence_limit notice, not concrete values. Counterexamples therefore state the source ID's missing/conflict dimension plus L4 class meaning without inventing values.",
     "negative_case_count": 277,
     "distinct_given_hashes": 1,
     "given_hash_counts": {
@@ -49,7 +49,13 @@
     "case_id_and_pointer_are_in_row_audit": true
   },
   "positive_source_review": {
-    "summary": "No positive expected values were copied from L9 expected_proposal. A minimum positive contract expectation was derived independently from each abstract case marker and the cited L3/L10/L4 meaning. L9 given still provides only the shared evidence_limit field, so the designed expectations are not fixture-backed or observed outcomes.",
+    "summary": "No positive expected values were copied from L9 expected_proposal. A minimum positive contract expectation was derived independently from each abstract case marker and the cited L3/L10/L4 meaning. The fixed historical L9 given has only the shared evidence_limit field. Current integration_cases are separately referenced projections, not additional given facts or observations.",
+    "historical_l9_given_source": {
+      "revision": "e0a1a9b9c0449759e1aebb8664fd70bd5ea25b5d",
+      "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+      "blob": "e20e059dfe4ea6435921a8e2c9b7ee05da32c196",
+      "sha256": "e918a289fe88446b3f84210577f0fe8094505d9dac9d9a8713cd074eb6776e5b"
+    },
     "contract_oracle": "HELIXSECURITY-L10-009-B01 is resolved at contract level; individual oracle_id is null for each U-ID.",
     "resolved_contract_sources": [
       {
@@ -91,7 +97,9 @@
       {
         "uid": "SEC009-U0001",
         "case_id": "SEC009-ONLY-OS_ASSIGNMENT-UNSELECTED-ABSENT",
-        "l9_source_pointer_resolved_from_integration_case_ref": "/cases/0/positive_cases/0",
+        "l9_source_pointer_resolved_from_integration_case_ref": "/integration_cases/0",
+        "historical_l9_given_pointer": "/cases/0/positive_cases/0",
+        "historical_l9_revision": "e0a1a9b9c0449759e1aebb8664fd70bd5ea25b5d",
         "l9_given_keys": [
           "evidence_limit"
         ],
@@ -125,7 +133,9 @@
       {
         "uid": "SEC009-U0002",
         "case_id": "SEC009-ONLY-WORKER_EXECUTION-UNSELECTED-ABSENT",
-        "l9_source_pointer_resolved_from_integration_case_ref": "/cases/0/positive_cases/1",
+        "l9_source_pointer_resolved_from_integration_case_ref": "/integration_cases/1",
+        "historical_l9_given_pointer": "/cases/0/positive_cases/1",
+        "historical_l9_revision": "e0a1a9b9c0449759e1aebb8664fd70bd5ea25b5d",
         "l9_given_keys": [
           "evidence_limit"
         ],
@@ -159,7 +169,9 @@
       {
         "uid": "SEC009-U0003",
         "case_id": "SEC009-ONLY-CONNECT_COMMUNICATION-UNSELECTED-ABSENT",
-        "l9_source_pointer_resolved_from_integration_case_ref": "/cases/0/positive_cases/2",
+        "l9_source_pointer_resolved_from_integration_case_ref": "/integration_cases/2",
+        "historical_l9_given_pointer": "/cases/0/positive_cases/2",
+        "historical_l9_revision": "e0a1a9b9c0449759e1aebb8664fd70bd5ea25b5d",
         "l9_given_keys": [
           "evidence_limit"
         ],
@@ -193,7 +205,9 @@
       {
         "uid": "SEC009-U0004",
         "case_id": "SEC009-ONLY-CREDENTIAL_USE-UNSELECTED-ABSENT",
-        "l9_source_pointer_resolved_from_integration_case_ref": "/cases/0/positive_cases/3",
+        "l9_source_pointer_resolved_from_integration_case_ref": "/integration_cases/3",
+        "historical_l9_given_pointer": "/cases/0/positive_cases/3",
+        "historical_l9_revision": "e0a1a9b9c0449759e1aebb8664fd70bd5ea25b5d",
         "l9_given_keys": [
           "evidence_limit"
         ],
@@ -227,7 +241,9 @@
       {
         "uid": "SEC009-U0005",
         "case_id": "SEC009-ONLY-ARTIFACT_ACCESS-UNSELECTED-ABSENT",
-        "l9_source_pointer_resolved_from_integration_case_ref": "/cases/0/positive_cases/4",
+        "l9_source_pointer_resolved_from_integration_case_ref": "/integration_cases/4",
+        "historical_l9_given_pointer": "/cases/0/positive_cases/4",
+        "historical_l9_revision": "e0a1a9b9c0449759e1aebb8664fd70bd5ea25b5d",
         "l9_given_keys": [
           "evidence_limit"
         ],
@@ -261,7 +277,9 @@
       {
         "uid": "SEC009-U0006",
         "case_id": "SEC009-EMPTY-RECIPIENT-SET",
-        "l9_source_pointer_resolved_from_integration_case_ref": "/cases/0/positive_cases/5",
+        "l9_source_pointer_resolved_from_integration_case_ref": "/integration_cases/5",
+        "historical_l9_given_pointer": "/cases/0/positive_cases/5",
+        "historical_l9_revision": "e0a1a9b9c0449759e1aebb8664fd70bd5ea25b5d",
         "l9_given_keys": [
           "evidence_limit"
         ],
@@ -295,7 +313,9 @@
       {
         "uid": "SEC009-U0007",
         "case_id": "SEC009-OS-OFFLINE-INDEPENDENT-RECOVERY-SELECTION",
-        "l9_source_pointer_resolved_from_integration_case_ref": "/cases/0/positive_cases/6",
+        "l9_source_pointer_resolved_from_integration_case_ref": "/integration_cases/6",
+        "historical_l9_given_pointer": "/cases/0/positive_cases/6",
+        "historical_l9_revision": "e0a1a9b9c0449759e1aebb8664fd70bd5ea25b5d",
         "l9_given_keys": [
           "evidence_limit"
         ],
@@ -329,7 +349,9 @@
       {
         "uid": "SEC009-U0241",
         "case_id": "SEC009-GENERAL-MEANING-UNKNOWN",
-        "l9_source_pointer_resolved_from_integration_case_ref": "/cases/2/positive_cases/0",
+        "l9_source_pointer_resolved_from_integration_case_ref": "/integration_cases/240",
+        "historical_l9_given_pointer": "/cases/2/positive_cases/0",
+        "historical_l9_revision": "e0a1a9b9c0449759e1aebb8664fd70bd5ea25b5d",
         "l9_given_keys": [
           "evidence_limit"
         ],
@@ -369,7 +391,7 @@
     "negative_4way_matched_case_count": 277,
     "negative_4way_failure_count": 0,
     "negative_4way_failure_reasons": {},
-    "full_report": "check-child-report-l4-d670496eeb-00376c40-l5-ea8e3c2510-1aefb9b6-l8-0451f67e4b-49875dcd-l9-087f02dc63-e918a289-record-1793485186690215383-388303.json",
+    "full_report": "check-child-report-l4-d670496eeb-00376c40-l5-c5c7ef4d98-13f16113-l8-daa028d9d6-5ecefbc3-l9-087f02dc63-e918a289-record-1793489073223499018-501665.json",
     "full_report_sha256": "c5913fcfe04b387f8b137ee92a9011904b17a80c391b271d9a16fc86534735f5",
     "interpretation": "L4/L9 and L5/L8 pair checks pass, with 277 matched cases and zero 4-way checker failures. The eight positive rows remain contract-minimum designs, not observed fixture outcomes; this evidence does not claim runtime behavior or formal security verification."
   }
