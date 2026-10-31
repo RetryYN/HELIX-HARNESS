@@ -1828,9 +1828,9 @@
     "decision_ref": "Issue #3510 comment 6408252809; Issue #3510 comment 6447665479; PR #4009 R1 review; WR265-CONNECT-RETRY-DEDUP-L8-SLIM.",
     "git_commit": "b3ddf6f1d0a6cf2009e5f81a90f21c4292300185",
     "path": "docs/helix-connect/L8-unit-verification/retry-deduplication-conflict.json",
-    "meaning": "approved whole-object/hash pins、69行のraw packet/typed arguments/COPY fixture、全返却・実行/変異手順・hash材料、source packet pins、重複L3/L4/L9/function参照、independent probesの全面展開を整理した。元の69 case IDと順序、case固有反例・期待差分、各L9 expected_material pointer、L3/L4/L5/L9/L10責務、未実行/fixture-only/authority・operation効果なしの境界を保持。",
-    "removed_key_rule": "U-ID行には既存case id、明示u_id、元function_ref、source input-only counterexample/source pointer、独立期待/status/根拠source refs、既存oracle_id/oracle pointerを置く。function定義やfailure rule表を複製せず、fixture/raw packet本体、typed arguments、全返却、COPY、hash、seed、patch・変異手順を置かない。",
-    "use_boundary": "DT-VT-105のL5↔L8候補照合だけに用いる。counterexample_source_refとexpected_oracle_refは固定L9へのpointerで、raw fixtureを複製しない。将来L9 slimで両pointerを撤去する場合は既存consumerを移行する。旧commitはgit履歴確認専用で、実行/fallback/期待再生成に使わない。全caseは未実行で、L7 test citationも作らない。"
+    "meaning": "approved whole-object/hash pins、69件のraw packet/typed arguments/COPY fixture、13件のindependent local probe raw/whole/patch/hash、全返却・実行/変異手順・hash材料、source packet pins、重複L3/L4/L9/function参照の詳細展開を整理した。元69 case IDと順序・case固有反例と期待・L9 expected_material pointerを保ち、13 probeは入力basisとL3/L4/L5独立期待を短いU-ID行で戻し、area別7件の未識別変異を残す。L3/L4/L5/L9/L10責務と、未実行/fixture-only/authority・operation効果なしの境界を保持。",
+    "removed_key_rule": "元69行はcase id、明示u_id、元function_ref、source input-only counterexample/source pointer、独立期待/status/根拠source refs、既存oracle_id/oracle pointerを保持する。probe 13行は元probe idとfunction_ref、base_case_id、明示u_id、短いsource-derived basis、L9 base raw pointer、固定base probe provenance pointer、L3/L4/L5独立期待/status/根拠source refsとL10 oracle_idを持ち、probe別L9 expected oracleを捏造しない。function定義やfailure rule表は複製せず、fixture/raw packet本体、typed arguments、全返却、COPY、hash、seed、patch・変異手順を置かない。",
+    "use_boundary": "DT-VT-105のL5↔L8候補照合だけに用いる。元69行のcounterexample_source_refは固定L9 raw pointer、probe行のcounterexample_source_refは固定L9 base input、independent_probe_source_refはfixed-base履歴pointerであり、probe固有outcome oracleを示さない。将来L9 slimでL9 pointer consumerを撤去する場合は既存consumerを移行する。旧commitは入力sourceとsummary履歴の追跡専用で、実行/fallback/期待再生成に使わない。82行全て未実行で、L7 test citationも作らない。"
   },
   "legacy_comparison": [
     {
@@ -1883,7 +1883,7 @@
     }
   },
   "expectation_derivation": {
-    "boundary": "反例は固定L9 independent_source_packet raw inputの条件のみ。期待はL3 approved obligation・L4 contract・L5 calculation/function/failure ruleの読み取りから独立導出し、導けないものはunverified。L9 expected_materialは独立期待との比較に限る。期待をL9から文字列移送しない。",
+    "boundary": "反例は固定L9 independent_source_packet raw inputの条件のみ。独立local probe 13件はその固定L9 inputを基底にする固定base probe入力から短く記述し、expected_wholeは参照しない。期待はL3 approved obligation・L4 contract・L5 calculation/function/failure ruleの読み取りから独立導出し、導けない元case claim semanticsはunverified。元69行ではL9 expected_materialは独立期待との比較に限り、期待をL9から文字列移送しない。probeには個別L9 expected_materialがないため比較期待を作らない。",
     "functions": {
       "FN-C004-01": {
         "requirement_ref": "HELIXCONNECT-L3-004-F01",
