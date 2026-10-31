@@ -17,7 +17,7 @@ from typing import Any
 ROOT = Path(__file__).resolve().parents[3]
 HERE = Path(__file__).resolve().parent
 OVERLAY = HERE / "overlay"
-L5_L8_CANDIDATE_REVISION = "e7dd88b8f987de4cb5af6707489ea356a0c4c79a"
+L5_L8_CANDIDATE_REVISION = "24d7f00bdca41c3dfb1f3137655ffdbe3674cfb3"
 PATHS = {
     "l3_business": "docs/helix-security/L3-requirements/business-requirements.json",
     "l3_functional": "docs/helix-security/L3-requirements/functional-requirements.json",
@@ -31,6 +31,74 @@ PATHS = {
 }
 L4_PATH = PATHS["l4"]
 BASE_REVISION = "c14adddf2678c7a69d76420c451df3f05b1251ab"
+POSITIVE_RECIPIENT_CASES = {
+    "SEC009-ONLY-OS_ASSIGNMENT-UNSELECTED-ABSENT": "os_assignment",
+    "SEC009-ONLY-WORKER_EXECUTION-UNSELECTED-ABSENT": "worker_execution",
+    "SEC009-ONLY-CONNECT_COMMUNICATION-UNSELECTED-ABSENT": "connect_communication",
+    "SEC009-ONLY-CREDENTIAL_USE-UNSELECTED-ABSENT": "credential_use",
+    "SEC009-ONLY-ARTIFACT_ACCESS-UNSELECTED-ABSENT": "artifact_access",
+}
+
+
+def positive_minimum(case_id: str) -> dict[str, Any]:
+    common_preserved = {
+        "unrelated_scope": "全scope停止へ広げない。",
+        "actual_stop": "none",
+        "actual_recovery": "none",
+        "resume_authorized": False,
+        "operation_effect": "none",
+    }
+    if case_id in POSITIVE_RECIPIENT_CASES:
+        recipient = POSITIVE_RECIPIENT_CASES[case_id]
+        return {
+            "positive_expectation_ref": "positive_expectation_basis/rules/B01_UNSELECTED_ABSENT",
+            "oracle_id": None,
+            "test_citation": None,
+            "condition": {"scenario": "unselected_recipient_absent", "recipient": recipient, "premise_status": "case_marker_only_not_observed"},
+            "expected": {
+                "recipient_scope": "選択recipientだけを照合する。未選択recipientの能力不在を選択閉包の不足にしない。",
+                "operation_start": "全recipient能力の完成を任意operation開始条件にしない。",
+            },
+            "expected_preserved": common_preserved,
+        }
+    if case_id == "SEC009-EMPTY-RECIPIENT-SET":
+        return {
+            "positive_expectation_ref": "positive_expectation_basis/rules/B01_EMPTY_RECIPIENT_SET",
+            "oracle_id": None,
+            "test_citation": None,
+            "condition": {"scenario": "empty_recipient_set", "premise": "独立期待集合とpolicy.selected_recipientsが空として解決する場合", "premise_status": "case_marker_only_not_observed"},
+            "expected": {
+                "recipient_output": "recipient別の照合結果を空集合として出力する。",
+                "missing_recipient": "空集合だけを理由にrecipient不足を生成しない。",
+            },
+            "expected_preserved": common_preserved,
+        }
+    if case_id == "SEC009-OS-OFFLINE-INDEPENDENT-RECOVERY-SELECTION":
+        return {
+            "positive_expectation_ref": "positive_expectation_basis/rules/B01_INDEPENDENT_RECOVERY",
+            "oracle_id": None,
+            "test_citation": None,
+            "condition": {"scenario": "os_offline_independent_recovery_selection", "phase": "recovery", "premise_status": "case_marker_only_not_observed"},
+            "expected": {
+                "selection": "独立復旧経路の選択条件に従ってrecipientを照合する。",
+                "prerequisite": "停止中OSまたは通常009応答を普遍的な開始前提にしない。",
+                "state_separation": "隔離素材と復旧素材を別状態として示す。",
+            },
+            "expected_preserved": {"actual_stop": "none", "actual_recovery": "none", "resume_authorized": False, "operation_effect": "none"},
+        }
+    if case_id == "SEC009-GENERAL-MEANING-UNKNOWN":
+        return {
+            "positive_expectation_ref": "positive_expectation_basis/rules/F02_GENERAL_MEANING_UNKNOWN",
+            "oracle_id": None,
+            "test_citation": None,
+            "condition": {"scenario": "general_document_meaning_unknown", "premise_status": "case_marker_only_not_observed"},
+            "expected": {
+                "locality": "一般文書の意味unknownを全操作/全scope停止へ拡張しない。",
+                "classification": "unknownだけから安全trigger分類を生成しない。",
+            },
+            "expected_preserved": common_preserved,
+        }
+    raise ValueError(f"unrecognized positive SEC009 case marker: {case_id}")
 
 
 def read_json(path: Path) -> Any:
@@ -110,9 +178,10 @@ def git(*args: str) -> str:
 
 def main() -> int:
     l9_revision = git("log", "-1", "--format=%H", "--", PATHS["l9"])
+    l9_digest = sha256(ROOT / PATHS["l9"])
     l4_digest = sha256(ROOT / PATHS["l4"])
     validator_digest = sha256(HERE / "validate_l4_l9_supplement.py")
-    output_stem = f"{l9_revision[:8]}-{L5_L8_CANDIDATE_REVISION[:8]}-{l4_digest[:8]}-{validator_digest[:8]}"
+    output_stem = f"{l9_revision[:8]}-{l9_digest[:8]}-{L5_L8_CANDIDATE_REVISION[:8]}-{l4_digest[:8]}-{validator_digest[:8]}"
     row_audit_name = f"l9-row-audit-{output_stem}.jsonl"
     pointer_summary_name = f"pointer-consumer-audit-{output_stem}.json"
     pointer_rows_name = f"pointer-consumer-audit-{output_stem}.jsonl"
@@ -194,24 +263,26 @@ def main() -> int:
         else:
             if set(given) != {"evidence_limit"}:
                 raise ValueError(f"L9 positive given has additional input fields; review before class-based projection: {case_id}")
-            # Presence with nulls matches L8's explicitly unclosed positive rows.
-            row["condition"] = None
-            row["expected"] = None
-            row["expected_preserved"] = None
+            minimum = positive_minimum(case_id)
+            row.update(minimum)
             positive_rows.append({
                 "case_id": case_id,
                 "l9_source_pointer": l9_case_pointer,
                 "given": given,
-                "minimum_contract_meaning": "行別期待は未確定。下記のL3/L10契約文言は契約単位の根拠として記録し、行固有の結果には変換しない。",
+                **minimum,
+                "row_oracle_id": None,
+                "test_citation": None,
+                "measurement_status": "契約最小期待を設計済み。fixture入力と実観測は未取得。",
             })
             row_audit.append({
                 "case_id": case_id,
-                "population_state": "positive_unclosed",
+                "population_state": "positive_contract_minimum_unobserved",
                 "l9_source_pointer": l9_case_pointer,
                 "l9_given_sha256": sha_value(given),
-                "condition": None,
-                "expected": None,
-                "expected_preserved": None,
+                "positive_expectation_ref": minimum["positive_expectation_ref"],
+                "condition_sha256": sha_value(minimum["condition"]),
+                "expected_sha256": sha_value(minimum["expected"]),
+                "expected_preserved_sha256": sha_value(minimum["expected_preserved"]),
                 "row_oracle_id": None,
                 "test_citation": None,
             })
@@ -401,7 +472,8 @@ def main() -> int:
     write_immutable_json(HERE / pointer_summary_name, pointer_summary)
     write_immutable_jsonl(HERE / pointer_rows_name, consumer_rows)
 
-    # The 8 positive rows have contract-level meaning but lack case-level source inputs.
+    # Design contract-minimum expectations from case markers and L3/L10/L4; do
+    # not copy L9 expected_proposal or infer observed fixture values.
     l10b_case = next(r for r in l10b["cases"] if r["id"] == "HELIXSECURITY-L10-009-B01")
     l10f_case = next(r for r in l10f["cases"] if r["id"] == "HELIXSECURITY-L10-009-F02")
     review = {
@@ -415,17 +487,15 @@ def main() -> int:
             "L10_F02": {"path": PATHS["l10_functional"], "pointer": "/cases/22", "positive_input": l10f_case["positive_input"], "expected_observation": l10f_case["expected_observation"]},
             "L4_B01": {"path": PATHS["l4"], "pointer": "/contracts/0", "output_meaning": l4["contracts"][0]["output_meaning"]},
             "L4_F02": {"path": PATHS["l4"], "pointer": "/contracts/2", "output_meaning": l4["contracts"][2]["output_meaning"]},
+            "L4_independent_recovery": {"path": PATHS["l4"], "pointer": "/architecture/independent_recovery", "meaning": l4["architecture"]["independent_recovery"]},
+            "L4_locality": {"path": PATHS["l4"], "pointer": "/architecture/locality", "meaning": l4["architecture"]["locality"]},
         },
         "positive_rows": positive_rows,
         "minimum_meaning_findings": [
-            {"case_id": row["case_id"], "minimum": f"条件付きの意味のみ。case markerのunselected and absentをシナリオとして採る場合、L3 F01/L10 B01では当該recipientの不在を選択済みstop対象の欠落として数えない。selected setの入力がないため、具体的なexpected objectは作らない。({row['case_id'].split('-ONLY-',1)[-1].split('-UNSELECTED',1)[0]})"}
-            for row in positive_rows[:5]
-        ] + [
-            {"case_id": positive_rows[5]["case_id"], "minimum": "行別結果は導けない。empty-set markerだけでは適用対象のoperationやrecipientの有無が分からず、L3/L10の契約は条件付きのまま。"},
-            {"case_id": positive_rows[6]["case_id"], "minimum": "行別のrecovery対象選択は導けない。L3 F02はidentity-bound isolation/recoveryを求めるが、L9 givenにidentityやstateの値がない。"},
-            {"case_id": positive_rows[7]["case_id"], "minimum": "L3 F02/L10 F02はgeneral-meaning unknownを無関係なglobal stopへ広げることを認めない。行のexpected category/scope入力がないため、positive期待全体は未確定。"},
+            {"case_id": row["case_id"], "expectation_ref": row["positive_expectation_ref"], "condition": row["condition"], "expected": row["expected"], "expected_preserved": row["expected_preserved"], "measurement_status": row["measurement_status"]}
+            for row in positive_rows
         ],
-        "decision": "これらはsourceの解釈として記録するだけである。L9 expected_proposal、L8期待値、個別oracle ID、test citationは補わない。",
+        "decision": "各行に契約最小期待を設計した。L9 expected_proposalを参照せず、具体fixture値・個別oracle ID・test citation・実観測は補っていない。givenには行別入力値がないため期待は未実測である。",
     }
     write_immutable_json(HERE / positive_review_name, review)
 
@@ -464,9 +534,9 @@ def main() -> int:
         },
         "projection": {
             "negative_rows": len(projection_rows),
-            "positive_rows_unclosed": len(positive_rows),
+            "positive_rows_with_contract_minimum_unobserved": len(positive_rows),
             "negative_expected_source": "L4 failure_classifications only",
-            "positive_expected_source": "none; unresolved values are null",
+            "positive_expected_source": "L3/L10/L4 contract meaning plus case marker; no L9 expected_proposal copy",
             "compact_observation": "ordered L4 finding_codes plus L4 backflow_owner; no L9 expected_proposal copied",
         },
         "pointer_audit": {
@@ -490,7 +560,7 @@ def main() -> int:
         "positive_review_file": positive_review_name,
     }
     write_immutable_json(HERE / summary_name, summary)
-    print(json.dumps({"L4_L9_pair": report["L4_L9_pair"].get("passed"), "L5_L8_pair": report["L5_L8_pair"].get("passed"), "matched": neg.get("matched_case_count"), "failures": len(neg.get("failures", [])), "positive_unclosed": len(positive_rows), "pointer_audit_L8": len(pointer_audit["layers"]["L8"]["consumer_rows"]), "pointer_audit_L9": len(pointer_audit["layers"]["L9"]["consumer_rows"]), "summary": summary_name}, ensure_ascii=False))
+    print(json.dumps({"L4_L9_pair": report["L4_L9_pair"].get("passed"), "L5_L8_pair": report["L5_L8_pair"].get("passed"), "matched": neg.get("matched_case_count"), "failures": len(neg.get("failures", [])), "positive_contract_minimum_unobserved": len(positive_rows), "pointer_audit_L8": len(pointer_audit["layers"]["L8"]["consumer_rows"]), "pointer_audit_L9": len(pointer_audit["layers"]["L9"]["consumer_rows"]), "summary": summary_name}, ensure_ascii=False))
     return 0
 
 

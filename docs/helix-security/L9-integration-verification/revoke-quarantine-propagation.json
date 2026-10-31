@@ -32978,9 +32978,25 @@
           "pointer": "/cases/0/positive_cases/0"
         }
       ],
-      "condition": null,
-      "expected": null,
-      "expected_preserved": null
+      "condition": {
+        "scenario": "unselected_recipient_absent",
+        "recipient": "os_assignment",
+        "premise_status": "case_marker_only_not_observed"
+      },
+      "expected": {
+        "recipient_scope": "選択recipientだけを照合する。未選択recipientの能力不在を選択閉包の不足にしない。",
+        "operation_start": "全recipient能力の完成を任意operation開始条件にしない。"
+      },
+      "expected_preserved": {
+        "unrelated_scope": "全scope停止へ広げない。",
+        "actual_stop": "none",
+        "actual_recovery": "none",
+        "resume_authorized": false,
+        "operation_effect": "none"
+      },
+      "positive_expectation_ref": "positive_expectation_basis/rules/B01_UNSELECTED_ABSENT",
+      "oracle_id": null,
+      "test_citation": null
     },
     {
       "id": "SEC009-ONLY-WORKER_EXECUTION-UNSELECTED-ABSENT",
@@ -32992,9 +33008,25 @@
           "pointer": "/cases/0/positive_cases/1"
         }
       ],
-      "condition": null,
-      "expected": null,
-      "expected_preserved": null
+      "condition": {
+        "scenario": "unselected_recipient_absent",
+        "recipient": "worker_execution",
+        "premise_status": "case_marker_only_not_observed"
+      },
+      "expected": {
+        "recipient_scope": "選択recipientだけを照合する。未選択recipientの能力不在を選択閉包の不足にしない。",
+        "operation_start": "全recipient能力の完成を任意operation開始条件にしない。"
+      },
+      "expected_preserved": {
+        "unrelated_scope": "全scope停止へ広げない。",
+        "actual_stop": "none",
+        "actual_recovery": "none",
+        "resume_authorized": false,
+        "operation_effect": "none"
+      },
+      "positive_expectation_ref": "positive_expectation_basis/rules/B01_UNSELECTED_ABSENT",
+      "oracle_id": null,
+      "test_citation": null
     },
     {
       "id": "SEC009-ONLY-CONNECT_COMMUNICATION-UNSELECTED-ABSENT",
@@ -33006,9 +33038,25 @@
           "pointer": "/cases/0/positive_cases/2"
         }
       ],
-      "condition": null,
-      "expected": null,
-      "expected_preserved": null
+      "condition": {
+        "scenario": "unselected_recipient_absent",
+        "recipient": "connect_communication",
+        "premise_status": "case_marker_only_not_observed"
+      },
+      "expected": {
+        "recipient_scope": "選択recipientだけを照合する。未選択recipientの能力不在を選択閉包の不足にしない。",
+        "operation_start": "全recipient能力の完成を任意operation開始条件にしない。"
+      },
+      "expected_preserved": {
+        "unrelated_scope": "全scope停止へ広げない。",
+        "actual_stop": "none",
+        "actual_recovery": "none",
+        "resume_authorized": false,
+        "operation_effect": "none"
+      },
+      "positive_expectation_ref": "positive_expectation_basis/rules/B01_UNSELECTED_ABSENT",
+      "oracle_id": null,
+      "test_citation": null
     },
     {
       "id": "SEC009-ONLY-CREDENTIAL_USE-UNSELECTED-ABSENT",
@@ -33020,9 +33068,25 @@
           "pointer": "/cases/0/positive_cases/3"
         }
       ],
-      "condition": null,
-      "expected": null,
-      "expected_preserved": null
+      "condition": {
+        "scenario": "unselected_recipient_absent",
+        "recipient": "credential_use",
+        "premise_status": "case_marker_only_not_observed"
+      },
+      "expected": {
+        "recipient_scope": "選択recipientだけを照合する。未選択recipientの能力不在を選択閉包の不足にしない。",
+        "operation_start": "全recipient能力の完成を任意operation開始条件にしない。"
+      },
+      "expected_preserved": {
+        "unrelated_scope": "全scope停止へ広げない。",
+        "actual_stop": "none",
+        "actual_recovery": "none",
+        "resume_authorized": false,
+        "operation_effect": "none"
+      },
+      "positive_expectation_ref": "positive_expectation_basis/rules/B01_UNSELECTED_ABSENT",
+      "oracle_id": null,
+      "test_citation": null
     },
     {
       "id": "SEC009-ONLY-ARTIFACT_ACCESS-UNSELECTED-ABSENT",
@@ -33034,9 +33098,25 @@
           "pointer": "/cases/0/positive_cases/4"
         }
       ],
-      "condition": null,
-      "expected": null,
-      "expected_preserved": null
+      "condition": {
+        "scenario": "unselected_recipient_absent",
+        "recipient": "artifact_access",
+        "premise_status": "case_marker_only_not_observed"
+      },
+      "expected": {
+        "recipient_scope": "選択recipientだけを照合する。未選択recipientの能力不在を選択閉包の不足にしない。",
+        "operation_start": "全recipient能力の完成を任意operation開始条件にしない。"
+      },
+      "expected_preserved": {
+        "unrelated_scope": "全scope停止へ広げない。",
+        "actual_stop": "none",
+        "actual_recovery": "none",
+        "resume_authorized": false,
+        "operation_effect": "none"
+      },
+      "positive_expectation_ref": "positive_expectation_basis/rules/B01_UNSELECTED_ABSENT",
+      "oracle_id": null,
+      "test_citation": null
     },
     {
       "id": "SEC009-EMPTY-RECIPIENT-SET",
@@ -33048,9 +33128,25 @@
           "pointer": "/cases/0/positive_cases/5"
         }
       ],
-      "condition": null,
-      "expected": null,
-      "expected_preserved": null
+      "condition": {
+        "scenario": "empty_recipient_set",
+        "premise": "独立期待集合とpolicy.selected_recipientsが空として解決する場合",
+        "premise_status": "case_marker_only_not_observed"
+      },
+      "expected": {
+        "recipient_output": "recipient別の照合結果を空集合として出力する。",
+        "missing_recipient": "空集合だけを理由にrecipient不足を生成しない。"
+      },
+      "expected_preserved": {
+        "unrelated_scope": "全scope停止へ広げない。",
+        "actual_stop": "none",
+        "actual_recovery": "none",
+        "resume_authorized": false,
+        "operation_effect": "none"
+      },
+      "positive_expectation_ref": "positive_expectation_basis/rules/B01_EMPTY_RECIPIENT_SET",
+      "oracle_id": null,
+      "test_citation": null
     },
     {
       "id": "SEC009-OS-OFFLINE-INDEPENDENT-RECOVERY-SELECTION",
@@ -33062,9 +33158,25 @@
           "pointer": "/cases/0/positive_cases/6"
         }
       ],
-      "condition": null,
-      "expected": null,
-      "expected_preserved": null
+      "condition": {
+        "scenario": "os_offline_independent_recovery_selection",
+        "phase": "recovery",
+        "premise_status": "case_marker_only_not_observed"
+      },
+      "expected": {
+        "selection": "独立復旧経路の選択条件に従ってrecipientを照合する。",
+        "prerequisite": "停止中OSまたは通常009応答を普遍的な開始前提にしない。",
+        "state_separation": "隔離素材と復旧素材を別状態として示す。"
+      },
+      "expected_preserved": {
+        "actual_stop": "none",
+        "actual_recovery": "none",
+        "resume_authorized": false,
+        "operation_effect": "none"
+      },
+      "positive_expectation_ref": "positive_expectation_basis/rules/B01_INDEPENDENT_RECOVERY",
+      "oracle_id": null,
+      "test_citation": null
     },
     {
       "id": "SEC009-POLICY-EVENT_ID-MISSING",
@@ -41930,9 +42042,24 @@
           "pointer": "/cases/2/positive_cases/0"
         }
       ],
-      "condition": null,
-      "expected": null,
-      "expected_preserved": null
+      "condition": {
+        "scenario": "general_document_meaning_unknown",
+        "premise_status": "case_marker_only_not_observed"
+      },
+      "expected": {
+        "locality": "一般文書の意味unknownを全操作/全scope停止へ拡張しない。",
+        "classification": "unknownだけから安全trigger分類を生成しない。"
+      },
+      "expected_preserved": {
+        "unrelated_scope": "全scope停止へ広げない。",
+        "actual_stop": "none",
+        "actual_recovery": "none",
+        "resume_authorized": false,
+        "operation_effect": "none"
+      },
+      "positive_expectation_ref": "positive_expectation_basis/rules/F02_GENERAL_MEANING_UNKNOWN",
+      "oracle_id": null,
+      "test_citation": null
     },
     {
       "id": "SEC009-ISOLATION-EVENT_ID-MISSING",

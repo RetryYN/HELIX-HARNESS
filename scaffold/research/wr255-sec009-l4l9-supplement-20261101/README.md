@@ -6,7 +6,7 @@
 
 - L4/L9の投影元L9: `c14adddf2678c7a69d76420c451df3f05b1251ab`
 - canonical L4/L9補足: commit `d646a09e74aa815f5e565f02d26f27ecb67efe98`
-- overlay対象のL5/L8候補: commit `e7dd88b8f987de4cb5af6707489ea356a0c4c79a`
+- overlay対象のL5/L8候補: commit `24d7f00bdca41c3dfb1f3137655ffdbe3674cfb3`（L5/L8側でcase markerとL3/L10/L4からpositive最小期待を独立設計）
 
 repository rootで次を実行します。
 
@@ -23,13 +23,15 @@ validatorは固定L5/L8 commitを `git show` で読み込み、canonical L4/L9�
 
 ## 285行の照合と投影
 
-`l9-row-audit-d646a09e-e7dd88b8-00376c40-0dae5023.jsonl` はL9 285行それぞれのcase ID、state、L9 source pointerとgiven digestを記録します。negative 277行は対応するL4 class ID/pointerと `condition`、`expected`、`expected_preserved` のdigestを記録し、期待値がL4 classから導出されたことを追えます。positive 8行は期待をnullのまま保持し、個別oracle IDとtest citationもnullです。L9 `expected_proposal` を期待値の根拠に使いません。
+`l9-row-audit-<revision/hash>` はL9 285行それぞれのcase ID、state、L9 source pointerとgiven digestを記録します。negative 277行は対応するL4 class ID/pointerと `condition`、`expected`、`expected_preserved` のdigestを記録し、期待値がL4 classから導出されたことを追えます。positive 8行はcase markerの抽象条件とL3/L10/L4契約から最小期待を設計し、各値のdigestと共有根拠refを記録します。fixture入力と実観測はなく、個別oracle IDとtest citationはnullです。L9 `expected_proposal` を期待値の根拠に使いません。
+
+5件の `ONLY-…-UNSELECTED-ABSENT` は未選択recipientの能力不在を選択閉包の不足・任意operation開始条件にしない期待です。`EMPTY-RECIPIENT-SET` は、独立期待集合とpolicy選択集合が既知の空集合であるという設計条件の下で、recipient別空出力を期待します。この条件はgivenにある観測事実ではありません。OS offlineの独立復旧選択はOS/通常009応答を普遍的前提にせず、隔離と復旧素材を分けます。F02の一般文書meaning unknownは全操作・全scope停止へ拡張せず、unknownだけから安全trigger分類を作りません。これらの期待は未実測であり、実停止・実復旧・再開許可の生成を意味しません。
 
 negative givenは全行が共通 `evidence_limit` だけで、同一digestです。ケース固有の対象値・実際値・差分を裏付けないため、値を補っていません。positiveの契約レベル最小意味と行別に不足する入力は `positive-source-review.json` に分けて記録します。L10 oracleは契約単位であり、個別行のoracleとは区別しています。
 
 ## checker結果
 
-`overlay-check-child-d646a09e-e7dd88b8-00376c40-0dae5023.json` はcanonical L4/L9と固定L5/L8 candidate commitのchecker結果です。初回測定の `overlay-check-child.json` は元のcommit時点証拠として保持します。L4/L9 pair、L5/L8 pairはいずれも成立し、negative 277件がmatched、negative failureは0件です。positive 8件は行別の入力根拠が足りず未確定です。この静的照合は正式な4way検証やsecurity behaviorの証拠ではありません。
+`overlay-check-child-<revision/hash>` はcanonical L4/L9と固定L5/L8 candidate commitのchecker結果です。初回測定の `overlay-check-child.json` は元のcommit時点証拠として保持します。L4/L9 pair、L5/L8 pairはいずれも成立し、negative 277件がmatched、negative failureは0件です。positive 8件は契約最小期待を設計しましたが、case-specific fixture値・実観測・個別oracle・test citationがなく、未実測です。この静的照合は正式な4way検証やsecurity behaviorの証拠ではありません。
 
 ## consumer移行の行別監査
 
