@@ -1,0 +1,170 @@
+{
+  "schema": "wr258-pr4007-r2-latest-main-overlay.v1",
+  "evidence_kind": "scaffold",
+  "authority_effect": "none",
+  "source": {
+    "origin_main": "cd4208605f2a4e77e85f8d34317ff44c7218ad41",
+    "r2_candidate_commit": "787d34f40289cb28e71b511b2abaf81e81428c21",
+    "synthetic_merge_commit": "fe7ab4f1f60947cd3db4ae91b3023eaff3b5470c",
+    "synthetic_merge_tree": "a3cb1429440e70496a71fca8d4a40b31ec33b292",
+    "temporary_worktree": true,
+    "artifact_placeholder_for_scfctl_only": true
+  },
+  "commands": [
+    "python3 scaffold/tools/scfctl.py validate",
+    "python3 scaffold/tools/scfctl.py stale",
+    "python3 scaffold/tools/design_verification_checker.py check-child --root . --l4 docs/helix-security/L4-basic-design/project-scope-isolation.json --l5 docs/helix-security/L5-detail-design/project-scope-isolation.json --l8 docs/helix-security/L8-unit-verification/project-scope-isolation.json --l9 docs/helix-security/L9-integration-verification/project-scope-isolation.json",
+    "python3 scaffold/research/wr258-sec006-psi-explicit-20261101/build_overlay_probe.py --out tmp-wr258-overlay-generated",
+    "python3 scaffold/tools/design_verification_checker.py check-child --root . --l4 tmp-wr258-overlay-generated/l4.json --l5 tmp-wr258-overlay-generated/l5.json --l8 tmp-wr258-overlay-generated/l8.json --l9 tmp-wr258-overlay-generated/l9.json"
+  ],
+  "scfctl": {
+    "validate_exit": 0,
+    "validate_summary": "bindings=203 fail=0",
+    "stale_exit": 0,
+    "stale_summary": "stale=0"
+  },
+  "formal_document_check_child": {
+    "exit": 1,
+    "passed": false,
+    "pair_statuses": {
+      "L4_L9": true,
+      "L5_L8": true
+    },
+    "fourway_counts": {
+      "L4": 15,
+      "L9": 15,
+      "L8": 0,
+      "L5": 0
+    },
+    "case_rows": {
+      "L8": 0,
+      "L9": 0
+    },
+    "matched_case_count": 0,
+    "failure_count": 79,
+    "failure_groups": {
+      "L5|explicit_mode|class_source_marker_invalid": 1,
+      "L8|explicit_mode|class_table_marker_missing": 1,
+      "L8|case_identity|unit_cases_missing_or_not_array": 1,
+      "L9|case_identity|integration_cases_missing_or_not_array": 1,
+      "L4|owner_ref|class_owner_ref_unresolved": 15,
+      "L8|equivalence_key|class_key_missing_from_layer": 15,
+      "L8|equivalence_class|class_key_missing_from_layer": 15,
+      "L5|equivalence_key|class_key_missing_from_layer": 15,
+      "L5|equivalence_class|class_key_missing_from_layer": 15
+    }
+  },
+  "generated_integration_candidate": {
+    "build_summary": {
+      "out": "tmp-wr258-overlay-generated",
+      "case_rows": {
+        "L8": 143,
+        "L9": 148
+      },
+      "class_rows": {
+        "L4": 15,
+        "L5": 15,
+        "L8": 15,
+        "L9": 15
+      },
+      "retained_l8_candidates_mapped": 91,
+      "canonical_l8_rows_unmapped": 1,
+      "l9_legacy_assignment_classifications_preserved": true
+    },
+    "check_child_exit": 1,
+    "passed": false,
+    "pair_statuses": {
+      "L4_L9": true,
+      "L5_L8": true
+    },
+    "fourway_counts": {
+      "L4": 15,
+      "L9": 15,
+      "L8": 15,
+      "L5": 15
+    },
+    "case_rows": {
+      "L8": 143,
+      "L9": 148
+    },
+    "matched_case_count": 141,
+    "failure_count": 10,
+    "failures": [
+      {
+        "check": "CHK-NEG-4WAY-MATCH",
+        "attribute": "expected",
+        "reason": "case_attribute_differs_across_l8_l9",
+        "case_id": "SEC003-L8-OPERATION-DEFER"
+      },
+      {
+        "check": "CHK-NEG-4WAY-MATCH",
+        "attribute": "expected_preserved",
+        "reason": "case_attribute_differs_across_l8_l9",
+        "case_id": "SEC003-L8-OPERATION-DEFER"
+      },
+      {
+        "check": "CHK-NEG-4WAY-MATCH",
+        "attribute": "negative_class_ref",
+        "reason": "negative_case_class_ref_missing_or_unresolved",
+        "layer": "L8",
+        "case_id": "SEC003-L8-OPERATION-DEFER"
+      },
+      {
+        "check": "CHK-NEG-4WAY-MATCH",
+        "attribute": "integration_case_ref",
+        "reason": "integration_case_ref_unresolved",
+        "layer": "L8",
+        "case_id": "SEC003-L8-FALLBACK-PRIMARY"
+      },
+      {
+        "check": "CHK-NEG-4WAY-MATCH",
+        "attribute": "integration_case_ref",
+        "reason": "integration_case_not_referenced_from_l8",
+        "layer": "L9",
+        "case_id": "SEC003-AGENT-PRIMARY-TREE-FALLBACK"
+      },
+      {
+        "check": "CHK-NEG-4WAY-MATCH",
+        "attribute": "integration_case_ref",
+        "reason": "integration_case_not_referenced_from_l8",
+        "layer": "L9",
+        "case_id": "SEC003-CONFIGURATION-PRIMARY-TREE-FALLBACK"
+      },
+      {
+        "check": "CHK-NEG-4WAY-MATCH",
+        "attribute": "integration_case_ref",
+        "reason": "integration_case_not_referenced_from_l8",
+        "layer": "L9",
+        "case_id": "SEC003-CREDENTIAL-PRIMARY-TREE-FALLBACK"
+      },
+      {
+        "check": "CHK-NEG-4WAY-MATCH",
+        "attribute": "integration_case_ref",
+        "reason": "integration_case_not_referenced_from_l8",
+        "layer": "L9",
+        "case_id": "SEC003-HOOK-PRIMARY-TREE-FALLBACK"
+      },
+      {
+        "check": "CHK-NEG-4WAY-MATCH",
+        "attribute": "integration_case_ref",
+        "reason": "integration_case_not_referenced_from_l8",
+        "layer": "L9",
+        "case_id": "SEC003-MEMORY-PRIMARY-TREE-FALLBACK"
+      },
+      {
+        "check": "CHK-NEG-4WAY-MATCH",
+        "attribute": "integration_case_ref",
+        "reason": "integration_case_not_referenced_from_l8",
+        "layer": "L9",
+        "case_id": "SEC003-PRIMARY-TREE-FALLBACK"
+      }
+    ]
+  },
+  "sha256": {
+    "docs/helix-security/L4-basic-design/project-scope-isolation.json": "16d4fc5e3fcf0c677703b694b538f6d8f5542db36291850ed7f72865f0d9c72c",
+    "docs/helix-security/L5-detail-design/project-scope-isolation.json": "41c49bc0b62b415422067297bd9accf848e4f14e253fab9779e778c49c2e1edd",
+    "docs/helix-security/L8-unit-verification/project-scope-isolation.json": "6d093e482b013e733bc3eb5950aef5b8385b3288dc85bbcb9854bea92830900d",
+    "docs/helix-security/L9-integration-verification/project-scope-isolation.json": "eda71cc49c10ddf0681ae7ab629c6862b3e0c984854cecf0fdf8fc9faa0a0e5c",
+    "scaffold/tools/design_verification_checker.py": "e751526d67cd8df11e5aac1c5a1a178dfbd0fecc3f2ed21f995b7dda11ea4d5d"
+  }
+}

@@ -25,8 +25,8 @@
     },
     {
       "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
-      "sha256": "8cd71128dd5c3e7e4efe0c685e5ad00ad847deb9ea3fa2d311e0202e6f9b7c9b",
-      "note": "WR244/WR250 historical current pin SHA-256 e73518018f836294df326a75d48c344085252a81b302a6cc54fd24efb2332412 preserved; WR258 adds per-row L4 class identity/key projections for the current 98 rows, preserving IDs, expected observations, and 16 residual negatives. No explicit four-layer marker. Intermediate WR258 current-pin SHA-256 fb5895c299f3f14ecbc41fde01bdac605a20b98275e56cb6176b12693c12df72 preserved before class-label refinement. PR #4007 R1 current pin updated from fb5895c299f3f14ecbc41fde01bdac605a20b98275e56cb6176b12693c12df72 at reviewed head cf983f81ff09cd90fb3f8f781bdb7c7445923ee6; prior hashes in this note remain history. Current L4/L9 now record 15 classes and 148 negative system-oracle rows (98 existing + 50 source-derived additions). R1 row-specific-oracle followup: previous pin de953eaa30348263eed914098f559bceca24c0fceef3bd76e733d2887b2f5609 retained in this note; current L9 pin 8cd71128dd5c3e7e4efe0c685e5ad00ad847deb9ea3fa2d311e0202e6f9b7c9b includes 50 unique case conditions and exact L8 input references without using them to derive expected values."
+      "sha256": "eda71cc49c10ddf0681ae7ab629c6862b3e0c984854cecf0fdf8fc9faa0a0e5c",
+      "note": "WR244/WR250 historical current pin SHA-256 e73518018f836294df326a75d48c344085252a81b302a6cc54fd24efb2332412 preserved; WR258 adds per-row L4 class identity/key projections for the current 98 rows, preserving IDs, expected observations, and 16 residual negatives. No explicit four-layer marker. Intermediate WR258 current-pin SHA-256 fb5895c299f3f14ecbc41fde01bdac605a20b98275e56cb6176b12693c12df72 preserved before class-label refinement. PR #4007 R1 current pin updated from fb5895c299f3f14ecbc41fde01bdac605a20b98275e56cb6176b12693c12df72 at reviewed head cf983f81ff09cd90fb3f8f781bdb7c7445923ee6; prior hashes in this note remain history. Current L4/L9 now record 15 classes and 148 negative system-oracle rows (98 existing + 50 source-derived additions). R1 row-specific-oracle followup: previous pin de953eaa30348263eed914098f559bceca24c0fceef3bd76e733d2887b2f5609 retained in this note; current L9 pin 8cd71128dd5c3e7e4efe0c685e5ad00ad847deb9ea3fa2d311e0202e6f9b7c9b includes 50 unique case conditions and exact L8 input references without using them to derive expected values. PR #4007 R2では、50追加行の固有conditionを維持しつつL8→L9参照・candidate token・重複expected_observationを除去し、L3/L10/L4 source refを保持した。旧current pin 8cd71128dd5c3e7e4efe0c685e5ad00ad847deb9ea3fa2d311e0202e6f9b7c9bは履歴として保持。"
     },
     {
       "path": "docs/helix-security/L5-detail-design/project-scope-isolation.json",
@@ -110,9 +110,11 @@
     "scaffold/research/wr250-sec006-psi-l5l8-20261031/validate_pr4000_r1.py",
     "scaffold/research/wr250-sec006-psi-l5l8-20261031/overlay-validation-correction.json",
     "scaffold/research/wr258-sec006-psi-explicit-20261101/validate_pr4007_r1_followup.py",
-    "scaffold/research/wr258-sec006-psi-explicit-20261101/pr4007-r1-static-validation.json",
-    "scaffold/research/wr258-sec006-psi-explicit-20261101/pr4007-r1-followup-20261101.json",
-    "scaffold/research/wr258-sec006-psi-explicit-20261101/pr4007-r1-main-overlay-r2-20261101.json"
+    "scaffold/research/wr258-sec006-psi-explicit-20261101/pr-b-l8-integration-case-ref-candidate-r2.json",
+    "scaffold/research/wr258-sec006-psi-explicit-20261101/pr4007-r2-latest-main-overlay.json",
+    "scaffold/research/wr258-sec006-psi-explicit-20261101/pr4007-r2-static-validation.json",
+    "scaffold/research/wr258-sec006-psi-explicit-20261101/r2-evidence-disposition.json",
+    "scaffold/research/wr258-sec006-psi-explicit-20261101/validate_pr4007_r2.py"
   ],
   "verification": {
     "evidence_kind": "scaffold",
@@ -140,7 +142,8 @@
       "WR250 R1 preserves L9 main negative count 98 and multi_contract_residual negative_case_count 16; L4/L9 source bytes unchanged. Commit-time matrix and summary remain byte-identical to reviewed head.",
       "WR250 R1 static validator passes: row counts, no-class/unique-reason classification, corrected function refs, function-read-field missing/null/present projections, 32 current L5 pins, L4/L9 unchanged, frozen evidence unchanged, and residual negative count 16.",
       "PR4000 overlay correction: R1 frozen evidence and L4/L9 compare against reviewed revision f9c64394d93d102324da9d02a39f7bbbff77f231, not ambient HEAD. Previous validator hash and observation are preserved in overlay-validation-correction.json.",
-      "WR258 supplement: L4 has 16 top-level source classes with code=expected_classification; L9 keeps 98 row IDs/expected observations and 16 residual rows while recording class_id/key projections; L5/L8 and all-four-layer markers remain unchanged."
+      "WR258 supplement: L4 has 16 top-level source classes with code=expected_classification; L9 keeps 98 row IDs/expected observations and 16 residual rows while recording class_id/key projections; L5/L8 and all-four-layer markers remain unchanged.",
+      "R2最新main overlay（origin/main cd4208605f2a4e77e85f8d34317ff44c7218ad41）: validate 203/0、stale 0。正式check-childはpair 2組pass・4way 0 matched/79 failures。生成統合候補は141/148 matched・10 failures。詳細はpr4007-r2-latest-main-overlay.json。"
     ],
     "negative_cases": [
       "Do not treat source presentation order as normative when the L4 diagnostic sort does not apply.",

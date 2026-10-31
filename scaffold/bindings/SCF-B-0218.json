@@ -25,8 +25,8 @@
     },
     {
       "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
-      "sha256": "8cd71128dd5c3e7e4efe0c685e5ad00ad847deb9ea3fa2d311e0202e6f9b7c9b",
-      "note": "WR258 98行のclass identity/projection。既存case ID・期待観測は変更せず、履歴hashを保持。 PR #4007 R1 current pin updated from fb5895c299f3f14ecbc41fde01bdac605a20b98275e56cb6176b12693c12df72 at reviewed head cf983f81ff09cd90fb3f8f781bdb7c7445923ee6; prior hashes in this note remain history. Current L4/L9 now record 15 classes and 148 negative system-oracle rows (98 existing + 50 source-derived additions). R1 row-specific-oracle followup: previous pin de953eaa30348263eed914098f559bceca24c0fceef3bd76e733d2887b2f5609 retained in this note; current L9 pin 8cd71128dd5c3e7e4efe0c685e5ad00ad847deb9ea3fa2d311e0202e6f9b7c9b includes 50 unique case conditions and exact L8 input references without using them to derive expected values."
+      "sha256": "eda71cc49c10ddf0681ae7ab629c6862b3e0c984854cecf0fdf8fc9faa0a0e5c",
+      "note": "WR258 98行のclass identity/projection。既存case ID・期待観測は変更せず、履歴hashを保持。 PR #4007 R1 current pin updated from fb5895c299f3f14ecbc41fde01bdac605a20b98275e56cb6176b12693c12df72 at reviewed head cf983f81ff09cd90fb3f8f781bdb7c7445923ee6; prior hashes in this note remain history. Current L4/L9 now record 15 classes and 148 negative system-oracle rows (98 existing + 50 source-derived additions). R1 row-specific-oracle followup: previous pin de953eaa30348263eed914098f559bceca24c0fceef3bd76e733d2887b2f5609 retained in this note; current L9 pin 8cd71128dd5c3e7e4efe0c685e5ad00ad847deb9ea3fa2d311e0202e6f9b7c9b includes 50 unique case conditions and exact L8 input references without using them to derive expected values. PR #4007 R2では、50追加行の固有conditionを維持しつつL8→L9参照・candidate token・重複expected_observationを除去し、L3/L10/L4 source refを保持した。旧current pin 8cd71128dd5c3e7e4efe0c685e5ad00ad847deb9ea3fa2d311e0202e6f9b7c9bは履歴として保持。"
     },
     {
       "path": "docs/governance/design-verification-quality-assurance.md",
@@ -110,7 +110,6 @@
     "scaffold/research/wr258-sec006-psi-explicit-20261101/integration-overlay-check-child.json",
     "scaffold/research/wr258-sec006-psi-explicit-20261101/integration-overlay-measurement.json",
     "scaffold/research/wr258-sec006-psi-explicit-20261101/legacy-classification-crosswalk.json",
-    "scaffold/research/wr258-sec006-psi-explicit-20261101/rowwise-integration-design.json",
     "scaffold/research/wr258-sec006-psi-explicit-20261101/build_rowwise_design.py",
     "scaffold/research/wr258-sec006-psi-explicit-20261101/checker-empty-finding-owner-candidate.json",
     "scaffold/research/wr258-sec006-psi-explicit-20261101/checker-empty-finding-owner-static-check.json",
@@ -124,14 +123,12 @@
     "scaffold/research/wr258-sec006-psi-explicit-20261101/overlay-reconstruction-r2.json",
     "scaffold/research/wr258-sec006-psi-explicit-20261101/operation-defer-and-pr-split-candidate-r1.json",
     "scaffold/research/wr258-sec006-psi-explicit-20261101/validate_pr4007_r1_followup.py",
-    "scaffold/research/wr258-sec006-psi-explicit-20261101/pr4007-r1-static-validation.json",
-    "scaffold/research/wr258-sec006-psi-explicit-20261101/pr4007-r1-followup-20261101.json",
-    "scaffold/research/wr258-sec006-psi-explicit-20261101/pr4007-r1-main-overlay-r2-20261101.json",
     "scaffold/research/wr258-sec006-psi-explicit-20261101/validate_pr4007_r1_oracle_uniqueness.py",
-    "scaffold/research/wr258-sec006-psi-explicit-20261101/pr4007-r1-oracle-uniqueness-validation-r2.json",
-    "scaffold/research/wr258-sec006-psi-explicit-20261101/pr4007-r1-case-specific-overlay-check-child.json",
-    "scaffold/research/wr258-sec006-psi-explicit-20261101/pr4007-r1-latest-main-overlay-r1.json",
-    "scaffold/research/wr258-sec006-psi-explicit-20261101/pr4007-r1-latest-main-overlay-r2.json"
+    "scaffold/research/wr258-sec006-psi-explicit-20261101/pr-b-l8-integration-case-ref-candidate-r2.json",
+    "scaffold/research/wr258-sec006-psi-explicit-20261101/pr4007-r2-latest-main-overlay.json",
+    "scaffold/research/wr258-sec006-psi-explicit-20261101/pr4007-r2-static-validation.json",
+    "scaffold/research/wr258-sec006-psi-explicit-20261101/r2-evidence-disposition.json",
+    "scaffold/research/wr258-sec006-psi-explicit-20261101/validate_pr4007_r2.py"
   ],
   "verification": {
     "evidence_kind": "scaffold",
@@ -151,9 +148,12 @@
       "Historical blind and WR244/WR250 fixed evidence files remain byte-identical.",
       "The two full-copy overlay trees from f328 are removed from this revision; their Git blob IDs and SHA-256 values are recorded in f328-overlay-disposition.json. The fixed-commit temporary-worktree reconstruction verifies all eight historical overlay hashes before removal and reproduces baseline 141 matched/16 failures and caller-provenance 147 matched/9 failures.",
       "PR #4007 R1: L4 has 15 negative classes after removing local-only DEFERRED; L9 preserves 98 previous rows and adds 50 source-derived short system oracles, for 148 total (F01 93/F02 55); all five newly introduced L4 classes receive L9 case rows; 16 residual negatives remain unchanged.",
-      "50 L9 additions have unique row-specific condition and explicit rowwise candidate/L8 case references; expected/class values resolve from L4 and all L3/L10/L4 source JSON pointers resolve. Previous 98 L9 rows remain exact apart from their R1 direct class ref.",
+      "R1検討時点では50 L9追加行に固有conditionとrowwise candidate/L8 case参照を記録した。R2ではそのL8参照・candidate fieldを除去し、固有condition、L4由来のexpected/class、L3/L10/L4 source pointerを保持。従前98行はR1 direct class ref以外を維持。",
       "Latest origin/main 3c2ea6734d0038d8fd93f8bdbf090e0db6a9e09d synthetic merge check-child: formal pair checks pass, four-way 0 matched/79 partial-marker failures; generated integration candidate reports pair checks pass, 141 matched/10 failures. No four-way PASS claim.",
-      "Exact post-commit d1983ee latest-main squash overlay was re-measured: main 3c2ea673, validate 202/0 and stale 0; formal partial-marker 0/79, integrated candidate 141/10. This measurement includes the exact R1 follow-up HEAD under review."
+      "Exact post-commit d1983ee latest-main squash overlay was re-measured: main 3c2ea673, validate 202/0 and stale 0; formal partial-marker 0/79, integrated candidate 141/10. This measurement includes the exact R1 follow-up HEAD under review.",
+      "PR #4007 R2では、L9追加50行の固有conditionを維持し、L8参照・candidate field・重複expected_observationを除去した。R2 validatorで既存98行、追加50行、15 class、Python reprなし、L3/L10/L4 pointer解決、未実行状態を確認。",
+      "772941 byteのrowwise designを現行pathから除去する前に、固定f328 commitからbyte単位で再生成できることを確認した。blob/SHAと復元方法はr2-evidence-disposition.jsonに記録。PR-BのL8→L9 mappingは未適用の小さい候補として保持。",
+      "R2最新main overlay（origin/main cd4208605f2a4e77e85f8d34317ff44c7218ad41）: validate 203/0、stale 0。正式check-childはpair 2組pass・4way 0 matched/79 failures。生成統合候補は141/148 matched・10 failures。詳細はpr4007-r2-latest-main-overlay.json。"
     ],
     "negative_cases": [
       "L8 SIDE-UNKNOWN-SIDE and ASSET-UNKNOWN-KIND remain unknown with scope_input_unresolved and map to separate source-derived axes.",

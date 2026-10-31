@@ -1,0 +1,114 @@
+{
+  "schema": "wr258-pr4007-r2-evidence-disposition.v1",
+  "evidence_kind": "scaffold",
+  "authority_effect": "none",
+  "current_revision_before_r2": "d3b0b1777f3cf35d604d20ad18a177cc9f85caa3",
+  "purpose": "重複・時点違いのPR4007 R1記録と再生成可能な大容量rowwise出力を現行pathから除き、正確な履歴参照と復元経路を残す。",
+  "retired_files": [
+    {
+      "path": "scaffold/research/wr258-sec006-psi-explicit-20261101/rowwise-integration-design.json",
+      "source_revision": "d3b0b1777f3cf35d604d20ad18a177cc9f85caa3",
+      "git_blob": "a29776ee2d054341a924bc2ad4bc44e33183319f",
+      "sha256": "567ba03eff6607c3603b10c9bb443bf06c890364c0aa2106299cc92a81583004",
+      "bytes": 772941,
+      "disposition": "現行scaffoldから退役。履歴上の正確なbyte列を次の手順で復元できる: git show d3b0b1777f3cf35d604d20ad18a177cc9f85caa3:scaffold/research/wr258-sec006-psi-explicit-20261101/rowwise-integration-design.json > scaffold/research/wr258-sec006-psi-explicit-20261101/rowwise-integration-design.json",
+      "rebuild": {
+        "fixed_commit": "f32812ea08cc88545ea228e71146738553ae1e35",
+        "fixed_commit_blob": "a29776ee2d054341a924bc2ad4bc44e33183319f",
+        "fixed_commit_sha256": "567ba03eff6607c3603b10c9bb443bf06c890364c0aa2106299cc92a81583004",
+        "exact_reconstruction_verified": true,
+        "command": "git worktree add --detach <persistent-temp-under-helix-worktrees> f32812ea08cc88545ea228e71146738553ae1e35; cd <worktree>; python3 scaffold/research/wr258-sec006-psi-explicit-20261101/build_rowwise_design.py; git worktree remove --force <worktree>",
+        "measured_counts": {
+          "canonical_l8_negative_rows": 52,
+          "exact_projection_l8_rows": 2,
+          "exact_projection_pairs": 7,
+          "unmatched_l8_rows": 50,
+          "l9_negative_rows": 98,
+          "retained_l8_candidate_rows": 91,
+          "confirmed_duplicate_candidates_removed": 7,
+          "l9_skeletons": 50
+        },
+        "output_bytes": 772941
+      }
+    },
+    {
+      "path": "scaffold/research/wr258-sec006-psi-explicit-20261101/pr4007-r1-oracle-uniqueness-validation.json",
+      "source_revision": "d3b0b1777f3cf35d604d20ad18a177cc9f85caa3",
+      "git_blob": "421416080dcf373a0d8d112d1da9a8574918e999",
+      "sha256": "c7e535b5f792bc85adc00b8e938a50b3c336826b665ceb649950960eef0b089d",
+      "bytes": 18279,
+      "disposition": "現行scaffoldから退役。履歴上の正確なbyte列を次の手順で復元できる: git show d3b0b1777f3cf35d604d20ad18a177cc9f85caa3:scaffold/research/wr258-sec006-psi-explicit-20261101/pr4007-r1-oracle-uniqueness-validation.json > scaffold/research/wr258-sec006-psi-explicit-20261101/pr4007-r1-oracle-uniqueness-validation.json"
+    },
+    {
+      "path": "scaffold/research/wr258-sec006-psi-explicit-20261101/pr4007-r1-oracle-uniqueness-validation-r2.json",
+      "source_revision": "d3b0b1777f3cf35d604d20ad18a177cc9f85caa3",
+      "git_blob": "421416080dcf373a0d8d112d1da9a8574918e999",
+      "sha256": "c7e535b5f792bc85adc00b8e938a50b3c336826b665ceb649950960eef0b089d",
+      "bytes": 18279,
+      "disposition": "現行scaffoldから退役。履歴上の正確なbyte列を次の手順で復元できる: git show d3b0b1777f3cf35d604d20ad18a177cc9f85caa3:scaffold/research/wr258-sec006-psi-explicit-20261101/pr4007-r1-oracle-uniqueness-validation-r2.json > scaffold/research/wr258-sec006-psi-explicit-20261101/pr4007-r1-oracle-uniqueness-validation-r2.json"
+    },
+    {
+      "path": "scaffold/research/wr258-sec006-psi-explicit-20261101/pr4007-r1-case-specific-overlay-check-child.json",
+      "source_revision": "d3b0b1777f3cf35d604d20ad18a177cc9f85caa3",
+      "git_blob": "63a551e10fd57d2bcafbdfcc51c46e70e00115b4",
+      "sha256": "10d46ff9e53bd7fd89fa859a10ec52f5ec0b43fd57dfa54db7d57675bbe539cf",
+      "bytes": 4028,
+      "disposition": "現行scaffoldから退役。履歴上の正確なbyte列を次の手順で復元できる: git show d3b0b1777f3cf35d604d20ad18a177cc9f85caa3:scaffold/research/wr258-sec006-psi-explicit-20261101/pr4007-r1-case-specific-overlay-check-child.json > scaffold/research/wr258-sec006-psi-explicit-20261101/pr4007-r1-case-specific-overlay-check-child.json"
+    },
+    {
+      "path": "scaffold/research/wr258-sec006-psi-explicit-20261101/pr4007-r1-latest-main-overlay-r1.json",
+      "source_revision": "d3b0b1777f3cf35d604d20ad18a177cc9f85caa3",
+      "git_blob": "27514585f461bbc6e862106958afbbe5bc0c850f",
+      "sha256": "21b3890400fc0e8fc639d0d4e96f266129932c143c8de87ab3c910a89e0f8b53",
+      "bytes": 3593,
+      "disposition": "現行scaffoldから退役。履歴上の正確なbyte列を次の手順で復元できる: git show d3b0b1777f3cf35d604d20ad18a177cc9f85caa3:scaffold/research/wr258-sec006-psi-explicit-20261101/pr4007-r1-latest-main-overlay-r1.json > scaffold/research/wr258-sec006-psi-explicit-20261101/pr4007-r1-latest-main-overlay-r1.json"
+    },
+    {
+      "path": "scaffold/research/wr258-sec006-psi-explicit-20261101/pr4007-r1-latest-main-overlay-r2.json",
+      "source_revision": "d3b0b1777f3cf35d604d20ad18a177cc9f85caa3",
+      "git_blob": "ce614d723bc2189c9a67cc130cb6381b2a5f476c",
+      "sha256": "d62d390edd6ee45625de86ccbbb6e8d7af848d870e4236b2607aa17ec3ab4ad3",
+      "bytes": 3683,
+      "disposition": "現行scaffoldから退役。履歴上の正確なbyte列を次の手順で復元できる: git show d3b0b1777f3cf35d604d20ad18a177cc9f85caa3:scaffold/research/wr258-sec006-psi-explicit-20261101/pr4007-r1-latest-main-overlay-r2.json > scaffold/research/wr258-sec006-psi-explicit-20261101/pr4007-r1-latest-main-overlay-r2.json"
+    },
+    {
+      "path": "scaffold/research/wr258-sec006-psi-explicit-20261101/pr4007-r1-main-overlay-r2-20261101.json",
+      "source_revision": "d3b0b1777f3cf35d604d20ad18a177cc9f85caa3",
+      "git_blob": "a101a6a5b76872615b360f9d6d74e42f2bc47ade",
+      "sha256": "bcb0e93c49f85effcf3fc09bc59c4a77d7cca6225558a2c809e88a6661810e7b",
+      "bytes": 3340,
+      "disposition": "現行scaffoldから退役。履歴上の正確なbyte列を次の手順で復元できる: git show d3b0b1777f3cf35d604d20ad18a177cc9f85caa3:scaffold/research/wr258-sec006-psi-explicit-20261101/pr4007-r1-main-overlay-r2-20261101.json > scaffold/research/wr258-sec006-psi-explicit-20261101/pr4007-r1-main-overlay-r2-20261101.json"
+    },
+    {
+      "path": "scaffold/research/wr258-sec006-psi-explicit-20261101/pr4007-r1-followup-20261101.json",
+      "source_revision": "d3b0b1777f3cf35d604d20ad18a177cc9f85caa3",
+      "git_blob": "e57d341cf75a1ec8285f2f0a7a971f122154e372",
+      "sha256": "d76cabfefa993e5e4db3a98d9e0a00c12d65b9d1b2c7736426269ee5c9a571a4",
+      "bytes": 12084,
+      "disposition": "現行scaffoldから退役。履歴上の正確なbyte列を次の手順で復元できる: git show d3b0b1777f3cf35d604d20ad18a177cc9f85caa3:scaffold/research/wr258-sec006-psi-explicit-20261101/pr4007-r1-followup-20261101.json > scaffold/research/wr258-sec006-psi-explicit-20261101/pr4007-r1-followup-20261101.json"
+    },
+    {
+      "path": "scaffold/research/wr258-sec006-psi-explicit-20261101/pr4007-r1-static-validation.json",
+      "source_revision": "d3b0b1777f3cf35d604d20ad18a177cc9f85caa3",
+      "git_blob": "4babf8b7eaf56059f4eaa63c19acb520430a779b",
+      "sha256": "e95d0a567e40fffdb5c4dcec05534d45052be5d93da287d2107b1708f92856d5",
+      "bytes": 1592,
+      "disposition": "現行scaffoldから退役。履歴上の正確なbyte列を次の手順で復元できる: git show d3b0b1777f3cf35d604d20ad18a177cc9f85caa3:scaffold/research/wr258-sec006-psi-explicit-20261101/pr4007-r1-static-validation.json > scaffold/research/wr258-sec006-psi-explicit-20261101/pr4007-r1-static-validation.json"
+    }
+  ],
+  "duplicate_blob_groups": [
+    {
+      "git_blob": "421416080dcf373a0d8d112d1da9a8574918e999",
+      "files": [
+        "scaffold/research/wr258-sec006-psi-explicit-20261101/pr4007-r1-oracle-uniqueness-validation.json",
+        "scaffold/research/wr258-sec006-psi-explicit-20261101/pr4007-r1-oracle-uniqueness-validation-r2.json"
+      ],
+      "sha256": "c7e535b5f792"
+    }
+  ],
+  "replacement_current_artifacts": [
+    "scaffold/research/wr258-sec006-psi-explicit-20261101/pr4007-r2-static-validation.json",
+    "scaffold/research/wr258-sec006-psi-explicit-20261101/pr4007-r2-latest-main-overlay.json",
+    "scaffold/research/wr258-sec006-psi-explicit-20261101/pr-b-l8-integration-case-ref-candidate-r2.json"
+  ]
+}

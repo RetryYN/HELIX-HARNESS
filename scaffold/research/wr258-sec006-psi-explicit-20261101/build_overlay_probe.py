@@ -109,9 +109,8 @@ def main():
     l8_rows = []
     l8_case_ref_by_id = {}
     l9_by_id = {row['id']: row for case in l9['cases'] for row in case['negative_cases']}
-    rowwise = json.loads((Path('scaffold/research/wr258-sec006-psi-explicit-20261101') / 'rowwise-integration-design.json').read_text())
-    new_candidates = rowwise['candidate_l9_skeletons_for_50_unmatched_l8_rows']
-    new_candidate_by_l8 = {x['intended_l8_case_ref']: x for x in new_candidates}
+    mapping = json.loads((Path('scaffold/research/wr258-sec006-psi-explicit-20261101') / 'pr-b-l8-integration-case-ref-candidate-r2.json').read_text())
+    new_candidate_by_l8 = {x['l8_case_id']: x for x in mapping['rows']}
     for case in l8['cases']:
         for row in case['negative_cases']:
             arow = row.get('negative_class_assignment', {})
@@ -143,8 +142,8 @@ def main():
                 l8_row['contract_ref'] = l5_by_class[class_id].get('contract_ref')
             if row['id'] in new_candidate_by_l8:
                 candidate = new_candidate_by_l8[row['id']]
-                l8_row['integration_case_ref'] = f"SEC003-WR258-L9-ORACLE-{int(candidate['candidate_id'][-3:]):03d}"
-                l8_row['condition'] = l9_by_id[f"SEC003-WR258-L9-ORACLE-{int(candidate['candidate_id'][-3:]):03d}"]['condition']
+                l8_row['integration_case_ref'] = candidate['l9_integration_case_ref']
+                l8_row['condition'] = l9_by_id[candidate['l9_integration_case_ref']]['condition']
             l8_rows.append(l8_row)
             l8_case_ref_by_id[row['id']] = l8_row
 
