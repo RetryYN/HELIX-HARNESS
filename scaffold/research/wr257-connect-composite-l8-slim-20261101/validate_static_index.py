@@ -336,7 +336,7 @@ def main() -> None:
     prior = base_load(L8)
     l5, l4, l9 = load(L5), load(L4), load(L9)
     l8_sha = sha((ROOT / L8).read_bytes())
-    assert '短い反例・期待判断' in current['method']['rule'] and 'patch path' not in current['method']['rule']
+    assert '固有の反例・期待判断' in current['method']['rule'] and 'patch path' not in current['method']['rule']
     assert 'op/path/value' not in current['local_probe_contract']['expectation']
     assert '固定基準revision' in current['local_probe_contract']['expectation']
     assert 'DT-VT-105' in current['local_probe_contract']['boundary'] and 'not_executed' in current['local_probe_contract']['boundary']
