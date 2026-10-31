@@ -17,7 +17,7 @@ authority_effect: none
 
 L5の37個のL9 literal/output pointerは全て調査した。各pointerは既存の`source_revision=b52ad0e1e954790ebe57b2d87da46ea6712a07d9`で解決し、canonical value hashが固定revisionの値に一致する。これらの意味と固定source参照は保持した。L8に直接のL9 pointerはない。
 
-WR251の`SCF-B-0211`は過去の時点証拠を変更せず、現行L9 upstream hashへのrebind情報を追記した。SCF-B-0222には各追補証拠を登録する。過去の監査・測定snapshotを上書きせず、今回の追補を別ファイルに記録する。証拠ファイルのSHA-256、作成commit、同一hashの重複名、git履歴からの復元手順は`evidence-history-index-r1.json`で追跡する。初回check-child名とr2はSHA-256が同一。旧名のfileは削除せず、正規artifactをr2に固定して旧名はbinding一覧から外す。ハッシュと復元コマンドは`evidence-history-index-r1.json`に記録した。
+WR251の`SCF-B-0211`は過去の時点証拠を変更せず、現行L9 upstream hashへのrebind情報を追記した。SCF-B-0222には各追補証拠を登録する。過去の監査・測定snapshotを上書きせず、今回の追補を別ファイルに記録する。証拠ファイルのSHA-256、作成commit、同一hashの重複名、git履歴からの復元手順は`evidence-history-index-r2.json`で追跡する。初回check-child名とr2はSHA-256が同一。旧名のfileは削除せず、正規artifactをr2に固定して旧名はbinding一覧から外す。ハッシュと復元コマンドは同indexに記録した。
 
 ## 旧sourceと失敗起点
 
@@ -27,6 +27,6 @@ WR251の`SCF-B-0211`は過去の時点証拠を変更せず、現行L9 upstream 
 
 ## 検証と境界
 
-`validate_l9_slim.py`は固定baseの元caseから59件を行別に再導出し、ID・順序・basis・差分対象・状態判定・返却先・source field不在、要約文の日本語、raw値/before-after/full projectionの不在、L3/L4/L10参照、L10数値pointer、L8の限定的crosscheck、L5の37固定revision pointerを検査する。初回・過去追補の測定を上書きせず、最新`origin/main`とのmerge overlay結果とhash整理を新しいappend-only evidenceとして記録する。
+`validate_l9_slim.py`は固定baseの元caseから59件を行別に再導出し、ID・順序・basis・差分対象・状態判定・返却先・source field不在、要約文の日本語、raw値/before-after/full projectionの不在、L3/L4/L10参照、L10数値pointer、L8の限定的crosscheck、L5の37固定revision pointerを検査する。最新merge overlayの測定は`validation-results-r9.json`と`merge-overlay-check-child-r7.json`に記録した。対象は`origin/main=6a7fbfbe134e9163976fa67319044fa0bc03973f`とbranch commit `f940563edbc38f46cc3575527aaed9189c9563bf`の合成tree `4a9de7061c6c9482e874c0d71701de0a93611722`。
 
 `scfctl validate`、`scfctl stale`、`design_verification_checker.py check-child`はmerge overlayで実測する。check-childの`not_evaluated`や既存negative結果を成功へ読み替えない。上流整理の静的照合だけを行い、旧runtime/test/CI、L4/L5 algorithm、製品testは実行しない。実fixture、実観測、formal verification、承認、実装ready、完了状態を生成しない。
