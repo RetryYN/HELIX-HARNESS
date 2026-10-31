@@ -1,7 +1,7 @@
 {
-  "schema": "append-only-measurement-dedup.v1",
+  "schema": "append-only-measurement-dedup.v2",
   "authority_effect": "none",
-  "decision": "同一L9 bytes・L5/L8 fixed commit・validatorに対するcommit前後測定を比較し、HEADには確定commit時点の固有artifactだけを置く。削除pathのGit commit/blob/SHA-256とgit show復元commandを固定し、過去証拠を消去しない。",
+  "decision": "現行treeには最新origin/main overlayに対する各種artifactを内容hash由来の不変pathで1本ずつ置く。同一bytesの再測定は同じpathを再利用し、異なる測定は新規pathへ保存する。過去の全revision付きartifactはGit履歴から復元でき、commit/blob/SHA-256と復元commandを以下に固定する。",
   "removed_measurements": [
     {
       "path": "scaffold/research/wr255-sec009-l4l9-supplement-20261101/l9-row-audit-d646a09e-57c0197c-24d7f00b-00376c40-e540f13f.jsonl",
@@ -65,5 +65,221 @@
     "L5_L8_candidate_revision": "24d7f00bdca41c3dfb1f3137655ffdbe3674cfb3",
     "matched": 277,
     "failures": 0
-  }
+  },
+  "historical_measurements": [
+    {
+      "path": "scaffold/research/wr255-sec009-l4l9-supplement-20261101/overlay-summary-087f02dc-e918a289-24d7f00b-00376c40-44b576c9.json",
+      "commit": "9fde7a42dde12884b59c1e421454e69cf34f5f8d",
+      "git_blob_sha1": "cc9c0775a49cb7b0371c3088d58cfe05e31e0cba",
+      "content_sha256": "8dad473c638e87f0b8bc2b8edea03471585f5c12a4a27be0ea617c2a4b14367a",
+      "restore_command": "git show 9fde7a42dde12884b59c1e421454e69cf34f5f8d:scaffold/research/wr255-sec009-l4l9-supplement-20261101/overlay-summary-087f02dc-e918a289-24d7f00b-00376c40-44b576c9.json > scaffold/research/wr255-sec009-l4l9-supplement-20261101/overlay-summary-087f02dc-e918a289-24d7f00b-00376c40-44b576c9.json"
+    },
+    {
+      "path": "scaffold/research/wr255-sec009-l4l9-supplement-20261101/l9-row-audit-e22b5c96-e918a289-24d7f00b-00376c40-b96c3f5e.jsonl",
+      "commit": "087f02dc637f6860e344e2bda9efa83c83506b72",
+      "git_blob_sha1": "581d38f79c6aeb08a1722ac13087e17c87572bae",
+      "content_sha256": "a47cbf858ae9b5f8b59cb80bb7ff756ec3f5baac5ee642ed290f15db86be7789",
+      "restore_command": "git show 087f02dc637f6860e344e2bda9efa83c83506b72:scaffold/research/wr255-sec009-l4l9-supplement-20261101/l9-row-audit-e22b5c96-e918a289-24d7f00b-00376c40-b96c3f5e.jsonl > scaffold/research/wr255-sec009-l4l9-supplement-20261101/l9-row-audit-e22b5c96-e918a289-24d7f00b-00376c40-b96c3f5e.jsonl"
+    },
+    {
+      "path": "scaffold/research/wr255-sec009-l4l9-supplement-20261101/overlay-check-child-e22b5c96-e918a289-24d7f00b-00376c40-b96c3f5e.json",
+      "commit": "087f02dc637f6860e344e2bda9efa83c83506b72",
+      "git_blob_sha1": "52ba25ea873b64c316a0e6a50176cd83d1e66bcf",
+      "content_sha256": "879d5799975af2ab4c26e35ead97f36e63231ac3687d92e1a46b90303d273d68",
+      "restore_command": "git show 087f02dc637f6860e344e2bda9efa83c83506b72:scaffold/research/wr255-sec009-l4l9-supplement-20261101/overlay-check-child-e22b5c96-e918a289-24d7f00b-00376c40-b96c3f5e.json > scaffold/research/wr255-sec009-l4l9-supplement-20261101/overlay-check-child-e22b5c96-e918a289-24d7f00b-00376c40-b96c3f5e.json"
+    },
+    {
+      "path": "scaffold/research/wr255-sec009-l4l9-supplement-20261101/overlay-summary-e22b5c96-e918a289-24d7f00b-00376c40-b96c3f5e.json",
+      "commit": "087f02dc637f6860e344e2bda9efa83c83506b72",
+      "git_blob_sha1": "8bafcc09bb91a92278c864eeeefb480466b9b804",
+      "content_sha256": "f0a421bfe399c88e2984bf66aed80a93f12bb6e976c456292e521ca54cef63ff",
+      "restore_command": "git show 087f02dc637f6860e344e2bda9efa83c83506b72:scaffold/research/wr255-sec009-l4l9-supplement-20261101/overlay-summary-e22b5c96-e918a289-24d7f00b-00376c40-b96c3f5e.json > scaffold/research/wr255-sec009-l4l9-supplement-20261101/overlay-summary-e22b5c96-e918a289-24d7f00b-00376c40-b96c3f5e.json"
+    },
+    {
+      "path": "scaffold/research/wr255-sec009-l4l9-supplement-20261101/positive-source-review-e22b5c96-e918a289-24d7f00b-00376c40-b96c3f5e.json",
+      "commit": "087f02dc637f6860e344e2bda9efa83c83506b72",
+      "git_blob_sha1": "72dd2ec985078d299a3f49a49ad445f29ad1773e",
+      "content_sha256": "e229b15df0e3cbcda0365b3e95ff15c2468a7db1feefdcf1ebde0f67bbc45ce0",
+      "restore_command": "git show 087f02dc637f6860e344e2bda9efa83c83506b72:scaffold/research/wr255-sec009-l4l9-supplement-20261101/positive-source-review-e22b5c96-e918a289-24d7f00b-00376c40-b96c3f5e.json > scaffold/research/wr255-sec009-l4l9-supplement-20261101/positive-source-review-e22b5c96-e918a289-24d7f00b-00376c40-b96c3f5e.json"
+    },
+    {
+      "path": "scaffold/research/wr255-sec009-l4l9-supplement-20261101/l9-row-audit-d646a09e-57c0197c-24d7f00b-00376c40-e540f13f.jsonl",
+      "commit": "4d7abea84784b387005cee5a328cdfa2ec6fcb19",
+      "git_blob_sha1": "ae87fc24ddcee4e18228d9c5c16529777c0eb097",
+      "content_sha256": "4b4fde5bf664586ba3a7a41800612ad159288f0a43f5a12ba92fcbc535b7ab55",
+      "restore_command": "git show 4d7abea84784b387005cee5a328cdfa2ec6fcb19:scaffold/research/wr255-sec009-l4l9-supplement-20261101/l9-row-audit-d646a09e-57c0197c-24d7f00b-00376c40-e540f13f.jsonl > scaffold/research/wr255-sec009-l4l9-supplement-20261101/l9-row-audit-d646a09e-57c0197c-24d7f00b-00376c40-e540f13f.jsonl"
+    },
+    {
+      "path": "scaffold/research/wr255-sec009-l4l9-supplement-20261101/l9-row-audit-e22b5c96-57c0197c-24d7f00b-00376c40-e540f13f.jsonl",
+      "commit": "4d7abea84784b387005cee5a328cdfa2ec6fcb19",
+      "git_blob_sha1": "ae87fc24ddcee4e18228d9c5c16529777c0eb097",
+      "content_sha256": "4b4fde5bf664586ba3a7a41800612ad159288f0a43f5a12ba92fcbc535b7ab55",
+      "restore_command": "git show 4d7abea84784b387005cee5a328cdfa2ec6fcb19:scaffold/research/wr255-sec009-l4l9-supplement-20261101/l9-row-audit-e22b5c96-57c0197c-24d7f00b-00376c40-e540f13f.jsonl > scaffold/research/wr255-sec009-l4l9-supplement-20261101/l9-row-audit-e22b5c96-57c0197c-24d7f00b-00376c40-e540f13f.jsonl"
+    },
+    {
+      "path": "scaffold/research/wr255-sec009-l4l9-supplement-20261101/overlay-check-child-d646a09e-57c0197c-24d7f00b-00376c40-e540f13f.json",
+      "commit": "4d7abea84784b387005cee5a328cdfa2ec6fcb19",
+      "git_blob_sha1": "52ba25ea873b64c316a0e6a50176cd83d1e66bcf",
+      "content_sha256": "879d5799975af2ab4c26e35ead97f36e63231ac3687d92e1a46b90303d273d68",
+      "restore_command": "git show 4d7abea84784b387005cee5a328cdfa2ec6fcb19:scaffold/research/wr255-sec009-l4l9-supplement-20261101/overlay-check-child-d646a09e-57c0197c-24d7f00b-00376c40-e540f13f.json > scaffold/research/wr255-sec009-l4l9-supplement-20261101/overlay-check-child-d646a09e-57c0197c-24d7f00b-00376c40-e540f13f.json"
+    },
+    {
+      "path": "scaffold/research/wr255-sec009-l4l9-supplement-20261101/overlay-check-child-e22b5c96-57c0197c-24d7f00b-00376c40-e540f13f.json",
+      "commit": "4d7abea84784b387005cee5a328cdfa2ec6fcb19",
+      "git_blob_sha1": "52ba25ea873b64c316a0e6a50176cd83d1e66bcf",
+      "content_sha256": "879d5799975af2ab4c26e35ead97f36e63231ac3687d92e1a46b90303d273d68",
+      "restore_command": "git show 4d7abea84784b387005cee5a328cdfa2ec6fcb19:scaffold/research/wr255-sec009-l4l9-supplement-20261101/overlay-check-child-e22b5c96-57c0197c-24d7f00b-00376c40-e540f13f.json > scaffold/research/wr255-sec009-l4l9-supplement-20261101/overlay-check-child-e22b5c96-57c0197c-24d7f00b-00376c40-e540f13f.json"
+    },
+    {
+      "path": "scaffold/research/wr255-sec009-l4l9-supplement-20261101/overlay-summary-d646a09e-57c0197c-24d7f00b-00376c40-e540f13f.json",
+      "commit": "4d7abea84784b387005cee5a328cdfa2ec6fcb19",
+      "git_blob_sha1": "42bb130d40330d05520ab91b725dde8420774cde",
+      "content_sha256": "144c9fbe22a03e42dd33a874377b7a3d03b2419fe5977523020c9fe507b3ac7e",
+      "restore_command": "git show 4d7abea84784b387005cee5a328cdfa2ec6fcb19:scaffold/research/wr255-sec009-l4l9-supplement-20261101/overlay-summary-d646a09e-57c0197c-24d7f00b-00376c40-e540f13f.json > scaffold/research/wr255-sec009-l4l9-supplement-20261101/overlay-summary-d646a09e-57c0197c-24d7f00b-00376c40-e540f13f.json"
+    },
+    {
+      "path": "scaffold/research/wr255-sec009-l4l9-supplement-20261101/overlay-summary-e22b5c96-57c0197c-24d7f00b-00376c40-e540f13f.json",
+      "commit": "4d7abea84784b387005cee5a328cdfa2ec6fcb19",
+      "git_blob_sha1": "0e3964d0a03045231e127825eeee2431185639ab",
+      "content_sha256": "3a2cae1e5a1bd08484b70afc25abc52b25afc2e02507e29f2f7c08cf299c06a6",
+      "restore_command": "git show 4d7abea84784b387005cee5a328cdfa2ec6fcb19:scaffold/research/wr255-sec009-l4l9-supplement-20261101/overlay-summary-e22b5c96-57c0197c-24d7f00b-00376c40-e540f13f.json > scaffold/research/wr255-sec009-l4l9-supplement-20261101/overlay-summary-e22b5c96-57c0197c-24d7f00b-00376c40-e540f13f.json"
+    },
+    {
+      "path": "scaffold/research/wr255-sec009-l4l9-supplement-20261101/positive-source-review-d646a09e-57c0197c-24d7f00b-00376c40-e540f13f.json",
+      "commit": "4d7abea84784b387005cee5a328cdfa2ec6fcb19",
+      "git_blob_sha1": "98db2cab7ad2dd9700c2a075e20438542f195182",
+      "content_sha256": "cc7f190c8b710d38f642378fe0860411dd63473adcd57e0768a1ca7f78d9bf89",
+      "restore_command": "git show 4d7abea84784b387005cee5a328cdfa2ec6fcb19:scaffold/research/wr255-sec009-l4l9-supplement-20261101/positive-source-review-d646a09e-57c0197c-24d7f00b-00376c40-e540f13f.json > scaffold/research/wr255-sec009-l4l9-supplement-20261101/positive-source-review-d646a09e-57c0197c-24d7f00b-00376c40-e540f13f.json"
+    },
+    {
+      "path": "scaffold/research/wr255-sec009-l4l9-supplement-20261101/positive-source-review-e22b5c96-57c0197c-24d7f00b-00376c40-e540f13f.json",
+      "commit": "4d7abea84784b387005cee5a328cdfa2ec6fcb19",
+      "git_blob_sha1": "98db2cab7ad2dd9700c2a075e20438542f195182",
+      "content_sha256": "cc7f190c8b710d38f642378fe0860411dd63473adcd57e0768a1ca7f78d9bf89",
+      "restore_command": "git show 4d7abea84784b387005cee5a328cdfa2ec6fcb19:scaffold/research/wr255-sec009-l4l9-supplement-20261101/positive-source-review-e22b5c96-57c0197c-24d7f00b-00376c40-e540f13f.json > scaffold/research/wr255-sec009-l4l9-supplement-20261101/positive-source-review-e22b5c96-57c0197c-24d7f00b-00376c40-e540f13f.json"
+    },
+    {
+      "path": "scaffold/research/wr255-sec009-l4l9-supplement-20261101/l9-row-audit-d646a09e-cb6e085e-00376c40.jsonl",
+      "commit": "2e310c30e6bdcf8d22aedebf82fb2a9a48ba61e5",
+      "git_blob_sha1": "5f6ad41ef83902a9b8309060251ba4d08fb6bd80",
+      "content_sha256": "c64c5d8fba363f2cb034e2cfeb5f0004e0dd11920607e02f6d113ac03a69fa7e",
+      "restore_command": "git show 2e310c30e6bdcf8d22aedebf82fb2a9a48ba61e5:scaffold/research/wr255-sec009-l4l9-supplement-20261101/l9-row-audit-d646a09e-cb6e085e-00376c40.jsonl > scaffold/research/wr255-sec009-l4l9-supplement-20261101/l9-row-audit-d646a09e-cb6e085e-00376c40.jsonl"
+    },
+    {
+      "path": "scaffold/research/wr255-sec009-l4l9-supplement-20261101/l9-row-audit-d646a09e-e7dd88b8-00376c40-0dae5023.jsonl",
+      "commit": "2e310c30e6bdcf8d22aedebf82fb2a9a48ba61e5",
+      "git_blob_sha1": "5f6ad41ef83902a9b8309060251ba4d08fb6bd80",
+      "content_sha256": "c64c5d8fba363f2cb034e2cfeb5f0004e0dd11920607e02f6d113ac03a69fa7e",
+      "restore_command": "git show 2e310c30e6bdcf8d22aedebf82fb2a9a48ba61e5:scaffold/research/wr255-sec009-l4l9-supplement-20261101/l9-row-audit-d646a09e-e7dd88b8-00376c40-0dae5023.jsonl > scaffold/research/wr255-sec009-l4l9-supplement-20261101/l9-row-audit-d646a09e-e7dd88b8-00376c40-0dae5023.jsonl"
+    },
+    {
+      "path": "scaffold/research/wr255-sec009-l4l9-supplement-20261101/l9-row-audit-d646a09e-e7dd88b8-00376c40.jsonl",
+      "commit": "2e310c30e6bdcf8d22aedebf82fb2a9a48ba61e5",
+      "git_blob_sha1": "5f6ad41ef83902a9b8309060251ba4d08fb6bd80",
+      "content_sha256": "c64c5d8fba363f2cb034e2cfeb5f0004e0dd11920607e02f6d113ac03a69fa7e",
+      "restore_command": "git show 2e310c30e6bdcf8d22aedebf82fb2a9a48ba61e5:scaffold/research/wr255-sec009-l4l9-supplement-20261101/l9-row-audit-d646a09e-e7dd88b8-00376c40.jsonl > scaffold/research/wr255-sec009-l4l9-supplement-20261101/l9-row-audit-d646a09e-e7dd88b8-00376c40.jsonl"
+    },
+    {
+      "path": "scaffold/research/wr255-sec009-l4l9-supplement-20261101/overlay-check-child-d646a09e-cb6e085e-00376c40.json",
+      "commit": "2e310c30e6bdcf8d22aedebf82fb2a9a48ba61e5",
+      "git_blob_sha1": "c6e891c4bb701b283f499fe5df51217d2f557b2b",
+      "content_sha256": "2b5a2b4d0cf9fbc5dc95c6971c33be58adaf8898002bcba7df19806f4c8e9df4",
+      "restore_command": "git show 2e310c30e6bdcf8d22aedebf82fb2a9a48ba61e5:scaffold/research/wr255-sec009-l4l9-supplement-20261101/overlay-check-child-d646a09e-cb6e085e-00376c40.json > scaffold/research/wr255-sec009-l4l9-supplement-20261101/overlay-check-child-d646a09e-cb6e085e-00376c40.json"
+    },
+    {
+      "path": "scaffold/research/wr255-sec009-l4l9-supplement-20261101/overlay-check-child-d646a09e-e7dd88b8-00376c40-0dae5023.json",
+      "commit": "2e310c30e6bdcf8d22aedebf82fb2a9a48ba61e5",
+      "git_blob_sha1": "3c4857fb0a3eb80d5b3d8a87da702a0c448985eb",
+      "content_sha256": "0047ad1ece6e32bfedb299f8dee47c86a3f86e92df7682d1e9b7ffcbf9c7e9d0",
+      "restore_command": "git show 2e310c30e6bdcf8d22aedebf82fb2a9a48ba61e5:scaffold/research/wr255-sec009-l4l9-supplement-20261101/overlay-check-child-d646a09e-e7dd88b8-00376c40-0dae5023.json > scaffold/research/wr255-sec009-l4l9-supplement-20261101/overlay-check-child-d646a09e-e7dd88b8-00376c40-0dae5023.json"
+    },
+    {
+      "path": "scaffold/research/wr255-sec009-l4l9-supplement-20261101/overlay-check-child-d646a09e-e7dd88b8-00376c40.json",
+      "commit": "2e310c30e6bdcf8d22aedebf82fb2a9a48ba61e5",
+      "git_blob_sha1": "e38ef62e19f5a72a5ff4170945f1af935cce41d2",
+      "content_sha256": "c4446a8ff076057835058f4b4eb618918613ecfdaf6e1a9f71617e32d64f8aa1",
+      "restore_command": "git show 2e310c30e6bdcf8d22aedebf82fb2a9a48ba61e5:scaffold/research/wr255-sec009-l4l9-supplement-20261101/overlay-check-child-d646a09e-e7dd88b8-00376c40.json > scaffold/research/wr255-sec009-l4l9-supplement-20261101/overlay-check-child-d646a09e-e7dd88b8-00376c40.json"
+    },
+    {
+      "path": "scaffold/research/wr255-sec009-l4l9-supplement-20261101/overlay-summary-d646a09e-cb6e085e-00376c40.json",
+      "commit": "2e310c30e6bdcf8d22aedebf82fb2a9a48ba61e5",
+      "git_blob_sha1": "1257f1618bc83b870a78a8f3a1bdc10418426497",
+      "content_sha256": "f07fa4d7142dba561574ff5cc138b5f3ff2477b6da6feb0272953757e813bbe9",
+      "restore_command": "git show 2e310c30e6bdcf8d22aedebf82fb2a9a48ba61e5:scaffold/research/wr255-sec009-l4l9-supplement-20261101/overlay-summary-d646a09e-cb6e085e-00376c40.json > scaffold/research/wr255-sec009-l4l9-supplement-20261101/overlay-summary-d646a09e-cb6e085e-00376c40.json"
+    },
+    {
+      "path": "scaffold/research/wr255-sec009-l4l9-supplement-20261101/overlay-summary-d646a09e-e7dd88b8-00376c40-0dae5023.json",
+      "commit": "2e310c30e6bdcf8d22aedebf82fb2a9a48ba61e5",
+      "git_blob_sha1": "782db10cc7574b6467898e722a475f5bcd9dcf88",
+      "content_sha256": "788d2e5830449f31a51bda4aff1f83d913f87b2eabe90a674d9a1d14f8446b95",
+      "restore_command": "git show 2e310c30e6bdcf8d22aedebf82fb2a9a48ba61e5:scaffold/research/wr255-sec009-l4l9-supplement-20261101/overlay-summary-d646a09e-e7dd88b8-00376c40-0dae5023.json > scaffold/research/wr255-sec009-l4l9-supplement-20261101/overlay-summary-d646a09e-e7dd88b8-00376c40-0dae5023.json"
+    },
+    {
+      "path": "scaffold/research/wr255-sec009-l4l9-supplement-20261101/overlay-summary-d646a09e-e7dd88b8-00376c40.json",
+      "commit": "2e310c30e6bdcf8d22aedebf82fb2a9a48ba61e5",
+      "git_blob_sha1": "2dde5e7f2179cde23f17274eac84a77ec99f4725",
+      "content_sha256": "516420c2408c4ce42f52f8ec77d4affef0103d7711cccc40eb945df8ea3f996d",
+      "restore_command": "git show 2e310c30e6bdcf8d22aedebf82fb2a9a48ba61e5:scaffold/research/wr255-sec009-l4l9-supplement-20261101/overlay-summary-d646a09e-e7dd88b8-00376c40.json > scaffold/research/wr255-sec009-l4l9-supplement-20261101/overlay-summary-d646a09e-e7dd88b8-00376c40.json"
+    },
+    {
+      "path": "scaffold/research/wr255-sec009-l4l9-supplement-20261101/positive-source-review-d646a09e-cb6e085e-00376c40.json",
+      "commit": "2e310c30e6bdcf8d22aedebf82fb2a9a48ba61e5",
+      "git_blob_sha1": "1ad03c838ea70da95cf969b14d56f01d4f8d6c13",
+      "content_sha256": "4ed7ba4a425d770676b52221903ac2888ce0def45e54aeb0a106750b4bc984e4",
+      "restore_command": "git show 2e310c30e6bdcf8d22aedebf82fb2a9a48ba61e5:scaffold/research/wr255-sec009-l4l9-supplement-20261101/positive-source-review-d646a09e-cb6e085e-00376c40.json > scaffold/research/wr255-sec009-l4l9-supplement-20261101/positive-source-review-d646a09e-cb6e085e-00376c40.json"
+    },
+    {
+      "path": "scaffold/research/wr255-sec009-l4l9-supplement-20261101/positive-source-review-d646a09e-e7dd88b8-00376c40-0dae5023.json",
+      "commit": "2e310c30e6bdcf8d22aedebf82fb2a9a48ba61e5",
+      "git_blob_sha1": "1ad03c838ea70da95cf969b14d56f01d4f8d6c13",
+      "content_sha256": "4ed7ba4a425d770676b52221903ac2888ce0def45e54aeb0a106750b4bc984e4",
+      "restore_command": "git show 2e310c30e6bdcf8d22aedebf82fb2a9a48ba61e5:scaffold/research/wr255-sec009-l4l9-supplement-20261101/positive-source-review-d646a09e-e7dd88b8-00376c40-0dae5023.json > scaffold/research/wr255-sec009-l4l9-supplement-20261101/positive-source-review-d646a09e-e7dd88b8-00376c40-0dae5023.json"
+    },
+    {
+      "path": "scaffold/research/wr255-sec009-l4l9-supplement-20261101/positive-source-review-d646a09e-e7dd88b8-00376c40.json",
+      "commit": "2e310c30e6bdcf8d22aedebf82fb2a9a48ba61e5",
+      "git_blob_sha1": "1ad03c838ea70da95cf969b14d56f01d4f8d6c13",
+      "content_sha256": "4ed7ba4a425d770676b52221903ac2888ce0def45e54aeb0a106750b4bc984e4",
+      "restore_command": "git show 2e310c30e6bdcf8d22aedebf82fb2a9a48ba61e5:scaffold/research/wr255-sec009-l4l9-supplement-20261101/positive-source-review-d646a09e-e7dd88b8-00376c40.json > scaffold/research/wr255-sec009-l4l9-supplement-20261101/positive-source-review-d646a09e-e7dd88b8-00376c40.json"
+    },
+    {
+      "path": "scaffold/research/wr255-sec009-l4l9-supplement-20261101/overlay-check-child.json",
+      "commit": "f30d55ed475ba237886e55dcf9fcd690275a2a98",
+      "git_blob_sha1": "50fe9e280863de9a6e89efc802759ece441f8f17",
+      "content_sha256": "24e4d288819f803036f1cf5200dff6a541e73e5a1a6ad1aecf5b90b0537a6e82",
+      "restore_command": "git show f30d55ed475ba237886e55dcf9fcd690275a2a98:scaffold/research/wr255-sec009-l4l9-supplement-20261101/overlay-check-child.json > scaffold/research/wr255-sec009-l4l9-supplement-20261101/overlay-check-child.json"
+    },
+    {
+      "path": "scaffold/research/wr255-sec009-l4l9-supplement-20261101/overlay-summary.json",
+      "commit": "f30d55ed475ba237886e55dcf9fcd690275a2a98",
+      "git_blob_sha1": "9266b7e61594a68a05f83271bc0be1e2bebf3cac",
+      "content_sha256": "fd605820696e8174c51430f6da5b9268762b43263efa16c25d03aac4855279e8",
+      "restore_command": "git show f30d55ed475ba237886e55dcf9fcd690275a2a98:scaffold/research/wr255-sec009-l4l9-supplement-20261101/overlay-summary.json > scaffold/research/wr255-sec009-l4l9-supplement-20261101/overlay-summary.json"
+    },
+    {
+      "path": "scaffold/research/wr255-sec009-l4l9-supplement-20261101/positive-source-review.json",
+      "commit": "f30d55ed475ba237886e55dcf9fcd690275a2a98",
+      "git_blob_sha1": "426622bfc30bbb0439c365189e36ca59f91b7c22",
+      "content_sha256": "ee62aab5da9007e43d55a47420312d493a7a545e8513f67f73883dab3945d4f4",
+      "restore_command": "git show f30d55ed475ba237886e55dcf9fcd690275a2a98:scaffold/research/wr255-sec009-l4l9-supplement-20261101/positive-source-review.json > scaffold/research/wr255-sec009-l4l9-supplement-20261101/positive-source-review.json"
+    }
+  ],
+  "retained_current_measurements": [
+    {
+      "path": "scaffold/research/wr255-sec009-l4l9-supplement-20261101/l9-row-audit-a47cbf858ae9b5f8.jsonl",
+      "content_sha256": "a47cbf858ae9b5f8b59cb80bb7ff756ec3f5baac5ee642ed290f15db86be7789"
+    },
+    {
+      "path": "scaffold/research/wr255-sec009-l4l9-supplement-20261101/overlay-check-child-879d5799975af2ab.json",
+      "content_sha256": "879d5799975af2ab4c26e35ead97f36e63231ac3687d92e1a46b90303d273d68"
+    },
+    {
+      "path": "scaffold/research/wr255-sec009-l4l9-supplement-20261101/overlay-summary-01109250b962b31c.json",
+      "content_sha256": "01109250b962b31c99e1ce61328056b2302770933ef68051f569a54474132d09"
+    },
+    {
+      "path": "scaffold/research/wr255-sec009-l4l9-supplement-20261101/positive-source-review-e229b15df0e3cbcd.json",
+      "content_sha256": "e229b15df0e3cbcda0365b3e95ff15c2468a7db1feefdcf1ebde0f67bbc45ce0"
+    }
+  ]
 }

@@ -40,6 +40,7 @@ POSITIVE_RECIPIENT_CASES = {
 }
 POINTER_AUDIT_MANIFEST = HERE / "pointer-consumer-audit-history.json"
 POINTER_AUDIT_ROWS = HERE / "pointer-consumer-audit-33973b4b762d.jsonl"
+POINTER_AUDIT_SUMMARY = HERE / "pointer-consumer-audit-summary-e22b5c96-e918a289-24d7f00b-00376c40-b96c3f5e.json"
 
 
 def positive_minimum(case_id: str) -> dict[str, Any]:
@@ -126,11 +127,14 @@ def write_immutable_json(path: Path, value: Any) -> None:
 
 def write_or_reuse_json(path: Path, value: Any, prefix: str) -> str:
     rendered = json.dumps(value, ensure_ascii=False, indent=2) + "\n"
-    matches = [item for item in HERE.glob(f"{prefix}*.json") if item.read_text(encoding="utf-8") == rendered]
-    if matches:
-        return sorted(matches, key=lambda item: item.name)[-1].name
-    write_immutable_json(path, value)
-    return path.name
+    digest = sha256_bytes(rendered.encode("utf-8"))
+    content_path = HERE / f"{prefix}{digest[:16]}.json"
+    if content_path.exists():
+        if content_path.read_text(encoding="utf-8") != rendered:
+            raise ValueError(f"content-addressed evidence path has different bytes: {content_path.name}")
+        return content_path.name
+    content_path.write_text(rendered, encoding="utf-8")
+    return content_path.name
 
 
 def write_immutable_jsonl(path: Path, rows: list[dict[str, Any]]) -> None:
@@ -144,11 +148,14 @@ def write_immutable_jsonl(path: Path, rows: list[dict[str, Any]]) -> None:
 
 def write_or_reuse_jsonl(path: Path, rows: list[dict[str, Any]], prefix: str) -> str:
     rendered = "".join(json.dumps(row, ensure_ascii=False, separators=(",", ":")) + "\n" for row in rows)
-    matches = [item for item in HERE.glob(f"{prefix}*.jsonl") if item.read_text(encoding="utf-8") == rendered]
-    if matches:
-        return sorted(matches, key=lambda item: item.name)[-1].name
-    write_immutable_jsonl(path, rows)
-    return path.name
+    digest = sha256_bytes(rendered.encode("utf-8"))
+    content_path = HERE / f"{prefix}{digest[:16]}.jsonl"
+    if content_path.exists():
+        if content_path.read_text(encoding="utf-8") != rendered:
+            raise ValueError(f"content-addressed evidence path has different bytes: {content_path.name}")
+        return content_path.name
+    content_path.write_text(rendered, encoding="utf-8")
+    return content_path.name
 
 
 def normalize_temp_paths(value: Any) -> Any:
@@ -244,7 +251,7 @@ def main() -> int:
     validator_digest = sha256(HERE / "validate_l4_l9_supplement.py")
     output_stem = f"{l9_revision[:8]}-{l9_digest[:8]}-{L5_L8_CANDIDATE_REVISION[:8]}-{l4_digest[:8]}-{validator_digest[:8]}"
     row_audit_name = f"l9-row-audit-{output_stem}.jsonl"
-    pointer_summary_name = f"pointer-consumer-audit-summary-{output_stem}.json"
+    pointer_summary_name = POINTER_AUDIT_SUMMARY.name
     pointer_rows_name = POINTER_AUDIT_ROWS.name
     positive_review_name = f"positive-source-review-{output_stem}.json"
     checker_report_name = f"overlay-check-child-{output_stem}.json"
@@ -531,7 +538,7 @@ def main() -> int:
         },
         "retirement_result": "退役条件未成立。consumer移行は実施しておらず、field mappingを伴うclass参照の更新とcollection pointerの一対多変換、各consumerの再照合が必要。",
     }
-    pointer_summary_name = write_or_reuse_json(HERE / pointer_summary_name, pointer_summary, "pointer-consumer-audit-summary-")
+    write_immutable_json(POINTER_AUDIT_SUMMARY, pointer_summary)
     write_immutable_jsonl(HERE / pointer_rows_name, consumer_rows)
     validate_pointer_audit_manifest(consumer_rows)
 
@@ -622,7 +629,7 @@ def main() -> int:
         "consumer_audit_sha256": sha256(HERE / pointer_rows_name),
         "positive_review_file": positive_review_name,
     }
-    write_immutable_json(HERE / summary_name, summary)
+    summary_name = write_or_reuse_json(HERE / summary_name, summary, "overlay-summary-")
     print(json.dumps({"L4_L9_pair": report["L4_L9_pair"].get("passed"), "L5_L8_pair": report["L5_L8_pair"].get("passed"), "matched": neg.get("matched_case_count"), "failures": len(neg.get("failures", [])), "positive_contract_minimum_unobserved": len(positive_rows), "pointer_audit_L8": len(pointer_audit["layers"]["L8"]["consumer_rows"]), "pointer_audit_L9": len(pointer_audit["layers"]["L9"]["consumer_rows"]), "summary": summary_name}, ensure_ascii=False))
     return 0
 
