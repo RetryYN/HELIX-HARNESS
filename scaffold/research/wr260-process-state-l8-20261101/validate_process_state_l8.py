@@ -30,6 +30,267 @@ COMMON_EXPECTATION = {
 }
 ABS="__ABSENT__"
 
+# Compact, human-readable input conditions. These describe the fixed-base
+# scenario; they are not copied from L9 expected values or executable edits.
+GROUP_NORMAL_CONDITION = {
+ "B01":"目的・前提・旧資産・外部事例・比較の根拠、技術品質の観測、人間原反応を同一対象について照合する入力。",
+ "F01":"合意済み要件revisionについて、現在の工程判断に必要な証拠を照合する入力。",
+ "F02":"要求と画面・PoCの適用性を確かめ、技術結果から要件承認を作らない入力。",
+ "F03":"変更・findingの影響をV谷と対応するV-pairの証拠から評価する入力。",
+ "F04":"各artifact stateの根拠を状態順に独立して照合する入力。",
+ "F05":"Port・authority・scope・Incident段階の根拠を分離して照合する入力。",
+ "N01":"対象の適用性、品質stage、運用証拠、ownerを個別に照合する入力。",
+}
+SPECIAL_CONDITIONS = {
+ "B01": {
+  "QUALITY-DOUBLE-WRITER":"同じ技術品質結果を複数ownerが提示する入力。",
+  "QUALITY-NOT-EXECUTED":"技術品質の実行記録が無い入力。",
+  "QUALITY-FOREIGN-REVISION":"技術品質記録が対象と異なるrevisionに結び付く入力。",
+  "HUMAN-MISSING":"人間の原反応が無い入力。",
+  "HUMAN-UNACCEPTED-AXIS":"人間反応の一部条件ownerだけが未受容の入力。",
+  "AI-AS-ORIGINAL":"AI解釈を人間の原反応として提示する入力。",
+  "HUMAN-FOREIGN-SCOPE":"人間反応のscopeが対象scopeと異なる入力。",
+  "UNRESOLVED-FINDING":"owner不一致のfindingが未解決のまま残る入力。",
+  "MANAGEMENT-DIRECT-WRITE":"要求管理へ直接書き込んだ候補を含む入力。",
+  "REQUEST-AS-APPROVAL":"要求依頼を承認として提示する入力。",
+  "AI-AS-HUMAN":"AI解釈を人間反応として提示する入力。",
+  "ERASE-ACCEPTED-AXES":"既受容の条件軸を候補側で消した入力。",
+  "DESIGN-AXES-AS-L11":"設計軸を利用者要求の受容として提示する入力。",
+  "REQUEST-AS-COMPLETION":"要求依頼を工程完了として提示する入力。",
+  "REACTION-AS-REQUIREMENT-APPROVAL":"人間反応を要件承認として提示する入力。",
+  "MANAGEMENT-URGENCY-MISSING-PAIR":"管理上の緊急進行条件でV-pairが欠落する入力。",
+  "MANAGEMENT-URGENCY-MISSING-ACCEPTANCE":"管理上の緊急進行条件で利用者受容が欠落する入力。",
+ },
+ "F01": {
+  "NORMAL":"対象revisionの開始条件を照合する入力。",
+  "NORMAL-freeze":"未解決条件のない対象revisionをfreeze判定する入力。",
+  "NORMAL-backflow":"要件への戻し先を持つ対象revisionを判定する入力。",
+  "NORMAL-reopen":"差戻し後に再開する対象revisionを判定する入力。",
+  "NORMAL-complete":"V-pairの証拠がそろったrevisionを完了判定する入力。",
+  "MISSING-agreement":"必要な合意記録が欠ける入力。",
+  "MISSING-requirements_approval":"要件承認記録が欠ける入力。",
+  "MISSING-pair":"対応するV-pairの証拠が欠ける入力。",
+  "FOREIGN-APPROVAL":"別revisionへの承認を対象revisionに添付した入力。",
+  "CONSULTATION-AS-APPROVAL":"相談記録を承認として提示する入力。",
+  "WORK_REQUEST-AS-APPROVAL":"作業依頼を承認として提示する入力。",
+  "SELECTION-AS-APPROVAL":"選択記録を承認として提示する入力。",
+  "OPERATION_AUTHORIZATION-AS-APPROVAL":"操作許可を要件承認として提示する入力。",
+  "UNDELEGATED-MEANING":"委任対象外の要求意味変更を含む入力。",
+  "UNDELEGATED-AUTHORITY":"委任されていない権限変更を含む入力。",
+  "FREEZE-VERIFICATION":"freeze対象revisionに未解決の照合差がある入力。",
+  "REOPEN-UNRESOLVED":"差戻し後も未解決findingが残る入力。",
+  "COMPLETE-PAIR":"両側pairの証拠がそろった完了候補入力。",
+  "APPROVAL-UNKNOWN":"承認状態を確定できない入力。",
+ },
+ "F02": {
+  "NORMAL":"画面・PoCの適用性と要求合意を照合する入力。",
+  "NORMAL-BOTH-NA":"画面prototypeとPoCの双方が理由付きで非適用の入力。",
+  "NORMAL-SCREEN-AND-POC":"画面prototypeとPoCの双方を適用し、合意記録がある入力。",
+  "L2-MISSING":"対象要求のL2記録が欠ける入力。",
+  "POC-SKIPPED-BY-NO-SCREEN":"画面対象外を理由にPoCも未実施とする入力。",
+  "POC-RESULT-MISSING":"適用したPoCの結果記録が欠ける入力。",
+  "POC-RESULT-FAIL":"適用したPoCの技術結果が不成立の入力。",
+  "RETURN-MISSING-backflow":"PoC結果から要求へのBackflow記録が欠ける入力。",
+  "RETURN-MISSING-secondary_008":"2次形成の008記録が欠ける入力。",
+  "RETURN-MISSING-decide":"PoC結果に対するDecide裁定が欠ける入力。",
+  "RETURN-MISSING-agreement":"戻し後の要求合意記録が欠ける入力。",
+  "RETURN-MISSING-pair_refreeze":"変更後のpair再freeze記録が欠ける入力。",
+  "OLD-AGREEMENT":"対象外の古いrevisionの合意を添付した入力。",
+  "AI-AS-DECIDE":"AI結果をDecide裁定として提示する入力。",
+  "NA-WITHOUT-REASON":"非適用理由が無い入力。",
+  "DECIDER-NA-MISSING":"非適用の判断者記録が欠ける入力。",
+  "TARGET_HEAD-NA-MISSING":"非適用判定の対象HEAD記録が欠ける入力。",
+  "REQUIREMENT_IMPACT-NA-MISSING":"非適用判定の要求影響記録が欠ける入力。",
+  "REEVALUATION-NA-MISSING":"非適用の再評価条件が欠ける入力。",
+  "NOT_APPLICABLE-NA-MISSING":"非適用状態の記録が欠ける入力。",
+ },
+ "F03": {
+  "NORMAL":"変更影響を評価する通常のV谷入力。",
+  "NORMAL-Refactor":"振る舞い不変を前提とするRefactor入力。",
+  "NORMAL-Design-refactor":"設計上の責務・依存を改める入力。",
+  "NORMAL-Performance-refactor":"設計を保った性能改善の入力。",
+  "ORIGIN-MISSING":"起点となる原記録が欠ける入力。",
+  "LEGACY-ASSET":"旧資産の由来と現行変更点を照合する入力。",
+  "TRACE-MISSING":"対象revisionへのtraceが欠ける入力。",
+  "DESIGN-DISPUTED":"設計根拠に未解決の異論がある入力。",
+  "LARGE-DEVIATION":"実装と承認済み設計に大きな差がある入力。",
+  "DESIGN-IMPLEMENTATION-DRIFT":"設計revisionと実装revisionがずれた入力。",
+  "FINDING-RECURRENCE":"同種findingが再発した入力。",
+  "PERFORMANCE-REGRESSION":"固定baselineに対する性能退行を含む入力。",
+  "INCIDENT-PERMANENT-REMEDY":"Incidentに恒久修正候補が加わった入力。",
+  "SCRUM-CHECKPOINT":"sprint review前のcheckpoint入力。",
+  "WRONG-L9-PAIR":"対応対象でないL9 pairを参照する入力。",
+  "FOREIGN-PAIR-REVISION":"別revisionのpair証拠を添付した入力。",
+  "STATE-OWNER-CONFLICT":"同じstate/dataに複数ownerがいる入力。",
+  "PRE-BODY-RED-ABSENT":"実装前Red証拠が欠ける入力。",
+  "PUBLIC-MEANING-CHANGE":"public contractの意味変更を含む入力。",
+  "ARCHITECTURE-MEANING-CHANGE":"architecture責務の意味変更を含む入力。",
+  "NORMAL-AS-FULL-REVERSE":"Scoped Reverse候補をFull Reverseとして提示する入力。",
+  "NORMAL-AS-REVERSE-TICKET":"Reverse評価結果からticket発行済みとする入力。",
+  "HARNESS-AS-ISSUER":"HARNESSをticket発行者として提示する入力。",
+  "VALLEY-AS-QUALITY":"V谷の証拠を品質受容として扱う入力。",
+  "VALLEY-AS-USER-ACCEPTANCE":"V谷の証拠を利用者受容として扱う入力。",
+  "VALLEY-AS-RELEASE":"V谷の証拠をreleaseとして扱う入力。",
+  "REVERSE-AS-EXECUTED":"Reverse候補を実行済みとして扱う入力。",
+  "REQUIREMENT-MEANING-CHANGE":"要求意味変更が必要な入力。",
+  "STATE-MEANING-CHANGE":"artifact stateの意味変更が必要な入力。",
+  "L8-WRONG-PAIR":"対象外のL8 pairを参照する入力。",
+  "L8-FOREIGN-REVISION":"別revisionのL8証拠を添付した入力。",
+  "L10-WRONG-PAIR":"対象外のL10 pairを参照する入力。",
+  "L10-FOREIGN-REVISION":"別revisionのL10証拠を添付した入力。",
+  "NORMAL-WHOLE":"同一の通常callerで全関係条件を照合する入力。",
+  "005-BINDING-QUALIFICATION-MISSING-WHOLE":"005 carrier qualificationの一memberが欠ける入力。",
+ },
+ "F04": {
+  "FOREIGN-REVISION":"証拠の要求revisionが対象と異なる入力。",
+  "FOREIGN-SCOPE":"system証拠の対象scopeが要求scopeと異なる入力。",
+  "FOREIGN-ENVIRONMENT":"配備先environmentが対象environmentと異なる入力。",
+  "DOC-AS-ATOMIC-CI":"文書の存在だけでatomic CI実証済みとする入力。",
+  "PRE-BODY-RED-ABSENT":"実装後のmutationしかなく実装前Redが無い入力。",
+  "BOUNDARY-DOUBLE-OWNER":"state/data境界に複数ownerがある入力。",
+  "SYSTEM-DIFFERENCE-MISSING":"system固有global-balance証明が欠ける入力。",
+  "SYSTEM-OBSERVATION-FAIL":"system oracleの観測値が期待値と異なる入力。",
+  "L10-AS-HUMAN-ACCEPTANCE":"L10成功を人間の原受容として提示する入力。",
+  "AI-AS-HUMAN-ACCEPTANCE":"AI解釈を人間の原受容として提示する入力。",
+  "PORT-ROLLBACK-MISSING":"Portのrollback根拠が欠ける入力。",
+  "DEPLOY-AS-OBSERVED":"配備成功を運用時点のObserved証拠として提示する入力。",
+  "FOREIGN-ARTIFACT":"別artifactの配備を対象artifactの証拠として提示する入力。",
+  "UNTRUSTED-CLAIM-ONLY":"自己申告だけでpair・下位証拠・system観測が無い入力。",
+  "PROVISIONAL-WHOLE":"WorkingからProvisionalまでのstate根拠を一括照合する入力。",
+  "VERIFIED-EXPLICIT-UNIQUE-DIFFERENCE":"Verified根拠だけが独立して成立する入力。",
+  "VERIFIED-022-CARRIER-QUALIFICATION-MISSING":"Verified対象の022 carrier qualificationが欠ける入力。",
+  "OBSERVED-READABLE-PROOF-RETENTION":"Observed根拠を含む全stateの読取証拠がある入力。",
+ },
+ "F05": {
+  "NORMAL":"PortとIncident条件を個別に照合する通常入力。",
+  "HOTFIX":"緊急修正を要するIncident入力。",
+  "START-WITH-PORT":"作業開始時点でPort契約を照合する入力。",
+  "PORT-AFTER-START":"作業開始後にPort条件が追加された入力。",
+  "FOREIGN-ARTIFACT":"Port証拠が別artifactを指す入力。",
+  "FOREIGN-ENVIRONMENT":"Port証拠が別environmentを指す入力。",
+  "AUTHORITY-MISSING":"操作に必要なauthority証拠が無い入力。",
+  "AUTHORITY-FOREIGN-OP":"authorityが別操作を対象とする入力。",
+  "AUTHORITY-EXPIRED":"操作authorityの有効期限が過ぎた入力。",
+  "AUTHORITY-REVOKED":"操作authorityが取り消された入力。",
+  "CONVERGENCE-FAILED":"Incident収束条件が成立しない入力。",
+  "MISSING-proofs":"必須Port根拠が欠ける入力。",
+  "MISSING-artifact_identity":"Portのartifact識別根拠が欠ける入力。",
+  "MISSING-environment":"Portのenvironment根拠が欠ける入力。",
+  "MISSING-dependencies":"Portのdependency根拠が欠ける入力。",
+  "MISSING-security":"Portのsecurity根拠が欠ける入力。",
+  "MISSING-rollback":"Portのrollback根拠が欠ける入力。",
+  "MISSING-deployment_conditions":"Portのdeployment条件が欠ける入力。",
+  "MISSING-acceptance":"Portのacceptance根拠が欠ける入力。",
+  "CLOSED-ISSUE":"Issue closeだけでbackfill完了とする入力。",
+  "SYSTEM-BALANCE-FAIL":"system balance証拠が不成立の入力。",
+  "ROLLBACK-OBSERVATION-FAIL":"rollback観測が不成立の入力。",
+  "AI-AS-ACCEPTANCE":"AI出力を人間acceptanceとして扱う入力。",
+  "URGENT-RELEASE":"Incidentの緊急性をrelease許可として扱う入力。",
+  "DEPLOY-AS-PERMANENT":"deploymentを恒久修正完了として扱う入力。",
+  "ISSUE-CLOSE-AS-BACKFILL":"Issue closeを必要層backfillとして扱う入力。",
+  "UNKNOWN-RETURN-FILLED":"不明なreturn先を確定値で補う入力。",
+  "FULLBACK-AS-EXECUTED":"Fullback候補を実行済みとして扱う入力。",
+  "PORT-AS-NEW-APPROVAL":"Port記録から新しい承認を作る入力。",
+ },
+ "N01": {
+  "NORMAL":"複数対象の適用性と品質stage証拠を照合する入力。",
+  "OBSERVED-CURRENT-SYNTHETIC":"現在environmentのObserved証拠を合成fixtureとして照合する入力。",
+  "OPERATED-CURRENT-SYNTHETIC":"現在environmentのOperated証拠を合成fixtureとして照合する入力。",
+  "DESIGN-FOREIGN-ENVIRONMENT":"設計根拠が別environmentに属する入力。",
+  "DESIGN-DOUBLE-OWNER":"設計stageの同一根拠に複数ownerがいる入力。",
+  "DESIGN-MISSING":"設計stageの根拠が欠ける入力。",
+  "APPLICABILITY-UNKNOWN":"対象の適用性が不明な入力。",
+  "NA-WITHOUT-REASON":"非適用判定に理由が無い入力。",
+  "SECURITY-FOREIGN-ENVIRONMENT":"security scope根拠が別environmentに属する入力。",
+  "SECURITY-AS-OS-POLICY":"HARNESS対象のsecurity判断をOS policyとして提示する入力。",
+  "HARNESS-AS-TICKET-OWNER":"HARNESSを個別ticket運転ownerとして提示する入力。",
+  "INFERENCE-FOREIGN-SCOPE":"finding推論根拠のscopeが対象と異なる入力。",
+  "UNOBSERVED-AS-HEALTHY":"未観測状態をhealthyと断定する入力。",
+  "DESIGN-AS-OPERATION":"設計証拠を実際のsecurity operationとして提示する入力。",
+  "REFERENCE-AS-PERMISSION":"参照情報を実操作許可として提示する入力。",
+  "DESIGN-AS-COMPLETION":"設計stage到達を完了として提示する入力。",
+  "DESIGN-AS-IMPLEMENTED":"設計証拠を実装済みstageとして提示する入力。",
+  "DESIGN-AS-VERIFIED":"設計証拠を検証済みstageとして提示する入力。",
+  "DESIGN-AS-OBSERVED":"設計証拠をObserved stageとして提示する入力。",
+  "DESIGN-AS-OPERATED":"設計証拠をOperated stageとして提示する入力。",
+  "INFERENCE-AS-REPRODUCED":"finding推論を再現済み証拠として提示する入力。",
+  "INFERENCE-AS-VERIFIED":"finding推論を検証済み証拠として提示する入力。",
+  "INFERENCE-AS-REPAIRED":"finding推論を修復済み証拠として提示する入力。",
+  "INFERENCE-AS-REVERIFIED":"finding推論を再検証済み証拠として提示する入力。",
+  "INFERENCE-AS-OPERATED":"finding推論を運用済み証拠として提示する入力。",
+  "INVENT-SLO":"根拠のないSLO数値を設定候補へ含む入力。",
+  "INVENT-RTO":"根拠のないRTO数値を設定候補へ含む入力。",
+  "INVENT-RPO":"根拠のないRPO数値を設定候補へ含む入力。",
+  "INVENT-RETENTION":"根拠のないretention値を設定候補へ含む入力。",
+  "OBSERVED-FOREIGN-ENVIRONMENT":"Observed証拠が別environmentに属する入力。",
+  "OBSERVED-NOT-EXECUTED":"Observed確認が未実行の入力。",
+  "OBSERVED-OWNER-CONTENT-CONFLICT":"Observed根拠のownerと内容が矛盾する入力。",
+  "OPERATED-FOREIGN-ENVIRONMENT":"Operated証拠が別environmentに属する入力。",
+  "OPERATED-NOT-EXECUTED":"Operated確認が未実行の入力。",
+  "OPERATED-OWNER-CONTENT-CONFLICT":"Operated根拠のownerと内容が矛盾する入力。",
+  "OPERATED-LEGACY_BROKER":"Operated根拠が旧broker経路に属する入力。",
+  "OPERATED-LEGACY_PROVIDER":"Operated根拠が旧provider経路に属する入力。",
+  "OPERATED-LEGACY_CI":"Operated根拠が旧CI経路に属する入力。",
+ },
+}
+
+def unit_condition(source: dict[str, Any], function_suffix: str) -> str:
+    case_id=source["id"]
+    suffix=case_id.removeprefix(f"H003-L8-{function_suffix}-")
+    if function_suffix=="B01" and suffix.startswith("GROUNDING-MISSING-"):
+        field=suffix.removeprefix("GROUNDING-MISSING-").replace("_"," ")
+        names={"purpose":"目的","premises":"前提","legacy assets":"旧資産","external examples":"外部事例","comparison":"比較"}
+        if field in names:return f"根拠資料の{names[field]}が欠落した候補を入力する。"
+    if function_suffix=="F03" and suffix.startswith("L9-MISSING-"):
+        field=suffix.removeprefix("L9-MISSING-").replace("_"," ")
+        names={"interface":"interface","dependency direction":"依存方向","state data ownership":"state/data所有","transaction":"transaction","failure propagation":"failure伝播","retry":"retry","timeout":"timeout","idempotency":"idempotency","coupling":"結合度","responsibility duplication":"責務重複"}
+        if field in names:return f"L9の{names[field]}条件根拠が欠ける入力。"
+    if function_suffix=="F04":
+        states={"Working":"作業中","Provisional":"暫定","Integrated":"統合","Verified":"検証済み","Accepted":"受容済み","Release-eligible":"release適格","Deployed":"配備済み","Observed":"運用観測済み"}
+        for prefix,phrase in (("NORMAL-","状態の原証拠がそろう通常入力。"),("MISSING-","状態固有の原証拠が欠ける入力。")):
+            if suffix.startswith(prefix) and suffix[len(prefix):] in states:
+                return f"「{states[suffix[len(prefix):]]}」状態で{phrase}"
+    known=SPECIAL_CONDITIONS.get(function_suffix,{})
+    if suffix in known:return known[suffix]
+    constraint=source.get("candidate_constraint")
+    if not isinstance(constraint,dict):constraint=source.get("failure_return_constraint")
+    if isinstance(constraint,dict):
+        field=constraint.get("candidate_conflicting_field") or constraint.get("field")
+        if isinstance(field,str):
+            descriptions={
+             "request_as_approval":"要求依頼を承認として提示", "ai_interpretation_is_human":"AI解釈を人間反応として提示",
+             "retained_accepted_axes":"受容済み条件軸を消去", "actual_L11_accepted":"設計軸をL11受容として提示",
+             "actual_completion":"未完了候補を完了として提示", "reaction_as_requirement_approval":"反応を要件承認として提示",
+             "additional_approval_needed":"詳細変更に追加承認を要求", "actual_approval_created":"相談結果から承認を生成",
+             "actual_l3_frozen":"PoC結果だけでL3をfreeze", "actual_requirement_adopted":"技術結果を要求採択として提示",
+             "actual_requirements_approved":"技術結果を要件承認として提示", "reverse_scope_candidate":"Scoped Reverseを全範囲Reverseへ拡大",
+             "reverse_ticket_candidate":"Reverse候補をticket発行済みとして提示", "ticket_issuer":"HARNESSをticket発行者として提示",
+             "actual_quality_accepted":"V谷の結果を品質受容として提示", "actual_user_accepted":"V谷の結果を利用者受容として提示",
+             "actual_release":"評価結果をreleaseとして提示", "actual_reverse_executed":"Reverse候補を実行済みとして提示",
+             "can_execute":"緊急性から実行可とする", "permanent_remedy_result":"deploymentを恒久修正として提示",
+             "backfill_missing":"Issue closeでbackfill欠落を隠す", "return_layer_result":"不明な戻し先を確定する",
+             "reverse_fullback_result":"Fullback候補を実行済みとして提示", "healthy":"未観測をhealthyと断定",
+             "actual_security_operation":"設計証拠を実security operationとする", "actual_operation_approved":"参照を操作許可とする",
+             "target_results":"stage根拠の無い昇格を候補へ含める",
+            }
+            phrase=descriptions.get(field)
+            if phrase:return phrase+"入力。"
+    assignment=source.get("negative_class_assignment")
+    if isinstance(assignment,dict) and isinstance(assignment.get("reason"),str):
+        return "入力条件: "+assignment["reason"]
+    if suffix=="NORMAL":return GROUP_NORMAL_CONDITION[function_suffix]
+    return "固定baseの当該入力条件を意味比較中（未検証）。"
+
+SOURCE_CONTROL_CONDITIONS = {
+ "H003-L8-CONTROL-ASSOCIATION-MISSING":"005_valleyのrequest associationが欠落し、015_flow associationは残る入力。",
+ "H003-L8-CONTROL-ASSOCIATION-DUPLICATE":"005_valleyのrequest associationが重複し、015_flow associationは一意の入力。",
+ "H003-L8-CONTROL-SOURCE-CELL-REF-MISMATCH":"005_valley associationのsource-cell参照がcarrier参照と食い違い、015_flowは一致する入力。",
+ "H003-L8-CONTROL-OPERATION-REF-MISMATCH":"005_valley associationのoperation参照がcarrierとtarget operationの双方に食い違い、015_flowは一致する入力。",
+ "H003-L8-CONTROL-BUSINESS-ENDPOINT-MISMATCH":"005_valleyのbusiness endpointが別SourceCellのraw targetを指し、015_flowは一致する入力。",
+ "H003-L8-CONTROL-015-QUALIFICATION-MEMBER-MISSING":"015_flow carrierのqualification sidecar memberが欠落し、他のbinding軸は保持される入力。",
+ "H003-L8-CONTROL-005-COMPOSITION-QUALIFICATION-MEMBER-MISSING":"005_composition carrierのqualification sidecar memberが欠落し、同callerの他roleは保持される入力。",
+}
+
 def read(path: str) -> Any:
     return json.loads((ROOT / path).read_text(encoding="utf-8"))
 
@@ -257,6 +518,7 @@ def run() -> dict[str,Any]:
     checks["L5_functions_retained"]=[g.get("function_ref") for g in groups]==[f.get("id") for f in l5.get("functions",[])]
     checks["L9_branches_retained"]=[g.get("l9_ref") for g in groups]==[g.get("id") for g in l9.get("cases",[])]
     unit_ok=qual_ok=matrix_ok=content_ok=valley_ok=control_ok=source_group_ok=negative_ok=True
+    specific_condition_ok=True
     unit_count=qual_count=matrix_count=content_count=valley_count=control_count=mixed_count=source_group_count=negative_count=resolved_inputs=0
     l9_index={}
     for li,branch in enumerate(l9.get("cases",[])):
@@ -282,7 +544,9 @@ def run() -> dict[str,Any]:
                 want="未検証: 固定baseの部分期待はgroup baselineと同値で、当該条件固有の期待差を直接証明できない。"
                 unresolved.append(source["id"])
             unit_ok &= row.get("function_ref")==before["function_ref"]
-            unit_ok &= row.get("condition")==suffix.replace("_"," ") and row.get("expected")==want
+            wanted_condition=unit_condition(source,function_suffix)
+            unit_ok &= row.get("condition")==wanted_condition and row.get("expected")==want
+            specific_condition_ok &= isinstance(row.get("condition"),str) and len(row["condition"])>=8 and bool(re.search(r"[ぁ-んァ-ヶ一-龠]",row["condition"])) and not row["condition"].startswith("固定baseの当該入力条件を意味比較中")
             unit_ok &= row.get("input_case_id")==source.get("basic_case_ref")
             expected_input=l9_index.get(source.get("basic_case_ref"))
             unit_ok &= row.get("source_case_ref")==expected_input
@@ -385,20 +649,22 @@ def run() -> dict[str,Any]:
             if section=="content_counterexamples":content_ok &= good
             else:valley_ok &= good
 
-        # Source binding control conditions are explanatory text derived from the fixed-base operation/path.
+        # Conditions explain source-binding meaning; operation/path recipes stay in fixed-base history only.
         old_controls=before.get("source_binding_controls",[]); now=group.get("source_binding_controls",[])
         if old_controls:
             control_count+=len(now); current_controls={r.get("id"):r for r in now}
             good=len(now)==len(old_controls) and {r.get("id") for r in now}=={r["id"] for r in old_controls}
             for i,src in enumerate(old_controls):
-                row=current_controls.get(src["id"],{}); ops=src.get("input_patch",[]); op=ops[0] if len(ops)==1 else {}
-                condition=(str(op.get("op","operation unspecified"))+" "+str(op.get("path","path unspecified"))).strip()
+                row=current_controls.get(src["id"],{})
+                specific_condition_ok &= row.get("condition")==SOURCE_CONTROL_CONDITIONS.get(src["id"])
+                control_function=group.get("function_ref")
+                good &= row.get("function_ref")==control_function
                 records=src.get("expected_source_binding",{}).get("records",[])
                 selected=next((r for r in records if r.get("role")==src.get("selected_role")),{})
                 expected=(f"{src.get('selected_role')}: target={selected.get('target_state')}, scope={selected.get('scope_state')}, "
                           f"qualification={selected.get('source_qualification_state')}, binding={selected.get('binding_state')}; "
                           f"独立peer roles={max(0,len(records)-1)}件を保持")
-                good &= row.get("condition")==condition and valid_pointer(str(op.get("path","")))
+                good &= row.get("condition")==SOURCE_CONTROL_CONDITIONS.get(src["id"])
                 good &= row.get("expected")==expected and row.get("expected_rule")==src.get("expected_rule") and row.get("scope_limit")==src.get("scope_limit") and row.get("base_caller_case_id")==src.get("base_caller_case_id")
                 good &= row.get("selected_role")==src.get("selected_role") and row.get("base_row_ref")==f"{BASE}:{L8}#/cases/{gi}/source_binding_controls/{i}"
                 good &= not any(k in row for k in ("input_patch","expected_source_binding","path_array"))
@@ -479,7 +745,7 @@ def run() -> dict[str,Any]:
     checks["qualification_matrix_semantics"] = matrix_ok
     checks["content_counterexample_compact_semantics"] = content_ok
     checks["valley_counterexample_compact_semantics"] = valley_ok
-    checks["source_binding_controls_valid_paths_and_states"] = control_ok
+    checks["source_binding_controls_semantics_and_states"] = control_ok
     checks["source_group_semantics"] = source_group_ok
     # No payload/patch reconstruction remains in the compact layer.
     prohibited={"expected_delta","expected_partial_values","partial_values","input_patch","candidate_constraint","expected_partial_updates","mutation","mutations","reference_preparation","independent_source_packet","source_case_refs","expected_private_call_records"}
@@ -492,12 +758,12 @@ def run() -> dict[str,Any]:
         elif isinstance(x,list):
             for i,v in enumerate(x):inspect(v,f"{path}[{i}]",key)
         elif isinstance(x,str):
-            if key=="condition" and x.startswith(("add ","remove ","replace ")):
-                pointer=x.split(" ",1)[1]
-                if not valid_pointer(pointer):pointer_problems.append(path)
+            if key=="condition":
+                if x.startswith(("add ","remove ","replace ")) or re.search(r"(?:^|\s)/(?:[^\s]+)",x):pointer_problems.append(path)
             if "///" in x:pointer_problems.append(path)
     inspect(cur)
-    checks["source_binding_condition_pointers_well_formed"]=not pointer_problems
+    checks["source_binding_condition_contains_no_operation_path"]=not pointer_problems
+    checks["conditions_are_specific_human_scenarios"]=specific_condition_ok
     checks["removed_materials_six_keys_DT_VT_105"]=set(cur.get("removed_materials",{}))=={"decision_ref","git_commit","path","meaning","removed_key_rule","use_boundary"} and "DT-VT-105" in cur.get("removed_materials",{}).get("use_boundary","")
     checks["negative_rows_have_L4_L5_support"] = negative_count==34 and negative_ok
     checks["two_negative_l9_counterparts_explicitly_unresolved"] = sum(1 for g in groups for r in g.get("negative_cases",[]) if r.get("l9_counterpart_status"))==2
