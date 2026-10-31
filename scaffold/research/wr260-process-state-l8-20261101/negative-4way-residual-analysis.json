@@ -1,0 +1,3946 @@
+{
+  "schema": "wr260-negative-4way-residual-analysis.v1",
+  "evidence_kind": "scaffold",
+  "authority_effect": "none",
+  "request_id": "WR260-PROCESS-STATE-L8-SLIM",
+  "measured_main_revision": "ad2dfaf6f434fbb81cd34988d4bd76212380f3a5",
+  "measured_l8_sha256": "f82114027006ded2126f6469c4bfe40f80a9542cfb4fe8aa839d8baadb81b692",
+  "measurement_command": "python3 scaffold/tools/design_verification_checker.py check-child --root . --l4 docs/helix-harness/L4-basic-design/process-state-port.json --l5 docs/helix-harness/L5-detail-design/process-state-port.json --l8 docs/helix-harness/L8-unit-verification/process-state-port.json --l9 docs/helix-harness/L9-integration-verification/process-state-port.json",
+  "result": {
+    "exit_status": 1,
+    "matched_case_count": 0,
+    "failure_count": 223,
+    "failure_attributes": {
+      "presence": 216,
+      "negative_case_count": 7
+    },
+    "layer_row_counts": {
+      "L4": 34,
+      "L9": 182,
+      "L8": 34,
+      "L5": 34
+    },
+    "L4_L9_pair_passed": true,
+    "L5_L8_pair_passed": true
+  },
+  "checker_source": {
+    "negative_key_precedence": {
+      "path": "scaffold/tools/design_verification_checker.py",
+      "revision": "ad2dfaf6f434fbb81cd34988d4bd76212380f3a5",
+      "meaning": "expected_classification → code → id fallback",
+      "locator": "design_verification_checker.py:1244-1249"
+    },
+    "case_map": {
+      "path": "scaffold/tools/design_verification_checker.py",
+      "revision": "ad2dfaf6f434fbb81cd34988d4bd76212380f3a5",
+      "meaning": "Repeated explicit code keys combine with case identity; L9 rows without classification/code use their id.",
+      "locator": "design_verification_checker.py:2950-2969"
+    }
+  },
+  "group_counts": [
+    {
+      "group_index": 0,
+      "function_ref": "HARNESS-L5-003-B01",
+      "contract_ids": {
+        "L4": "HARNESS-L4-003-B01",
+        "L5": "HARNESS-L5-003-B01",
+        "L8": "HARNESS-L8-003-B01",
+        "L9": "HARNESS-L9-003-B01"
+      },
+      "negative_row_counts": {
+        "L4": 4,
+        "L9": 22,
+        "L8": 4,
+        "L5": 4
+      },
+      "L9_excess_over_aligned_L4_L8_L5": 18,
+      "L8_rows_with_L4_class_code": 4,
+      "L8_rows_with_L5_rule_code": 4
+    },
+    {
+      "group_index": 1,
+      "function_ref": "HARNESS-L5-003-F01",
+      "contract_ids": {
+        "L4": "HARNESS-L4-003-F01",
+        "L5": "HARNESS-L5-003-F01",
+        "L8": "HARNESS-L8-003-F01",
+        "L9": "HARNESS-L9-003-F01"
+      },
+      "negative_row_counts": {
+        "L4": 4,
+        "L9": 17,
+        "L8": 4,
+        "L5": 4
+      },
+      "L9_excess_over_aligned_L4_L8_L5": 13,
+      "L8_rows_with_L4_class_code": 4,
+      "L8_rows_with_L5_rule_code": 4
+    },
+    {
+      "group_index": 2,
+      "function_ref": "HARNESS-L5-003-F02",
+      "contract_ids": {
+        "L4": "HARNESS-L4-003-F02",
+        "L5": "HARNESS-L5-003-F02",
+        "L8": "HARNESS-L8-003-F02",
+        "L9": "HARNESS-L9-003-F02"
+      },
+      "negative_row_counts": {
+        "L4": 4,
+        "L9": 21,
+        "L8": 4,
+        "L5": 4
+      },
+      "L9_excess_over_aligned_L4_L8_L5": 17,
+      "L8_rows_with_L4_class_code": 4,
+      "L8_rows_with_L5_rule_code": 4
+    },
+    {
+      "group_index": 3,
+      "function_ref": "HARNESS-L5-003-F03",
+      "contract_ids": {
+        "L4": "HARNESS-L4-003-F03",
+        "L5": "HARNESS-L5-003-F03",
+        "L8": "HARNESS-L8-003-F03",
+        "L9": "HARNESS-L9-003-F03"
+      },
+      "negative_row_counts": {
+        "L4": 4,
+        "L9": 39,
+        "L8": 4,
+        "L5": 4
+      },
+      "L9_excess_over_aligned_L4_L8_L5": 35,
+      "L8_rows_with_L4_class_code": 4,
+      "L8_rows_with_L5_rule_code": 4
+    },
+    {
+      "group_index": 4,
+      "function_ref": "HARNESS-L5-003-F04",
+      "contract_ids": {
+        "L4": "HARNESS-L4-003-F04",
+        "L5": "HARNESS-L5-003-F04",
+        "L8": "HARNESS-L8-003-F04",
+        "L9": "HARNESS-L9-003-F04"
+      },
+      "negative_row_counts": {
+        "L4": 7,
+        "L9": 22,
+        "L8": 7,
+        "L5": 7
+      },
+      "L9_excess_over_aligned_L4_L8_L5": 15,
+      "L8_rows_with_L4_class_code": 7,
+      "L8_rows_with_L5_rule_code": 7
+    },
+    {
+      "group_index": 5,
+      "function_ref": "HARNESS-L5-003-F05",
+      "contract_ids": {
+        "L4": "HARNESS-L4-003-F05",
+        "L5": "HARNESS-L5-003-F05",
+        "L8": "HARNESS-L8-003-F05",
+        "L9": "HARNESS-L9-003-F05"
+      },
+      "negative_row_counts": {
+        "L4": 5,
+        "L9": 26,
+        "L8": 5,
+        "L5": 5
+      },
+      "L9_excess_over_aligned_L4_L8_L5": 21,
+      "L8_rows_with_L4_class_code": 5,
+      "L8_rows_with_L5_rule_code": 5
+    },
+    {
+      "group_index": 6,
+      "function_ref": "HARNESS-L5-003-N01",
+      "contract_ids": {
+        "L4": "HARNESS-L4-003-N01",
+        "L5": "HARNESS-L5-003-N01",
+        "L8": "HARNESS-L8-003-N01",
+        "L9": "HARNESS-L9-003-N01"
+      },
+      "negative_row_counts": {
+        "L4": 6,
+        "L9": 35,
+        "L8": 6,
+        "L5": 6
+      },
+      "L9_excess_over_aligned_L4_L8_L5": 29,
+      "L8_rows_with_L4_class_code": 6,
+      "L8_rows_with_L5_rule_code": 6
+    }
+  ],
+  "L8_negative_rows": [
+    {
+      "source_pointer": "docs/helix-harness/L8-unit-verification/process-state-port.json#/cases/0/negative_cases/0",
+      "uid": "H003-L8-B01-GROUNDING-MISSING-purpose",
+      "classification_key": "B01_REQUIRED_EVIDENCE_MISSING",
+      "classification_key_source": "expected_classification",
+      "L4_classification_row_pointer": "docs/helix-harness/L4-basic-design/process-state-port.json#/contracts/0/negative_classifications/0",
+      "L5_rule_id": "RULE-B01_REQUIRED_EVIDENCE_MISSING",
+      "L5_rule_row_pointer": "docs/helix-harness/L5-detail-design/process-state-port.json#/failure_rules/7",
+      "existing_l9_case_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/0/negative_cases/0",
+      "integration_case_ref": "H003-B01-GROUNDING-MISSING-purpose",
+      "exact_current_l9_target_exists": true
+    },
+    {
+      "source_pointer": "docs/helix-harness/L8-unit-verification/process-state-port.json#/cases/0/negative_cases/1",
+      "uid": "H003-L8-B01-QUAL-GROUNDING_PURPOSE-UNKNOWN",
+      "classification_key": "B01_SCOPE_APPLICABILITY_UNKNOWN",
+      "classification_key_source": "expected_classification",
+      "L4_classification_row_pointer": "docs/helix-harness/L4-basic-design/process-state-port.json#/contracts/0/negative_classifications/1",
+      "L5_rule_id": "RULE-B01_SCOPE_APPLICABILITY_UNKNOWN",
+      "L5_rule_row_pointer": "docs/helix-harness/L5-detail-design/process-state-port.json#/failure_rules/8",
+      "existing_l9_case_pointer": null,
+      "integration_case_ref": null,
+      "exact_current_l9_target_exists": false
+    },
+    {
+      "source_pointer": "docs/helix-harness/L8-unit-verification/process-state-port.json#/cases/0/negative_cases/2",
+      "uid": "H003-L8-B01-QUALITY-DOUBLE-WRITER",
+      "classification_key": "B01_SOURCE_ROLE_CONFLICT",
+      "classification_key_source": "expected_classification",
+      "L4_classification_row_pointer": "docs/helix-harness/L4-basic-design/process-state-port.json#/contracts/0/negative_classifications/2",
+      "L5_rule_id": "RULE-B01_SOURCE_ROLE_CONFLICT",
+      "L5_rule_row_pointer": "docs/helix-harness/L5-detail-design/process-state-port.json#/failure_rules/9",
+      "existing_l9_case_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/0/negative_cases/5",
+      "integration_case_ref": "H003-B01-QUALITY-DOUBLE-WRITER",
+      "exact_current_l9_target_exists": true
+    },
+    {
+      "source_pointer": "docs/helix-harness/L8-unit-verification/process-state-port.json#/cases/0/negative_cases/3",
+      "uid": "H003-L8-B01-QUALITY-FOREIGN-REVISION",
+      "classification_key": "B01_SOURCE_REVISION_STALE",
+      "classification_key_source": "expected_classification",
+      "L4_classification_row_pointer": "docs/helix-harness/L4-basic-design/process-state-port.json#/contracts/0/negative_classifications/3",
+      "L5_rule_id": "RULE-B01_SOURCE_REVISION_STALE",
+      "L5_rule_row_pointer": "docs/helix-harness/L5-detail-design/process-state-port.json#/failure_rules/10",
+      "existing_l9_case_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/0/negative_cases/7",
+      "integration_case_ref": "H003-B01-QUALITY-FOREIGN-REVISION",
+      "exact_current_l9_target_exists": true
+    },
+    {
+      "source_pointer": "docs/helix-harness/L8-unit-verification/process-state-port.json#/cases/1/negative_cases/0",
+      "uid": "H003-L8-F01-MISSING-agreement",
+      "classification_key": "F01_REQUIRED_CONDITION_MISSING",
+      "classification_key_source": "expected_classification",
+      "L4_classification_row_pointer": "docs/helix-harness/L4-basic-design/process-state-port.json#/contracts/1/negative_classifications/0",
+      "L5_rule_id": "RULE-F01_REQUIRED_CONDITION_MISSING",
+      "L5_rule_row_pointer": "docs/helix-harness/L5-detail-design/process-state-port.json#/failure_rules/11",
+      "existing_l9_case_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/1/negative_cases/0",
+      "integration_case_ref": "H003-F01-MISSING-agreement",
+      "exact_current_l9_target_exists": true
+    },
+    {
+      "source_pointer": "docs/helix-harness/L8-unit-verification/process-state-port.json#/cases/1/negative_cases/1",
+      "uid": "H003-L8-F01-APPROVAL-UNKNOWN",
+      "classification_key": "F01_CONDITION_DEFINITION_UNKNOWN",
+      "classification_key_source": "expected_classification",
+      "L4_classification_row_pointer": "docs/helix-harness/L4-basic-design/process-state-port.json#/contracts/1/negative_classifications/1",
+      "L5_rule_id": "RULE-F01_CONDITION_DEFINITION_UNKNOWN",
+      "L5_rule_row_pointer": "docs/helix-harness/L5-detail-design/process-state-port.json#/failure_rules/12",
+      "existing_l9_case_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/1/negative_cases/16",
+      "integration_case_ref": "H003-F01-APPROVAL-UNKNOWN",
+      "exact_current_l9_target_exists": true
+    },
+    {
+      "source_pointer": "docs/helix-harness/L8-unit-verification/process-state-port.json#/cases/1/negative_cases/2",
+      "uid": "H003-L8-F01-CONSULTATION-AS-APPROVAL",
+      "classification_key": "F01_ROLE_AUTHORITY_CONFLICT",
+      "classification_key_source": "expected_classification",
+      "L4_classification_row_pointer": "docs/helix-harness/L4-basic-design/process-state-port.json#/contracts/1/negative_classifications/2",
+      "L5_rule_id": "RULE-F01_ROLE_AUTHORITY_CONFLICT",
+      "L5_rule_row_pointer": "docs/helix-harness/L5-detail-design/process-state-port.json#/failure_rules/13",
+      "existing_l9_case_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/1/negative_cases/4",
+      "integration_case_ref": "H003-F01-CONSULTATION-AS-APPROVAL",
+      "exact_current_l9_target_exists": true
+    },
+    {
+      "source_pointer": "docs/helix-harness/L8-unit-verification/process-state-port.json#/cases/1/negative_cases/3",
+      "uid": "H003-L8-F01-FOREIGN-APPROVAL",
+      "classification_key": "F01_CONDITION_TARGET_STALE",
+      "classification_key_source": "expected_classification",
+      "L4_classification_row_pointer": "docs/helix-harness/L4-basic-design/process-state-port.json#/contracts/1/negative_classifications/3",
+      "L5_rule_id": "RULE-F01_CONDITION_TARGET_STALE",
+      "L5_rule_row_pointer": "docs/helix-harness/L5-detail-design/process-state-port.json#/failure_rules/14",
+      "existing_l9_case_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/1/negative_cases/3",
+      "integration_case_ref": "H003-F01-FOREIGN-APPROVAL",
+      "exact_current_l9_target_exists": true
+    },
+    {
+      "source_pointer": "docs/helix-harness/L8-unit-verification/process-state-port.json#/cases/2/negative_cases/0",
+      "uid": "H003-L8-F02-NA-WITHOUT-REASON",
+      "classification_key": "F02_APPLICABILITY_UNKNOWN",
+      "classification_key_source": "expected_classification",
+      "L4_classification_row_pointer": "docs/helix-harness/L4-basic-design/process-state-port.json#/contracts/2/negative_classifications/0",
+      "L5_rule_id": "RULE-F02_APPLICABILITY_UNKNOWN",
+      "L5_rule_row_pointer": "docs/helix-harness/L5-detail-design/process-state-port.json#/failure_rules/15",
+      "existing_l9_case_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/2/negative_cases/11",
+      "integration_case_ref": "H003-F02-NA-WITHOUT-REASON",
+      "exact_current_l9_target_exists": true
+    },
+    {
+      "source_pointer": "docs/helix-harness/L8-unit-verification/process-state-port.json#/cases/2/negative_cases/1",
+      "uid": "H003-L8-F02-POC-RESULT-MISSING",
+      "classification_key": "F02_APPLICABLE_RESULT_MISSING",
+      "classification_key_source": "expected_classification",
+      "L4_classification_row_pointer": "docs/helix-harness/L4-basic-design/process-state-port.json#/contracts/2/negative_classifications/1",
+      "L5_rule_id": "RULE-F02_APPLICABLE_RESULT_MISSING",
+      "L5_rule_row_pointer": "docs/helix-harness/L5-detail-design/process-state-port.json#/failure_rules/16",
+      "existing_l9_case_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/2/negative_cases/2",
+      "integration_case_ref": "H003-F02-POC-RESULT-MISSING",
+      "exact_current_l9_target_exists": true
+    },
+    {
+      "source_pointer": "docs/helix-harness/L8-unit-verification/process-state-port.json#/cases/2/negative_cases/2",
+      "uid": "H003-L8-F02-AI-AS-DECIDE",
+      "classification_key": "F02_ADOPTION_CLAIM_CONFLICT",
+      "classification_key_source": "expected_classification",
+      "L4_classification_row_pointer": "docs/helix-harness/L4-basic-design/process-state-port.json#/contracts/2/negative_classifications/2",
+      "L5_rule_id": "RULE-F02_ADOPTION_CLAIM_CONFLICT",
+      "L5_rule_row_pointer": "docs/helix-harness/L5-detail-design/process-state-port.json#/failure_rules/17",
+      "existing_l9_case_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/2/negative_cases/10",
+      "integration_case_ref": "H003-F02-AI-AS-DECIDE",
+      "exact_current_l9_target_exists": true
+    },
+    {
+      "source_pointer": "docs/helix-harness/L8-unit-verification/process-state-port.json#/cases/2/negative_cases/3",
+      "uid": "H003-L8-F02-POC-RESULT-MISSING",
+      "classification_key": "F02_RESULTLESS_RETURN_CHAIN_CONFLICT",
+      "classification_key_source": "expected_classification",
+      "L4_classification_row_pointer": "docs/helix-harness/L4-basic-design/process-state-port.json#/contracts/2/negative_classifications/3",
+      "L5_rule_id": "RULE-F02_RESULTLESS_RETURN_CHAIN_CONFLICT",
+      "L5_rule_row_pointer": "docs/helix-harness/L5-detail-design/process-state-port.json#/failure_rules/18",
+      "existing_l9_case_pointer": null,
+      "integration_case_ref": null,
+      "exact_current_l9_target_exists": false
+    },
+    {
+      "source_pointer": "docs/helix-harness/L8-unit-verification/process-state-port.json#/cases/3/negative_cases/0",
+      "uid": "H003-L8-F03-ORIGIN-MISSING",
+      "classification_key": "F03_REQUIRED_PAIR_MISSING",
+      "classification_key_source": "expected_classification",
+      "L4_classification_row_pointer": "docs/helix-harness/L4-basic-design/process-state-port.json#/contracts/3/negative_classifications/0",
+      "L5_rule_id": "RULE-F03_REQUIRED_PAIR_MISSING",
+      "L5_rule_row_pointer": "docs/helix-harness/L5-detail-design/process-state-port.json#/failure_rules/19",
+      "existing_l9_case_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/3/negative_cases/0",
+      "integration_case_ref": "H003-F03-ORIGIN-MISSING",
+      "exact_current_l9_target_exists": true
+    },
+    {
+      "source_pointer": "docs/helix-harness/L8-unit-verification/process-state-port.json#/cases/3/negative_cases/1",
+      "uid": "H003-L8-F03-L9-MISSING-interface",
+      "classification_key": "F03_L9_DIMENSION_UNKNOWN",
+      "classification_key_source": "expected_classification",
+      "L4_classification_row_pointer": "docs/helix-harness/L4-basic-design/process-state-port.json#/contracts/3/negative_classifications/1",
+      "L5_rule_id": "RULE-F03_L9_DIMENSION_UNKNOWN",
+      "L5_rule_row_pointer": "docs/helix-harness/L5-detail-design/process-state-port.json#/failure_rules/20",
+      "existing_l9_case_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/3/negative_cases/12",
+      "integration_case_ref": "H003-F03-L9-MISSING-interface",
+      "exact_current_l9_target_exists": true
+    },
+    {
+      "source_pointer": "docs/helix-harness/L8-unit-verification/process-state-port.json#/cases/3/negative_cases/2",
+      "uid": "H003-L8-F03-WRONG-L9-PAIR",
+      "classification_key": "F03_PAIR_SCOPE_CONFLICT",
+      "classification_key_source": "expected_classification",
+      "L4_classification_row_pointer": "docs/helix-harness/L4-basic-design/process-state-port.json#/contracts/3/negative_classifications/2",
+      "L5_rule_id": "RULE-F03_PAIR_SCOPE_CONFLICT",
+      "L5_rule_row_pointer": "docs/helix-harness/L5-detail-design/process-state-port.json#/failure_rules/21",
+      "existing_l9_case_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/3/negative_cases/10",
+      "integration_case_ref": "H003-F03-WRONG-L9-PAIR",
+      "exact_current_l9_target_exists": true
+    },
+    {
+      "source_pointer": "docs/helix-harness/L8-unit-verification/process-state-port.json#/cases/3/negative_cases/3",
+      "uid": "H003-L8-F03-REVERSE-AS-EXECUTED",
+      "classification_key": "F03_TICKET_REVERSE_EFFECT_CONFLICT",
+      "classification_key_source": "expected_classification",
+      "L4_classification_row_pointer": "docs/helix-harness/L4-basic-design/process-state-port.json#/contracts/3/negative_classifications/3",
+      "L5_rule_id": "RULE-F03_TICKET_REVERSE_EFFECT_CONFLICT",
+      "L5_rule_row_pointer": "docs/helix-harness/L5-detail-design/process-state-port.json#/failure_rules/22",
+      "existing_l9_case_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/3/negative_cases/32",
+      "integration_case_ref": "H003-F03-REVERSE-AS-EXECUTED",
+      "exact_current_l9_target_exists": true
+    },
+    {
+      "source_pointer": "docs/helix-harness/L8-unit-verification/process-state-port.json#/cases/4/negative_cases/0",
+      "uid": "H003-L8-F04-MISSING-Provisional",
+      "classification_key": "F04_STATE_PROVISIONAL_PROOF_MISSING",
+      "classification_key_source": "expected_classification",
+      "L4_classification_row_pointer": "docs/helix-harness/L4-basic-design/process-state-port.json#/contracts/4/negative_classifications/0",
+      "L5_rule_id": "NC-F04-STATE-PROVISIONAL-MISSING",
+      "L5_rule_row_pointer": "docs/helix-harness/L5-detail-design/process-state-port.json#/failure_rules/0",
+      "existing_l9_case_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/4/negative_cases/1",
+      "integration_case_ref": "H003-F04-MISSING-Provisional",
+      "exact_current_l9_target_exists": true
+    },
+    {
+      "source_pointer": "docs/helix-harness/L8-unit-verification/process-state-port.json#/cases/4/negative_cases/1",
+      "uid": "H003-L8-F04-MISSING-Integrated",
+      "classification_key": "F04_STATE_INTEGRATED_PROOF_MISSING",
+      "classification_key_source": "expected_classification",
+      "L4_classification_row_pointer": "docs/helix-harness/L4-basic-design/process-state-port.json#/contracts/4/negative_classifications/1",
+      "L5_rule_id": "NC-F04-STATE-INTEGRATED-MISSING",
+      "L5_rule_row_pointer": "docs/helix-harness/L5-detail-design/process-state-port.json#/failure_rules/1",
+      "existing_l9_case_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/4/negative_cases/2",
+      "integration_case_ref": "H003-F04-MISSING-Integrated",
+      "exact_current_l9_target_exists": true
+    },
+    {
+      "source_pointer": "docs/helix-harness/L8-unit-verification/process-state-port.json#/cases/4/negative_cases/2",
+      "uid": "H003-L8-F04-MISSING-Verified",
+      "classification_key": "F04_STATE_VERIFIED_PROOF_MISSING",
+      "classification_key_source": "expected_classification",
+      "L4_classification_row_pointer": "docs/helix-harness/L4-basic-design/process-state-port.json#/contracts/4/negative_classifications/2",
+      "L5_rule_id": "NC-F04-STATE-VERIFIED-MISSING",
+      "L5_rule_row_pointer": "docs/helix-harness/L5-detail-design/process-state-port.json#/failure_rules/2",
+      "existing_l9_case_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/4/negative_cases/3",
+      "integration_case_ref": "H003-F04-MISSING-Verified",
+      "exact_current_l9_target_exists": true
+    },
+    {
+      "source_pointer": "docs/helix-harness/L8-unit-verification/process-state-port.json#/cases/4/negative_cases/3",
+      "uid": "H003-L8-F04-MISSING-Accepted",
+      "classification_key": "F04_STATE_ACCEPTED_PROOF_MISSING",
+      "classification_key_source": "expected_classification",
+      "L4_classification_row_pointer": "docs/helix-harness/L4-basic-design/process-state-port.json#/contracts/4/negative_classifications/3",
+      "L5_rule_id": "NC-F04-STATE-ACCEPTED-MISSING",
+      "L5_rule_row_pointer": "docs/helix-harness/L5-detail-design/process-state-port.json#/failure_rules/3",
+      "existing_l9_case_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/4/negative_cases/4",
+      "integration_case_ref": "H003-F04-MISSING-Accepted",
+      "exact_current_l9_target_exists": true
+    },
+    {
+      "source_pointer": "docs/helix-harness/L8-unit-verification/process-state-port.json#/cases/4/negative_cases/4",
+      "uid": "H003-L8-F04-MISSING-Release-eligible",
+      "classification_key": "F04_STATE_RELEASE-ELIGIBLE_PROOF_MISSING",
+      "classification_key_source": "expected_classification",
+      "L4_classification_row_pointer": "docs/helix-harness/L4-basic-design/process-state-port.json#/contracts/4/negative_classifications/4",
+      "L5_rule_id": "NC-F04-STATE-RELEASE-ELIGIBLE-MISSING",
+      "L5_rule_row_pointer": "docs/helix-harness/L5-detail-design/process-state-port.json#/failure_rules/4",
+      "existing_l9_case_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/4/negative_cases/5",
+      "integration_case_ref": "H003-F04-MISSING-Release-eligible",
+      "exact_current_l9_target_exists": true
+    },
+    {
+      "source_pointer": "docs/helix-harness/L8-unit-verification/process-state-port.json#/cases/4/negative_cases/5",
+      "uid": "H003-L8-F04-MISSING-Deployed",
+      "classification_key": "F04_STATE_DEPLOYED_PROOF_MISSING",
+      "classification_key_source": "expected_classification",
+      "L4_classification_row_pointer": "docs/helix-harness/L4-basic-design/process-state-port.json#/contracts/4/negative_classifications/5",
+      "L5_rule_id": "NC-F04-STATE-DEPLOYED-MISSING",
+      "L5_rule_row_pointer": "docs/helix-harness/L5-detail-design/process-state-port.json#/failure_rules/5",
+      "existing_l9_case_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/4/negative_cases/6",
+      "integration_case_ref": "H003-F04-MISSING-Deployed",
+      "exact_current_l9_target_exists": true
+    },
+    {
+      "source_pointer": "docs/helix-harness/L8-unit-verification/process-state-port.json#/cases/4/negative_cases/6",
+      "uid": "H003-L8-F04-MISSING-Observed",
+      "classification_key": "F04_STATE_OBSERVED_PROOF_MISSING",
+      "classification_key_source": "expected_classification",
+      "L4_classification_row_pointer": "docs/helix-harness/L4-basic-design/process-state-port.json#/contracts/4/negative_classifications/6",
+      "L5_rule_id": "NC-F04-STATE-OBSERVED-MISSING",
+      "L5_rule_row_pointer": "docs/helix-harness/L5-detail-design/process-state-port.json#/failure_rules/6",
+      "existing_l9_case_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/4/negative_cases/7",
+      "integration_case_ref": "H003-F04-MISSING-Observed",
+      "exact_current_l9_target_exists": true
+    },
+    {
+      "source_pointer": "docs/helix-harness/L8-unit-verification/process-state-port.json#/cases/5/negative_cases/0",
+      "uid": "H003-L8-F05-MISSING-proofs",
+      "classification_key": "F05_REQUIRED_PORT_FIELD_MISSING",
+      "classification_key_source": "expected_classification",
+      "L4_classification_row_pointer": "docs/helix-harness/L4-basic-design/process-state-port.json#/contracts/5/negative_classifications/0",
+      "L5_rule_id": "RULE-F05_REQUIRED_PORT_FIELD_MISSING",
+      "L5_rule_row_pointer": "docs/helix-harness/L5-detail-design/process-state-port.json#/failure_rules/23",
+      "existing_l9_case_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/5/negative_cases/0",
+      "integration_case_ref": "H003-F05-MISSING-proofs",
+      "exact_current_l9_target_exists": true
+    },
+    {
+      "source_pointer": "docs/helix-harness/L8-unit-verification/process-state-port.json#/cases/5/negative_cases/1",
+      "uid": "H003-L8-F05-AUTHORITY-MISSING",
+      "classification_key": "F05_EXISTING_AUTHORITY_UNKNOWN",
+      "classification_key_source": "expected_classification",
+      "L4_classification_row_pointer": "docs/helix-harness/L4-basic-design/process-state-port.json#/contracts/5/negative_classifications/1",
+      "L5_rule_id": "RULE-F05_EXISTING_AUTHORITY_UNKNOWN",
+      "L5_rule_row_pointer": "docs/helix-harness/L5-detail-design/process-state-port.json#/failure_rules/24",
+      "existing_l9_case_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/5/negative_cases/11",
+      "integration_case_ref": "H003-F05-AUTHORITY-MISSING",
+      "exact_current_l9_target_exists": true
+    },
+    {
+      "source_pointer": "docs/helix-harness/L8-unit-verification/process-state-port.json#/cases/5/negative_cases/2",
+      "uid": "H003-L8-F05-UNKNOWN-RETURN-FILLED",
+      "classification_key": "F05_RETURN_TARGET_UNKNOWN",
+      "classification_key_source": "expected_classification",
+      "L4_classification_row_pointer": "docs/helix-harness/L4-basic-design/process-state-port.json#/contracts/5/negative_classifications/2",
+      "L5_rule_id": "RULE-F05_RETURN_TARGET_UNKNOWN",
+      "L5_rule_row_pointer": "docs/helix-harness/L5-detail-design/process-state-port.json#/failure_rules/25",
+      "existing_l9_case_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/5/negative_cases/19",
+      "integration_case_ref": "H003-F05-UNKNOWN-RETURN-FILLED",
+      "exact_current_l9_target_exists": true
+    },
+    {
+      "source_pointer": "docs/helix-harness/L8-unit-verification/process-state-port.json#/cases/5/negative_cases/3",
+      "uid": "H003-L8-F05-PORT-AS-NEW-APPROVAL",
+      "classification_key": "F05_OPERATION_EFFECT_CONFLICT",
+      "classification_key_source": "expected_classification",
+      "L4_classification_row_pointer": "docs/helix-harness/L4-basic-design/process-state-port.json#/contracts/5/negative_classifications/3",
+      "L5_rule_id": "RULE-F05_OPERATION_EFFECT_CONFLICT",
+      "L5_rule_row_pointer": "docs/helix-harness/L5-detail-design/process-state-port.json#/failure_rules/26",
+      "existing_l9_case_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/5/negative_cases/21",
+      "integration_case_ref": "H003-F05-PORT-AS-NEW-APPROVAL",
+      "exact_current_l9_target_exists": true
+    },
+    {
+      "source_pointer": "docs/helix-harness/L8-unit-verification/process-state-port.json#/cases/5/negative_cases/4",
+      "uid": "H003-L8-F05-DEPLOY-AS-PERMANENT",
+      "classification_key": "F05_COMPLETION_BACKFILL_CONFLICT",
+      "classification_key_source": "expected_classification",
+      "L4_classification_row_pointer": "docs/helix-harness/L4-basic-design/process-state-port.json#/contracts/5/negative_classifications/4",
+      "L5_rule_id": "RULE-F05_COMPLETION_BACKFILL_CONFLICT",
+      "L5_rule_row_pointer": "docs/helix-harness/L5-detail-design/process-state-port.json#/failure_rules/27",
+      "existing_l9_case_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/5/negative_cases/17",
+      "integration_case_ref": "H003-F05-DEPLOY-AS-PERMANENT",
+      "exact_current_l9_target_exists": true
+    },
+    {
+      "source_pointer": "docs/helix-harness/L8-unit-verification/process-state-port.json#/cases/6/negative_cases/0",
+      "uid": "H003-L8-N01-APPLICABILITY-UNKNOWN",
+      "classification_key": "N01_QUALITY_APPLICABILITY_UNKNOWN",
+      "classification_key_source": "expected_classification",
+      "L4_classification_row_pointer": "docs/helix-harness/L4-basic-design/process-state-port.json#/contracts/6/negative_classifications/0",
+      "L5_rule_id": "RULE-N01_QUALITY_APPLICABILITY_UNKNOWN",
+      "L5_rule_row_pointer": "docs/helix-harness/L5-detail-design/process-state-port.json#/failure_rules/28",
+      "existing_l9_case_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/6/negative_cases/3",
+      "integration_case_ref": "H003-N01-APPLICABILITY-UNKNOWN",
+      "exact_current_l9_target_exists": true
+    },
+    {
+      "source_pointer": "docs/helix-harness/L8-unit-verification/process-state-port.json#/cases/6/negative_cases/1",
+      "uid": "H003-L8-N01-DESIGN-MISSING",
+      "classification_key": "N01_QUALITY_STAGE_EVIDENCE_MISSING",
+      "classification_key_source": "expected_classification",
+      "L4_classification_row_pointer": "docs/helix-harness/L4-basic-design/process-state-port.json#/contracts/6/negative_classifications/1",
+      "L5_rule_id": "RULE-N01_QUALITY_STAGE_EVIDENCE_MISSING",
+      "L5_rule_row_pointer": "docs/helix-harness/L5-detail-design/process-state-port.json#/failure_rules/29",
+      "existing_l9_case_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/6/negative_cases/2",
+      "integration_case_ref": "H003-N01-DESIGN-MISSING",
+      "exact_current_l9_target_exists": true
+    },
+    {
+      "source_pointer": "docs/helix-harness/L8-unit-verification/process-state-port.json#/cases/6/negative_cases/2",
+      "uid": "H003-L8-N01-UNOBSERVED-AS-HEALTHY",
+      "classification_key": "N01_HEALTH_OBSERVATION_UNKNOWN",
+      "classification_key_source": "expected_classification",
+      "L4_classification_row_pointer": "docs/helix-harness/L4-basic-design/process-state-port.json#/contracts/6/negative_classifications/2",
+      "L5_rule_id": "RULE-N01_HEALTH_OBSERVATION_UNKNOWN",
+      "L5_rule_row_pointer": "docs/helix-harness/L5-detail-design/process-state-port.json#/failure_rules/30",
+      "existing_l9_case_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/6/negative_cases/9",
+      "integration_case_ref": "H003-N01-UNOBSERVED-AS-HEALTHY",
+      "exact_current_l9_target_exists": true
+    },
+    {
+      "source_pointer": "docs/helix-harness/L8-unit-verification/process-state-port.json#/cases/6/negative_cases/3",
+      "uid": "H003-L8-N01-DESIGN-FOREIGN-ENVIRONMENT",
+      "classification_key": "N01_TARGET_ENVIRONMENT_EVIDENCE_MISSING",
+      "classification_key_source": "expected_classification",
+      "L4_classification_row_pointer": "docs/helix-harness/L4-basic-design/process-state-port.json#/contracts/6/negative_classifications/3",
+      "L5_rule_id": "RULE-N01_TARGET_ENVIRONMENT_EVIDENCE_MISSING",
+      "L5_rule_row_pointer": "docs/helix-harness/L5-detail-design/process-state-port.json#/failure_rules/31",
+      "existing_l9_case_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/6/negative_cases/0",
+      "integration_case_ref": "H003-N01-DESIGN-FOREIGN-ENVIRONMENT",
+      "exact_current_l9_target_exists": true
+    },
+    {
+      "source_pointer": "docs/helix-harness/L8-unit-verification/process-state-port.json#/cases/6/negative_cases/4",
+      "uid": "H003-L8-N01-SECURITY-AS-OS-POLICY",
+      "classification_key": "N01_SECURITY_AUTHORITY_CONFLICT",
+      "classification_key_source": "expected_classification",
+      "L4_classification_row_pointer": "docs/helix-harness/L4-basic-design/process-state-port.json#/contracts/6/negative_classifications/4",
+      "L5_rule_id": "RULE-N01_SECURITY_AUTHORITY_CONFLICT",
+      "L5_rule_row_pointer": "docs/helix-harness/L5-detail-design/process-state-port.json#/failure_rules/32",
+      "existing_l9_case_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/6/negative_cases/6",
+      "integration_case_ref": "H003-N01-SECURITY-AS-OS-POLICY",
+      "exact_current_l9_target_exists": true
+    },
+    {
+      "source_pointer": "docs/helix-harness/L8-unit-verification/process-state-port.json#/cases/6/negative_cases/5",
+      "uid": "H003-L8-N01-INVENT-SLO",
+      "classification_key": "N01_NUMERIC_TARGET_UNKNOWN",
+      "classification_key_source": "expected_classification",
+      "L4_classification_row_pointer": "docs/helix-harness/L4-basic-design/process-state-port.json#/contracts/6/negative_classifications/5",
+      "L5_rule_id": "RULE-N01_NUMERIC_TARGET_UNKNOWN",
+      "L5_rule_row_pointer": "docs/helix-harness/L5-detail-design/process-state-port.json#/failure_rules/33",
+      "existing_l9_case_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/6/negative_cases/22",
+      "integration_case_ref": "H003-N01-INVENT-SLO",
+      "exact_current_l9_target_exists": true
+    }
+  ],
+  "L9_negative_rows": [
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/0/negative_cases/0",
+      "row_id": "H003-B01-GROUNDING-MISSING-purpose",
+      "checker_key": "H003-B01-GROUNDING-MISSING-purpose",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": [
+        "H003-L8-B01-GROUNDING-MISSING-purpose"
+      ]
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/0/negative_cases/1",
+      "row_id": "H003-B01-GROUNDING-MISSING-premises",
+      "checker_key": "H003-B01-GROUNDING-MISSING-premises",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": []
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/0/negative_cases/2",
+      "row_id": "H003-B01-GROUNDING-MISSING-legacy_assets",
+      "checker_key": "H003-B01-GROUNDING-MISSING-legacy_assets",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": []
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/0/negative_cases/3",
+      "row_id": "H003-B01-GROUNDING-MISSING-external_examples",
+      "checker_key": "H003-B01-GROUNDING-MISSING-external_examples",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": []
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/0/negative_cases/4",
+      "row_id": "H003-B01-GROUNDING-MISSING-comparison",
+      "checker_key": "H003-B01-GROUNDING-MISSING-comparison",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": []
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/0/negative_cases/5",
+      "row_id": "H003-B01-QUALITY-DOUBLE-WRITER",
+      "checker_key": "H003-B01-QUALITY-DOUBLE-WRITER",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": [
+        "H003-L8-B01-QUALITY-DOUBLE-WRITER"
+      ]
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/0/negative_cases/6",
+      "row_id": "H003-B01-QUALITY-NOT-EXECUTED",
+      "checker_key": "H003-B01-QUALITY-NOT-EXECUTED",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": []
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/0/negative_cases/7",
+      "row_id": "H003-B01-QUALITY-FOREIGN-REVISION",
+      "checker_key": "H003-B01-QUALITY-FOREIGN-REVISION",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": [
+        "H003-L8-B01-QUALITY-FOREIGN-REVISION"
+      ]
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/0/negative_cases/8",
+      "row_id": "H003-B01-HUMAN-MISSING",
+      "checker_key": "H003-B01-HUMAN-MISSING",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": []
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/0/negative_cases/9",
+      "row_id": "H003-B01-HUMAN-UNACCEPTED-AXIS",
+      "checker_key": "H003-B01-HUMAN-UNACCEPTED-AXIS",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": []
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/0/negative_cases/10",
+      "row_id": "H003-B01-AI-AS-ORIGINAL",
+      "checker_key": "H003-B01-AI-AS-ORIGINAL",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": []
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/0/negative_cases/11",
+      "row_id": "H003-B01-HUMAN-FOREIGN-SCOPE",
+      "checker_key": "H003-B01-HUMAN-FOREIGN-SCOPE",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": []
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/0/negative_cases/12",
+      "row_id": "H003-B01-UNRESOLVED-FINDING",
+      "checker_key": "H003-B01-UNRESOLVED-FINDING",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": []
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/0/negative_cases/13",
+      "row_id": "H003-B01-MANAGEMENT-DIRECT-WRITE",
+      "checker_key": "H003-B01-MANAGEMENT-DIRECT-WRITE",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": []
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/0/negative_cases/14",
+      "row_id": "H003-B01-REQUEST-AS-APPROVAL",
+      "checker_key": "H003-B01-REQUEST-AS-APPROVAL",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": []
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/0/negative_cases/15",
+      "row_id": "H003-B01-AI-AS-HUMAN",
+      "checker_key": "H003-B01-AI-AS-HUMAN",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": []
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/0/negative_cases/16",
+      "row_id": "H003-B01-ERASE-ACCEPTED-AXES",
+      "checker_key": "H003-B01-ERASE-ACCEPTED-AXES",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": []
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/0/negative_cases/17",
+      "row_id": "H003-B01-DESIGN-AXES-AS-L11",
+      "checker_key": "H003-B01-DESIGN-AXES-AS-L11",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": []
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/0/negative_cases/18",
+      "row_id": "H003-B01-REQUEST-AS-COMPLETION",
+      "checker_key": "H003-B01-REQUEST-AS-COMPLETION",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": []
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/0/negative_cases/19",
+      "row_id": "H003-B01-REACTION-AS-REQUIREMENT-APPROVAL",
+      "checker_key": "H003-B01-REACTION-AS-REQUIREMENT-APPROVAL",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": []
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/0/negative_cases/20",
+      "row_id": "H003-B01-MANAGEMENT-URGENCY-MISSING-PAIR",
+      "checker_key": "H003-B01-MANAGEMENT-URGENCY-MISSING-PAIR",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": []
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/0/negative_cases/21",
+      "row_id": "H003-B01-MANAGEMENT-URGENCY-MISSING-ACCEPTANCE",
+      "checker_key": "H003-B01-MANAGEMENT-URGENCY-MISSING-ACCEPTANCE",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": []
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/1/negative_cases/0",
+      "row_id": "H003-F01-MISSING-agreement",
+      "checker_key": "H003-F01-MISSING-agreement",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": [
+        "H003-L8-F01-MISSING-agreement"
+      ]
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/1/negative_cases/1",
+      "row_id": "H003-F01-MISSING-requirements_approval",
+      "checker_key": "H003-F01-MISSING-requirements_approval",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": []
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/1/negative_cases/2",
+      "row_id": "H003-F01-MISSING-pair",
+      "checker_key": "H003-F01-MISSING-pair",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": []
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/1/negative_cases/3",
+      "row_id": "H003-F01-FOREIGN-APPROVAL",
+      "checker_key": "H003-F01-FOREIGN-APPROVAL",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": [
+        "H003-L8-F01-FOREIGN-APPROVAL"
+      ]
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/1/negative_cases/4",
+      "row_id": "H003-F01-CONSULTATION-AS-APPROVAL",
+      "checker_key": "H003-F01-CONSULTATION-AS-APPROVAL",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": [
+        "H003-L8-F01-CONSULTATION-AS-APPROVAL"
+      ]
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/1/negative_cases/5",
+      "row_id": "H003-F01-WORK_REQUEST-AS-APPROVAL",
+      "checker_key": "H003-F01-WORK_REQUEST-AS-APPROVAL",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": []
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/1/negative_cases/6",
+      "row_id": "H003-F01-SELECTION-AS-APPROVAL",
+      "checker_key": "H003-F01-SELECTION-AS-APPROVAL",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": []
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/1/negative_cases/7",
+      "row_id": "H003-F01-OPERATION_AUTHORIZATION-AS-APPROVAL",
+      "checker_key": "H003-F01-OPERATION_AUTHORIZATION-AS-APPROVAL",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": []
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/1/negative_cases/8",
+      "row_id": "H003-F01-UNDELEGATED-MEANING",
+      "checker_key": "H003-F01-UNDELEGATED-MEANING",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": []
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/1/negative_cases/9",
+      "row_id": "H003-F01-UNDELEGATED-AUTHORITY",
+      "checker_key": "H003-F01-UNDELEGATED-AUTHORITY",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": []
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/1/negative_cases/10",
+      "row_id": "H003-F01-REPEAT-APPROVAL-FOR-DETAIL",
+      "checker_key": "H003-F01-REPEAT-APPROVAL-FOR-DETAIL",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": []
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/1/negative_cases/11",
+      "row_id": "H003-F01-IMPLEMENTATION-AS-COMPLETION",
+      "checker_key": "H003-F01-IMPLEMENTATION-AS-COMPLETION",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": []
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/1/negative_cases/12",
+      "row_id": "H003-F01-CONSULTATION-AS-ACTUAL-APPROVAL",
+      "checker_key": "H003-F01-CONSULTATION-AS-ACTUAL-APPROVAL",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": []
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/1/negative_cases/13",
+      "row_id": "H003-F01-FREEZE-VERIFICATION",
+      "checker_key": "H003-F01-FREEZE-VERIFICATION",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": []
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/1/negative_cases/14",
+      "row_id": "H003-F01-REOPEN-UNRESOLVED",
+      "checker_key": "H003-F01-REOPEN-UNRESOLVED",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": []
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/1/negative_cases/15",
+      "row_id": "H003-F01-COMPLETE-PAIR",
+      "checker_key": "H003-F01-COMPLETE-PAIR",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": []
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/1/negative_cases/16",
+      "row_id": "H003-F01-APPROVAL-UNKNOWN",
+      "checker_key": "H003-F01-APPROVAL-UNKNOWN",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": [
+        "H003-L8-F01-APPROVAL-UNKNOWN"
+      ]
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/2/negative_cases/0",
+      "row_id": "H003-F02-L2-MISSING",
+      "checker_key": "H003-F02-L2-MISSING",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": []
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/2/negative_cases/1",
+      "row_id": "H003-F02-POC-SKIPPED-BY-NO-SCREEN",
+      "checker_key": "H003-F02-POC-SKIPPED-BY-NO-SCREEN",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": []
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/2/negative_cases/2",
+      "row_id": "H003-F02-POC-RESULT-MISSING",
+      "checker_key": "H003-F02-POC-RESULT-MISSING",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": [
+        "H003-L8-F02-POC-RESULT-MISSING"
+      ]
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/2/negative_cases/3",
+      "row_id": "H003-F02-POC-RESULT-FAIL",
+      "checker_key": "H003-F02-POC-RESULT-FAIL",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": []
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/2/negative_cases/4",
+      "row_id": "H003-F02-RETURN-MISSING-backflow",
+      "checker_key": "H003-F02-RETURN-MISSING-backflow",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": []
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/2/negative_cases/5",
+      "row_id": "H003-F02-RETURN-MISSING-secondary_008",
+      "checker_key": "H003-F02-RETURN-MISSING-secondary_008",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": []
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/2/negative_cases/6",
+      "row_id": "H003-F02-RETURN-MISSING-decide",
+      "checker_key": "H003-F02-RETURN-MISSING-decide",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": []
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/2/negative_cases/7",
+      "row_id": "H003-F02-RETURN-MISSING-agreement",
+      "checker_key": "H003-F02-RETURN-MISSING-agreement",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": []
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/2/negative_cases/8",
+      "row_id": "H003-F02-RETURN-MISSING-pair_refreeze",
+      "checker_key": "H003-F02-RETURN-MISSING-pair_refreeze",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": []
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/2/negative_cases/9",
+      "row_id": "H003-F02-OLD-AGREEMENT",
+      "checker_key": "H003-F02-OLD-AGREEMENT",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": []
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/2/negative_cases/10",
+      "row_id": "H003-F02-AI-AS-DECIDE",
+      "checker_key": "H003-F02-AI-AS-DECIDE",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": [
+        "H003-L8-F02-AI-AS-DECIDE"
+      ]
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/2/negative_cases/11",
+      "row_id": "H003-F02-NA-WITHOUT-REASON",
+      "checker_key": "H003-F02-NA-WITHOUT-REASON",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": [
+        "H003-L8-F02-NA-WITHOUT-REASON"
+      ]
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/2/negative_cases/12",
+      "row_id": "H003-F02-POC-AS-L3-FREEZE",
+      "checker_key": "H003-F02-POC-AS-L3-FREEZE",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": []
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/2/negative_cases/13",
+      "row_id": "H003-F02-RESULT-AS-ADOPTION",
+      "checker_key": "H003-F02-RESULT-AS-ADOPTION",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": []
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/2/negative_cases/14",
+      "row_id": "H003-F02-RESULT-AS-APPROVAL",
+      "checker_key": "H003-F02-RESULT-AS-APPROVAL",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": []
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/2/negative_cases/15",
+      "row_id": "H003-F02-RETURN-AS-COMPLETION",
+      "checker_key": "H003-F02-RETURN-AS-COMPLETION",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": []
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/2/negative_cases/16",
+      "row_id": "H003-F02-DECIDER-NA-MISSING",
+      "checker_key": "H003-F02-DECIDER-NA-MISSING",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": []
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/2/negative_cases/17",
+      "row_id": "H003-F02-TARGET_HEAD-NA-MISSING",
+      "checker_key": "H003-F02-TARGET_HEAD-NA-MISSING",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": []
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/2/negative_cases/18",
+      "row_id": "H003-F02-REQUIREMENT_IMPACT-NA-MISSING",
+      "checker_key": "H003-F02-REQUIREMENT_IMPACT-NA-MISSING",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": []
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/2/negative_cases/19",
+      "row_id": "H003-F02-REEVALUATION-NA-MISSING",
+      "checker_key": "H003-F02-REEVALUATION-NA-MISSING",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": []
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/2/negative_cases/20",
+      "row_id": "H003-F02-NOT_APPLICABLE-NA-MISSING",
+      "checker_key": "H003-F02-NOT_APPLICABLE-NA-MISSING",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": []
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/3/negative_cases/0",
+      "row_id": "H003-F03-ORIGIN-MISSING",
+      "checker_key": "H003-F03-ORIGIN-MISSING",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": [
+        "H003-L8-F03-ORIGIN-MISSING"
+      ]
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/3/negative_cases/1",
+      "row_id": "H003-F03-LEGACY-ASSET",
+      "checker_key": "H003-F03-LEGACY-ASSET",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": []
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/3/negative_cases/2",
+      "row_id": "H003-F03-TRACE-MISSING",
+      "checker_key": "H003-F03-TRACE-MISSING",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": []
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/3/negative_cases/3",
+      "row_id": "H003-F03-DESIGN-DISPUTED",
+      "checker_key": "H003-F03-DESIGN-DISPUTED",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": []
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/3/negative_cases/4",
+      "row_id": "H003-F03-LARGE-DEVIATION",
+      "checker_key": "H003-F03-LARGE-DEVIATION",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": []
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/3/negative_cases/5",
+      "row_id": "H003-F03-DESIGN-IMPLEMENTATION-DRIFT",
+      "checker_key": "H003-F03-DESIGN-IMPLEMENTATION-DRIFT",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": []
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/3/negative_cases/6",
+      "row_id": "H003-F03-FINDING-RECURRENCE",
+      "checker_key": "H003-F03-FINDING-RECURRENCE",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": []
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/3/negative_cases/7",
+      "row_id": "H003-F03-PERFORMANCE-REGRESSION",
+      "checker_key": "H003-F03-PERFORMANCE-REGRESSION",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": []
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/3/negative_cases/8",
+      "row_id": "H003-F03-INCIDENT-PERMANENT-REMEDY",
+      "checker_key": "H003-F03-INCIDENT-PERMANENT-REMEDY",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": []
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/3/negative_cases/9",
+      "row_id": "H003-F03-SCRUM-CHECKPOINT",
+      "checker_key": "H003-F03-SCRUM-CHECKPOINT",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": []
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/3/negative_cases/10",
+      "row_id": "H003-F03-WRONG-L9-PAIR",
+      "checker_key": "H003-F03-WRONG-L9-PAIR",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": [
+        "H003-L8-F03-WRONG-L9-PAIR"
+      ]
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/3/negative_cases/11",
+      "row_id": "H003-F03-FOREIGN-PAIR-REVISION",
+      "checker_key": "H003-F03-FOREIGN-PAIR-REVISION",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": []
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/3/negative_cases/12",
+      "row_id": "H003-F03-L9-MISSING-interface",
+      "checker_key": "H003-F03-L9-MISSING-interface",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": [
+        "H003-L8-F03-L9-MISSING-interface"
+      ]
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/3/negative_cases/13",
+      "row_id": "H003-F03-L9-MISSING-dependency_direction",
+      "checker_key": "H003-F03-L9-MISSING-dependency_direction",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": []
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/3/negative_cases/14",
+      "row_id": "H003-F03-L9-MISSING-state_data_ownership",
+      "checker_key": "H003-F03-L9-MISSING-state_data_ownership",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": []
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/3/negative_cases/15",
+      "row_id": "H003-F03-L9-MISSING-transaction",
+      "checker_key": "H003-F03-L9-MISSING-transaction",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": []
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/3/negative_cases/16",
+      "row_id": "H003-F03-L9-MISSING-failure_propagation",
+      "checker_key": "H003-F03-L9-MISSING-failure_propagation",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": []
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/3/negative_cases/17",
+      "row_id": "H003-F03-L9-MISSING-retry",
+      "checker_key": "H003-F03-L9-MISSING-retry",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": []
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/3/negative_cases/18",
+      "row_id": "H003-F03-L9-MISSING-timeout",
+      "checker_key": "H003-F03-L9-MISSING-timeout",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": []
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/3/negative_cases/19",
+      "row_id": "H003-F03-L9-MISSING-idempotency",
+      "checker_key": "H003-F03-L9-MISSING-idempotency",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": []
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/3/negative_cases/20",
+      "row_id": "H003-F03-L9-MISSING-coupling",
+      "checker_key": "H003-F03-L9-MISSING-coupling",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": []
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/3/negative_cases/21",
+      "row_id": "H003-F03-L9-MISSING-responsibility_duplication",
+      "checker_key": "H003-F03-L9-MISSING-responsibility_duplication",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": []
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/3/negative_cases/22",
+      "row_id": "H003-F03-STATE-OWNER-CONFLICT",
+      "checker_key": "H003-F03-STATE-OWNER-CONFLICT",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": []
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/3/negative_cases/23",
+      "row_id": "H003-F03-PRE-BODY-RED-ABSENT",
+      "checker_key": "H003-F03-PRE-BODY-RED-ABSENT",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": []
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/3/negative_cases/24",
+      "row_id": "H003-F03-PUBLIC-MEANING-CHANGE",
+      "checker_key": "H003-F03-PUBLIC-MEANING-CHANGE",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": []
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/3/negative_cases/25",
+      "row_id": "H003-F03-ARCHITECTURE-MEANING-CHANGE",
+      "checker_key": "H003-F03-ARCHITECTURE-MEANING-CHANGE",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": []
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/3/negative_cases/26",
+      "row_id": "H003-F03-NORMAL-AS-FULL-REVERSE",
+      "checker_key": "H003-F03-NORMAL-AS-FULL-REVERSE",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": []
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/3/negative_cases/27",
+      "row_id": "H003-F03-NORMAL-AS-REVERSE-TICKET",
+      "checker_key": "H003-F03-NORMAL-AS-REVERSE-TICKET",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": []
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/3/negative_cases/28",
+      "row_id": "H003-F03-HARNESS-AS-ISSUER",
+      "checker_key": "H003-F03-HARNESS-AS-ISSUER",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": []
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/3/negative_cases/29",
+      "row_id": "H003-F03-VALLEY-AS-QUALITY",
+      "checker_key": "H003-F03-VALLEY-AS-QUALITY",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": []
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/3/negative_cases/30",
+      "row_id": "H003-F03-VALLEY-AS-USER-ACCEPTANCE",
+      "checker_key": "H003-F03-VALLEY-AS-USER-ACCEPTANCE",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": []
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/3/negative_cases/31",
+      "row_id": "H003-F03-VALLEY-AS-RELEASE",
+      "checker_key": "H003-F03-VALLEY-AS-RELEASE",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": []
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/3/negative_cases/32",
+      "row_id": "H003-F03-REVERSE-AS-EXECUTED",
+      "checker_key": "H003-F03-REVERSE-AS-EXECUTED",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": [
+        "H003-L8-F03-REVERSE-AS-EXECUTED"
+      ]
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/3/negative_cases/33",
+      "row_id": "H003-F03-REQUIREMENT-MEANING-CHANGE",
+      "checker_key": "H003-F03-REQUIREMENT-MEANING-CHANGE",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": []
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/3/negative_cases/34",
+      "row_id": "H003-F03-STATE-MEANING-CHANGE",
+      "checker_key": "H003-F03-STATE-MEANING-CHANGE",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": []
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/3/negative_cases/35",
+      "row_id": "H003-F03-L8-WRONG-PAIR",
+      "checker_key": "H003-F03-L8-WRONG-PAIR",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": []
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/3/negative_cases/36",
+      "row_id": "H003-F03-L8-FOREIGN-REVISION",
+      "checker_key": "H003-F03-L8-FOREIGN-REVISION",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": []
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/3/negative_cases/37",
+      "row_id": "H003-F03-L10-WRONG-PAIR",
+      "checker_key": "H003-F03-L10-WRONG-PAIR",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": []
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/3/negative_cases/38",
+      "row_id": "H003-F03-L10-FOREIGN-REVISION",
+      "checker_key": "H003-F03-L10-FOREIGN-REVISION",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": []
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/4/negative_cases/0",
+      "row_id": "H003-F04-MISSING-Working",
+      "checker_key": "H003-F04-MISSING-Working",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": []
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/4/negative_cases/1",
+      "row_id": "H003-F04-MISSING-Provisional",
+      "checker_key": "H003-F04-MISSING-Provisional",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": [
+        "H003-L8-F04-MISSING-Provisional"
+      ]
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/4/negative_cases/2",
+      "row_id": "H003-F04-MISSING-Integrated",
+      "checker_key": "H003-F04-MISSING-Integrated",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": [
+        "H003-L8-F04-MISSING-Integrated"
+      ]
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/4/negative_cases/3",
+      "row_id": "H003-F04-MISSING-Verified",
+      "checker_key": "H003-F04-MISSING-Verified",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": [
+        "H003-L8-F04-MISSING-Verified"
+      ]
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/4/negative_cases/4",
+      "row_id": "H003-F04-MISSING-Accepted",
+      "checker_key": "H003-F04-MISSING-Accepted",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": [
+        "H003-L8-F04-MISSING-Accepted"
+      ]
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/4/negative_cases/5",
+      "row_id": "H003-F04-MISSING-Release-eligible",
+      "checker_key": "H003-F04-MISSING-Release-eligible",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": [
+        "H003-L8-F04-MISSING-Release-eligible"
+      ]
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/4/negative_cases/6",
+      "row_id": "H003-F04-MISSING-Deployed",
+      "checker_key": "H003-F04-MISSING-Deployed",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": [
+        "H003-L8-F04-MISSING-Deployed"
+      ]
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/4/negative_cases/7",
+      "row_id": "H003-F04-MISSING-Observed",
+      "checker_key": "H003-F04-MISSING-Observed",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": [
+        "H003-L8-F04-MISSING-Observed"
+      ]
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/4/negative_cases/8",
+      "row_id": "H003-F04-FOREIGN-REVISION",
+      "checker_key": "H003-F04-FOREIGN-REVISION",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": []
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/4/negative_cases/9",
+      "row_id": "H003-F04-FOREIGN-SCOPE",
+      "checker_key": "H003-F04-FOREIGN-SCOPE",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": []
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/4/negative_cases/10",
+      "row_id": "H003-F04-FOREIGN-ENVIRONMENT",
+      "checker_key": "H003-F04-FOREIGN-ENVIRONMENT",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": []
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/4/negative_cases/11",
+      "row_id": "H003-F04-DOC-AS-ATOMIC-CI",
+      "checker_key": "H003-F04-DOC-AS-ATOMIC-CI",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": []
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/4/negative_cases/12",
+      "row_id": "H003-F04-PRE-BODY-RED-ABSENT",
+      "checker_key": "H003-F04-PRE-BODY-RED-ABSENT",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": []
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/4/negative_cases/13",
+      "row_id": "H003-F04-BOUNDARY-DOUBLE-OWNER",
+      "checker_key": "H003-F04-BOUNDARY-DOUBLE-OWNER",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": []
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/4/negative_cases/14",
+      "row_id": "H003-F04-SYSTEM-DIFFERENCE-MISSING",
+      "checker_key": "H003-F04-SYSTEM-DIFFERENCE-MISSING",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": []
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/4/negative_cases/15",
+      "row_id": "H003-F04-SYSTEM-OBSERVATION-FAIL",
+      "checker_key": "H003-F04-SYSTEM-OBSERVATION-FAIL",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": []
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/4/negative_cases/16",
+      "row_id": "H003-F04-L10-AS-HUMAN-ACCEPTANCE",
+      "checker_key": "H003-F04-L10-AS-HUMAN-ACCEPTANCE",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": []
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/4/negative_cases/17",
+      "row_id": "H003-F04-AI-AS-HUMAN-ACCEPTANCE",
+      "checker_key": "H003-F04-AI-AS-HUMAN-ACCEPTANCE",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": []
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/4/negative_cases/18",
+      "row_id": "H003-F04-PORT-ROLLBACK-MISSING",
+      "checker_key": "H003-F04-PORT-ROLLBACK-MISSING",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": []
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/4/negative_cases/19",
+      "row_id": "H003-F04-DEPLOY-AS-OBSERVED",
+      "checker_key": "H003-F04-DEPLOY-AS-OBSERVED",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": []
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/4/negative_cases/20",
+      "row_id": "H003-F04-FOREIGN-ARTIFACT",
+      "checker_key": "H003-F04-FOREIGN-ARTIFACT",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": []
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/4/negative_cases/21",
+      "row_id": "H003-F04-UNTRUSTED-CLAIM-ONLY",
+      "checker_key": "H003-F04-UNTRUSTED-CLAIM-ONLY",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": []
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/5/negative_cases/0",
+      "row_id": "H003-F05-MISSING-proofs",
+      "checker_key": "H003-F05-MISSING-proofs",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": [
+        "H003-L8-F05-MISSING-proofs"
+      ]
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/5/negative_cases/1",
+      "row_id": "H003-F05-MISSING-artifact_identity",
+      "checker_key": "H003-F05-MISSING-artifact_identity",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": []
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/5/negative_cases/2",
+      "row_id": "H003-F05-MISSING-environment",
+      "checker_key": "H003-F05-MISSING-environment",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": []
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/5/negative_cases/3",
+      "row_id": "H003-F05-MISSING-dependencies",
+      "checker_key": "H003-F05-MISSING-dependencies",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": []
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/5/negative_cases/4",
+      "row_id": "H003-F05-MISSING-security",
+      "checker_key": "H003-F05-MISSING-security",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": []
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/5/negative_cases/5",
+      "row_id": "H003-F05-MISSING-rollback",
+      "checker_key": "H003-F05-MISSING-rollback",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": []
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/5/negative_cases/6",
+      "row_id": "H003-F05-MISSING-deployment_conditions",
+      "checker_key": "H003-F05-MISSING-deployment_conditions",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": []
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/5/negative_cases/7",
+      "row_id": "H003-F05-MISSING-acceptance",
+      "checker_key": "H003-F05-MISSING-acceptance",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": []
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/5/negative_cases/8",
+      "row_id": "H003-F05-PORT-AFTER-START",
+      "checker_key": "H003-F05-PORT-AFTER-START",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": []
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/5/negative_cases/9",
+      "row_id": "H003-F05-FOREIGN-ARTIFACT",
+      "checker_key": "H003-F05-FOREIGN-ARTIFACT",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": []
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/5/negative_cases/10",
+      "row_id": "H003-F05-FOREIGN-ENVIRONMENT",
+      "checker_key": "H003-F05-FOREIGN-ENVIRONMENT",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": []
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/5/negative_cases/11",
+      "row_id": "H003-F05-AUTHORITY-MISSING",
+      "checker_key": "H003-F05-AUTHORITY-MISSING",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": [
+        "H003-L8-F05-AUTHORITY-MISSING"
+      ]
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/5/negative_cases/12",
+      "row_id": "H003-F05-AUTHORITY-FOREIGN-OP",
+      "checker_key": "H003-F05-AUTHORITY-FOREIGN-OP",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": []
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/5/negative_cases/13",
+      "row_id": "H003-F05-AUTHORITY-EXPIRED",
+      "checker_key": "H003-F05-AUTHORITY-EXPIRED",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": []
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/5/negative_cases/14",
+      "row_id": "H003-F05-AUTHORITY-REVOKED",
+      "checker_key": "H003-F05-AUTHORITY-REVOKED",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": []
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/5/negative_cases/15",
+      "row_id": "H003-F05-CONVERGENCE-FAILED",
+      "checker_key": "H003-F05-CONVERGENCE-FAILED",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": []
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/5/negative_cases/16",
+      "row_id": "H003-F05-URGENT-RELEASE",
+      "checker_key": "H003-F05-URGENT-RELEASE",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": []
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/5/negative_cases/17",
+      "row_id": "H003-F05-DEPLOY-AS-PERMANENT",
+      "checker_key": "H003-F05-DEPLOY-AS-PERMANENT",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": [
+        "H003-L8-F05-DEPLOY-AS-PERMANENT"
+      ]
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/5/negative_cases/18",
+      "row_id": "H003-F05-ISSUE-CLOSE-AS-BACKFILL",
+      "checker_key": "H003-F05-ISSUE-CLOSE-AS-BACKFILL",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": []
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/5/negative_cases/19",
+      "row_id": "H003-F05-UNKNOWN-RETURN-FILLED",
+      "checker_key": "H003-F05-UNKNOWN-RETURN-FILLED",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": [
+        "H003-L8-F05-UNKNOWN-RETURN-FILLED"
+      ]
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/5/negative_cases/20",
+      "row_id": "H003-F05-FULLBACK-AS-EXECUTED",
+      "checker_key": "H003-F05-FULLBACK-AS-EXECUTED",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": []
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/5/negative_cases/21",
+      "row_id": "H003-F05-PORT-AS-NEW-APPROVAL",
+      "checker_key": "H003-F05-PORT-AS-NEW-APPROVAL",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": [
+        "H003-L8-F05-PORT-AS-NEW-APPROVAL"
+      ]
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/5/negative_cases/22",
+      "row_id": "H003-F05-CLOSED-ISSUE",
+      "checker_key": "H003-F05-CLOSED-ISSUE",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": []
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/5/negative_cases/23",
+      "row_id": "H003-F05-SYSTEM-BALANCE-FAIL",
+      "checker_key": "H003-F05-SYSTEM-BALANCE-FAIL",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": []
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/5/negative_cases/24",
+      "row_id": "H003-F05-ROLLBACK-OBSERVATION-FAIL",
+      "checker_key": "H003-F05-ROLLBACK-OBSERVATION-FAIL",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": []
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/5/negative_cases/25",
+      "row_id": "H003-F05-AI-AS-ACCEPTANCE",
+      "checker_key": "H003-F05-AI-AS-ACCEPTANCE",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": []
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/6/negative_cases/0",
+      "row_id": "H003-N01-DESIGN-FOREIGN-ENVIRONMENT",
+      "checker_key": "H003-N01-DESIGN-FOREIGN-ENVIRONMENT",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": [
+        "H003-L8-N01-DESIGN-FOREIGN-ENVIRONMENT"
+      ]
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/6/negative_cases/1",
+      "row_id": "H003-N01-DESIGN-DOUBLE-OWNER",
+      "checker_key": "H003-N01-DESIGN-DOUBLE-OWNER",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": []
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/6/negative_cases/2",
+      "row_id": "H003-N01-DESIGN-MISSING",
+      "checker_key": "H003-N01-DESIGN-MISSING",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": [
+        "H003-L8-N01-DESIGN-MISSING"
+      ]
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/6/negative_cases/3",
+      "row_id": "H003-N01-APPLICABILITY-UNKNOWN",
+      "checker_key": "H003-N01-APPLICABILITY-UNKNOWN",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": [
+        "H003-L8-N01-APPLICABILITY-UNKNOWN"
+      ]
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/6/negative_cases/4",
+      "row_id": "H003-N01-NA-WITHOUT-REASON",
+      "checker_key": "H003-N01-NA-WITHOUT-REASON",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": []
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/6/negative_cases/5",
+      "row_id": "H003-N01-SECURITY-FOREIGN-ENVIRONMENT",
+      "checker_key": "H003-N01-SECURITY-FOREIGN-ENVIRONMENT",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": []
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/6/negative_cases/6",
+      "row_id": "H003-N01-SECURITY-AS-OS-POLICY",
+      "checker_key": "H003-N01-SECURITY-AS-OS-POLICY",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": [
+        "H003-L8-N01-SECURITY-AS-OS-POLICY"
+      ]
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/6/negative_cases/7",
+      "row_id": "H003-N01-HARNESS-AS-TICKET-OWNER",
+      "checker_key": "H003-N01-HARNESS-AS-TICKET-OWNER",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": []
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/6/negative_cases/8",
+      "row_id": "H003-N01-INFERENCE-FOREIGN-SCOPE",
+      "checker_key": "H003-N01-INFERENCE-FOREIGN-SCOPE",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": []
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/6/negative_cases/9",
+      "row_id": "H003-N01-UNOBSERVED-AS-HEALTHY",
+      "checker_key": "H003-N01-UNOBSERVED-AS-HEALTHY",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": [
+        "H003-L8-N01-UNOBSERVED-AS-HEALTHY"
+      ]
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/6/negative_cases/10",
+      "row_id": "H003-N01-DESIGN-AS-OPERATION",
+      "checker_key": "H003-N01-DESIGN-AS-OPERATION",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": []
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/6/negative_cases/11",
+      "row_id": "H003-N01-REFERENCE-AS-PERMISSION",
+      "checker_key": "H003-N01-REFERENCE-AS-PERMISSION",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": []
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/6/negative_cases/12",
+      "row_id": "H003-N01-DESIGN-AS-COMPLETION",
+      "checker_key": "H003-N01-DESIGN-AS-COMPLETION",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": []
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/6/negative_cases/13",
+      "row_id": "H003-N01-DESIGN-AS-IMPLEMENTED",
+      "checker_key": "H003-N01-DESIGN-AS-IMPLEMENTED",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": []
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/6/negative_cases/14",
+      "row_id": "H003-N01-DESIGN-AS-VERIFIED",
+      "checker_key": "H003-N01-DESIGN-AS-VERIFIED",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": []
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/6/negative_cases/15",
+      "row_id": "H003-N01-DESIGN-AS-OBSERVED",
+      "checker_key": "H003-N01-DESIGN-AS-OBSERVED",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": []
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/6/negative_cases/16",
+      "row_id": "H003-N01-DESIGN-AS-OPERATED",
+      "checker_key": "H003-N01-DESIGN-AS-OPERATED",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": []
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/6/negative_cases/17",
+      "row_id": "H003-N01-INFERENCE-AS-REPRODUCED",
+      "checker_key": "H003-N01-INFERENCE-AS-REPRODUCED",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": []
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/6/negative_cases/18",
+      "row_id": "H003-N01-INFERENCE-AS-VERIFIED",
+      "checker_key": "H003-N01-INFERENCE-AS-VERIFIED",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": []
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/6/negative_cases/19",
+      "row_id": "H003-N01-INFERENCE-AS-REPAIRED",
+      "checker_key": "H003-N01-INFERENCE-AS-REPAIRED",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": []
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/6/negative_cases/20",
+      "row_id": "H003-N01-INFERENCE-AS-REVERIFIED",
+      "checker_key": "H003-N01-INFERENCE-AS-REVERIFIED",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": []
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/6/negative_cases/21",
+      "row_id": "H003-N01-INFERENCE-AS-OPERATED",
+      "checker_key": "H003-N01-INFERENCE-AS-OPERATED",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": []
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/6/negative_cases/22",
+      "row_id": "H003-N01-INVENT-SLO",
+      "checker_key": "H003-N01-INVENT-SLO",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": [
+        "H003-L8-N01-INVENT-SLO"
+      ]
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/6/negative_cases/23",
+      "row_id": "H003-N01-INVENT-RTO",
+      "checker_key": "H003-N01-INVENT-RTO",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": []
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/6/negative_cases/24",
+      "row_id": "H003-N01-INVENT-RPO",
+      "checker_key": "H003-N01-INVENT-RPO",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": []
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/6/negative_cases/25",
+      "row_id": "H003-N01-INVENT-RETENTION",
+      "checker_key": "H003-N01-INVENT-RETENTION",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": []
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/6/negative_cases/26",
+      "row_id": "H003-N01-OBSERVED-FOREIGN-ENVIRONMENT",
+      "checker_key": "H003-N01-OBSERVED-FOREIGN-ENVIRONMENT",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": []
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/6/negative_cases/27",
+      "row_id": "H003-N01-OBSERVED-NOT-EXECUTED",
+      "checker_key": "H003-N01-OBSERVED-NOT-EXECUTED",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": []
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/6/negative_cases/28",
+      "row_id": "H003-N01-OBSERVED-OWNER-CONTENT-CONFLICT",
+      "checker_key": "H003-N01-OBSERVED-OWNER-CONTENT-CONFLICT",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": []
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/6/negative_cases/29",
+      "row_id": "H003-N01-OPERATED-FOREIGN-ENVIRONMENT",
+      "checker_key": "H003-N01-OPERATED-FOREIGN-ENVIRONMENT",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": []
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/6/negative_cases/30",
+      "row_id": "H003-N01-OPERATED-NOT-EXECUTED",
+      "checker_key": "H003-N01-OPERATED-NOT-EXECUTED",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": []
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/6/negative_cases/31",
+      "row_id": "H003-N01-OPERATED-OWNER-CONTENT-CONFLICT",
+      "checker_key": "H003-N01-OPERATED-OWNER-CONTENT-CONFLICT",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": []
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/6/negative_cases/32",
+      "row_id": "H003-N01-OPERATED-LEGACY_BROKER",
+      "checker_key": "H003-N01-OPERATED-LEGACY_BROKER",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": []
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/6/negative_cases/33",
+      "row_id": "H003-N01-OPERATED-LEGACY_PROVIDER",
+      "checker_key": "H003-N01-OPERATED-LEGACY_PROVIDER",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": []
+    },
+    {
+      "source_pointer": "docs/helix-harness/L9-integration-verification/process-state-port.json#/cases/6/negative_cases/34",
+      "row_id": "H003-N01-OPERATED-LEGACY_CI",
+      "checker_key": "H003-N01-OPERATED-LEGACY_CI",
+      "checker_key_source": "id fallback; expected_classification and code absent",
+      "L8_rows_referencing_this_id": []
+    }
+  ],
+  "failure_rows": [
+    {
+      "attribute": "negative_case_count",
+      "case_id": "HARNESS-L9-003-B01",
+      "L4": 4,
+      "L9": 22,
+      "L8": 4,
+      "L5": 4,
+      "reason": "Per-function row counts differ; L4/L5/L8 agree and L9 has additional rows."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-L8-B01-GROUNDING-MISSING-purpose",
+      "L4": true,
+      "L9": false,
+      "L8": true,
+      "L5": true,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-L8-B01-QUAL-GROUNDING_PURPOSE-UNKNOWN",
+      "L4": true,
+      "L9": false,
+      "L8": true,
+      "L5": true,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-L8-B01-QUALITY-DOUBLE-WRITER",
+      "L4": true,
+      "L9": false,
+      "L8": true,
+      "L5": true,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-L8-B01-QUALITY-FOREIGN-REVISION",
+      "L4": true,
+      "L9": false,
+      "L8": true,
+      "L5": true,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-B01-GROUNDING-MISSING-purpose",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-B01-GROUNDING-MISSING-premises",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-B01-GROUNDING-MISSING-legacy_assets",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-B01-GROUNDING-MISSING-external_examples",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-B01-GROUNDING-MISSING-comparison",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-B01-QUALITY-DOUBLE-WRITER",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-B01-QUALITY-NOT-EXECUTED",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-B01-QUALITY-FOREIGN-REVISION",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-B01-HUMAN-MISSING",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-B01-HUMAN-UNACCEPTED-AXIS",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-B01-AI-AS-ORIGINAL",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-B01-HUMAN-FOREIGN-SCOPE",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-B01-UNRESOLVED-FINDING",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-B01-MANAGEMENT-DIRECT-WRITE",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-B01-REQUEST-AS-APPROVAL",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-B01-AI-AS-HUMAN",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-B01-ERASE-ACCEPTED-AXES",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-B01-DESIGN-AXES-AS-L11",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-B01-REQUEST-AS-COMPLETION",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-B01-REACTION-AS-REQUIREMENT-APPROVAL",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-B01-MANAGEMENT-URGENCY-MISSING-PAIR",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-B01-MANAGEMENT-URGENCY-MISSING-ACCEPTANCE",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "negative_case_count",
+      "case_id": "HARNESS-L9-003-F01",
+      "L4": 4,
+      "L9": 17,
+      "L8": 4,
+      "L5": 4,
+      "reason": "Per-function row counts differ; L4/L5/L8 agree and L9 has additional rows."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-L8-F01-MISSING-agreement",
+      "L4": true,
+      "L9": false,
+      "L8": true,
+      "L5": true,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-L8-F01-APPROVAL-UNKNOWN",
+      "L4": true,
+      "L9": false,
+      "L8": true,
+      "L5": true,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-L8-F01-CONSULTATION-AS-APPROVAL",
+      "L4": true,
+      "L9": false,
+      "L8": true,
+      "L5": true,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-L8-F01-FOREIGN-APPROVAL",
+      "L4": true,
+      "L9": false,
+      "L8": true,
+      "L5": true,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-F01-MISSING-agreement",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-F01-MISSING-requirements_approval",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-F01-MISSING-pair",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-F01-FOREIGN-APPROVAL",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-F01-CONSULTATION-AS-APPROVAL",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-F01-WORK_REQUEST-AS-APPROVAL",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-F01-SELECTION-AS-APPROVAL",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-F01-OPERATION_AUTHORIZATION-AS-APPROVAL",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-F01-UNDELEGATED-MEANING",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-F01-UNDELEGATED-AUTHORITY",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-F01-REPEAT-APPROVAL-FOR-DETAIL",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-F01-IMPLEMENTATION-AS-COMPLETION",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-F01-CONSULTATION-AS-ACTUAL-APPROVAL",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-F01-FREEZE-VERIFICATION",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-F01-REOPEN-UNRESOLVED",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-F01-COMPLETE-PAIR",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-F01-APPROVAL-UNKNOWN",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "negative_case_count",
+      "case_id": "HARNESS-L9-003-F02",
+      "L4": 4,
+      "L9": 21,
+      "L8": 4,
+      "L5": 4,
+      "reason": "Per-function row counts differ; L4/L5/L8 agree and L9 has additional rows."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-L8-F02-NA-WITHOUT-REASON",
+      "L4": true,
+      "L9": false,
+      "L8": true,
+      "L5": true,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-L8-F02-POC-RESULT-MISSING",
+      "L4": true,
+      "L9": false,
+      "L8": true,
+      "L5": true,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-L8-F02-AI-AS-DECIDE",
+      "L4": true,
+      "L9": false,
+      "L8": true,
+      "L5": true,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-L8-F02-POC-RESULT-MISSING",
+      "L4": true,
+      "L9": false,
+      "L8": true,
+      "L5": true,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-F02-L2-MISSING",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-F02-POC-SKIPPED-BY-NO-SCREEN",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-F02-POC-RESULT-MISSING",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-F02-POC-RESULT-FAIL",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-F02-RETURN-MISSING-backflow",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-F02-RETURN-MISSING-secondary_008",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-F02-RETURN-MISSING-decide",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-F02-RETURN-MISSING-agreement",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-F02-RETURN-MISSING-pair_refreeze",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-F02-OLD-AGREEMENT",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-F02-AI-AS-DECIDE",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-F02-NA-WITHOUT-REASON",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-F02-POC-AS-L3-FREEZE",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-F02-RESULT-AS-ADOPTION",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-F02-RESULT-AS-APPROVAL",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-F02-RETURN-AS-COMPLETION",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-F02-DECIDER-NA-MISSING",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-F02-TARGET_HEAD-NA-MISSING",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-F02-REQUIREMENT_IMPACT-NA-MISSING",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-F02-REEVALUATION-NA-MISSING",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-F02-NOT_APPLICABLE-NA-MISSING",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "negative_case_count",
+      "case_id": "HARNESS-L9-003-F03",
+      "L4": 4,
+      "L9": 39,
+      "L8": 4,
+      "L5": 4,
+      "reason": "Per-function row counts differ; L4/L5/L8 agree and L9 has additional rows."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-L8-F03-ORIGIN-MISSING",
+      "L4": true,
+      "L9": false,
+      "L8": true,
+      "L5": true,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-L8-F03-L9-MISSING-interface",
+      "L4": true,
+      "L9": false,
+      "L8": true,
+      "L5": true,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-L8-F03-WRONG-L9-PAIR",
+      "L4": true,
+      "L9": false,
+      "L8": true,
+      "L5": true,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-L8-F03-REVERSE-AS-EXECUTED",
+      "L4": true,
+      "L9": false,
+      "L8": true,
+      "L5": true,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-F03-ORIGIN-MISSING",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-F03-LEGACY-ASSET",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-F03-TRACE-MISSING",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-F03-DESIGN-DISPUTED",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-F03-LARGE-DEVIATION",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-F03-DESIGN-IMPLEMENTATION-DRIFT",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-F03-FINDING-RECURRENCE",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-F03-PERFORMANCE-REGRESSION",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-F03-INCIDENT-PERMANENT-REMEDY",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-F03-SCRUM-CHECKPOINT",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-F03-WRONG-L9-PAIR",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-F03-FOREIGN-PAIR-REVISION",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-F03-L9-MISSING-interface",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-F03-L9-MISSING-dependency_direction",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-F03-L9-MISSING-state_data_ownership",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-F03-L9-MISSING-transaction",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-F03-L9-MISSING-failure_propagation",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-F03-L9-MISSING-retry",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-F03-L9-MISSING-timeout",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-F03-L9-MISSING-idempotency",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-F03-L9-MISSING-coupling",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-F03-L9-MISSING-responsibility_duplication",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-F03-STATE-OWNER-CONFLICT",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-F03-PRE-BODY-RED-ABSENT",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-F03-PUBLIC-MEANING-CHANGE",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-F03-ARCHITECTURE-MEANING-CHANGE",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-F03-NORMAL-AS-FULL-REVERSE",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-F03-NORMAL-AS-REVERSE-TICKET",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-F03-HARNESS-AS-ISSUER",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-F03-VALLEY-AS-QUALITY",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-F03-VALLEY-AS-USER-ACCEPTANCE",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-F03-VALLEY-AS-RELEASE",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-F03-REVERSE-AS-EXECUTED",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-F03-REQUIREMENT-MEANING-CHANGE",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-F03-STATE-MEANING-CHANGE",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-F03-L8-WRONG-PAIR",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-F03-L8-FOREIGN-REVISION",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-F03-L10-WRONG-PAIR",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-F03-L10-FOREIGN-REVISION",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "negative_case_count",
+      "case_id": "HARNESS-L9-003-F04",
+      "L4": 7,
+      "L9": 22,
+      "L8": 7,
+      "L5": 7,
+      "reason": "Per-function row counts differ; L4/L5/L8 agree and L9 has additional rows."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-L8-F04-MISSING-Provisional",
+      "L4": true,
+      "L9": false,
+      "L8": true,
+      "L5": true,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-L8-F04-MISSING-Integrated",
+      "L4": true,
+      "L9": false,
+      "L8": true,
+      "L5": true,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-L8-F04-MISSING-Verified",
+      "L4": true,
+      "L9": false,
+      "L8": true,
+      "L5": true,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-L8-F04-MISSING-Accepted",
+      "L4": true,
+      "L9": false,
+      "L8": true,
+      "L5": true,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-L8-F04-MISSING-Release-eligible",
+      "L4": true,
+      "L9": false,
+      "L8": true,
+      "L5": true,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-L8-F04-MISSING-Deployed",
+      "L4": true,
+      "L9": false,
+      "L8": true,
+      "L5": true,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-L8-F04-MISSING-Observed",
+      "L4": true,
+      "L9": false,
+      "L8": true,
+      "L5": true,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-F04-MISSING-Working",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-F04-MISSING-Provisional",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-F04-MISSING-Integrated",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-F04-MISSING-Verified",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-F04-MISSING-Accepted",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-F04-MISSING-Release-eligible",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-F04-MISSING-Deployed",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-F04-MISSING-Observed",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-F04-FOREIGN-REVISION",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-F04-FOREIGN-SCOPE",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-F04-FOREIGN-ENVIRONMENT",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-F04-DOC-AS-ATOMIC-CI",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-F04-PRE-BODY-RED-ABSENT",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-F04-BOUNDARY-DOUBLE-OWNER",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-F04-SYSTEM-DIFFERENCE-MISSING",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-F04-SYSTEM-OBSERVATION-FAIL",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-F04-L10-AS-HUMAN-ACCEPTANCE",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-F04-AI-AS-HUMAN-ACCEPTANCE",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-F04-PORT-ROLLBACK-MISSING",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-F04-DEPLOY-AS-OBSERVED",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-F04-FOREIGN-ARTIFACT",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-F04-UNTRUSTED-CLAIM-ONLY",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "negative_case_count",
+      "case_id": "HARNESS-L9-003-F05",
+      "L4": 5,
+      "L9": 26,
+      "L8": 5,
+      "L5": 5,
+      "reason": "Per-function row counts differ; L4/L5/L8 agree and L9 has additional rows."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-L8-F05-MISSING-proofs",
+      "L4": true,
+      "L9": false,
+      "L8": true,
+      "L5": true,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-L8-F05-AUTHORITY-MISSING",
+      "L4": true,
+      "L9": false,
+      "L8": true,
+      "L5": true,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-L8-F05-UNKNOWN-RETURN-FILLED",
+      "L4": true,
+      "L9": false,
+      "L8": true,
+      "L5": true,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-L8-F05-PORT-AS-NEW-APPROVAL",
+      "L4": true,
+      "L9": false,
+      "L8": true,
+      "L5": true,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-L8-F05-DEPLOY-AS-PERMANENT",
+      "L4": true,
+      "L9": false,
+      "L8": true,
+      "L5": true,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-F05-MISSING-proofs",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-F05-MISSING-artifact_identity",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-F05-MISSING-environment",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-F05-MISSING-dependencies",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-F05-MISSING-security",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-F05-MISSING-rollback",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-F05-MISSING-deployment_conditions",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-F05-MISSING-acceptance",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-F05-PORT-AFTER-START",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-F05-FOREIGN-ARTIFACT",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-F05-FOREIGN-ENVIRONMENT",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-F05-AUTHORITY-MISSING",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-F05-AUTHORITY-FOREIGN-OP",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-F05-AUTHORITY-EXPIRED",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-F05-AUTHORITY-REVOKED",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-F05-CONVERGENCE-FAILED",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-F05-URGENT-RELEASE",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-F05-DEPLOY-AS-PERMANENT",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-F05-ISSUE-CLOSE-AS-BACKFILL",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-F05-UNKNOWN-RETURN-FILLED",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-F05-FULLBACK-AS-EXECUTED",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-F05-PORT-AS-NEW-APPROVAL",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-F05-CLOSED-ISSUE",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-F05-SYSTEM-BALANCE-FAIL",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-F05-ROLLBACK-OBSERVATION-FAIL",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-F05-AI-AS-ACCEPTANCE",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "negative_case_count",
+      "case_id": "HARNESS-L9-003-N01",
+      "L4": 6,
+      "L9": 35,
+      "L8": 6,
+      "L5": 6,
+      "reason": "Per-function row counts differ; L4/L5/L8 agree and L9 has additional rows."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-L8-N01-APPLICABILITY-UNKNOWN",
+      "L4": true,
+      "L9": false,
+      "L8": true,
+      "L5": true,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-L8-N01-DESIGN-MISSING",
+      "L4": true,
+      "L9": false,
+      "L8": true,
+      "L5": true,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-L8-N01-UNOBSERVED-AS-HEALTHY",
+      "L4": true,
+      "L9": false,
+      "L8": true,
+      "L5": true,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-L8-N01-DESIGN-FOREIGN-ENVIRONMENT",
+      "L4": true,
+      "L9": false,
+      "L8": true,
+      "L5": true,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-L8-N01-SECURITY-AS-OS-POLICY",
+      "L4": true,
+      "L9": false,
+      "L8": true,
+      "L5": true,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-L8-N01-INVENT-SLO",
+      "L4": true,
+      "L9": false,
+      "L8": true,
+      "L5": true,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-N01-DESIGN-FOREIGN-ENVIRONMENT",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-N01-DESIGN-DOUBLE-OWNER",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-N01-DESIGN-MISSING",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-N01-APPLICABILITY-UNKNOWN",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-N01-NA-WITHOUT-REASON",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-N01-SECURITY-FOREIGN-ENVIRONMENT",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-N01-SECURITY-AS-OS-POLICY",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-N01-HARNESS-AS-TICKET-OWNER",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-N01-INFERENCE-FOREIGN-SCOPE",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-N01-UNOBSERVED-AS-HEALTHY",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-N01-DESIGN-AS-OPERATION",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-N01-REFERENCE-AS-PERMISSION",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-N01-DESIGN-AS-COMPLETION",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-N01-DESIGN-AS-IMPLEMENTED",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-N01-DESIGN-AS-VERIFIED",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-N01-DESIGN-AS-OBSERVED",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-N01-DESIGN-AS-OPERATED",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-N01-INFERENCE-AS-REPRODUCED",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-N01-INFERENCE-AS-VERIFIED",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-N01-INFERENCE-AS-REPAIRED",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-N01-INFERENCE-AS-REVERIFIED",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-N01-INFERENCE-AS-OPERATED",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-N01-INVENT-SLO",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-N01-INVENT-RTO",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-N01-INVENT-RPO",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-N01-INVENT-RETENTION",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-N01-OBSERVED-FOREIGN-ENVIRONMENT",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-N01-OBSERVED-NOT-EXECUTED",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-N01-OBSERVED-OWNER-CONTENT-CONFLICT",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-N01-OPERATED-FOREIGN-ENVIRONMENT",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-N01-OPERATED-NOT-EXECUTED",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-N01-OPERATED-OWNER-CONTENT-CONFLICT",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-N01-OPERATED-LEGACY_BROKER",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-N01-OPERATED-LEGACY_PROVIDER",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    },
+    {
+      "attribute": "presence",
+      "case_id": "H003-N01-OPERATED-LEGACY_CI",
+      "L4": false,
+      "L9": true,
+      "L8": false,
+      "L5": false,
+      "reason": "L9 identity-key namespace differs from L4/L5/L8 classification-key namespace."
+    }
+  ],
+  "L8_only_disposition": {
+    "reducible_failure_count": 0,
+    "basis": [
+      "L8 has 34 existing negative rows; all 34 carry explicit classification codes that resolve to corresponding L4 classifications and L5 rules.",
+      "All 182 L9 rows lack expected_classification and code, so checker identity falls back to their IDs. L8 classification codes cannot match those ID keys.",
+      "32 L8 rows already have exact integration_case_ref values to a current L9 row; this reference does not override the checker key precedence. Two L8 rows have no exact current L9 target recorded.",
+      "Each of the seven function groups has matching L4/L5/L8 counts and a larger L9 count. Adding L8 rows to mimic L9 counts would lack L4/L5 rows and source-backed unique L8 classifications.",
+      "Changing L8 U-ID or classification key to mimic L9 would either violate retained U-ID/classification semantics or create L4/L5 key and tuple mismatches. The checker implementation or L9 representation must change to reconcile identity namespaces; neither is an L8-only action."
+    ],
+    "no_synthetic_rows_or_semantics_added": true
+  },
+  "scope_boundary": "Rows are represented by existing IDs, classifications, refs, and JSON pointers only; no expected payloads, fixtures, or L9 values are copied."
+}

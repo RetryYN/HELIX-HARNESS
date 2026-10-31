@@ -1,0 +1,97 @@
+{
+  "schema": "wr260-process-state-l8-overlay-summary.v1",
+  "evidence_kind": "scaffold",
+  "authority_effect": "none",
+  "request_id": "WR260-PROCESS-STATE-L8-SLIM",
+  "main_revision": "4b3dbea7185bb9720112e878da0f9922da32d9ad",
+  "candidate_revision": "20f323e4b33fa7fdb2421e236baf87b876fae5d6",
+  "current_l8_sha256": "fcea1fbf6c550681cda48a3562dd631d063898d240712089f6232d5895d59c90",
+  "current_l8_bytes": 580597,
+  "static_validator": {
+    "passed": true,
+    "failed_checks": [],
+    "counts": {
+      "unit_rows": 215,
+      "qualification_rows": 172,
+      "qualification_matrix_rows": 141,
+      "mixed_qualification_rows": 12,
+      "content_counterexample_rows": 14,
+      "valley_content_counterexample_rows": 10,
+      "source_binding_control_rows": 7,
+      "source_group_rows": 305,
+      "negative_rule_rows": 34,
+      "resolved_current_l9_input_pointers": 209,
+      "unit_unverified_rows": 48,
+      "qualification_unverified_rows": 17,
+      "F05_N01_baseline_rows": 5,
+      "F05_N01_compact_baseline_bytes": 1351,
+      "non_pin_fixture_revision_count": 0,
+      "non_pin_64hex_count": 0
+    },
+    "unverified_row_count": 65
+  },
+  "scfctl": {
+    "validate_bindings": 209,
+    "validate_failures": 0,
+    "stale_count": 0
+  },
+  "check_child": {
+    "overall_passed": false,
+    "L4_L9_pair": true,
+    "L5_L8_pair": true,
+    "negative_4way": {
+      "passed": false,
+      "matched_case_count": 0,
+      "counts": {
+        "L4": 34,
+        "L9": 182,
+        "L8": 34,
+        "L5": 34
+      },
+      "failure_count": 223,
+      "failure_attributes": {
+        "presence": 216,
+        "negative_case_count": 7
+      }
+    },
+    "ownership_caps_passed": true,
+    "pin_check_count": 67,
+    "pin_failures": 0,
+    "pin_reports": [
+      {
+        "layer": null,
+        "checked_count": 17,
+        "failures": 0
+      },
+      {
+        "layer": null,
+        "checked_count": 18,
+        "failures": 0
+      },
+      {
+        "layer": null,
+        "checked_count": 15,
+        "failures": 0
+      },
+      {
+        "layer": null,
+        "checked_count": 17,
+        "failures": 0
+      }
+    ]
+  },
+  "baseline_cleanup": {
+    "F05_rows": 2,
+    "F05_compact_bytes_before": 30177,
+    "F05_compact_bytes_after": 473,
+    "N01_rows": 3,
+    "N01_compact_bytes_before": 763,
+    "N01_compact_bytes_after": 878,
+    "source_cells_removed": 116,
+    "source_packet_refs_removed": 5,
+    "nonpin_fixture_revisions": 0,
+    "nonpin_64hex": 0
+  },
+  "read_only": true,
+  "recorded_after_latest_main_overlay": true
+}
