@@ -814,8 +814,8 @@
       "SEC003-L8-CAND-096"
     ],
     "one_to_one_status": "unresolved",
-    "reason": "L9 retains six distinct caller-kind integration rows required by the L3/L4 caller boundary. The current L8 compare_fallback row projects only /request/fallback and does not consume caller_kind. PR #4000 R1 removed six candidate rows with exact present primary_tree read-field/input and matching local outcome as duplicates. QA §3/58 requires one-to-one L8↔L9 case references and rejects repeated L9 references. Counting six removed duplicates as six unit rows would contradict their recorded exact input/outcome correspondence; collapsing the six caller cases would discard distinct L9 inputs. The canonical gap remains unresolved; a separately measured provenance-only L5/L8 design candidate is recorded below and does not restore those duplicate compare_fallback rows.",
-    "followup_candidate": "Review the separate provenance-only L5/L8 V-pair candidate, which carries six distinct caller_kind values from compare_caller_material through compose_scope_proposal without changing grade/findings/authority/effect. Its unknown/absent/malformed caller provenance representation remains unresolved. If the proposed return-field extension is not supported, seek source-authority resolution for QA one-to-one; do not edit QA or L3/L10 here.",
+    "reason": "L9 retains six distinct caller-kind integration rows required by the L3/L4 caller boundary. The current L8 compare_fallback row projects only /request/fallback and does not consume caller_kind. PR #4000 R1 removed six candidate rows with exact present primary_tree read-field/input and matching local outcome as duplicates. QA §3/58 requires one-to-one L8↔L9 case references and rejects repeated L9 references. Counting six removed duplicates as six unit rows would contradict their recorded exact input/outcome correspondence; collapsing the six caller cases would discard distinct L9 inputs. Keep all six L9 rows and do not invent distinct L8 function behavior. Return this row-level conflict to independent author/reviewer for source-level resolution.",
+    "followup_candidate": "A separate L5/L8 V-pair must determine whether caller_kind is part of an approved unit-function contract and whether distinct L8 owner cases can exist without changing the L5 read-field contract. If not, seek source-authority resolution for how QA one-to-one applies to this six-row caller matrix; do not edit QA or L3/L10 here.",
     "pr4000_r1_removed_candidate_evidence": [
       {
         "candidate_id": "SEC003-L8-CAND-072",
@@ -941,117 +941,7 @@
       "L8 negative_equivalence_classes and unit_cases must point to qualified L5 rules and L9 IDs",
       "L9 negative_equivalence_classes / integration_cases require class refs and one-to-one case refs for every supplied row",
       "Only after all four layers are complete may one coordinated revision add all markers and run explicit mode"
-    ],
-    "overlay_measurement": "integration-overlay-measurement.json",
-    "check_child_result": {
-      "exit_code": 1,
-      "comparison_mode": "explicit_negative_equivalence_classes",
-      "parent_link_mode": "new_parent_link",
-      "passed": false,
-      "class_row_counts": {
-        "L4": 16,
-        "L9": 16,
-        "L8": 16,
-        "L5": 16
-      },
-      "class_counts": {
-        "L4": 16,
-        "L9": 16,
-        "L8": 16,
-        "L5": 16
-      },
-      "case_row_counts": {
-        "L8": 143,
-        "L9": 148
-      },
-      "matched_case_count": 141,
-      "failure_count": 16,
-      "failure_groups": [
-        {
-          "layer": "L8",
-          "attribute": "equivalence_class",
-          "reason": "class_key_missing_from_layer",
-          "count": 1
-        },
-        {
-          "layer": "L8",
-          "attribute": "equivalence_class",
-          "reason": "unexpected_class_key",
-          "count": 1
-        },
-        {
-          "layer": "L8",
-          "attribute": "equivalence_key",
-          "reason": "class_key_missing_from_layer",
-          "count": 1
-        },
-        {
-          "layer": "L8",
-          "attribute": "equivalence_key",
-          "reason": "unexpected_class_key",
-          "count": 1
-        },
-        {
-          "layer": "L8",
-          "attribute": "integration_case_ref",
-          "reason": "integration_case_ref_unresolved",
-          "count": 1
-        },
-        {
-          "layer": "L9",
-          "attribute": "equivalence_class",
-          "reason": "class_key_missing_from_layer",
-          "count": 1
-        },
-        {
-          "layer": "L9",
-          "attribute": "equivalence_class",
-          "reason": "unexpected_class_key",
-          "count": 1
-        },
-        {
-          "layer": "L9",
-          "attribute": "equivalence_key",
-          "reason": "class_key_missing_from_layer",
-          "count": 1
-        },
-        {
-          "layer": "L9",
-          "attribute": "equivalence_key",
-          "reason": "unexpected_class_key",
-          "count": 1
-        },
-        {
-          "layer": "L9",
-          "attribute": "integration_case_ref",
-          "reason": "integration_case_not_referenced_from_l8",
-          "count": 6
-        },
-        {
-          "layer": "L9",
-          "attribute": "owner_unresolved",
-          "reason": "finding_owners_not_unique",
-          "count": 1
-        }
-      ]
-    },
-    "explicit_overlay_finding": "基本4marker overlayはL4/L9 pairとL5/L8 pairがPASSし、全class row 16/16/16/16を比較した。4wayはFAIL 16件。case condition/expected/expected_preserved不足は0件。残件はSEC003-L8-FALLBACK-PRIMARY参照未解決1件、primary-tree caller L9 6行未参照、SEC003-L8-OPERATION-DEFERの空ordered_findingsでownerを得られない1件と、そのためのL8/L9 class-key差分各4件。別provenance候補overlayでは6件のcaller row pairingが解消し、147 matched/9 failuresとなった。nested L4重複定義は0件。",
-    "source_conflict": "現行compare_fallbackのread fieldは/request/fallbackだけで6件すべてprimary_tree。compare_caller_materialはcaller_kindを読むが既知6値はいずれもcorresponding/空finding。compose_scope_proposalは両PartAnalysisを合成するが生caller kindを読まない。したがって現L5契約内にprovenance通過は存在しない。L3/L4のcaller区分とoriginal_identity保持を根拠に、既存二関数への来歴field追加とpass-throughだけを行う別L5/L8候補を設計し、実overlayで6 distinct inputs/outputsと6 one-to-one参照を照合した。これは契約拡張候補であり、現実装能力や承認済み設計ではない。",
-    "l9_gap_design": "未対応50件それぞれのL9候補condition/expected/expected_preservedはL4 classとL3/L10 source pointerから導出。L8側は同じL4契約から別に投影。L8 input projectionは対応特定だけに使用し、L9 oracle導出に使用しない。具体的なL9 system request traceと実行oracleは現sourceにない。",
-    "checker_change_candidate": "checker-empty-finding-owner-candidate.json",
-    "checker_change_candidate_static_check": "checker-empty-finding-owner-static-check.json",
-    "current_l5_primary_tree_caller_mapping_audit": "rowwise-integration-design.json#/current_l5_primary_tree_caller_mapping_audit",
-    "provenance_only_l5_l8_candidate": {
-      "artifact": "caller-provenance-overlay-measurement.json",
-      "status": "disposable_design_candidate_not_canonical",
-      "source_derivation": "L3 F02 names caller categories; L4 F02 forbids their implicit primary_tree/other_project fallback and requires original request identity preservation. L5 compare_caller_material already reads /request/caller_kind; compose_scope_proposal consumes its caller PartAnalysis.",
-      "candidate_contract": "Add caller_kind_provenance for the six known caller values to compare_caller_material result and pass it unchanged through compose_scope_proposal. Keep grade/findings, fallback violation, permissions, routing, owner and operation_effect unchanged.",
-      "actual_overlay_result": "L4/L9 and L5/L8 pair checks PASS; 4way FAIL with 147 matched cases and nine remaining failures, all from operation-defer empty-finding owner/class-key handling.",
-      "unresolved": [
-        "No canonical L5/L8 implementation or execution evidence.",
-        "Representation for unknown/absent/malformed caller inputs not derived by this six-row candidate."
-      ]
-    }
+    ]
   },
   "preserved": {
     "L9_case_ids": 98,
@@ -1066,8 +956,7 @@
   "verification_limits": [
     "Static document and ID/source-pointer checks only.",
     "No L4 algorithm, runtime, old CLI/hook/CI, or test execution.",
-    "Existing not_executed state remains; no product behavior/pass is asserted.",
-    "Empty-finding owner handling is a separate checker+QA PR candidate; the current checker remains unchanged and fails closed."
+    "Existing not_executed state remains; no product behavior/pass is asserted."
   ],
   "verification": {
     "before": {
@@ -1118,22 +1007,5 @@
       "static_integrity": "L4 classes 16 (six newly added), all code=expected_classification and unique IDs; L9 has 98 class_id assignments; case IDs, expected_observation values, and residual 16 rows match the specified base; L5/L8 bytes match base; no explicit marker exists in L4/L5/L8/L9."
     }
   },
-  "binding_id": "SCF-B-0218",
-  "classification_reference_audit": {
-    "artifact": "legacy-classification-crosswalk.json",
-    "rows": 98,
-    "distinct_legacy_nested_codes": 10,
-    "nested_id_class_id_count": 0,
-    "nested_top_level_id_intersection": [],
-    "consumer_result": "legacy assignment classification is retained provenance; checker uses class_ref in explicit mode. No current checker reads this legacy field.",
-    "rowwise_l8_l9_overlap": {
-      "canonical_l8_rows": 52,
-      "exact_projection_l8_rows": 2,
-      "exact_projection_l9_rows": 7,
-      "other_canonical_l8_rows_without_exact_l9_projection": 50,
-      "r1_retained_noncanonical_l8_candidates": 91,
-      "r1_removed_exact_duplicate_candidates": 7
-    }
-  },
-  "rowwise_transition_design": "rowwise-integration-design.json"
+  "binding_id": "SCF-B-0218"
 }

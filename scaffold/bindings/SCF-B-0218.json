@@ -6,7 +6,7 @@
   "product": "HELIX-HARNESS",
   "owner_candidate": "HELIX-HARNESS SEC006 L4/L9 source comparison owner",
   "state": "registered",
-  "reason": "SCF-B-0218はWR258のL4/L9 source-based class rowsと未解決の一対一integration候補を、scaffold限定の証拠として登録する。L3/L10の意味、QA、L5/L8、runtime、authorityは変更しない。",
+  "reason": "SCF-B-0218はWR258のL4/L9 source-based class rows、行別対応、4層overlayのcompact実測をscaffold限定証拠として登録する。全文overlayは固定commitから一時worktreeで再構成し、repositoryには保存しない。L3/L10の意味、QA、L5/L8、runtime、authorityは変更しない。",
   "upstream": [
     {
       "path": "docs/helix-security/L3-requirements/functional-requirements.json",
@@ -82,7 +82,7 @@
   "operations": {
     "allowed": [
       "Static source revision/hash and pointer checks",
-      "Current scaffold design_verification_checker.py check-child as a structural measurement",
+      "Rebuild the four-marker overlay and run current check-child only in an ephemeral git worktree at the recorded fixed commit; persist compact reports only.",
       "Current scfctl validate and stale",
       "JSON, ID and case-row comparisons",
       "Diff inspection and whitespace checks"
@@ -108,20 +108,16 @@
     "scaffold/research/wr258-sec006-psi-explicit-20261101/legacy-classification-crosswalk.json",
     "scaffold/research/wr258-sec006-psi-explicit-20261101/rowwise-integration-design.json",
     "scaffold/research/wr258-sec006-psi-explicit-20261101/build_rowwise_design.py",
-    "scaffold/research/wr258-sec006-psi-explicit-20261101/integrated-overlay-candidate/l4.json",
-    "scaffold/research/wr258-sec006-psi-explicit-20261101/integrated-overlay-candidate/l5.json",
-    "scaffold/research/wr258-sec006-psi-explicit-20261101/integrated-overlay-candidate/l8.json",
-    "scaffold/research/wr258-sec006-psi-explicit-20261101/integrated-overlay-candidate/l9.json",
     "scaffold/research/wr258-sec006-psi-explicit-20261101/checker-empty-finding-owner-candidate.json",
     "scaffold/research/wr258-sec006-psi-explicit-20261101/checker-empty-finding-owner-static-check.json",
     "scaffold/research/wr258-sec006-psi-explicit-20261101/checker-empty-owner-candidate.py",
     "scaffold/research/wr258-sec006-psi-explicit-20261101/build_caller_provenance_overlay.py",
     "scaffold/research/wr258-sec006-psi-explicit-20261101/caller-provenance-overlay-check-child.json",
     "scaffold/research/wr258-sec006-psi-explicit-20261101/caller-provenance-overlay-measurement.json",
-    "scaffold/research/wr258-sec006-psi-explicit-20261101/caller-provenance-overlay-candidate/l4.json",
-    "scaffold/research/wr258-sec006-psi-explicit-20261101/caller-provenance-overlay-candidate/l5.json",
-    "scaffold/research/wr258-sec006-psi-explicit-20261101/caller-provenance-overlay-candidate/l8.json",
-    "scaffold/research/wr258-sec006-psi-explicit-20261101/caller-provenance-overlay-candidate/l9.json"
+    "scaffold/research/wr258-sec006-psi-explicit-20261101/post-f328-followup-r1.json",
+    "scaffold/research/wr258-sec006-psi-explicit-20261101/f328-overlay-disposition.json",
+    "scaffold/research/wr258-sec006-psi-explicit-20261101/reconstruct_overlays_in_temp_worktree.py",
+    "scaffold/research/wr258-sec006-psi-explicit-20261101/overlay-reconstruction-r2.json"
   ],
   "verification": {
     "evidence_kind": "scaffold",
@@ -138,7 +134,8 @@
       "All six primary-tree L9 rows retain distinct IDs and share the same implicit-fallback class. Canonical one-to-one pairing remains unresolved; a disposable separate L5/L8 provenance candidate and integrated checker measurement are recorded without changing canonical files.",
       "No explicit marker is present; QA all-four-layer marker rule is respected.",
       "check-child four-way result is reported from actual post-overlay execution; it is not converted to pass.",
-      "Historical blind and WR244/WR250 fixed evidence files remain byte-identical."
+      "Historical blind and WR244/WR250 fixed evidence files remain byte-identical.",
+      "The two full-copy overlay trees from f328 are removed from this revision; their Git blob IDs and SHA-256 values are recorded in f328-overlay-disposition.json. The fixed-commit temporary-worktree reconstruction verifies all eight historical overlay hashes before removal and reproduces baseline 141 matched/16 failures and caller-provenance 147 matched/9 failures."
     ],
     "negative_cases": [
       "L8 SIDE-UNKNOWN-SIDE and ASSET-UNKNOWN-KIND remain unknown with scope_input_unresolved and map to separate source-derived axes.",

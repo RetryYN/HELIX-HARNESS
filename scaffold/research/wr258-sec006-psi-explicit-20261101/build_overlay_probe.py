@@ -22,6 +22,8 @@ def main():
     ap.add_argument('--out', required=True)
     a = ap.parse_args()
     out = Path(a.out)
+    if out.exists():
+        raise FileExistsError(f'overlay_output_must_be_new:{out}')
     l4 = load('4', 'L4-basic-design')
     l5 = load('5', 'L5-detail-design')
     l8 = load('8', 'L8-unit-verification')
