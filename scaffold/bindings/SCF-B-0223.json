@@ -43,7 +43,8 @@
     "consumers": [
       "WR260 static validator",
       "design_verification_checker check-child",
-      "scfctl validate/stale"
+      "scfctl validate/stale",
+      "WR260 row-level 4way residual analysis"
     ],
     "dependencies": [
       "Issue #3510",
@@ -74,7 +75,8 @@
     "scaffold/research/wr260-process-state-l8-20261101/README.md",
     "scaffold/research/wr260-process-state-l8-20261101/validate_process_state_l8.py",
     "scaffold/research/wr260-process-state-l8-20261101/verification-summary-r9.json",
-    "scaffold/research/wr260-process-state-l8-20261101/verification-summary-disposition.json"
+    "scaffold/research/wr260-process-state-l8-20261101/verification-summary-disposition.json",
+    "scaffold/research/wr260-process-state-l8-20261101/negative-4way-residual-analysis.json"
   ],
   "verification": {
     "evidence_kind": "scaffold",
@@ -86,7 +88,8 @@
     "oracles": [
       "WR260 base revision 569bde0bc5792349f0833461f0bb1bb6db33c592; L8 SHA-256 f5055c9a7d19654402f3f2b595038cf0f81ed717659c342c6190c5f88577e5b2. Provenance/expected-delta comparison only.",
       "Prior L8 candidate bytes=1509558 SHA-256 acccdb31c2cfee3fbe2d389bed5eedd7e12c63be14a22c44950d73f1320748db retained as historical pin. Current L8 candidate bytes=627824 SHA-256 8b01a4c3b9ebd33ceaff41cb75a4c2cbd48f26ce4ec09bdb030fd1f7ed890e6d is stale-detection only.",
-      "WR260 verification-summary-r9.json is the single current measurement on latest main ad2dfaf6 and records 215/172 preservation and check-child residual counts; 223 failure total remains unchanged from request baseline. verification-summary-disposition.json stores prior snapshot commit/blob/content SHA-256 and restoration instructions without duplicating their bodies."
+      "WR260 verification-summary-r9.json is the single current measurement on latest main ad2dfaf6 and records 215/172 preservation and check-child residual counts; 223 failure total remains unchanged from request baseline. verification-summary-disposition.json stores prior snapshot commit/blob/content SHA-256 and restoration instructions without duplicating their bodies.",
+      "WR260 row-level 4way residual analysis: 216 presence rows and 7 per-function count rows are classified by existing L4/L5/L8/L9 pointers. The 34 L8 rows already match L4/L5 classification keys; L9 id-fallback keys and larger L9 row counts are not reconcilable by an L8-only source-backed change. 0 reducible L8-only failures; 223 remain. No L9 values or synthetic rows are introduced."
     ],
     "negative_cases": [
       "No claim of 4way pass or failure-count reduction.",

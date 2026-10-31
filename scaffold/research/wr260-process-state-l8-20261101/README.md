@@ -18,7 +18,7 @@ L5の公開関数7件、L9 branch 7件と既存canonical listを維持した。3
 
 起点はIssue #3510、PR #4006のdigest/repr指摘、PR #4002の重複、PR #3998の行別意味・期待確認である。旧HELIXの対応箇所`archive/legacy-generation-2026-09-14/root/docs/governance/ddd-tdd-rules.md:21-33,112-121`を読み、公開契約とfailure semanticsを先に固定し、複雑さを減らせるか記録する点を参照した。旧sourceのtest、fixture、oracleは現行へ持ち込んでいない。
 
-L4↔L9 pairとL5↔L8 pairはそれぞれ7対7でpassし、4way成立を意味しない。`check-child`のnegative 4wayは223 failuresで、依頼記録上の従前223件から変化なしだった。属性別は`presence` 216件、`negative_case_count` 7件。層別行数はL4=34、L8=34、L5=34、L9=182。件数差や未対応caseが残るため、34行追加による失敗減少は主張しない。最新main `ad2dfaf6f434fbb81cd34988d4bd76212380f3a5` overlayと意味条件修正後の現在測定は[`verification-summary-r9.json`](verification-summary-r9.json)に記録した。失敗行IDは過去の固定snapshotとの比較対象として維持し、巨大なresidual一覧を複写していない。
+L4↔L9 pairとL5↔L8 pairはそれぞれ7対7でpassし、4way成立を意味しない。`check-child`のnegative 4wayは223 failuresで、依頼記録上の従前223件から変化なしだった。属性別は`presence` 216件、`negative_case_count` 7件。層別行数はL4=34、L8=34、L5=34、L9=182。行単位の内訳は[`negative-4way-residual-analysis.json`](negative-4way-residual-analysis.json)に記録した。L8の34行はすでにL4分類・L5 ruleと一致する。L9の182行はclassification/code欄がなく、checkerがIDをkeyとして使う一方、L8は分類codeをkeyとするため、既存L8→L9参照32件もchecker keyには反映されない。残る2件はexact L9 IDを特定できない。各関数群でL9の行数がL4/L5/L8を上回るため、L8だけではsource-backedにkeyや件数を一致させられない。L8-onlyで減らせるfailureは0件と判断し、合計223件のまま記録する。最新main `ad2dfaf6f434fbb81cd34988d4bd76212380f3a5` overlayと意味条件修正後の測定は[`verification-summary-r9.json`](verification-summary-r9.json)に記録した。巨大なexpected payloadやfixtureは残していない。
 
 source groupの実数は305 map entry。従前の332はrule stringの27文字を行として数えた誤りだったため、L8のinventoryに訂正根拠を残した。L8入力に対応する現行L9 pointerは209件で、6件は根拠がなく未対応のまま保持した。
 
