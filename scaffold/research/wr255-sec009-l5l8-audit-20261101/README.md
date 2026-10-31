@@ -50,10 +50,10 @@ latest `origin/main` をmergeしたL5/L8候補とcanonical L4/L9を照合したs
 
 ## 最新main overlayと固定証拠
 
-latest main overlayの詳細は、R1修正後のvalidator・check-child summaryと、別worktreeの再現overlay検証結果を記録した本節の最新artifactを参照してください。正式な正本照合は32 class、285 U-ID/source ID、277 negativeと契約最小期待8件です。positive 8件は設計済み・未観測、個別oracleとtest citationはnullです。
+latest main `fe6232a6062685aeb15e1b8641533ea86fa712f4`を第1親にPR-B HEAD `0451f67e4b94451b7258078f49df3cb34db36098`をno-commit overlayして再検証しました。L4/L9・L5/L8 pair pass、4wayは277 matched / 0 failures、pointer移行validator pass、scfctl validate 207/fail 0・stale 0です。validatorを2回とpointer validatorをread-only実行し、overlay worktreeのstatus不変を確認しました。次のsummary/reportはfeature branchのcurrent sourceを測った保存証拠です。positive 8件は設計済み・未観測、個別oracleとtest citationはnullです。
 
-- [verification summary](verification-summary-l4-d670496eeb-00376c40-l5-ea8e3c2510-1aefb9b6-l8-69fbb3e2f0-18df6dce-l9-087f02dc63-e918a289-validator-7b7544bc.json)
-- [check-child report](check-child-report-l4-d670496eeb-00376c40-l5-ea8e3c2510-1aefb9b6-l8-69fbb3e2f0-18df6dce-l9-087f02dc63-e918a289.json)
+- [verification summary](verification-summary-l4-d670496eeb-00376c40-l5-ea8e3c2510-1aefb9b6-l8-0451f67e4b-49875dcd-l9-087f02dc63-e918a289-validator-b2cd66c3-record-1793485186690215383-388303.json)
+- [check-child report](check-child-report-l4-d670496eeb-00376c40-l5-ea8e3c2510-1aefb9b6-l8-0451f67e4b-49875dcd-l9-087f02dc63-e918a289-record-1793485186690215383-388303.json)
 - [L8 pointer transfer audit](pointer-transfer-audit-49875dcdb4bc-e918a289fe88.json)
 
 summaryは正本285行の内容を再複製せず、validatorで再計算したrow/class audit digestを記録します。詳細値は固定revision・SHAを持つL4/L5/L8/L9正本にあり、再現validatorは285行すべてのpointerと期待を検査します。
@@ -78,4 +78,4 @@ python3 scaffold/research/wr255-sec009-l5l8-audit-20261101/validate_pointer_tran
 
 ## 測定artifactの履歴と集約
 
-修正前のcheck-child report、summary、308 subsetのpointer auditは現行測定ではなく、固定時点の意味をGit履歴と統合dispositionに保持します。異なる各revisionのcommit・blob SHA-1・content SHA-256・復元command、同一bytesの重複関係、旧full-report pointerは[統合disposition](measurement-artifact-disposition.json)に集約しました。current treeには277/0 overlay reportとsummaryを各1本、pointer-transferの行別監査を1本だけ残しています。pointer-transfer監査には同内容のJSON/JSONL複製はありません。
+修正前のcheck-child report、summary、308 subsetのpointer auditは現行測定ではなく、固定時点の意味をGit履歴と[統合disposition](measurement-artifact-disposition.json)に保持します。異なる各revisionのcommit・blob SHA-1・content SHA-256・復元command、同一bytesの重複関係、旧full-report pointerを同dispositionに集約しました。current treeにはこの修正後のsummary/reportを各1本、全consumerを数え直したpointer-transfer監査を1本だけ保持します。
