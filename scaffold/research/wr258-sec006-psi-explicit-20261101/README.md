@@ -34,7 +34,11 @@ PR #4007 merge後の基準mainは`151713275e2c2aa65bb23a8fe38eb63c46d570c8`。�
 
 レビュー指摘の根拠は、L5 `compare_scope_side` の「known差は`scope_identity_conflict`」、L5 `compare_connection_content` の「request sideとconnection同側のknown差は`connection_scope_conflict`」、L5 `compose_scope_proposal` の全finding保持、L8の6 identity軸・2 connection join case、およびL9 `multi_contract_residual` 12件の既存複合findingである。後者では2種類のfindingがすでに同時に保持されており、ここでは単独system oracleの旧集約分類だけを分離した。L3/L10のsourceは不変。
 
-検証validatorは、追加2 classのkey/expected、8 system oracleのclass refとexpected、他の139 integration rowと既存16 residualの保持、`ORACLE-048`条件、source pointer解決を検査する。残り1行（`ORACLE-048`）はclassを保ったままconditionだけ修正する。L8の正本は変更していないため、このV-pair単独では4層の全期待一致は主張しない。最新overlayの正式`check-child`が返すL4/L9・L5/L8 pair、4way結果、残る不一致は [`l4l9-supplement-current-overlay-r2.json`](l4l9-supplement-current-overlay-r2.json) に記録する。
+検証validatorは、追加2 classのkey/expected、8 system oracleのclass refとexpected、他の139 integration rowと既存16 residualの保持、`ORACLE-048`条件、source pointer解決を検査する。残り1行（`ORACLE-048`）はclassを保ったままconditionだけ修正する。L8の正本は変更していないため、このV-pair単独では4層の全期待一致は主張しない。
+
+origin/main `0e218828fbb3b487eff1469cd57ead8e3dfa7b67`を親とする候補overlayでは、独立casewise validatorは148行・17 classでPASS、L4/L9 pairとL5/L8 pair、pin checksもPASS、`scfctl validate`は210 bindings・失敗0、`scfctl stale`は0だった。一方、正式`check-child`の4wayは未成立で、L4=17/L9=17/L8=0/L5=0、matched=0、failure=236。内訳はL5 source marker欠落1、L8 table marker/unit_cases欠落各1、L9 integration ref未参照148、L4 class owner ref未解決17、L5/L8 class key未整備各34である。これらを4way PASSとは扱わない。
+
+別worktreeのPR-B候補（commit `2b8eba627753f57ef955ff050543b2652173ecea`）に対する照合は148/148参照一意、condition一致147、expected一致140、expected_preserved一致148。残る条件不一致は`ORACLE-048`、expected不一致は`ORACLE-002/004/006/008/010/012/036/037`の8行で、後者は今回移した新classをL5/L8候補へ追随させる作業を示す。PR-B候補内の同ID L8原source `/cases/1/negative_cases/18/raw_utf8` は operation=`read`、`allowed_operations=["read",null]`でnot_executed。PR-B側の旧condition「operation=list」はこのsourceと一致せず、後続PR-Bで同じ日本語conditionへ追随する必要がある。測定と全ID/不一致は [`l4l9-supplement-current-overlay-r2.json`](l4l9-supplement-current-overlay-r2.json) に記録する。
 
 従前98行の`condition`は各L9 counterexampleのrequest/context、finding pointer、比較軸から日本語で個別に導出した。`expected`と`expected_preserved`は対応するL4 classの投影から作り、L9のsystem oracle条件・ordered finding codeと98/98一致を確認した。要求inputも各L4 classのsource条件と98/98整合し、上流意味との矛盾は0件だった。新規50行は既存L9 system-oracle conditionを保持し、`expected`/`expected_preserved`がL4 class投影と50/50一致することを確認した。L9の98 nested `classification`は旧nested taxonomy labelのまま保持し、新しい`negative_class_ref`だけを明示keyとして用いる。
 

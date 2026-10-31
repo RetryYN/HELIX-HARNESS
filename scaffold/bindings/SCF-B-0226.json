@@ -21,12 +21,12 @@
     {
       "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
       "sha256": "2da2e64dc5aad459c7d1a6a6e8e645375f76371d43b7c0cdea95f2e0b3ce5cdf",
-      "note": "15 classの意味とexpected/expected_preserved source。 PR #4023 R1 F1/F3追補で現行pinを更新。直前のcurrent pin 16d4fc5e3fcf0c677703b694b538f6d8f5542db36291850ed7f72865f0d9c72c は履歴として保持。current SHA-256 2da2e64dc5aad459c7d1a6a6e8e645375f76371d43b7c0cdea95f2e0b3ce5cdf はL4/L9の既知scope差finding分離とORACLE-048条件修正を含む。"
+      "note": "17 classの意味とexpected/expected_preserved source。 PR #4023 R1 F1/F3追補で現行pinを更新。直前のcurrent pin 16d4fc5e3fcf0c677703b694b538f6d8f5542db36291850ed7f72865f0d9c72c は履歴として保持。current SHA-256 2da2e64dc5aad459c7d1a6a6e8e645375f76371d43b7c0cdea95f2e0b3ce5cdf はL4/L9の既知scope差finding分離とORACLE-048条件修正を含む。"
     },
     {
       "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
       "sha256": "5594ff7c05c27e78032dd92dd18cd15516410eb218cb41a9b26581956b02db6e",
-      "note": "148 nested negative rowsとL9 system oracle。新top-level integration_casesはそのcasewise投影。 PR #4017 R1補足で更新。R1前pin 80f3adc2c3a00c93f1c5eb81ed1ba28542dc7e31b558db15b9c5909a2f193754を履歴に保持。148 integration rowsからclass/nested source pointer重複を除き、追加50 IDをSEC003-L9-ORACLE-001..050へ改名。 PR #4023 R1 F1/F3追補で現行pinを更新。直前のcurrent pin 0d46617674373fb9b1677c02eac2766765aafb448192b5c6fc1674b4e7fa88da は履歴として保持。current SHA-256 5594ff7c05c27e78032dd92dd18cd15516410eb218cb41a9b26581956b02db6e はL4/L9の既知scope差finding分離とORACLE-048条件修正を含む。"
+      "note": "148 nested negative rowsとL9 system oracle。新top-level integration_casesはそのcasewise投影。current projectionは17 classで、scope-identity差6行とconnection-join差2行を別classへ参照する。 PR #4017 R1補足で更新。R1前pin 80f3adc2c3a00c93f1c5eb81ed1ba28542dc7e31b558db15b9c5909a2f193754を履歴に保持。148 integration rowsからclass/nested source pointer重複を除き、追加50 IDをSEC003-L9-ORACLE-001..050へ改名。 PR #4023 R1 F1/F3追補で現行pinを更新。直前のcurrent pin 0d46617674373fb9b1677c02eac2766765aafb448192b5c6fc1674b4e7fa88da は履歴として保持。current SHA-256 5594ff7c05c27e78032dd92dd18cd15516410eb218cb41a9b26581956b02db6e はL4/L9の既知scope差finding分離とORACLE-048条件修正を含む。"
     },
     {
       "path": "docs/governance/design-verification-quality-assurance.md",
@@ -86,7 +86,8 @@
     "scaffold/research/wr258-sec006-psi-explicit-20261101/validate_pr4007_r2.py",
     "scaffold/research/wr258-sec006-psi-explicit-20261101/l4l9-casewise-source-audit-r1.json",
     "scaffold/research/wr258-sec006-psi-explicit-20261101/l4l9-supplement-current-overlay-r1.json",
-    "scaffold/research/wr258-sec006-psi-explicit-20261101/pr4017-r1-review-disposition.json"
+    "scaffold/research/wr258-sec006-psi-explicit-20261101/pr4017-r1-review-disposition.json",
+    "scaffold/research/wr258-sec006-psi-explicit-20261101/l4l9-supplement-current-overlay-r2.json"
   ],
   "replacement": {
     "role_target": "L5/L8側のsource-derived case conditionsを整えた後、明示modeで4層一体検証する候補。",
@@ -111,7 +112,8 @@
       "すべてnot_executedとし、fixture実行、実観測、4way passを主張しない。",
       "全148 integration_casesでsource_pointersは省略し、negative_class_refと同IDのnested rowから根拠を解決する。",
       "追加50のstable L9 IDsはPR-B候補mappingへ一意に参照され、作業番号付きIDはcanonical L9/現行mappingに残らない。",
-      "2 scope-conflict classesはL3/L10/L4 source pointerへ解決し、対応8 L9 rowsはclass expectedを使う。L5/L8比較は診断用であり、このpairでは両層を編集しない。"
+      "2 scope-conflict classesはL3/L10/L4 source pointerへ解決し、対応8 L9 rowsはclass expectedを使う。L5/L8比較は診断用であり、このpairでは両層を編集しない。",
+      "最新main overlay測定は current-overlay-r2 を唯一の現行値として参照し、L4/L9 pair合格、現行mainでの4way check-child結果、PR-B候補との差分を分けて記録する。"
     ],
     "negative_cases": [
       "L8 oracleをL9へ複写しない。",
