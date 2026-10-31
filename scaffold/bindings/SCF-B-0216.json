@@ -25,8 +25,8 @@
     },
     {
       "path": "docs/helix-connect/L8-unit-verification/composite-edge-terminal.json",
-      "sha256": "6e8b76ebf3d0d97807145fc9df08fbfc747d1907a0217f98793728789d62f13c",
-      "note": "対象U-ID表。91行に短い差分種別・対象・行別判断を保持し、before/after値とrule proseを再掲しない"
+      "sha256": "f21e8e6f1493420145172c337884d05423c679404e0f46179d74491ec60ac2c2",
+      "note": "consumer互換のcases配列にU-IDと期待を結び、probeのpatch/全returnを除いたL8静的索引"
     },
     {
       "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
@@ -56,8 +56,8 @@
   ],
   "role": "WR257のL8行対応、source/oracle参照、意味境界、未検証状態の静的な保全証拠とvalidatorを保持する",
   "obligations": [
-    "91 L9 source case ID/順序、L9 source/expected pointer、system oracle、basis、fixture-only・not-executed状態を対応づける。L5 unit_case_refsは存在しないと記録し、L5対応を捏造しない。",
-    "27 local probeのID、function role、source case、patch paths、期待delta全値、独立basisを保持する。大きな共通値はexact revision/pointerのsource_refへ集約し、validatorで元deltaへ復元して比較する。",
+    "91件のL9 source ID/順序とconsumer互換配列形を維持し、各case objectのU-ID、L9 source/expected pointer、system oracle、basis、fixture-only・not-executed状態を対応づける。L5 unit_case_refsは存在しないと記録し、対応を捏造しない。",
+    "27 local probeのID、function role、source case/pointer、短い固有反例・期待判断・未実行状態を保持する。patch操作列やreturn差分値はL8に置かず、固定基準revisionとの静的比較だけでcoverage根拠を検証する。",
     "1 source reuse、7 primitive、1 typed carrier境界のIDと識別を保ち、fixture-only・not-executedを維持する。",
     "fixture digest、raw fixture、inline mutated bytes、full return wholeをL8に再配置しない。残すhashはsource/authority bytes pinに限る。",
     "removed_materialsの6 key、DT-VT-105適用境界、L5 unit_case_refsとL7 test citationの未確認を保持する。",
@@ -106,7 +106,8 @@
     "scaffold/research/wr257-connect-composite-l8-slim-20261101/evidence-history/59a5371cab86.json",
     "scaffold/research/wr257-connect-composite-l8-slim-20261101/static-evidence-measurement-66c0ba8f0011.json",
     "scaffold/research/wr257-connect-composite-l8-slim-20261101/static-evidence-measurement-eab8c07c187f.json",
-    "scaffold/research/wr257-connect-composite-l8-slim-20261101/static-evidence-measurement-6e8b76ebf3d0.json"
+    "scaffold/research/wr257-connect-composite-l8-slim-20261101/static-evidence-measurement-6e8b76ebf3d0.json",
+    "scaffold/research/wr257-connect-composite-l8-slim-20261101/static-evidence-measurement-f21e8e6f1493.json"
   ],
   "verification": {
     "evidence_kind": "scaffold",
@@ -118,7 +119,7 @@
       "forbidden_write_scope"
     ],
     "oracles": [
-      "WR257 static index validator (source case/pointer/expected delta round-trip)",
+      "WR257 static index validator（配列形、source case/pointer、短いprobe判断、固定履歴との比較、L5 rule coverage）",
       "python3 scaffold/tools/scfctl.py validate",
       "python3 scaffold/tools/scfctl.py stale",
       "git diff --check"

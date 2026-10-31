@@ -22,6 +22,36 @@ EVIDENCE = 'scaffold/research/wr257-connect-composite-l8-slim-20261101/static-ev
 EVIDENCE_DIR = 'scaffold/research/wr257-connect-composite-l8-slim-20261101'
 BINDING = 'scaffold/bindings/SCF-B-0216.json'
 
+PROBE_EXPECTATIONS = {
+    'LOCAL-C007-N01-EXACT-DECLARED-SCOPE-THREE-BOUNDARY-EVIDENCE-READONLY-OWNER-PROBE': ('必要証拠3件のうち第三境界の原証拠・提出証拠がともに欠ける。', '証拠集合はcontent conflictとして保留し、証拠ownerへ返す。'),
+    'LOCAL-C007-B01-TECHNICAL-TERMINAL-BUSINESS-NOT-ACCEPTED-READONLY-OWNER-PROBE': ('技術終端と未受理の業務recordが同時にあり、dependency選択も異なる。', '技術終端から業務acceptanceを作らず、技術・業務・dependency各ownerへ返す。'),
+    'LOCAL-C007-N01-EXACT-DECLARED-SCOPE-THREE-BOUNDARY-EVIDENCE-Empty-Required-Evidence': ('必要証拠集合と証拠recordがともに空で、宣言対象を立証できない。', '空同士の一致を成功扱いせず、未観測として候補を保留する。'),
+    'LOCAL-C007-F01-FOUR-MECHANISMS-THREE-DISTINCT-EDGES-Source-Operation-Absent': ('中間edgeのsource operationが原・提出定義の双方で不在。', 'operation mapping不足を補完せず、候補を非終端に保ってedge/composite ownerへ返す。'),
+    'LOCAL-C007-F02-DUPLICATE-ORIGINAL-STOP-EDGE-NO-OWNER-FALLBACK': ('stop identityに一致する原edge定義が重複し、一意なbindingがない。', 'stop ownerを選ばず曖昧性を保ち、trace failureをcomposite ownerへ返す。'),
+    'LOCAL-C007-F01-SINGLE-SUBMITTED-RESULT': ('一つの提出receiptだけが成功以外のresult stateを示す。', 'receipt不成立を保持して合成終端を保留し、対象edge ownerへ返す。'),
+    'LOCAL-C007-F01-SINGLE-SUBMITTED-SCOPE': ('一つの提出receiptのscopeが宣言edgeのscopeと異なる。', 'foreign scopeを一致扱いせず、edge/composite ownerへ返す。'),
+    'LOCAL-C007-F02-STOP-POSITION-ABSENT': ('宣言順のstop位置に対応するedge identityが存在しない。', 'stop後の進行を確定せず、downstream判断を保留してcomposite ownerへ返す。'),
+    'LOCAL-C007-F02-STOP-POSITION-DUPLICATE': ('stop位置のedge identityが重複し、停止edgeを一意に定められない。', '曖昧なstop bindingを保持し、unique ownerを選ばずcomposite ownerへ返す。'),
+    'LOCAL-C007-F02-DOWNSTREAM-MISSING': ('stop後の宣言edgeに原・提出いずれのattemptもない。', '欠落attemptを成功扱いせず、downstreamを未完了としてcomposite ownerへ返す。'),
+    'LOCAL-C007-F02-DOWNSTREAM-DOT': ('downstream attemptのedge keyがdot表記のforeign identityである。', 'foreign keyを宣言edgeに結びつけず、downstream結果を保留する。'),
+    'LOCAL-C007-F02-DOWNSTREAM-PLAIN': ('downstream attemptのedge keyが宣言形式と異なるplain identityである。', 'foreign keyを宣言edgeに結びつけず、downstream結果を保留する。'),
+    'LOCAL-C007-F02-DOWNSTREAM-NULL': ('原・提出downstream attemptの値がJSON nullである。', 'nullを進行attemptへ変換せず、判断を保留してcomposite ownerへ返す。'),
+    'LOCAL-C007-N01-LITERAL-MAP-DOT': ('evidence-to-edge mappingがdot表記の未宣言identityを指す。', '未宣言mappingを必要証拠へ結びつけず、evidence ownerへ返す。'),
+    'LOCAL-C007-N01-LITERAL-MAP-PLAIN': ('evidence-to-edge mappingがplain表記の未宣言identityを指す。', '未宣言mappingを必要証拠へ結びつけず、evidence ownerへ返す。'),
+    'LOCAL-C007-N01-MISSING-BEFORE-CONFLICT': ('原recordのeffect-stop参照は欠落し提出recordには参照がある。', '欠落とforeign参照を一致扱いせず、evidence候補を保留してownerへ返す。'),
+    'LOCAL-C007-F01-SUBMITTED-MAPPING-ONLY': ('一つの提出edgeだけconsumer endpoint対応が宣言と異なる。', 'endpoint mapping不一致を保持し、候補を非終端にしてedge/composite ownerへ返す。'),
+    'LOCAL-C007-N01-SUBMITTED-EDGE-BINDING': ('提出evidenceのedge identityが原evidenceの宣言対象と異なる。', '対象binding不一致を保持し、証拠候補を保留してevidence ownerへ返す。'),
+    'LOCAL-C007-F01-RAW-TIMEOUT-STATE': ('同一receipt位置の原・提出result stateがtimeoutを示す。', 'timeoutを成功へ読み替えず、edge failureをcomposite ownerへ返す。'),
+    'LOCAL-C007-F02-OWNER-FIRST-APPEARANCE': ('提出stop ownerと原handoff scopeが異なり、提出handoff scopeにも差がある。', 'owner/scope差を上書きせず、stop判断を保留してcomposite ownerへ返す。'),
+    'LOCAL-C007-F02-DOWNSTREAM-NEGATIVE': ('downstream attemptが負の数として与えられる。', '負値を有効な進行に数えず、型・値の不適合としてcomposite ownerへ返す。'),
+    'LOCAL-C007-F02-DOWNSTREAM-FRACTION': ('downstream attemptが小数として与えられる。', '小数を整数位置へ丸めず、進行判断を保留してcomposite ownerへ返す。'),
+    'LOCAL-C007-F02-DOWNSTREAM-BOOLEAN': ('downstream attemptがbooleanとして与えられる。', 'booleanを数値へ読み替えず、進行判断を保留してcomposite ownerへ返す。'),
+    'LOCAL-C007-F02-DOWNSTREAM-LARGE-EXACT-NUMBER': ('downstream attemptが有限で正確に表現できる大きな整数である。', '有限整数を浮動小数化で丸めず数値domain内として比較し、fixtureの未検証境界を維持する。'),
+    'LOCAL-C007-F02-STOP-AT-LAST': ('stop位置が宣言順の最後のedgeにある。', 'stopより後にdownstream edgeがないことを保ち、余分な進行を生成しない。'),
+    'LOCAL-C007-F01-ORIGINAL-ZERO-SUBMITTED-ONE': ('原receiptが欠け、対応する提出receiptだけが残る。', '片側receiptを対応とみなさず、候補を保留してedge/composite ownerへ返す。'),
+    'LOCAL-C007-F01-ORIGINAL-RECEIPT-DUPLICATE': ('同じ原receiptが重複し、edge対応が一意でない。', '重複receiptを単一成功へ縮約せず、曖昧性を保ってownerへ返す。'),
+}
+
 
 def sha(raw: bytes) -> str:
     return hashlib.sha256(raw).hexdigest()
@@ -307,14 +337,27 @@ def main() -> None:
     pinned_docs = {L4: l4, L9: l9}
     pin_records = {item['path']: item for item in current['source_pair_pins']}
 
-    assert len(current['cases']['rows']) == len(prior['cases']) == 91
-    assert len(current['local_probes']['rows']) == len(prior['local_probes']) == 27
+    case_columns = ['id', 'function_ref', 'requirement_ref', 'l4_ref', 'l9_ref', 'system_oracle_ref', 'source_packet_pointer', 'expected_oracle_pointer', 'scenario_basis', 'boundary', 'execution_state', 'qualification', 'u_id', 'l5_function_ref', 'l5_failure_rule_refs', 'expected']
+    case_rows = []
+    for case in current['cases']:
+        packet_ref = case['source_packet_ref']
+        case_rows.append([
+            case['id'], case['function_ref'], case['requirement_ref'], case['l4_ref'], case['l9_ref'],
+            case['system_oracle_ref'], packet_ref['pointer'] + packet_ref.get('raw_pointer_suffix', ''),
+            case['expected_oracle_ref']['pointer'], case['scenario_basis'], case['boundary'],
+            case['execution_state'], case['qualification'], case['u_id'], case['l5_function_ref'],
+            case['l5_failure_rule_refs'], case['expected'],
+        ])
+    local_probes = current['local_probes']
+    assert isinstance(current['cases'], list)
+    assert len(case_rows) == len(prior['cases']) == 91
+    assert isinstance(local_probes, list) and len(local_probes) == len(prior['local_probes']) == 27
     assert len(current['local_probe_source_reuse']) == len(prior['local_probe_source_reuse']) == 1
     assert len(current['pure_primitive_cases']) == len(prior['pure_primitive_cases']) == 7
     assert len(current['typed_carrier_boundary_cases']) == len(prior['typed_carrier_boundary_cases']) == 1
     assert sum(current['preserved_inventory'][key] for key in ('source_cases', 'local_probes', 'local_probe_source_reuse', 'pure_primitive_cases', 'typed_carrier_boundary_cases')) == 127
-    assert [row[0] for row in current['cases']['rows']] == [row['id'] for row in prior['cases']]
-    assert [row[0] for row in current['local_probes']['rows']] == [row['id'] for row in prior['local_probes']]
+    assert [row[0] for row in case_rows] == [row['id'] for row in prior['cases']]
+    assert [row['id'] for row in local_probes] == [row['id'] for row in prior['local_probes']]
     assert [row['id'] for row in current['pure_primitive_cases']] == [row['id'] for row in prior['pure_primitive_cases']]
     assert [row['id'] for row in current['typed_carrier_boundary_cases']] == [row['id'] for row in prior['typed_carrier_boundary_cases']]
 
@@ -323,11 +366,10 @@ def main() -> None:
         ob['id'].rsplit('-', 1)[1]: json.loads(ob['concrete_cases'][0]['independent_source_packet']['raw_utf8'])
         for ob in l9['verification_obligations']
     }
-    case_columns = current['cases']['columns']
     cix = {name: i for i, name in enumerate(case_columns)}
     assert case_columns[-4:] == ['u_id', 'l5_function_ref', 'l5_failure_rule_refs', 'expected']
     duplicate_expectation_groups = {}
-    for row in current['cases']['rows']:
+    for row in case_rows:
         cid, role, req, l4_ref, l9_ref, oracle, source_ptr, expected_ptr, basis, boundary, state, qualification = row[:12]
         oi, ci, source_case = l9_by_id[cid]
         assert source_ptr == f'/verification_obligations/{oi}/concrete_cases/{ci}/independent_source_packet/raw_utf8'
@@ -351,7 +393,7 @@ def main() -> None:
     rows_by_uid = {}
     branch_case_ids = []
     expected_class_counts = {'normal': 0, 'negative': 0}
-    for row in current['cases']['rows']:
+    for row in case_rows:
         uid, fn, rule_refs, expected = row[-4:]
         assert uid.startswith('U-C007-') and uid not in rows_by_uid
         assert fn in function_refs
@@ -449,17 +491,23 @@ def main() -> None:
         assert resolve(l9, branch['source_ref']['pointer'])['id'] == branch['source_case_id']
         assert branch['execution_state'] == 'not_executed' and branch['fixture_only'] is True
 
-    columns = current['local_probes']['columns']
-    ix = {name: i for i, name in enumerate(columns)}
-    assert columns[-1] == 'u_id'
-    assert len({row[ix['u_id']] for row in current['local_probes']['rows']}) == 27
+    assert set(PROBE_EXPECTATIONS) == {item['id'] for item in local_probes}
+    assert len({item['u_id'] for item in local_probes}) == 27
     local_probe_uid_by_id = {}
     local_rule_uids = {}
-    for row, source in zip(current['local_probes']['rows'], prior['local_probes']):
-        assert row[ix['role_id']] == source['function_ref']
-        assert row[ix['source_case_id']] == source.get('source_case_id')
-        assert row[ix['expected_basis']] == source.get('expected_basis')
-        assert row[ix['input_patch_paths']] == [[x.get('op'), x.get('path')] for x in source.get('input_patch', [])]
+    local_probe_by_id = {item['id']: item for item in local_probes}
+    for item, source in zip(local_probes, prior['local_probes']):
+        assert item['role_id'] == source['function_ref']
+        assert item['source_case_id'] == source.get('source_case_id')
+        assert item['counterexample'], item['id']
+        assert item['expected_judgment'], item['id']
+        assert (item['counterexample'], item['expected_judgment']) == PROBE_EXPECTATIONS[item['id']]
+        oi, ci, _ = l9_by_id[item['source_case_id']]
+        assert item['source_packet_pointer'] == f'/verification_obligations/{oi}/concrete_cases/{ci}/independent_source_packet/raw_utf8'
+        assert item['boundary'] == 'synthetic local mutation only; qualification/effect unestablished'
+        assert item['execution_state'] == 'not_executed'
+        assert item['u_id'].startswith('U-C007-LP-')
+        assert not any(key in item for key in ('expected_delta', 'input_patch', 'input_patch_paths', 'baseline_expected_pointer'))
         def expand(value):
             if isinstance(value, dict) and set(value) == {'source_ref'}:
                 ref = value['source_ref']
@@ -472,36 +520,28 @@ def main() -> None:
             if isinstance(value, list):
                 return [expand(child) for child in value]
             return value
-        expected_delta = []
-        for item in row[ix['expected_delta']]:
-            actual = {'op': item['op'], 'path': item['path']}
-            if 'value' in item:
-                actual['value'] = expand(item['value'])
-            expected_delta.append(actual)
-        assert expected_delta == source.get('expected_delta_from_source_oracle', []), source['id']
-        assert row[ix['execution_state']] == 'not_executed'
-        uid = row[ix['u_id']]
-        assert uid.startswith('U-C007-LP-')
-        local_probe_uid_by_id[row[ix['id']]] = uid
-        tag = row[ix['id']].split('-')[2]
+        historical_delta = expand(source.get('expected_delta_from_source_oracle', []))
+        assert historical_delta and all(isinstance(change, dict) and {'op', 'path'} <= set(change) for change in historical_delta)
+        local_probe_uid_by_id[item['id']] = item['u_id']
+        tag = item['id'].split('-')[2]
         reasons = []
-        for change in expected_delta:
+        for change in historical_delta:
             if change['path'] == '/failure_reasons' and isinstance(change.get('value'), list):
                 reasons = change['value']
         for rule in l5['contract_views'][tag]['failure_rules']:
             prefix = rule.get('area', '').split('{', 1)[0]
             if any(reason.get('area', '').startswith(prefix) for reason in reasons):
-                local_rule_uids.setdefault((tag, rule['id']), []).append(uid)
+                local_rule_uids.setdefault((tag, rule['id']), []).append(item['u_id'])
 
     assert len(local_probe_uid_by_id) == 27
     function_by_id = {item['function_ref']: item for item in trace['l5_public_functions']}
     for fn, function in function_by_id.items():
-        expected_local_uids = [row[ix['u_id']] for row in current['local_probes']['rows'] if row[ix['role_id']] == fn]
+        expected_local_uids = [item['u_id'] for item in local_probes if item['role_id'] == fn]
         assert function['local_probe_u_ids'] == expected_local_uids
     for rule in trace['l5_failure_rules']:
         tag = rule['source_ref']['pointer'].split('/')[2]
         key = (tag, rule['rule_id'])
-        ids = [row[ix['id']] for row in current['local_probes']['rows'] if row[ix['u_id']] in local_rule_uids.get(key, [])]
+        ids = [item['id'] for item in local_probes if item['u_id'] in local_rule_uids.get(key, [])]
         assert rule['local_probe_u_ids'] == local_rule_uids.get(key, [])
         assert rule['local_probe_ids'] == ids
         if rule['case_u_ids'] and rule['local_probe_u_ids']:
@@ -534,20 +574,22 @@ def main() -> None:
                 'HELIXCONNECT-L4-007-B01', 'technical_content'],
         }[derivation['rule_ref']]
         assert [resolve(load(ref['path']), ref['pointer']).get('id') for ref in derivation['basis_refs']] == expected_source_ids
-        expected_rows = {row[ix['id']]: row for row in current['local_probes']['rows']}
+        expected_rows = local_probe_by_id
         if derivation['rule_ref'] == 'F02:stop_position':
             result_by_probe = {}
             for pid in derivation['local_probe_ids']:
                 probe = expected_rows[pid]
-                delta = probe[ix['expected_delta']]
-                reasons = next(item['value'] for item in delta if item['path'] == '/failure_reasons')
+                source = next(row for row in prior['local_probes'] if row['id'] == pid)
+                delta = expand(source.get('expected_delta_from_source_oracle', []))
+                reasons = next(change['value'] for change in delta if change['path'] == '/failure_reasons')
                 assert len(reasons) == 1 and reasons[0]['area'] == 'stop_position' and reasons[0]['return_owner'] == 'composite-owner'
                 result_by_probe[pid] = reasons[0]['result']
             assert set(result_by_probe.values()) == {'missing', 'ambiguous_duplicate_not_compared'}
         elif derivation['rule_ref'] == 'B01:technical_content':
             probe = expected_rows[derivation['local_probe_ids'][0]]
-            delta = probe[ix['expected_delta']]
-            reason = next(item['value'] for item in delta if item['path'] == '/failure_reasons')[0]
+            source = next(row for row in prior['local_probes'] if row['id'] == derivation['local_probe_ids'][0])
+            delta = expand(source.get('expected_delta_from_source_oracle', []))
+            reason = next(change['value'] for change in delta if change['path'] == '/failure_reasons')[0]
             assert (reason['area'], reason['field'], reason['result'], reason['return_owner']) == ('technical_content', 'record', 'content_conflict', 'composite-owner')
 
     assert 'unit_case_refs' not in json.dumps(l5, ensure_ascii=False)
@@ -555,7 +597,7 @@ def main() -> None:
     assert set(current['removed_materials']) == {'decision_ref', 'git_commit', 'path', 'meaning', 'removed_key_rule', 'use_boundary'}
     assert 'DT-VT-105' in current['removed_materials']['use_boundary']
     assert not has_fixture_hash_member(current['cases'])
-    assert not has_fixture_hash_member(current['local_probes'])
+    assert not has_fixture_hash_member(local_probes)
     assert not has_fixture_hash_member(current['local_probe_source_reuse'])
     assert not has_fixture_hash_member(current['pure_primitive_cases'])
     assert not has_fixture_hash_member(current['typed_carrier_boundary_cases'])
@@ -582,18 +624,18 @@ def main() -> None:
         'l5_traceability': {
             'public_functions': len(trace['l5_public_functions']),
             'l9_branch_u_ids': len(trace['l9_basic_branches']),
-            'predeclared_local_probe_u_ids': len(current['local_probes']['rows']),
+            'predeclared_local_probe_u_ids': len(local_probes),
             'failure_rules': len(trace['l5_failure_rules']),
             'covered_failure_rules': sum(rule['coverage_status'] != 'uncovered' for rule in trace['l5_failure_rules']),
             'case_expected_classes': expected_class_counts,
-            'case_focus_rows': len(current['cases']['rows']),
+            'case_focus_rows': len(case_rows),
             'distinguished_duplicate_groups': len(duplicated_groups),
             'distinguished_duplicate_rows': sum(len(group) for group in duplicated_groups),
             'uncovered_failure_rules': [f"{rule['function_ref']}:{rule['rule_id']}" for rule in trace['l5_failure_rules'] if rule['coverage_status'] == 'uncovered'],
         },
         'checks': [
-            'all prior L8 source case IDs and order retained; exact L9 source/expected pointers and scenario basis resolve',
-            'all 27 local probe IDs, roles, source cases, patch paths and independent expected deltas match prior bytes; L4/L9 source_ref revision+pointer resolve against exact pins',
+            'all prior L8 source case IDs and order retained in a consumer-compatible array; exact L9 source/expected pointers and scenario basis resolve',
+            'all 27 local probe IDs/roles/source cases retain unique short counterexample and expected judgment; fixed historical delta comparison supports rule coverage without embedding patch recipes or return values',
             '1 source reuse, 7 primitive cases and 1 typed carrier boundary retain identity and intended oracle boundary',
             '91 L9 branches and 27 predeclared local probes carry U-IDs without changing the 127 declaration count; each branch row has a short L5-derived expected decision, L5 citation, normal/negative class, and unverified state (3 normal, 88 negative)',
             'all 91 branch expectations retain only source pointer, target, field and a bounded semantic difference category; 11 previously identical groups (60 rows) are distinguished without before/after values, full arrays or repeated L5 rule prose',
