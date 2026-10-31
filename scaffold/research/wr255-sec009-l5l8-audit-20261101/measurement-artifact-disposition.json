@@ -17,28 +17,32 @@
       "git_blob_sha1": "8a3371edabd2cd633fd307cceee0ff40f29171dd",
       "content_sha256": "beffc0fab3d134118c1e519153b129d799ad500d083fe1c552ac790efdd9d38c",
       "byte_length": 20372,
-      "source_revision": "daa028d9d666d604c270cd693c5d9376dbdc7835"
+      "source_revision": "daa028d9d666d604c270cd693c5d9376dbdc7835",
+      "artifact_commit": "48eb36d7b"
     },
     {
       "path": "scaffold/research/wr255-sec009-l5l8-audit-20261101/check-child-report-l4-d670496eeb-00376c40-l5-c5c7ef4d98-13f16113-l8-daa028d9d6-5ecefbc3-l9-087f02dc63-e918a289-record-1793489073223499018-501665.json",
       "git_blob_sha1": "41025125846a9a32087844e457e0fc42bb41bb33",
       "content_sha256": "879fe62b0c75d6081f1754e50130ffe3c9af8561037fe58a33df5c8bfecd3e7f",
       "byte_length": 15503,
-      "source_revision": "daa028d9d666d604c270cd693c5d9376dbdc7835"
+      "source_revision": "daa028d9d666d604c270cd693c5d9376dbdc7835",
+      "artifact_commit": "48eb36d7b"
     },
     {
       "path": "scaffold/research/wr255-sec009-l5l8-audit-20261101/pointer-transfer-audit-5ecefbc3aa0c-e918a289fe88.json",
       "git_blob_sha1": "97cbcb9e6caed081ac5c9957961030eaf4e68d0a",
       "content_sha256": "e121e1377499edbeee6d85ee87e1e6f6486b89d19e8cb985f5edf4ee33aef261",
       "byte_length": 86874,
-      "source_revision": "daa028d9d666d604c270cd693c5d9376dbdc7835"
+      "source_revision": "daa028d9d666d604c270cd693c5d9376dbdc7835",
+      "artifact_commit": "48eb36d7b"
     },
     {
       "path": "scaffold/research/wr255-sec009-l5l8-audit-20261101/l5-pointer-redirect-audit-r3-13f16113cafb-00376c402930-5ecefbc3.json",
       "git_blob_sha1": "d7fb7c43c2fa3e697987cd4817b6c3003554d429",
       "content_sha256": "d1f1d05207887aace8dff5d56937d714e9de0a7a8c15273f344ee86b46ac71ea",
       "byte_length": 2657,
-      "source_revision": "daa028d9d666d604c270cd693c5d9376dbdc7835"
+      "source_revision": "daa028d9d666d604c270cd693c5d9376dbdc7835",
+      "artifact_commit": "48eb36d7b"
     }
   ],
   "historical_measurements_removed_from_head": [
