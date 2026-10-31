@@ -6,7 +6,7 @@
   "product": "HELIX-HARNESS",
   "owner_candidate": "HELIX-HARNESS SEC006 L4/L9 source comparison owner",
   "state": "registered",
-  "reason": "SCF-B-0218はWR258のL4/L9 source-based class rows、行別対応、4層overlayのcompact実測をscaffold限定証拠として登録する。全文overlayは固定commitから一時worktreeで再構成し、repositoryには保存しない。L3/L10の意味、QA、L5/L8、runtime、authorityは変更しない。",
+  "reason": "SCF-B-0218はWR258のL4/L9 source-based class rows、行別対応、4層overlayのcompact実測をscaffold限定証拠として登録する。全文overlayは固定commitから一時worktreeで再構成し、repositoryには保存しない。L3/L10の意味、QA、L5/L8、runtime、authorityは変更しない。 PR #4007 R1 applies the reviewed partial L4/L9 marker transition, removes the local-only DEFERRED negative class, and adds 50 concise L9 system-oracle rows; L5/L8 and QA remain unchanged.",
   "upstream": [
     {
       "path": "docs/helix-security/L3-requirements/functional-requirements.json",
@@ -20,13 +20,13 @@
     },
     {
       "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
-      "sha256": "4777e0714cd7c09135c5b2fae65d6ed26f96ca632b255708a822ff97f9784911",
-      "note": "WR258で更新したL4 class。直前のpin 2fdd1427779e4a848a12b23c4cdc1517d08578e3946f83823f10a57db8c49d98 と初期stage pin 9be1999cce6dd72349d0f359f7ebb8f7dee3c18e8d408d4650ec7e5ba65e0e42 は履歴として保持。"
+      "sha256": "16d4fc5e3fcf0c677703b694b538f6d8f5542db36291850ed7f72865f0d9c72c",
+      "note": "WR258で更新したL4 class。直前のpin 2fdd1427779e4a848a12b23c4cdc1517d08578e3946f83823f10a57db8c49d98 と初期stage pin 9be1999cce6dd72349d0f359f7ebb8f7dee3c18e8d408d4650ec7e5ba65e0e42 は履歴として保持。 PR #4007 R1 current pin updated from 4777e0714cd7c09135c5b2fae65d6ed26f96ca632b255708a822ff97f9784911 at reviewed head cf983f81ff09cd90fb3f8f781bdb7c7445923ee6; prior hashes in this note remain history. Current L4/L9 now record 15 classes and 148 negative system-oracle rows (98 existing + 50 source-derived additions)."
     },
     {
       "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
-      "sha256": "fb5895c299f3f14ecbc41fde01bdac605a20b98275e56cb6176b12693c12df72",
-      "note": "WR258 98行のclass identity/projection。既存case ID・期待観測は変更せず、履歴hashを保持。"
+      "sha256": "de953eaa30348263eed914098f559bceca24c0fceef3bd76e733d2887b2f5609",
+      "note": "WR258 98行のclass identity/projection。既存case ID・期待観測は変更せず、履歴hashを保持。 PR #4007 R1 current pin updated from fb5895c299f3f14ecbc41fde01bdac605a20b98275e56cb6176b12693c12df72 at reviewed head cf983f81ff09cd90fb3f8f781bdb7c7445923ee6; prior hashes in this note remain history. Current L4/L9 now record 15 classes and 148 negative system-oracle rows (98 existing + 50 source-derived additions)."
     },
     {
       "path": "docs/governance/design-verification-quality-assurance.md",
@@ -64,7 +64,8 @@
     "Record the six L9 primary-tree caller cases and the six exact candidate rows removed by PR #4000 R1; do not reintroduce duplicate compare_fallback projections as formal unit cases. A separate provenance-only L5/L8 candidate may use six distinct caller inputs, but remains noncanonical and unapproved.",
     "Measure current check-child, scfctl validate, and stale results. A four-way failure remains a measured incomplete state, not pass or completion.",
     "Preserve historical source revision/hash evidence; keep the previous SCF-B-0201 L4/L9 hashes in binding notes.",
-    "Record the L5 local operation-defer observation separately from the L9 system-level absent-connection finding; any component-observation schema and empty-owner checker behavior remain a separate QA/checker V-pair candidate, not canonical changes."
+    "Record the L5 local operation-defer observation separately from the L9 system-level absent-connection finding; any component-observation schema and empty-owner checker behavior remain a separate QA/checker V-pair candidate, not canonical changes.",
+    "PR #4007 R1: remove the local-only empty-finding DEFERRED row from L4 failure classes; add the 50 L9 short system oracles from L3/L10/L4, direct negative_class_ref on all 148 L9 rows, and L4/L9 explicit markers. L5/L8 remain unmarked; report the actual four-way partial-marker failure without claiming PASS."
   ],
   "connections": {
     "consumers": [
@@ -78,7 +79,7 @@
       "SEC009 #3996 class-key precedent",
       "SCF-B-0201"
     ],
-    "boundary": "Only SEC006 L4↔L9 V-pair and scaffold evidence. L5/L8, QA, L3/L10, L9 expected observations, residual data, credentials, authorization settings and runtime remain outside mutation scope."
+    "boundary": "PR #4007 R1 expands this V-pair to L4/L9 source-derived system oracles and a measured L4/L9-only partial marker. L5/L8, QA, L3/L10, residual semantics, credentials, authorization settings and runtime remain outside mutation scope."
   },
   "operations": {
     "allowed": [
@@ -89,7 +90,7 @@
       "Diff inspection and whitespace checks"
     ],
     "forbidden": [
-      "Partial explicit marker or QA text changes",
+      "Do not edit QA. PR #4007 R1 intentionally has explicit markers only on L4/L9; preserve the measured check-child failure and do not claim four-way PASS.",
       "L5/L8 changes in this V-pair",
       "Old runtime, CLI, hook, test, workflow or CI execution",
       "Changing L3/L10 requirement/oracle meaning or L9 expected observations/residual rows",
@@ -119,7 +120,9 @@
     "scaffold/research/wr258-sec006-psi-explicit-20261101/f328-overlay-disposition.json",
     "scaffold/research/wr258-sec006-psi-explicit-20261101/reconstruct_overlays_in_temp_worktree.py",
     "scaffold/research/wr258-sec006-psi-explicit-20261101/overlay-reconstruction-r2.json",
-    "scaffold/research/wr258-sec006-psi-explicit-20261101/operation-defer-and-pr-split-candidate-r1.json"
+    "scaffold/research/wr258-sec006-psi-explicit-20261101/operation-defer-and-pr-split-candidate-r1.json",
+    "scaffold/research/wr258-sec006-psi-explicit-20261101/validate_pr4007_r1_followup.py",
+    "scaffold/research/wr258-sec006-psi-explicit-20261101/pr4007-r1-static-validation.json"
   ],
   "verification": {
     "evidence_kind": "scaffold",
@@ -134,10 +137,11 @@
       "L4 top-level code equals expected_classification; each class has ordered expected.finding_codes and expected_axis, backflow owner, state, and side_effect_count=0.",
       "L9 existing negative row count remains 98; each current row retains its ID and expectation; 16 residual negatives remain unchanged.",
       "All six primary-tree L9 rows retain distinct IDs and share the same implicit-fallback class. Canonical one-to-one pairing remains unresolved; a disposable separate L5/L8 provenance candidate and integrated checker measurement are recorded without changing canonical files.",
-      "No explicit marker is present; QA all-four-layer marker rule is respected.",
+      "Historical pre-R1 evidence had no explicit marker. PR #4007 R1 now has markers only on L4/L9; L5/L8 remain unmarked and current check-child must report partial-marker FAIL.",
       "check-child four-way result is reported from actual post-overlay execution; it is not converted to pass.",
       "Historical blind and WR244/WR250 fixed evidence files remain byte-identical.",
-      "The two full-copy overlay trees from f328 are removed from this revision; their Git blob IDs and SHA-256 values are recorded in f328-overlay-disposition.json. The fixed-commit temporary-worktree reconstruction verifies all eight historical overlay hashes before removal and reproduces baseline 141 matched/16 failures and caller-provenance 147 matched/9 failures."
+      "The two full-copy overlay trees from f328 are removed from this revision; their Git blob IDs and SHA-256 values are recorded in f328-overlay-disposition.json. The fixed-commit temporary-worktree reconstruction verifies all eight historical overlay hashes before removal and reproduces baseline 141 matched/16 failures and caller-provenance 147 matched/9 failures.",
+      "PR #4007 R1: L4 has 15 negative classes after removing local-only DEFERRED; L9 preserves 98 previous rows and adds 50 source-derived short system oracles, for 148 total (F01 93/F02 55); all five newly introduced L4 classes receive L9 case rows; 16 residual negatives remain unchanged."
     ],
     "negative_cases": [
       "L8 SIDE-UNKNOWN-SIDE and ASSET-UNKNOWN-KIND remain unknown with scope_input_unresolved and map to separate source-derived axes.",
@@ -145,7 +149,7 @@
       "Unknown and explicit-null fallback remain unresolved; they are not merged with primary_tree or other_project fallback violations.",
       "OPERATION-DEFER preserves its existing empty findings list and is not given a fabricated leaf finding.",
       "Six distinct L9 primary-tree caller rows are not collapsed or counted as one-to-one L8 cases; the gap remains unresolved.",
-      "No partial explicit marker is present; all-four-layer activation remains deferred to complete L5/L8 work."
+      "PR #4007 R1 intentionally places explicit markers only on L4/L9 following the #3996 partial-pair precedent; four-way FAIL is expected until L5/L8 are completed, and must not be reported as PASS."
     ]
   },
   "replacement": {

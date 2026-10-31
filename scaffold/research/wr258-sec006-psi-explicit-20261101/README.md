@@ -21,3 +21,14 @@ L9側では各98行の現行class・expected classification・L4 class key対応
 `build_overlay_probe.py`、`build_rowwise_design.py`、`build_caller_provenance_overlay.py` は候補資料を再構築する。`reconstruct_overlays_in_temp_worktree.py` は固定revisionの一時worktreeでのみ全文overlayを生成し、check-childを実行してcompact結果を記録する。現行L5 read/returnだけではprimary-tree case bijectionは成立しないが、L3/L4のcaller区分と原identity保持から別L5/L8 V-pairのprovenance候補を設計し、overlayで6行対応を測定した。4層markerの有効化はQAが全4層同時markerを求める一方、作業規則が1 PR 1 V-pairを求めるため、別pair PRの通常逐次mergeでは途中の部分marker状態が発生する。原子merge手段は確認できておらず、この両規則の適用方法は判断課題として記録する。L3/L10、QA、L5/L8/L9正本、旧証拠revision/hashは変更していない。
 
 局所unknownを返す`SEC003-L8-OPERATION-DEFER`と、全体で`explicit_connection_absent`を返すL9 system caseは異なる観測である。現在のcheckerの9残件は、空finding owner 1件と、同じ空finding classへのL8/L9 owner_ref結線が各4件失敗する。`checker-empty-finding-owner-candidate.json`のwhole-observation owner宣言だけでは両観測を分離できず、L9 whole oracleに架空のfinding/ownerを加えても解決しない。別候補`operation-defer-and-pr-split-candidate-r1.json`に、L9 component observationをsystem oracleと併置する場合のQA/checker差分、既存source事実・旧HELIXの非先例、6 callerのL3/L10/L4/L5由来、V-pair分割と未解決事項を記録した。候補schemaは未承認・未実装で、canonical L4/L9/L5/L8/QA/checkerは変更していない。
+
+## PR #4007 R1追補
+
+PR #4007 R1指摘を反映した正本の現状は次のとおり。`operation-defer-and-pr-split-candidate-r1.json` と初回測定は時点証拠としてそのまま保持し、本追補は後続の正式差分を記録する。
+
+- L4の`failure_classifications`は15件。空findingの`SEC003-F02-OPERATION-CONNECTION-ABSENT-DEFERRED`は局所unknown分岐で負例classではないため、L4 class表とF02 `negative_class_refs`から除いた。L8 `SEC003-L8-OPERATION-DEFER`の正本はこのL4/L9 pairでは変更せず、後続L5/L8 pairで通常U-IDとして扱う。
+- L9は元の98 negative rowsについてcase ID、期待観測、nested `negative_class_assignment.classification`を維持し、direct `negative_class_ref`のみ追加した。さらにL3/L10/L4のoracle意味から短い未実行system-oracle rowを50件追加し、計148件（F01 93、F02 55）とした。追加行はL8 fixture/input/expectedを持たず、source pointerはL3/L10/L4に限る。追加された5 classすべてに少なくとも1件のL9 rowがある。従来のmulti-contract残件16件は維持。
+- Candidate 046の局所空findingはL9 whole-system oracleとして使わず、接続不在に対するsystem-level `SEC003-F02-EXPLICIT-CONNECTION-ABSENT`へ独立に再導出した。局所defer classへの参照はない。
+- L4/L9にexplicit class markerを置き、L9全148 rowsへ`negative_class_ref`を設定した。L5/L8 markerはなく、QA/checkerは変更していない。#3996の部分marker事例に合わせ、check-childのpartial-marker FAILをそのまま記録し、4way PASSとはしない。
+
+`validate_pr4007_r1_followup.py`は従前98行の変更範囲、追加50行のL3/L10/L4参照とexpected/class対応、15 class、148 total、16 residual、caller/old nested label保持を独立に静的照合する。checker実測、latest-main merge overlay、scfctlの結果は別の`pr4007-r1-followup-20261101.json`に記録する。

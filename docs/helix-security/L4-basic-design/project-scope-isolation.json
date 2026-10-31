@@ -648,7 +648,6 @@
         "SEC003-F02-CONNECTION-MATERIAL-CONFLICT",
         "SEC003-F02-CONNECTION-MATERIAL-UNRESOLVED",
         "SEC003-F02-OPERATION-INPUT-UNRESOLVED",
-        "SEC003-F02-OPERATION-CONNECTION-ABSENT-DEFERRED",
         "SEC003-F02-FALLBACK-INPUT-UNRESOLVED"
       ]
     }
@@ -1973,48 +1972,6 @@
       ]
     },
     {
-      "class_id": "SEC003-F02-OPERATION-CONNECTION-ABSENT-DEFERRED",
-      "design_ref": "HELIXSECURITY-L4-003-F02",
-      "code": "scope_unresolved",
-      "condition": "operation=readは既知だがconnection_state=absentのため、このoperation-scope比較部分はunknown/空findingを保ち、接続不在のfindingをこの部分で重複生成しない。",
-      "expected_classification": "scope_unresolved",
-      "expected": {
-        "condition": "scope_unresolved",
-        "finding_codes": []
-      },
-      "backflow_owner": "scope-binding-owner",
-      "expected_axis": "explicit_connection",
-      "expected_state": "unknown",
-      "side_effect_count": 0,
-      "expected_preserved": {
-        "original_identity": "原request identityと存在するfinding/pointer/return_ownerを保持し、他project等の値で補完しない。",
-        "unaffected_scope": "今回のrequest/operation以外の有効scopeを一律停止しない。",
-        "operation_effect": "実認可・credential・接続・state変更、通信、停止や回復の実作用はnone。"
-      },
-      "source_pointers": [
-        {
-          "path": "docs/helix-security/L3-requirements/functional-requirements.json",
-          "pointer": "/requirements/4"
-        },
-        {
-          "path": "docs/helix-security/L10-verification/functional-verification.json",
-          "pointer": "/cases/4"
-        },
-        {
-          "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
-          "pointer": "/contracts/1/content_comparison"
-        },
-        {
-          "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
-          "pointer": "/contracts/1/output_meanings"
-        },
-        {
-          "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
-          "pointer": "/diagnostic_contract/return_owner"
-        }
-      ]
-    },
-    {
       "class_id": "SEC003-F02-FALLBACK-INPUT-UNRESOLVED",
       "design_ref": "HELIXSECURITY-L4-003-F02",
       "code": "scope_unresolved",
@@ -2058,5 +2015,8 @@
         }
       ]
     }
-  ]
+  ],
+  "negative_equivalence_classes": {
+    "source_rows": "failure_classifications"
+  }
 }
