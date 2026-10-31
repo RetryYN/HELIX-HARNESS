@@ -40,6 +40,8 @@ current L9に残るnested pointerはこの履歴参照3件です。L5の30 neste
 
 `scfctl validate`は207 bindings・0 failure、`scfctl stale`は0件でした。L9 pointer validatorはread-only通常実行でpassしました。worktreeのstatusは各read-only validator実行の前後で変化しませんでした。これらは静的source/pointer照合で、security runtimeの動作を証明しません。
 
+結果の数値、main/candidate revision、source SHA-256、旧validatorの移行前前提は[overlay verification](latest-main-overlay-ad2dfaf6-22076e0c.json)に記録しています。
+
 ## Consumerの読み方と検証範囲
 
 現行`design_verification_checker.py`のexplicit modeはL4 `failure_classifications`、L9 `negative_equivalence_classes`/`integration_cases`をpair照合します。L9の`source_case_refs[].basis_pointers`や`negative_class_assignment.source_pointers`の文字列はこのcheckerが解釈しません。したがって、L9 sourceの参照先をcanonical aliasへ更新し、監査validatorが全580箇所をRFC 6901で解決して同値性を確認します。従来のR2/R1 measurement validatorと、`wr255-sec009-l4l9-supplement-20261101/validate_l4_l9_supplement.py`が持つ308件のpointer inventoryは移行前時点の記録です。現在のL9を検査するvalidatorとしては使わず、移行前の測定はGit履歴と固定revisionから辿ります。

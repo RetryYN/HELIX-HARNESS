@@ -1,0 +1,76 @@
+{
+  "schema": "wr255-sec009-l9-transfer-overlay-verification.v1",
+  "evidence_kind": "scaffold",
+  "authority_effect": "none",
+  "measurement_scope": "latest-main 3-way overlay and static source/pointer checks",
+  "latest_main": {
+    "fetch_revision": "ad2dfaf6f434fbb81cd34988d4bd76212380f3a5",
+    "ls_remote_revision": "ad2dfaf6f434fbb81cd34988d4bd76212380f3a5"
+  },
+  "candidate": {
+    "commit": "22076e0c0f5aa3fe7b8933dfa556565900623487",
+    "merge_method": "git merge --no-commit --no-ff candidate into detached latest-main worktree; main is first parent",
+    "conflicts": 0,
+    "overlay_status_unchanged_after_read_only_validators": true
+  },
+  "source_sha256": {
+    "L4": "00376c402930e1287e9e0e896804b1de8a20390f8abbea8377b70712f868b9da",
+    "L5": "1aefb9b64fb52abc8cf6eec7d32312bfcb9a07359d7406c2ca4e9fa9717fa190",
+    "L8": "49875dcdb4bcec85ebffbad678127e90a61db329c9cccae96f0090cd260f698d",
+    "L9": "8296d811f95f94d9391a15a597839ee7f9d47b32dd7c7b780312821fc1c52a19"
+  },
+  "pointer_transfer": {
+    "validator": "scaffold/research/wr255-sec009-l9-transfer-20261101/validate_l9_pointer_transfer.py",
+    "passed": true,
+    "pre_transfer_nested_references": 583,
+    "redirected_to_current_L4_alias": 580,
+    "retained_R2_history_references": 3,
+    "class_aliases_with_type_value_proof": 30,
+    "expected_text_reconstructions": 30,
+    "retained_history": {
+      "revision": "c50eb21b34f034262ced3f8052d2502fb84c57c9",
+      "sha256": "d46e39cad2e2a90cfc532fa57226a4d650336e794a375f07e1cc2e6cbba15eb3",
+      "F01_ordered_collection_elements": 14,
+      "F02_unassigned_alternatives": 2
+    },
+    "L5_nested_references_unchanged": 30,
+    "SCF-B-0209": "pending; check-replacement and retire not performed"
+  },
+  "check_child": {
+    "command": "python3 -B scaffold/tools/design_verification_checker.py check-child --root . --l4 docs/helix-security/L4-basic-design/revoke-quarantine-propagation.json --l9 docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json --l5 docs/helix-security/L5-detail-design/revoke-quarantine-propagation.json --l8 docs/helix-security/L8-unit-verification/revoke-quarantine-propagation.json",
+    "exit_code": 0,
+    "passed": true,
+    "L4_L9_pair_passed": true,
+    "L5_L8_pair_passed": true,
+    "negative_4way_matched": 277,
+    "negative_4way_failures": 0,
+    "positive_rows": 8,
+    "positive_rows_observed": false,
+    "individual_oracle_and_test_citation": null,
+    "full_report_sha256_from_current_L5_L8_validator": "c5913fcfe04b387f8b137ee92a9011904b17a80c391b271d9a16fc86534735f5"
+  },
+  "L5_L8_validator": {
+    "passed": true,
+    "classes_per_layer": 32,
+    "L8_U_ID_rows": 285,
+    "negative_rows": 277,
+    "positive_contract_minimum_designed_not_observed": 8
+  },
+  "scfctl": {
+    "validate_bindings": 207,
+    "validation_failures": 0,
+    "stale_bindings": 0
+  },
+  "historical_validator_disposition": {
+    "path": "scaffold/research/wr255-sec009-l4l9-supplement-20261101/validate_l4_l9_supplement.py",
+    "status": "pre-transfer inventory validator; not current after L9 pointer migration",
+    "observed_error": "canonical L9 non-case field changed during projection: negative_class_assignment_audit",
+    "reason": "The validator asserts pre-transfer whole-field equality and 308 pointer counts. The L9 source now contains the intended 580 alias redirects; historical bytes and validator remain in Git history. Current L9 checks use validate_l9_pointer_transfer.py and current check-child."
+  },
+  "scope_limits": [
+    "L4 nested payloads are unchanged and retained for the remaining L5 consumers and fixed history.",
+    "L5 source and its 30 nested pointers are unchanged.",
+    "No security runtime, algorithm, tests, CI, or external operation was executed.",
+    "This static overlay does not establish positive fixture observations or formal security behavior."
+  ]
+}
