@@ -2504,7 +2504,7 @@ class DesignVerificationCheckerSelfTest(unittest.TestCase):
         path = "docs/helix-os/L8-unit-verification/log-feedback-memory-lineage.json"
         small = {
             "path_aliases": {"OS007": path},
-            "refs": ["OS007#/case_bindings/0..2"],
+            "refs": ["OS007#/unit_cases/0..2"],
         }
         small_result = dvc.check_json_pointer(REPO_ROOT, "freeze.json", small)
         self.assertTrue(small_result["passed"], msg=small_result["failures"])
@@ -2512,14 +2512,14 @@ class DesignVerificationCheckerSelfTest(unittest.TestCase):
 
         reverse = {
             "path_aliases": {"OS007": path},
-            "refs": ["OS007#/case_bindings/2..0"],
+            "refs": ["OS007#/unit_cases/2..0"],
         }
         reverse_result = dvc.check_json_pointer(REPO_ROOT, "freeze.json", reverse)
         self.assertFalse(reverse_result["passed"])
         self.assertEqual(len(reverse_result["failures"]), 1)
         self.assertEqual(
             reverse_result["failures"][0]["target_pointer"],
-            "/case_bindings/2..0",
+            "/unit_cases/2..0",
         )
 
     def test_chk_pair_bidir_id_pass_and_mutation_fail(self) -> None:
