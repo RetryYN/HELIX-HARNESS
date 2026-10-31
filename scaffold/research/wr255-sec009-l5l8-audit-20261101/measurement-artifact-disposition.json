@@ -429,5 +429,33 @@
       "positive_contract_minimum_designed_not_observed": 8,
       "positive_individual_oracle_and_test_citation": "null"
     }
+  },
+  "post_commit_final_head_overlay_read_only_recheck": {
+    "tested_head": "71da6687f8664adc1bb7ddcec262559ba16e3aec",
+    "overlay_base_commit": "9cce1cc5238de71231b1fcd37727391113e17956",
+    "base_confirmation": "作業後に再度git fetch origin mainとgit ls-remote origin refs/heads/mainを実行し、両方が9cce1cc5238de71231b1fcd37727391113e17956を返した。",
+    "overlay_construction": "latest main第1親にしたgit merge --no-commit --no-ff。overlay worktreeにcommitせずread-only実行。",
+    "commands": [
+      "python3 scaffold/research/wr255-sec009-l5l8-audit-20261101/validate_wr255_l5l8.py (2回)",
+      "python3 scaffold/research/wr255-sec009-l5l8-audit-20261101/validate_pointer_transfer.py",
+      "python3 scaffold/tools/design_verification_checker.py check-child --root . --l4 docs/helix-security/L4-basic-design/revoke-quarantine-propagation.json --l9 docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json --l5 docs/helix-security/L5-detail-design/revoke-quarantine-propagation.json --l8 docs/helix-security/L8-unit-verification/revoke-quarantine-propagation.json",
+      "python3 scaffold/tools/scfctl.py validate",
+      "python3 scaffold/tools/scfctl.py stale"
+    ],
+    "results": {
+      "validator_pass": true,
+      "L4_L9_pair_pass": true,
+      "L5_L8_pair_pass": true,
+      "negative_4way_matched": 277,
+      "negative_4way_failures": 0,
+      "pointer_transfer_pass": true,
+      "pointer_counts_same_as_R1_current_audit": true,
+      "scfctl_bindings": 207,
+      "scfctl_fail": 0,
+      "stale": 0,
+      "overlay_worktree_status_unchanged": true,
+      "positive_minimum_design_not_observed": 8,
+      "individual_oracle_and_test_citation": "null"
+    }
   }
 }
