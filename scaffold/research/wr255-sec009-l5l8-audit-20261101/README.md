@@ -1,40 +1,41 @@
-# WR255 SEC009 L5/L8 pair audit
+# WR255 SEC009 L5/L8 pair監査
 
-Status: scaffold evidence; authority effect: none.
+この監査はSEC009のL5/L8 V-pair候補を記録するscaffold evidenceです。authorityを持たず、security algorithm、runtime、test、CI、外部操作を実行しません。4層検証の完了を主張しません。
 
-This audit records the SEC009 L5/L8 V-pair after commit `ea8e3c2` and the follow-up U-ID table correction. It compares the current canonical class and case rows without executing a security algorithm, runtime, test, CI, or external operation. The report does not claim four-way verification.
+## 再実行
 
-## Reproduce
-
-From the repository root, run:
+repository rootから次を実行します。
 
 ```sh
 python3 scaffold/research/wr255-sec009-l5l8-audit-20261101/validate_wr255_l5l8.py
 ```
 
-The validator writes `verification-summary.json` and the full `check-child-report.json` beside itself. It independently checks all 32 class identities across L4/L5/L8/L9, stable L5 rule IDs, L4/L5 code and owner correspondence, and all 285 U-ID to L9 source-case mappings. It compares each negative U-ID's condition, expected result, and preserved result to its L4 class. It confirms all eight positive rows remain unclosed and all individual `oracle_id` and `test_citation` fields are null.
+validatorは `verification-summary.json` と `check-child-report.json` を更新します。L4/L5/L8/L9の32 class identity、L5 rule IDの保持、L4/L5 codeとownerの対応、L9 source caseに結びつく285件のU-IDを照合します。negative U-IDの `condition`、`expected`、`expected_preserved` はL4 classと比較します。positive 8件は未確定のまま、各行の `oracle_id` と `test_citation` はnullであることを確認します。
 
-## U-ID table and shared source references
+## U-ID表とsource参照
 
-L8 `unit_cases` now uses a distinct sequential `SEC009-U0001`…`SEC009-U0285` ID in `id`; the original SEC009 source identity remains in `case_id` and `integration_case_ref`. The separate `unit_case_source_index` maps each U-ID once to its L9 source pointer and, for negative rows, the L4 class and L5 rule pointers. Each row has a short, unique counterexample stating its target and discrepancy, followed by the failure meaning of the referenced L4 class; it is not only a restatement of the source ID. Where a source ID marks a conflict but its nested L9 `given` omits the concrete values, the row says those values were not supplied. No value pair is invented. Rows also carry the contract-level `system_oracle_ref` and null individual oracle/test citation fields. Negative expected fields come from L4, not L9 `expected_proposal`.
+L8 `unit_cases` の `id` は `SEC009-U0001`〜`SEC009-U0285` の専用連番です。元のSEC009 source IDは `case_id` と `integration_case_ref` に保持します。`unit_case_source_index` は各U-IDを一度だけL9 source pointerへ結び、negative行はL4 classとL5 ruleへのpointerも記録します。
 
-The class table remains the shared source for axis, state, owner, and expected classification. Redundant per-row `source_pointers`, `expected_property`, and repeated class-axis/state projections were removed. The checker requires `condition`, `expected`, and `expected_preserved` on each L8 row and compares those values to L9 row values; negative rows also retain `function_ref` so the checker can resolve the L5 owner. These fields remain in place even where a class provides the same values. The current L9 index has no corresponding row-level expected fields, so the four-way checker continues to report that mismatch until the separate L4/L9 supplement.
+各negative行のcounterexampleは対象と食い違いを日本語で短く説明し、L4 classが示す失敗の意味を添えます。source IDの言い換えだけにはしていません。sourceのL9 `given` に具体値がないconflict行では、値が根拠に記載されていないと明記し、値の組を補っていません。各行には契約単位の `system_oracle_ref` を残し、個別の `oracle_id` と `test_citation` はnullのままにしています。negative期待値はL9 `expected_proposal` ではなくL4から導きます。
 
-The validator resolves every negative row's L9 nested pointer. Those 277 `given` objects contain only the common `evidence_limit` notice; they do not contain concrete identity values or conflict pairs. Each negative counterexample therefore names its target and missing/conflicting state from the source case marker, then the L4 class meaning. For conflict cases the text explicitly records that concrete values are absent. The expected objects and class pointers provide the L4-defined error semantics; no raw values are supplied or inferred.
+class tableをaxis、state、owner、expected classificationの共有元とします。重複する行別 `source_pointers`、`expected_property`、classのaxis/state投影は取り除きました。checkerが各L8行に必要とする `condition`、`expected`、`expected_preserved` は保持し、L5 ownerを解決する `function_ref` もnegative行に残します。L9には対応する行別期待値がまだないため、4層checkerの照合はL4/L9補足がcanonical L9に反映されるまで未成立です。
 
-## Positive-case evidence boundary
+validatorはnegative 277行それぞれのL9 nested pointerを解決します。全givenに共通の `evidence_limit` があるだけで、具体的なidentity値やconflict値は含まれていません。そこでcounterexampleはsource case markerにある対象・不足またはconflictの種類とL4 classの意味を説明します。実際値は記録・推測していません。
 
-The canonical L9 nested source was read again for each of the eight positive IDs. Each `given` object contains only the same shared `evidence_limit` field. The source `when` statements describe contract-level phase/recipient processing, but do not add the missing case-specific input facts. L3 and L10 provide contract-level obligations/oracle statements, while L4 provides the contract, not a matching positive class row. The independent L4/L9 proposal also leaves these positives unresolved. Therefore L8 leaves `condition`, `expected`, and `expected_preserved` null. No values are inferred from L9 `expected_proposal`.
+## positive行の根拠境界
 
-For each positive U-ID, the audit records the L3 business/functional source identities, L10 business case, L4 B01 contract, L9 nested pointer, and digest of that nested `given` object in `verification-summary.json`. `HELIXSECURITY-L10-009-B01` is a contract-level system oracle reference; the individual U-ID oracle is unobserved and remains null. No test citation was present in the request or supplied source mapping, so the table records null rather than inventing one.
+8件のpositive IDすべてについてcanonical L9 nested sourceを読み直しました。各 `given` は同じ `evidence_limit` fieldだけを持ち、`when` も契約単位のphase/recipient処理を記すにとどまり、行固有の入力事実を補いません。L3とL10には契約単位の義務・oracleがあり、L4には契約がありますが対応するpositive class rowはありません。別V-pairのL4/L9候補もpositive行を未確定のまま残します。そのためL8の `condition`、`expected`、`expected_preserved` はnullです。L9 `expected_proposal` から期待値を推測していません。
 
-## Measured child-check result
+各positive U-IDについてL3 business/functional source identity、L10 business case、L4 B01 contract、L9 nested pointer、given digestを `verification-summary.json` に記録します。`HELIXSECURITY-L10-009-B01` は契約単位system oracleです。個別U-IDのoracleは未確認でnullです。test citationも根拠に見つからないためnullです。
 
-The current static checker run recorded:
+## check-childの計測結果
 
-- L4/L9 pair: pass.
-- L5/L8 pair: pass.
-- Four-way matched cases: 0.
-- Four-way failures: 2,235. The full report and reason counts are in `check-child-report.json` and `verification-summary.json`.
+このL5/L8候補だけをcanonical L9と照合したpair固有のstatic checker結果は次の通りです。L4/L9補足と組み合わせた別worktreeのoverlay結果は、[L4/L9補足](../../wr255-sec009-l4l9-supplement-20261101/README.md)およびその `overlay-check-child.json` に分けて記録しています。
 
-The result remains incomplete because the L9 case rows do not contain the row-level expected/condition/preserved fields or compact observations required for comparison, and class-key alignment failures remain. This separate L4/L9 follow-up is not included in this L5/L8 pair audit.
+- L4/L9 pair: pass
+- L5/L8 pair: pass
+- 4層matched cases: 0
+- 4層のfailure: 2,235
+- positive未確定: 8
+
+このpair単独の結果ではL9行のcondition/expected/expected_preservedとcompact observationが不足するため、negative行はmatchedになりません。L4/L9補足を組み合わせたoverlayは別の候補と検証結果として扱い、正式な4層検証やsecurity behaviorの証明とはしません。
