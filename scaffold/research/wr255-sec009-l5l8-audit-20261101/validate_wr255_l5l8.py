@@ -268,7 +268,7 @@ def main() -> int:
         "schema": "sec009-l5l8-independent-audit.v1",
         "evidence_kind": "scaffold",
         "authority_effect": "none",
-        "source_revision": git_text("rev-parse", "HEAD"),
+        "source_revision": git_text("log", "-1", "--format=%H", "--", FILES["l8"]),
         "source_hashes": {name: sha256(path) for name, path in FILES.items()},
         "counts": {"classes_per_layer": 32, "l8_u_ids": 285, "l9_source_case_ids": 285, "negative": negative_count, "positive_unclosed": len(positives)},
         "class_audit": class_audit,
