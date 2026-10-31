@@ -291,6 +291,165 @@ SOURCE_CONTROL_CONDITIONS = {
  "H003-L8-CONTROL-005-COMPOSITION-QUALIFICATION-MEMBER-MISSING":"005_composition carrierのqualification sidecar memberが欠落し、同callerの他roleは保持される入力。",
 }
 
+# Human conditions are derived from the fixed-base input mutation itself, not
+# from the case identifier.  Only semantic field names and state categories are
+# exposed; fixture values and edit recipes remain in the fixed Git revision.
+QUALIFICATION_FIELDS = {
+ "carrier_state":"対象を運ぶ資格状態",
+ "purpose":"根拠の目的", "premises":"前提根拠", "legacy_assets":"旧資産根拠",
+ "external_examples":"外部事例根拠", "comparison":"比較根拠",
+ "technical_quality":"技術品質の観測", "human_original":"人間の原反応",
+ "human_required_axes":"人間反応の必須軸", "human_findings":"人間反応のfinding",
+ "AI_interpretation":"AI解釈", "management_finding":"管理側への戻しfinding",
+ "management_progression":"管理側の進行条件", "context":"工程判断の文脈",
+ "phase_contract":"工程別の必要条件", "delegation":"委任範囲",
+ "agreement":"要求合意", "requirements_approval":"要件承認",
+ "pair":"対応するV-pair", "verification":"検証証拠", "unresolved":"未解決条件",
+ "finding_route":"findingの戻し先", "l2":"L2要求根拠",
+ "prototype_applicability":"画面prototypeの適用性", "prototype_na":"prototype非適用理由",
+ "poc_applicability":"PoCの適用性", "poc_na":"PoC非適用理由",
+ "prototype_result":"prototype結果", "poc_result":"PoC結果", "backflow":"要求への戻し",
+ "secondary_008":"2次形成の008記録", "decide":"Decide裁定", "pair_refreeze":"変更後pairの再freeze",
+ "actual_completion":"工程完了状態", "actual_L11_accepted":"L11受容状態",
+ "actual_l3_frozen":"L3 freeze状態", "required_conditions":"必要条件集合",
+ "additional_approval_needed":"追加承認要否",
+ "grounding_purpose":"根拠の目的", "grounding_premises":"前提根拠",
+ "grounding_legacy_assets":"旧資産の根拠", "grounding_external_examples":"外部事例の根拠",
+ "grounding_comparison":"比較の根拠",
+}
+MIXED_FIELDS = {
+ "Working_root":"Workingのstate根拠", "Accepted_human_original":"Acceptedの人間原受容根拠",
+ "Deployed_deployment":"Deployedの配備証拠", "Accepted_ai_interpretation":"AcceptedのAI解釈",
+ "Provisional_steps_pre_body_red":"Provisionalの実装前Red証拠", "Provisional_steps_green":"ProvisionalのGreen証拠",
+ "port_security_semantic":"Portのsecurity条件", "port_rollback_root":"Portのrollback根拠",
+ "incident_permanent_remedy":"Incident恒久修正証拠", "incident_L12_feedback":"IncidentのL12還流",
+ "initial_scope":"初期scope根拠", "incident_deployment_receipt":"Incident配備記録",
+ "incident_issue_closed":"Incident Issue状態", "P_quality_evidence_observed_contents":"PのObserved品質内容証拠",
+ "P_security_authority_ref":"Pのsecurity操作権限参照", "P_quality_applicability_latency_reason":"Pのlatency品質適用理由",
+ "P_quality_evidence_observed_binding":"PのObserved品質証拠との結び付き",
+ "P_quality_evidence_operated_root":"PのOperated品質根拠", "P_quality_evidence_operated_contents":"PのOperated品質内容証拠",
+}
+STATE_JA = {"missing":"欠落", "unknown":"不明", "conflict":"矛盾", "stale":"stale"}
+QUALIFICATION_CANDIDATE = {
+ "ai_interpretation_is_human":"AIの解釈を人間の原反応として提示",
+ "actual_completion":"未完了の対象を完了として提示",
+ "actual_L11_accepted":"要求されていない利用者受容を提示",
+ "actual_l3_frozen":"PoC結果だけからL3 freezeを提示",
+ "required_conditions":"不明な必要条件集合を空集合として提示",
+ "additional_approval_needed":"不明な委任状態から追加承認不要を提示",
+ "return_chain_results":"未確定な還流資格を空の還流結果として補完",
+}
+VALLEY_CONDITIONS = {
+ "step0.seq":"実装前Redより後にfreezeされた入力。",
+ "step1.executed":"Redの実行記録が無い入力。",
+ "step1.observed_debits":"Redが重複処理の異常を検出していない入力。",
+ "step1.failure":"Redに重複処理を拒否した失敗記録が無い入力。",
+ "step3.oracle":"Greenがfreeze時と異なるoracleを参照する入力。",
+ "step4.public_contract_after":"局所Refactorで公開契約の意味を変更する入力。",
+ "step5.head":"再検証対象がRefactor後HEADより前の入力。",
+ "step5.executed":"Refactor後の再検証が未実行の入力。",
+ "step5.observed_debits":"再検証で重複処理が再発する入力。",
+ "step3.executed":"Greenの実行記録が無い入力。",
+ "step3.observed_debits":"Greenで重複処理が再発する入力。",
+}
+
+def state_label(value: Any) -> str | None:
+    if isinstance(value, dict):
+        value=value.get("state")
+    return STATE_JA.get(value)
+
+def qualification_condition(source: dict[str, Any], function_suffix: str) -> str:
+    mutations=source.get("mutations")
+    if not isinstance(mutations,list):
+        mutation=source.get("mutation")
+        mutations=[mutation] if isinstance(mutation,dict) else []
+    descriptions=[]
+    for mutation in mutations:
+        if not isinstance(mutation,dict): continue
+        path=mutation.get("path",[])
+        if not isinstance(path,list): continue
+        if path[:1]==["source_qualifications"] and len(path)>=2:
+            key=path[1]
+        elif path==["carrier_state"]:
+            key="carrier_state"
+        elif path[:1]==["partial_values"] and len(path)>=2:
+            key=path[1]
+            candidate=QUALIFICATION_CANDIDATE.get(key)
+            if candidate:
+                if key=="return_chain_results":
+                    descriptions.append("PrototypeとPoCがともに非適用で、還流資格が不明なのに空の還流結果を与える候補入力。")
+                else:
+                    descriptions.append(candidate+"候補入力。")
+                continue
+        else:
+            continue
+        label=QUALIFICATION_FIELDS.get(key)
+        state=state_label(mutation.get("after"))
+        if label and state:
+            descriptions.append(f"{label}が{state}")
+    if descriptions:
+        return "同一入力で"+"、".join(x.removesuffix("。").removesuffix("入力").removesuffix("候補") for x in descriptions)+"となる入力。"
+    if function_suffix=="B01":
+        return "根拠資料・技術品質・人間原反応を対象ごとに照合する通常入力。"
+    if function_suffix=="F01":
+        values=source.get("expected_typed_assessment",{}).get("partial_values",{})
+        action=values.get("action",{}).get("value") if isinstance(values.get("action"),dict) else None
+        actions={"start":"開始", "freeze":"freeze", "backflow":"要求への差戻し", "reopen":"再開", "complete":"完了"}
+        if action in actions:return f"対象revisionの{actions[action]}条件を照合する入力。"
+        return "工程判断の必要条件を同一対象revisionで照合する通常入力。"
+    if function_suffix=="F02":
+        values=source.get("expected_typed_assessment",{}).get("partial_values",{})
+        def value(key: str) -> Any:
+            item=values.get(key,{})
+            return item.get("value") if isinstance(item,dict) else None
+        prototype,poc=value("prototype_applicability"),value("poc_applicability")
+        if prototype==poc=="not_applicable":return "画面prototypeとPoCを理由付きで非適用とする入力。"
+        if prototype==poc=="applicable":return "画面prototypeとPoCを適用し、要求合意を照合する入力。"
+        if prototype=="not_applicable" and poc=="applicable":return "画面prototypeを非適用、PoCを適用とし、PoC結果と還流を照合する入力。"
+    return "固定baseに固有入力条件を確定できる根拠がなく未検証。"
+
+def counterexample_condition(source: dict[str, Any], section: str) -> str:
+    mutations=source.get("mutations")
+    if not isinstance(mutations,list):
+        mutation=source.get("mutation")
+        mutations=[mutation] if isinstance(mutation,dict) else []
+    if section=="valley_content_counterexamples":
+        labels=[]
+        for mutation in mutations:
+            if not isinstance(mutation,dict):continue
+            path=mutation.get("path",[])
+            field=str(path[-1]) if path else ""
+            step=next((str(x) for x in path if str(x).isdigit()),"")
+            key=f"step{step}.{field}" if step else field
+            label=VALLEY_CONDITIONS.get(key)
+            if label and label not in labels:labels.append(label)
+        return "".join(labels) if labels else "固定baseに固有入力条件を確定できる根拠がなく未検証。"
+    if source.get("function_ref")=="HARNESS-L5-003-F01":
+        mutation=mutations[0] if mutations else {}
+        after=mutation.get("after") if isinstance(mutation,dict) else None
+        if isinstance(after,dict):return "freezeに必要な条件一覧が不明な状態で、別形式の値が与えられる入力。"
+        if after is None:return "freezeを構成する必要条件一覧が欠落した入力。"
+        if after=="all":return "freezeの必要条件を既定の一覧でなく包括語で置き換えた入力。"
+        if after=="promote":return "freeze以外の未対応actionを指定する入力。"
+    if source.get("function_ref")=="HARNESS-L5-003-F02":
+        mutation=mutations[0] if mutations else {}
+        path=mutation.get("path",[]) if isinstance(mutation,dict) else []
+        field="/".join(str(x) for x in path)
+        labels={
+         "L2_5_results/prototype":"適用対象のprototype結果記録が欠落した入力。",
+         "L2_5_results/prototype/content":"prototypeの確認結果を裏付ける観測が読めない入力。",
+         "L2_5_results/prototype/content/observed_state":"prototypeの実観測状態が期待状態と異なる入力。",
+         "L2_5_results/prototype/content/observed_failure":"prototypeの失敗観測が期待と異なる入力。",
+         "applicability/poc/na/not_applicable":"PoC非適用の判定値が欠落した入力。",
+         "applicability/poc/na/reason":"PoC非適用の理由が欠落した入力。",
+         "applicability/poc/na/decider":"PoC非適用の判断者が欠落した入力。",
+         "applicability/poc/na/target_head":"PoC非適用を結び付ける対象revisionが欠落した入力。",
+         "applicability/poc/na/requirement_impact":"PoC非適用時の要求影響記録が欠落した入力。",
+         "applicability/poc/na/reevaluation":"PoC非適用の再評価条件が欠落した入力。",
+        }
+        return labels.get(field,"固定baseに固有入力条件を確定できる根拠がなく未検証。")
+    return "固定baseに固有入力条件を確定できる根拠がなく未検証。"
+
 def read(path: str) -> Any:
     return json.loads((ROOT / path).read_text(encoding="utf-8"))
 
@@ -614,9 +773,13 @@ def run() -> dict[str,Any]:
                 elif i==0:want="群共通期待を適用。baseline資格行。"
                 else:
                     want="未検証: 固定baseの期待は資格baselineと同値。行固有期待差を証明できない。";unresolved.append(uid)
-                qual_ok &= row.get("condition")==uid.split("-QUAL-",1)[-1] and row.get("expected")==want
+                expected_condition=qualification_condition(source,function_suffix)
+                qual_ok &= row.get("condition")==expected_condition and row.get("expected")==want
+                specific_condition_ok &= row.get("condition")==expected_condition and bool(re.search(r"[ぁ-んァ-ヶ一-龠]",str(row.get("condition",""))))
                 qual_ok &= row.get("base_row_ref")==f"{BASE}:{L8}#/cases/{gi}/qualification_cases/{i}"
                 qual_ok &= isinstance(row.get("owner"),str) and bool(row["owner"])
+                if expected_condition.endswith("未検証。"):
+                    unresolved.append(uid+" (qualification condition)")
 
         # Content and valley counterexamples retain short typed projection, never input patch or full return.
         for section,source_section,current_section in (("content_counterexamples","content_counterexamples","content_counterexamples"),("valley_content_counterexamples","valley_content_counterexamples","valley_content_counterexamples")):
@@ -631,11 +794,11 @@ def run() -> dict[str,Any]:
                 typed=src.get("expected_typed_assessment") or src.get("expected_partial_values") or {}
                 partial=typed.get("partial_values",typed) if isinstance(typed,dict) else {}
                 if section=="content_counterexamples":
-                    condition=src["id"].split("-CONTENT-",1)[-1].replace("-"," ")
+                    condition=counterexample_condition(src,section)
                     base_case=src.get("base_basic_case_ref")
                     owner=owner_summary(typed)
                 else:
-                    condition=src["id"].split("-CONTENT-",1)[-1].replace("-"," ")
+                    condition=counterexample_condition(src,section)
                     base_case=src.get("baseline_source_case_ref")
                     owner=owner_summary(src.get("expected_owner_return",typed))
                 base_unit=next((u for u in before.get("cases",[]) if u.get("basic_case_ref")==base_case or u.get("id")==base_case),{})
@@ -643,9 +806,12 @@ def run() -> dict[str,Any]:
                 expected_delta=semantic_summary(base_partial,norm(partial))
                 if not expected_delta:expected_delta="基準unitと同じtyped出力を維持。"
                 good &= row.get("condition")==condition and row.get("base_case_id")==base_case
+                specific_condition_ok &= row.get("condition")==condition and bool(re.search(r"[ぁ-んァ-ヶ一-龠]",str(row.get("condition",""))))
                 good &= row.get("expected")==expected_delta and row.get("owner")==owner
                 good &= row.get("base_row_ref")==f"{BASE}:{L8}#/cases/{gi}/{source_section}/{i}"
                 good &= not any(k in row for k in ("path","mutation","mutations","reference_preparation","input_patch"))
+                if condition.endswith("未検証。"):
+                    unresolved.append(src["id"]+" (content condition)")
             if section=="content_counterexamples":content_ok &= good
             else:valley_ok &= good
 
@@ -677,10 +843,31 @@ def run() -> dict[str,Any]:
             good=len(rows)==len(srcs) and set(now)==set(srcs)
             for i,(uid,src) in enumerate(srcs.items()):
                 row=now.get(uid,{});change=src.get("qualification_change",{})
-                condition=f"{change.get('source_group','qualification')}: {change.get('before','?')} → {change.get('after','?')}"
+                states={"known":"根拠あり", "missing":"欠落", "unknown":"未確定", "conflict":"矛盾", "stale":"stale"}
+                group_names={
+                 "carrier":"carrier", "context":"工程判断文脈", "valley_binding":"V谷と対象の対応付け",
+                 "valley_freeze":"V谷のfreeze順序", "valley_pre_body_red":"実装前Red証拠",
+                 "valley_minimum_body":"最小実装範囲", "valley_green":"Green証拠",
+                 "valley_local_refactor":"局所Refactor", "valley_atomic_ci":"atomic CI証拠",
+                 "valley_trace":"V-pair trace", "origin":"原source", "legacy_asset":"旧資産由来",
+                 "trace":"変更影響trace", "design_trust":"設計根拠", "large_deviation":"設計と実装の差",
+                 "pair_L8":"L8↔L5 pair", "pair_L9":"L9↔L4 pair", "pair_L10":"L10↔L3 pair",
+                 "scope_extents":"変更scope", "l9_interface":"L9 interface", "l9_dependency_direction":"L9依存方向",
+                 "l9_state_data_ownership":"L9 state/data所有", "l9_transaction":"L9 transaction",
+                 "l9_failure_propagation":"L9 failure伝播", "l9_retry":"L9 retry", "l9_timeout":"L9 timeout",
+                 "l9_idempotency":"L9冪等性", "l9_coupling":"L9結合", "l9_responsibility_duplication":"L9責務重複",
+                 "trigger_design_implementation_drift":"設計実装差trigger", "trigger_recurrence":"finding再発trigger",
+                 "trigger_performance":"性能trigger", "trigger_incident_permanent_remedy":"Incident恒久修正trigger",
+                 "trigger_scrum_checkpoint":"sprint checkpoint trigger", "improvement":"改善記録",
+                }
+                source_name=group_names.get(change.get("source_group"),str(change.get("source_group","資格根拠")).replace("_"," "))
+                before_state=states.get(change.get("before"),"未検証")
+                after_state=states.get(change.get("after"),"未検証")
+                condition=f"{source_name}根拠が{before_state}から{after_state}へ変わる入力。"
                 updates=src.get("expected_partial_updates",[])
                 expected=matrix_expected(src)
                 good &= row.get("condition")==condition and row.get("expected")==expected
+                specific_condition_ok &= row.get("condition")==condition and bool(re.search(r"[ぁ-んァ-ヶ一-龠]",str(row.get("condition",""))))
                 good &= row.get("base_row_ref")==f"{BASE}:{L8}#/cases/{gi}/qualification_matrix/cases/{i}"
                 good &= row.get("owner")==owner_summary(src.get("expected_owner_return",{}))
             matrix_ok &= good
@@ -691,7 +878,8 @@ def run() -> dict[str,Any]:
                 matrix_ok &= len(mixed)==len(current_mixed) and [r.get("id") for r in mixed]==[r.get("id") for r in current_mixed]
                 for mi,src in enumerate(mixed):
                     row=current_mixed[mi]; changes=src.get("changes",{})
-                    condition="; ".join(f"{k}={v}" for k,v in changes.items()) or "混合資格の条件は固定baseに記録なし"
+                    state_names={"known":"根拠あり", "missing":"欠落", "unknown":"未確定", "conflict":"矛盾", "stale":"stale"}
+                    condition=("同一対象で"+"、".join(f"{MIXED_FIELDS.get(k,k)}が{state_names.get(v,str(v))}" for k,v in changes.items())+"となる入力。" if changes else "混合資格の条件は固定baseに記録なし（未検証）。")
                     parts=[]
                     if isinstance(src.get("expected_frontier"),dict):
                         parts.append("frontier="+str(src["expected_frontier"].get("state","unknown")))
@@ -702,6 +890,7 @@ def run() -> dict[str,Any]:
                         parts.append("対象別state="+"/".join(f"{k}×{v}" for k,v in sorted(states.items())))
                     if changes:parts.append("独立条件"+str(len(changes))+"件を個別保持")
                     matrix_ok &= row.get("condition")==condition and row.get("expected")=="; ".join(parts)
+                    specific_condition_ok &= row.get("condition")==condition and bool(re.search(r"[ぁ-んァ-ヶ一-龠]",str(row.get("condition",""))))
                     matrix_ok &= row.get("base_row_ref")==f"{BASE}:{L8}#/cases/{gi}/qualification_matrix/mixed_cases/{mi}"
                     matrix_ok &= isinstance(row.get("owner"),str) and bool(row.get("owner"))
         if isinstance(oq,dict) and isinstance(oq.get("source_groups"),dict):
@@ -763,6 +952,17 @@ def run() -> dict[str,Any]:
             if "///" in x:pointer_problems.append(path)
     inspect(cur)
     checks["source_binding_condition_contains_no_operation_path"]=not pointer_problems
+    for group in groups:
+        for kind in ("cases","qualification_cases","qualification_matrix","content_counterexamples","valley_content_counterexamples","source_binding_controls"):
+            value=group.get(kind,[])
+            if isinstance(value,dict):
+                value=value.get("cases",[])+value.get("mixed_cases",[])
+            if isinstance(value,list):
+                for row in value:
+                    condition=row.get("condition") if isinstance(row,dict) else None
+                    if condition is not None:
+                        specific_condition_ok &= bool(re.search(r"[ぁ-んァ-ヶ一-龠]",str(condition)))
+                        specific_condition_ok &= not bool(re.fullmatch(r"[A-Z0-9 _-]+",str(condition)))
     checks["conditions_are_specific_human_scenarios"]=specific_condition_ok
     checks["removed_materials_six_keys_DT_VT_105"]=set(cur.get("removed_materials",{}))=={"decision_ref","git_commit","path","meaning","removed_key_rule","use_boundary"} and "DT-VT-105" in cur.get("removed_materials",{}).get("use_boundary","")
     checks["negative_rows_have_L4_L5_support"] = negative_count==34 and negative_ok

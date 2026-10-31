@@ -1,29 +1,43 @@
 {
-  "schema": "wr260-process-state-l8-verification-summary.v7",
+  "schema": "wr260-process-state-l8-verification-summary.v8",
   "evidence_kind": "scaffold",
   "authority_effect": "none",
   "request_id": "WR260-PROCESS-STATE-L8-SLIM",
   "base_revision": "569bde0bc5792349f0833461f0bb1bb6db33c592",
-  "main_revision_checked": "fe6232a6062685aeb15e1b8641533ea86fa712f4",
-  "measured_head": "ecaf60e41b6939f141720db16be241352e0eadeb",
-  "measurement_scope": "latest-main overlay after #4016; current summary-history consolidation; read-only/static validation",
+  "main_revision_checked": "9cce1cc5238de71231b1fcd37727391113e17956",
+  "measured_head": "bc0d8afb8da5d3ef69c18f0810a5eadc25a198e1",
+  "measurement_scope": "latest-main 9cce1cc overlay after #4014; semantic condition correction for qualification/content/valley/matrix; read-only static validation",
   "change": {
     "document": "docs/helix-harness/L8-unit-verification/process-state-port.json",
     "bytes_before": 9811684,
     "sha256_before": "f5055c9a7d19654402f3f2b595038cf0f81ed717659c342c6190c5f88577e5b2",
-    "bytes_after": 614380,
-    "sha256_after": "e83b6ac0f408dfb9326ba4debb403526e5d1454cba52ad5cc1a0298d9f6e94e7",
-    "bytes_removed": 9197304,
-    "reduction_percent": 93.74
+    "bytes_after": 627824,
+    "sha256_after": "8b01a4c3b9ebd33ceaff41cb75a4c2cbd48f26ce4ec09bdb030fd1f7ed890e6d",
+    "bytes_removed_from_original_base": 9183860,
+    "reduction_percent_from_original_base": 93.6,
+    "bytes_delta_from_prior_candidate": 13444,
+    "prior_candidate_sha256": "e83b6ac0f408dfb9326ba4debb403526e5d1454cba52ad5cc1a0298d9f6e94e7",
+    "interpretation": "source-backed Japanese condition descriptions add 13,444 bytes relative to the immediately prior compact candidate; no execution material was restored."
   },
   "condition_correction": {
     "unit_rows": 215,
     "unit_conditions_human_specific": true,
-    "unit_condition_duplicates_per_group": 0,
     "source_binding_controls": 7,
-    "source_binding_conditions": "意味の説明へ置換。operation/path、patch、path-arrayを出力条件に保持しない。全7件はfunction_refとfixed-base base_row_refを保持。",
-    "meaning_basis": "固定baseのcase row、negative classification reason、candidate/failure constraint、function referenceを照合。L9 expected valuesは転記しない。",
-    "prior_measurement": "verification-summary-r6.json is retained in Git history as the prior 1517132 overlay. Current 223 residual rows were compared item-by-item with the reconstructed r5 snapshot and were identical."
+    "qualification_rows": 172,
+    "qualification_condition_source": "Fixed-base row mutation fields/states; unmodified baseline rows use the concrete source qualification state and HARNESS-L5-003 function contract. Conditions are not copied from case-ID suffixes.",
+    "qualification_conditions_verified_by_validator": true,
+    "content_counterexamples": 14,
+    "valley_content_counterexamples": 10,
+    "content_condition_source": "Fixed-base semantic input field changes and source expectation rationale; no operation/path recipe, mutation object, or fixture value is projected.",
+    "matrix_rows": 141,
+    "matrix_condition_source": "Fixed-base qualification field and state boundary, summarized without fixture arrays or value copies.",
+    "source_binding_conditions": "7 semantic conditions; no operation/path strings.",
+    "unverified": {
+      "unit_rows": 48,
+      "qualification_rows": 17,
+      "reason": "No independent row-specific expected difference is evidenced in fixed-base; retained as unverified, not filled with a guessed expectation."
+    },
+    "prior_measurement": "verification-summary-r7.json is retained as a historical snapshot in Git and indexed by verification-summary-disposition.json."
   },
   "inventory": {
     "unit_rows": 215,
@@ -146,7 +160,7 @@
         "unit_unverified_rows": 48,
         "qualification_unverified_rows": 17
       },
-      "current_l8_sha256": "e83b6ac0f408dfb9326ba4debb403526e5d1454cba52ad5cc1a0298d9f6e94e7"
+      "current_l8_sha256": "8b01a4c3b9ebd33ceaff41cb75a4c2cbd48f26ce4ec09bdb030fd1f7ed890e6d"
     },
     "check_child": {
       "command": "python3 scaffold/tools/design_verification_checker.py check-child --root . --l4 docs/helix-harness/L4-basic-design/process-state-port.json --l5 docs/helix-harness/L5-detail-design/process-state-port.json --l8 docs/helix-harness/L8-unit-verification/process-state-port.json --l9 docs/helix-harness/L9-integration-verification/process-state-port.json",
@@ -168,8 +182,8 @@
         "matched_case_count": 0,
         "failure_count": 223,
         "failures_by_attribute": {
-          "negative_case_count": 7,
-          "presence": 216
+          "presence": 216,
+          "negative_case_count": 7
         },
         "layer_row_counts": {
           "L4": 34,
@@ -177,9 +191,6 @@
           "L8": 34,
           "L5": 34
         },
-        "row_residuals_reference": "verification-summary-disposition.json entry for verification-summary-r5.json; reconstruct its recorded Git commit/path to inspect row-level residuals.",
-        "current_row_residual_sha256": "c9ec848dd0e08669d18f7bace1fd9dc979447e0d20d2642eb81d363d8e0973f4",
-        "residual_lists_equal_to_r5": true,
         "claim_of_failure_reduction": false
       },
       "pins_passed": true,
@@ -192,29 +203,30 @@
       "ownership_caps_passed": true
     },
     "scaffold_bindings": {
-      "validate_command": "python3 -B scaffold/tools/scfctl.py validate",
+      "validate_command": "python3 scaffold/tools/scfctl.py validate",
       "validate_result": "bindings=207 fail=0",
       "stale_command": "python3 -B scaffold/tools/scfctl.py stale",
       "stale_result": "stale=0",
       "current_l8_pins": {
-        "SCF-B-0186": "e83b6ac0f408dfb9326ba4debb403526e5d1454cba52ad5cc1a0298d9f6e94e7",
-        "SCF-B-0188": "e83b6ac0f408dfb9326ba4debb403526e5d1454cba52ad5cc1a0298d9f6e94e7",
-        "SCF-B-0202": "e83b6ac0f408dfb9326ba4debb403526e5d1454cba52ad5cc1a0298d9f6e94e7",
-        "SCF-B-0223": "e83b6ac0f408dfb9326ba4debb403526e5d1454cba52ad5cc1a0298d9f6e94e7"
+        "SCF-B-0186": "8b01a4c3b9ebd33ceaff41cb75a4c2cbd48f26ce4ec09bdb030fd1f7ed890e6d",
+        "SCF-B-0188": "8b01a4c3b9ebd33ceaff41cb75a4c2cbd48f26ce4ec09bdb030fd1f7ed890e6d",
+        "SCF-B-0202": "8b01a4c3b9ebd33ceaff41cb75a4c2cbd48f26ce4ec09bdb030fd1f7ed890e6d",
+        "SCF-B-0223": "8b01a4c3b9ebd33ceaff41cb75a4c2cbd48f26ce4ec09bdb030fd1f7ed890e6d"
       },
-      "prior_pin_sha256": "a9797d362bc1242fd485380b467110b30e288f5ad50d68d772756ef8a57ffbb7"
+      "prior_pin_sha256": "e83b6ac0f408dfb9326ba4debb403526e5d1454cba52ad5cc1a0298d9f6e94e7"
     },
     "static_json_parse": true,
     "git_diff_check": true,
     "legacy_runtime_test_hook_ci_run": false
   },
   "residuals": {
-    "previous_failures": 223,
+    "request_baseline_failures": 223,
     "current_failures": 223,
     "difference": 0,
+    "claim_of_failure_reduction": false,
     "failure_attributes": {
-      "negative_case_count": 7,
-      "presence": 216
+      "presence": 216,
+      "negative_case_count": 7
     },
     "layer_rows": {
       "L4": 34,
@@ -236,9 +248,9 @@
     ]
   },
   "history": {
-    "current_summary": "verification-summary-r7.json is the only current measurement after latest-main fe6232a overlay.",
-    "prior_measurements": "verification-summary.json and r2-r6 are preserved as Git blobs and indexed by commit/blob/content SHA-256/bytes and restoration instructions in verification-summary-disposition.json.",
-    "r5_residual_comparison": "Current 223 row residuals equal the reconstructed verification-summary-r5.json row list item by item; no residual list is duplicated.",
-    "binding_pin_history": "Prior pin SHA remains in each affected binding note; current L8 digest is stale-detection only."
+    "current_summary": "verification-summary-r8.json is the sole current measurement after latest-main 9cce1cc overlay.",
+    "prior_measurements": "r1-r7 summary snapshots are indexed in verification-summary-disposition.json by reachable commit/blob/content SHA-256/bytes and restoration instructions; their summary bodies are not duplicated in the current tree.",
+    "r5_residual_comparison": "No failure reduction is claimed; 223 current 4way failures remain, with prior row-level residual evidence preserved through Git history.",
+    "binding_pin_history": "Previous pin digest retained in each affected binding note; current L8 digest is stale-detection only."
   }
 }
