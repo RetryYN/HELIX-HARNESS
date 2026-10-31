@@ -1816,7 +1816,7 @@
         {
           "id": "H003-L8-F01-QUAL-AGREEMENT-MISSING",
           "function_ref": "HARNESS-L5-003-F01",
-          "condition": "同一入力で要求合意が欠落となる入力。",
+          "condition": "同一入力でfreeze時に必須の要求合意資格が欠落となる入力。",
           "expected": "conditions.agreement=missing; conditions.unresolved=known(supported); conditions.verification=known(supported); proceed_condition=missing",
           "owner": "行固有ownerは固定baseに明記なし（未確定）",
           "base_row_ref": "569bde0bc5792349f0833461f0bb1bb6db33c592:docs/helix-harness/L8-unit-verification/process-state-port.json#/cases/1/qualification_cases/9"
@@ -1840,7 +1840,7 @@
         {
           "id": "H003-L8-F01-QUAL-VERIFICATION-MISSING",
           "function_ref": "HARNESS-L5-003-F01",
-          "condition": "同一入力で検証証拠が欠落となる入力。",
+          "condition": "同一入力でfreeze時に必須の検証証拠資格が欠落となる入力。",
           "expected": "conditions.unresolved=known(supported); conditions.verification=state=missing, value=null; proceed_condition=missing",
           "owner": "行固有ownerは固定baseに明記なし（未確定）",
           "base_row_ref": "569bde0bc5792349f0833461f0bb1bb6db33c592:docs/helix-harness/L8-unit-verification/process-state-port.json#/cases/1/qualification_cases/12"
@@ -1896,7 +1896,7 @@
         {
           "id": "H003-L8-F01-QUAL-AGREEMENT-UNKNOWN",
           "function_ref": "HARNESS-L5-003-F01",
-          "condition": "同一入力で要求合意が不明となる入力。",
+          "condition": "同一入力でfreeze時に必須の要求合意資格が不明となる入力。",
           "expected": "conditions.agreement=unknown; conditions.unresolved=known(supported); conditions.verification=known(supported); proceed_condition=unknown",
           "owner": "行固有ownerは固定baseに明記なし（未確定）",
           "base_row_ref": "569bde0bc5792349f0833461f0bb1bb6db33c592:docs/helix-harness/L8-unit-verification/process-state-port.json#/cases/1/qualification_cases/19"
@@ -1920,7 +1920,7 @@
         {
           "id": "H003-L8-F01-QUAL-VERIFICATION-UNKNOWN",
           "function_ref": "HARNESS-L5-003-F01",
-          "condition": "同一入力で検証証拠が不明となる入力。",
+          "condition": "同一入力でfreeze時に必須の検証証拠資格が不明となる入力。",
           "expected": "conditions.unresolved=known(supported); conditions.verification=state=unknown, value=null; proceed_condition=unknown",
           "owner": "行固有ownerは固定baseに明記なし（未確定）",
           "base_row_ref": "569bde0bc5792349f0833461f0bb1bb6db33c592:docs/helix-harness/L8-unit-verification/process-state-port.json#/cases/1/qualification_cases/22"
@@ -1976,7 +1976,7 @@
         {
           "id": "H003-L8-F01-QUAL-AGREEMENT-CONFLICT",
           "function_ref": "HARNESS-L5-003-F01",
-          "condition": "同一入力で要求合意が矛盾となる入力。",
+          "condition": "同一入力でfreeze時に必須の要求合意資格が矛盾となる入力。",
           "expected": "conditions.agreement=conflict; conditions.unresolved=known(supported); conditions.verification=known(supported); proceed_condition=conflict",
           "owner": "行固有ownerは固定baseに明記なし（未確定）",
           "base_row_ref": "569bde0bc5792349f0833461f0bb1bb6db33c592:docs/helix-harness/L8-unit-verification/process-state-port.json#/cases/1/qualification_cases/29"
@@ -2000,7 +2000,7 @@
         {
           "id": "H003-L8-F01-QUAL-VERIFICATION-CONFLICT",
           "function_ref": "HARNESS-L5-003-F01",
-          "condition": "同一入力で検証証拠が矛盾となる入力。",
+          "condition": "同一入力でfreeze時に必須の検証証拠資格が矛盾となる入力。",
           "expected": "conditions.unresolved=known(supported); conditions.verification=state=conflict, value=null; proceed_condition=conflict",
           "owner": "行固有ownerは固定baseに明記なし（未確定）",
           "base_row_ref": "569bde0bc5792349f0833461f0bb1bb6db33c592:docs/helix-harness/L8-unit-verification/process-state-port.json#/cases/1/qualification_cases/32"
@@ -2056,7 +2056,7 @@
         {
           "id": "H003-L8-F01-QUAL-AGREEMENT-STALE",
           "function_ref": "HARNESS-L5-003-F01",
-          "condition": "同一入力で要求合意がstaleとなる入力。",
+          "condition": "同一入力でfreeze時に必須の要求合意資格がstaleとなる入力。",
           "expected": "conditions.agreement=stale; conditions.unresolved=known(supported); conditions.verification=known(supported); proceed_condition=stale",
           "owner": "行固有ownerは固定baseに明記なし（未確定）",
           "base_row_ref": "569bde0bc5792349f0833461f0bb1bb6db33c592:docs/helix-harness/L8-unit-verification/process-state-port.json#/cases/1/qualification_cases/39"
@@ -2080,7 +2080,7 @@
         {
           "id": "H003-L8-F01-QUAL-VERIFICATION-STALE",
           "function_ref": "HARNESS-L5-003-F01",
-          "condition": "同一入力で検証証拠がstaleとなる入力。",
+          "condition": "同一入力でfreeze時に必須の検証証拠資格がstaleとなる入力。",
           "expected": "conditions.unresolved=known(supported); conditions.verification=state=stale, value=null; proceed_condition=stale",
           "owner": "行固有ownerは固定baseに明記なし（未確定）",
           "base_row_ref": "569bde0bc5792349f0833461f0bb1bb6db33c592:docs/helix-harness/L8-unit-verification/process-state-port.json#/cases/1/qualification_cases/42"
@@ -2104,7 +2104,7 @@
         {
           "id": "H003-L8-F01-QUAL-UNREQUIRED-START-VERIFICATION",
           "function_ref": "HARNESS-L5-003-F01",
-          "condition": "同一入力で検証証拠が不明となる入力。",
+          "condition": "同一入力で開始actionで検証証拠資格が不明でも必須条件に含めず、要求合意・要件承認・対応するV-pairを照合となる入力。",
           "expected": "未検証: 固定baseの期待は資格baselineと同値。行固有期待差を証明できない。",
           "owner": "行固有ownerは固定baseに明記なし（未確定）",
           "base_row_ref": "569bde0bc5792349f0833461f0bb1bb6db33c592:docs/helix-harness/L8-unit-verification/process-state-port.json#/cases/1/qualification_cases/45"
@@ -2112,7 +2112,7 @@
         {
           "id": "H003-L8-F01-QUAL-UNREQUIRED-BACKFLOW-AGREEMENT",
           "function_ref": "HARNESS-L5-003-F01",
-          "condition": "同一入力で要求合意が不明となる入力。",
+          "condition": "同一入力で差戻しactionで要求合意資格が不明でも必須条件に含めず、findingの戻し先を照合となる入力。",
           "expected": "absent{conditions:agreement, pair, approval}; conditions.finding_route=known(supported)",
           "owner": "行固有ownerは固定baseに明記なし（未確定）",
           "base_row_ref": "569bde0bc5792349f0833461f0bb1bb6db33c592:docs/helix-harness/L8-unit-verification/process-state-port.json#/cases/1/qualification_cases/46"
@@ -2120,7 +2120,7 @@
         {
           "id": "H003-L8-F01-QUAL-MIXED-CONDITIONS",
           "function_ref": "HARNESS-L5-003-F01",
-          "condition": "同一入力で要求合意が欠落、対応するV-pairがstaleとなる入力。",
+          "condition": "同一入力でfreeze時に必須の要求合意資格が欠落、対応するV-pairがstaleとなる入力。",
           "expected": "conditions.agreement=missing; conditions.pair=stale; conditions.unresolved=known(supported); conditions.verification=known(supported); proceed_condition=unknown",
           "owner": "行固有ownerは固定baseに明記なし（未確定）",
           "base_row_ref": "569bde0bc5792349f0833461f0bb1bb6db33c592:docs/helix-harness/L8-unit-verification/process-state-port.json#/cases/1/qualification_cases/47"
@@ -2163,7 +2163,7 @@
           "id": "H003-L8-F01-CONTENT-ACTION-CONTRACT-MISSING",
           "function_ref": "HARNESS-L5-003-F01",
           "base_case_id": "H003-F01-NORMAL-freeze",
-          "condition": "freezeを構成する必要条件一覧が欠落した入力。",
+          "condition": "freezeの必要条件定義そのものが欠落した入力。",
           "expected": "missing{conditions, proceed_condition, requires}",
           "owner": "owner_target_state=unknown; owner_target=null",
           "base_row_ref": "569bde0bc5792349f0833461f0bb1bb6db33c592:docs/helix-harness/L8-unit-verification/process-state-port.json#/cases/1/content_counterexamples/0"
@@ -2172,7 +2172,7 @@
           "id": "H003-L8-F01-CONTENT-ACTION-CONTRACT-UNKNOWN",
           "function_ref": "HARNESS-L5-003-F01",
           "base_case_id": "H003-F01-NORMAL-freeze",
-          "condition": "freezeを構成する必要条件一覧が欠落した入力。",
+          "condition": "freezeの必要条件定義が存在するが、その内容が不明な入力。",
           "expected": "unknown{conditions, proceed_condition, requires}",
           "owner": "owner_target_state=unknown; owner_target=null",
           "base_row_ref": "569bde0bc5792349f0833461f0bb1bb6db33c592:docs/helix-harness/L8-unit-verification/process-state-port.json#/cases/1/content_counterexamples/1"
@@ -2935,7 +2935,7 @@
         {
           "id": "H003-L8-F02-QUAL-POC_APPLICABILITY-UNKNOWN",
           "function_ref": "HARNESS-L5-003-F02",
-          "condition": "同一入力でPoCの適用性が不明となる入力。",
+          "condition": "同一入力で画面prototype非適用の入力でPoC適用性が不明となる入力。",
           "expected": "unknown{poc_app, poc_na_result, poc_result, refreeze_condition, returns, unresolved_return_fields}",
           "owner": "owner_target_state=unknown; owner_target=null",
           "base_row_ref": "569bde0bc5792349f0833461f0bb1bb6db33c592:docs/helix-harness/L8-unit-verification/process-state-port.json#/cases/2/qualification_cases/22"
@@ -2943,7 +2943,7 @@
         {
           "id": "H003-L8-F02-QUAL-POC_NA-UNKNOWN",
           "function_ref": "HARNESS-L5-003-F02",
-          "condition": "同一入力でPoC非適用理由が不明となる入力。",
+          "condition": "同一入力で画面prototype非適用・PoC適用の入力でPoC非適用理由が不明となる入力。",
           "expected": "未検証: 固定baseの期待は資格baselineと同値。行固有期待差を証明できない。",
           "owner": "owner_target_state=unknown; owner_target=null",
           "base_row_ref": "569bde0bc5792349f0833461f0bb1bb6db33c592:docs/helix-harness/L8-unit-verification/process-state-port.json#/cases/2/qualification_cases/23"
@@ -3231,7 +3231,7 @@
         {
           "id": "H003-L8-F02-QUAL-BOTH-NA-POC_NA-UNKNOWN",
           "function_ref": "HARNESS-L5-003-F02",
-          "condition": "同一入力でPoC非適用理由が不明となる入力。",
+          "condition": "同一入力で画面prototype非適用・PoC非適用の入力でPoC非適用理由が不明となる入力。",
           "expected": "unknown{poc_na_result, poc_result, refreeze_condition, returns, unresolved_return_fields}; poc_app=not_applicable",
           "owner": "owner_target_state=unknown; owner_target=null",
           "base_row_ref": "569bde0bc5792349f0833461f0bb1bb6db33c592:docs/helix-harness/L8-unit-verification/process-state-port.json#/cases/2/qualification_cases/59"
@@ -3239,7 +3239,7 @@
         {
           "id": "H003-L8-F02-QUAL-BOTH-NA-POC_APPLICABILITY-UNKNOWN",
           "function_ref": "HARNESS-L5-003-F02",
-          "condition": "同一入力でPoCの適用性が不明となる入力。",
+          "condition": "同一入力で画面prototype非適用の入力でPoC適用性が不明となる入力。",
           "expected": "unknown{poc_app, poc_na_result, poc_result, refreeze_condition, returns, unresolved_return_fields}",
           "owner": "owner_target_state=unknown; owner_target=null",
           "base_row_ref": "569bde0bc5792349f0833461f0bb1bb6db33c592:docs/helix-harness/L8-unit-verification/process-state-port.json#/cases/2/qualification_cases/60"

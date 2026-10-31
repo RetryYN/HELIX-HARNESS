@@ -363,6 +363,8 @@ def qualification_condition(source: dict[str, Any], function_suffix: str) -> str
     if not isinstance(mutations,list):
         mutation=source.get("mutation")
         mutations=[mutation] if isinstance(mutation,dict) else []
+    values=source.get("expected_typed_assessment",{}).get("partial_values",{})
+    if not isinstance(values,dict):values={}
     descriptions=[]
     for mutation in mutations:
         if not isinstance(mutation,dict): continue
@@ -385,6 +387,33 @@ def qualification_condition(source: dict[str, Any], function_suffix: str) -> str
             continue
         label=QUALIFICATION_FIELDS.get(key)
         state=state_label(mutation.get("after"))
+        if function_suffix=="F01" and key in {"agreement","verification"}:
+            action_item=values.get("action",{})
+            required_item=values.get("required_conditions",{})
+            action=action_item.get("value") if isinstance(action_item,dict) and action_item.get("state")=="known" else None
+            required=required_item.get("value") if isinstance(required_item,dict) and required_item.get("state")=="known" else None
+            actions={"start":"開始", "freeze":"freeze", "backflow":"差戻し", "reopen":"再開", "complete":"完了"}
+            field_name={"agreement":"要求合意", "verification":"検証証拠"}[key]
+            if action in actions and isinstance(required,list):
+                if key in required and state:
+                    descriptions.append(f"{actions[action]}時に必須の{field_name}資格が{state}")
+                elif key not in required:
+                    other="・".join(QUALIFICATION_FIELDS.get(x,x) for x in required)
+                    descriptions.append(f"{actions[action]}actionで{field_name}資格が不明でも必須条件に含めず、{other or '必須条件なし'}を照合")
+                continue
+        if function_suffix=="F02" and key in {"poc_applicability","poc_na"}:
+            def field_value(field: str) -> Any:
+                item=values.get(field,{})
+                return item.get("value") if isinstance(item,dict) and item.get("state")=="known" else None
+            prototype=field_value("prototype_applicability")
+            poc=field_value("poc_applicability")
+            if key=="poc_applicability" and prototype=="not_applicable" and state=="不明":
+                descriptions.append("画面prototype非適用の入力でPoC適用性が不明")
+                continue
+            if key=="poc_na" and prototype=="not_applicable" and poc in {"applicable","not_applicable"} and state=="不明":
+                poc_label="適用" if poc=="applicable" else "非適用"
+                descriptions.append(f"画面prototype非適用・PoC{poc_label}の入力でPoC非適用理由が不明")
+                continue
         if label and state:
             descriptions.append(f"{label}が{state}")
     if descriptions:
@@ -428,7 +457,12 @@ def counterexample_condition(source: dict[str, Any], section: str) -> str:
         mutation=mutations[0] if mutations else {}
         after=mutation.get("after") if isinstance(mutation,dict) else None
         if isinstance(after,dict):return "freezeに必要な条件一覧が不明な状態で、別形式の値が与えられる入力。"
-        if after is None:return "freezeを構成する必要条件一覧が欠落した入力。"
+        if after is None:
+            if isinstance(mutation,dict) and mutation.get("delete") is True:
+                return "freezeの必要条件定義そのものが欠落した入力。"
+            if isinstance(mutation,dict) and mutation.get("delete") is False:
+                return "freezeの必要条件定義が存在するが、その内容が不明な入力。"
+            return "freezeの必要条件定義の有無を固定baseから判別できず未検証。"
         if after=="all":return "freezeの必要条件を既定の一覧でなく包括語で置き換えた入力。"
         if after=="promote":return "freeze以外の未対応actionを指定する入力。"
     if source.get("function_ref")=="HARNESS-L5-003-F02":
@@ -964,6 +998,82 @@ def run() -> dict[str,Any]:
                         specific_condition_ok &= bool(re.search(r"[ぁ-んァ-ヶ一-龠]",str(condition)))
                         specific_condition_ok &= not bool(re.fullmatch(r"[A-Z0-9 _-]+",str(condition)))
     checks["conditions_are_specific_human_scenarios"]=specific_condition_ok
+    base_qual={row["id"]:row for source_group in old_groups for row in source_group.get("qualification_cases",[])}
+    current_qual={row["id"]:row for current_group in groups for row in current_group.get("qualification_cases",[])}
+    base_content={row["id"]:row for source_group in old_groups for row in source_group.get("content_counterexamples",[])}
+    current_content={row["id"]:row for current_group in groups for row in current_group.get("content_counterexamples",[])}
+    def partial(row: dict[str,Any]) -> dict[str,Any]:
+        typed=row.get("expected_typed_assessment",{})
+        result=typed.get("partial_values",{}) if isinstance(typed,dict) else {}
+        return result if isinstance(result,dict) else {}
+    def semantic_only(value: Any) -> Any:
+        if isinstance(value,dict):return {k:semantic_only(v) for k,v in value.items() if k not in {"source_packet_ref","reason"}}
+        if isinstance(value,list):return [semantic_only(v) for v in value]
+        return value
+    missing_id="H003-L8-F01-CONTENT-ACTION-CONTRACT-MISSING"
+    unknown_id="H003-L8-F01-CONTENT-ACTION-CONTRACT-UNKNOWN"
+    missing_source=base_content.get(missing_id,{})
+    unknown_source=base_content.get(unknown_id,{})
+    missing_mutation=missing_source.get("mutation",{})
+    unknown_mutation=unknown_source.get("mutation",{})
+    missing_state=partial(missing_source).get("required_conditions",{}).get("state")
+    unknown_state=partial(unknown_source).get("required_conditions",{}).get("state")
+    checks["F01_missing_unknown_condition_and_state_distinction"]=(
+        missing_mutation.get("delete") is True and unknown_mutation.get("delete") is False
+        and missing_state=="missing" and unknown_state=="unknown"
+        and counterexample_condition(missing_source,"content_counterexamples")!=counterexample_condition(unknown_source,"content_counterexamples")
+        and current_content.get(missing_id,{}).get("condition")==counterexample_condition(missing_source,"content_counterexamples")
+        and current_content.get(unknown_id,{}).get("condition")==counterexample_condition(unknown_source,"content_counterexamples")
+    )
+    f01_pairs=(
+        ("H003-L8-F01-QUAL-AGREEMENT-UNKNOWN","H003-L8-F01-QUAL-UNREQUIRED-BACKFLOW-AGREEMENT","agreement"),
+        ("H003-L8-F01-QUAL-VERIFICATION-UNKNOWN","H003-L8-F01-QUAL-UNREQUIRED-START-VERIFICATION","verification"),
+    )
+    f01_semantics=True
+    for required_id,unrequired_id,field in f01_pairs:
+        required_source=base_qual.get(required_id,{})
+        unrequired_source=base_qual.get(unrequired_id,{})
+        def known_value(row: dict[str,Any], key: str) -> Any:
+            item=partial(row).get(key,{})
+            return item.get("value") if isinstance(item,dict) and item.get("state")=="known" else None
+        req_action=known_value(required_source,"action")
+        unreq_action=known_value(unrequired_source,"action")
+        req_fields=known_value(required_source,"required_conditions") or []
+        unreq_fields=known_value(unrequired_source,"required_conditions") or []
+        f01_semantics &= field in req_fields and field not in unreq_fields and req_action!=unreq_action
+        f01_semantics &= qualification_condition(required_source,"F01")!=qualification_condition(unrequired_source,"F01")
+        f01_semantics &= current_qual.get(required_id,{}).get("condition")==qualification_condition(required_source,"F01")
+        f01_semantics &= current_qual.get(unrequired_id,{}).get("condition")==qualification_condition(unrequired_source,"F01")
+    checks["F01_action_required_qualification_context"] = f01_semantics
+    normal_app_id="H003-L8-F02-QUAL-POC_APPLICABILITY-UNKNOWN"
+    both_na_app_id="H003-L8-F02-QUAL-BOTH-NA-POC_APPLICABILITY-UNKNOWN"
+    normal_na_id="H003-L8-F02-QUAL-POC_NA-UNKNOWN"
+    both_na_na_id="H003-L8-F02-QUAL-BOTH-NA-POC_NA-UNKNOWN"
+    normal_app=base_qual.get(normal_app_id,{})
+    both_na_app=base_qual.get(both_na_app_id,{})
+    normal_na=base_qual.get(normal_na_id,{})
+    both_na_na=base_qual.get(both_na_na_id,{})
+    # The two applicability-unknown rows converge to the same semantic input
+    # and typed expectation after unknown is introduced; their shared condition
+    # is intentional.  The N/A-reason rows remain distinct because PoC applies
+    # in one source and is explicitly non-applicable in the other.
+    same_app_semantics=semantic_only(partial(normal_app))==semantic_only(partial(both_na_app))
+    checks["F02_applicability_unknown_semantic_convergence"]=(
+        same_app_semantics
+        and qualification_condition(normal_app,"F02")==qualification_condition(both_na_app,"F02")
+        and current_qual.get(normal_app_id,{}).get("condition")==qualification_condition(normal_app,"F02")
+        and current_qual.get(both_na_app_id,{}).get("condition")==qualification_condition(both_na_app,"F02")
+        and current_qual.get(normal_app_id,{}).get("expected")==current_qual.get(both_na_app_id,{}).get("expected")
+    )
+    normal_poc=partial(normal_na).get("poc_applicability",{}).get("value")
+    both_na_poc=partial(both_na_na).get("poc_applicability",{}).get("value")
+    checks["F02_poc_NA_reason_context_and_expectation_difference"]=(
+        normal_poc=="applicable" and both_na_poc=="not_applicable"
+        and qualification_condition(normal_na,"F02")!=qualification_condition(both_na_na,"F02")
+        and current_qual.get(normal_na_id,{}).get("condition")==qualification_condition(normal_na,"F02")
+        and current_qual.get(both_na_na_id,{}).get("condition")==qualification_condition(both_na_na,"F02")
+        and current_qual.get(normal_na_id,{}).get("expected")!=current_qual.get(both_na_na_id,{}).get("expected")
+    )
     checks["removed_materials_six_keys_DT_VT_105"]=set(cur.get("removed_materials",{}))=={"decision_ref","git_commit","path","meaning","removed_key_rule","use_boundary"} and "DT-VT-105" in cur.get("removed_materials",{}).get("use_boundary","")
     checks["negative_rows_have_L4_L5_support"] = negative_count==34 and negative_ok
     checks["two_negative_l9_counterparts_explicitly_unresolved"] = sum(1 for g in groups for r in g.get("negative_cases",[]) if r.get("l9_counterpart_status"))==2
