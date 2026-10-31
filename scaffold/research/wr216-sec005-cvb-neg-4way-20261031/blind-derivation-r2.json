@@ -1,0 +1,753 @@
+{
+  "document_id": "WR216-SEC005-CVB-NEG-4WAY-BLIND-DERIVATION-R2",
+  "ticket_id": "WR216-SEC-CVB-NEG-4WAY",
+  "round": "R2",
+  "step": "Step A (Fresh Upstream Blind Derivation)",
+  "status": "frozen_pre_comparison_blind_derivation_r2",
+  "authority_effect": "none",
+  "operation_effect": "none",
+  "derived_by": {
+    "agent_role": "SEC005 Upstream Blind Derivator",
+    "session_id": "f73cba46-71bf-40c2-8a3b-ac89c97692a8",
+    "fresh_independent_session": true,
+    "upstream_inputs_read": [
+      {
+        "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+        "json_pointers_read": [
+          "#/requirements/6",
+          "#/requirements/7"
+        ],
+        "sha256": "e4eeb70cc303e44199c7d898281e91c22dba89b47666353b9c80a4c634e898b5"
+      },
+      {
+        "path": "docs/helix-security/L3-requirements/business-requirements.json",
+        "json_pointers_read": [
+          "#/requirements/0"
+        ],
+        "sha256": "f1668180a3daccb38da15f471ade0806c64f094a77b0d7a5cef25edc9b6ce901"
+      },
+      {
+        "path": "docs/helix-security/L10-verification/functional-verification.json",
+        "json_pointers_read": [
+          "#/cases/6",
+          "#/cases/7"
+        ],
+        "sha256": "e6da7eaff29a623b5d069801280c295d9dd7cc43b51d9cde25b12a8110e5072a"
+      },
+      {
+        "path": "docs/helix-security/L10-verification/business-verification.json",
+        "json_pointers_read": [
+          "#/cases/0"
+        ],
+        "sha256": "c34b8f9a99f8f240558458dd63033acd0d756dfe61ad9cd3aac0e8e1c8193f42"
+      },
+      {
+        "path": "docs/helix-security/L4-basic-design/credential-value-boundary.json",
+        "revision": "73193d8d37845a23e57330db99dd53bbc0e7004c",
+        "stripped_fields": [
+          "algorithm_python_document_text"
+        ],
+        "sha256": "2174775ec98f96b4bb4d6bb0a3187311d8d98a45bebb48823577ef0a6e52d4b6",
+        "note": "Read ONLY prose, contracts, tables, and failure_classifications (failure_classifications was not present as a key in base commit 73193d8d37845a23e57330db99dd53bbc0e7004c)."
+      }
+    ],
+    "governance_and_seed_files_read": [
+      "AGENTS.md",
+      "docs/governance/new-generation-start-here.md",
+      "docs/concept/helix-concept.md",
+      "docs/concept/helix-principles.md",
+      "docs/governance/decisions/brain-helix-core-po-intent-2026-09-25.md",
+      "scaffold/research/design-template-seed-minimum-gap-20261004/README.md",
+      "scaffold/research/design-template-seed-sdop-20260929/README.md",
+      "scaffold/verification-test-template-seed-20261001/README.md"
+    ],
+    "blindness_attestation": {
+      "working_tree_L4_read": false,
+      "L5_L6_L7_L8_L9_files_read": 0,
+      "prior_PRs_or_issue_3510_comments_read": 0,
+      "existing_scaffold_wr216_files_read": 0,
+      "confirmation": "Confirmed 0 access to working-tree L4, L5, L6, L7, L8, L9, prior PRs, Issue #3510 comments, or existing files in scaffold/research/wr216-sec005-cvb-neg-4way-20261031/ (blind-derivation.json, comparison.json)."
+    }
+  },
+  "contracts": [
+    {
+      "contract_id": "HELIXSECURITY-L4-005-F01",
+      "requirement_ref": "HELIXSECURITY-L3-005-F01",
+      "system_oracle_ref": "HELIXSECURITY-L10-005-F01",
+      "oracle_ref": "HELIXSECURITY-L9-005-F01",
+      "component": "bounded_credential_use_comparer",
+      "negative_failure_classifications": [
+        {
+          "classification_id": "HELIXSECURITY-L4-005-F01-NEG-01",
+          "contract_id": "HELIXSECURITY-L4-005-F01",
+          "candidate_classification": "request_capability_binding_unresolved",
+          "axis": "request_to_capability_8field_binding_completeness",
+          "condition": "credential request tupleまたはcapability tupleの8項目（actor/operation/target/environment/scope/expiry/purpose/classification）のいずれかが欠落または型不適合である場合（例：欠落scope/expiry）。同じjoinの片側欠落から他側の相反を作らない。",
+          "state": "credential_binding_unresolved",
+          "outcome": "当該利用をdeny/stop候補とし、各原位置でcredential_binding_unresolvedを保持する（実capability発行/credential利用なし）。",
+          "backflow_owner": {
+            "diagnostic_return_owner": "credential-boundary-owner",
+            "upstream_followup_refs": [
+              "HELIXSECURITY-L2-005",
+              "HELIXSECURITY-L2-008"
+            ],
+            "note": "方針はSEC（005/008）へ戻す。"
+          },
+          "source_pointers": [
+            "docs/helix-security/L3-requirements/functional-requirements.json#/requirements/6/obligation",
+            "docs/helix-security/L10-verification/functional-verification.json#/cases/6/negative_input",
+            "docs/helix-security/L10-verification/functional-verification.json#/cases/6/failure_observation",
+            "docs/helix-security/L4-basic-design/credential-value-boundary.json@73193d8d37845a23e57330db99dd53bbc0e7004c#/contracts/0/input_meanings/0",
+            "docs/helix-security/L4-basic-design/credential-value-boundary.json@73193d8d37845a23e57330db99dd53bbc0e7004c#/contracts/0/output_meanings/0",
+            "docs/helix-security/L4-basic-design/credential-value-boundary.json@73193d8d37845a23e57330db99dd53bbc0e7004c#/contracts/0/content_comparison/0",
+            "docs/helix-security/L4-basic-design/credential-value-boundary.json@73193d8d37845a23e57330db99dd53bbc0e7004c#/contracts/0/content_comparison/4",
+            "docs/helix-security/L4-basic-design/credential-value-boundary.json@73193d8d37845a23e57330db99dd53bbc0e7004c#/diagnostic_contract/return_owner"
+          ]
+        },
+        {
+          "classification_id": "HELIXSECURITY-L4-005-F01-NEG-02",
+          "contract_id": "HELIXSECURITY-L4-005-F01",
+          "candidate_classification": "authority_expected_capability_unresolved",
+          "axis": "authority_expected_capability_availability",
+          "condition": "独立既存authorityのexpected capability（/context/expected_capability）またはauthority資料状態が欠落・未解決である場合。同じjoinの片側欠落から他側の相反を作らない。",
+          "state": "authority_expected_unresolved",
+          "outcome": "当該利用をdeny/stop候補とし、/context/expected_capabilityのauthority_expected_unresolvedを保持する。",
+          "backflow_owner": {
+            "diagnostic_return_owner": "credential-boundary-owner",
+            "upstream_followup_refs": [
+              "HELIXSECURITY-L2-005",
+              "HELIXSECURITY-L2-008"
+            ],
+            "note": "方針・既存authority（SEC 005/008）へ戻す。"
+          },
+          "source_pointers": [
+            "docs/helix-security/L3-requirements/functional-requirements.json#/requirements/6/obligation",
+            "docs/helix-security/L10-verification/functional-verification.json#/cases/6/failure_observation",
+            "docs/helix-security/L4-basic-design/credential-value-boundary.json@73193d8d37845a23e57330db99dd53bbc0e7004c#/contracts/0/input_meanings/1",
+            "docs/helix-security/L4-basic-design/credential-value-boundary.json@73193d8d37845a23e57330db99dd53bbc0e7004c#/contracts/0/output_meanings/0",
+            "docs/helix-security/L4-basic-design/credential-value-boundary.json@73193d8d37845a23e57330db99dd53bbc0e7004c#/contracts/0/content_comparison/0",
+            "docs/helix-security/L4-basic-design/credential-value-boundary.json@73193d8d37845a23e57330db99dd53bbc0e7004c#/contracts/0/content_comparison/4",
+            "docs/helix-security/L4-basic-design/credential-value-boundary.json@73193d8d37845a23e57330db99dd53bbc0e7004c#/diagnostic_contract/return_owner"
+          ]
+        },
+        {
+          "classification_id": "HELIXSECURITY-L4-005-F01-NEG-03",
+          "contract_id": "HELIXSECURITY-L4-005-F01",
+          "candidate_classification": "bounded_credential_tuple_field_conflict",
+          "axis": "request_capability_authority_8field_correspondence",
+          "condition": "request→capabilityまたはcapability→既存authority expectedの8項目（actor/operation/target/environment/scope/expiry/purpose/classification）の各joinで、両側が既知かつ適合型でありながら内容が相反（不一致capability）する場合。",
+          "state": "conflict",
+          "outcome": "当該利用をdeny/stop候補とし、8項目ごとの相反（conflict）とdeny理由を別に辿れる形で保持する。",
+          "backflow_owner": {
+            "diagnostic_return_owner": "credential-boundary-owner",
+            "upstream_followup_refs": [
+              "HELIXSECURITY-L2-005",
+              "HELIXSECURITY-L2-008"
+            ],
+            "note": "方針はSEC（005/008）へ戻す。"
+          },
+          "source_pointers": [
+            "docs/helix-security/L3-requirements/functional-requirements.json#/requirements/6/obligation",
+            "docs/helix-security/L10-verification/functional-verification.json#/cases/6/positive_input",
+            "docs/helix-security/L10-verification/functional-verification.json#/cases/6/expected_observation",
+            "docs/helix-security/L10-verification/functional-verification.json#/cases/6/failure_observation",
+            "docs/helix-security/L4-basic-design/credential-value-boundary.json@73193d8d37845a23e57330db99dd53bbc0e7004c#/contracts/0/output_meanings/0",
+            "docs/helix-security/L4-basic-design/credential-value-boundary.json@73193d8d37845a23e57330db99dd53bbc0e7004c#/contracts/0/content_comparison/0",
+            "docs/helix-security/L4-basic-design/credential-value-boundary.json@73193d8d37845a23e57330db99dd53bbc0e7004c#/contracts/0/content_comparison/4",
+            "docs/helix-security/L4-basic-design/credential-value-boundary.json@73193d8d37845a23e57330db99dd53bbc0e7004c#/diagnostic_contract/return_owner"
+          ]
+        },
+        {
+          "classification_id": "HELIXSECURITY-L4-005-F01-NEG-04",
+          "contract_id": "HELIXSECURITY-L4-005-F01",
+          "candidate_classification": "unknown_classification_unrecognized",
+          "axis": "classification_domain_membership",
+          "condition": "requestまたはcapabilityのclassificationが独立既存authorityのclass集合にない未知classである場合。",
+          "state": "unknown_class_rejected",
+          "outcome": "未知classをpublicや既定classへ読み替えず、当該利用をdeny/stop候補とする。",
+          "backflow_owner": {
+            "diagnostic_return_owner": "credential-boundary-owner",
+            "upstream_followup_refs": [
+              "HELIXSECURITY-L2-005",
+              "HELIXSECURITY-L2-008"
+            ],
+            "note": "方針はSEC（005/008）へ戻す。"
+          },
+          "source_pointers": [
+            "docs/helix-security/L3-requirements/functional-requirements.json#/requirements/6/obligation",
+            "docs/helix-security/L10-verification/functional-verification.json#/cases/6/negative_input",
+            "docs/helix-security/L10-verification/functional-verification.json#/cases/6/failure_observation",
+            "docs/helix-security/L4-basic-design/credential-value-boundary.json@73193d8d37845a23e57330db99dd53bbc0e7004c#/contracts/0/input_meanings/1",
+            "docs/helix-security/L4-basic-design/credential-value-boundary.json@73193d8d37845a23e57330db99dd53bbc0e7004c#/contracts/0/content_comparison/0",
+            "docs/helix-security/L4-basic-design/credential-value-boundary.json@73193d8d37845a23e57330db99dd53bbc0e7004c#/diagnostic_contract/return_owner"
+          ]
+        },
+        {
+          "classification_id": "HELIXSECURITY-L4-005-F01-NEG-05",
+          "contract_id": "HELIXSECURITY-L4-005-F01",
+          "candidate_classification": "capability_expired",
+          "axis": "capability_expiry_comparison",
+          "condition": "owner供給の合成integer timepointでobserved_time >= expiry（期限切れ）である場合。",
+          "state": "expired",
+          "outcome": "期限切れ（expired）として当該利用をdeny/stop候補とし、他項目の結果と独立したcauseとして保持する。",
+          "backflow_owner": {
+            "diagnostic_return_owner": "credential-boundary-owner",
+            "upstream_followup_refs": [
+              "HELIXSECURITY-L2-005",
+              "HELIXSECURITY-L2-008",
+              "HELIXSECURITY-L2-009"
+            ],
+            "note": "方針はSECへ戻す。"
+          },
+          "source_pointers": [
+            "docs/helix-security/L3-requirements/functional-requirements.json#/requirements/6/obligation",
+            "docs/helix-security/L10-verification/functional-verification.json#/cases/6/failure_observation",
+            "docs/helix-security/L4-basic-design/credential-value-boundary.json@73193d8d37845a23e57330db99dd53bbc0e7004c#/contracts/0/input_meanings/1",
+            "docs/helix-security/L4-basic-design/credential-value-boundary.json@73193d8d37845a23e57330db99dd53bbc0e7004c#/contracts/0/output_meanings/0",
+            "docs/helix-security/L4-basic-design/credential-value-boundary.json@73193d8d37845a23e57330db99dd53bbc0e7004c#/contracts/0/content_comparison/1",
+            "docs/helix-security/L4-basic-design/credential-value-boundary.json@73193d8d37845a23e57330db99dd53bbc0e7004c#/contracts/0/content_comparison/4",
+            "docs/helix-security/L4-basic-design/credential-value-boundary.json@73193d8d37845a23e57330db99dd53bbc0e7004c#/diagnostic_contract/return_owner"
+          ]
+        },
+        {
+          "classification_id": "HELIXSECURITY-L4-005-F01-NEG-06",
+          "contract_id": "HELIXSECURITY-L4-005-F01",
+          "candidate_classification": "time_or_expiry_source_unknown",
+          "axis": "observed_time_and_expiry_source_availability",
+          "condition": "expiry比較に必要なsource、observed_time、またはexpiryがunknown（欠落・未観測・型不適合）である場合。",
+          "state": "unknown",
+          "outcome": "clock読取なし、source/time/expiry unknownを補完せず、unknownとして当該利用をdeny/stop候補とする。",
+          "backflow_owner": {
+            "diagnostic_return_owner": "credential-boundary-owner",
+            "upstream_followup_refs": [
+              "HELIXSECURITY-L2-005",
+              "HELIXSECURITY-L2-008"
+            ],
+            "note": "方針はSECへ戻す。"
+          },
+          "source_pointers": [
+            "docs/helix-security/L3-requirements/functional-requirements.json#/requirements/6/obligation",
+            "docs/helix-security/L10-verification/functional-verification.json#/cases/6/negative_input",
+            "docs/helix-security/L10-verification/functional-verification.json#/cases/6/failure_observation",
+            "docs/helix-security/L4-basic-design/credential-value-boundary.json@73193d8d37845a23e57330db99dd53bbc0e7004c#/contracts/0/input_meanings/1",
+            "docs/helix-security/L4-basic-design/credential-value-boundary.json@73193d8d37845a23e57330db99dd53bbc0e7004c#/contracts/0/output_meanings/0",
+            "docs/helix-security/L4-basic-design/credential-value-boundary.json@73193d8d37845a23e57330db99dd53bbc0e7004c#/contracts/0/content_comparison/1",
+            "docs/helix-security/L4-basic-design/credential-value-boundary.json@73193d8d37845a23e57330db99dd53bbc0e7004c#/diagnostic_contract/return_owner"
+          ]
+        },
+        {
+          "classification_id": "HELIXSECURITY-L4-005-F01-NEG-07",
+          "contract_id": "HELIXSECURITY-L4-005-F01",
+          "candidate_classification": "capability_revoked",
+          "axis": "capability_revocation_state_in_f01",
+          "condition": "範囲付きcredential-use capabilityがrevoked（失効）状態にある場合。",
+          "state": "revoked",
+          "outcome": "revokedとして当該利用をdeny/stop候補とし、別項目の既知相反や値露出等と独立したcauseとして保持する。",
+          "backflow_owner": {
+            "diagnostic_return_owner": "credential-boundary-owner",
+            "upstream_followup_refs": [
+              "HELIXSECURITY-L2-005",
+              "HELIXSECURITY-L2-008",
+              "HELIXSECURITY-L2-009"
+            ],
+            "note": "方針はSEC（005/008/009）へ戻す。"
+          },
+          "source_pointers": [
+            "docs/helix-security/L3-requirements/functional-requirements.json#/requirements/6/obligation",
+            "docs/helix-security/L10-verification/functional-verification.json#/cases/6/failure_observation",
+            "docs/helix-security/L4-basic-design/credential-value-boundary.json@73193d8d37845a23e57330db99dd53bbc0e7004c#/contracts/0/output_meanings/0",
+            "docs/helix-security/L4-basic-design/credential-value-boundary.json@73193d8d37845a23e57330db99dd53bbc0e7004c#/contracts/0/content_comparison/4",
+            "docs/helix-security/L4-basic-design/credential-value-boundary.json@73193d8d37845a23e57330db99dd53bbc0e7004c#/diagnostic_contract/return_owner"
+          ]
+        },
+        {
+          "classification_id": "HELIXSECURITY-L4-005-F01-NEG-08",
+          "contract_id": "HELIXSECURITY-L4-005-F01",
+          "candidate_classification": "worker_direct_store_exposure",
+          "axis": "worker_store_isolation_boundary",
+          "condition": "Workerへcredential storeを直接見せる（store直接露出、またはstore addressの出力・直接参照）場合。",
+          "state": "store_exposed",
+          "outcome": "当該利用をdeny/stop候補とし、原値やstore addressを出力せず、保存/注入境界は024、方針はSECへ戻す。",
+          "backflow_owner": {
+            "diagnostic_return_owner": "credential-boundary-owner",
+            "upstream_followup_refs": [
+              "HELIXSECURITY-L2-005",
+              "HELIXSECURITY-L2-024"
+            ],
+            "note": "方針はSEC、保存/注入境界は024へ戻す。"
+          },
+          "source_pointers": [
+            "docs/helix-security/L3-requirements/functional-requirements.json#/requirements/6/obligation",
+            "docs/helix-security/L10-verification/functional-verification.json#/cases/6/negative_input",
+            "docs/helix-security/L10-verification/functional-verification.json#/cases/6/failure_observation",
+            "docs/helix-security/L4-basic-design/credential-value-boundary.json@73193d8d37845a23e57330db99dd53bbc0e7004c#/contracts/0/output_meanings/1",
+            "docs/helix-security/L4-basic-design/credential-value-boundary.json@73193d8d37845a23e57330db99dd53bbc0e7004c#/contracts/0/content_comparison/2",
+            "docs/helix-security/L4-basic-design/credential-value-boundary.json@73193d8d37845a23e57330db99dd53bbc0e7004c#/diagnostic_contract/return_owner"
+          ]
+        },
+        {
+          "classification_id": "HELIXSECURITY-L4-005-F01-NEG-09",
+          "contract_id": "HELIXSECURITY-L4-005-F01",
+          "candidate_classification": "surface_raw_value_exposed",
+          "axis": "seven_surface_raw_value_non_exposure",
+          "condition": "7つのsurface（context / file / artifact / log / Tool result / receipt / 外部sink）のいずれかにraw値が出ている場合（例：raw値context/receipt）。",
+          "state": "raw_value_exposed",
+          "outcome": "当該利用をdeny/stop候補とし、原値を出力・複写せず独立causeとして保持し、方針はSEC、保存/注入境界は024へ戻す。",
+          "backflow_owner": {
+            "diagnostic_return_owner": "credential-boundary-owner",
+            "upstream_followup_refs": [
+              "HELIXSECURITY-L2-005",
+              "HELIXSECURITY-L2-024",
+              "HELIXSECURITY-L2-009"
+            ],
+            "note": "方針はSEC、保存/注入境界は024へ戻す。"
+          },
+          "source_pointers": [
+            "docs/helix-security/L3-requirements/functional-requirements.json#/requirements/6/obligation",
+            "docs/helix-security/L10-verification/functional-verification.json#/cases/6/negative_input",
+            "docs/helix-security/L10-verification/functional-verification.json#/cases/6/failure_observation",
+            "docs/helix-security/L4-basic-design/credential-value-boundary.json@73193d8d37845a23e57330db99dd53bbc0e7004c#/architecture/flow/1",
+            "docs/helix-security/L4-basic-design/credential-value-boundary.json@73193d8d37845a23e57330db99dd53bbc0e7004c#/contracts/0/output_meanings/1",
+            "docs/helix-security/L4-basic-design/credential-value-boundary.json@73193d8d37845a23e57330db99dd53bbc0e7004c#/contracts/0/content_comparison/2",
+            "docs/helix-security/L4-basic-design/credential-value-boundary.json@73193d8d37845a23e57330db99dd53bbc0e7004c#/contracts/0/content_comparison/4",
+            "docs/helix-security/L4-basic-design/credential-value-boundary.json@73193d8d37845a23e57330db99dd53bbc0e7004c#/diagnostic_contract/return_owner"
+          ]
+        },
+        {
+          "classification_id": "HELIXSECURITY-L4-005-F01-NEG-10",
+          "contract_id": "HELIXSECURITY-L4-005-F01",
+          "candidate_classification": "surface_observation_unknown_or_redacted_only",
+          "axis": "seven_surface_independent_observation_qualification",
+          "condition": "7つのsurface（context / file / artifact / log / Tool result / receipt / 外部sink）のいずれかで値非露出の独立観測状態がunknown/未観測である場合、または表面上のredacted宣言だけで独立観測がない場合。",
+          "state": "unknown",
+          "outcome": "redacted宣言を観測/資格の代用にせず、unknownとして当該利用をdeny/stop候補とし、方針はSEC、保存/注入境界は024へ戻す。",
+          "backflow_owner": {
+            "diagnostic_return_owner": "credential-boundary-owner",
+            "upstream_followup_refs": [
+              "HELIXSECURITY-L2-005",
+              "HELIXSECURITY-L2-024"
+            ],
+            "note": "方針はSEC、保存/注入境界は024へ戻す。"
+          },
+          "source_pointers": [
+            "docs/helix-security/L3-requirements/functional-requirements.json#/requirements/6/obligation",
+            "docs/helix-security/L10-verification/functional-verification.json#/cases/6/failure_observation",
+            "docs/helix-security/L4-basic-design/credential-value-boundary.json@73193d8d37845a23e57330db99dd53bbc0e7004c#/legacy_comparison/0/reason",
+            "docs/helix-security/L4-basic-design/credential-value-boundary.json@73193d8d37845a23e57330db99dd53bbc0e7004c#/contracts/0/output_meanings/0",
+            "docs/helix-security/L4-basic-design/credential-value-boundary.json@73193d8d37845a23e57330db99dd53bbc0e7004c#/contracts/0/content_comparison/2",
+            "docs/helix-security/L4-basic-design/credential-value-boundary.json@73193d8d37845a23e57330db99dd53bbc0e7004c#/diagnostic_contract/return_owner"
+          ]
+        },
+        {
+          "classification_id": "HELIXSECURITY-L4-005-F01-NEG-11",
+          "contract_id": "HELIXSECURITY-L4-005-F01",
+          "candidate_classification": "prerequisite_007_006_violation",
+          "axis": "prerequisite_007_006_operation_compliance",
+          "condition": "対象operationに結ばれた007または006の条件がviolationである場合。",
+          "state": "violation",
+          "outcome": "007/006のviolationを既契約の対象operation条件として保持し、当該利用をdeny/stop候補とする（005から新許可・毎回人approveを作らない）。",
+          "backflow_owner": {
+            "diagnostic_return_owner": "credential-boundary-owner",
+            "upstream_followup_refs": [
+              "HELIXSECURITY-L2-005",
+              "HELIXSECURITY-L2-006",
+              "HELIXSECURITY-L2-007",
+              "HELIXSECURITY-L2-008"
+            ],
+            "note": "方針はSEC（006/007/008）へ戻す。"
+          },
+          "source_pointers": [
+            "docs/helix-security/L3-requirements/functional-requirements.json#/requirements/6/obligation",
+            "docs/helix-security/L10-verification/functional-verification.json#/cases/6/failure_observation",
+            "docs/helix-security/L4-basic-design/credential-value-boundary.json@73193d8d37845a23e57330db99dd53bbc0e7004c#/architecture/flow/0",
+            "docs/helix-security/L4-basic-design/credential-value-boundary.json@73193d8d37845a23e57330db99dd53bbc0e7004c#/contracts/0/input_meanings/1",
+            "docs/helix-security/L4-basic-design/credential-value-boundary.json@73193d8d37845a23e57330db99dd53bbc0e7004c#/contracts/0/content_comparison/3",
+            "docs/helix-security/L4-basic-design/credential-value-boundary.json@73193d8d37845a23e57330db99dd53bbc0e7004c#/diagnostic_contract/return_owner"
+          ]
+        },
+        {
+          "classification_id": "HELIXSECURITY-L4-005-F01-NEG-12",
+          "contract_id": "HELIXSECURITY-L4-005-F01",
+          "candidate_classification": "prerequisite_007_006_unknown",
+          "axis": "prerequisite_007_006_operation_availability",
+          "condition": "対象operationに結ばれた007または006の条件がunknown（欠落・未解決）である場合。",
+          "state": "unknown",
+          "outcome": "007/006のunknownを既契約の対象operation条件として保持し、推測で充足とせず当該利用をdeny/stop候補とする。",
+          "backflow_owner": {
+            "diagnostic_return_owner": "credential-boundary-owner",
+            "upstream_followup_refs": [
+              "HELIXSECURITY-L2-005",
+              "HELIXSECURITY-L2-006",
+              "HELIXSECURITY-L2-007",
+              "HELIXSECURITY-L2-008"
+            ],
+            "note": "方針はSEC（006/007/008）へ戻す。"
+          },
+          "source_pointers": [
+            "docs/helix-security/L3-requirements/functional-requirements.json#/requirements/6/obligation",
+            "docs/helix-security/L10-verification/functional-verification.json#/cases/6/failure_observation",
+            "docs/helix-security/L4-basic-design/credential-value-boundary.json@73193d8d37845a23e57330db99dd53bbc0e7004c#/architecture/flow/0",
+            "docs/helix-security/L4-basic-design/credential-value-boundary.json@73193d8d37845a23e57330db99dd53bbc0e7004c#/contracts/0/input_meanings/1",
+            "docs/helix-security/L4-basic-design/credential-value-boundary.json@73193d8d37845a23e57330db99dd53bbc0e7004c#/contracts/0/output_meanings/0",
+            "docs/helix-security/L4-basic-design/credential-value-boundary.json@73193d8d37845a23e57330db99dd53bbc0e7004c#/contracts/0/content_comparison/3",
+            "docs/helix-security/L4-basic-design/credential-value-boundary.json@73193d8d37845a23e57330db99dd53bbc0e7004c#/diagnostic_contract/return_owner"
+          ]
+        }
+      ]
+    },
+    {
+      "contract_id": "HELIXSECURITY-L4-005-F02",
+      "requirement_ref": "HELIXSECURITY-L3-005-F02",
+      "system_oracle_ref": "HELIXSECURITY-L10-005-F02",
+      "oracle_ref": "HELIXSECURITY-L9-005-F02",
+      "component": "canonical_secret_inspection_revocation_comparer",
+      "negative_failure_classifications": [
+        {
+          "classification_id": "HELIXSECURITY-L4-005-F02-NEG-01",
+          "contract_id": "HELIXSECURITY-L4-005-F02",
+          "candidate_classification": "non_canonical_or_mismatched_predicate",
+          "axis": "single_canonical_predicate_exact_match",
+          "condition": "repository混入またはexternal_sink送信の2検査reportのpredicateが、単一canonical predicate Ref（identity/revision/scope/owner）と不一致である場合、または独自predicateでclear/許可としている場合。",
+          "state": "conflict",
+          "outcome": "独自predicateをclear判定にして通さず、該当利用/送信を止める候補とし、既存009の該当停止・隔離と未完へ結ぶ。",
+          "backflow_owner": {
+            "diagnostic_return_owner": "credential-boundary-owner",
+            "upstream_followup_refs": [
+              "HELIXSECURITY-L2-005",
+              "HELIXSECURITY-L2-009"
+            ],
+            "note": "該当利用/送信を止め、既存009の該当停止・隔離と未完へ結ぶ。"
+          },
+          "source_pointers": [
+            "docs/helix-security/L3-requirements/functional-requirements.json#/requirements/7/obligation",
+            "docs/helix-security/L10-verification/functional-verification.json#/cases/7/negative_input",
+            "docs/helix-security/L10-verification/functional-verification.json#/cases/7/failure_observation",
+            "docs/helix-security/L4-basic-design/credential-value-boundary.json@73193d8d37845a23e57330db99dd53bbc0e7004c#/contracts/1/input_meanings/0",
+            "docs/helix-security/L4-basic-design/credential-value-boundary.json@73193d8d37845a23e57330db99dd53bbc0e7004c#/contracts/1/output_meanings/0",
+            "docs/helix-security/L4-basic-design/credential-value-boundary.json@73193d8d37845a23e57330db99dd53bbc0e7004c#/contracts/1/content_comparison/0",
+            "docs/helix-security/L4-basic-design/credential-value-boundary.json@73193d8d37845a23e57330db99dd53bbc0e7004c#/diagnostic_contract/return_owner"
+          ]
+        },
+        {
+          "classification_id": "HELIXSECURITY-L4-005-F02-NEG-02",
+          "contract_id": "HELIXSECURITY-L4-005-F02",
+          "candidate_classification": "canonical_predicate_ref_unresolved",
+          "axis": "canonical_predicate_ref_completeness",
+          "condition": "単一canonical predicate Refまたは2検査reportのpredicate参照（identity/revision/scope/owner）が欠落・型不適合・未解決である場合。",
+          "state": "unresolved",
+          "outcome": "未解決のpredicate参照をclear判定として通さず、該当利用/送信を止める候補とし、既存009の該当停止・隔離と未完へ結ぶ。",
+          "backflow_owner": {
+            "diagnostic_return_owner": "credential-boundary-owner",
+            "upstream_followup_refs": [
+              "HELIXSECURITY-L2-005",
+              "HELIXSECURITY-L2-009"
+            ],
+            "note": "該当利用/送信を止め、既存009の該当停止・隔離と未完へ結ぶ。"
+          },
+          "source_pointers": [
+            "docs/helix-security/L3-requirements/functional-requirements.json#/requirements/7/obligation",
+            "docs/helix-security/L10-verification/functional-verification.json#/cases/7/failure_observation",
+            "docs/helix-security/L4-basic-design/credential-value-boundary.json@73193d8d37845a23e57330db99dd53bbc0e7004c#/contracts/1/input_meanings/0",
+            "docs/helix-security/L4-basic-design/credential-value-boundary.json@73193d8d37845a23e57330db99dd53bbc0e7004c#/contracts/1/output_meanings/0",
+            "docs/helix-security/L4-basic-design/credential-value-boundary.json@73193d8d37845a23e57330db99dd53bbc0e7004c#/contracts/1/content_comparison/0",
+            "docs/helix-security/L4-basic-design/credential-value-boundary.json@73193d8d37845a23e57330db99dd53bbc0e7004c#/diagnostic_contract/return_owner"
+          ]
+        },
+        {
+          "classification_id": "HELIXSECURITY-L4-005-F02-NEG-03",
+          "contract_id": "HELIXSECURITY-L4-005-F02",
+          "candidate_classification": "secret_detected_in_repository_or_external_sink",
+          "axis": "repository_and_external_sink_secret_inspection",
+          "condition": "repository混入またはexternal_sink送信の検査report（またはsurface観測）でsecret_detected（raw_detected）が報告された場合。",
+          "state": "secret_detected",
+          "outcome": "検査拒否とし、該当利用/送信を止める候補とする。原値を通常証跡や返却候補へ複写せず、既存009の該当停止・隔離（保存/注入不足は024）へ候補を戻す（無関係なcredential/operationを一括停止しない）。",
+          "backflow_owner": {
+            "diagnostic_return_owner": "credential-boundary-owner",
+            "upstream_followup_refs": [
+              "HELIXSECURITY-L2-005",
+              "HELIXSECURITY-L2-009",
+              "HELIXSECURITY-L2-024"
+            ],
+            "note": "revoke/leak関連は既009、保存/注入不足は024へ候補を戻すが実伝播/隔離を実行しない。"
+          },
+          "source_pointers": [
+            "docs/helix-security/L3-requirements/functional-requirements.json#/requirements/7/obligation",
+            "docs/helix-security/L10-verification/functional-verification.json#/cases/7/positive_input",
+            "docs/helix-security/L10-verification/functional-verification.json#/cases/7/expected_observation",
+            "docs/helix-security/L10-verification/functional-verification.json#/cases/7/failure_observation",
+            "docs/helix-security/L4-basic-design/credential-value-boundary.json@73193d8d37845a23e57330db99dd53bbc0e7004c#/contracts/1/output_meanings/0",
+            "docs/helix-security/L4-basic-design/credential-value-boundary.json@73193d8d37845a23e57330db99dd53bbc0e7004c#/contracts/1/output_meanings/1",
+            "docs/helix-security/L4-basic-design/credential-value-boundary.json@73193d8d37845a23e57330db99dd53bbc0e7004c#/contracts/1/content_comparison/1",
+            "docs/helix-security/L4-basic-design/credential-value-boundary.json@73193d8d37845a23e57330db99dd53bbc0e7004c#/contracts/1/content_comparison/3",
+            "docs/helix-security/L4-basic-design/credential-value-boundary.json@73193d8d37845a23e57330db99dd53bbc0e7004c#/diagnostic_contract/return_owner"
+          ]
+        },
+        {
+          "classification_id": "HELIXSECURITY-L4-005-F02-NEG-04",
+          "contract_id": "HELIXSECURITY-L4-005-F02",
+          "candidate_classification": "inspection_unavailable_or_unobserved_or_redacted_only",
+          "axis": "inspection_availability_and_surface_observation_fail_close",
+          "condition": "repository混入またはexternal_sink送信の検査、検査資料状態、またはsurface観測がunavailable/未観測（検査不能）である場合、またはredacted宣言だけで独立した値非露出観測がない場合。",
+          "state": "unknown",
+          "outcome": "検査不能やredacted宣言だけを安全（pass）として通さず、unknown（未観測）として該当利用/送信を止める候補とし、既存009の該当停止・隔離と未完（保存/注入不足は024）へ結ぶ。複数causeがあれば保持する。",
+          "backflow_owner": {
+            "diagnostic_return_owner": "credential-boundary-owner",
+            "upstream_followup_refs": [
+              "HELIXSECURITY-L2-005",
+              "HELIXSECURITY-L2-009",
+              "HELIXSECURITY-L2-024"
+            ],
+            "note": "該当利用/送信を止め、既存009の該当停止・隔離と未完（および024）へ結ぶ。"
+          },
+          "source_pointers": [
+            "docs/helix-security/L3-requirements/functional-requirements.json#/requirements/7/obligation",
+            "docs/helix-security/L10-verification/functional-verification.json#/cases/7/positive_input",
+            "docs/helix-security/L10-verification/functional-verification.json#/cases/7/expected_observation",
+            "docs/helix-security/L10-verification/functional-verification.json#/cases/7/negative_input",
+            "docs/helix-security/L10-verification/functional-verification.json#/cases/7/failure_observation",
+            "docs/helix-security/L4-basic-design/credential-value-boundary.json@73193d8d37845a23e57330db99dd53bbc0e7004c#/contracts/1/input_meanings/1",
+            "docs/helix-security/L4-basic-design/credential-value-boundary.json@73193d8d37845a23e57330db99dd53bbc0e7004c#/contracts/1/output_meanings/0",
+            "docs/helix-security/L4-basic-design/credential-value-boundary.json@73193d8d37845a23e57330db99dd53bbc0e7004c#/contracts/1/output_meanings/1",
+            "docs/helix-security/L4-basic-design/credential-value-boundary.json@73193d8d37845a23e57330db99dd53bbc0e7004c#/contracts/1/content_comparison/1",
+            "docs/helix-security/L4-basic-design/credential-value-boundary.json@73193d8d37845a23e57330db99dd53bbc0e7004c#/contracts/1/content_comparison/3",
+            "docs/helix-security/L4-basic-design/credential-value-boundary.json@73193d8d37845a23e57330db99dd53bbc0e7004c#/diagnostic_contract/return_owner"
+          ]
+        },
+        {
+          "classification_id": "HELIXSECURITY-L4-005-F02-NEG-05",
+          "contract_id": "HELIXSECURITY-L4-005-F02",
+          "candidate_classification": "revoked_or_expired_capability_subsequent_use",
+          "axis": "capability_lifecycle_and_independent_revocation",
+          "condition": "capability lifecycleまたは独立revocation観測（および期限観測）のどちらかでrevokedまたはexpiredが判明した後の後続利用（revoke後利用、active自己申告との矛盾を含む）である場合。",
+          "state": "revoked_or_expired",
+          "outcome": "active自己申告で独立revokeや期限観測を消さず、後続利用を止める候補とし、既存009の該当停止・隔離と未完へ結ぶ（無関係なcredential/operationを一括停止しない）。",
+          "backflow_owner": {
+            "diagnostic_return_owner": "credential-boundary-owner",
+            "upstream_followup_refs": [
+              "HELIXSECURITY-L2-005",
+              "HELIXSECURITY-L2-009"
+            ],
+            "note": "revoke/leak関連は既009へ候補を戻すが実伝播/隔離を実行しない。"
+          },
+          "source_pointers": [
+            "docs/helix-security/L3-requirements/functional-requirements.json#/requirements/7/obligation",
+            "docs/helix-security/L10-verification/functional-verification.json#/cases/7/positive_input",
+            "docs/helix-security/L10-verification/functional-verification.json#/cases/7/expected_observation",
+            "docs/helix-security/L10-verification/functional-verification.json#/cases/7/negative_input",
+            "docs/helix-security/L10-verification/functional-verification.json#/cases/7/failure_observation",
+            "docs/helix-security/L4-basic-design/credential-value-boundary.json@73193d8d37845a23e57330db99dd53bbc0e7004c#/contracts/1/input_meanings/1",
+            "docs/helix-security/L4-basic-design/credential-value-boundary.json@73193d8d37845a23e57330db99dd53bbc0e7004c#/contracts/1/output_meanings/0",
+            "docs/helix-security/L4-basic-design/credential-value-boundary.json@73193d8d37845a23e57330db99dd53bbc0e7004c#/contracts/1/output_meanings/1",
+            "docs/helix-security/L4-basic-design/credential-value-boundary.json@73193d8d37845a23e57330db99dd53bbc0e7004c#/contracts/1/content_comparison/2",
+            "docs/helix-security/L4-basic-design/credential-value-boundary.json@73193d8d37845a23e57330db99dd53bbc0e7004c#/contracts/1/content_comparison/3",
+            "docs/helix-security/L4-basic-design/credential-value-boundary.json@73193d8d37845a23e57330db99dd53bbc0e7004c#/diagnostic_contract/return_owner"
+          ]
+        },
+        {
+          "classification_id": "HELIXSECURITY-L4-005-F02-NEG-06",
+          "contract_id": "HELIXSECURITY-L4-005-F02",
+          "candidate_classification": "raw_value_copied_to_evidence_or_diagnostic",
+          "axis": "raw_value_non_copy_in_evidence_and_diagnostics",
+          "condition": "原値（raw値/secret）を通常証跡、返却候補、またはdiagnosticのmessage/pointerへ複写・挿入しようとする場合。",
+          "state": "raw_value_copy_rejected",
+          "outcome": "原値を通常証跡や返却候補、message/pointerへ複写・挿入せず、値を持たないmetadata実位置のJSON Pointerのみを用い、既存009/024へ候補を戻す。",
+          "backflow_owner": {
+            "diagnostic_return_owner": "credential-boundary-owner",
+            "upstream_followup_refs": [
+              "HELIXSECURITY-L2-005",
+              "HELIXSECURITY-L2-009",
+              "HELIXSECURITY-L2-024"
+            ],
+            "note": "revoke/leak関連は既009、保存/注入不足は024へ候補を戻す。"
+          },
+          "source_pointers": [
+            "docs/helix-security/L3-requirements/functional-requirements.json#/requirements/7/obligation",
+            "docs/helix-security/L10-verification/functional-verification.json#/cases/7/failure_observation",
+            "docs/helix-security/L4-basic-design/credential-value-boundary.json@73193d8d37845a23e57330db99dd53bbc0e7004c#/contracts/1/output_meanings/1",
+            "docs/helix-security/L4-basic-design/credential-value-boundary.json@73193d8d37845a23e57330db99dd53bbc0e7004c#/contracts/1/content_comparison/1",
+            "docs/helix-security/L4-basic-design/credential-value-boundary.json@73193d8d37845a23e57330db99dd53bbc0e7004c#/diagnostic_contract/pointer_base",
+            "docs/helix-security/L4-basic-design/credential-value-boundary.json@73193d8d37845a23e57330db99dd53bbc0e7004c#/diagnostic_contract/return_owner"
+          ]
+        }
+      ]
+    },
+    {
+      "contract_id": "HELIXSECURITY-L4-005-B01",
+      "requirement_ref": "HELIXSECURITY-L3-005-B01",
+      "system_oracle_ref": "HELIXSECURITY-L10-005-B01",
+      "oracle_ref": "HELIXSECURITY-L9-005-B01",
+      "component": "ordinary_use_initial_path_separator",
+      "negative_failure_classifications": [
+        {
+          "classification_id": "HELIXSECURITY-L4-005-B01-NEG-01",
+          "contract_id": "HELIXSECURITY-L4-005-B01",
+          "candidate_classification": "os027_initial_path_with_credential_requested",
+          "axis": "os027_initial_path_credential_free_eligibility",
+          "condition": "os027_initial_pathが選択された状態でcredential_requested=trueである場合（一般利用内容が対応していても同様）。",
+          "state": "outside_credential_free_scope",
+          "outcome": "outside_credential_free_scopeとして027の対象外を保持し、一般利用内容が対応していても027を成立させず、初回適格性を自己拡張しない。",
+          "backflow_owner": {
+            "diagnostic_return_owner": "credential-boundary-owner",
+            "upstream_followup_refs": [
+              "HELIXSECURITY-L2-005",
+              "HELIXOS-L2-027"
+            ],
+            "note": "各既存契約（005およびOS 027 owner）へ戻し、初回適格性を自己拡張しない。"
+          },
+          "source_pointers": [
+            "docs/helix-security/L3-requirements/business-requirements.json#/requirements/0/obligation",
+            "docs/helix-security/L10-verification/business-verification.json#/cases/0/positive_input",
+            "docs/helix-security/L10-verification/business-verification.json#/cases/0/expected_observation",
+            "docs/helix-security/L10-verification/business-verification.json#/cases/0/failure_observation",
+            "docs/helix-security/L4-basic-design/credential-value-boundary.json@73193d8d37845a23e57330db99dd53bbc0e7004c#/contracts/2/input_meanings/0",
+            "docs/helix-security/L4-basic-design/credential-value-boundary.json@73193d8d37845a23e57330db99dd53bbc0e7004c#/contracts/2/output_meanings/0",
+            "docs/helix-security/L4-basic-design/credential-value-boundary.json@73193d8d37845a23e57330db99dd53bbc0e7004c#/contracts/2/content_comparison/1",
+            "docs/helix-security/L4-basic-design/credential-value-boundary.json@73193d8d37845a23e57330db99dd53bbc0e7004c#/diagnostic_contract/return_owner"
+          ]
+        },
+        {
+          "classification_id": "HELIXSECURITY-L4-005-B01-NEG-02",
+          "contract_id": "HELIXSECURITY-L4-005-B01",
+          "candidate_classification": "blanket_deny_of_authorized_ordinary_credential_use",
+          "axis": "ordinary_credential_use_within_008_007_006",
+          "condition": "既存008 authority内の非公開・範囲付きcredential-use（生値非露出/007/006条件充足）に対し、credential使用だけを理由に通常作業全般を一律拒否（全credential task一律deny）しようとする場合。",
+          "state": "blanket_deny_rejected",
+          "outcome": "credential使用だけを理由に通常作業全般を一律拒否せず、一般capability利用と027の対象外/許可不足を別に示し、各既存契約（008/007/006/005）へ戻す。",
+          "backflow_owner": {
+            "diagnostic_return_owner": "credential-boundary-owner",
+            "upstream_followup_refs": [
+              "HELIXSECURITY-L2-005",
+              "HELIXSECURITY-L2-006",
+              "HELIXSECURITY-L2-007",
+              "HELIXSECURITY-L2-008"
+            ],
+            "note": "各既存契約（008/007/006/005）へ戻す。"
+          },
+          "source_pointers": [
+            "docs/helix-security/L3-requirements/business-requirements.json#/requirements/0/obligation",
+            "docs/helix-security/L10-verification/business-verification.json#/cases/0/positive_input",
+            "docs/helix-security/L10-verification/business-verification.json#/cases/0/expected_observation",
+            "docs/helix-security/L10-verification/business-verification.json#/cases/0/negative_input",
+            "docs/helix-security/L10-verification/business-verification.json#/cases/0/failure_observation",
+            "docs/helix-security/L4-basic-design/credential-value-boundary.json@73193d8d37845a23e57330db99dd53bbc0e7004c#/contracts/2/content_comparison/0",
+            "docs/helix-security/L4-basic-design/credential-value-boundary.json@73193d8d37845a23e57330db99dd53bbc0e7004c#/diagnostic_contract/return_owner"
+          ]
+        },
+        {
+          "classification_id": "HELIXSECURITY-L4-005-B01-NEG-03",
+          "contract_id": "HELIXSECURITY-L4-005-B01",
+          "candidate_classification": "raw_value_disclosure_from_authenticated_ordinary_use",
+          "axis": "raw_value_non_disclosure_under_ordinary_authorization",
+          "condition": "既許可の認証付き通常operation（一般認可・認証利用）を根拠にraw値要求またはraw値開示を行おうとする場合。",
+          "state": "raw_value_disclosure_denied",
+          "outcome": "raw値開示を一般認可から生成せず、F01/F02の生値非露出・検査境界に従って拒否し、各既存契約（005/024/009）へ戻して通常権限を自己拡張しない。",
+          "backflow_owner": {
+            "diagnostic_return_owner": "credential-boundary-owner",
+            "upstream_followup_refs": [
+              "HELIXSECURITY-L2-005",
+              "HELIXSECURITY-L2-024",
+              "HELIXSECURITY-L2-009"
+            ],
+            "note": "各既存契約へ戻し、通常権限を自己拡張しない。"
+          },
+          "source_pointers": [
+            "docs/helix-security/L3-requirements/business-requirements.json#/requirements/0/obligation",
+            "docs/helix-security/L10-verification/business-verification.json#/cases/0/positive_input",
+            "docs/helix-security/L10-verification/business-verification.json#/cases/0/negative_input",
+            "docs/helix-security/L10-verification/business-verification.json#/cases/0/failure_observation",
+            "docs/helix-security/L4-basic-design/credential-value-boundary.json@73193d8d37845a23e57330db99dd53bbc0e7004c#/contracts/2/input_meanings/1",
+            "docs/helix-security/L4-basic-design/credential-value-boundary.json@73193d8d37845a23e57330db99dd53bbc0e7004c#/contracts/2/content_comparison/3",
+            "docs/helix-security/L4-basic-design/credential-value-boundary.json@73193d8d37845a23e57330db99dd53bbc0e7004c#/diagnostic_contract/return_owner"
+          ]
+        },
+        {
+          "classification_id": "HELIXSECURITY-L4-005-B01-NEG-04",
+          "contract_id": "HELIXSECURITY-L4-005-B01",
+          "candidate_classification": "general_authorization_or_full_os027_eligibility_generated_from_credential_not_requested",
+          "axis": "credential_not_requested_only_non_escalation",
+          "condition": "credential_requested=false（credential_not_requested_only）または027の初回経路から、一般認可を生成しようとする場合、または027の他の007/006/OS初回適格条件や005のsurface/predicate検査をこのdimensionだけで充足（pass）にしようとする場合。",
+          "state": "credential_not_requested_only",
+          "outcome": "credential_not_requested_onlyはこのdimensionの表示だけに留め、初回適格性や通常認可を生成しない。005のsurface/predicate検査は別に評価し、027の他の007/006/OS条件は各既存契約へ戻して自己拡張しない。",
+          "backflow_owner": {
+            "diagnostic_return_owner": "credential-boundary-owner",
+            "upstream_followup_refs": [
+              "HELIXSECURITY-L2-005",
+              "HELIXSECURITY-L2-006",
+              "HELIXSECURITY-L2-007",
+              "HELIXSECURITY-L2-008",
+              "HELIXOS-L2-027"
+            ],
+            "note": "各既存契約へ戻し、通常権限や初回適格性を自己拡張しない。"
+          },
+          "source_pointers": [
+            "docs/helix-security/L3-requirements/business-requirements.json#/requirements/0/obligation",
+            "docs/helix-security/L10-verification/business-verification.json#/cases/0/negative_input",
+            "docs/helix-security/L10-verification/business-verification.json#/cases/0/failure_observation",
+            "docs/helix-security/L4-basic-design/credential-value-boundary.json@73193d8d37845a23e57330db99dd53bbc0e7004c#/contracts/2/input_meanings/1",
+            "docs/helix-security/L4-basic-design/credential-value-boundary.json@73193d8d37845a23e57330db99dd53bbc0e7004c#/contracts/2/output_meanings/1",
+            "docs/helix-security/L4-basic-design/credential-value-boundary.json@73193d8d37845a23e57330db99dd53bbc0e7004c#/contracts/2/content_comparison/2",
+            "docs/helix-security/L4-basic-design/credential-value-boundary.json@73193d8d37845a23e57330db99dd53bbc0e7004c#/contracts/2/qualification_rule",
+            "docs/helix-security/L4-basic-design/credential-value-boundary.json@73193d8d37845a23e57330db99dd53bbc0e7004c#/diagnostic_contract/return_owner"
+          ]
+        },
+        {
+          "classification_id": "HELIXSECURITY-L4-005-B01-NEG-05",
+          "contract_id": "HELIXSECURITY-L4-005-B01",
+          "candidate_classification": "ordinary_use_f01_f02_boundary_insufficiency_or_overbroad_stop",
+          "axis": "ordinary_use_f01_f02_boundary_propagation_and_scope_locality",
+          "condition": "通常operationで同じF01/F02の境界結果に許可不足/違反/unknownがある場合、または未見scopeや無関係な文書unknownへ全停止を広げようとする場合。",
+          "state": "ordinary_use_insufficient_or_scoped_stop",
+          "outcome": "通常利用の許可不足と027の対象外を別に表示し、未見scopeや無関係な文書unknownへ全停止を広げず、該当operation/ownerへ不足候補を戻す。",
+          "backflow_owner": {
+            "diagnostic_return_owner": "credential-boundary-owner",
+            "upstream_followup_refs": [
+              "HELIXSECURITY-L2-005",
+              "HELIXSECURITY-L2-006",
+              "HELIXSECURITY-L2-007",
+              "HELIXSECURITY-L2-008",
+              "HELIXSECURITY-L2-009",
+              "HELIXSECURITY-L2-024"
+            ],
+            "note": "各既存契約へ戻し、該当operation/ownerへ不足候補を返す。"
+          },
+          "source_pointers": [
+            "docs/helix-security/L3-requirements/business-requirements.json#/requirements/0/obligation",
+            "docs/helix-security/L10-verification/business-verification.json#/cases/0/expected_observation",
+            "docs/helix-security/L10-verification/business-verification.json#/cases/0/failure_observation",
+            "docs/helix-security/L4-basic-design/credential-value-boundary.json@73193d8d37845a23e57330db99dd53bbc0e7004c#/architecture/flow/2",
+            "docs/helix-security/L4-basic-design/credential-value-boundary.json@73193d8d37845a23e57330db99dd53bbc0e7004c#/architecture/scope_locality",
+            "docs/helix-security/L4-basic-design/credential-value-boundary.json@73193d8d37845a23e57330db99dd53bbc0e7004c#/contracts/2/input_meanings/1",
+            "docs/helix-security/L4-basic-design/credential-value-boundary.json@73193d8d37845a23e57330db99dd53bbc0e7004c#/contracts/2/output_meanings/0",
+            "docs/helix-security/L4-basic-design/credential-value-boundary.json@73193d8d37845a23e57330db99dd53bbc0e7004c#/contracts/2/content_comparison/3",
+            "docs/helix-security/L4-basic-design/credential-value-boundary.json@73193d8d37845a23e57330db99dd53bbc0e7004c#/diagnostic_contract/return_owner"
+          ]
+        },
+        {
+          "classification_id": "HELIXSECURITY-L4-005-B01-NEG-06",
+          "contract_id": "HELIXSECURITY-L4-005-B01",
+          "candidate_classification": "credential_requested_or_path_selection_unresolved",
+          "axis": "credential_requested_and_path_selection_completeness",
+          "condition": "credential_requested boolまたはordinary_operation/os027_initial_pathの選択が欠落・型不適合・未解決（unknown/ambiguous/missing）である場合。",
+          "state": "unresolved",
+          "outcome": "unknown/missingを推測で補完せず、通常認可も027初回適格性も生成せず、各既存契約（005およびOS 027 owner）へ戻す。",
+          "backflow_owner": {
+            "diagnostic_return_owner": "credential-boundary-owner",
+            "upstream_followup_refs": [
+              "HELIXSECURITY-L2-005",
+              "HELIXOS-L2-027"
+            ],
+            "note": "各既存契約へ戻し、通常権限や初回適格性を自己拡張しない。"
+          },
+          "source_pointers": [
+            "docs/helix-security/L3-requirements/business-requirements.json#/requirements/0/obligation",
+            "docs/helix-security/L10-verification/business-verification.json#/cases/0/failure_observation",
+            "docs/helix-security/L4-basic-design/credential-value-boundary.json@73193d8d37845a23e57330db99dd53bbc0e7004c#/legacy_comparison/0/preserve",
+            "docs/helix-security/L4-basic-design/credential-value-boundary.json@73193d8d37845a23e57330db99dd53bbc0e7004c#/contracts/2/input_meanings/0",
+            "docs/helix-security/L4-basic-design/credential-value-boundary.json@73193d8d37845a23e57330db99dd53bbc0e7004c#/contracts/2/output_meanings/0",
+            "docs/helix-security/L4-basic-design/credential-value-boundary.json@73193d8d37845a23e57330db99dd53bbc0e7004c#/diagnostic_contract/return_owner"
+          ]
+        }
+      ]
+    }
+  ]
+}

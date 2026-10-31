@@ -1,0 +1,83 @@
+{
+  "schema": "wr258-checker-empty-finding-owner-change-candidate.v1",
+  "evidence_kind": "scaffold",
+  "authority_effect": "none",
+  "status": "separate-checker-change-candidate-not-canonical",
+  "scope": "design_verification_checker.py CHK-NEG-4WAY-MATCH only; do not change in the WR258 L4/L9 or follow-up L5/L8 V-pair PR.",
+  "source_case": {
+    "class_id": "SEC003-F02-OPERATION-CONNECTION-ABSENT-DEFERRED",
+    "l8_case_id": "SEC003-L8-OPERATION-DEFER",
+    "l8_pointer": "/cases/1/negative_cases/16",
+    "l9_candidate_id": "WR258-L9-CAND-046",
+    "l4_owner_source": "docs/helix-security/L4-basic-design/project-scope-isolation.json#/diagnostic_contract/return_owner",
+    "l5_function": "HELIXSECURITY-L5-003-compare_operation_scope"
+  },
+  "failure_basis": [
+    {
+      "source": "docs/governance/design-verification-quality-assurance.md#section-58-and-section-82",
+      "meaning": "Explicit class key requires backflow_owner and L9 compact_whole_observation is a system oracle checked against the class; one-to-one case attributes remain required."
+    },
+    {
+      "source": "scaffold/tools/design_verification_checker.py:2144-2205",
+      "meaning": "The checker derives L9 owner only from ordered_findings[*].return_owner; an empty list yields owners={}; len(owners)!=1 and finding_owners_not_unique."
+    },
+    {
+      "source": "docs/helix-security/L5-detail-design/project-scope-isolation.json#/functions/5",
+      "meaning": "compare_operation_scope returns PartAnalysis; absent/unknown connection state leaves this local part unknown with empty findings, while the connection function retains the connection-state finding."
+    },
+    {
+      "source": "docs/helix-security/L8-unit-verification/project-scope-isolation.json#/cases/1/negative_cases/16/expected_result",
+      "meaning": "The corresponding local operation case has findings=[]."
+    },
+    {
+      "source": "docs/helix-security/L9-integration-verification/project-scope-isolation.json#/cases/1/negative_cases/0..6,18/expected_observation",
+      "meaning": "Whole-system absent-connection cases retain isolation_violation and explicit_connection_absent with return_owner=scope-binding-owner. They cannot be rewritten as the local operation defer result."
+    },
+    {
+      "source": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/ci-system-synthesis-requirements.md:62,72-73",
+      "asset_id": "LEGACY-ASSET-DA012A9B04D5BE9419CE",
+      "meaning": "Legacy source required stable owner/oracle identity and fail-closed for unknown identity, orphan, missing owner, and duplicate owner. It supports owner provenance and fail-close, but has no direct empty-finding representation."
+    },
+    {
+      "source": "archive/legacy-generation-2026-09-14/root/docs/process/modes/reverse.md:3,23,45-58",
+      "asset_id": "LEGACY-ASSET-68D46138F1FA40748C52",
+      "meaning": "Observed contract and owner must remain bound in evidence; missing test-design pair state is recorded rather than synthesized. No direct owner-on-empty-finding schema exists."
+    },
+    {
+      "source": "docs/governance/design-verification-quality-assurance.md#section-2.4; PR #3835 R1 comment 6471193507",
+      "meaning": "The current explicit mode was introduced to avoid duplicating case attributes across four layers; an observation-level declaration is narrower than fabricated findings or repeated cases."
+    }
+  ],
+  "proposed_field": {
+    "path": "L9.integration_cases[*].compact_whole_observation.declared_backflow_owner",
+    "type": "nonempty string",
+    "presence": "required only when ordered_findings is empty; forbidden when ordered_findings is nonempty",
+    "meaning": "source-declared responsible owner for an empty-observation class; it does not claim that a Finding or runtime return emitted an owner field."
+  },
+  "fail_closed_rules": [
+    "Require compact_whole_observation to be an object and ordered_findings to be an array.",
+    "For a nonempty ordered_findings array, derive exactly one owner from every finding.return_owner; reject missing, malformed, or mixed owners. Reject declared_backflow_owner in this branch.",
+    "For an empty ordered_findings array, require declared_backflow_owner as a nonempty string.",
+    "Resolve negative_class_ref to exactly one L9 class. Require declared_backflow_owner to equal that class backflow_owner and the matched L4/L5/L8 class key owner.",
+    "Require the L4 class source pointer for diagnostic_contract.return_owner to resolve and equal the declared owner; missing or ambiguous parent/owner source is FAIL.",
+    "Do not insert a synthetic Finding, infer an owner from an unrelated case, or accept agreement among L9/L8 alone without the L4 source binding."
+  ],
+  "static_validation": {
+    "helper": "checker-empty-owner-candidate.py",
+    "output": "checker-empty-finding-owner-static-check.json",
+    "positive": "Source-matched operation-defer case has empty findings; declared scope-binding-owner agrees with L4 class, L4 diagnostic contract, L5/L8/L9 class owners.",
+    "negative": [
+      "missing declaration is rejected",
+      "wrong owner string is rejected",
+      "declaration added to nonempty findings is rejected whether matching or conflicting"
+    ],
+    "execution_status": "candidate guard static assertions passed; current checker remains unchanged and still reports finding_owners_not_unique"
+  },
+  "separate_pr_candidate": {
+    "files": [
+      "scaffold/tools/design_verification_checker.py",
+      "docs/governance/design-verification-quality-assurance.md"
+    ],
+    "reason": "checker field semantics must be documented beside the current empty-finding owner rejection; this does not belong in the SEC006 L4/L9 V-pair or L5/L8 V-pair."
+  }
+}

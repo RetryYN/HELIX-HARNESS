@@ -1,0 +1,39 @@
+{
+  "schema": "wr257-static-index-evidence.v1",
+  "evidence_kind": "scaffold",
+  "authority_effect": "none",
+  "request_id": "WR257-CONNECT-COMPOSITE-L8-SLIM",
+  "base_revision": "663b75324810a6f004668a1451de5b03acc542c3",
+  "target_path": "docs/helix-connect/L8-unit-verification/composite-edge-terminal.json",
+  "target_sha256": "e8ecf160244f65df96c5926acc092b5fb7c0841b53340e875765518d688e4fcb",
+  "target_bytes": 196639,
+  "source_pins": {
+    "docs/helix-connect/L4-basic-design/composite-edge-terminal.json": "166a7800eac7427983ccc716a2472e9017cb9510a19ade5e9f07f63c11785030",
+    "docs/helix-connect/L5-detail-design/composite-edge-terminal.json": "0f672d5d2a8abc906a0c61139359ac41f1725635b2d2a43aef8fa3b08e2f85cd",
+    "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json": "313757d63a2afdbfa2bfd7d9ceff8db0f294131e393ac360fcf96b3938635f72"
+  },
+  "inventory": {
+    "source_cases": 91,
+    "local_probes": 27,
+    "local_probe_source_reuse": 1,
+    "pure_primitive_cases": 7,
+    "typed_carrier_boundary_cases": 1,
+    "meaning": "ID inventory only; counts are not coverage or completion claims."
+  },
+  "checks": [
+    "all prior L8 source case IDs and order retained; exact L9 source/expected pointers and scenario basis resolve",
+    "all 27 local probe IDs, roles, source cases, patch paths and independent expected deltas match prior bytes; L4/L9 source_ref revision+pointer resolve against exact pins",
+    "1 source reuse, 7 primitive cases and 1 typed carrier boundary retain identity and intended oracle boundary",
+    "L5 has no unit_case_refs; absence is recorded without synthetic references",
+    "fixture hashes are absent from case/probe inventories; retained digests are source/authority pins",
+    "removed_materials has six required keys and names DT-VT-105 boundary"
+  ],
+  "not_established": [
+    "product test execution",
+    "runtime behavior",
+    "source/owner qualification",
+    "L7 test citation",
+    "design or implementation readiness",
+    "full mutation-family coverage"
+  ]
+}

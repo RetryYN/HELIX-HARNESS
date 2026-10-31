@@ -1,0 +1,185 @@
+{
+  "schema": "sec009-pointer-audit-consolidation.v1",
+  "authority_effect": "none",
+  "decision": "4本の既存JSONLは同一SHA-256で、全consumer行と重なる識別値・対象値を機械照合した。正本は一つの内容hash名JSONLに統合し、旧測定のcommit/blob/SHAと復元方法を保持する。展開JSONと小集計JSONは重複出力のため現行treeから除く。",
+  "canonical_path": "pointer-consumer-audit-33973b4b762d.jsonl",
+  "canonical_row_count": 1166,
+  "canonical_sha256": "33973b4b762d41f19876e068988a17b7b715d55eba33da46508d3df39354378f",
+  "expanded_json_comparison": {
+    "result": "normalized consumer inventory and overlapping fields match",
+    "matched_rows": 1166,
+    "direct_pointer_rows": 616,
+    "full_path_wrapper_rows": 550,
+    "layers": [
+      "L8",
+      "L9"
+    ],
+    "expanded_json_bytes": 1626056,
+    "canonical_jsonl_bytes": 538908,
+    "compared_fields": [
+      "layer",
+      "consumer_id",
+      "kind",
+      "occurrence_pointer",
+      "old_l4_pointer",
+      "class_id",
+      "alternate_pointer or ordered class IDs",
+      "aliases_match",
+      "unmapped_legacy_fields",
+      "migration_blocker"
+    ],
+    "comparison_method": "machine compare by (layer, consumer_id), then compare row type, source occurrence, old target, class/alternate target where present, alias result, unmapped fields, and migration blocker. Wrapper rows are compared by identity and source occurrence."
+  },
+  "identical_jsonl_measurements": [
+    {
+      "path": "scaffold/research/wr255-sec009-l4l9-supplement-20261101/pointer-consumer-audit-d646a09e-cb6e085e-00376c40.jsonl",
+      "category": "identical_jsonl_measurement",
+      "introduced_commit": "2e310c30e6bdcf8d22aedebf82fb2a9a48ba61e5",
+      "git_blob_sha1": "56f2415a0fbf362b9c07057c9304a6b67663e92b",
+      "content_sha256": "33973b4b762d41f19876e068988a17b7b715d55eba33da46508d3df39354378f",
+      "bytes": 538908,
+      "source_revisions": {
+        "L4_L9_base": "c14adddf2678c7a69d76420c451df3f05b1251ab",
+        "L9_current": "d646a09e74aa815f5e565f02d26f27ecb67efe98",
+        "L5_L8_candidate": "cb6e085ede098980b19bfe6ee7ecd0986615cc04"
+      },
+      "restore_command": "git show 2e310c30e6bdcf8d22aedebf82fb2a9a48ba61e5:scaffold/research/wr255-sec009-l4l9-supplement-20261101/pointer-consumer-audit-d646a09e-cb6e085e-00376c40.jsonl > scaffold/research/wr255-sec009-l4l9-supplement-20261101/pointer-consumer-audit-d646a09e-cb6e085e-00376c40.jsonl"
+    },
+    {
+      "path": "scaffold/research/wr255-sec009-l4l9-supplement-20261101/pointer-consumer-audit-d646a09e-e7dd88b8-00376c40-0dae5023.jsonl",
+      "category": "identical_jsonl_measurement",
+      "introduced_commit": "2e310c30e6bdcf8d22aedebf82fb2a9a48ba61e5",
+      "git_blob_sha1": "56f2415a0fbf362b9c07057c9304a6b67663e92b",
+      "content_sha256": "33973b4b762d41f19876e068988a17b7b715d55eba33da46508d3df39354378f",
+      "bytes": 538908,
+      "source_revisions": {
+        "L4_L9_base": "c14adddf2678c7a69d76420c451df3f05b1251ab",
+        "L9_current": "d646a09e74aa815f5e565f02d26f27ecb67efe98",
+        "L5_L8_candidate": "e7dd88b8f987de4cb5af6707489ea356a0c4c79a"
+      },
+      "restore_command": "git show 2e310c30e6bdcf8d22aedebf82fb2a9a48ba61e5:scaffold/research/wr255-sec009-l4l9-supplement-20261101/pointer-consumer-audit-d646a09e-e7dd88b8-00376c40-0dae5023.jsonl > scaffold/research/wr255-sec009-l4l9-supplement-20261101/pointer-consumer-audit-d646a09e-e7dd88b8-00376c40-0dae5023.jsonl"
+    },
+    {
+      "path": "scaffold/research/wr255-sec009-l4l9-supplement-20261101/pointer-consumer-audit-d646a09e-e7dd88b8-00376c40.jsonl",
+      "category": "identical_jsonl_measurement",
+      "introduced_commit": "2e310c30e6bdcf8d22aedebf82fb2a9a48ba61e5",
+      "git_blob_sha1": "56f2415a0fbf362b9c07057c9304a6b67663e92b",
+      "content_sha256": "33973b4b762d41f19876e068988a17b7b715d55eba33da46508d3df39354378f",
+      "bytes": 538908,
+      "source_revisions": {
+        "L4_L9_base": "c14adddf2678c7a69d76420c451df3f05b1251ab",
+        "L9_current": "d646a09e74aa815f5e565f02d26f27ecb67efe98",
+        "L5_L8_candidate": "e7dd88b8f987de4cb5af6707489ea356a0c4c79a"
+      },
+      "restore_command": "git show 2e310c30e6bdcf8d22aedebf82fb2a9a48ba61e5:scaffold/research/wr255-sec009-l4l9-supplement-20261101/pointer-consumer-audit-d646a09e-e7dd88b8-00376c40.jsonl > scaffold/research/wr255-sec009-l4l9-supplement-20261101/pointer-consumer-audit-d646a09e-e7dd88b8-00376c40.jsonl"
+    },
+    {
+      "path": "scaffold/research/wr255-sec009-l4l9-supplement-20261101/pointer-consumer-audit-e22b5c96-57c0197c-24d7f00b-00376c40-e540f13f.jsonl",
+      "category": "identical_jsonl_measurement",
+      "introduced_commit": "4d7abea84784b387005cee5a328cdfa2ec6fcb19",
+      "git_blob_sha1": "56f2415a0fbf362b9c07057c9304a6b67663e92b",
+      "content_sha256": "33973b4b762d41f19876e068988a17b7b715d55eba33da46508d3df39354378f",
+      "bytes": 538908,
+      "source_revisions": {
+        "L4_L9_base": "c14adddf2678c7a69d76420c451df3f05b1251ab",
+        "L9_current": "e22b5c96a3ad60754f76cb23d7a2cd3cb79c37db",
+        "L5_L8_candidate": "24d7f00bdca41c3dfb1f3137655ffdbe3674cfb3"
+      },
+      "restore_command": "git show 4d7abea84784b387005cee5a328cdfa2ec6fcb19:scaffold/research/wr255-sec009-l4l9-supplement-20261101/pointer-consumer-audit-e22b5c96-57c0197c-24d7f00b-00376c40-e540f13f.jsonl > scaffold/research/wr255-sec009-l4l9-supplement-20261101/pointer-consumer-audit-e22b5c96-57c0197c-24d7f00b-00376c40-e540f13f.jsonl"
+    }
+  ],
+  "removed_json_artifacts": [
+    {
+      "path": "scaffold/research/wr255-sec009-l4l9-supplement-20261101/pointer-consumer-audit-d646a09e-cb6e085e-00376c40.json",
+      "category": "duplicate_json_summary",
+      "introduced_commit": "2e310c30e6bdcf8d22aedebf82fb2a9a48ba61e5",
+      "git_blob_sha1": "47b1692ebb750218a64ed76f8b3e33fb94eeb967",
+      "content_sha256": "e6f1945c421acbf10951382eab6ef391f1269f283f45a3690394ecedb477532f",
+      "bytes": 1450,
+      "source_revisions": {
+        "L4_L9_base": "c14adddf2678c7a69d76420c451df3f05b1251ab",
+        "L9_current": "d646a09e74aa815f5e565f02d26f27ecb67efe98",
+        "L5_L8_candidate": "cb6e085ede098980b19bfe6ee7ecd0986615cc04"
+      },
+      "restore_command": "git show 2e310c30e6bdcf8d22aedebf82fb2a9a48ba61e5:scaffold/research/wr255-sec009-l4l9-supplement-20261101/pointer-consumer-audit-d646a09e-cb6e085e-00376c40.json > scaffold/research/wr255-sec009-l4l9-supplement-20261101/pointer-consumer-audit-d646a09e-cb6e085e-00376c40.json"
+    },
+    {
+      "path": "scaffold/research/wr255-sec009-l4l9-supplement-20261101/pointer-consumer-audit-d646a09e-e7dd88b8-00376c40-0dae5023.json",
+      "category": "duplicate_json_summary",
+      "introduced_commit": "2e310c30e6bdcf8d22aedebf82fb2a9a48ba61e5",
+      "git_blob_sha1": "91d7190a00aee6b39ec53996a53a50a3d59617d1",
+      "content_sha256": "e87fdc6ed2bdec32cf36b038c93c49326d05f619feedc76480c38a4cc09b5ce8",
+      "bytes": 1459,
+      "source_revisions": {
+        "L4_L9_base": "c14adddf2678c7a69d76420c451df3f05b1251ab",
+        "L9_current": "d646a09e74aa815f5e565f02d26f27ecb67efe98",
+        "L5_L8_candidate": "e7dd88b8f987de4cb5af6707489ea356a0c4c79a"
+      },
+      "restore_command": "git show 2e310c30e6bdcf8d22aedebf82fb2a9a48ba61e5:scaffold/research/wr255-sec009-l4l9-supplement-20261101/pointer-consumer-audit-d646a09e-e7dd88b8-00376c40-0dae5023.json > scaffold/research/wr255-sec009-l4l9-supplement-20261101/pointer-consumer-audit-d646a09e-e7dd88b8-00376c40-0dae5023.json"
+    },
+    {
+      "path": "scaffold/research/wr255-sec009-l4l9-supplement-20261101/pointer-consumer-audit-d646a09e-e7dd88b8-00376c40.json",
+      "category": "duplicate_json_summary",
+      "introduced_commit": "2e310c30e6bdcf8d22aedebf82fb2a9a48ba61e5",
+      "git_blob_sha1": "717158f6ba281c1f0ea7e6bdff5339680f900b3b",
+      "content_sha256": "17fa1e9a68f3e8cc6a8a4c105c608c0fad21fd22543f5d60f09b85a529385371",
+      "bytes": 1450,
+      "source_revisions": {
+        "L4_L9_base": "c14adddf2678c7a69d76420c451df3f05b1251ab",
+        "L9_current": "d646a09e74aa815f5e565f02d26f27ecb67efe98",
+        "L5_L8_candidate": "e7dd88b8f987de4cb5af6707489ea356a0c4c79a"
+      },
+      "restore_command": "git show 2e310c30e6bdcf8d22aedebf82fb2a9a48ba61e5:scaffold/research/wr255-sec009-l4l9-supplement-20261101/pointer-consumer-audit-d646a09e-e7dd88b8-00376c40.json > scaffold/research/wr255-sec009-l4l9-supplement-20261101/pointer-consumer-audit-d646a09e-e7dd88b8-00376c40.json"
+    },
+    {
+      "path": "scaffold/research/wr255-sec009-l4l9-supplement-20261101/pointer-consumer-audit-e22b5c96-57c0197c-24d7f00b-00376c40-e540f13f.json",
+      "category": "duplicate_json_summary",
+      "introduced_commit": "4d7abea84784b387005cee5a328cdfa2ec6fcb19",
+      "git_blob_sha1": "164ea1f5b964dd0d63873ade7f59872bc774a4df",
+      "content_sha256": "4560a4c42790c00db306ddea3d9f1be35b48befae48608528ba85bc167e5f029",
+      "bytes": 1468,
+      "source_revisions": {
+        "L4_L9_base": "c14adddf2678c7a69d76420c451df3f05b1251ab",
+        "L9_current": "e22b5c96a3ad60754f76cb23d7a2cd3cb79c37db",
+        "L5_L8_candidate": "24d7f00bdca41c3dfb1f3137655ffdbe3674cfb3"
+      },
+      "restore_command": "git show 4d7abea84784b387005cee5a328cdfa2ec6fcb19:scaffold/research/wr255-sec009-l4l9-supplement-20261101/pointer-consumer-audit-e22b5c96-57c0197c-24d7f00b-00376c40-e540f13f.json > scaffold/research/wr255-sec009-l4l9-supplement-20261101/pointer-consumer-audit-e22b5c96-57c0197c-24d7f00b-00376c40-e540f13f.json"
+    },
+    {
+      "path": "scaffold/research/wr255-sec009-l4l9-supplement-20261101/pointer-consumer-audit.json",
+      "category": "expanded_detail_json",
+      "introduced_commit": "f30d55ed475ba237886e55dcf9fcd690275a2a98",
+      "git_blob_sha1": "ff57ebb5b9ac7535eb8fbde2b7df392ba323e6fe",
+      "content_sha256": "4bfc3c84db1a3a51a67434253e39fbec66642fcab1a3f78e0c1c9173f06700e8",
+      "bytes": 1626056,
+      "source_revisions": {
+        "L4_L9_base": "c14adddf2678c7a69d76420c451df3f05b1251ab",
+        "L9_current": "d646a09e74aa815f5e565f02d26f27ecb67efe98",
+        "L5_L8_candidate": "6768e40d44ece49260a27d799c33bae24ca2d798"
+      },
+      "restore_command": "git show f30d55ed475ba237886e55dcf9fcd690275a2a98:scaffold/research/wr255-sec009-l4l9-supplement-20261101/pointer-consumer-audit.json > scaffold/research/wr255-sec009-l4l9-supplement-20261101/pointer-consumer-audit.json"
+    }
+  ],
+  "revisions_enumerated": [
+    {
+      "L4_L9_base": "c14adddf2678c7a69d76420c451df3f05b1251ab",
+      "L9_current": "d646a09e74aa815f5e565f02d26f27ecb67efe98",
+      "L5_L8_candidate": "cb6e085ede098980b19bfe6ee7ecd0986615cc04"
+    },
+    {
+      "L4_L9_base": "c14adddf2678c7a69d76420c451df3f05b1251ab",
+      "L9_current": "d646a09e74aa815f5e565f02d26f27ecb67efe98",
+      "L5_L8_candidate": "e7dd88b8f987de4cb5af6707489ea356a0c4c79a"
+    },
+    {
+      "L4_L9_base": "c14adddf2678c7a69d76420c451df3f05b1251ab",
+      "L9_current": "d646a09e74aa815f5e565f02d26f27ecb67efe98",
+      "L5_L8_candidate": "e7dd88b8f987de4cb5af6707489ea356a0c4c79a"
+    },
+    {
+      "L4_L9_base": "c14adddf2678c7a69d76420c451df3f05b1251ab",
+      "L9_current": "e22b5c96a3ad60754f76cb23d7a2cd3cb79c37db",
+      "L5_L8_candidate": "24d7f00bdca41c3dfb1f3137655ffdbe3674cfb3"
+    }
+  ]
+}

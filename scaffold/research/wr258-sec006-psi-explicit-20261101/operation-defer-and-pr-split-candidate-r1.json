@@ -1,0 +1,353 @@
+{
+  "schema": "wr258-sec006-operation-defer-and-pr-split-candidate.v1",
+  "evidence_kind": "scaffold",
+  "authority_effect": "none",
+  "status": "design-candidate-not-canonical",
+  "baseline": {
+    "base_revision": "3e469f273817af640a2adafa50b8548b22a107fd",
+    "current_head": "ecc2d658890374b92b664c55bb8a4782e435d7b9",
+    "four_layer_reconstruction_revision": "f32812ea08cc88545ea228e71146738553ae1e35",
+    "reproduction": "reconstruct_overlays_in_temp_worktree.py が固定revisionのoverlay blob 8件を照合後、破棄可能worktree内で再構築してcheck-childを実行する。repositoryにはlayer全文を複製しない。",
+    "measurements": {
+      "baseline_overlay": {
+        "matched": 141,
+        "failures": 16
+      },
+      "six_caller_provenance_overlay": {
+        "matched": 147,
+        "failures": 9
+      },
+      "l4_l9_pair": "pass",
+      "l5_l8_pair": "pass",
+      "remaining_failures": {
+        "empty_owner": 1,
+        "operation_defer_class_key_l8": 4,
+        "operation_defer_class_key_l9": 4
+      }
+    }
+  },
+  "source_facts": [
+    {
+      "claim": "L4 SEC003-F02-OPERATION-CONNECTION-ABSENT-DEFERRED は operation=read が既知でも absent connection のため当該operation-scope比較だけをscope_unresolved/unknown/空findingとし、接続不在findingを重複生成しない。backflow_owner=scope-binding-owner、side_effect_count=0。",
+      "source": "docs/helix-security/L4-basic-design/project-scope-isolation.json#/failure_classifications/14"
+    },
+    {
+      "claim": "L5 compare_operation_scope は absent/unknown connection state時に局所PartAnalysisをunknown/空findingにし、connection-state findingはconnection functionが保持する。関数はrequest.operation、request.connection_state、request.connection.allowed_operations、context.expected_connection.allowed_operationsを読む。",
+      "source": "docs/helix-security/L5-detail-design/project-scope-isolation.json#/functions/5"
+    },
+    {
+      "claim": "L8 SEC003-L8-OPERATION-DEFER のexpected_resultはgrade=unknown/findings=[]。これはunit function観測である。",
+      "source": "docs/helix-security/L8-unit-verification/project-scope-isolation.json#/cases/1/negative_cases/16"
+    },
+    {
+      "claim": "L9 SEC003-CROSS-READ-ABSENT を含む absent-connection system caseはisolation_violationとexplicit_connection_absentをrequest.connection_stateへ割当て、return_owner=scope-binding-ownerを含む。read以外にもwrite/execute/network/state/credential/artifactおよびsame-project-no-connectionがある。execution_stateはnot_executed。",
+      "source": "docs/helix-security/L9-integration-verification/project-scope-isolation.json#/cases/1/negative_cases/0..6,18"
+    },
+    {
+      "claim": "L3 F02はAgent/Hook/memory/credential/設定/Workerによる明示接続なしの越境作用を禁じ、read/write/execute/network/state/credential/artifactの各境界を列挙する。L10 F02は各作用種別について有効な同project接続と別project/環境を試し、scope不明を許可しない。",
+      "source": "docs/helix-security/L3-requirements/functional-requirements.json#/requirements/4; docs/helix-security/L10-verification/functional-verification.json#/cases/4"
+    },
+    {
+      "claim": "QA §58/§82ではL9 compact_whole_observationを当該classに照合するsystem oracleとし、L8/L9個別caseのcondition/expected/expected_preserved/integration_case_ref一対一照合を求める。現在の記述にはunit component観測とsystem観測の別々の期待値を束ねる表現はない。",
+      "source": "docs/governance/design-verification-quality-assurance.md#section-58; #section-82"
+    },
+    {
+      "claim": "現checkerはL9 compact_whole_observation.ordered_findings[*].return_ownerから所有者を導く。空配列ではowners集合が空となりfinding_owners_not_uniqueを出してcontinueするため、case由来のclass owner_ref結線も後段に到達しない。",
+      "source": "scaffold/tools/design_verification_checker.py:2144-2205, 2230-2430"
+    },
+    {
+      "claim": "既存旧HELIX資料では識別子・owner・oracleの安定と未知/孤立/owner欠落等のfail-closed、また不足pairを欠損として記録する考え方があるが、空ordered_findingsのowner schemaやL5局所観測をL9 system oracle内に併記する直接先例はこの範囲で見つからなかった。",
+      "source": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/ci-system-synthesis-requirements.md:62,72-73 (LEGACY-ASSET-DA012A9B04D5BE9419CE); archive/legacy-generation-2026-09-14/root/docs/process/modes/reverse.md:3,23,45-58 (LEGACY-ASSET-68D46138F1FA40748C52)"
+    },
+    {
+      "claim": "HIL-FR-35はhollow/placeholder/no-evidence状態を拒否する要求。HST-CASE-018-09はreverse artifactの欠落検出をdesign-definedとして記述するがnot-implementedであり、SEC006の実測failureや新schemaの先例ではない。",
+      "source": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:125 (LEGACY-ASSET-719D5EC9C06FC4AAD0FF); archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md:390 (LEGACY-ASSET-7B1C7AED3AA401868455)"
+    }
+  ],
+  "rowwise_operation_defer": {
+    "l8_case": "SEC003-L8-OPERATION-DEFER",
+    "l8_pointer": "/cases/1/negative_cases/16",
+    "l4_class": "SEC003-F02-OPERATION-CONNECTION-ABSENT-DEFERRED",
+    "l4_pointer": "/failure_classifications/14",
+    "local_expected": {
+      "condition": "scope_unresolved",
+      "finding_codes": [],
+      "axis": "explicit_connection",
+      "state": "unknown",
+      "backflow_owner": "scope-binding-owner"
+    },
+    "system_case_candidates": [
+      {
+        "id": "SEC003-CROSS-READ-ABSENT",
+        "pointer": "/cases/1/negative_cases/0",
+        "expected": {
+          "condition": "isolation_violation",
+          "finding_codes": [
+            "explicit_connection_absent"
+          ]
+        },
+        "owner": "scope-binding-owner"
+      },
+      {
+        "id": "SEC003-CROSS-WRITE-ABSENT",
+        "pointer": "/cases/1/negative_cases/1",
+        "expected": {
+          "condition": "isolation_violation",
+          "finding_codes": [
+            "explicit_connection_absent"
+          ]
+        },
+        "owner": "scope-binding-owner"
+      },
+      {
+        "id": "SEC003-CROSS-EXECUTE-ABSENT",
+        "pointer": "/cases/1/negative_cases/2",
+        "expected": {
+          "condition": "isolation_violation",
+          "finding_codes": [
+            "explicit_connection_absent"
+          ]
+        },
+        "owner": "scope-binding-owner"
+      },
+      {
+        "id": "SEC003-CROSS-NETWORK-ABSENT",
+        "pointer": "/cases/1/negative_cases/3",
+        "expected": {
+          "condition": "isolation_violation",
+          "finding_codes": [
+            "explicit_connection_absent"
+          ]
+        },
+        "owner": "scope-binding-owner"
+      },
+      {
+        "id": "SEC003-CROSS-STATE-ABSENT",
+        "pointer": "/cases/1/negative_cases/4",
+        "expected": {
+          "condition": "isolation_violation",
+          "finding_codes": [
+            "explicit_connection_absent"
+          ]
+        },
+        "owner": "scope-binding-owner"
+      },
+      {
+        "id": "SEC003-CROSS-CREDENTIAL-ABSENT",
+        "pointer": "/cases/1/negative_cases/5",
+        "expected": {
+          "condition": "isolation_violation",
+          "finding_codes": [
+            "explicit_connection_absent"
+          ]
+        },
+        "owner": "scope-binding-owner"
+      },
+      {
+        "id": "SEC003-CROSS-ARTIFACT-ABSENT",
+        "pointer": "/cases/1/negative_cases/6",
+        "expected": {
+          "condition": "isolation_violation",
+          "finding_codes": [
+            "explicit_connection_absent"
+          ]
+        },
+        "owner": "scope-binding-owner"
+      },
+      {
+        "id": "SEC003-SAME-PROJECT-NO-CONNECTION",
+        "pointer": "/cases/1/negative_cases/18",
+        "expected": {
+          "condition": "isolation_violation",
+          "finding_codes": [
+            "explicit_connection_absent"
+          ]
+        },
+        "owner": "scope-binding-owner"
+      }
+    ],
+    "meaning": "L4/L5/L8 local deferとL9全体のconnection-absence violationは責務の異なる観測であり、一方のexpectedを他方にコピーしない。L9-CAND-046のlocal empty expectedをL9のsystem oracleとして使うことはできない。",
+    "current_checker_failure_explanation": "現checkerはcompact_whole_observationをL9 system oracleと解し、空ordered_findingsからownerを導けず失敗する。失敗9件はowner 1件に加え、当該空finding classのL8 owner_ref結線欠落とL9 owner_ref結線欠落が各4件。したがってsystem observationにowner文字列を追加するだけでは、局所L8 classと全体L9 classの期待差・case class-key差は解決しない。",
+    "integration_candidate": {
+      "l9_outer_case": "既存L9 CROSS-READ-ABSENT等のsystem-level inputとexpectedを保持する。既存case ID/expected_observationを変えずに使う場合、別L8 rowとの既存integration_case_ref競合を検査してから採用する。",
+      "l9_inner_component_observation": {
+        "proposed_additive_location": "L9.integration_cases[*].component_observations[*] (新規QA/checker案。canonical schemaではない)",
+        "fields": [
+          "unit_case_ref",
+          "function_ref",
+          "negative_class_ref",
+          "condition",
+          "expected",
+          "expected_preserved",
+          "axis",
+          "state",
+          "side_effect_count",
+          "observed"
+        ],
+        "role": "L5/L8が示すoperation-scope局所結果をL9のsystem compact_whole_observationから分離して対応付ける。空findingのownerを架空findingや実行return ownerとして表さない。",
+        "candidate_values": {
+          "unit_case_ref": "SEC003-L8-OPERATION-DEFER",
+          "function_ref": "HELIXSECURITY-L5-003-compare_operation_scope",
+          "negative_class_ref": "SEC003-F02-OPERATION-CONNECTION-ABSENT-DEFERRED",
+          "condition": "scope_unresolved",
+          "expected": {
+            "finding_codes": []
+          },
+          "axis": "explicit_connection",
+          "state": "unknown",
+          "side_effect_count": 0,
+          "observed": {
+            "condition": "scope_unresolved",
+            "ordered_findings": []
+          }
+        },
+        "integration_input_gap": "L9 system caseはcaller/asset/operation/connection_stateを含む短いnegative inputで、L8 unit raw fixtureは大きなMaterialized<OperationInput>である。operation=read/connection_state=absentは照合できるが、system inputをL8 fixtureと同一bytesとみなす根拠はない。component observationをL9側の実際のfunction traceとして生成・実行した証拠もない。"
+      },
+      "checker_and_qa_delta_candidate": {
+        "scope": "別QA/checker V-pair。WR258 L4/L9 PRやL5/L8候補へ混ぜない。",
+        "required_comparison": "L8 case condition/expected/expected_preservedは、L9 outer system observationではなく、case ref一致したcomponent observationへ照合する。L9 outer system observationは別にL9 system class keyへ照合する。L8↔L9 case IDとintegration_case_refの一対一性は維持する。",
+        "fail_closed": [
+          "unit_case_refは供給L8 caseに一意解決し、逆向きintegration_case_refも一致する",
+          "component ref/function/class refの重複・未解決・曖昧をFAIL",
+          "componentのcondition/expected/expected_preserved/axis/state/side_effect_countはL8と一致し、class keyとL4/L5 owner refへも解決",
+          "ordered_findings=[]はそのcomponent classもfinding_codes=[]の場合だけ許し、空を全体ownerやruntime ownerの証拠にしない",
+          "outer compact_whole_observationは引き続きsystem L9 classへ照合し、現在の非空finding ownerは全finding一致を必須にする",
+          "空owner由来のclass-owner bindingをcase loop後に独立収集して、現在のcontinue経路でowner_ref結線を落とさない",
+          "component欠落・非空findingへのowner宣言混入・入力trace欠落はPASSにしない"
+        ]
+      },
+      "separate_empty_whole_oracle_candidate": "もし将来、独立sourceに基づく本当の全体L9 oracleでordered_findings=[]が必要と判明した場合のみ、既存checker-empty-finding-owner-candidate.jsonのdeclared_backflow_owner方式を別案として評価する。SEC003 operation-deferには適用しない。"
+    }
+  },
+  "caller_provenance_trace": {
+    "upstream_lineage": [
+      {
+        "layer": "L3",
+        "ref": "HELIXSECURITY-L3-003-F02",
+        "meaning": "6種callerを含む列挙と明示connectionなし越境作用の禁止"
+      },
+      {
+        "layer": "L10",
+        "ref": "HELIXSECURITY-L10-003-F02",
+        "meaning": "各操作境界のscope不明を許可しない"
+      },
+      {
+        "layer": "L4",
+        "ref": "HELIXSECURITY-L4-003-F02 / contracts/1/content_comparison/2; SEC003-F02-IMPLICIT-FALLBACK",
+        "meaning": "caller区分を保持し、implicit primary-tree fallbackを拒否。original request identityを保持"
+      },
+      {
+        "layer": "L5",
+        "ref": "HELIXSECURITY-L5-003-compare_caller_material; HELIXSECURITY-L5-003-compose_scope_proposal",
+        "meaning": "既知6値を個別に読み各々corresponding/empty findingsへ写すが、caller functionのreturn_root_fieldsはgrade/findingsのみ。composeはcaller PartAnalysisを読むだけで生caller_kindを返さない"
+      },
+      {
+        "layer": "L8/L9",
+        "ref": "SEC003-L8-FALLBACK-PRIMARY; six SEC003-CROSS-*-PRIMARY-FALLBACK system rows",
+        "meaning": "1 unit rowに6 caller別system rowが対応し、fallback function投影だけでは6個の別unit observationとしては区別されない"
+      }
+    ],
+    "six_known_caller_rows": [
+      {
+        "caller": "Worker",
+        "l9_case": "SEC003-PRIMARY-TREE-FALLBACK",
+        "l8_projection": "SEC003-L8-FALLBACK-PRIMARY"
+      },
+      {
+        "caller": "Agent",
+        "l9_case": "SEC003-AGENT-PRIMARY-TREE-FALLBACK",
+        "l8_projection": "SEC003-L8-FALLBACK-PRIMARY"
+      },
+      {
+        "caller": "Hook",
+        "l9_case": "SEC003-HOOK-PRIMARY-TREE-FALLBACK",
+        "l8_projection": "SEC003-L8-FALLBACK-PRIMARY"
+      },
+      {
+        "caller": "memory",
+        "l9_case": "SEC003-MEMORY-PRIMARY-TREE-FALLBACK",
+        "l8_projection": "SEC003-L8-FALLBACK-PRIMARY"
+      },
+      {
+        "caller": "credential",
+        "l9_case": "SEC003-CREDENTIAL-PRIMARY-TREE-FALLBACK",
+        "l8_projection": "SEC003-L8-FALLBACK-PRIMARY"
+      },
+      {
+        "caller": "configuration",
+        "l9_case": "SEC003-CONFIGURATION-PRIMARY-TREE-FALLBACK",
+        "l8_projection": "SEC003-L8-FALLBACK-PRIMARY"
+      }
+    ],
+    "candidate_and_open_state": "caller provenanceをcompare_caller_materialが読む既知値の由来fieldとして保持しcompose_scope_proposalが無変換で返す案は、6つの別入力・戻り来歴を与える別L5/L8 V-pair候補である。既存のpermission・finding・side effectは変えない。unknown enum / absent / explicit null / malformed primitiveの由来field形状、unknown分類・owner参照、failure pointer表現は現sourceで定義されていないため未決。6 known値の設計から外挿しない。"
+  },
+  "independently_derived_l4_l9_case_design": {
+    "basis": "L3 HELIXSECURITY-L3-003-F02 obligationとL10 HELIXSECURITY-L10-003-F02 expected/failure observationを上位意味として読み、L4 classificationを各L9 whole-system classの独立oracle keyとして使う。L8 projectionはcase対応を見つける用途に限定し、期待値生成には使わない。",
+    "existing_98": "98 L9 rowsは既存case ID・expected_observation・legacy nested codeを維持しながら、現top-level L4 class_id/expected_classificationと行別に対応済み。negative_class_assignment.classificationはsource pointer先nested code名の履歴的labelで、明示modeではnegative_class_ref/top-level class keyがconsumer。nested codeだけのためtop-level ID重複定義は実overlayで0件だった。",
+    "additional_50": "50 unmatched L8 rowについて condition/expected/expected_preservedをL3/L10/L4から独立に導出した候補はrowwise-integration-design.jsonに保存済み。input projectionは対応特定のみ。これらはL9統合input trace・oracle実行がないcandidate_not_canonical/not_executedであり、正本L9 caseとしては未完成。",
+    "operation_defer_exception": "WR258-L9-CAND-046のempty local projectionはL8のunit contractとL4 classから導出したが、L9 whole-system oracleではない。L9正本候補は別途system expected (explicit_connection_absent)を保ち、unit component resultと二重観測するQA/checker schemaを別PR候補にする。source-backed integration traceがない部分は作成済みと装わない。"
+  },
+  "pr_split_candidate": [
+    {
+      "sequence": 1,
+      "pair": "L4/L9 V-pair",
+      "scope": "existing SEC006 class mapping and independently sourced system cases; retain empty operation-defer local class without manufacturing an L9 whole-system empty observation; no partial marker; record 50 missing L9 input traces as candidate gaps",
+      "admission_limit": "Current QA explicit mode needs all four markers, so this pair cannot alone activate explicit mode."
+    },
+    {
+      "sequence": 2,
+      "pair": "L5/L8 V-pair",
+      "scope": "six known caller provenance return trace only if review confirms this is within existing read/return boundary; keep unknown/absent/malformed unresolved; provide one-to-one caller cases without duplicate fallback projection",
+      "admission_limit": "This does not solve L9 local-vs-system observation; requires checker/QA support before these rows can be represented as a truthful pair."
+    },
+    {
+      "sequence": 3,
+      "pair": "QA/checker V-pair (separate pair, if approved by evidence review)",
+      "scope": "add component observation and dual oracle comparison; retain strict one-to-one L8/L9 case identity; independently bind empty component class owner from existing resolved class refs, not a fabricated finding or declared runtime owner",
+      "admission_limit": "No exact old-HELIX schema precedent found. This is a new candidate; do not update QA/checker in this WR258 branch."
+    },
+    {
+      "sequence": 4,
+      "pair": "coordinated L4/L5/L8/L9 activation",
+      "scope": "only after all four layer schemas and cases are complete and a valid marker transition exists",
+      "admission_limit": "QA requires four markers together; ordinary one-PR/one-V-pair sequencing exposes intermediate partial-marker states. No admissible atomic/coordinated merge mechanism was evidenced in this work; do not invent one or add markers. Root/Claude must resolve how these rules apply."
+    }
+  ],
+  "unresolved": [
+    "How the QA requirement to compare L8/L9 case expected fields and L9 whole-system oracle can coexist with L5 local unknown versus L9 system violation; this needs QA/checker design review.",
+    "L9 system integration request/source trace for each of the 50 unmatched cases is absent; expected contracts do not substitute for executable fixture or oracle evidence.",
+    "Whether six caller provenance fields are inside the current L5 read/return contract or need a separately authorized design refinement; the existing L5 source does not presently return caller identity.",
+    "Representation and owner binding for unknown, absent, explicit-null, malformed caller values.",
+    "A marker transition satisfying all-four-layer marker QA while honoring 1 PR 1 V-pair is not established by scoped sources."
+  ],
+  "verification": {
+    "json_parse": "pass",
+    "caller_l9_case_ids": "6/6 resolved in current L9 source",
+    "binding_id_collision": "SCF-B-0218 absent from main at branch inspection; reserved for WR258",
+    "scfctl_validate": {
+      "command": "python3 -B scaffold/tools/scfctl.py validate",
+      "ok_bindings": 197,
+      "failures": 0
+    },
+    "scfctl_stale": {
+      "command": "python3 -B scaffold/tools/scfctl.py stale",
+      "result": "stale=0"
+    },
+    "git_diff_check": "pass",
+    "historical_candidate_and_measurement_sha256": {
+      "integration-candidate.json": "908f176f5b0c130b2cec452334c1244b372bcdc7a30eb2d704ffe4bb102d66c7",
+      "post-f328-followup-r1.json": "dc6793ea08c4ad47da0854aa5bc3517700f62e4cf1b80649898beedbc3c52745",
+      "f328-overlay-disposition.json": "7b7be475a953cb333bc1976f133a50e6ec6253cc0609a7a5eb30619e3b65a399",
+      "overlay-reconstruction-r2.json": "37db9b532c3dc9c7dd797da5ee7c5ef3eeac5beeec4d139ed81888077f00e6d6",
+      "rowwise-integration-design.json": "567ba03eff6607c3603b10c9bb443bf06c890364c0aa2106299cc92a81583004",
+      "caller-provenance-overlay-measurement.json": "d2e6c3dd7cb8442e360e51561e8973a487afe397e0b0ba58e784be2be753dba7",
+      "caller-provenance-overlay-check-child.json": "60013754916aeef9b8e5f85b1c3dbd89fad574695a2dbc5772fb73b60b2f0944"
+    },
+    "duplicate_overlay_copy_check": {
+      "research_directory_size": "1.1M",
+      "four_layer_full_copy_reintroduced": false,
+      "fixed_reconstruction_record": "overlay-reconstruction-r2.json"
+    },
+    "scope": "No QA/checker/source layer changed in this follow-up; the proposed component-observation schema has not been executed against checker and must not be reported as pass."
+  }
+}

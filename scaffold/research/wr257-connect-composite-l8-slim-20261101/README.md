@@ -1,0 +1,53 @@
+# WR257: CONNECT composite L8のU-ID表
+
+status: scaffold証拠
+
+authority_effect: none
+
+request: `WR257-CONNECT-COMPOSITE-L8-SLIM` / Issue #3510
+
+## 目的と境界
+
+`docs/helix-connect/L8-unit-verification/composite-edge-terminal.json`に、既存source IDを保持したU-ID対応を記録した。HELIX-CONNECTは機構であり、HELIX-HARNESSの製品数には含めない。要求、L4/L5/L9/L3/L10の意味、authority、実行状態は変更しない。
+
+宣言数はL9由来source case 91件、局所probe 27件、source再照合1件、primitive 7件、typed carrier境界1件の計127件である。91件のL9 source IDは`cases`配列に維持し、各case objectに固有U-ID、既存`function_ref`によるL5関数識別、failure rule refs、短い行別期待を結んだ。U-ID表現をconsumerが読む配列形は維持している。`source_packet_ref`は所在・由来の意味参照だけで、decode指定や実行引数bindingを持たない。`l5_unit_traceability`はL5公開関数4件、failure_rule 26件の対応を示す。91件のL9 case別ID/U-ID/function/state/pointerを複製していた`l9_basic_branches`は撤去し、case列と固定L9 pointerから照合する。
+
+共通シナリオ条件33種は`common_expectation_boundary.scenario_conditions`へ各一度だけ置き、91行は`scenario_condition_ref`で参照する。行から重複する`scenario_basis`と`expected.condition`を除き、固定L9から導く対象・field・差異と行固有の判断を保持する。正常系3件・反例系88件を区別し、全件`not_executed`とする。L9 full expectedは固定pointerで照合し、rule本文やowner routeは行へ複製せず固定L5 refsへ寄せる。
+
+27局所probeは各ID、function、source case/pointer、短い固有反例、期待判断、境界、未実行状態だけを持つ。変更操作列や返却差分値はL8に置かず、固定基準revision `663b75324810a6f004668a1451de5b03acc542c3`とのvalidator内比較に限る。source refがある場合は固定revision/pointerを検証し、比較・由来照合だけに使う。7 primitive caseは比較の関係（対応・相違・判定不能）を記録し、関数全体のreturn objectを置かない。
+
+L5 `unit_case_refs`は元文書に存在しないと記録し、捏造していない。F02 `stop_position`は既存probe `LOCAL-C007-F02-STOP-POSITION-ABSENT`と`...DUPLICATE`、B01 `technical_content`は既存probe `LOCAL-C007-B01-TECHNICAL-TERMINAL-BUSINESS-NOT-ACCEPTED-READONLY-OWNER-PROBE`の固定期待とL3/L10/L4/L5の対応からrule被覆へ結んだ。probe U-IDは既存27宣言のラベルであり、宣言数は増やさない。26 ruleはすべて根拠を持ち、uncovered=0である。
+
+raw fixture、型付きraw fixture、mutation再構成レシピ、full return、fixture digest、実行生成物はL8に置かない。91 source caseは固定L9 source/expected pointerへ結ぶ。L7 test citationは未確認であり、L9/L10参照をtest citationへ読み替えていない。
+
+すべてのcase/probeはfixture-only・`not_executed`であり、合成fixtureの意味を照合する静的索引である。実source/owner適格性、通信、permission、receiver effect、業務Accepted、正式schema/codec、L7 test、実装Ready、製品合格を成立させない。未識別の非等価mutation familyと全意味域閉包は未検証である。
+
+## 宣言と測定
+
+| 項目 | 基準 `663b75324810a6f004668a1451de5b03acc542c3` | 現在 |
+|---|---:|---:|
+| L9 source cases | 91 | 91 ID・順序・配列形を維持しU-ID対応 |
+| 局所probe | 27 | 27 ID・固有反例・短い期待判断を維持 |
+| source再照合 / primitive / typed境界 | 1 / 7 / 1 | 同じ宣言数と区別を維持 |
+| L5 public function / failure_rule | 4 / 26 | 全関数・全ruleを固定参照へ対応、uncovered=0 |
+| L9分岐U-ID / 行別期待 | 91 | 91件、正常3・反例88、全件未検証 |
+| L8 ownership cap violations | — | 0件（merge overlayのcheck-childで確認） |
+| L5 `unit_case_refs` | 無し | 無しを明記、捏造なし |
+
+fresh fetchと`git ls-remote`で一致を確認したorigin/main `cd4208605f2a4e77e85f8d34317ff44c7218ad41` と候補 `8eec40c9654445c8bf6a25a13e69cfd0befabd17` のoverlay `d2cd3f5a0a4b6448d15d02ab6dd11633a3daa60b` で`check-child`を実行した。consumer例外なく完了し、L8 ownership cap failureは0件。checker全体はexit code 1で、L9 ownership cap 91件とpair/negative four-wayの残存failureがある。raw reportは既存canonical reportとSHA-256が一致するため重複保存せず、overlay固有のrevision・L8 SHA・測定結果を`checker-evidence/merge-overlay-check-child-current.json`へ記録した。
+
+checkerの1930行raw reportは4時点でSHA-256がすべて`89d09246bc42b821133d04b43d375dfe52999ebd5cf6ed8dd436fa32aea08028`と一致したため、同一bytesは1 copyだけ現行treeへ残した。各時点のoverlay要約は別に保ち、元commit・Git blob SHA・復元手順は`checker-evidence/raw-report-dedup-receipt.json`に記録した。履歴中のいずれのpathも`git show <commit>:<path>`で正確に戻せる。
+
+初回`static-evidence.json`は8510d76時点の原bytesとして固定している。現行測定と最新overlay要約はそれぞれ1本とし、旧measurement 10本・overlay要約6本・旧history 3本は`evidence-history.json`のGit commit/blob/SHA/復元コマンドで保全する。旧bytesを上書きせず、履歴revisionから再取得できる。raw checker reportも同一bytesのcanonical 1本のみを保持する。
+
+## 旧HELIXと失敗事例
+
+対象JSON内の`legacy_comparison`に記録された旧HELIX source/assetと変更前本文を照合した。保持点は検証対象と期待の対を特定し、未確認を成功にしないこと。変更点は旧runtime・CI・実行材料を移さず、現行L9 sourceとL4/L5 pinへ静的に結ぶこと。旧asset本文や実行物は複製していない。
+
+再発防止の起点として、依頼にあるPR #4003 R1（行ごとの意味差を落とさない）とPR #3999 R2 F2（fixture digestをL8に残さない）を照合した。先例PR #4002のCONNECT009 U-ID表形式を参照し、同じ形を無条件で当てはめず、本対象ではL5 `unit_case_refs`が存在しないことを記録した。
+
+## 再現可能な静的照合
+
+`python3 -B scaffold/research/wr257-connect-composite-l8-slim-20261101/validate_static_index.py`は既定で読取専用である。127宣言のID/順序/件数、`cases`配列、91 U-IDとL9 pointer、共通条件33種の一意な表参照、各行のL5由来差異・判断、11群60件の行別区別、27 probeの短い反例・期待と固定履歴の比較、4 function/26 ruleの参照とcoverage、L3/L10/L4/L5固定pin、L5 `unit_case_refs`不在、fixture hashの除外、派生表/別名キーの撤去、旧測定19 artifactの履歴復元参照、`removed_materials`とDT-VT-105境界を確認する。固定履歴の変更操作列・返却差分値は比較時のみ読み、現行L8へ複製しない。
+
+`python3 -B scaffold/tools/design_verification_checker.py check-child`はmerge overlayで実行し、consumerのcrashがないこととL8 ownership cap failure=0を確認する。`scfctl validate`と`scfctl stale`はScaffold Bindingとsource pinの静的確認に限る。いずれも実装・動作・承認・完了を生成しない。旧CLI、runtime、test、CIは起動していない。

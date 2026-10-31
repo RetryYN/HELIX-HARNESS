@@ -1,0 +1,762 @@
+{
+  "schema": "wr216-sec005-blind-derivation.v1",
+  "evidence_kind": "scaffold",
+  "authority_effect": "none",
+  "operation_effect": "none",
+  "request_id": "WR216-SEC-CVB-NEG-4WAY",
+  "issue": 3510,
+  "base_sha": "fa3d2d515ce8df79c0a74d5360a4d1254863a6f1",
+  "worktree_base_sha": "84c82b5b35f57105b4db7af4e8efe9b530eead88",
+  "derivation_procedure": {
+    "method": "pre_comparison_blind_derivation_from_L3_L10_and_L4_prose_only",
+    "allowed_sources_read": [
+      {
+        "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+        "pointers": [
+          "/requirements/6",
+          "/requirements/7"
+        ],
+        "sha256": "e4eeb70cc303e44199c7d898281e91c22dba89b47666353b9c80a4c634e898b5"
+      },
+      {
+        "path": "docs/helix-security/L3-requirements/business-requirements.json",
+        "pointers": [
+          "/requirements/0"
+        ],
+        "sha256": "f1668180a3daccb38da15f471ade0806c64f094a77b0d7a5cef25edc9b6ce901"
+      },
+      {
+        "path": "docs/helix-security/L10-verification/functional-verification.json",
+        "pointers": [
+          "/cases/6",
+          "/cases/7"
+        ],
+        "sha256": "e6da7eaff29a623b5d069801280c295d9dd7cc43b51d9cde25b12a8110e5072a"
+      },
+      {
+        "path": "docs/helix-security/L10-verification/business-verification.json",
+        "pointers": [
+          "/cases/0"
+        ],
+        "sha256": "c34b8f9a99f8f240558458dd63033acd0d756dfe61ad9cd3aac0e8e1c8193f42"
+      },
+      {
+        "path": "docs/helix-security/L4-basic-design/credential-value-boundary.json",
+        "pointers": [
+          "/architecture",
+          "/contracts/0",
+          "/contracts/1",
+          "/contracts/2",
+          "/diagnostic_contract"
+        ],
+        "sha256": "9c3d413163b1497fa9573b2f88c2cf9eb2f950f4c55b0b690cf9c321970744e5"
+      }
+    ],
+    "excluded_sources_not_read_before_freeze": [
+      "docs/helix-security/L9-integration-verification/credential-value-boundary.json",
+      "docs/helix-security/L5-detail-design/credential-value-boundary.json",
+      "docs/helix-security/L8-unit-verification/credential-value-boundary.json",
+      "algorithm_python_document_text (absent in L4; L5 not read prior to freeze)"
+    ]
+  },
+  "diagnostic_contract_invariants": {
+    "return_owner": "credential-boundary-owner",
+    "pointer_base": "given.input root (value-free metadata JSON Pointer; no raw secret in messages or pointers)",
+    "deduplication_and_sort_rule": "code/pointer/return_owner scalar codepoint order; exact 3-field tuple unique (docs/helix-security/L4-basic-design/credential-value-boundary.json#/diagnostic_contract/sort)",
+    "expected_side_effect_count": 0
+  },
+  "cross_comparison_shared_leaf_rules": [
+    {
+      "shared_leaf_id": "SHARED-LEAF-F01-CAPABILITY-8FIELDS",
+      "contract_ref": "HELIXSECURITY-L4-005-F01",
+      "shared_leaves": [
+        "capability.actor",
+        "capability.operation",
+        "capability.target",
+        "capability.environment",
+        "capability.scope",
+        "capability.expiry",
+        "capability.purpose",
+        "capability.classification"
+      ],
+      "participating_comparisons": [
+        "request -> capability 8-field correspondence comparison",
+        "capability -> context.expected_capability 8-field authority correspondence comparison"
+      ],
+      "missing_vs_conflict_rule": "Each join compares content conflict only when both sides are present and of conforming type. A missing/untyped capability field emits credential_binding_unresolved at the capability field pointer and does NOT fabricate a conflict on either request->capability or capability->expected_capability. Missing context.expected_capability (or its fields) emits authority_expected_unresolved at /context/expected_capability without fabricating a conflict against capability.",
+      "deduplication_rule": "When both request->capability and capability->expected_capability encounter the same missing capability field at the same capability pointer, both emit (code='credential_binding_unresolved', pointer=<capability field pointer>, return_owner='credential-boundary-owner'), which deduplicates to a single finding by exact (code, pointer, return_owner) tuple per L4#/diagnostic_contract/sort.",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L4-basic-design/credential-value-boundary.json",
+          "pointer": "/contracts/0/content_comparison/0"
+        },
+        {
+          "path": "docs/helix-security/L4-basic-design/credential-value-boundary.json",
+          "pointer": "/contracts/0/content_comparison/4"
+        },
+        {
+          "path": "docs/helix-security/L4-basic-design/credential-value-boundary.json",
+          "pointer": "/diagnostic_contract/sort"
+        }
+      ]
+    },
+    {
+      "shared_leaf_id": "SHARED-LEAF-F01-EXPIRY-AND-TIME",
+      "contract_ref": "HELIXSECURITY-L4-005-F01",
+      "shared_leaves": [
+        "request.expiry",
+        "capability.expiry",
+        "context.expected_capability.expiry",
+        "observed_time"
+      ],
+      "participating_comparisons": [
+        "8-field tuple correspondence (request.expiry <-> capability.expiry <-> context.expected_capability.expiry)",
+        "expiry timepoint comparison (observed_time >= expiry -> expired)"
+      ],
+      "missing_vs_conflict_rule": "Expiry is an owner-supplied synthetic integer timepoint. If expiry or observed_time is missing/unknown/non-integer, time/expiry unknown is preserved without clock fallback or fabricated numeric comparison; when both are known integers and observed_time >= expiry, the lifecycle is expired regardless of tuple equality.",
+      "deduplication_rule": "Findings from tuple binding and lifecycle expiry check are ordered and deduplicated by exact (code, pointer, return_owner) tuple per L4#/diagnostic_contract/sort.",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L4-basic-design/credential-value-boundary.json",
+          "pointer": "/contracts/0/content_comparison/0"
+        },
+        {
+          "path": "docs/helix-security/L4-basic-design/credential-value-boundary.json",
+          "pointer": "/contracts/0/content_comparison/1"
+        },
+        {
+          "path": "docs/helix-security/L4-basic-design/credential-value-boundary.json",
+          "pointer": "/contracts/0/content_comparison/4"
+        },
+        {
+          "path": "docs/helix-security/L4-basic-design/credential-value-boundary.json",
+          "pointer": "/diagnostic_contract/sort"
+        }
+      ]
+    },
+    {
+      "shared_leaf_id": "SHARED-LEAF-F02-CANONICAL-PREDICATE-REF",
+      "contract_ref": "HELIXSECURITY-L4-005-F02",
+      "shared_leaves": [
+        "canonical_predicate.identity",
+        "canonical_predicate.revision",
+        "canonical_predicate.scope",
+        "canonical_predicate.owner"
+      ],
+      "participating_comparisons": [
+        "repository inspection report predicate <-> canonical predicate (identity/revision/scope/owner)",
+        "external_sink inspection report predicate <-> canonical predicate (identity/revision/scope/owner)"
+      ],
+      "missing_vs_conflict_rule": "Both inspection reports bind by exact match on identity/revision/scope/owner to the single canonical predicate. If the canonical predicate reference leaf is missing/unknown, both report comparisons observe the missing canonical predicate at the canonical predicate pointer (unresolved, not conflict); if both sides are known and differ, each mismatched report emits its own predicate conflict at the respective report/predicate pointer.",
+      "deduplication_rule": "Identical (code, pointer, return_owner) findings on the shared canonical predicate pointer deduplicate to a single finding per L4#/diagnostic_contract/sort.",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L4-basic-design/credential-value-boundary.json",
+          "pointer": "/contracts/1/input_meanings/0"
+        },
+        {
+          "path": "docs/helix-security/L4-basic-design/credential-value-boundary.json",
+          "pointer": "/contracts/1/content_comparison/0"
+        },
+        {
+          "path": "docs/helix-security/L4-basic-design/credential-value-boundary.json",
+          "pointer": "/diagnostic_contract/sort"
+        }
+      ]
+    },
+    {
+      "shared_leaf_id": "SHARED-LEAF-B01-F01-F02-BOUNDARY-COUPLING",
+      "contract_ref": "HELIXSECURITY-L4-005-B01",
+      "shared_leaves": [
+        "credential_requested",
+        "path_selection (ordinary_operation vs os027_initial_path)",
+        "F01/F02 surface, predicate, and lifecycle boundary inputs"
+      ],
+      "participating_comparisons": [
+        "B01 ordinary_operation vs os027_initial_path credential_requested separation",
+        "F01/F02 surface non-exposure and canonical predicate inspection evaluation"
+      ],
+      "missing_vs_conflict_rule": "When os027_initial_path is selected with credential_requested=true, B01 records outside_credential_free_scope even if F01/F02 bounded credential use corresponds. When credential_requested=false, capability/authority/time requirements are not added, while 005 surface/predicate inspections are still evaluated separately.",
+      "deduplication_rule": "All findings emitted across F01/F02/B01 evaluations sort and deduplicate by exact (code, pointer, return_owner) tuple per L4#/diagnostic_contract/sort.",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L4-basic-design/credential-value-boundary.json",
+          "pointer": "/contracts/2/input_meanings/0"
+        },
+        {
+          "path": "docs/helix-security/L4-basic-design/credential-value-boundary.json",
+          "pointer": "/contracts/2/input_meanings/1"
+        },
+        {
+          "path": "docs/helix-security/L4-basic-design/credential-value-boundary.json",
+          "pointer": "/contracts/2/content_comparison/1"
+        },
+        {
+          "path": "docs/helix-security/L4-basic-design/credential-value-boundary.json",
+          "pointer": "/contracts/2/content_comparison/2"
+        },
+        {
+          "path": "docs/helix-security/L4-basic-design/credential-value-boundary.json",
+          "pointer": "/diagnostic_contract/sort"
+        }
+      ]
+    }
+  ],
+  "derived_negative_classifications_by_contract": {
+    "HELIXSECURITY-L4-005-F01": [
+      {
+        "family_id": "SEC005-F01-CREDENTIAL-BINDING-UNRESOLVED",
+        "condition_summary": "requestまたはcapabilityの8項目（actor/operation/target/environment/scope/expiry/purpose/classification）のいずれかまたは構造が欠落・型不適合で束縛を確定できない。",
+        "expected_code_candidates": [
+          "credential_binding_unresolved"
+        ],
+        "expected_state_candidates": [
+          "unresolved",
+          "unknown"
+        ],
+        "backflow_owner": "credential-boundary-owner",
+        "source_pointers": [
+          {
+            "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+            "pointer": "/requirements/6"
+          },
+          {
+            "path": "docs/helix-security/L10-verification/functional-verification.json",
+            "pointer": "/cases/6"
+          },
+          {
+            "path": "docs/helix-security/L4-basic-design/credential-value-boundary.json",
+            "pointer": "/contracts/0/content_comparison/0"
+          },
+          {
+            "path": "docs/helix-security/L4-basic-design/credential-value-boundary.json",
+            "pointer": "/contracts/0/content_comparison/4"
+          }
+        ]
+      },
+      {
+        "family_id": "SEC005-F01-AUTHORITY-EXPECTED-UNRESOLVED",
+        "condition_summary": "独立既存authorityのexpected capability（/context/expected_capability）または許可classification集合・authority資料状態が欠落・unknownで照合できない。",
+        "expected_code_candidates": [
+          "authority_expected_unresolved"
+        ],
+        "expected_state_candidates": [
+          "unresolved",
+          "unknown"
+        ],
+        "backflow_owner": "credential-boundary-owner",
+        "source_pointers": [
+          {
+            "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+            "pointer": "/requirements/6"
+          },
+          {
+            "path": "docs/helix-security/L10-verification/functional-verification.json",
+            "pointer": "/cases/6"
+          },
+          {
+            "path": "docs/helix-security/L4-basic-design/credential-value-boundary.json",
+            "pointer": "/contracts/0/input_meanings/1"
+          },
+          {
+            "path": "docs/helix-security/L4-basic-design/credential-value-boundary.json",
+            "pointer": "/contracts/0/content_comparison/4"
+          }
+        ]
+      },
+      {
+        "family_id": "SEC005-F01-REQUEST-CAPABILITY-MISMATCH",
+        "condition_summary": "requestとcapabilityの8項目（actor/operation/target/environment/scope/expiry/purpose/classification）が共に既知で内容が相反する。",
+        "expected_code_candidates": [
+          "credential_binding_conflict",
+          "request_capability_mismatch"
+        ],
+        "expected_state_candidates": [
+          "conflict",
+          "violation"
+        ],
+        "backflow_owner": "credential-boundary-owner",
+        "source_pointers": [
+          {
+            "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+            "pointer": "/requirements/6"
+          },
+          {
+            "path": "docs/helix-security/L10-verification/functional-verification.json",
+            "pointer": "/cases/6"
+          },
+          {
+            "path": "docs/helix-security/L4-basic-design/credential-value-boundary.json",
+            "pointer": "/contracts/0/content_comparison/0"
+          },
+          {
+            "path": "docs/helix-security/L4-basic-design/credential-value-boundary.json",
+            "pointer": "/contracts/0/content_comparison/4"
+          }
+        ]
+      },
+      {
+        "family_id": "SEC005-F01-CAPABILITY-AUTHORITY-MISMATCH-OR-UNKNOWN-CLASS",
+        "condition_summary": "capabilityと独立既存authorityのexpected capabilityの8項目が相反する、または未知/不許可のcredential classificationが指定される。",
+        "expected_code_candidates": [
+          "authority_expected_conflict",
+          "credential_binding_conflict",
+          "unknown_credential_classification"
+        ],
+        "expected_state_candidates": [
+          "conflict",
+          "violation"
+        ],
+        "backflow_owner": "credential-boundary-owner",
+        "source_pointers": [
+          {
+            "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+            "pointer": "/requirements/6"
+          },
+          {
+            "path": "docs/helix-security/L10-verification/functional-verification.json",
+            "pointer": "/cases/6"
+          },
+          {
+            "path": "docs/helix-security/L4-basic-design/credential-value-boundary.json",
+            "pointer": "/contracts/0/content_comparison/0"
+          },
+          {
+            "path": "docs/helix-security/L4-basic-design/credential-value-boundary.json",
+            "pointer": "/contracts/0/content_comparison/4"
+          }
+        ]
+      },
+      {
+        "family_id": "SEC005-F01-TIME-OR-EXPIRY-OBSERVATION-UNRESOLVED",
+        "condition_summary": "明示入力のobserved_timeまたはexpiry原資料状態が欠落・unknownで期限切れ判定を確定できない。",
+        "expected_code_candidates": [
+          "expiry_observation_unresolved",
+          "time_observation_unresolved",
+          "credential_binding_unresolved"
+        ],
+        "expected_state_candidates": [
+          "unknown",
+          "unresolved"
+        ],
+        "backflow_owner": "credential-boundary-owner",
+        "source_pointers": [
+          {
+            "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+            "pointer": "/requirements/6"
+          },
+          {
+            "path": "docs/helix-security/L10-verification/functional-verification.json",
+            "pointer": "/cases/6"
+          },
+          {
+            "path": "docs/helix-security/L4-basic-design/credential-value-boundary.json",
+            "pointer": "/contracts/0/content_comparison/1"
+          }
+        ]
+      },
+      {
+        "family_id": "SEC005-F01-CREDENTIAL-EXPIRED",
+        "condition_summary": "owner供給の合成integer timepointにおいてobserved_time >= expiryであり期限切れと判定される。",
+        "expected_code_candidates": [
+          "credential_expired",
+          "capability_expired"
+        ],
+        "expected_state_candidates": [
+          "expired",
+          "conflict",
+          "violation"
+        ],
+        "backflow_owner": "credential-boundary-owner",
+        "source_pointers": [
+          {
+            "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+            "pointer": "/requirements/6"
+          },
+          {
+            "path": "docs/helix-security/L10-verification/functional-verification.json",
+            "pointer": "/cases/6"
+          },
+          {
+            "path": "docs/helix-security/L4-basic-design/credential-value-boundary.json",
+            "pointer": "/contracts/0/output_meanings/0"
+          },
+          {
+            "path": "docs/helix-security/L4-basic-design/credential-value-boundary.json",
+            "pointer": "/contracts/0/content_comparison/1"
+          }
+        ]
+      },
+      {
+        "family_id": "SEC005-F01-STORE-OR-SURFACE-OBSERVATION-UNRESOLVED",
+        "condition_summary": "Workerへのstore非露出または7 surface（context/file/artifact/log/tool_result/receipt/external_sink）の独立観測が欠落・未観測、または表面上のredacted宣言のみで独立観測がない。",
+        "expected_code_candidates": [
+          "surface_observation_unresolved",
+          "store_boundary_unresolved",
+          "redacted_claim_unverified"
+        ],
+        "expected_state_candidates": [
+          "unknown",
+          "unresolved"
+        ],
+        "backflow_owner": "credential-boundary-owner",
+        "source_pointers": [
+          {
+            "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+            "pointer": "/requirements/6"
+          },
+          {
+            "path": "docs/helix-security/L10-verification/functional-verification.json",
+            "pointer": "/cases/6"
+          },
+          {
+            "path": "docs/helix-security/L4-basic-design/credential-value-boundary.json",
+            "pointer": "/contracts/0/content_comparison/2"
+          }
+        ]
+      },
+      {
+        "family_id": "SEC005-F01-STORE-OR-SURFACE-RAW-VALUE-EXPOSED",
+        "condition_summary": "Workerへcredential storeが直接露出している、または7 surface（context/file/artifact/log/tool_result/receipt/external_sink）のいずれかにraw secret/credential値が露出している。",
+        "expected_code_candidates": [
+          "store_exposed_to_worker",
+          "raw_secret_exposed",
+          "surface_value_exposed"
+        ],
+        "expected_state_candidates": [
+          "conflict",
+          "violation"
+        ],
+        "backflow_owner": "credential-boundary-owner",
+        "source_pointers": [
+          {
+            "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+            "pointer": "/requirements/6"
+          },
+          {
+            "path": "docs/helix-security/L10-verification/functional-verification.json",
+            "pointer": "/cases/6"
+          },
+          {
+            "path": "docs/helix-security/L4-basic-design/credential-value-boundary.json",
+            "pointer": "/contracts/0/content_comparison/2"
+          }
+        ]
+      },
+      {
+        "family_id": "SEC005-F01-PREREQUISITE-007-006-008-UNRESOLVED-OR-VIOLATION",
+        "condition_summary": "対象operationに紐づく既存008/007/006条件がunknown（未解決）またはviolation（相反）である。",
+        "expected_code_candidates": [
+          "prerequisite_boundary_unresolved",
+          "prerequisite_boundary_violation",
+          "operation_condition_unresolved",
+          "operation_condition_conflict"
+        ],
+        "expected_state_candidates": [
+          "unknown",
+          "unresolved",
+          "conflict",
+          "violation"
+        ],
+        "backflow_owner": "credential-boundary-owner",
+        "source_pointers": [
+          {
+            "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+            "pointer": "/requirements/6"
+          },
+          {
+            "path": "docs/helix-security/L10-verification/functional-verification.json",
+            "pointer": "/cases/6"
+          },
+          {
+            "path": "docs/helix-security/L4-basic-design/credential-value-boundary.json",
+            "pointer": "/contracts/0/input_meanings/1"
+          },
+          {
+            "path": "docs/helix-security/L4-basic-design/credential-value-boundary.json",
+            "pointer": "/contracts/0/content_comparison/3"
+          }
+        ]
+      }
+    ],
+    "HELIXSECURITY-L4-005-F02": [
+      {
+        "family_id": "SEC005-F02-PREDICATE-BINDING-UNRESOLVED",
+        "condition_summary": "単一canonical predicate Refまたは2検査report（repository/external_sink）のpredicate参照（identity/revision/scope/owner）が欠落・unknownで完全一致照合ができない。",
+        "expected_code_candidates": [
+          "predicate_binding_unresolved",
+          "canonical_predicate_unresolved"
+        ],
+        "expected_state_candidates": [
+          "unknown",
+          "unresolved"
+        ],
+        "backflow_owner": "credential-boundary-owner",
+        "source_pointers": [
+          {
+            "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+            "pointer": "/requirements/7"
+          },
+          {
+            "path": "docs/helix-security/L10-verification/functional-verification.json",
+            "pointer": "/cases/7"
+          },
+          {
+            "path": "docs/helix-security/L4-basic-design/credential-value-boundary.json",
+            "pointer": "/contracts/1/input_meanings/0"
+          },
+          {
+            "path": "docs/helix-security/L4-basic-design/credential-value-boundary.json",
+            "pointer": "/contracts/1/content_comparison/0"
+          }
+        ]
+      },
+      {
+        "family_id": "SEC005-F02-PREDICATE-BINDING-CONFLICT",
+        "condition_summary": "repository混入またはexternal_sink送信の検査reportが単一canonical predicate（identity/revision/scope/owner）と異なる独自predicateを使用している。",
+        "expected_code_candidates": [
+          "predicate_binding_conflict",
+          "non_canonical_predicate_rejected"
+        ],
+        "expected_state_candidates": [
+          "conflict",
+          "violation"
+        ],
+        "backflow_owner": "credential-boundary-owner",
+        "source_pointers": [
+          {
+            "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+            "pointer": "/requirements/7"
+          },
+          {
+            "path": "docs/helix-security/L10-verification/functional-verification.json",
+            "pointer": "/cases/7"
+          },
+          {
+            "path": "docs/helix-security/L4-basic-design/credential-value-boundary.json",
+            "pointer": "/contracts/1/content_comparison/0"
+          }
+        ]
+      },
+      {
+        "family_id": "SEC005-F02-INSPECTION-UNAVAILABLE-OR-UNOBSERVED",
+        "condition_summary": "repository混入またはexternal_sink送信の検査reportがunavailable・未観測・欠落であり、安全として通さずunknownとする。",
+        "expected_code_candidates": [
+          "inspection_unavailable",
+          "secret_inspection_unresolved"
+        ],
+        "expected_state_candidates": [
+          "unknown",
+          "unresolved"
+        ],
+        "backflow_owner": "credential-boundary-owner",
+        "source_pointers": [
+          {
+            "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+            "pointer": "/requirements/7"
+          },
+          {
+            "path": "docs/helix-security/L10-verification/functional-verification.json",
+            "pointer": "/cases/7"
+          },
+          {
+            "path": "docs/helix-security/L4-basic-design/credential-value-boundary.json",
+            "pointer": "/contracts/1/content_comparison/1"
+          }
+        ]
+      },
+      {
+        "family_id": "SEC005-F02-SECRET-DETECTED-IN-INSPECTION",
+        "condition_summary": "repository混入またはexternal_sink送信の検査reportでsecret_detected（または通常証跡への原値複写）が観測され、検査拒否および009停止/隔離候補とする。",
+        "expected_code_candidates": [
+          "secret_detected",
+          "raw_detected"
+        ],
+        "expected_state_candidates": [
+          "conflict",
+          "violation"
+        ],
+        "backflow_owner": "credential-boundary-owner",
+        "source_pointers": [
+          {
+            "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+            "pointer": "/requirements/7"
+          },
+          {
+            "path": "docs/helix-security/L10-verification/functional-verification.json",
+            "pointer": "/cases/7"
+          },
+          {
+            "path": "docs/helix-security/L4-basic-design/credential-value-boundary.json",
+            "pointer": "/contracts/1/content_comparison/1"
+          },
+          {
+            "path": "docs/helix-security/L4-basic-design/credential-value-boundary.json",
+            "pointer": "/contracts/1/content_comparison/3"
+          }
+        ]
+      },
+      {
+        "family_id": "SEC005-F02-REVOCATION-OR-LIFECYCLE-UNRESOLVED",
+        "condition_summary": "capability lifecycleまたは独立revocation観測が欠落・unknownで失効状態を確定できない。",
+        "expected_code_candidates": [
+          "revocation_observation_unresolved",
+          "lifecycle_observation_unresolved"
+        ],
+        "expected_state_candidates": [
+          "unknown",
+          "unresolved"
+        ],
+        "backflow_owner": "credential-boundary-owner",
+        "source_pointers": [
+          {
+            "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+            "pointer": "/requirements/7"
+          },
+          {
+            "path": "docs/helix-security/L10-verification/functional-verification.json",
+            "pointer": "/cases/7"
+          },
+          {
+            "path": "docs/helix-security/L4-basic-design/credential-value-boundary.json",
+            "pointer": "/contracts/1/input_meanings/1"
+          },
+          {
+            "path": "docs/helix-security/L4-basic-design/credential-value-boundary.json",
+            "pointer": "/contracts/1/content_comparison/2"
+          }
+        ]
+      },
+      {
+        "family_id": "SEC005-F02-REVOKED-OR-EXPIRED-SUBSEQUENT-USE-STOPPED",
+        "condition_summary": "capability lifecycleまたは独立revocation観測のいずれかでrevokedまたはexpiredが判明し（active自己申告で打ち消さず）、後続利用停止および009停止候補とする。",
+        "expected_code_candidates": [
+          "credential_revoked",
+          "credential_expired",
+          "revoked_capability_use"
+        ],
+        "expected_state_candidates": [
+          "revoked",
+          "expired",
+          "conflict",
+          "violation"
+        ],
+        "backflow_owner": "credential-boundary-owner",
+        "source_pointers": [
+          {
+            "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+            "pointer": "/requirements/7"
+          },
+          {
+            "path": "docs/helix-security/L10-verification/functional-verification.json",
+            "pointer": "/cases/7"
+          },
+          {
+            "path": "docs/helix-security/L4-basic-design/credential-value-boundary.json",
+            "pointer": "/contracts/1/output_meanings/0"
+          },
+          {
+            "path": "docs/helix-security/L4-basic-design/credential-value-boundary.json",
+            "pointer": "/contracts/1/content_comparison/2"
+          }
+        ]
+      }
+    ],
+    "HELIXSECURITY-L4-005-B01": [
+      {
+        "family_id": "SEC005-B01-PATH-OR-CREDENTIAL-REQUESTED-UNRESOLVED",
+        "condition_summary": "credential_requested真偽値またはordinary_operation/os027_initial_pathの経路選択が欠落・型不適合で境界選択を確定できない。",
+        "expected_code_candidates": [
+          "path_selection_unresolved",
+          "credential_request_unresolved"
+        ],
+        "expected_state_candidates": [
+          "unknown",
+          "unresolved"
+        ],
+        "backflow_owner": "credential-boundary-owner",
+        "source_pointers": [
+          {
+            "path": "docs/helix-security/L3-requirements/business-requirements.json",
+            "pointer": "/requirements/0"
+          },
+          {
+            "path": "docs/helix-security/L10-verification/business-verification.json",
+            "pointer": "/cases/0"
+          },
+          {
+            "path": "docs/helix-security/L4-basic-design/credential-value-boundary.json",
+            "pointer": "/contracts/2/input_meanings/0"
+          }
+        ]
+      },
+      {
+        "family_id": "SEC005-B01-OS027-OUTSIDE-CREDENTIAL-FREE-SCOPE",
+        "condition_summary": "os027_initial_path選択時にcredential_requested=trueであり、一般利用内容の対応有無にかかわらずoutside_credential_free_scopeとして対象外を保持する。",
+        "expected_code_candidates": [
+          "outside_credential_free_scope"
+        ],
+        "expected_state_candidates": [
+          "outside_credential_free_scope",
+          "conflict",
+          "violation"
+        ],
+        "backflow_owner": "credential-boundary-owner",
+        "source_pointers": [
+          {
+            "path": "docs/helix-security/L3-requirements/business-requirements.json",
+            "pointer": "/requirements/0"
+          },
+          {
+            "path": "docs/helix-security/L10-verification/business-verification.json",
+            "pointer": "/cases/0"
+          },
+          {
+            "path": "docs/helix-security/L4-basic-design/credential-value-boundary.json",
+            "pointer": "/contracts/2/content_comparison/1"
+          }
+        ]
+      },
+      {
+        "family_id": "SEC005-B01-ORDINARY-OR-INITIAL-PATH-SELF-EXPANSION-CONFLICT",
+        "condition_summary": "既許可の非公開範囲付きcredential利用をcredential使用だけで一律拒否する、認証利用からraw値開示を生成する、またはcredential_not_requested_onlyから一般認可やOS027全条件充足を自己拡張する。",
+        "expected_code_candidates": [
+          "ordinary_use_blanket_deny_conflict",
+          "raw_disclosure_from_auth_conflict",
+          "initial_path_authority_self_expansion_conflict"
+        ],
+        "expected_state_candidates": [
+          "conflict",
+          "violation"
+        ],
+        "backflow_owner": "credential-boundary-owner",
+        "source_pointers": [
+          {
+            "path": "docs/helix-security/L3-requirements/business-requirements.json",
+            "pointer": "/requirements/0"
+          },
+          {
+            "path": "docs/helix-security/L10-verification/business-verification.json",
+            "pointer": "/cases/0"
+          },
+          {
+            "path": "docs/helix-security/L4-basic-design/credential-value-boundary.json",
+            "pointer": "/contracts/2/output_meanings/1"
+          },
+          {
+            "path": "docs/helix-security/L4-basic-design/credential-value-boundary.json",
+            "pointer": "/contracts/2/content_comparison/0"
+          },
+          {
+            "path": "docs/helix-security/L4-basic-design/credential-value-boundary.json",
+            "pointer": "/contracts/2/content_comparison/2"
+          },
+          {
+            "path": "docs/helix-security/L4-basic-design/credential-value-boundary.json",
+            "pointer": "/contracts/2/content_comparison/3"
+          }
+        ]
+      }
+    ]
+  }
+}
