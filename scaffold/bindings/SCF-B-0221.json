@@ -6,7 +6,7 @@
   "product": "HELIX-HARNESS",
   "owner_candidate": "HELIX-SECURITY SEC009 L4/L9 source projection evidence owner",
   "state": "registered",
-  "reason": "Separate L4/L9 V-pair supplement: project negative L9 row expectations from L4 classes, retain positive rows unresolved where case inputs are absent, and audit old L4 nested pointer consumers. L5/L8 is read from a pinned Git revision only as a checker overlay input; no duplicate layer JSON is stored in scaffold.",
+  "reason": "Issue #3510 WR255追補：285行のL4由来L9投影と308+308 nested pointer consumer監査を再現可能にする。positive 8行はL3/L10/L4契約とcase markerから最小期待を設計し、未観測・個別oracle未確認を明記する。authorityや実動作は生成しない。",
   "upstream": [
     {
       "path": "docs/helix-security/L3-requirements/business-requirements.json",
@@ -31,12 +31,12 @@
     {
       "path": "docs/helix-security/L8-unit-verification/revoke-quarantine-propagation.json",
       "sha256": "ebfb5a50360fbcf4c0df262a4c31c87870b963b9d4e557888d63aef74699c777",
-      "note": "Current L8 source and consumer pointers at the L4/L9 branch base. The independent L5/L8 candidate checker inputs are read by git show from fixed revision e7dd88b8f987de4cb5af6707489ea356a0c4c79a and are not duplicated under scaffold/."
+      "note": "Current L8 source and consumer pointers at the L4/L9 branch base. The independent L5/L8 candidate checker inputs are read by git show from fixed revision e7dd88b8f987de4cb5af6707489ea356a0c4c79a and are not duplicated under scaffold/. Current canonical L8 in this worktree remains SHA-256 ebfb5a50360fbcf4c0df262a4c31c87870b963b9d4e557888d63aef74699c777. Overlay uses fixed candidate L5/L8 revision 24d7f00bdca41c3dfb1f3137655ffdbe3674cfb3, L8 SHA-256 91da3af2c6ad997fdf265871f9776c5bed41f196fbccfc2276e1a41f42a267bb; source snapshot is read via git show, not copied."
     },
     {
       "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
-      "sha256": "1ef45013e26e7c4e44ae942af60cf348fa17069ca3bdbf2498db7666bb62bad2",
-      "note": "Canonical L9 case inventory and independent L4 projection; expected_proposal retained; 8 positive row expectations null."
+      "sha256": "57c0197cd7ffbe7e6522aa67ee22f7b73e67504732ad6402cb7035e057f6610e",
+      "note": "Canonical L9 case inventory and independent L4 projection; expected_proposal retained; positive minimum expectations independently designed, but fixture observations and row citations are absent. Positive 8-row minimum expectations were added from L3/L10/L4 and case markers; no expected_proposal copying or observations. Current canonical L9 pin updated to revision e22b5c96a3ad60754f76cb23d7a2cd3cb79c37db, SHA-256 57c0197cd7ffbe7e6522aa67ee22f7b73e67504732ad6402cb7035e057f6610e; old pinned bytes 1ef45013e26e7c4e44ae942af60cf348fa17069ca3bdbf2498db7666bb62bad2 are preserved in prior note. Positive expectations are the independent L3/L10/L4-derived minimum and remain unobserved."
     },
     {
       "path": "docs/helix-security/L10-verification/business-verification.json",
@@ -59,13 +59,13 @@
       "note": "Current static check-child implementation; no runtime/test/CI invoked."
     }
   ],
-  "role": "Scaffold-only evidence for 285 L9 row input/expectation source review, independent L4-derived negative projection, positive source gaps, 4way overlay measurement, and 308-consumer audit per L8/L9.",
+  "role": "285行のL4由来L9投影、positive最小期待の独立設計、4way overlay測定とL8/L9各308 consumerの監査を再実行可能にするscaffold evidence。positive期待は未観測。",
   "obligations": [
-    "Preserve all 285 SEC009 L9 case IDs and all 71 multi-contract residuals; do not use L9 expected_proposal as an expected-value source.",
-    "Derive negative condition/expected/expected_preserved only from the referenced L4 failure_classifications and record row-specific L9/L4 pointers and hashes in l9-row-audit.jsonl.",
-    "Keep all 8 positive expectations null because nested L9 given supplies no case-specific inputs; distinguish L10 contract oracle from any individual-row oracle/test citation.",
-    "Keep L5/L8 candidate in a separate V-pair and read its exact bytes from the pinned Git commit using git show; do not add duplicate canonical JSON copies to scaffold.",
-    "Audit each L8/L9 nested pointer consumer, identify alternate targets and migration blockers, and do not retire SCF-B-0209 without completed consumer transfer and check-replacement."
+    "285件のSEC009 L9 case IDと71件のmulti-contract residualを保持し、L9 expected_proposalを期待値の根拠にしない。",
+    "negative行のcondition/expected/expected_preservedは参照先L4 failure_classificationsだけから導き、L9/L4 pointerとhashを行ごとに記録する。",
+    "positive 8行はcase markerとL3/L10/L4契約から最小期待を設計し、fixture未観測と個別oracle/test citation未確認を明示する。",
+    "L5/L8候補を別V-pairに保ち、固定Git commitからgit showで読み込む。scaffoldへlayer JSONを複製しない。",
+    "L8/L9のnested pointer consumerを1件ずつ監査し、代替先と移行阻害要因を記録する。SCF-B-0209はconsumer transferとcheck-replacement成立までretireしない。"
   ],
   "connections": {
     "consumers": [
@@ -120,7 +120,19 @@
     "scaffold/research/wr255-sec009-l4l9-supplement-20261101/pointer-consumer-audit-d646a09e-e7dd88b8-00376c40-0dae5023.jsonl",
     "scaffold/research/wr255-sec009-l4l9-supplement-20261101/positive-source-review-d646a09e-e7dd88b8-00376c40-0dae5023.json",
     "scaffold/research/wr255-sec009-l4l9-supplement-20261101/overlay-check-child-d646a09e-e7dd88b8-00376c40-0dae5023.json",
-    "scaffold/research/wr255-sec009-l4l9-supplement-20261101/overlay-summary-d646a09e-e7dd88b8-00376c40-0dae5023.json"
+    "scaffold/research/wr255-sec009-l4l9-supplement-20261101/overlay-summary-d646a09e-e7dd88b8-00376c40-0dae5023.json",
+    "scaffold/research/wr255-sec009-l4l9-supplement-20261101/l9-row-audit-d646a09e-57c0197c-24d7f00b-00376c40-e540f13f.jsonl",
+    "scaffold/research/wr255-sec009-l4l9-supplement-20261101/overlay-check-child-d646a09e-57c0197c-24d7f00b-00376c40-e540f13f.json",
+    "scaffold/research/wr255-sec009-l4l9-supplement-20261101/overlay-summary-d646a09e-57c0197c-24d7f00b-00376c40-e540f13f.json",
+    "scaffold/research/wr255-sec009-l4l9-supplement-20261101/pointer-consumer-audit-d646a09e-57c0197c-24d7f00b-00376c40-e540f13f.json",
+    "scaffold/research/wr255-sec009-l4l9-supplement-20261101/pointer-consumer-audit-d646a09e-57c0197c-24d7f00b-00376c40-e540f13f.jsonl",
+    "scaffold/research/wr255-sec009-l4l9-supplement-20261101/positive-source-review-d646a09e-57c0197c-24d7f00b-00376c40-e540f13f.json",
+    "scaffold/research/wr255-sec009-l4l9-supplement-20261101/l9-row-audit-e22b5c96-57c0197c-24d7f00b-00376c40-e540f13f.jsonl",
+    "scaffold/research/wr255-sec009-l4l9-supplement-20261101/overlay-check-child-e22b5c96-57c0197c-24d7f00b-00376c40-e540f13f.json",
+    "scaffold/research/wr255-sec009-l4l9-supplement-20261101/overlay-summary-e22b5c96-57c0197c-24d7f00b-00376c40-e540f13f.json",
+    "scaffold/research/wr255-sec009-l4l9-supplement-20261101/pointer-consumer-audit-e22b5c96-57c0197c-24d7f00b-00376c40-e540f13f.json",
+    "scaffold/research/wr255-sec009-l4l9-supplement-20261101/pointer-consumer-audit-e22b5c96-57c0197c-24d7f00b-00376c40-e540f13f.jsonl",
+    "scaffold/research/wr255-sec009-l4l9-supplement-20261101/positive-source-review-e22b5c96-57c0197c-24d7f00b-00376c40-e540f13f.json"
   ],
   "verification": {
     "evidence_kind": "scaffold",
@@ -130,11 +142,11 @@
       "schema_interface"
     ],
     "oracles": [
-      "L9 nested case ID/source pointer inventory and given SHA-256; negative expected-value hashes derived from L4 class pointers",
-      "L3/L10 contract-level positive source facts recorded separately from individual row oracle/test citations",
-      "Static check-child over canonical L4/L9 and L5/L8 candidate bytes read from pinned Git revision e7dd88b8f987de4cb5af6707489ea356a0c4c79a",
-      "308 direct L4 nested pointer consumers plus 275 wrappers per L8/L9 layer, with per-consumer alternate target and safety analysis",
-      "scfctl validate/stale and check-replacement results"
+      "L9 nested case ID/source pointerとgiven SHA-256。negative expected hashは参照先L4 classから独立に生成。",
+      "L3/L10の契約最小positive根拠を記録し、個別行oracle/test citationと区別する。",
+      "canonical L4/L9と固定L5/L8 candidate revision 24d7f00bdca41c3dfb1f3137655ffdbe3674cfb3 を対象にcurrent static check-childを実行。",
+      "L8/L9各308 direct L4 nested pointerと各275 wrapperを一consumer一行で監査し、代替先と移行阻害要因を記録。",
+      "scfctl validate/staleおよびcheck-replacementの結果。"
     ],
     "negative_cases": [
       "Do not claim positive rows or individual-row citations are established.",
