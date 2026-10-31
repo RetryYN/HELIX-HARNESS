@@ -363,7 +363,11 @@ def main() -> None:
         restored = subprocess.check_output(['git', 'show', f"{item['source_revision']}:{item['path']}"], cwd=ROOT)
         blob = subprocess.check_output(['git', 'rev-parse', f"{item['source_revision']}:{item['path']}"], cwd=ROOT, text=True).strip()
         assert blob == item['git_blob_sha1'] and sha(restored) == item['sha256']
-    assert [p.relative_to(ROOT).as_posix() for p in sorted((ROOT / EVIDENCE_DIR).glob('static-evidence-measurement-*.json'))] == [CURRENT_MEASUREMENT]
+    measurement_files = [p.relative_to(ROOT).as_posix() for p in sorted((ROOT / EVIDENCE_DIR).glob('static-evidence-measurement-*.json'))]
+    if args.record and not (ROOT / CURRENT_MEASUREMENT).exists():
+        assert measurement_files == []
+    else:
+        assert measurement_files == [CURRENT_MEASUREMENT]
     assert not (ROOT / f'{EVIDENCE_DIR}/evidence-history').exists()
     assert '固有の反例・期待判断' in current['method']['rule'] and 'patch path' not in current['method']['rule']
     assert 'decode指示' in current['method']['rule'] and 'fixture再構成' in current['method']['rule']
