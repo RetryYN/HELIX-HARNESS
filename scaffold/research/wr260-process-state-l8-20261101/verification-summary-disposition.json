@@ -3,15 +3,15 @@
   "evidence_kind": "scaffold",
   "authority_effect": "none",
   "request_id": "WR260-PROCESS-STATE-L8-SLIM",
-  "purpose": "重複した過去時点summaryを現treeから除き、各時点のGit復元識別子と復元方法を一箇所に集約する。summary本文とGit objectは変更・破棄しない。r7は最新main fe6232aの現行測定として保持し、r1-r6を履歴blobへ退避する。",
+  "purpose": "重複した過去時点summaryを現treeから除き、各時点のGit復元識別子と復元方法を一箇所に集約する。summary本文とGit objectは変更・破棄しない。r9を最新main ad2dfaf6の唯一の現行測定として置き、r1-r8を履歴blobへ索引化する。",
   "retained_current_summary": {
-    "path": "scaffold/research/wr260-process-state-l8-20261101/verification-summary-r8.json",
-    "git_blob_oid": "81f4d0e90b07f33a97ab0d1f80e626f8610266d2",
-    "content_sha256": "bdf6f53bcec7ebcb949b359459bc603197c4cb8da14d452bf4e7ce9b20189a56",
-    "bytes": 11248,
-    "measured_revision": "worktree based on HEAD bc0d8afb8da5d3ef69c18f0810a5eadc25a198e1 and latest origin/main 9cce1cc5238de71231b1fcd37727391113e17956",
-    "main_revision_checked": "9cce1cc5238de71231b1fcd37727391113e17956",
-    "role": "sole current latest-main overlay measurement after semantic-condition correction. Git containing commit is recorded by history after commit."
+    "path": "scaffold/research/wr260-process-state-l8-20261101/verification-summary-r9.json",
+    "git_blob_oid": "12516f5273cddd2e058b5335688b8395638f5f24",
+    "content_sha256": "9e0b213876ec6cf8f149710728c7a1c79c267efc42ec28290de7d9b3433fe892",
+    "bytes": 14977,
+    "measured_revision": "WR260 branch candidate HEAD df1aba0bfd82340157db124510a5bcc8e6b45045 merged with origin/main ad2dfaf6f434fbb81cd34988d4bd76212380f3a5; current measurement describes the merged worktree overlay.",
+    "main_revision_checked": "ad2dfaf6f434fbb81cd34988d4bd76212380f3a5",
+    "role": "sole current latest-main overlay measurement after F01/F02 semantic condition follow-up."
   },
   "retired_worktree_snapshots": [
     {
@@ -83,6 +83,15 @@
       "content_sha256": "5f6f15a34ab0625511305ef8532fb583b8a694f9ce816070e0c84ab21a822f2c",
       "bytes": 10519,
       "timepoint_role": "main fe6232a overlay measurement; retained as the previous current measurement before qualification/content/valley semantic-condition correction."
+    },
+    {
+      "path": "scaffold/research/wr260-process-state-l8-20261101/verification-summary-r8.json",
+      "disposition": "prior_current_summary_archived_in_git_history",
+      "last_snapshot_commit": "df1aba0bfd82340157db124510a5bcc8e6b45045",
+      "git_blob_oid": "81f4d0e90b07f33a97ab0d1f80e626f8610266d2",
+      "content_sha256": "bdf6f53bcec7ebcb949b359459bc603197c4cb8da14d452bf4e7ce9b20189a56",
+      "bytes": 11248,
+      "timepoint_role": "previous WR260 current measurement after 9cce1cc overlay, before F01/F02 semantic condition follow-up and latest-main ad2dfaf6 overlay."
     }
   ],
   "restore": {
@@ -91,5 +100,5 @@
     "verification_command": "sha256sum <chosen-output-path>",
     "note": "復元先には現行summaryを上書きせず別名の出力先を選ぶ。commit/pathとblob oidはいずれも下表の値を使える。各snapshotのbytesとSHA-256を照合してから利用する。"
   },
-  "boundary": "現treeではverification-summary-r8.jsonだけを現行summaryとして置く。本dispositionはr1-r7の復元索引であり、summary測定を複製しない。r6以前とr7のpre-rebase commit IDは追跡用に併記し、復元にはlatest-main overlayの祖先として到達可能なlast_snapshot_commitとblob OIDを使う。"
+  "boundary": "現treeではverification-summary-r9.jsonだけを現行summaryとして置く。本dispositionはr1-r8の復元索引であり、summary測定本文を複製しない。各履歴のlast_snapshot_commitとblob OIDで復元できる。"
 }
