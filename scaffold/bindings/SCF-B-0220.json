@@ -30,8 +30,8 @@
     },
     {
       "path": "docs/helix-security/L8-unit-verification/revoke-quarantine-propagation.json",
-      "sha256": "73f253a76363fe6f936c3f5707c8b3e43f46f75bec5483925fad96982740293c",
-      "note": "Pinned source for static SEC009 L5/L8 ID, class, contract-source, or child-check comparison; no runtime semantics are executed."
+      "sha256": "a585b1c7ad53a6043caa9944aa41a804d026376d42a76e949c0c8f1a87061ba3",
+      "note": "Pinned source for static SEC009 L5/L8 ID, class, contract-source, or child-check comparison; no runtime semantics are executed. Current pin updated to a585b1c7ad53a6043caa9944aa41a804d026376d42a76e949c0c8f1a87061ba3 at source revision 2c8fdde45255e07794ce2cf3153bf696765258b4; previous pin 73f253a76363fe6f936c3f5707c8b3e43f46f75bec5483925fad96982740293c at source revision d8e48de751c04f4250326dd049763c08dce3eaac is retained. Counterexamples now state row-specific target/discrepancy plus L4 class meaning, and each negative U-ID has resolvable L4/L5 class source pointers; actual conflict values remain explicitly absent where L9 given does not provide them."
     },
     {
       "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",

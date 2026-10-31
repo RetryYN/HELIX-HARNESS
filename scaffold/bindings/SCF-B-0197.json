@@ -20,8 +20,8 @@
     },
     {
       "path": "docs/helix-security/L8-unit-verification/revoke-quarantine-propagation.json",
-      "sha256": "73f253a76363fe6f936c3f5707c8b3e43f46f75bec5483925fad96982740293c",
-      "note": "Current L8 pair source; unchanged and no explicit marker. Current pin updated to 73f253a76363fe6f936c3f5707c8b3e43f46f75bec5483925fad96982740293c at source revision d8e48de751c04f4250326dd049763c08dce3eaac; prior registered pin ebfb5a50360fbcf4c0df262a4c31c87870b963b9d4e557888d63aef74699c777 is retained in this note. WR255 follow-up assigned dedicated U-IDs and shared source index while retaining the SEC009 source IDs; prior pin was fixed at c14adddf2678c7a69d76420c451df3f05b1251ab."
+      "sha256": "a585b1c7ad53a6043caa9944aa41a804d026376d42a76e949c0c8f1a87061ba3",
+      "note": "Current L8 pair source; unchanged and no explicit marker. Current pin updated to 73f253a76363fe6f936c3f5707c8b3e43f46f75bec5483925fad96982740293c at source revision d8e48de751c04f4250326dd049763c08dce3eaac; prior registered pin ebfb5a50360fbcf4c0df262a4c31c87870b963b9d4e557888d63aef74699c777 is retained in this note. WR255 follow-up assigned dedicated U-IDs and shared source index while retaining the SEC009 source IDs; prior pin was fixed at c14adddf2678c7a69d76420c451df3f05b1251ab. Current pin updated to a585b1c7ad53a6043caa9944aa41a804d026376d42a76e949c0c8f1a87061ba3 at source revision 2c8fdde45255e07794ce2cf3153bf696765258b4; previous pin 73f253a76363fe6f936c3f5707c8b3e43f46f75bec5483925fad96982740293c at source revision d8e48de751c04f4250326dd049763c08dce3eaac is retained. Counterexamples now state row-specific target/discrepancy plus L4 class meaning, and each negative U-ID has resolvable L4/L5 class source pointers; actual conflict values remain explicitly absent where L9 given does not provide them."
     },
     {
       "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
