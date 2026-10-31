@@ -158,6 +158,7 @@ def main() -> int:
     source_index = l8.get("unit_case_source_index", [])
     if len(source_index) != 285 or [row.get("uid") for row in source_index] != uid_rows:
         fail("L8 source index does not cover U-IDs in order")
+    source_index_by_uid = {row["uid"]: row for row in source_index}
     for i, (index_row, l9row) in enumerate(zip(source_index, source_rows), 1):
         if index_row.get("source_case_id") != l9row.get("id"):
             fail(f"source index case ID mismatch at row {i}")
@@ -171,6 +172,7 @@ def main() -> int:
     row_audit = []
     positives = []
     counterexample_labels = []
+    negative_given_hashes: Counter[str] = Counter()
     negative_count = 0
     for unit, source in zip(unit_rows, source_rows):
         case_id = unit["case_id"]
@@ -209,17 +211,34 @@ def main() -> int:
         class_id = unit.get("negative_class_ref")
         rule_id = unit.get("rule_ref")
         expected_label = case_id.removeprefix("SEC009-").replace("_", " ").replace("-", " ").lower()
-        if unit.get("counterexample") != expected_label:
-            fail(f"negative counterexample label is not the source-ID label: {case_id}")
-        counterexample_labels.append(unit["counterexample"])
+        counterexample = unit.get("counterexample")
+        if not isinstance(counterexample, str) or counterexample == expected_label or len(counterexample) > 200:
+            fail(f"negative counterexample is missing, overlong, or only a case-ID rewrite: {case_id}")
+        if "scenario detail unresolved" in counterexample:
+            fail(f"negative counterexample lacks a row-specific discrepancy: {case_id}")
+        counterexample_labels.append(counterexample)
         if class_id not in l4_class_by_id or rule_id != class_id:
             fail(f"negative U-ID does not resolve to same L4 class/L5 rule: {case_id}")
         c4, rule = l4_class_by_id[class_id], l5_rule_by_id[rule_id]
+        source_row = source_index_by_uid[unit["id"]]
+        l9_pointer = source_row["l9_pointer"]
+        l9_source_case = resolve_pointer(l9, l9_pointer)
+        given = l9_source_case.get("given", {})
+        if set(given) != {"evidence_limit"}:
+            fail(f"negative L9 source has unexpected case input fields requiring review: {case_id}")
+        given_sha256 = hashlib.sha256(json.dumps(given, ensure_ascii=False, sort_keys=True, separators=(",", ":")).encode()).hexdigest()
+        negative_given_hashes[given_sha256] += 1
+        l4_pointer = source_row.get("l4_class_pointer")
+        l5_pointer = source_row.get("l5_rule_pointer")
+        if resolve_pointer(l4, l4_pointer).get("class_id") != class_id:
+            fail(f"negative U-ID L4 class pointer does not resolve: {case_id}")
+        if resolve_pointer(l5, l5_pointer).get("id") != rule_id:
+            fail(f"negative U-ID L5 rule pointer does not resolve: {case_id}")
         if unit.get("target") != rule.get("function_ref"):
             fail(f"U-ID target does not resolve to L5 rule owner: {case_id}")
         if unit.get("expected") != c4.get("expected") or unit.get("expected_preserved") != c4.get("expected_preserved") or unit.get("condition") != c4.get("condition"):
             fail(f"U-ID expected result is not the corresponding L4 class projection: {case_id}")
-        row_audit.append({"uid": unit["id"], "case_id": case_id, "population_state": "negative", "class_id": class_id, "rule_id": rule_id, "expected_sha256": hashlib.sha256(json.dumps({"condition": unit.get("condition"), "expected": unit.get("expected"), "expected_preserved": unit.get("expected_preserved")}, ensure_ascii=False, sort_keys=True, separators=(",", ":")).encode()).hexdigest()})
+        row_audit.append({"uid": unit["id"], "case_id": case_id, "population_state": "negative", "class_id": class_id, "rule_id": rule_id, "counterexample": counterexample, "l9_pointer": l9_pointer, "l9_given_sha256": given_sha256, "l4_class_pointer": l4_pointer, "l5_rule_pointer": l5_pointer, "expected_sha256": hashlib.sha256(json.dumps({"condition": unit.get("condition"), "expected": unit.get("expected"), "expected_preserved": unit.get("expected_preserved")}, ensure_ascii=False, sort_keys=True, separators=(",", ":")).encode()).hexdigest()})
     if negative_count != 277 or len(positives) != 8:
         fail(f"case polarity counts differ: negative={negative_count} positive={len(positives)}")
     if len(set(counterexample_labels)) != 277:
@@ -273,6 +292,13 @@ def main() -> int:
         "counts": {"classes_per_layer": 32, "l8_u_ids": 285, "l9_source_case_ids": 285, "negative": negative_count, "positive_unclosed": len(positives)},
         "class_audit": class_audit,
         "row_audit": row_audit,
+        "negative_source_review": {
+            "summary": "Each negative L9 nested source pointer was resolved individually. Every `given` object contains only the shared evidence_limit notice; no concrete field values or paired conflicting values are present. Counterexamples therefore state the source ID's missing/conflict dimension plus the L4 class meaning, and conflict rows explicitly avoid inventing values.",
+            "negative_case_count": negative_count,
+            "distinct_given_hashes": len(negative_given_hashes),
+            "given_hash_counts": dict(negative_given_hashes),
+            "case_id_and_pointer_are_in_row_audit": True,
+        },
         "positive_source_review": {
             "summary": "No positive expected values were copied from L9 expected_proposal. The eight current L9 source cases provide only the shared evidence_limit input field; no case-specific input facts support independent expected/preserved values under the cited L3/L10/L4 contracts.",
             "contract_oracle": "HELIXSECURITY-L10-009-B01 is resolved at contract level; individual oracle_id is null for each U-ID.",

@@ -8,7 +8,7 @@
     "l3_functional": "e4eeb70cc303e44199c7d898281e91c22dba89b47666353b9c80a4c634e898b5",
     "l4": "00376c402930e1287e9e0e896804b1de8a20390f8abbea8377b70712f868b9da",
     "l5": "1aefb9b64fb52abc8cf6eec7d32312bfcb9a07359d7406c2ca4e9fa9717fa190",
-    "l8": "73f253a76363fe6f936c3f5707c8b3e43f46f75bec5483925fad96982740293c",
+    "l8": "a585b1c7ad53a6043caa9944aa41a804d026376d42a76e949c0c8f1a87061ba3",
     "l9": "af0f3e68683233ee1caa68b816ee7221b1fd4359442b179b4eaa0052068548e1",
     "l10_business": "c34b8f9a99f8f240558458dd63033acd0d756dfe61ad9cd3aac0e8e1c8193f42",
     "checker": "e751526d67cd8df11e5aac1c5a1a178dfbd0fecc3f2ed21f995b7dda11ea4d5d"
@@ -423,6 +423,11 @@
       "population_state": "negative",
       "class_id": "SEC009_B01_POLICY_BINDING_UNRESOLVED",
       "rule_id": "SEC009_B01_POLICY_BINDING_UNRESOLVED",
+      "counterexample": "security policy: event_id absent; same source event cannot be identified.",
+      "l9_pointer": "/cases/0/negative_cases/0",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/0",
+      "l5_rule_pointer": "/failure_rules/0",
       "expected_sha256": "9d7def6a3ce039a367d4589323db6607ab143063ebfb333c458d967dbb3e1620"
     },
     {
@@ -431,6 +436,11 @@
       "population_state": "negative",
       "class_id": "SEC009_B01_POLICY_BINDING_CONFLICT",
       "rule_id": "SEC009_B01_POLICY_BINDING_CONFLICT",
+      "counterexample": "security policy: event_id conflicts (actual values not supplied); policy identity conflicts with source event.",
+      "l9_pointer": "/cases/0/negative_cases/1",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/1",
+      "l5_rule_pointer": "/failure_rules/1",
       "expected_sha256": "f721c5b6d874bdbd2b5921d3715822b155e5686fe529070c559a3b11423a607e"
     },
     {
@@ -439,6 +449,11 @@
       "population_state": "negative",
       "class_id": "SEC009_B01_POLICY_BINDING_UNRESOLVED",
       "rule_id": "SEC009_B01_POLICY_BINDING_UNRESOLVED",
+      "counterexample": "security policy: revision absent; same source event cannot be identified.",
+      "l9_pointer": "/cases/0/negative_cases/2",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/0",
+      "l5_rule_pointer": "/failure_rules/0",
       "expected_sha256": "9d7def6a3ce039a367d4589323db6607ab143063ebfb333c458d967dbb3e1620"
     },
     {
@@ -447,6 +462,11 @@
       "population_state": "negative",
       "class_id": "SEC009_B01_POLICY_BINDING_CONFLICT",
       "rule_id": "SEC009_B01_POLICY_BINDING_CONFLICT",
+      "counterexample": "security policy: revision conflicts (actual values not supplied); policy identity conflicts with source event.",
+      "l9_pointer": "/cases/0/negative_cases/3",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/1",
+      "l5_rule_pointer": "/failure_rules/1",
       "expected_sha256": "f721c5b6d874bdbd2b5921d3715822b155e5686fe529070c559a3b11423a607e"
     },
     {
@@ -455,6 +475,11 @@
       "population_state": "negative",
       "class_id": "SEC009_B01_POLICY_BINDING_UNRESOLVED",
       "rule_id": "SEC009_B01_POLICY_BINDING_UNRESOLVED",
+      "counterexample": "security policy: scope absent; same source event cannot be identified.",
+      "l9_pointer": "/cases/0/negative_cases/4",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/0",
+      "l5_rule_pointer": "/failure_rules/0",
       "expected_sha256": "9d7def6a3ce039a367d4589323db6607ab143063ebfb333c458d967dbb3e1620"
     },
     {
@@ -463,6 +488,11 @@
       "population_state": "negative",
       "class_id": "SEC009_B01_POLICY_BINDING_CONFLICT",
       "rule_id": "SEC009_B01_POLICY_BINDING_CONFLICT",
+      "counterexample": "security policy: scope conflicts (actual values not supplied); policy identity conflicts with source event.",
+      "l9_pointer": "/cases/0/negative_cases/5",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/1",
+      "l5_rule_pointer": "/failure_rules/1",
       "expected_sha256": "f721c5b6d874bdbd2b5921d3715822b155e5686fe529070c559a3b11423a607e"
     },
     {
@@ -471,6 +501,11 @@
       "population_state": "negative",
       "class_id": "SEC009_B01_POLICY_BINDING_UNRESOLVED",
       "rule_id": "SEC009_B01_POLICY_BINDING_UNRESOLVED",
+      "counterexample": "security policy: operation absent; same source event cannot be identified.",
+      "l9_pointer": "/cases/0/negative_cases/6",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/0",
+      "l5_rule_pointer": "/failure_rules/0",
       "expected_sha256": "9d7def6a3ce039a367d4589323db6607ab143063ebfb333c458d967dbb3e1620"
     },
     {
@@ -479,6 +514,11 @@
       "population_state": "negative",
       "class_id": "SEC009_B01_POLICY_BINDING_CONFLICT",
       "rule_id": "SEC009_B01_POLICY_BINDING_CONFLICT",
+      "counterexample": "security policy: operation conflicts (actual values not supplied); policy identity conflicts with source event.",
+      "l9_pointer": "/cases/0/negative_cases/7",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/1",
+      "l5_rule_pointer": "/failure_rules/1",
       "expected_sha256": "f721c5b6d874bdbd2b5921d3715822b155e5686fe529070c559a3b11423a607e"
     },
     {
@@ -487,6 +527,11 @@
       "population_state": "negative",
       "class_id": "SEC009_B01_POLICY_BINDING_UNRESOLVED",
       "rule_id": "SEC009_B01_POLICY_BINDING_UNRESOLVED",
+      "counterexample": "security policy: project absent; same source event cannot be identified.",
+      "l9_pointer": "/cases/0/negative_cases/8",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/0",
+      "l5_rule_pointer": "/failure_rules/0",
       "expected_sha256": "9d7def6a3ce039a367d4589323db6607ab143063ebfb333c458d967dbb3e1620"
     },
     {
@@ -495,6 +540,11 @@
       "population_state": "negative",
       "class_id": "SEC009_B01_POLICY_BINDING_CONFLICT",
       "rule_id": "SEC009_B01_POLICY_BINDING_CONFLICT",
+      "counterexample": "security policy: project conflicts (actual values not supplied); policy identity conflicts with source event.",
+      "l9_pointer": "/cases/0/negative_cases/9",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/1",
+      "l5_rule_pointer": "/failure_rules/1",
       "expected_sha256": "f721c5b6d874bdbd2b5921d3715822b155e5686fe529070c559a3b11423a607e"
     },
     {
@@ -503,6 +553,11 @@
       "population_state": "negative",
       "class_id": "SEC009_B01_RECIPIENT_SET_CONFLICT",
       "rule_id": "SEC009_B01_RECIPIENT_SET_CONFLICT",
+      "counterexample": "security policy.selected_recipients: expected recipient omitted; selected recipients omit or add an expected recipient.",
+      "l9_pointer": "/cases/0/negative_cases/10",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/3",
+      "l5_rule_pointer": "/failure_rules/3",
       "expected_sha256": "1d44177a3f04f01a8577164d13f13081f759acb852faa954c05e987e262bccf5"
     },
     {
@@ -511,6 +566,11 @@
       "population_state": "negative",
       "class_id": "SEC009_B01_RECIPIENT_SET_CONFLICT",
       "rule_id": "SEC009_B01_RECIPIENT_SET_CONFLICT",
+      "counterexample": "security policy.selected_recipients: unexpected recipient included; selected recipients omit or add an expected recipient.",
+      "l9_pointer": "/cases/0/negative_cases/11",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/3",
+      "l5_rule_pointer": "/failure_rules/3",
       "expected_sha256": "1d44177a3f04f01a8577164d13f13081f759acb852faa954c05e987e262bccf5"
     },
     {
@@ -519,6 +579,11 @@
       "population_state": "negative",
       "class_id": "SEC009_B01_RECIPIENT_SET_UNRESOLVED",
       "rule_id": "SEC009_B01_RECIPIENT_SET_UNRESOLVED",
+      "counterexample": "independent expected recipient set: unresolved; expected recipient set is unresolved.",
+      "l9_pointer": "/cases/0/negative_cases/12",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/2",
+      "l5_rule_pointer": "/failure_rules/2",
       "expected_sha256": "be30b9b106ec00f97e5db2cc0c0eaac96d3e260e4877e78ad42f424669172272"
     },
     {
@@ -527,6 +592,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_INSTRUCTION_UNRESOLVED",
       "rule_id": "SEC009_F01_INSTRUCTION_UNRESOLVED",
+      "counterexample": "recipient os_assignment: instruction object absent; selected-recipient instruction is absent.",
+      "l9_pointer": "/cases/1/negative_cases/0",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/4",
+      "l5_rule_pointer": "/failure_rules/4",
       "expected_sha256": "f2a7ed350d75dabefbbe358b6f257c459f159fd9015739d63656c4309d7b0340"
     },
     {
@@ -535,6 +605,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
+      "counterexample": "recipient os_assignment.instructions: event_id absent; instruction identity/source binding is incomplete.",
+      "l9_pointer": "/cases/1/negative_cases/1",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/5",
+      "l5_rule_pointer": "/failure_rules/5",
       "expected_sha256": "bf7587cc04110bcbb55ef9bbb115f4bcd04ae342b11e5e996fbbcabf79243e4a"
     },
     {
@@ -543,6 +618,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
       "rule_id": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
+      "counterexample": "recipient os_assignment.instructions: event_id conflicts (actual values not supplied); instruction identity/source conflicts with reference.",
+      "l9_pointer": "/cases/1/negative_cases/2",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/6",
+      "l5_rule_pointer": "/failure_rules/6",
       "expected_sha256": "994e2456613e0ad27f921f99a67be2a5666c1d9fab1c78934ac6380fb560fc07"
     },
     {
@@ -551,6 +631,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
+      "counterexample": "recipient os_assignment.instructions: revision absent; instruction identity/source binding is incomplete.",
+      "l9_pointer": "/cases/1/negative_cases/3",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/5",
+      "l5_rule_pointer": "/failure_rules/5",
       "expected_sha256": "bf7587cc04110bcbb55ef9bbb115f4bcd04ae342b11e5e996fbbcabf79243e4a"
     },
     {
@@ -559,6 +644,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
       "rule_id": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
+      "counterexample": "recipient os_assignment.instructions: revision conflicts (actual values not supplied); instruction identity/source conflicts with reference.",
+      "l9_pointer": "/cases/1/negative_cases/4",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/6",
+      "l5_rule_pointer": "/failure_rules/6",
       "expected_sha256": "994e2456613e0ad27f921f99a67be2a5666c1d9fab1c78934ac6380fb560fc07"
     },
     {
@@ -567,6 +657,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
+      "counterexample": "recipient os_assignment.instructions: scope absent; instruction identity/source binding is incomplete.",
+      "l9_pointer": "/cases/1/negative_cases/5",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/5",
+      "l5_rule_pointer": "/failure_rules/5",
       "expected_sha256": "bf7587cc04110bcbb55ef9bbb115f4bcd04ae342b11e5e996fbbcabf79243e4a"
     },
     {
@@ -575,6 +670,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
       "rule_id": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
+      "counterexample": "recipient os_assignment.instructions: scope conflicts (actual values not supplied); instruction identity/source conflicts with reference.",
+      "l9_pointer": "/cases/1/negative_cases/6",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/6",
+      "l5_rule_pointer": "/failure_rules/6",
       "expected_sha256": "994e2456613e0ad27f921f99a67be2a5666c1d9fab1c78934ac6380fb560fc07"
     },
     {
@@ -583,6 +683,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
+      "counterexample": "recipient os_assignment.instructions: operation absent; instruction identity/source binding is incomplete.",
+      "l9_pointer": "/cases/1/negative_cases/7",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/5",
+      "l5_rule_pointer": "/failure_rules/5",
       "expected_sha256": "bf7587cc04110bcbb55ef9bbb115f4bcd04ae342b11e5e996fbbcabf79243e4a"
     },
     {
@@ -591,6 +696,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
       "rule_id": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
+      "counterexample": "recipient os_assignment.instructions: operation conflicts (actual values not supplied); instruction identity/source conflicts with reference.",
+      "l9_pointer": "/cases/1/negative_cases/8",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/6",
+      "l5_rule_pointer": "/failure_rules/6",
       "expected_sha256": "994e2456613e0ad27f921f99a67be2a5666c1d9fab1c78934ac6380fb560fc07"
     },
     {
@@ -599,6 +709,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
+      "counterexample": "recipient os_assignment.instructions: project absent; instruction identity/source binding is incomplete.",
+      "l9_pointer": "/cases/1/negative_cases/9",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/5",
+      "l5_rule_pointer": "/failure_rules/5",
       "expected_sha256": "bf7587cc04110bcbb55ef9bbb115f4bcd04ae342b11e5e996fbbcabf79243e4a"
     },
     {
@@ -607,6 +722,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
       "rule_id": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
+      "counterexample": "recipient os_assignment.instructions: project conflicts (actual values not supplied); instruction identity/source conflicts with reference.",
+      "l9_pointer": "/cases/1/negative_cases/10",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/6",
+      "l5_rule_pointer": "/failure_rules/6",
       "expected_sha256": "994e2456613e0ad27f921f99a67be2a5666c1d9fab1c78934ac6380fb560fc07"
     },
     {
@@ -615,6 +735,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
+      "counterexample": "OS assignment instruction.source_ref: absent; instruction identity/source binding is incomplete.",
+      "l9_pointer": "/cases/1/negative_cases/11",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/5",
+      "l5_rule_pointer": "/failure_rules/5",
       "expected_sha256": "bf7587cc04110bcbb55ef9bbb115f4bcd04ae342b11e5e996fbbcabf79243e4a"
     },
     {
@@ -623,6 +748,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
       "rule_id": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
+      "counterexample": "OS assignment instruction.source_ref conflicts with binding (concrete values not supplied); instruction identity/source conflicts with reference.",
+      "l9_pointer": "/cases/1/negative_cases/12",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/6",
+      "l5_rule_pointer": "/failure_rules/6",
       "expected_sha256": "994e2456613e0ad27f921f99a67be2a5666c1d9fab1c78934ac6380fb560fc07"
     },
     {
@@ -631,6 +761,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_RECIPIENT_REPORT_UNRESOLVED",
       "rule_id": "SEC009_F01_RECIPIENT_REPORT_UNRESOLVED",
+      "counterexample": "recipient os_assignment: report object absent; selected-recipient report is absent.",
+      "l9_pointer": "/cases/1/negative_cases/13",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/9",
+      "l5_rule_pointer": "/failure_rules/9",
       "expected_sha256": "573278f82e29b4794af495dddebcd89f56b49684d67e6d5cbc33b36c6b020db9"
     },
     {
@@ -639,6 +774,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
+      "counterexample": "recipient os_assignment.reports: event_id absent; report identity/source binding is incomplete.",
+      "l9_pointer": "/cases/1/negative_cases/14",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/10",
+      "l5_rule_pointer": "/failure_rules/10",
       "expected_sha256": "1d1c7006f49dd69e93880b71488dbe3f8f7a1e99a2e5e1455ed946153a664882"
     },
     {
@@ -647,6 +787,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_REPORT_BINDING_CONFLICT",
       "rule_id": "SEC009_F01_REPORT_BINDING_CONFLICT",
+      "counterexample": "recipient os_assignment.reports: event_id conflicts (actual values not supplied); report identity/source conflicts with reference.",
+      "l9_pointer": "/cases/1/negative_cases/15",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/11",
+      "l5_rule_pointer": "/failure_rules/11",
       "expected_sha256": "cab97d8e6254546a98ebd289f6803be0e755fbc6782a983cb0bf52b243a5f665"
     },
     {
@@ -655,6 +800,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
+      "counterexample": "recipient os_assignment.reports: revision absent; report identity/source binding is incomplete.",
+      "l9_pointer": "/cases/1/negative_cases/16",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/10",
+      "l5_rule_pointer": "/failure_rules/10",
       "expected_sha256": "1d1c7006f49dd69e93880b71488dbe3f8f7a1e99a2e5e1455ed946153a664882"
     },
     {
@@ -663,6 +813,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_REPORT_BINDING_CONFLICT",
       "rule_id": "SEC009_F01_REPORT_BINDING_CONFLICT",
+      "counterexample": "recipient os_assignment.reports: revision conflicts (actual values not supplied); report identity/source conflicts with reference.",
+      "l9_pointer": "/cases/1/negative_cases/17",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/11",
+      "l5_rule_pointer": "/failure_rules/11",
       "expected_sha256": "cab97d8e6254546a98ebd289f6803be0e755fbc6782a983cb0bf52b243a5f665"
     },
     {
@@ -671,6 +826,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
+      "counterexample": "recipient os_assignment.reports: scope absent; report identity/source binding is incomplete.",
+      "l9_pointer": "/cases/1/negative_cases/18",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/10",
+      "l5_rule_pointer": "/failure_rules/10",
       "expected_sha256": "1d1c7006f49dd69e93880b71488dbe3f8f7a1e99a2e5e1455ed946153a664882"
     },
     {
@@ -679,6 +839,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_REPORT_BINDING_CONFLICT",
       "rule_id": "SEC009_F01_REPORT_BINDING_CONFLICT",
+      "counterexample": "recipient os_assignment.reports: scope conflicts (actual values not supplied); report identity/source conflicts with reference.",
+      "l9_pointer": "/cases/1/negative_cases/19",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/11",
+      "l5_rule_pointer": "/failure_rules/11",
       "expected_sha256": "cab97d8e6254546a98ebd289f6803be0e755fbc6782a983cb0bf52b243a5f665"
     },
     {
@@ -687,6 +852,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
+      "counterexample": "recipient os_assignment.reports: operation absent; report identity/source binding is incomplete.",
+      "l9_pointer": "/cases/1/negative_cases/20",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/10",
+      "l5_rule_pointer": "/failure_rules/10",
       "expected_sha256": "1d1c7006f49dd69e93880b71488dbe3f8f7a1e99a2e5e1455ed946153a664882"
     },
     {
@@ -695,6 +865,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_REPORT_BINDING_CONFLICT",
       "rule_id": "SEC009_F01_REPORT_BINDING_CONFLICT",
+      "counterexample": "recipient os_assignment.reports: operation conflicts (actual values not supplied); report identity/source conflicts with reference.",
+      "l9_pointer": "/cases/1/negative_cases/21",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/11",
+      "l5_rule_pointer": "/failure_rules/11",
       "expected_sha256": "cab97d8e6254546a98ebd289f6803be0e755fbc6782a983cb0bf52b243a5f665"
     },
     {
@@ -703,6 +878,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
+      "counterexample": "recipient os_assignment.reports: project absent; report identity/source binding is incomplete.",
+      "l9_pointer": "/cases/1/negative_cases/22",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/10",
+      "l5_rule_pointer": "/failure_rules/10",
       "expected_sha256": "1d1c7006f49dd69e93880b71488dbe3f8f7a1e99a2e5e1455ed946153a664882"
     },
     {
@@ -711,6 +891,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_REPORT_BINDING_CONFLICT",
       "rule_id": "SEC009_F01_REPORT_BINDING_CONFLICT",
+      "counterexample": "recipient os_assignment.reports: project conflicts (actual values not supplied); report identity/source conflicts with reference.",
+      "l9_pointer": "/cases/1/negative_cases/23",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/11",
+      "l5_rule_pointer": "/failure_rules/11",
       "expected_sha256": "cab97d8e6254546a98ebd289f6803be0e755fbc6782a983cb0bf52b243a5f665"
     },
     {
@@ -719,6 +904,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
+      "counterexample": "OS assignment report.source_ref: absent; report identity/source binding is incomplete.",
+      "l9_pointer": "/cases/1/negative_cases/24",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/10",
+      "l5_rule_pointer": "/failure_rules/10",
       "expected_sha256": "1d1c7006f49dd69e93880b71488dbe3f8f7a1e99a2e5e1455ed946153a664882"
     },
     {
@@ -727,6 +917,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_REPORT_BINDING_CONFLICT",
       "rule_id": "SEC009_F01_REPORT_BINDING_CONFLICT",
+      "counterexample": "OS assignment report.source_ref conflicts with binding (concrete values not supplied); report identity/source conflicts with reference.",
+      "l9_pointer": "/cases/1/negative_cases/25",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/11",
+      "l5_rule_pointer": "/failure_rules/11",
       "expected_sha256": "cab97d8e6254546a98ebd289f6803be0e755fbc6782a983cb0bf52b243a5f665"
     },
     {
@@ -735,6 +930,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
+      "counterexample": "recipient os_assignment: expected policy refs absent; instruction identity/source binding is incomplete.",
+      "l9_pointer": "/cases/1/negative_cases/26",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/5",
+      "l5_rule_pointer": "/failure_rules/5",
       "expected_sha256": "bf7587cc04110bcbb55ef9bbb115f4bcd04ae342b11e5e996fbbcabf79243e4a"
     },
     {
@@ -743,6 +943,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
+      "counterexample": "recipient os_assignment: expected report refs absent; report identity/source binding is incomplete.",
+      "l9_pointer": "/cases/1/negative_cases/27",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/10",
+      "l5_rule_pointer": "/failure_rules/10",
       "expected_sha256": "1d1c7006f49dd69e93880b71488dbe3f8f7a1e99a2e5e1455ed946153a664882"
     },
     {
@@ -751,6 +956,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_RECIPIENT_NOT_DELIVERED",
       "rule_id": "SEC009_F01_RECIPIENT_NOT_DELIVERED",
+      "counterexample": "recipient os_assignment: receipt not delivered; instruction receipt is not delivered.",
+      "l9_pointer": "/cases/1/negative_cases/28",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/13",
+      "l5_rule_pointer": "/failure_rules/13",
       "expected_sha256": "104229f62a5aad1c5fbe881aae39b685ccfc3aeb3a3b56dd54e1ed665fad4e47"
     },
     {
@@ -759,6 +969,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_RECIPIENT_RECEIPT_UNRESOLVED",
       "rule_id": "SEC009_F01_RECIPIENT_RECEIPT_UNRESOLVED",
+      "counterexample": "recipient os_assignment: receipt unknown/unobserved; instruction receipt is unconfirmed.",
+      "l9_pointer": "/cases/1/negative_cases/29",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/12",
+      "l5_rule_pointer": "/failure_rules/12",
       "expected_sha256": "006b4a549344c4b7a399ca8b894ed8582091b8389bf91c45a84c4e8748fd3eb1"
     },
     {
@@ -767,6 +982,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_RECIPIENT_NOT_APPLIED",
       "rule_id": "SEC009_F01_RECIPIENT_NOT_APPLIED",
+      "counterexample": "OS assignment new-assignment stop: was not applied; required stop action is unapplied.",
+      "l9_pointer": "/cases/1/negative_cases/30",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/15",
+      "l5_rule_pointer": "/failure_rules/15",
       "expected_sha256": "60a1b0d2f6c37c4eb3437506ae91b7762675eca1c2b3e59a385756ca2036c909"
     },
     {
@@ -775,6 +995,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_RECIPIENT_APPLICATION_UNRESOLVED",
       "rule_id": "SEC009_F01_RECIPIENT_APPLICATION_UNRESOLVED",
+      "counterexample": "OS assignment new-assignment stop: was not observed; stop application is unobserved.",
+      "l9_pointer": "/cases/1/negative_cases/31",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/14",
+      "l5_rule_pointer": "/failure_rules/14",
       "expected_sha256": "500c2fa35b2e8ee8a3d662d1a79b7d75b7e4d868a558ae09361a7e54b124cab8"
     },
     {
@@ -783,6 +1008,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_RECIPIENT_APPLICATION_UNRESOLVED",
       "rule_id": "SEC009_F01_RECIPIENT_APPLICATION_UNRESOLVED",
+      "counterexample": "recipient os_assignment.stop_new_assignment: application/state result absent; stop application is unobserved.",
+      "l9_pointer": "/cases/1/negative_cases/32",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/14",
+      "l5_rule_pointer": "/failure_rules/14",
       "expected_sha256": "500c2fa35b2e8ee8a3d662d1a79b7d75b7e4d868a558ae09361a7e54b124cab8"
     },
     {
@@ -791,6 +1021,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_RECIPIENT_CONTINUES_AFTER_STOP",
       "rule_id": "SEC009_F01_RECIPIENT_CONTINUES_AFTER_STOP",
+      "counterexample": "recipient os_assignment.new_assignment_continues: continuation/exposure flag true; work continues or remains exposed after stop.",
+      "l9_pointer": "/cases/1/negative_cases/33",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/17",
+      "l5_rule_pointer": "/failure_rules/17",
       "expected_sha256": "faf07093f88dea961230edfb8cd5f0a9ee5e110c418ce65059a6ac4ca31aa2de"
     },
     {
@@ -799,6 +1034,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_RECIPIENT_POST_STATE_UNRESOLVED",
       "rule_id": "SEC009_F01_RECIPIENT_POST_STATE_UNRESOLVED",
+      "counterexample": "recipient os_assignment.new_assignment_continues: application/state result absent; post-stop state is unresolved.",
+      "l9_pointer": "/cases/1/negative_cases/34",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/16",
+      "l5_rule_pointer": "/failure_rules/16",
       "expected_sha256": "4ae598b8f415ffc5f187ca705c893ff88dc404487f3f03b48e119e01c581cc8d"
     },
     {
@@ -807,6 +1047,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_RECIPIENT_ACTIONS_CONFLICT",
       "rule_id": "SEC009_F01_RECIPIENT_ACTIONS_CONFLICT",
+      "counterexample": "recipient os_assignment: required action list empty; recipient actions differ from required set.",
+      "l9_pointer": "/cases/1/negative_cases/35",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/8",
+      "l5_rule_pointer": "/failure_rules/8",
       "expected_sha256": "c05f59da80a0a25e6d6e0277d92110729ddfc2f0dd5ad9fdd62f9e231a8287c3"
     },
     {
@@ -815,6 +1060,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_INSTRUCTION_UNRESOLVED",
       "rule_id": "SEC009_F01_INSTRUCTION_UNRESOLVED",
+      "counterexample": "recipient worker_execution: instruction object absent; selected-recipient instruction is absent.",
+      "l9_pointer": "/cases/1/negative_cases/36",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/4",
+      "l5_rule_pointer": "/failure_rules/4",
       "expected_sha256": "f2a7ed350d75dabefbbe358b6f257c459f159fd9015739d63656c4309d7b0340"
     },
     {
@@ -823,6 +1073,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
+      "counterexample": "recipient worker_execution.instructions: event_id absent; instruction identity/source binding is incomplete.",
+      "l9_pointer": "/cases/1/negative_cases/37",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/5",
+      "l5_rule_pointer": "/failure_rules/5",
       "expected_sha256": "bf7587cc04110bcbb55ef9bbb115f4bcd04ae342b11e5e996fbbcabf79243e4a"
     },
     {
@@ -831,6 +1086,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
       "rule_id": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
+      "counterexample": "recipient worker_execution.instructions: event_id conflicts (actual values not supplied); instruction identity/source conflicts with reference.",
+      "l9_pointer": "/cases/1/negative_cases/38",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/6",
+      "l5_rule_pointer": "/failure_rules/6",
       "expected_sha256": "994e2456613e0ad27f921f99a67be2a5666c1d9fab1c78934ac6380fb560fc07"
     },
     {
@@ -839,6 +1099,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
+      "counterexample": "recipient worker_execution.instructions: revision absent; instruction identity/source binding is incomplete.",
+      "l9_pointer": "/cases/1/negative_cases/39",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/5",
+      "l5_rule_pointer": "/failure_rules/5",
       "expected_sha256": "bf7587cc04110bcbb55ef9bbb115f4bcd04ae342b11e5e996fbbcabf79243e4a"
     },
     {
@@ -847,6 +1112,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
       "rule_id": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
+      "counterexample": "recipient worker_execution.instructions: revision conflicts (actual values not supplied); instruction identity/source conflicts with reference.",
+      "l9_pointer": "/cases/1/negative_cases/40",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/6",
+      "l5_rule_pointer": "/failure_rules/6",
       "expected_sha256": "994e2456613e0ad27f921f99a67be2a5666c1d9fab1c78934ac6380fb560fc07"
     },
     {
@@ -855,6 +1125,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
+      "counterexample": "recipient worker_execution.instructions: scope absent; instruction identity/source binding is incomplete.",
+      "l9_pointer": "/cases/1/negative_cases/41",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/5",
+      "l5_rule_pointer": "/failure_rules/5",
       "expected_sha256": "bf7587cc04110bcbb55ef9bbb115f4bcd04ae342b11e5e996fbbcabf79243e4a"
     },
     {
@@ -863,6 +1138,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
       "rule_id": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
+      "counterexample": "recipient worker_execution.instructions: scope conflicts (actual values not supplied); instruction identity/source conflicts with reference.",
+      "l9_pointer": "/cases/1/negative_cases/42",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/6",
+      "l5_rule_pointer": "/failure_rules/6",
       "expected_sha256": "994e2456613e0ad27f921f99a67be2a5666c1d9fab1c78934ac6380fb560fc07"
     },
     {
@@ -871,6 +1151,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
+      "counterexample": "recipient worker_execution.instructions: operation absent; instruction identity/source binding is incomplete.",
+      "l9_pointer": "/cases/1/negative_cases/43",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/5",
+      "l5_rule_pointer": "/failure_rules/5",
       "expected_sha256": "bf7587cc04110bcbb55ef9bbb115f4bcd04ae342b11e5e996fbbcabf79243e4a"
     },
     {
@@ -879,6 +1164,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
       "rule_id": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
+      "counterexample": "recipient worker_execution.instructions: operation conflicts (actual values not supplied); instruction identity/source conflicts with reference.",
+      "l9_pointer": "/cases/1/negative_cases/44",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/6",
+      "l5_rule_pointer": "/failure_rules/6",
       "expected_sha256": "994e2456613e0ad27f921f99a67be2a5666c1d9fab1c78934ac6380fb560fc07"
     },
     {
@@ -887,6 +1177,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
+      "counterexample": "recipient worker_execution.instructions: project absent; instruction identity/source binding is incomplete.",
+      "l9_pointer": "/cases/1/negative_cases/45",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/5",
+      "l5_rule_pointer": "/failure_rules/5",
       "expected_sha256": "bf7587cc04110bcbb55ef9bbb115f4bcd04ae342b11e5e996fbbcabf79243e4a"
     },
     {
@@ -895,6 +1190,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
       "rule_id": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
+      "counterexample": "recipient worker_execution.instructions: project conflicts (actual values not supplied); instruction identity/source conflicts with reference.",
+      "l9_pointer": "/cases/1/negative_cases/46",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/6",
+      "l5_rule_pointer": "/failure_rules/6",
       "expected_sha256": "994e2456613e0ad27f921f99a67be2a5666c1d9fab1c78934ac6380fb560fc07"
     },
     {
@@ -903,6 +1203,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
+      "counterexample": "recipient worker_execution.instructions: worker absent; instruction identity/source binding is incomplete.",
+      "l9_pointer": "/cases/1/negative_cases/47",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/5",
+      "l5_rule_pointer": "/failure_rules/5",
       "expected_sha256": "bf7587cc04110bcbb55ef9bbb115f4bcd04ae342b11e5e996fbbcabf79243e4a"
     },
     {
@@ -911,6 +1216,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
       "rule_id": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
+      "counterexample": "recipient worker_execution.instructions: worker conflicts (actual values not supplied); instruction identity/source conflicts with reference.",
+      "l9_pointer": "/cases/1/negative_cases/48",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/6",
+      "l5_rule_pointer": "/failure_rules/6",
       "expected_sha256": "994e2456613e0ad27f921f99a67be2a5666c1d9fab1c78934ac6380fb560fc07"
     },
     {
@@ -919,6 +1229,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
+      "counterexample": "recipient worker_execution.instructions: environment absent; instruction identity/source binding is incomplete.",
+      "l9_pointer": "/cases/1/negative_cases/49",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/5",
+      "l5_rule_pointer": "/failure_rules/5",
       "expected_sha256": "bf7587cc04110bcbb55ef9bbb115f4bcd04ae342b11e5e996fbbcabf79243e4a"
     },
     {
@@ -927,6 +1242,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
       "rule_id": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
+      "counterexample": "recipient worker_execution.instructions: environment conflicts (actual values not supplied); instruction identity/source conflicts with reference.",
+      "l9_pointer": "/cases/1/negative_cases/50",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/6",
+      "l5_rule_pointer": "/failure_rules/6",
       "expected_sha256": "994e2456613e0ad27f921f99a67be2a5666c1d9fab1c78934ac6380fb560fc07"
     },
     {
@@ -935,6 +1255,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
+      "counterexample": "worker execution instruction.source_ref: absent; instruction identity/source binding is incomplete.",
+      "l9_pointer": "/cases/1/negative_cases/51",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/5",
+      "l5_rule_pointer": "/failure_rules/5",
       "expected_sha256": "bf7587cc04110bcbb55ef9bbb115f4bcd04ae342b11e5e996fbbcabf79243e4a"
     },
     {
@@ -943,6 +1268,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
       "rule_id": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
+      "counterexample": "worker execution instruction.source_ref conflicts with binding (concrete values not supplied); instruction identity/source conflicts with reference.",
+      "l9_pointer": "/cases/1/negative_cases/52",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/6",
+      "l5_rule_pointer": "/failure_rules/6",
       "expected_sha256": "994e2456613e0ad27f921f99a67be2a5666c1d9fab1c78934ac6380fb560fc07"
     },
     {
@@ -951,6 +1281,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_RECIPIENT_REPORT_UNRESOLVED",
       "rule_id": "SEC009_F01_RECIPIENT_REPORT_UNRESOLVED",
+      "counterexample": "recipient worker_execution: report object absent; selected-recipient report is absent.",
+      "l9_pointer": "/cases/1/negative_cases/53",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/9",
+      "l5_rule_pointer": "/failure_rules/9",
       "expected_sha256": "573278f82e29b4794af495dddebcd89f56b49684d67e6d5cbc33b36c6b020db9"
     },
     {
@@ -959,6 +1294,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
+      "counterexample": "recipient worker_execution.reports: event_id absent; report identity/source binding is incomplete.",
+      "l9_pointer": "/cases/1/negative_cases/54",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/10",
+      "l5_rule_pointer": "/failure_rules/10",
       "expected_sha256": "1d1c7006f49dd69e93880b71488dbe3f8f7a1e99a2e5e1455ed946153a664882"
     },
     {
@@ -967,6 +1307,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_REPORT_BINDING_CONFLICT",
       "rule_id": "SEC009_F01_REPORT_BINDING_CONFLICT",
+      "counterexample": "recipient worker_execution.reports: event_id conflicts (actual values not supplied); report identity/source conflicts with reference.",
+      "l9_pointer": "/cases/1/negative_cases/55",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/11",
+      "l5_rule_pointer": "/failure_rules/11",
       "expected_sha256": "cab97d8e6254546a98ebd289f6803be0e755fbc6782a983cb0bf52b243a5f665"
     },
     {
@@ -975,6 +1320,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
+      "counterexample": "recipient worker_execution.reports: revision absent; report identity/source binding is incomplete.",
+      "l9_pointer": "/cases/1/negative_cases/56",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/10",
+      "l5_rule_pointer": "/failure_rules/10",
       "expected_sha256": "1d1c7006f49dd69e93880b71488dbe3f8f7a1e99a2e5e1455ed946153a664882"
     },
     {
@@ -983,6 +1333,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_REPORT_BINDING_CONFLICT",
       "rule_id": "SEC009_F01_REPORT_BINDING_CONFLICT",
+      "counterexample": "recipient worker_execution.reports: revision conflicts (actual values not supplied); report identity/source conflicts with reference.",
+      "l9_pointer": "/cases/1/negative_cases/57",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/11",
+      "l5_rule_pointer": "/failure_rules/11",
       "expected_sha256": "cab97d8e6254546a98ebd289f6803be0e755fbc6782a983cb0bf52b243a5f665"
     },
     {
@@ -991,6 +1346,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
+      "counterexample": "recipient worker_execution.reports: scope absent; report identity/source binding is incomplete.",
+      "l9_pointer": "/cases/1/negative_cases/58",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/10",
+      "l5_rule_pointer": "/failure_rules/10",
       "expected_sha256": "1d1c7006f49dd69e93880b71488dbe3f8f7a1e99a2e5e1455ed946153a664882"
     },
     {
@@ -999,6 +1359,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_REPORT_BINDING_CONFLICT",
       "rule_id": "SEC009_F01_REPORT_BINDING_CONFLICT",
+      "counterexample": "recipient worker_execution.reports: scope conflicts (actual values not supplied); report identity/source conflicts with reference.",
+      "l9_pointer": "/cases/1/negative_cases/59",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/11",
+      "l5_rule_pointer": "/failure_rules/11",
       "expected_sha256": "cab97d8e6254546a98ebd289f6803be0e755fbc6782a983cb0bf52b243a5f665"
     },
     {
@@ -1007,6 +1372,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
+      "counterexample": "recipient worker_execution.reports: operation absent; report identity/source binding is incomplete.",
+      "l9_pointer": "/cases/1/negative_cases/60",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/10",
+      "l5_rule_pointer": "/failure_rules/10",
       "expected_sha256": "1d1c7006f49dd69e93880b71488dbe3f8f7a1e99a2e5e1455ed946153a664882"
     },
     {
@@ -1015,6 +1385,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_REPORT_BINDING_CONFLICT",
       "rule_id": "SEC009_F01_REPORT_BINDING_CONFLICT",
+      "counterexample": "recipient worker_execution.reports: operation conflicts (actual values not supplied); report identity/source conflicts with reference.",
+      "l9_pointer": "/cases/1/negative_cases/61",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/11",
+      "l5_rule_pointer": "/failure_rules/11",
       "expected_sha256": "cab97d8e6254546a98ebd289f6803be0e755fbc6782a983cb0bf52b243a5f665"
     },
     {
@@ -1023,6 +1398,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
+      "counterexample": "recipient worker_execution.reports: project absent; report identity/source binding is incomplete.",
+      "l9_pointer": "/cases/1/negative_cases/62",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/10",
+      "l5_rule_pointer": "/failure_rules/10",
       "expected_sha256": "1d1c7006f49dd69e93880b71488dbe3f8f7a1e99a2e5e1455ed946153a664882"
     },
     {
@@ -1031,6 +1411,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_REPORT_BINDING_CONFLICT",
       "rule_id": "SEC009_F01_REPORT_BINDING_CONFLICT",
+      "counterexample": "recipient worker_execution.reports: project conflicts (actual values not supplied); report identity/source conflicts with reference.",
+      "l9_pointer": "/cases/1/negative_cases/63",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/11",
+      "l5_rule_pointer": "/failure_rules/11",
       "expected_sha256": "cab97d8e6254546a98ebd289f6803be0e755fbc6782a983cb0bf52b243a5f665"
     },
     {
@@ -1039,6 +1424,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
+      "counterexample": "recipient worker_execution.reports: worker absent; report identity/source binding is incomplete.",
+      "l9_pointer": "/cases/1/negative_cases/64",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/10",
+      "l5_rule_pointer": "/failure_rules/10",
       "expected_sha256": "1d1c7006f49dd69e93880b71488dbe3f8f7a1e99a2e5e1455ed946153a664882"
     },
     {
@@ -1047,6 +1437,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_REPORT_BINDING_CONFLICT",
       "rule_id": "SEC009_F01_REPORT_BINDING_CONFLICT",
+      "counterexample": "recipient worker_execution.reports: worker conflicts (actual values not supplied); report identity/source conflicts with reference.",
+      "l9_pointer": "/cases/1/negative_cases/65",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/11",
+      "l5_rule_pointer": "/failure_rules/11",
       "expected_sha256": "cab97d8e6254546a98ebd289f6803be0e755fbc6782a983cb0bf52b243a5f665"
     },
     {
@@ -1055,6 +1450,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
+      "counterexample": "recipient worker_execution.reports: environment absent; report identity/source binding is incomplete.",
+      "l9_pointer": "/cases/1/negative_cases/66",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/10",
+      "l5_rule_pointer": "/failure_rules/10",
       "expected_sha256": "1d1c7006f49dd69e93880b71488dbe3f8f7a1e99a2e5e1455ed946153a664882"
     },
     {
@@ -1063,6 +1463,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_REPORT_BINDING_CONFLICT",
       "rule_id": "SEC009_F01_REPORT_BINDING_CONFLICT",
+      "counterexample": "recipient worker_execution.reports: environment conflicts (actual values not supplied); report identity/source conflicts with reference.",
+      "l9_pointer": "/cases/1/negative_cases/67",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/11",
+      "l5_rule_pointer": "/failure_rules/11",
       "expected_sha256": "cab97d8e6254546a98ebd289f6803be0e755fbc6782a983cb0bf52b243a5f665"
     },
     {
@@ -1071,6 +1476,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
+      "counterexample": "worker execution report.source_ref: absent; report identity/source binding is incomplete.",
+      "l9_pointer": "/cases/1/negative_cases/68",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/10",
+      "l5_rule_pointer": "/failure_rules/10",
       "expected_sha256": "1d1c7006f49dd69e93880b71488dbe3f8f7a1e99a2e5e1455ed946153a664882"
     },
     {
@@ -1079,6 +1489,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_REPORT_BINDING_CONFLICT",
       "rule_id": "SEC009_F01_REPORT_BINDING_CONFLICT",
+      "counterexample": "worker execution report.source_ref conflicts with binding (concrete values not supplied); report identity/source conflicts with reference.",
+      "l9_pointer": "/cases/1/negative_cases/69",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/11",
+      "l5_rule_pointer": "/failure_rules/11",
       "expected_sha256": "cab97d8e6254546a98ebd289f6803be0e755fbc6782a983cb0bf52b243a5f665"
     },
     {
@@ -1087,6 +1502,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
+      "counterexample": "recipient worker_execution: expected policy refs absent; instruction identity/source binding is incomplete.",
+      "l9_pointer": "/cases/1/negative_cases/70",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/5",
+      "l5_rule_pointer": "/failure_rules/5",
       "expected_sha256": "bf7587cc04110bcbb55ef9bbb115f4bcd04ae342b11e5e996fbbcabf79243e4a"
     },
     {
@@ -1095,6 +1515,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
+      "counterexample": "recipient worker_execution: expected report refs absent; report identity/source binding is incomplete.",
+      "l9_pointer": "/cases/1/negative_cases/71",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/10",
+      "l5_rule_pointer": "/failure_rules/10",
       "expected_sha256": "1d1c7006f49dd69e93880b71488dbe3f8f7a1e99a2e5e1455ed946153a664882"
     },
     {
@@ -1103,6 +1528,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_RECIPIENT_NOT_DELIVERED",
       "rule_id": "SEC009_F01_RECIPIENT_NOT_DELIVERED",
+      "counterexample": "recipient worker_execution: receipt not delivered; instruction receipt is not delivered.",
+      "l9_pointer": "/cases/1/negative_cases/72",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/13",
+      "l5_rule_pointer": "/failure_rules/13",
       "expected_sha256": "104229f62a5aad1c5fbe881aae39b685ccfc3aeb3a3b56dd54e1ed665fad4e47"
     },
     {
@@ -1111,6 +1541,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_RECIPIENT_RECEIPT_UNRESOLVED",
       "rule_id": "SEC009_F01_RECIPIENT_RECEIPT_UNRESOLVED",
+      "counterexample": "recipient worker_execution: receipt unknown/unobserved; instruction receipt is unconfirmed.",
+      "l9_pointer": "/cases/1/negative_cases/73",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/12",
+      "l5_rule_pointer": "/failure_rules/12",
       "expected_sha256": "006b4a549344c4b7a399ca8b894ed8582091b8389bf91c45a84c4e8748fd3eb1"
     },
     {
@@ -1119,6 +1554,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_RECIPIENT_NOT_APPLIED",
       "rule_id": "SEC009_F01_RECIPIENT_NOT_APPLIED",
+      "counterexample": "worker execution execution stop: was not applied; required stop action is unapplied.",
+      "l9_pointer": "/cases/1/negative_cases/74",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/15",
+      "l5_rule_pointer": "/failure_rules/15",
       "expected_sha256": "60a1b0d2f6c37c4eb3437506ae91b7762675eca1c2b3e59a385756ca2036c909"
     },
     {
@@ -1127,6 +1567,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_RECIPIENT_APPLICATION_UNRESOLVED",
       "rule_id": "SEC009_F01_RECIPIENT_APPLICATION_UNRESOLVED",
+      "counterexample": "worker execution execution stop: was not observed; stop application is unobserved.",
+      "l9_pointer": "/cases/1/negative_cases/75",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/14",
+      "l5_rule_pointer": "/failure_rules/14",
       "expected_sha256": "500c2fa35b2e8ee8a3d662d1a79b7d75b7e4d868a558ae09361a7e54b124cab8"
     },
     {
@@ -1135,6 +1580,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_RECIPIENT_APPLICATION_UNRESOLVED",
       "rule_id": "SEC009_F01_RECIPIENT_APPLICATION_UNRESOLVED",
+      "counterexample": "recipient worker_execution.stop_execution: application/state result absent; stop application is unobserved.",
+      "l9_pointer": "/cases/1/negative_cases/76",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/14",
+      "l5_rule_pointer": "/failure_rules/14",
       "expected_sha256": "500c2fa35b2e8ee8a3d662d1a79b7d75b7e4d868a558ae09361a7e54b124cab8"
     },
     {
@@ -1143,6 +1593,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_RECIPIENT_NOT_APPLIED",
       "rule_id": "SEC009_F01_RECIPIENT_NOT_APPLIED",
+      "counterexample": "worker execution partial-artifact isolation: was not applied; required stop action is unapplied.",
+      "l9_pointer": "/cases/1/negative_cases/77",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/15",
+      "l5_rule_pointer": "/failure_rules/15",
       "expected_sha256": "60a1b0d2f6c37c4eb3437506ae91b7762675eca1c2b3e59a385756ca2036c909"
     },
     {
@@ -1151,6 +1606,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_RECIPIENT_APPLICATION_UNRESOLVED",
       "rule_id": "SEC009_F01_RECIPIENT_APPLICATION_UNRESOLVED",
+      "counterexample": "worker execution partial-artifact isolation: was not observed; stop application is unobserved.",
+      "l9_pointer": "/cases/1/negative_cases/78",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/14",
+      "l5_rule_pointer": "/failure_rules/14",
       "expected_sha256": "500c2fa35b2e8ee8a3d662d1a79b7d75b7e4d868a558ae09361a7e54b124cab8"
     },
     {
@@ -1159,6 +1619,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_RECIPIENT_APPLICATION_UNRESOLVED",
       "rule_id": "SEC009_F01_RECIPIENT_APPLICATION_UNRESOLVED",
+      "counterexample": "recipient worker_execution.isolate_partial_artifact: application/state result absent; stop application is unobserved.",
+      "l9_pointer": "/cases/1/negative_cases/79",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/14",
+      "l5_rule_pointer": "/failure_rules/14",
       "expected_sha256": "500c2fa35b2e8ee8a3d662d1a79b7d75b7e4d868a558ae09361a7e54b124cab8"
     },
     {
@@ -1167,6 +1632,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_RECIPIENT_CONTINUES_AFTER_STOP",
       "rule_id": "SEC009_F01_RECIPIENT_CONTINUES_AFTER_STOP",
+      "counterexample": "recipient worker_execution.execution_continues: continuation/exposure flag true; work continues or remains exposed after stop.",
+      "l9_pointer": "/cases/1/negative_cases/80",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/17",
+      "l5_rule_pointer": "/failure_rules/17",
       "expected_sha256": "faf07093f88dea961230edfb8cd5f0a9ee5e110c418ce65059a6ac4ca31aa2de"
     },
     {
@@ -1175,6 +1645,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_RECIPIENT_POST_STATE_UNRESOLVED",
       "rule_id": "SEC009_F01_RECIPIENT_POST_STATE_UNRESOLVED",
+      "counterexample": "recipient worker_execution.execution_continues: application/state result absent; post-stop state is unresolved.",
+      "l9_pointer": "/cases/1/negative_cases/81",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/16",
+      "l5_rule_pointer": "/failure_rules/16",
       "expected_sha256": "4ae598b8f415ffc5f187ca705c893ff88dc404487f3f03b48e119e01c581cc8d"
     },
     {
@@ -1183,6 +1658,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_RECIPIENT_CONTINUES_AFTER_STOP",
       "rule_id": "SEC009_F01_RECIPIENT_CONTINUES_AFTER_STOP",
+      "counterexample": "recipient worker_execution.partial_artifact_exposed: continuation/exposure flag true; work continues or remains exposed after stop.",
+      "l9_pointer": "/cases/1/negative_cases/82",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/17",
+      "l5_rule_pointer": "/failure_rules/17",
       "expected_sha256": "faf07093f88dea961230edfb8cd5f0a9ee5e110c418ce65059a6ac4ca31aa2de"
     },
     {
@@ -1191,6 +1671,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_RECIPIENT_POST_STATE_UNRESOLVED",
       "rule_id": "SEC009_F01_RECIPIENT_POST_STATE_UNRESOLVED",
+      "counterexample": "recipient worker_execution.partial_artifact_exposed: application/state result absent; post-stop state is unresolved.",
+      "l9_pointer": "/cases/1/negative_cases/83",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/16",
+      "l5_rule_pointer": "/failure_rules/16",
       "expected_sha256": "4ae598b8f415ffc5f187ca705c893ff88dc404487f3f03b48e119e01c581cc8d"
     },
     {
@@ -1199,6 +1684,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_RECIPIENT_ACTIONS_CONFLICT",
       "rule_id": "SEC009_F01_RECIPIENT_ACTIONS_CONFLICT",
+      "counterexample": "recipient worker_execution: required action list empty; recipient actions differ from required set.",
+      "l9_pointer": "/cases/1/negative_cases/84",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/8",
+      "l5_rule_pointer": "/failure_rules/8",
       "expected_sha256": "c05f59da80a0a25e6d6e0277d92110729ddfc2f0dd5ad9fdd62f9e231a8287c3"
     },
     {
@@ -1207,6 +1697,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_INSTRUCTION_UNRESOLVED",
       "rule_id": "SEC009_F01_INSTRUCTION_UNRESOLVED",
+      "counterexample": "recipient connect_communication: instruction object absent; selected-recipient instruction is absent.",
+      "l9_pointer": "/cases/1/negative_cases/85",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/4",
+      "l5_rule_pointer": "/failure_rules/4",
       "expected_sha256": "f2a7ed350d75dabefbbe358b6f257c459f159fd9015739d63656c4309d7b0340"
     },
     {
@@ -1215,6 +1710,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
+      "counterexample": "recipient connect_communication.instructions: event_id absent; instruction identity/source binding is incomplete.",
+      "l9_pointer": "/cases/1/negative_cases/86",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/5",
+      "l5_rule_pointer": "/failure_rules/5",
       "expected_sha256": "bf7587cc04110bcbb55ef9bbb115f4bcd04ae342b11e5e996fbbcabf79243e4a"
     },
     {
@@ -1223,6 +1723,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
       "rule_id": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
+      "counterexample": "recipient connect_communication.instructions: event_id conflicts (actual values not supplied); instruction identity/source conflicts with reference.",
+      "l9_pointer": "/cases/1/negative_cases/87",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/6",
+      "l5_rule_pointer": "/failure_rules/6",
       "expected_sha256": "994e2456613e0ad27f921f99a67be2a5666c1d9fab1c78934ac6380fb560fc07"
     },
     {
@@ -1231,6 +1736,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
+      "counterexample": "recipient connect_communication.instructions: revision absent; instruction identity/source binding is incomplete.",
+      "l9_pointer": "/cases/1/negative_cases/88",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/5",
+      "l5_rule_pointer": "/failure_rules/5",
       "expected_sha256": "bf7587cc04110bcbb55ef9bbb115f4bcd04ae342b11e5e996fbbcabf79243e4a"
     },
     {
@@ -1239,6 +1749,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
       "rule_id": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
+      "counterexample": "recipient connect_communication.instructions: revision conflicts (actual values not supplied); instruction identity/source conflicts with reference.",
+      "l9_pointer": "/cases/1/negative_cases/89",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/6",
+      "l5_rule_pointer": "/failure_rules/6",
       "expected_sha256": "994e2456613e0ad27f921f99a67be2a5666c1d9fab1c78934ac6380fb560fc07"
     },
     {
@@ -1247,6 +1762,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
+      "counterexample": "recipient connect_communication.instructions: scope absent; instruction identity/source binding is incomplete.",
+      "l9_pointer": "/cases/1/negative_cases/90",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/5",
+      "l5_rule_pointer": "/failure_rules/5",
       "expected_sha256": "bf7587cc04110bcbb55ef9bbb115f4bcd04ae342b11e5e996fbbcabf79243e4a"
     },
     {
@@ -1255,6 +1775,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
       "rule_id": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
+      "counterexample": "recipient connect_communication.instructions: scope conflicts (actual values not supplied); instruction identity/source conflicts with reference.",
+      "l9_pointer": "/cases/1/negative_cases/91",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/6",
+      "l5_rule_pointer": "/failure_rules/6",
       "expected_sha256": "994e2456613e0ad27f921f99a67be2a5666c1d9fab1c78934ac6380fb560fc07"
     },
     {
@@ -1263,6 +1788,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
+      "counterexample": "recipient connect_communication.instructions: operation absent; instruction identity/source binding is incomplete.",
+      "l9_pointer": "/cases/1/negative_cases/92",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/5",
+      "l5_rule_pointer": "/failure_rules/5",
       "expected_sha256": "bf7587cc04110bcbb55ef9bbb115f4bcd04ae342b11e5e996fbbcabf79243e4a"
     },
     {
@@ -1271,6 +1801,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
       "rule_id": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
+      "counterexample": "recipient connect_communication.instructions: operation conflicts (actual values not supplied); instruction identity/source conflicts with reference.",
+      "l9_pointer": "/cases/1/negative_cases/93",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/6",
+      "l5_rule_pointer": "/failure_rules/6",
       "expected_sha256": "994e2456613e0ad27f921f99a67be2a5666c1d9fab1c78934ac6380fb560fc07"
     },
     {
@@ -1279,6 +1814,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
+      "counterexample": "recipient connect_communication.instructions: project absent; instruction identity/source binding is incomplete.",
+      "l9_pointer": "/cases/1/negative_cases/94",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/5",
+      "l5_rule_pointer": "/failure_rules/5",
       "expected_sha256": "bf7587cc04110bcbb55ef9bbb115f4bcd04ae342b11e5e996fbbcabf79243e4a"
     },
     {
@@ -1287,6 +1827,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
       "rule_id": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
+      "counterexample": "recipient connect_communication.instructions: project conflicts (actual values not supplied); instruction identity/source conflicts with reference.",
+      "l9_pointer": "/cases/1/negative_cases/95",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/6",
+      "l5_rule_pointer": "/failure_rules/6",
       "expected_sha256": "994e2456613e0ad27f921f99a67be2a5666c1d9fab1c78934ac6380fb560fc07"
     },
     {
@@ -1295,6 +1840,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
+      "counterexample": "recipient connect_communication.instructions: connection absent; instruction identity/source binding is incomplete.",
+      "l9_pointer": "/cases/1/negative_cases/96",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/5",
+      "l5_rule_pointer": "/failure_rules/5",
       "expected_sha256": "bf7587cc04110bcbb55ef9bbb115f4bcd04ae342b11e5e996fbbcabf79243e4a"
     },
     {
@@ -1303,6 +1853,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
       "rule_id": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
+      "counterexample": "recipient connect_communication.instructions: connection conflicts (actual values not supplied); instruction identity/source conflicts with reference.",
+      "l9_pointer": "/cases/1/negative_cases/97",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/6",
+      "l5_rule_pointer": "/failure_rules/6",
       "expected_sha256": "994e2456613e0ad27f921f99a67be2a5666c1d9fab1c78934ac6380fb560fc07"
     },
     {
@@ -1311,6 +1866,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
+      "counterexample": "connect communication instruction.source_ref: absent; instruction identity/source binding is incomplete.",
+      "l9_pointer": "/cases/1/negative_cases/98",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/5",
+      "l5_rule_pointer": "/failure_rules/5",
       "expected_sha256": "bf7587cc04110bcbb55ef9bbb115f4bcd04ae342b11e5e996fbbcabf79243e4a"
     },
     {
@@ -1319,6 +1879,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
       "rule_id": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
+      "counterexample": "connect communication instruction.source_ref conflicts with binding (concrete values not supplied); instruction identity/source conflicts with reference.",
+      "l9_pointer": "/cases/1/negative_cases/99",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/6",
+      "l5_rule_pointer": "/failure_rules/6",
       "expected_sha256": "994e2456613e0ad27f921f99a67be2a5666c1d9fab1c78934ac6380fb560fc07"
     },
     {
@@ -1327,6 +1892,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_RECIPIENT_REPORT_UNRESOLVED",
       "rule_id": "SEC009_F01_RECIPIENT_REPORT_UNRESOLVED",
+      "counterexample": "recipient connect_communication: report object absent; selected-recipient report is absent.",
+      "l9_pointer": "/cases/1/negative_cases/100",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/9",
+      "l5_rule_pointer": "/failure_rules/9",
       "expected_sha256": "573278f82e29b4794af495dddebcd89f56b49684d67e6d5cbc33b36c6b020db9"
     },
     {
@@ -1335,6 +1905,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
+      "counterexample": "recipient connect_communication.reports: event_id absent; report identity/source binding is incomplete.",
+      "l9_pointer": "/cases/1/negative_cases/101",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/10",
+      "l5_rule_pointer": "/failure_rules/10",
       "expected_sha256": "1d1c7006f49dd69e93880b71488dbe3f8f7a1e99a2e5e1455ed946153a664882"
     },
     {
@@ -1343,6 +1918,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_REPORT_BINDING_CONFLICT",
       "rule_id": "SEC009_F01_REPORT_BINDING_CONFLICT",
+      "counterexample": "recipient connect_communication.reports: event_id conflicts (actual values not supplied); report identity/source conflicts with reference.",
+      "l9_pointer": "/cases/1/negative_cases/102",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/11",
+      "l5_rule_pointer": "/failure_rules/11",
       "expected_sha256": "cab97d8e6254546a98ebd289f6803be0e755fbc6782a983cb0bf52b243a5f665"
     },
     {
@@ -1351,6 +1931,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
+      "counterexample": "recipient connect_communication.reports: revision absent; report identity/source binding is incomplete.",
+      "l9_pointer": "/cases/1/negative_cases/103",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/10",
+      "l5_rule_pointer": "/failure_rules/10",
       "expected_sha256": "1d1c7006f49dd69e93880b71488dbe3f8f7a1e99a2e5e1455ed946153a664882"
     },
     {
@@ -1359,6 +1944,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_REPORT_BINDING_CONFLICT",
       "rule_id": "SEC009_F01_REPORT_BINDING_CONFLICT",
+      "counterexample": "recipient connect_communication.reports: revision conflicts (actual values not supplied); report identity/source conflicts with reference.",
+      "l9_pointer": "/cases/1/negative_cases/104",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/11",
+      "l5_rule_pointer": "/failure_rules/11",
       "expected_sha256": "cab97d8e6254546a98ebd289f6803be0e755fbc6782a983cb0bf52b243a5f665"
     },
     {
@@ -1367,6 +1957,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
+      "counterexample": "recipient connect_communication.reports: scope absent; report identity/source binding is incomplete.",
+      "l9_pointer": "/cases/1/negative_cases/105",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/10",
+      "l5_rule_pointer": "/failure_rules/10",
       "expected_sha256": "1d1c7006f49dd69e93880b71488dbe3f8f7a1e99a2e5e1455ed946153a664882"
     },
     {
@@ -1375,6 +1970,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_REPORT_BINDING_CONFLICT",
       "rule_id": "SEC009_F01_REPORT_BINDING_CONFLICT",
+      "counterexample": "recipient connect_communication.reports: scope conflicts (actual values not supplied); report identity/source conflicts with reference.",
+      "l9_pointer": "/cases/1/negative_cases/106",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/11",
+      "l5_rule_pointer": "/failure_rules/11",
       "expected_sha256": "cab97d8e6254546a98ebd289f6803be0e755fbc6782a983cb0bf52b243a5f665"
     },
     {
@@ -1383,6 +1983,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
+      "counterexample": "recipient connect_communication.reports: operation absent; report identity/source binding is incomplete.",
+      "l9_pointer": "/cases/1/negative_cases/107",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/10",
+      "l5_rule_pointer": "/failure_rules/10",
       "expected_sha256": "1d1c7006f49dd69e93880b71488dbe3f8f7a1e99a2e5e1455ed946153a664882"
     },
     {
@@ -1391,6 +1996,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_REPORT_BINDING_CONFLICT",
       "rule_id": "SEC009_F01_REPORT_BINDING_CONFLICT",
+      "counterexample": "recipient connect_communication.reports: operation conflicts (actual values not supplied); report identity/source conflicts with reference.",
+      "l9_pointer": "/cases/1/negative_cases/108",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/11",
+      "l5_rule_pointer": "/failure_rules/11",
       "expected_sha256": "cab97d8e6254546a98ebd289f6803be0e755fbc6782a983cb0bf52b243a5f665"
     },
     {
@@ -1399,6 +2009,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
+      "counterexample": "recipient connect_communication.reports: project absent; report identity/source binding is incomplete.",
+      "l9_pointer": "/cases/1/negative_cases/109",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/10",
+      "l5_rule_pointer": "/failure_rules/10",
       "expected_sha256": "1d1c7006f49dd69e93880b71488dbe3f8f7a1e99a2e5e1455ed946153a664882"
     },
     {
@@ -1407,6 +2022,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_REPORT_BINDING_CONFLICT",
       "rule_id": "SEC009_F01_REPORT_BINDING_CONFLICT",
+      "counterexample": "recipient connect_communication.reports: project conflicts (actual values not supplied); report identity/source conflicts with reference.",
+      "l9_pointer": "/cases/1/negative_cases/110",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/11",
+      "l5_rule_pointer": "/failure_rules/11",
       "expected_sha256": "cab97d8e6254546a98ebd289f6803be0e755fbc6782a983cb0bf52b243a5f665"
     },
     {
@@ -1415,6 +2035,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
+      "counterexample": "recipient connect_communication.reports: connection absent; report identity/source binding is incomplete.",
+      "l9_pointer": "/cases/1/negative_cases/111",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/10",
+      "l5_rule_pointer": "/failure_rules/10",
       "expected_sha256": "1d1c7006f49dd69e93880b71488dbe3f8f7a1e99a2e5e1455ed946153a664882"
     },
     {
@@ -1423,6 +2048,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_REPORT_BINDING_CONFLICT",
       "rule_id": "SEC009_F01_REPORT_BINDING_CONFLICT",
+      "counterexample": "recipient connect_communication.reports: connection conflicts (actual values not supplied); report identity/source conflicts with reference.",
+      "l9_pointer": "/cases/1/negative_cases/112",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/11",
+      "l5_rule_pointer": "/failure_rules/11",
       "expected_sha256": "cab97d8e6254546a98ebd289f6803be0e755fbc6782a983cb0bf52b243a5f665"
     },
     {
@@ -1431,6 +2061,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
+      "counterexample": "connect communication report.source_ref: absent; report identity/source binding is incomplete.",
+      "l9_pointer": "/cases/1/negative_cases/113",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/10",
+      "l5_rule_pointer": "/failure_rules/10",
       "expected_sha256": "1d1c7006f49dd69e93880b71488dbe3f8f7a1e99a2e5e1455ed946153a664882"
     },
     {
@@ -1439,6 +2074,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_REPORT_BINDING_CONFLICT",
       "rule_id": "SEC009_F01_REPORT_BINDING_CONFLICT",
+      "counterexample": "connect communication report.source_ref conflicts with binding (concrete values not supplied); report identity/source conflicts with reference.",
+      "l9_pointer": "/cases/1/negative_cases/114",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/11",
+      "l5_rule_pointer": "/failure_rules/11",
       "expected_sha256": "cab97d8e6254546a98ebd289f6803be0e755fbc6782a983cb0bf52b243a5f665"
     },
     {
@@ -1447,6 +2087,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
+      "counterexample": "recipient connect_communication: expected policy refs absent; instruction identity/source binding is incomplete.",
+      "l9_pointer": "/cases/1/negative_cases/115",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/5",
+      "l5_rule_pointer": "/failure_rules/5",
       "expected_sha256": "bf7587cc04110bcbb55ef9bbb115f4bcd04ae342b11e5e996fbbcabf79243e4a"
     },
     {
@@ -1455,6 +2100,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
+      "counterexample": "recipient connect_communication: expected report refs absent; report identity/source binding is incomplete.",
+      "l9_pointer": "/cases/1/negative_cases/116",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/10",
+      "l5_rule_pointer": "/failure_rules/10",
       "expected_sha256": "1d1c7006f49dd69e93880b71488dbe3f8f7a1e99a2e5e1455ed946153a664882"
     },
     {
@@ -1463,6 +2113,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_RECIPIENT_NOT_DELIVERED",
       "rule_id": "SEC009_F01_RECIPIENT_NOT_DELIVERED",
+      "counterexample": "recipient connect_communication: receipt not delivered; instruction receipt is not delivered.",
+      "l9_pointer": "/cases/1/negative_cases/117",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/13",
+      "l5_rule_pointer": "/failure_rules/13",
       "expected_sha256": "104229f62a5aad1c5fbe881aae39b685ccfc3aeb3a3b56dd54e1ed665fad4e47"
     },
     {
@@ -1471,6 +2126,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_RECIPIENT_RECEIPT_UNRESOLVED",
       "rule_id": "SEC009_F01_RECIPIENT_RECEIPT_UNRESOLVED",
+      "counterexample": "recipient connect_communication: receipt unknown/unobserved; instruction receipt is unconfirmed.",
+      "l9_pointer": "/cases/1/negative_cases/118",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/12",
+      "l5_rule_pointer": "/failure_rules/12",
       "expected_sha256": "006b4a549344c4b7a399ca8b894ed8582091b8389bf91c45a84c4e8748fd3eb1"
     },
     {
@@ -1479,6 +2139,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_RECIPIENT_NOT_APPLIED",
       "rule_id": "SEC009_F01_RECIPIENT_NOT_APPLIED",
+      "counterexample": "connect communication communication stop: was not applied; required stop action is unapplied.",
+      "l9_pointer": "/cases/1/negative_cases/119",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/15",
+      "l5_rule_pointer": "/failure_rules/15",
       "expected_sha256": "60a1b0d2f6c37c4eb3437506ae91b7762675eca1c2b3e59a385756ca2036c909"
     },
     {
@@ -1487,6 +2152,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_RECIPIENT_APPLICATION_UNRESOLVED",
       "rule_id": "SEC009_F01_RECIPIENT_APPLICATION_UNRESOLVED",
+      "counterexample": "connect communication communication stop: was not observed; stop application is unobserved.",
+      "l9_pointer": "/cases/1/negative_cases/120",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/14",
+      "l5_rule_pointer": "/failure_rules/14",
       "expected_sha256": "500c2fa35b2e8ee8a3d662d1a79b7d75b7e4d868a558ae09361a7e54b124cab8"
     },
     {
@@ -1495,6 +2165,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_RECIPIENT_APPLICATION_UNRESOLVED",
       "rule_id": "SEC009_F01_RECIPIENT_APPLICATION_UNRESOLVED",
+      "counterexample": "recipient connect_communication.stop_communication: application/state result absent; stop application is unobserved.",
+      "l9_pointer": "/cases/1/negative_cases/121",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/14",
+      "l5_rule_pointer": "/failure_rules/14",
       "expected_sha256": "500c2fa35b2e8ee8a3d662d1a79b7d75b7e4d868a558ae09361a7e54b124cab8"
     },
     {
@@ -1503,6 +2178,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_RECIPIENT_CONTINUES_AFTER_STOP",
       "rule_id": "SEC009_F01_RECIPIENT_CONTINUES_AFTER_STOP",
+      "counterexample": "recipient connect_communication.communication_continues: continuation/exposure flag true; work continues or remains exposed after stop.",
+      "l9_pointer": "/cases/1/negative_cases/122",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/17",
+      "l5_rule_pointer": "/failure_rules/17",
       "expected_sha256": "faf07093f88dea961230edfb8cd5f0a9ee5e110c418ce65059a6ac4ca31aa2de"
     },
     {
@@ -1511,6 +2191,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_RECIPIENT_POST_STATE_UNRESOLVED",
       "rule_id": "SEC009_F01_RECIPIENT_POST_STATE_UNRESOLVED",
+      "counterexample": "recipient connect_communication.communication_continues: application/state result absent; post-stop state is unresolved.",
+      "l9_pointer": "/cases/1/negative_cases/123",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/16",
+      "l5_rule_pointer": "/failure_rules/16",
       "expected_sha256": "4ae598b8f415ffc5f187ca705c893ff88dc404487f3f03b48e119e01c581cc8d"
     },
     {
@@ -1519,6 +2204,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_RECIPIENT_ACTIONS_CONFLICT",
       "rule_id": "SEC009_F01_RECIPIENT_ACTIONS_CONFLICT",
+      "counterexample": "recipient connect_communication: required action list empty; recipient actions differ from required set.",
+      "l9_pointer": "/cases/1/negative_cases/124",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/8",
+      "l5_rule_pointer": "/failure_rules/8",
       "expected_sha256": "c05f59da80a0a25e6d6e0277d92110729ddfc2f0dd5ad9fdd62f9e231a8287c3"
     },
     {
@@ -1527,6 +2217,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_INSTRUCTION_UNRESOLVED",
       "rule_id": "SEC009_F01_INSTRUCTION_UNRESOLVED",
+      "counterexample": "recipient credential_use: instruction object absent; selected-recipient instruction is absent.",
+      "l9_pointer": "/cases/1/negative_cases/125",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/4",
+      "l5_rule_pointer": "/failure_rules/4",
       "expected_sha256": "f2a7ed350d75dabefbbe358b6f257c459f159fd9015739d63656c4309d7b0340"
     },
     {
@@ -1535,6 +2230,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
+      "counterexample": "recipient credential_use.instructions: event_id absent; instruction identity/source binding is incomplete.",
+      "l9_pointer": "/cases/1/negative_cases/126",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/5",
+      "l5_rule_pointer": "/failure_rules/5",
       "expected_sha256": "bf7587cc04110bcbb55ef9bbb115f4bcd04ae342b11e5e996fbbcabf79243e4a"
     },
     {
@@ -1543,6 +2243,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
       "rule_id": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
+      "counterexample": "recipient credential_use.instructions: event_id conflicts (actual values not supplied); instruction identity/source conflicts with reference.",
+      "l9_pointer": "/cases/1/negative_cases/127",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/6",
+      "l5_rule_pointer": "/failure_rules/6",
       "expected_sha256": "994e2456613e0ad27f921f99a67be2a5666c1d9fab1c78934ac6380fb560fc07"
     },
     {
@@ -1551,6 +2256,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
+      "counterexample": "recipient credential_use.instructions: revision absent; instruction identity/source binding is incomplete.",
+      "l9_pointer": "/cases/1/negative_cases/128",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/5",
+      "l5_rule_pointer": "/failure_rules/5",
       "expected_sha256": "bf7587cc04110bcbb55ef9bbb115f4bcd04ae342b11e5e996fbbcabf79243e4a"
     },
     {
@@ -1559,6 +2269,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
       "rule_id": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
+      "counterexample": "recipient credential_use.instructions: revision conflicts (actual values not supplied); instruction identity/source conflicts with reference.",
+      "l9_pointer": "/cases/1/negative_cases/129",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/6",
+      "l5_rule_pointer": "/failure_rules/6",
       "expected_sha256": "994e2456613e0ad27f921f99a67be2a5666c1d9fab1c78934ac6380fb560fc07"
     },
     {
@@ -1567,6 +2282,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
+      "counterexample": "recipient credential_use.instructions: scope absent; instruction identity/source binding is incomplete.",
+      "l9_pointer": "/cases/1/negative_cases/130",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/5",
+      "l5_rule_pointer": "/failure_rules/5",
       "expected_sha256": "bf7587cc04110bcbb55ef9bbb115f4bcd04ae342b11e5e996fbbcabf79243e4a"
     },
     {
@@ -1575,6 +2295,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
       "rule_id": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
+      "counterexample": "recipient credential_use.instructions: scope conflicts (actual values not supplied); instruction identity/source conflicts with reference.",
+      "l9_pointer": "/cases/1/negative_cases/131",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/6",
+      "l5_rule_pointer": "/failure_rules/6",
       "expected_sha256": "994e2456613e0ad27f921f99a67be2a5666c1d9fab1c78934ac6380fb560fc07"
     },
     {
@@ -1583,6 +2308,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
+      "counterexample": "recipient credential_use.instructions: operation absent; instruction identity/source binding is incomplete.",
+      "l9_pointer": "/cases/1/negative_cases/132",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/5",
+      "l5_rule_pointer": "/failure_rules/5",
       "expected_sha256": "bf7587cc04110bcbb55ef9bbb115f4bcd04ae342b11e5e996fbbcabf79243e4a"
     },
     {
@@ -1591,6 +2321,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
       "rule_id": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
+      "counterexample": "recipient credential_use.instructions: operation conflicts (actual values not supplied); instruction identity/source conflicts with reference.",
+      "l9_pointer": "/cases/1/negative_cases/133",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/6",
+      "l5_rule_pointer": "/failure_rules/6",
       "expected_sha256": "994e2456613e0ad27f921f99a67be2a5666c1d9fab1c78934ac6380fb560fc07"
     },
     {
@@ -1599,6 +2334,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
+      "counterexample": "recipient credential_use.instructions: project absent; instruction identity/source binding is incomplete.",
+      "l9_pointer": "/cases/1/negative_cases/134",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/5",
+      "l5_rule_pointer": "/failure_rules/5",
       "expected_sha256": "bf7587cc04110bcbb55ef9bbb115f4bcd04ae342b11e5e996fbbcabf79243e4a"
     },
     {
@@ -1607,6 +2347,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
       "rule_id": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
+      "counterexample": "recipient credential_use.instructions: project conflicts (actual values not supplied); instruction identity/source conflicts with reference.",
+      "l9_pointer": "/cases/1/negative_cases/135",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/6",
+      "l5_rule_pointer": "/failure_rules/6",
       "expected_sha256": "994e2456613e0ad27f921f99a67be2a5666c1d9fab1c78934ac6380fb560fc07"
     },
     {
@@ -1615,6 +2360,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
+      "counterexample": "recipient credential_use.instructions: credential absent; instruction identity/source binding is incomplete.",
+      "l9_pointer": "/cases/1/negative_cases/136",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/5",
+      "l5_rule_pointer": "/failure_rules/5",
       "expected_sha256": "bf7587cc04110bcbb55ef9bbb115f4bcd04ae342b11e5e996fbbcabf79243e4a"
     },
     {
@@ -1623,6 +2373,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
       "rule_id": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
+      "counterexample": "recipient credential_use.instructions: credential conflicts (actual values not supplied); instruction identity/source conflicts with reference.",
+      "l9_pointer": "/cases/1/negative_cases/137",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/6",
+      "l5_rule_pointer": "/failure_rules/6",
       "expected_sha256": "994e2456613e0ad27f921f99a67be2a5666c1d9fab1c78934ac6380fb560fc07"
     },
     {
@@ -1631,6 +2386,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
+      "counterexample": "credential use instruction.source_ref: absent; instruction identity/source binding is incomplete.",
+      "l9_pointer": "/cases/1/negative_cases/138",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/5",
+      "l5_rule_pointer": "/failure_rules/5",
       "expected_sha256": "bf7587cc04110bcbb55ef9bbb115f4bcd04ae342b11e5e996fbbcabf79243e4a"
     },
     {
@@ -1639,6 +2399,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
       "rule_id": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
+      "counterexample": "credential use instruction.source_ref conflicts with binding (concrete values not supplied); instruction identity/source conflicts with reference.",
+      "l9_pointer": "/cases/1/negative_cases/139",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/6",
+      "l5_rule_pointer": "/failure_rules/6",
       "expected_sha256": "994e2456613e0ad27f921f99a67be2a5666c1d9fab1c78934ac6380fb560fc07"
     },
     {
@@ -1647,6 +2412,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_RECIPIENT_REPORT_UNRESOLVED",
       "rule_id": "SEC009_F01_RECIPIENT_REPORT_UNRESOLVED",
+      "counterexample": "recipient credential_use: report object absent; selected-recipient report is absent.",
+      "l9_pointer": "/cases/1/negative_cases/140",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/9",
+      "l5_rule_pointer": "/failure_rules/9",
       "expected_sha256": "573278f82e29b4794af495dddebcd89f56b49684d67e6d5cbc33b36c6b020db9"
     },
     {
@@ -1655,6 +2425,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
+      "counterexample": "recipient credential_use.reports: event_id absent; report identity/source binding is incomplete.",
+      "l9_pointer": "/cases/1/negative_cases/141",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/10",
+      "l5_rule_pointer": "/failure_rules/10",
       "expected_sha256": "1d1c7006f49dd69e93880b71488dbe3f8f7a1e99a2e5e1455ed946153a664882"
     },
     {
@@ -1663,6 +2438,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_REPORT_BINDING_CONFLICT",
       "rule_id": "SEC009_F01_REPORT_BINDING_CONFLICT",
+      "counterexample": "recipient credential_use.reports: event_id conflicts (actual values not supplied); report identity/source conflicts with reference.",
+      "l9_pointer": "/cases/1/negative_cases/142",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/11",
+      "l5_rule_pointer": "/failure_rules/11",
       "expected_sha256": "cab97d8e6254546a98ebd289f6803be0e755fbc6782a983cb0bf52b243a5f665"
     },
     {
@@ -1671,6 +2451,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
+      "counterexample": "recipient credential_use.reports: revision absent; report identity/source binding is incomplete.",
+      "l9_pointer": "/cases/1/negative_cases/143",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/10",
+      "l5_rule_pointer": "/failure_rules/10",
       "expected_sha256": "1d1c7006f49dd69e93880b71488dbe3f8f7a1e99a2e5e1455ed946153a664882"
     },
     {
@@ -1679,6 +2464,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_REPORT_BINDING_CONFLICT",
       "rule_id": "SEC009_F01_REPORT_BINDING_CONFLICT",
+      "counterexample": "recipient credential_use.reports: revision conflicts (actual values not supplied); report identity/source conflicts with reference.",
+      "l9_pointer": "/cases/1/negative_cases/144",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/11",
+      "l5_rule_pointer": "/failure_rules/11",
       "expected_sha256": "cab97d8e6254546a98ebd289f6803be0e755fbc6782a983cb0bf52b243a5f665"
     },
     {
@@ -1687,6 +2477,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
+      "counterexample": "recipient credential_use.reports: scope absent; report identity/source binding is incomplete.",
+      "l9_pointer": "/cases/1/negative_cases/145",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/10",
+      "l5_rule_pointer": "/failure_rules/10",
       "expected_sha256": "1d1c7006f49dd69e93880b71488dbe3f8f7a1e99a2e5e1455ed946153a664882"
     },
     {
@@ -1695,6 +2490,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_REPORT_BINDING_CONFLICT",
       "rule_id": "SEC009_F01_REPORT_BINDING_CONFLICT",
+      "counterexample": "recipient credential_use.reports: scope conflicts (actual values not supplied); report identity/source conflicts with reference.",
+      "l9_pointer": "/cases/1/negative_cases/146",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/11",
+      "l5_rule_pointer": "/failure_rules/11",
       "expected_sha256": "cab97d8e6254546a98ebd289f6803be0e755fbc6782a983cb0bf52b243a5f665"
     },
     {
@@ -1703,6 +2503,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
+      "counterexample": "recipient credential_use.reports: operation absent; report identity/source binding is incomplete.",
+      "l9_pointer": "/cases/1/negative_cases/147",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/10",
+      "l5_rule_pointer": "/failure_rules/10",
       "expected_sha256": "1d1c7006f49dd69e93880b71488dbe3f8f7a1e99a2e5e1455ed946153a664882"
     },
     {
@@ -1711,6 +2516,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_REPORT_BINDING_CONFLICT",
       "rule_id": "SEC009_F01_REPORT_BINDING_CONFLICT",
+      "counterexample": "recipient credential_use.reports: operation conflicts (actual values not supplied); report identity/source conflicts with reference.",
+      "l9_pointer": "/cases/1/negative_cases/148",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/11",
+      "l5_rule_pointer": "/failure_rules/11",
       "expected_sha256": "cab97d8e6254546a98ebd289f6803be0e755fbc6782a983cb0bf52b243a5f665"
     },
     {
@@ -1719,6 +2529,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
+      "counterexample": "recipient credential_use.reports: project absent; report identity/source binding is incomplete.",
+      "l9_pointer": "/cases/1/negative_cases/149",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/10",
+      "l5_rule_pointer": "/failure_rules/10",
       "expected_sha256": "1d1c7006f49dd69e93880b71488dbe3f8f7a1e99a2e5e1455ed946153a664882"
     },
     {
@@ -1727,6 +2542,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_REPORT_BINDING_CONFLICT",
       "rule_id": "SEC009_F01_REPORT_BINDING_CONFLICT",
+      "counterexample": "recipient credential_use.reports: project conflicts (actual values not supplied); report identity/source conflicts with reference.",
+      "l9_pointer": "/cases/1/negative_cases/150",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/11",
+      "l5_rule_pointer": "/failure_rules/11",
       "expected_sha256": "cab97d8e6254546a98ebd289f6803be0e755fbc6782a983cb0bf52b243a5f665"
     },
     {
@@ -1735,6 +2555,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
+      "counterexample": "recipient credential_use.reports: credential absent; report identity/source binding is incomplete.",
+      "l9_pointer": "/cases/1/negative_cases/151",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/10",
+      "l5_rule_pointer": "/failure_rules/10",
       "expected_sha256": "1d1c7006f49dd69e93880b71488dbe3f8f7a1e99a2e5e1455ed946153a664882"
     },
     {
@@ -1743,6 +2568,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_REPORT_BINDING_CONFLICT",
       "rule_id": "SEC009_F01_REPORT_BINDING_CONFLICT",
+      "counterexample": "recipient credential_use.reports: credential conflicts (actual values not supplied); report identity/source conflicts with reference.",
+      "l9_pointer": "/cases/1/negative_cases/152",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/11",
+      "l5_rule_pointer": "/failure_rules/11",
       "expected_sha256": "cab97d8e6254546a98ebd289f6803be0e755fbc6782a983cb0bf52b243a5f665"
     },
     {
@@ -1751,6 +2581,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
+      "counterexample": "credential use report.source_ref: absent; report identity/source binding is incomplete.",
+      "l9_pointer": "/cases/1/negative_cases/153",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/10",
+      "l5_rule_pointer": "/failure_rules/10",
       "expected_sha256": "1d1c7006f49dd69e93880b71488dbe3f8f7a1e99a2e5e1455ed946153a664882"
     },
     {
@@ -1759,6 +2594,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_REPORT_BINDING_CONFLICT",
       "rule_id": "SEC009_F01_REPORT_BINDING_CONFLICT",
+      "counterexample": "credential use report.source_ref conflicts with binding (concrete values not supplied); report identity/source conflicts with reference.",
+      "l9_pointer": "/cases/1/negative_cases/154",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/11",
+      "l5_rule_pointer": "/failure_rules/11",
       "expected_sha256": "cab97d8e6254546a98ebd289f6803be0e755fbc6782a983cb0bf52b243a5f665"
     },
     {
@@ -1767,6 +2607,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
+      "counterexample": "recipient credential_use: expected policy refs absent; instruction identity/source binding is incomplete.",
+      "l9_pointer": "/cases/1/negative_cases/155",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/5",
+      "l5_rule_pointer": "/failure_rules/5",
       "expected_sha256": "bf7587cc04110bcbb55ef9bbb115f4bcd04ae342b11e5e996fbbcabf79243e4a"
     },
     {
@@ -1775,6 +2620,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
+      "counterexample": "recipient credential_use: expected report refs absent; report identity/source binding is incomplete.",
+      "l9_pointer": "/cases/1/negative_cases/156",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/10",
+      "l5_rule_pointer": "/failure_rules/10",
       "expected_sha256": "1d1c7006f49dd69e93880b71488dbe3f8f7a1e99a2e5e1455ed946153a664882"
     },
     {
@@ -1783,6 +2633,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_RECIPIENT_NOT_DELIVERED",
       "rule_id": "SEC009_F01_RECIPIENT_NOT_DELIVERED",
+      "counterexample": "recipient credential_use: receipt not delivered; instruction receipt is not delivered.",
+      "l9_pointer": "/cases/1/negative_cases/157",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/13",
+      "l5_rule_pointer": "/failure_rules/13",
       "expected_sha256": "104229f62a5aad1c5fbe881aae39b685ccfc3aeb3a3b56dd54e1ed665fad4e47"
     },
     {
@@ -1791,6 +2646,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_RECIPIENT_RECEIPT_UNRESOLVED",
       "rule_id": "SEC009_F01_RECIPIENT_RECEIPT_UNRESOLVED",
+      "counterexample": "recipient credential_use: receipt unknown/unobserved; instruction receipt is unconfirmed.",
+      "l9_pointer": "/cases/1/negative_cases/158",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/12",
+      "l5_rule_pointer": "/failure_rules/12",
       "expected_sha256": "006b4a549344c4b7a399ca8b894ed8582091b8389bf91c45a84c4e8748fd3eb1"
     },
     {
@@ -1799,6 +2659,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_RECIPIENT_NOT_APPLIED",
       "rule_id": "SEC009_F01_RECIPIENT_NOT_APPLIED",
+      "counterexample": "credential use credential-use stop: was not applied; required stop action is unapplied.",
+      "l9_pointer": "/cases/1/negative_cases/159",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/15",
+      "l5_rule_pointer": "/failure_rules/15",
       "expected_sha256": "60a1b0d2f6c37c4eb3437506ae91b7762675eca1c2b3e59a385756ca2036c909"
     },
     {
@@ -1807,6 +2672,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_RECIPIENT_APPLICATION_UNRESOLVED",
       "rule_id": "SEC009_F01_RECIPIENT_APPLICATION_UNRESOLVED",
+      "counterexample": "credential use credential-use stop: was not observed; stop application is unobserved.",
+      "l9_pointer": "/cases/1/negative_cases/160",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/14",
+      "l5_rule_pointer": "/failure_rules/14",
       "expected_sha256": "500c2fa35b2e8ee8a3d662d1a79b7d75b7e4d868a558ae09361a7e54b124cab8"
     },
     {
@@ -1815,6 +2685,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_RECIPIENT_APPLICATION_UNRESOLVED",
       "rule_id": "SEC009_F01_RECIPIENT_APPLICATION_UNRESOLVED",
+      "counterexample": "recipient credential_use.stop_use: application/state result absent; stop application is unobserved.",
+      "l9_pointer": "/cases/1/negative_cases/161",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/14",
+      "l5_rule_pointer": "/failure_rules/14",
       "expected_sha256": "500c2fa35b2e8ee8a3d662d1a79b7d75b7e4d868a558ae09361a7e54b124cab8"
     },
     {
@@ -1823,6 +2698,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_RECIPIENT_CONTINUES_AFTER_STOP",
       "rule_id": "SEC009_F01_RECIPIENT_CONTINUES_AFTER_STOP",
+      "counterexample": "recipient credential_use.use_continues: continuation/exposure flag true; work continues or remains exposed after stop.",
+      "l9_pointer": "/cases/1/negative_cases/162",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/17",
+      "l5_rule_pointer": "/failure_rules/17",
       "expected_sha256": "faf07093f88dea961230edfb8cd5f0a9ee5e110c418ce65059a6ac4ca31aa2de"
     },
     {
@@ -1831,6 +2711,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_RECIPIENT_POST_STATE_UNRESOLVED",
       "rule_id": "SEC009_F01_RECIPIENT_POST_STATE_UNRESOLVED",
+      "counterexample": "recipient credential_use.use_continues: application/state result absent; post-stop state is unresolved.",
+      "l9_pointer": "/cases/1/negative_cases/163",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/16",
+      "l5_rule_pointer": "/failure_rules/16",
       "expected_sha256": "4ae598b8f415ffc5f187ca705c893ff88dc404487f3f03b48e119e01c581cc8d"
     },
     {
@@ -1839,6 +2724,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_RECIPIENT_ACTIONS_CONFLICT",
       "rule_id": "SEC009_F01_RECIPIENT_ACTIONS_CONFLICT",
+      "counterexample": "recipient credential_use: required action list empty; recipient actions differ from required set.",
+      "l9_pointer": "/cases/1/negative_cases/164",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/8",
+      "l5_rule_pointer": "/failure_rules/8",
       "expected_sha256": "c05f59da80a0a25e6d6e0277d92110729ddfc2f0dd5ad9fdd62f9e231a8287c3"
     },
     {
@@ -1847,6 +2737,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_INSTRUCTION_UNRESOLVED",
       "rule_id": "SEC009_F01_INSTRUCTION_UNRESOLVED",
+      "counterexample": "recipient artifact_access: instruction object absent; selected-recipient instruction is absent.",
+      "l9_pointer": "/cases/1/negative_cases/165",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/4",
+      "l5_rule_pointer": "/failure_rules/4",
       "expected_sha256": "f2a7ed350d75dabefbbe358b6f257c459f159fd9015739d63656c4309d7b0340"
     },
     {
@@ -1855,6 +2750,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
+      "counterexample": "recipient artifact_access.instructions: event_id absent; instruction identity/source binding is incomplete.",
+      "l9_pointer": "/cases/1/negative_cases/166",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/5",
+      "l5_rule_pointer": "/failure_rules/5",
       "expected_sha256": "bf7587cc04110bcbb55ef9bbb115f4bcd04ae342b11e5e996fbbcabf79243e4a"
     },
     {
@@ -1863,6 +2763,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
       "rule_id": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
+      "counterexample": "recipient artifact_access.instructions: event_id conflicts (actual values not supplied); instruction identity/source conflicts with reference.",
+      "l9_pointer": "/cases/1/negative_cases/167",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/6",
+      "l5_rule_pointer": "/failure_rules/6",
       "expected_sha256": "994e2456613e0ad27f921f99a67be2a5666c1d9fab1c78934ac6380fb560fc07"
     },
     {
@@ -1871,6 +2776,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
+      "counterexample": "recipient artifact_access.instructions: revision absent; instruction identity/source binding is incomplete.",
+      "l9_pointer": "/cases/1/negative_cases/168",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/5",
+      "l5_rule_pointer": "/failure_rules/5",
       "expected_sha256": "bf7587cc04110bcbb55ef9bbb115f4bcd04ae342b11e5e996fbbcabf79243e4a"
     },
     {
@@ -1879,6 +2789,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
       "rule_id": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
+      "counterexample": "recipient artifact_access.instructions: revision conflicts (actual values not supplied); instruction identity/source conflicts with reference.",
+      "l9_pointer": "/cases/1/negative_cases/169",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/6",
+      "l5_rule_pointer": "/failure_rules/6",
       "expected_sha256": "994e2456613e0ad27f921f99a67be2a5666c1d9fab1c78934ac6380fb560fc07"
     },
     {
@@ -1887,6 +2802,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
+      "counterexample": "recipient artifact_access.instructions: scope absent; instruction identity/source binding is incomplete.",
+      "l9_pointer": "/cases/1/negative_cases/170",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/5",
+      "l5_rule_pointer": "/failure_rules/5",
       "expected_sha256": "bf7587cc04110bcbb55ef9bbb115f4bcd04ae342b11e5e996fbbcabf79243e4a"
     },
     {
@@ -1895,6 +2815,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
       "rule_id": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
+      "counterexample": "recipient artifact_access.instructions: scope conflicts (actual values not supplied); instruction identity/source conflicts with reference.",
+      "l9_pointer": "/cases/1/negative_cases/171",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/6",
+      "l5_rule_pointer": "/failure_rules/6",
       "expected_sha256": "994e2456613e0ad27f921f99a67be2a5666c1d9fab1c78934ac6380fb560fc07"
     },
     {
@@ -1903,6 +2828,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
+      "counterexample": "recipient artifact_access.instructions: operation absent; instruction identity/source binding is incomplete.",
+      "l9_pointer": "/cases/1/negative_cases/172",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/5",
+      "l5_rule_pointer": "/failure_rules/5",
       "expected_sha256": "bf7587cc04110bcbb55ef9bbb115f4bcd04ae342b11e5e996fbbcabf79243e4a"
     },
     {
@@ -1911,6 +2841,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
       "rule_id": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
+      "counterexample": "recipient artifact_access.instructions: operation conflicts (actual values not supplied); instruction identity/source conflicts with reference.",
+      "l9_pointer": "/cases/1/negative_cases/173",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/6",
+      "l5_rule_pointer": "/failure_rules/6",
       "expected_sha256": "994e2456613e0ad27f921f99a67be2a5666c1d9fab1c78934ac6380fb560fc07"
     },
     {
@@ -1919,6 +2854,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
+      "counterexample": "recipient artifact_access.instructions: project absent; instruction identity/source binding is incomplete.",
+      "l9_pointer": "/cases/1/negative_cases/174",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/5",
+      "l5_rule_pointer": "/failure_rules/5",
       "expected_sha256": "bf7587cc04110bcbb55ef9bbb115f4bcd04ae342b11e5e996fbbcabf79243e4a"
     },
     {
@@ -1927,6 +2867,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
       "rule_id": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
+      "counterexample": "recipient artifact_access.instructions: project conflicts (actual values not supplied); instruction identity/source conflicts with reference.",
+      "l9_pointer": "/cases/1/negative_cases/175",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/6",
+      "l5_rule_pointer": "/failure_rules/6",
       "expected_sha256": "994e2456613e0ad27f921f99a67be2a5666c1d9fab1c78934ac6380fb560fc07"
     },
     {
@@ -1935,6 +2880,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
+      "counterexample": "recipient artifact_access.instructions: artifact absent; instruction identity/source binding is incomplete.",
+      "l9_pointer": "/cases/1/negative_cases/176",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/5",
+      "l5_rule_pointer": "/failure_rules/5",
       "expected_sha256": "bf7587cc04110bcbb55ef9bbb115f4bcd04ae342b11e5e996fbbcabf79243e4a"
     },
     {
@@ -1943,6 +2893,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
       "rule_id": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
+      "counterexample": "recipient artifact_access.instructions: artifact conflicts (actual values not supplied); instruction identity/source conflicts with reference.",
+      "l9_pointer": "/cases/1/negative_cases/177",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/6",
+      "l5_rule_pointer": "/failure_rules/6",
       "expected_sha256": "994e2456613e0ad27f921f99a67be2a5666c1d9fab1c78934ac6380fb560fc07"
     },
     {
@@ -1951,6 +2906,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
+      "counterexample": "artifact access instruction.source_ref: absent; instruction identity/source binding is incomplete.",
+      "l9_pointer": "/cases/1/negative_cases/178",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/5",
+      "l5_rule_pointer": "/failure_rules/5",
       "expected_sha256": "bf7587cc04110bcbb55ef9bbb115f4bcd04ae342b11e5e996fbbcabf79243e4a"
     },
     {
@@ -1959,6 +2919,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
       "rule_id": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
+      "counterexample": "artifact access instruction.source_ref conflicts with binding (concrete values not supplied); instruction identity/source conflicts with reference.",
+      "l9_pointer": "/cases/1/negative_cases/179",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/6",
+      "l5_rule_pointer": "/failure_rules/6",
       "expected_sha256": "994e2456613e0ad27f921f99a67be2a5666c1d9fab1c78934ac6380fb560fc07"
     },
     {
@@ -1967,6 +2932,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_RECIPIENT_REPORT_UNRESOLVED",
       "rule_id": "SEC009_F01_RECIPIENT_REPORT_UNRESOLVED",
+      "counterexample": "recipient artifact_access: report object absent; selected-recipient report is absent.",
+      "l9_pointer": "/cases/1/negative_cases/180",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/9",
+      "l5_rule_pointer": "/failure_rules/9",
       "expected_sha256": "573278f82e29b4794af495dddebcd89f56b49684d67e6d5cbc33b36c6b020db9"
     },
     {
@@ -1975,6 +2945,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
+      "counterexample": "recipient artifact_access.reports: event_id absent; report identity/source binding is incomplete.",
+      "l9_pointer": "/cases/1/negative_cases/181",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/10",
+      "l5_rule_pointer": "/failure_rules/10",
       "expected_sha256": "1d1c7006f49dd69e93880b71488dbe3f8f7a1e99a2e5e1455ed946153a664882"
     },
     {
@@ -1983,6 +2958,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_REPORT_BINDING_CONFLICT",
       "rule_id": "SEC009_F01_REPORT_BINDING_CONFLICT",
+      "counterexample": "recipient artifact_access.reports: event_id conflicts (actual values not supplied); report identity/source conflicts with reference.",
+      "l9_pointer": "/cases/1/negative_cases/182",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/11",
+      "l5_rule_pointer": "/failure_rules/11",
       "expected_sha256": "cab97d8e6254546a98ebd289f6803be0e755fbc6782a983cb0bf52b243a5f665"
     },
     {
@@ -1991,6 +2971,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
+      "counterexample": "recipient artifact_access.reports: revision absent; report identity/source binding is incomplete.",
+      "l9_pointer": "/cases/1/negative_cases/183",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/10",
+      "l5_rule_pointer": "/failure_rules/10",
       "expected_sha256": "1d1c7006f49dd69e93880b71488dbe3f8f7a1e99a2e5e1455ed946153a664882"
     },
     {
@@ -1999,6 +2984,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_REPORT_BINDING_CONFLICT",
       "rule_id": "SEC009_F01_REPORT_BINDING_CONFLICT",
+      "counterexample": "recipient artifact_access.reports: revision conflicts (actual values not supplied); report identity/source conflicts with reference.",
+      "l9_pointer": "/cases/1/negative_cases/184",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/11",
+      "l5_rule_pointer": "/failure_rules/11",
       "expected_sha256": "cab97d8e6254546a98ebd289f6803be0e755fbc6782a983cb0bf52b243a5f665"
     },
     {
@@ -2007,6 +2997,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
+      "counterexample": "recipient artifact_access.reports: scope absent; report identity/source binding is incomplete.",
+      "l9_pointer": "/cases/1/negative_cases/185",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/10",
+      "l5_rule_pointer": "/failure_rules/10",
       "expected_sha256": "1d1c7006f49dd69e93880b71488dbe3f8f7a1e99a2e5e1455ed946153a664882"
     },
     {
@@ -2015,6 +3010,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_REPORT_BINDING_CONFLICT",
       "rule_id": "SEC009_F01_REPORT_BINDING_CONFLICT",
+      "counterexample": "recipient artifact_access.reports: scope conflicts (actual values not supplied); report identity/source conflicts with reference.",
+      "l9_pointer": "/cases/1/negative_cases/186",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/11",
+      "l5_rule_pointer": "/failure_rules/11",
       "expected_sha256": "cab97d8e6254546a98ebd289f6803be0e755fbc6782a983cb0bf52b243a5f665"
     },
     {
@@ -2023,6 +3023,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
+      "counterexample": "recipient artifact_access.reports: operation absent; report identity/source binding is incomplete.",
+      "l9_pointer": "/cases/1/negative_cases/187",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/10",
+      "l5_rule_pointer": "/failure_rules/10",
       "expected_sha256": "1d1c7006f49dd69e93880b71488dbe3f8f7a1e99a2e5e1455ed946153a664882"
     },
     {
@@ -2031,6 +3036,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_REPORT_BINDING_CONFLICT",
       "rule_id": "SEC009_F01_REPORT_BINDING_CONFLICT",
+      "counterexample": "recipient artifact_access.reports: operation conflicts (actual values not supplied); report identity/source conflicts with reference.",
+      "l9_pointer": "/cases/1/negative_cases/188",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/11",
+      "l5_rule_pointer": "/failure_rules/11",
       "expected_sha256": "cab97d8e6254546a98ebd289f6803be0e755fbc6782a983cb0bf52b243a5f665"
     },
     {
@@ -2039,6 +3049,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
+      "counterexample": "recipient artifact_access.reports: project absent; report identity/source binding is incomplete.",
+      "l9_pointer": "/cases/1/negative_cases/189",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/10",
+      "l5_rule_pointer": "/failure_rules/10",
       "expected_sha256": "1d1c7006f49dd69e93880b71488dbe3f8f7a1e99a2e5e1455ed946153a664882"
     },
     {
@@ -2047,6 +3062,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_REPORT_BINDING_CONFLICT",
       "rule_id": "SEC009_F01_REPORT_BINDING_CONFLICT",
+      "counterexample": "recipient artifact_access.reports: project conflicts (actual values not supplied); report identity/source conflicts with reference.",
+      "l9_pointer": "/cases/1/negative_cases/190",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/11",
+      "l5_rule_pointer": "/failure_rules/11",
       "expected_sha256": "cab97d8e6254546a98ebd289f6803be0e755fbc6782a983cb0bf52b243a5f665"
     },
     {
@@ -2055,6 +3075,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
+      "counterexample": "recipient artifact_access.reports: artifact absent; report identity/source binding is incomplete.",
+      "l9_pointer": "/cases/1/negative_cases/191",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/10",
+      "l5_rule_pointer": "/failure_rules/10",
       "expected_sha256": "1d1c7006f49dd69e93880b71488dbe3f8f7a1e99a2e5e1455ed946153a664882"
     },
     {
@@ -2063,6 +3088,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_REPORT_BINDING_CONFLICT",
       "rule_id": "SEC009_F01_REPORT_BINDING_CONFLICT",
+      "counterexample": "recipient artifact_access.reports: artifact conflicts (actual values not supplied); report identity/source conflicts with reference.",
+      "l9_pointer": "/cases/1/negative_cases/192",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/11",
+      "l5_rule_pointer": "/failure_rules/11",
       "expected_sha256": "cab97d8e6254546a98ebd289f6803be0e755fbc6782a983cb0bf52b243a5f665"
     },
     {
@@ -2071,6 +3101,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
+      "counterexample": "artifact access report.source_ref: absent; report identity/source binding is incomplete.",
+      "l9_pointer": "/cases/1/negative_cases/193",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/10",
+      "l5_rule_pointer": "/failure_rules/10",
       "expected_sha256": "1d1c7006f49dd69e93880b71488dbe3f8f7a1e99a2e5e1455ed946153a664882"
     },
     {
@@ -2079,6 +3114,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_REPORT_BINDING_CONFLICT",
       "rule_id": "SEC009_F01_REPORT_BINDING_CONFLICT",
+      "counterexample": "artifact access report.source_ref conflicts with binding (concrete values not supplied); report identity/source conflicts with reference.",
+      "l9_pointer": "/cases/1/negative_cases/194",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/11",
+      "l5_rule_pointer": "/failure_rules/11",
       "expected_sha256": "cab97d8e6254546a98ebd289f6803be0e755fbc6782a983cb0bf52b243a5f665"
     },
     {
@@ -2087,6 +3127,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
+      "counterexample": "recipient artifact_access: expected policy refs absent; instruction identity/source binding is incomplete.",
+      "l9_pointer": "/cases/1/negative_cases/195",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/5",
+      "l5_rule_pointer": "/failure_rules/5",
       "expected_sha256": "bf7587cc04110bcbb55ef9bbb115f4bcd04ae342b11e5e996fbbcabf79243e4a"
     },
     {
@@ -2095,6 +3140,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
+      "counterexample": "recipient artifact_access: expected report refs absent; report identity/source binding is incomplete.",
+      "l9_pointer": "/cases/1/negative_cases/196",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/10",
+      "l5_rule_pointer": "/failure_rules/10",
       "expected_sha256": "1d1c7006f49dd69e93880b71488dbe3f8f7a1e99a2e5e1455ed946153a664882"
     },
     {
@@ -2103,6 +3153,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_RECIPIENT_NOT_DELIVERED",
       "rule_id": "SEC009_F01_RECIPIENT_NOT_DELIVERED",
+      "counterexample": "recipient artifact_access: receipt not delivered; instruction receipt is not delivered.",
+      "l9_pointer": "/cases/1/negative_cases/197",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/13",
+      "l5_rule_pointer": "/failure_rules/13",
       "expected_sha256": "104229f62a5aad1c5fbe881aae39b685ccfc3aeb3a3b56dd54e1ed665fad4e47"
     },
     {
@@ -2111,6 +3166,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_RECIPIENT_RECEIPT_UNRESOLVED",
       "rule_id": "SEC009_F01_RECIPIENT_RECEIPT_UNRESOLVED",
+      "counterexample": "recipient artifact_access: receipt unknown/unobserved; instruction receipt is unconfirmed.",
+      "l9_pointer": "/cases/1/negative_cases/198",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/12",
+      "l5_rule_pointer": "/failure_rules/12",
       "expected_sha256": "006b4a549344c4b7a399ca8b894ed8582091b8389bf91c45a84c4e8748fd3eb1"
     },
     {
@@ -2119,6 +3179,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_RECIPIENT_NOT_APPLIED",
       "rule_id": "SEC009_F01_RECIPIENT_NOT_APPLIED",
+      "counterexample": "artifact access artifact-access stop: was not applied; required stop action is unapplied.",
+      "l9_pointer": "/cases/1/negative_cases/199",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/15",
+      "l5_rule_pointer": "/failure_rules/15",
       "expected_sha256": "60a1b0d2f6c37c4eb3437506ae91b7762675eca1c2b3e59a385756ca2036c909"
     },
     {
@@ -2127,6 +3192,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_RECIPIENT_APPLICATION_UNRESOLVED",
       "rule_id": "SEC009_F01_RECIPIENT_APPLICATION_UNRESOLVED",
+      "counterexample": "artifact access artifact-access stop: was not observed; stop application is unobserved.",
+      "l9_pointer": "/cases/1/negative_cases/200",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/14",
+      "l5_rule_pointer": "/failure_rules/14",
       "expected_sha256": "500c2fa35b2e8ee8a3d662d1a79b7d75b7e4d868a558ae09361a7e54b124cab8"
     },
     {
@@ -2135,6 +3205,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_RECIPIENT_APPLICATION_UNRESOLVED",
       "rule_id": "SEC009_F01_RECIPIENT_APPLICATION_UNRESOLVED",
+      "counterexample": "recipient artifact_access.stop_access: application/state result absent; stop application is unobserved.",
+      "l9_pointer": "/cases/1/negative_cases/201",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/14",
+      "l5_rule_pointer": "/failure_rules/14",
       "expected_sha256": "500c2fa35b2e8ee8a3d662d1a79b7d75b7e4d868a558ae09361a7e54b124cab8"
     },
     {
@@ -2143,6 +3218,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_RECIPIENT_CONTINUES_AFTER_STOP",
       "rule_id": "SEC009_F01_RECIPIENT_CONTINUES_AFTER_STOP",
+      "counterexample": "recipient artifact_access.access_continues: continuation/exposure flag true; work continues or remains exposed after stop.",
+      "l9_pointer": "/cases/1/negative_cases/202",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/17",
+      "l5_rule_pointer": "/failure_rules/17",
       "expected_sha256": "faf07093f88dea961230edfb8cd5f0a9ee5e110c418ce65059a6ac4ca31aa2de"
     },
     {
@@ -2151,6 +3231,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_RECIPIENT_POST_STATE_UNRESOLVED",
       "rule_id": "SEC009_F01_RECIPIENT_POST_STATE_UNRESOLVED",
+      "counterexample": "recipient artifact_access.access_continues: application/state result absent; post-stop state is unresolved.",
+      "l9_pointer": "/cases/1/negative_cases/203",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/16",
+      "l5_rule_pointer": "/failure_rules/16",
       "expected_sha256": "4ae598b8f415ffc5f187ca705c893ff88dc404487f3f03b48e119e01c581cc8d"
     },
     {
@@ -2159,6 +3244,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_RECIPIENT_ACTIONS_CONFLICT",
       "rule_id": "SEC009_F01_RECIPIENT_ACTIONS_CONFLICT",
+      "counterexample": "recipient artifact_access: required action list empty; recipient actions differ from required set.",
+      "l9_pointer": "/cases/1/negative_cases/204",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/8",
+      "l5_rule_pointer": "/failure_rules/8",
       "expected_sha256": "c05f59da80a0a25e6d6e0277d92110729ddfc2f0dd5ad9fdd62f9e231a8287c3"
     },
     {
@@ -2167,6 +3257,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_RECIPIENT_ACTIONS_UNRESOLVED",
       "rule_id": "SEC009_F01_RECIPIENT_ACTIONS_UNRESOLVED",
+      "counterexample": "recipient os_assignment: action list repeats an item; required recipient actions are unresolved.",
+      "l9_pointer": "/cases/1/negative_cases/206",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/7",
+      "l5_rule_pointer": "/failure_rules/7",
       "expected_sha256": "bc5c3908da6d3b621a34c00a1e1f7b716fd16aca08d72d36c9a7f52e3eca03af"
     },
     {
@@ -2175,6 +3270,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_RECIPIENT_ACTIONS_UNRESOLVED",
       "rule_id": "SEC009_F01_RECIPIENT_ACTIONS_UNRESOLVED",
+      "counterexample": "recipient os_assignment: action list contains non-string item; required recipient actions are unresolved.",
+      "l9_pointer": "/cases/1/negative_cases/207",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/7",
+      "l5_rule_pointer": "/failure_rules/7",
       "expected_sha256": "bc5c3908da6d3b621a34c00a1e1f7b716fd16aca08d72d36c9a7f52e3eca03af"
     },
     {
@@ -2183,6 +3283,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_RECIPIENT_ACTIONS_UNRESOLVED",
       "rule_id": "SEC009_F01_RECIPIENT_ACTIONS_UNRESOLVED",
+      "counterexample": "recipient os_assignment: actions is not a list; required recipient actions are unresolved.",
+      "l9_pointer": "/cases/1/negative_cases/208",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/7",
+      "l5_rule_pointer": "/failure_rules/7",
       "expected_sha256": "bc5c3908da6d3b621a34c00a1e1f7b716fd16aca08d72d36c9a7f52e3eca03af"
     },
     {
@@ -2191,6 +3296,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_RECIPIENT_ACTIONS_UNRESOLVED",
       "rule_id": "SEC009_F01_RECIPIENT_ACTIONS_UNRESOLVED",
+      "counterexample": "recipient worker_execution: action list repeats an item; required recipient actions are unresolved.",
+      "l9_pointer": "/cases/1/negative_cases/209",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/7",
+      "l5_rule_pointer": "/failure_rules/7",
       "expected_sha256": "bc5c3908da6d3b621a34c00a1e1f7b716fd16aca08d72d36c9a7f52e3eca03af"
     },
     {
@@ -2199,6 +3309,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_RECIPIENT_ACTIONS_UNRESOLVED",
       "rule_id": "SEC009_F01_RECIPIENT_ACTIONS_UNRESOLVED",
+      "counterexample": "recipient worker_execution: action list contains non-string item; required recipient actions are unresolved.",
+      "l9_pointer": "/cases/1/negative_cases/210",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/7",
+      "l5_rule_pointer": "/failure_rules/7",
       "expected_sha256": "bc5c3908da6d3b621a34c00a1e1f7b716fd16aca08d72d36c9a7f52e3eca03af"
     },
     {
@@ -2207,6 +3322,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_RECIPIENT_ACTIONS_UNRESOLVED",
       "rule_id": "SEC009_F01_RECIPIENT_ACTIONS_UNRESOLVED",
+      "counterexample": "recipient worker_execution: actions is not a list; required recipient actions are unresolved.",
+      "l9_pointer": "/cases/1/negative_cases/211",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/7",
+      "l5_rule_pointer": "/failure_rules/7",
       "expected_sha256": "bc5c3908da6d3b621a34c00a1e1f7b716fd16aca08d72d36c9a7f52e3eca03af"
     },
     {
@@ -2215,6 +3335,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_RECIPIENT_ACTIONS_UNRESOLVED",
       "rule_id": "SEC009_F01_RECIPIENT_ACTIONS_UNRESOLVED",
+      "counterexample": "recipient connect_communication: action list repeats an item; required recipient actions are unresolved.",
+      "l9_pointer": "/cases/1/negative_cases/212",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/7",
+      "l5_rule_pointer": "/failure_rules/7",
       "expected_sha256": "bc5c3908da6d3b621a34c00a1e1f7b716fd16aca08d72d36c9a7f52e3eca03af"
     },
     {
@@ -2223,6 +3348,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_RECIPIENT_ACTIONS_UNRESOLVED",
       "rule_id": "SEC009_F01_RECIPIENT_ACTIONS_UNRESOLVED",
+      "counterexample": "recipient connect_communication: action list contains non-string item; required recipient actions are unresolved.",
+      "l9_pointer": "/cases/1/negative_cases/213",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/7",
+      "l5_rule_pointer": "/failure_rules/7",
       "expected_sha256": "bc5c3908da6d3b621a34c00a1e1f7b716fd16aca08d72d36c9a7f52e3eca03af"
     },
     {
@@ -2231,6 +3361,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_RECIPIENT_ACTIONS_UNRESOLVED",
       "rule_id": "SEC009_F01_RECIPIENT_ACTIONS_UNRESOLVED",
+      "counterexample": "recipient connect_communication: actions is not a list; required recipient actions are unresolved.",
+      "l9_pointer": "/cases/1/negative_cases/214",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/7",
+      "l5_rule_pointer": "/failure_rules/7",
       "expected_sha256": "bc5c3908da6d3b621a34c00a1e1f7b716fd16aca08d72d36c9a7f52e3eca03af"
     },
     {
@@ -2239,6 +3374,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_RECIPIENT_ACTIONS_UNRESOLVED",
       "rule_id": "SEC009_F01_RECIPIENT_ACTIONS_UNRESOLVED",
+      "counterexample": "recipient credential_use: action list repeats an item; required recipient actions are unresolved.",
+      "l9_pointer": "/cases/1/negative_cases/215",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/7",
+      "l5_rule_pointer": "/failure_rules/7",
       "expected_sha256": "bc5c3908da6d3b621a34c00a1e1f7b716fd16aca08d72d36c9a7f52e3eca03af"
     },
     {
@@ -2247,6 +3387,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_RECIPIENT_ACTIONS_UNRESOLVED",
       "rule_id": "SEC009_F01_RECIPIENT_ACTIONS_UNRESOLVED",
+      "counterexample": "recipient credential_use: action list contains non-string item; required recipient actions are unresolved.",
+      "l9_pointer": "/cases/1/negative_cases/216",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/7",
+      "l5_rule_pointer": "/failure_rules/7",
       "expected_sha256": "bc5c3908da6d3b621a34c00a1e1f7b716fd16aca08d72d36c9a7f52e3eca03af"
     },
     {
@@ -2255,6 +3400,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_RECIPIENT_ACTIONS_UNRESOLVED",
       "rule_id": "SEC009_F01_RECIPIENT_ACTIONS_UNRESOLVED",
+      "counterexample": "recipient credential_use: actions is not a list; required recipient actions are unresolved.",
+      "l9_pointer": "/cases/1/negative_cases/217",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/7",
+      "l5_rule_pointer": "/failure_rules/7",
       "expected_sha256": "bc5c3908da6d3b621a34c00a1e1f7b716fd16aca08d72d36c9a7f52e3eca03af"
     },
     {
@@ -2263,6 +3413,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_RECIPIENT_ACTIONS_UNRESOLVED",
       "rule_id": "SEC009_F01_RECIPIENT_ACTIONS_UNRESOLVED",
+      "counterexample": "recipient artifact_access: action list repeats an item; required recipient actions are unresolved.",
+      "l9_pointer": "/cases/1/negative_cases/218",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/7",
+      "l5_rule_pointer": "/failure_rules/7",
       "expected_sha256": "bc5c3908da6d3b621a34c00a1e1f7b716fd16aca08d72d36c9a7f52e3eca03af"
     },
     {
@@ -2271,6 +3426,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_RECIPIENT_ACTIONS_UNRESOLVED",
       "rule_id": "SEC009_F01_RECIPIENT_ACTIONS_UNRESOLVED",
+      "counterexample": "recipient artifact_access: action list contains non-string item; required recipient actions are unresolved.",
+      "l9_pointer": "/cases/1/negative_cases/219",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/7",
+      "l5_rule_pointer": "/failure_rules/7",
       "expected_sha256": "bc5c3908da6d3b621a34c00a1e1f7b716fd16aca08d72d36c9a7f52e3eca03af"
     },
     {
@@ -2279,6 +3439,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_RECIPIENT_ACTIONS_UNRESOLVED",
       "rule_id": "SEC009_F01_RECIPIENT_ACTIONS_UNRESOLVED",
+      "counterexample": "recipient artifact_access: actions is not a list; required recipient actions are unresolved.",
+      "l9_pointer": "/cases/1/negative_cases/220",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/7",
+      "l5_rule_pointer": "/failure_rules/7",
       "expected_sha256": "bc5c3908da6d3b621a34c00a1e1f7b716fd16aca08d72d36c9a7f52e3eca03af"
     },
     {
@@ -2293,6 +3458,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F02_ISOLATION_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F02_ISOLATION_BINDING_UNRESOLVED",
+      "counterexample": "isolation: event_id absent; isolation and prior-state binding is incomplete.",
+      "l9_pointer": "/cases/2/negative_cases/0",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/22",
+      "l5_rule_pointer": "/failure_rules/22",
       "expected_sha256": "422431b6f3d65a684d0077ef70a7d41ec781f9e3ffed649958de1abb37dfe7b3"
     },
     {
@@ -2301,6 +3471,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F02_ISOLATION_BINDING_CONFLICT",
       "rule_id": "SEC009_F02_ISOLATION_BINDING_CONFLICT",
+      "counterexample": "isolation: event_id conflicts (actual values not supplied); isolation binding conflicts with context.",
+      "l9_pointer": "/cases/2/negative_cases/1",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/23",
+      "l5_rule_pointer": "/failure_rules/23",
       "expected_sha256": "db6cfb52020a9190a671bad06f6368760e719175e284820364136d0d8a5a6f89"
     },
     {
@@ -2309,6 +3484,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F02_ISOLATION_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F02_ISOLATION_BINDING_UNRESOLVED",
+      "counterexample": "isolation: revision absent; isolation and prior-state binding is incomplete.",
+      "l9_pointer": "/cases/2/negative_cases/2",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/22",
+      "l5_rule_pointer": "/failure_rules/22",
       "expected_sha256": "422431b6f3d65a684d0077ef70a7d41ec781f9e3ffed649958de1abb37dfe7b3"
     },
     {
@@ -2317,6 +3497,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F02_ISOLATION_BINDING_CONFLICT",
       "rule_id": "SEC009_F02_ISOLATION_BINDING_CONFLICT",
+      "counterexample": "isolation: revision conflicts (actual values not supplied); isolation binding conflicts with context.",
+      "l9_pointer": "/cases/2/negative_cases/3",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/23",
+      "l5_rule_pointer": "/failure_rules/23",
       "expected_sha256": "db6cfb52020a9190a671bad06f6368760e719175e284820364136d0d8a5a6f89"
     },
     {
@@ -2325,6 +3510,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F02_ISOLATION_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F02_ISOLATION_BINDING_UNRESOLVED",
+      "counterexample": "isolation: scope absent; isolation and prior-state binding is incomplete.",
+      "l9_pointer": "/cases/2/negative_cases/4",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/22",
+      "l5_rule_pointer": "/failure_rules/22",
       "expected_sha256": "422431b6f3d65a684d0077ef70a7d41ec781f9e3ffed649958de1abb37dfe7b3"
     },
     {
@@ -2333,6 +3523,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F02_ISOLATION_BINDING_CONFLICT",
       "rule_id": "SEC009_F02_ISOLATION_BINDING_CONFLICT",
+      "counterexample": "isolation: scope conflicts (actual values not supplied); isolation binding conflicts with context.",
+      "l9_pointer": "/cases/2/negative_cases/5",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/23",
+      "l5_rule_pointer": "/failure_rules/23",
       "expected_sha256": "db6cfb52020a9190a671bad06f6368760e719175e284820364136d0d8a5a6f89"
     },
     {
@@ -2341,6 +3536,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F02_ISOLATION_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F02_ISOLATION_BINDING_UNRESOLVED",
+      "counterexample": "isolation: operation absent; isolation and prior-state binding is incomplete.",
+      "l9_pointer": "/cases/2/negative_cases/6",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/22",
+      "l5_rule_pointer": "/failure_rules/22",
       "expected_sha256": "422431b6f3d65a684d0077ef70a7d41ec781f9e3ffed649958de1abb37dfe7b3"
     },
     {
@@ -2349,6 +3549,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F02_ISOLATION_BINDING_CONFLICT",
       "rule_id": "SEC009_F02_ISOLATION_BINDING_CONFLICT",
+      "counterexample": "isolation: operation conflicts (actual values not supplied); isolation binding conflicts with context.",
+      "l9_pointer": "/cases/2/negative_cases/7",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/23",
+      "l5_rule_pointer": "/failure_rules/23",
       "expected_sha256": "db6cfb52020a9190a671bad06f6368760e719175e284820364136d0d8a5a6f89"
     },
     {
@@ -2357,6 +3562,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F02_ISOLATION_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F02_ISOLATION_BINDING_UNRESOLVED",
+      "counterexample": "isolation: project absent; isolation and prior-state binding is incomplete.",
+      "l9_pointer": "/cases/2/negative_cases/8",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/22",
+      "l5_rule_pointer": "/failure_rules/22",
       "expected_sha256": "422431b6f3d65a684d0077ef70a7d41ec781f9e3ffed649958de1abb37dfe7b3"
     },
     {
@@ -2365,6 +3575,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F02_ISOLATION_BINDING_CONFLICT",
       "rule_id": "SEC009_F02_ISOLATION_BINDING_CONFLICT",
+      "counterexample": "isolation: project conflicts (actual values not supplied); isolation binding conflicts with context.",
+      "l9_pointer": "/cases/2/negative_cases/9",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/23",
+      "l5_rule_pointer": "/failure_rules/23",
       "expected_sha256": "db6cfb52020a9190a671bad06f6368760e719175e284820364136d0d8a5a6f89"
     },
     {
@@ -2373,6 +3588,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F02_ISOLATION_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F02_ISOLATION_BINDING_UNRESOLVED",
+      "counterexample": "isolation: source ref absent; isolation and prior-state binding is incomplete.",
+      "l9_pointer": "/cases/2/negative_cases/10",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/22",
+      "l5_rule_pointer": "/failure_rules/22",
       "expected_sha256": "422431b6f3d65a684d0077ef70a7d41ec781f9e3ffed649958de1abb37dfe7b3"
     },
     {
@@ -2381,6 +3601,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F02_ISOLATION_BINDING_CONFLICT",
       "rule_id": "SEC009_F02_ISOLATION_BINDING_CONFLICT",
+      "counterexample": "isolation: source ref conflicts (actual values not supplied); isolation binding conflicts with context.",
+      "l9_pointer": "/cases/2/negative_cases/11",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/23",
+      "l5_rule_pointer": "/failure_rules/23",
       "expected_sha256": "db6cfb52020a9190a671bad06f6368760e719175e284820364136d0d8a5a6f89"
     },
     {
@@ -2389,6 +3614,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F02_ISOLATION_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F02_ISOLATION_BINDING_UNRESOLVED",
+      "counterexample": "isolation: before-state ref absent; isolation and prior-state binding is incomplete.",
+      "l9_pointer": "/cases/2/negative_cases/12",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/22",
+      "l5_rule_pointer": "/failure_rules/22",
       "expected_sha256": "422431b6f3d65a684d0077ef70a7d41ec781f9e3ffed649958de1abb37dfe7b3"
     },
     {
@@ -2397,6 +3627,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F02_ISOLATION_BINDING_CONFLICT",
       "rule_id": "SEC009_F02_ISOLATION_BINDING_CONFLICT",
+      "counterexample": "isolation: before-state ref conflicts (values not supplied); isolation binding conflicts with context.",
+      "l9_pointer": "/cases/2/negative_cases/13",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/23",
+      "l5_rule_pointer": "/failure_rules/23",
       "expected_sha256": "db6cfb52020a9190a671bad06f6368760e719175e284820364136d0d8a5a6f89"
     },
     {
@@ -2405,6 +3640,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F02_ISOLATION_UNRESOLVED",
       "rule_id": "SEC009_F02_ISOLATION_UNRESOLVED",
+      "counterexample": "isolation: state unknown; isolation completion is unresolved.",
+      "l9_pointer": "/cases/2/negative_cases/14",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/24",
+      "l5_rule_pointer": "/failure_rules/24",
       "expected_sha256": "96ded60f65013be0dd0dda1ed439d1a53180c2fc4981c01817d607bb9950721c"
     },
     {
@@ -2413,6 +3653,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F02_ISOLATION_NOT_APPLIED",
       "rule_id": "SEC009_F02_ISOLATION_NOT_APPLIED",
+      "counterexample": "isolation: state not isolated; affected scope is not isolated.",
+      "l9_pointer": "/cases/2/negative_cases/15",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/25",
+      "l5_rule_pointer": "/failure_rules/25",
       "expected_sha256": "024aeedb1c617bf684bb130ae284f776a824787a101bd63c7703475f2c03c2d0"
     },
     {
@@ -2421,6 +3666,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F02_ISOLATION_UNRESOLVED",
       "rule_id": "SEC009_F02_ISOLATION_UNRESOLVED",
+      "counterexample": "isolation: state is only planned; isolation completion is unresolved.",
+      "l9_pointer": "/cases/2/negative_cases/16",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/24",
+      "l5_rule_pointer": "/failure_rules/24",
       "expected_sha256": "96ded60f65013be0dd0dda1ed439d1a53180c2fc4981c01817d607bb9950721c"
     },
     {
@@ -2429,6 +3679,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F02_RECOVERY_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F02_RECOVERY_BINDING_UNRESOLVED",
+      "counterexample": "recovery: event_id absent; recovery and restored-state binding is incomplete.",
+      "l9_pointer": "/cases/2/negative_cases/17",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/26",
+      "l5_rule_pointer": "/failure_rules/26",
       "expected_sha256": "b9491c0b8703d29931f7d871f421523ad4b79e4b1e01b4506feee640b50ea5a7"
     },
     {
@@ -2437,6 +3692,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F02_RECOVERY_BINDING_CONFLICT",
       "rule_id": "SEC009_F02_RECOVERY_BINDING_CONFLICT",
+      "counterexample": "recovery: event_id conflicts (actual values not supplied); recovery binding conflicts with context.",
+      "l9_pointer": "/cases/2/negative_cases/18",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/27",
+      "l5_rule_pointer": "/failure_rules/27",
       "expected_sha256": "36dec4f791b5403059208b62f19148daba8302abd36f82930792a3eb86bf0224"
     },
     {
@@ -2445,6 +3705,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F02_RECOVERY_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F02_RECOVERY_BINDING_UNRESOLVED",
+      "counterexample": "recovery: revision absent; recovery and restored-state binding is incomplete.",
+      "l9_pointer": "/cases/2/negative_cases/19",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/26",
+      "l5_rule_pointer": "/failure_rules/26",
       "expected_sha256": "b9491c0b8703d29931f7d871f421523ad4b79e4b1e01b4506feee640b50ea5a7"
     },
     {
@@ -2453,6 +3718,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F02_RECOVERY_BINDING_CONFLICT",
       "rule_id": "SEC009_F02_RECOVERY_BINDING_CONFLICT",
+      "counterexample": "recovery: revision conflicts (actual values not supplied); recovery binding conflicts with context.",
+      "l9_pointer": "/cases/2/negative_cases/20",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/27",
+      "l5_rule_pointer": "/failure_rules/27",
       "expected_sha256": "36dec4f791b5403059208b62f19148daba8302abd36f82930792a3eb86bf0224"
     },
     {
@@ -2461,6 +3731,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F02_RECOVERY_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F02_RECOVERY_BINDING_UNRESOLVED",
+      "counterexample": "recovery: scope absent; recovery and restored-state binding is incomplete.",
+      "l9_pointer": "/cases/2/negative_cases/21",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/26",
+      "l5_rule_pointer": "/failure_rules/26",
       "expected_sha256": "b9491c0b8703d29931f7d871f421523ad4b79e4b1e01b4506feee640b50ea5a7"
     },
     {
@@ -2469,6 +3744,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F02_RECOVERY_BINDING_CONFLICT",
       "rule_id": "SEC009_F02_RECOVERY_BINDING_CONFLICT",
+      "counterexample": "recovery: scope conflicts (actual values not supplied); recovery binding conflicts with context.",
+      "l9_pointer": "/cases/2/negative_cases/22",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/27",
+      "l5_rule_pointer": "/failure_rules/27",
       "expected_sha256": "36dec4f791b5403059208b62f19148daba8302abd36f82930792a3eb86bf0224"
     },
     {
@@ -2477,6 +3757,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F02_RECOVERY_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F02_RECOVERY_BINDING_UNRESOLVED",
+      "counterexample": "recovery: operation absent; recovery and restored-state binding is incomplete.",
+      "l9_pointer": "/cases/2/negative_cases/23",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/26",
+      "l5_rule_pointer": "/failure_rules/26",
       "expected_sha256": "b9491c0b8703d29931f7d871f421523ad4b79e4b1e01b4506feee640b50ea5a7"
     },
     {
@@ -2485,6 +3770,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F02_RECOVERY_BINDING_CONFLICT",
       "rule_id": "SEC009_F02_RECOVERY_BINDING_CONFLICT",
+      "counterexample": "recovery: operation conflicts (actual values not supplied); recovery binding conflicts with context.",
+      "l9_pointer": "/cases/2/negative_cases/24",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/27",
+      "l5_rule_pointer": "/failure_rules/27",
       "expected_sha256": "36dec4f791b5403059208b62f19148daba8302abd36f82930792a3eb86bf0224"
     },
     {
@@ -2493,6 +3783,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F02_RECOVERY_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F02_RECOVERY_BINDING_UNRESOLVED",
+      "counterexample": "recovery: project absent; recovery and restored-state binding is incomplete.",
+      "l9_pointer": "/cases/2/negative_cases/25",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/26",
+      "l5_rule_pointer": "/failure_rules/26",
       "expected_sha256": "b9491c0b8703d29931f7d871f421523ad4b79e4b1e01b4506feee640b50ea5a7"
     },
     {
@@ -2501,6 +3796,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F02_RECOVERY_BINDING_CONFLICT",
       "rule_id": "SEC009_F02_RECOVERY_BINDING_CONFLICT",
+      "counterexample": "recovery: project conflicts (actual values not supplied); recovery binding conflicts with context.",
+      "l9_pointer": "/cases/2/negative_cases/26",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/27",
+      "l5_rule_pointer": "/failure_rules/27",
       "expected_sha256": "36dec4f791b5403059208b62f19148daba8302abd36f82930792a3eb86bf0224"
     },
     {
@@ -2509,6 +3809,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F02_RECOVERY_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F02_RECOVERY_BINDING_UNRESOLVED",
+      "counterexample": "recovery: source ref absent; recovery and restored-state binding is incomplete.",
+      "l9_pointer": "/cases/2/negative_cases/27",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/26",
+      "l5_rule_pointer": "/failure_rules/26",
       "expected_sha256": "b9491c0b8703d29931f7d871f421523ad4b79e4b1e01b4506feee640b50ea5a7"
     },
     {
@@ -2517,6 +3822,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F02_RECOVERY_BINDING_CONFLICT",
       "rule_id": "SEC009_F02_RECOVERY_BINDING_CONFLICT",
+      "counterexample": "recovery: source ref conflicts (actual values not supplied); recovery binding conflicts with context.",
+      "l9_pointer": "/cases/2/negative_cases/28",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/27",
+      "l5_rule_pointer": "/failure_rules/27",
       "expected_sha256": "36dec4f791b5403059208b62f19148daba8302abd36f82930792a3eb86bf0224"
     },
     {
@@ -2525,6 +3835,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F02_RECOVERY_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F02_RECOVERY_BINDING_UNRESOLVED",
+      "counterexample": "recovery: restored-state ref absent; recovery and restored-state binding is incomplete.",
+      "l9_pointer": "/cases/2/negative_cases/29",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/26",
+      "l5_rule_pointer": "/failure_rules/26",
       "expected_sha256": "b9491c0b8703d29931f7d871f421523ad4b79e4b1e01b4506feee640b50ea5a7"
     },
     {
@@ -2533,6 +3848,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F02_RECOVERY_BINDING_CONFLICT",
       "rule_id": "SEC009_F02_RECOVERY_BINDING_CONFLICT",
+      "counterexample": "recovery: restored-state ref conflicts (values not supplied); recovery binding conflicts with context.",
+      "l9_pointer": "/cases/2/negative_cases/30",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/27",
+      "l5_rule_pointer": "/failure_rules/27",
       "expected_sha256": "36dec4f791b5403059208b62f19148daba8302abd36f82930792a3eb86bf0224"
     },
     {
@@ -2541,6 +3861,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F02_RECOVERY_UNRESOLVED",
       "rule_id": "SEC009_F02_RECOVERY_UNRESOLVED",
+      "counterexample": "recovery: state unknown; recovery to prior state is unresolved.",
+      "l9_pointer": "/cases/2/negative_cases/31",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/28",
+      "l5_rule_pointer": "/failure_rules/28",
       "expected_sha256": "545a5c65a7eb10688863a507b8a2c3855bc68caf8deea4ca06616c0b17931a42"
     },
     {
@@ -2549,6 +3874,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F02_RECOVERY_INCOMPLETE",
       "rule_id": "SEC009_F02_RECOVERY_INCOMPLETE",
+      "counterexample": "recovery: state is partial; recovery to prior state is incomplete.",
+      "l9_pointer": "/cases/2/negative_cases/32",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/29",
+      "l5_rule_pointer": "/failure_rules/29",
       "expected_sha256": "439ff82d48466e36685fc5eb176483c9fc674ff6010b6d40f5564e2533e3f31c"
     },
     {
@@ -2557,6 +3887,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F02_RECOVERY_UNRESOLVED",
       "rule_id": "SEC009_F02_RECOVERY_UNRESOLVED",
+      "counterexample": "recovery: state is only planned; recovery to prior state is unresolved.",
+      "l9_pointer": "/cases/2/negative_cases/33",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/28",
+      "l5_rule_pointer": "/failure_rules/28",
       "expected_sha256": "545a5c65a7eb10688863a507b8a2c3855bc68caf8deea4ca06616c0b17931a42"
     },
     {
@@ -2565,6 +3900,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F02_GLOBAL_STOP_EXPANSION",
       "rule_id": "SEC009_F02_GLOBAL_STOP_EXPANSION",
+      "counterexample": "policy.all_scopes_stop_requested: true, expanding beyond the affected scope; stop request includes unrelated scopes.",
+      "l9_pointer": "/cases/2/negative_cases/34",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/21",
+      "l5_rule_pointer": "/failure_rules/21",
       "expected_sha256": "46f7ccf2fbc2c8f9f902f05bcb4216939f1671f94fd2fb47fa7a7758477996b2"
     },
     {
@@ -2573,6 +3913,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F02_TRIGGER_CATEGORY_UNRESOLVED",
       "rule_id": "SEC009_F02_TRIGGER_CATEGORY_UNRESOLVED",
+      "counterexample": "event.category: unknown; safety/general trigger category is unresolved.",
+      "l9_pointer": "/cases/2/negative_cases/35",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/18",
+      "l5_rule_pointer": "/failure_rules/18",
       "expected_sha256": "56e88243edddfb1d8d4887a71e624002f39c345d877cd683884155a852564a28"
     },
     {
@@ -2581,6 +3926,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F02_TRIGGER_CATEGORY_CONFLICT",
       "rule_id": "SEC009_F02_TRIGGER_CATEGORY_CONFLICT",
+      "counterexample": "event.category: conflicts with expected category; event category conflicts with expected category.",
+      "l9_pointer": "/cases/2/negative_cases/36",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/19",
+      "l5_rule_pointer": "/failure_rules/19",
       "expected_sha256": "488bbffbab1bfb22930c1208993d333cddcfe9c275f553cffe21e419379efd57"
     },
     {
@@ -2589,6 +3939,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F02_GLOBAL_STOP_EXPANSION",
       "rule_id": "SEC009_F02_GLOBAL_STOP_EXPANSION",
+      "counterexample": "general-meaning policy scope: requests stopping unrelated scopes; stop request includes unrelated scopes.",
+      "l9_pointer": "/cases/2/negative_cases/37",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/21",
+      "l5_rule_pointer": "/failure_rules/21",
       "expected_sha256": "46f7ccf2fbc2c8f9f902f05bcb4216939f1671f94fd2fb47fa7a7758477996b2"
     },
     {
@@ -2597,6 +3952,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F02_TRIGGER_CATEGORY_UNRESOLVED",
       "rule_id": "SEC009_F02_TRIGGER_CATEGORY_UNRESOLVED",
+      "counterexample": "event.expected_category: absent; safety/general trigger category is unresolved.",
+      "l9_pointer": "/cases/2/negative_cases/38",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/18",
+      "l5_rule_pointer": "/failure_rules/18",
       "expected_sha256": "56e88243edddfb1d8d4887a71e624002f39c345d877cd683884155a852564a28"
     },
     {
@@ -2605,6 +3965,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F02_TRIGGER_CATEGORY_CONFLICT",
       "rule_id": "SEC009_F02_TRIGGER_CATEGORY_CONFLICT",
+      "counterexample": "event category: general claim conflicts with expected safety meaning; event category conflicts with expected category.",
+      "l9_pointer": "/cases/2/negative_cases/39",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/19",
+      "l5_rule_pointer": "/failure_rules/19",
       "expected_sha256": "488bbffbab1bfb22930c1208993d333cddcfe9c275f553cffe21e419379efd57"
     },
     {
@@ -2613,6 +3978,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F02_STOP_SCOPE_UNRESOLVED",
       "rule_id": "SEC009_F02_STOP_SCOPE_UNRESOLVED",
+      "counterexample": "safety policy stop scope: null; local stop scope cannot be established.",
+      "l9_pointer": "/cases/2/negative_cases/41",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/20",
+      "l5_rule_pointer": "/failure_rules/20",
       "expected_sha256": "c891d3977ce13c0ca820de406bf94af10d0ba24d13932e13b883c55d3a5992f4"
     },
     {
@@ -2621,6 +3991,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F02_STOP_SCOPE_UNRESOLVED",
       "rule_id": "SEC009_F02_STOP_SCOPE_UNRESOLVED",
+      "counterexample": "general-meaning stop scope: null; local stop scope cannot be established.",
+      "l9_pointer": "/cases/2/negative_cases/42",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/20",
+      "l5_rule_pointer": "/failure_rules/20",
       "expected_sha256": "c891d3977ce13c0ca820de406bf94af10d0ba24d13932e13b883c55d3a5992f4"
     },
     {
@@ -2629,6 +4004,11 @@
       "population_state": "negative",
       "class_id": "SEC009_F01_RECIPIENT_COMPOSITE_FINDINGS",
       "rule_id": "SEC009_F01_RECIPIENT_COMPOSITE_FINDINGS",
+      "counterexample": "applied/recovery recipient results: worker continues; credential stop unapplied; OS receipt unknown; worker continues, credential stop is unapplied, OS receipt is unknown.",
+      "l9_pointer": "/cases/1/negative_cases/205",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/30",
+      "l5_rule_pointer": "/failure_rules/30",
       "expected_sha256": "b593bf333e909509879540c24d0468166894dce57e9f7ce4f354e6cf1567b126"
     },
     {
@@ -2637,9 +4017,23 @@
       "population_state": "negative",
       "class_id": "SEC009_F02_ISOLATION_RECOVERY_BINDING_UNRESOLVED",
       "rule_id": "SEC009_F02_ISOLATION_RECOVERY_BINDING_UNRESOLVED",
+      "counterexample": "shared isolation/recovery before-state source: absent; one missing prior-state source leaves isolation and recovery unresolved.",
+      "l9_pointer": "/cases/2/negative_cases/40",
+      "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+      "l4_class_pointer": "/failure_classifications/31",
+      "l5_rule_pointer": "/failure_rules/31",
       "expected_sha256": "ecee8ca83ff8c06221e68a8d6e763b3733c7e4f308f657937536abaddd10a606"
     }
   ],
+  "negative_source_review": {
+    "summary": "Each negative L9 nested source pointer was resolved individually. Every `given` object contains only the shared evidence_limit notice; no concrete field values or paired conflicting values are present. Counterexamples therefore state the source ID's missing/conflict dimension plus the L4 class meaning, and conflict rows explicitly avoid inventing values.",
+    "negative_case_count": 277,
+    "distinct_given_hashes": 1,
+    "given_hash_counts": {
+      "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68": 277
+    },
+    "case_id_and_pointer_are_in_row_audit": true
+  },
   "positive_source_review": {
     "summary": "No positive expected values were copied from L9 expected_proposal. The eight current L9 source cases provide only the shared evidence_limit input field; no case-specific input facts support independent expected/preserved values under the cited L3/L10/L4 contracts.",
     "contract_oracle": "HELIXSECURITY-L10-009-B01 is resolved at contract level; individual oracle_id is null for each U-ID.",
