@@ -107,7 +107,7 @@
     "scaffold/research/wr255-sec009-l5l8-audit-20261101/verification-summary-24d7f00bdca4-91da3af2.json",
     "scaffold/research/wr255-sec009-l5l8-audit-20261101/check-child-report-24d7f00bdca4-91da3af2.json",
     "scaffold/research/wr255-sec009-l5l8-audit-20261101/verification-summary-cb44877e1db6-91da3af2.json",
-    "scaffold/research/wr255-sec009-l5l8-audit-20261101/check-child-report-cb44877e1db6-91da3af2.json"
+    "scaffold/research/wr255-sec009-l5l8-audit-20261101/duplicate-check-report-disposition.json"
   ],
   "verification": {
     "evidence_kind": "scaffold",

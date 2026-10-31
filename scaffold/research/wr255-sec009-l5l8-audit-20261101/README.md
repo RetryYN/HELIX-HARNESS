@@ -41,3 +41,7 @@ validatorはnegative 277行それぞれのL9 nested pointerを解決します。
 - positive最小期待の設計済み（実測未観測）: 8
 
 このpair単独の結果ではL9行のcondition/expected/expected_preservedとcompact observationが不足するため、行はmatchedになりません。positiveの契約最小期待もL5/L8とL4/L9で別々に起草し、このL5/L8だけの測定ではL9への反映を前提にしません。L4/L9補足を組み合わせたoverlayは別の候補と検証結果として扱い、正式な4層検証やsecurity behaviorの証明とはしません。
+
+## 同一check-child reportの履歴と重複整理
+
+作業tree測定 `check-child-report-cb44877e1db6-91da3af2.json` と確定source revision測定 `check-child-report-24d7f00bdca4-91da3af2.json` はSHA-256 `cab380a50fab1955d608fd1408580294060221673f74ce51fc3d37aa6e0e128e` で同一でした。前者の現HEAD上の複製だけを除き、source revision `24d7f00bdca41c3dfb1f3137655ffdbe3674cfb3` のgit blob `79c8fc8835c69ecd7394534a44a9b1bea8452efb` と復元コマンドを [`duplicate-check-report-disposition.json`](duplicate-check-report-disposition.json) に記録しました。後者と異なる初回報告は保持しています。旧summaryは書き換えておらず、旧full-report pathは記録したcommitから復元できます。
