@@ -25,8 +25,8 @@
     },
     {
       "path": "docs/helix-connect/L8-unit-verification/composite-edge-terminal.json",
-      "sha256": "f21e8e6f1493420145172c337884d05423c679404e0f46179d74491ec60ac2c2",
-      "note": "consumer互換のcases配列にU-IDと期待を結び、probeのpatch/全returnを除いたL8静的索引"
+      "sha256": "5d31d583a69574b653a9731de2512b4f5c5009ceb6a975127df090df747f6994",
+      "note": "U-ID付きcases配列。source locatorは意味参照のみで、decode/input bindingを含まず、局所probeは短い反例・判断のみ"
     },
     {
       "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
