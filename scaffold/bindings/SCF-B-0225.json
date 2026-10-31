@@ -11,37 +11,37 @@
     {
       "path": "docs/helix-connect/L3-requirements/functional-requirements.json",
       "sha256": "fb04683632d92e5c51c46fdc2eecf388a58e406856f243b8105513e075a49421",
-      "note": "Source bytes verified unchanged at latest origin/main ad2dfaf6f434fbb81cd34988d4bd76212380f3a5."
+      "note": "Source bytes verified unchanged at latest origin/main 8ca99d8afcfcca2e5240afb992289ea8c80c41a6."
     },
     {
       "path": "docs/helix-connect/L4-basic-design/retry-deduplication-conflict.json",
       "sha256": "68e77bc1579a10470f2ea608010f0bd553c1c511a8a50992c9b8bd8d28ee92eb",
-      "note": "Source bytes verified unchanged at latest origin/main ad2dfaf6f434fbb81cd34988d4bd76212380f3a5."
+      "note": "Source bytes verified unchanged at latest origin/main 8ca99d8afcfcca2e5240afb992289ea8c80c41a6."
     },
     {
       "path": "docs/helix-connect/L5-detail-design/retry-deduplication-conflict.json",
       "sha256": "ae83a4db64fb613ebbaa119e11ed3c83f23e1a77fad22a205375f0d6b3d9e19d",
-      "note": "Source bytes verified unchanged at latest origin/main ad2dfaf6f434fbb81cd34988d4bd76212380f3a5."
+      "note": "Source bytes verified unchanged at latest origin/main 8ca99d8afcfcca2e5240afb992289ea8c80c41a6."
     },
     {
       "path": "docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json",
       "sha256": "5cfea671da4e491a172590b6b6e404da9e37af230929d0e764eee1a7d7bcb465",
-      "note": "Source bytes verified unchanged at latest origin/main ad2dfaf6f434fbb81cd34988d4bd76212380f3a5."
+      "note": "Source bytes verified unchanged at latest origin/main 8ca99d8afcfcca2e5240afb992289ea8c80c41a6."
     },
     {
       "path": "docs/helix-connect/L10-verification/functional-verification.json",
       "sha256": "8728cf7c2730a29375f3c7dad75c77157a119d603e52b46f775ede8f1eae474d",
-      "note": "Source bytes verified unchanged at latest origin/main ad2dfaf6f434fbb81cd34988d4bd76212380f3a5."
+      "note": "Source bytes verified unchanged at latest origin/main 8ca99d8afcfcca2e5240afb992289ea8c80c41a6."
     },
     {
       "path": "scaffold/verification-test-template-seed-20261001/README.md",
       "sha256": "e754243381921e4a3317a66dc784c03905ef24ab740721bc7767851989162efd",
-      "note": "Source bytes verified unchanged at latest origin/main ad2dfaf6f434fbb81cd34988d4bd76212380f3a5."
+      "note": "Source bytes verified unchanged at latest origin/main 8ca99d8afcfcca2e5240afb992289ea8c80c41a6."
     },
     {
       "path": "docs/governance/design-verification-quality-assurance.md",
       "sha256": "f5751e236dc073fe67114c1fcb4b0f64b3d746290b25d75b61e60a08e3c99c85",
-      "note": "Source bytes verified unchanged at latest origin/main ad2dfaf6f434fbb81cd34988d4bd76212380f3a5."
+      "note": "Source bytes verified unchanged at latest origin/main 8ca99d8afcfcca2e5240afb992289ea8c80c41a6."
     }
   ],
   "role": "Temporary static source, case-identity, expectation and boundary evidence for the WR265 CONNECT004 L8 candidate.",
@@ -54,7 +54,8 @@
     "Legacy comparison is reference-only: preserve retry identity/dedup/conflict/finite-budget boundaries; do not migrate old cursor codec, database, runtime, or old execution paths.",
     "Validator defaults to read-only. --record accepts an explicit new path only and creates it exclusively; no existing evidence path may be replaced.",
     "Record L9 oracle alignment separately from independent expectations. Generic design_verification_checker check-child outcomes are recorded as pass/fail/not_evaluated; not_evaluated is never pass.",
-    "Check scfctl validate/stale and static validator in a latest origin/main merge overlay before handing off."
+    "Check scfctl validate/stale and static validator in a latest origin/main merge overlay before handing off.",
+    "Keep one current verification summary. Preserve superseded summary bytes in their existing commits/blobs; evidence-history.json stores only commit/blob/SHA-256, paths or JSON pointers, byte lengths and extraction instructions, without embedding full report objects."
   ],
   "connections": {
     "consumers": [
@@ -62,7 +63,7 @@
     ],
     "dependencies": [
       "Fixed base revision b3ddf6f1d0a6cf2009e5f81a90f21c4292300185 for original L8 identity/order and history recovery.",
-      "Latest origin/main ad2dfaf6f434fbb81cd34988d4bd76212380f3a5 L3/L4/L5/L9/L10/DT-VT-105/QA source bytes; all pinned hashes were rechecked unchanged.",
+      "Latest origin/main 8ca99d8afcfcca2e5240afb992289ea8c80c41a6 L3/L4/L5/L9/L10/DT-VT-105/QA source bytes; all pinned hashes were rechecked unchanged.",
       "Legacy source assets LEGACY-ASSET-C3DE79BA9451172F3E43 and LEGACY-ASSET-DD66C1B6B7BE234B37E6."
     ],
     "boundary": "Candidate L8 table normalization and static scaffold evidence only. No authority effect, approval, test execution, runtime/CI claim, invented row oracle/test citation, or completion effect."
@@ -96,12 +97,13 @@
       "negative_case"
     ],
     "oracles": [
-      "Original case identity/order/function_ref from fixed base b3ddf6f1d0a6cf2009e5f81a90f21c4292300185; original L8 bytes recoverable by commit/path/blob/SHA-256 and restore command in evidence-history.json.",
+      "Original case identity/order/function_ref from fixed base b3ddf6f1d0a6cf2009e5f81a90f21c4292300185; original L8 bytes recoverable by commit/path/blob/SHA-256 and restore command in evidence-history.json. Historical summary archive blobs at commits 869675e43871daa3034eeaacc78a157eb234cc01 and ef3b6adef8dc60b9ba67380a8e00891694f4633e are verified by blob/SHA/byte length; each prior summary is extracted via its pinned history JSON pointer or direct summary path.",
       "Counterexamples are reconstructed from fixed L9 independent_source_packet input only, with literal values omitted. Expected semantics and source refs are derived from L3/L4/L5; unsupported claim-level semantics are explicitly unverified.",
       "L9 expected_material pointer and failure/owner branches are used only as a comparison against the independent L3/L4/L5 derivation. No expected text is copied from the L9 outcome.",
       "L5 obligation_trace resolves each preserved function_ref/case ID. F03 conditional retryable-result owner is checked against L5 rule 8 and the L9 business_nonretryable/unknown cases; L4 F03 output and L10 failure-observation boundaries are also checked.",
-      "Current latest-main overlay static summary; generic check-child result is recorded separately and is not product completion proof.",
-      "scfctl validate/stale and validator in latest-main merge overlay."
+      "Current summary is verification-summary-main-overlay-r8.json from latest origin/main overlay 8ca99d8afcfcca2e5240afb992289ea8c80c41a6; generic check-child result is recorded separately and is not product completion proof.",
+      "scfctl validate/stale and validator in latest-main merge overlay.",
+      "validate_uid_table.py checks all history archive blob, pointer, reconstructed summary hashes and byte lengths without writing."
     ],
     "negative_cases": [
       "No raw packet data, expected outcomes, repeated function definitions, l5_function_ref alias, l9_basic_branches table, full return, fixture, COPY, hash map, or patch is duplicated.",

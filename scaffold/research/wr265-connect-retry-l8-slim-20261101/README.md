@@ -17,9 +17,9 @@ legacy referencesは参照のみ: `LEGACY-ASSET-C3DE79BA9451172F3E43` と `LEGAC
 新しいimmutable recordが必要な場合だけ未使用pathを明示する:
 
 ```sh
-python3 -B scaffold/research/wr265-connect-retry-l8-slim-20261101/validate_uid_table.py --record-id WR265-RETRY-L8-CURRENT-STATIC-R7 --record scaffold/research/wr265-connect-retry-l8-slim-20261101/verification-summary-main-overlay-r7.json
+python3 -B scaffold/research/wr265-connect-retry-l8-slim-20261101/validate_uid_table.py --record-id WR265-RETRY-L8-CURRENT-STATIC-R8 --record scaffold/research/wr265-connect-retry-l8-slim-20261101/verification-summary-main-overlay-r8.json
 ```
 
-書込みはexclusive作成で、既存pathを拒否する。current summary R7はlatest `origin/main` overlay上の記録で、summary生成前validateとの循環を避けるためbinding artifact一覧には含めない。旧summary R1〜R6は `evidence-history.json` に固定commitまたはoverlay revision、SHA-256、復元方法を保全する。履歴summaryは実行入力やexpected fallbackに使わない。
+書込みはexclusive作成で、既存pathを拒否する。current summary R8はlatest `origin/main` overlay上の記録で、summary生成前validateとの循環を避けるためbinding artifact一覧には含めない。旧summary bytesは複製せず、`evidence-history.json` に既存commit/blob/SHA-256/byte lengthとhistory JSON pointerまたは直接pathを記録する。validatorは元archiveと各summaryを再抽出し、SHA-256/byte lengthを実測照合する。履歴summaryは実行入力やexpected fallbackに使わない。
 
 latest `origin/main` merge overlayで `scfctl validate`, `scfctl stale`, 固有validator、`design_verification_checker.py check-child` を実測し、各結果をそのまま記録する。`not_evaluated` はpassではない。証拠は静的scaffold照合で、承認やformal L8 completionを示さない。

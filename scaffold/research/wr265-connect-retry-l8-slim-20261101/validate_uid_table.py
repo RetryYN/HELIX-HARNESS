@@ -19,10 +19,96 @@ L4 = "docs/helix-connect/L4-basic-design/retry-deduplication-conflict.json"
 L3 = "docs/helix-connect/L3-requirements/functional-requirements.json"
 L10 = "docs/helix-connect/L10-verification/functional-verification.json"
 HISTORY = "scaffold/research/wr265-connect-retry-l8-slim-20261101/evidence-history.json"
+SUMMARY_ROOT = "scaffold/research/wr265-connect-retry-l8-slim-20261101/"
+EXPECTED_HISTORY_ARCHIVES = {
+    "history-before-r5": {"commit":"869675e43871daa3034eeaacc78a157eb234cc01", "path":HISTORY, "blob":"b37fe920b1b63252808448d66b24a8beba3a3389", "sha256":"405fa952b942527a3d8c106cc2e9c05dc48213433fc4bceda1388e971f94b081", "bytes":27367, "kind":"history_json", "restore_command":f"git show 869675e43871daa3034eeaacc78a157eb234cc01:{HISTORY} > /tmp/wr265-history-before-r5.json"},
+    "history-through-r6": {"commit":"ef3b6adef8dc60b9ba67380a8e00891694f4633e", "path":HISTORY, "blob":"dbc65e36ccfdc26495676e2f207e719b8f8aa761", "sha256":"aea11fed54702d2852144ef5ffbe4bb8da19c8276976e67ea15e76567c8a14fa", "bytes":40499, "kind":"history_json", "restore_command":f"git show ef3b6adef8dc60b9ba67380a8e00891694f4633e:{HISTORY} > /tmp/wr265-history-through-r6.json"},
+    "summary-r0": {"commit":"8e3ea7474ead919b2f86dfc2c2b14c1b875ca707", "path":SUMMARY_ROOT+"verification-summary.json", "blob":"bb44e994788e0033994382686d4e623d71a92e5f", "sha256":"7ce0c0145a5c383a7bc02f627680412df86f9275df96c3c9b1b2396b76498a94", "bytes":1991, "kind":"summary_json", "restore_command":f"git show 8e3ea7474ead919b2f86dfc2c2b14c1b875ca707:{SUMMARY_ROOT}verification-summary.json > /tmp/wr265-summary-initial.json"},
+    "summary-r5": {"commit":"869675e43871daa3034eeaacc78a157eb234cc01", "path":SUMMARY_ROOT+"verification-summary-main-overlay-r5.json", "blob":"42d5b1031c3f2d4af034a683da8cd9c445b0335a", "sha256":"2331b3458c129633371ff8dd73fb98d3c4abb08602911e0c5087b999058393b4", "bytes":4959, "kind":"summary_json", "restore_command":f"git show 869675e43871daa3034eeaacc78a157eb234cc01:{SUMMARY_ROOT}verification-summary-main-overlay-r5.json > /tmp/wr265-summary-r5.json"},
+    "summary-r7": {"commit":"ef3b6adef8dc60b9ba67380a8e00891694f4633e", "path":SUMMARY_ROOT+"verification-summary-main-overlay-r7.json", "blob":"737893b37638b3906551c05acd82537020c49264", "sha256":"fa9e39b20b6a93fd295a84c61d8a341f8239d8061da84ee090e004cbd588637b", "bytes":4959, "kind":"summary_json", "restore_command":f"git show ef3b6adef8dc60b9ba67380a8e00891694f4633e:{SUMMARY_ROOT}verification-summary-main-overlay-r7.json > /tmp/wr265-summary-r7.json"},
+}
 
 
 def load(path):
     return json.loads((ROOT / path).read_text(encoding="utf-8"))
+
+
+def resolve_pointer(document, pointer):
+    value = document
+    for token in pointer.lstrip("/").split("/"):
+        token = token.replace("~1", "/").replace("~0", "~")
+        value = value[token]
+    return value
+
+
+def validate_history_archives(history):
+    errors = []
+    archive_sources = {item.get("id"): item for item in history.get("archive_sources", [])}
+    if set(archive_sources) != set(EXPECTED_HISTORY_ARCHIVES):
+        errors.append("history archive source IDs do not match the fixed historical commits")
+    for archive_id, expected in EXPECTED_HISTORY_ARCHIVES.items():
+        source = archive_sources.get(archive_id)
+        if source is None:
+            continue
+        for field, expected_value in expected.items():
+            if source.get(field) != expected_value:
+                errors.append(f"{archive_id}: {field} differs from fixed historical source metadata")
+        try:
+            archived_bytes = subprocess.check_output(["git", "show", f"{expected['commit']}:{expected['path']}"], cwd=ROOT)
+            archived_blob = subprocess.check_output(["git", "rev-parse", f"{expected['commit']}:{expected['path']}"], cwd=ROOT, text=True).strip()
+        except subprocess.CalledProcessError:
+            errors.append(f"{archive_id}: historical Git object cannot be read")
+            continue
+        if archived_blob != expected["blob"] or hashlib.sha256(archived_bytes).hexdigest() != expected["sha256"] or len(archived_bytes) != expected["bytes"]:
+            errors.append(f"{archive_id}: historical Git object blob/SHA-256/byte length differs")
+
+    records = history.get("archived_summaries", [])
+    expected_records = {
+        "summary-r0-initial": ("WR265-RETRY-L8-CURRENT-STATIC-R1", "summary-r0", None, "7ce0c0145a5c383a7bc02f627680412df86f9275df96c3c9b1b2396b76498a94", 1991),
+        "summary-r1-overlay": ("WR265-RETRY-L8-CURRENT-STATIC-R1", "history-before-r5", "/superseded_overlay_attempt/result", "d5a13a2ac377bc11f250761e0bc9741fa6f58064dd953c0336b21a2ae678515e", 4266),
+        "summary-r2-overlay": ("WR265-RETRY-L8-CURRENT-STATIC-R2", "history-before-r5", "/superseded_overlay_r2_summary/result", "aa1ddc4e307747e3e6dc0b205fdc77293835a492fd6703fbe7ef7ef042bed097", 4266),
+        "summary-r3-overlay": ("WR265-RETRY-L8-CURRENT-STATIC-R3", "history-before-r5", "/superseded_overlay_r3_summary/result", "288e0e563de0c4a48179a9ad2ae9fff7f4052a4abfa44601cc1ca0e85a39b5a0", 4266),
+        "summary-r4-overlay": ("WR265-RETRY-L8-CURRENT-STATIC-R4", "history-before-r5", "/superseded_overlay_r4_summary/result", "b83b58a170410290145e33b6b8599fb1dda3e75df9f5ac7501e5522b7e019261", 4550),
+        "summary-r5-overlay": ("WR265-RETRY-L8-CURRENT-STATIC-R5", "summary-r5", None, "2331b3458c129633371ff8dd73fb98d3c4abb08602911e0c5087b999058393b4", 4959),
+        "summary-r6-overlay": ("WR265-RETRY-L8-CURRENT-STATIC-R6", "history-through-r6", "/superseded_overlay_r6_summary/result", "212c458d6804537c849533325c1f54a3abeafdb890d89dc58df87347cf222652", 4959),
+        "summary-r7-overlay": ("WR265-RETRY-L8-CURRENT-STATIC-R7", "summary-r7", None, "fa9e39b20b6a93fd295a84c61d8a341f8239d8061da84ee090e004cbd588637b", 4959),
+    }
+    records_by_key = {item.get("archive_key"): item for item in records}
+    if set(records_by_key) != set(expected_records) or len(records_by_key) != len(records):
+        errors.append("archived summary references are missing, duplicated, or unexpected")
+    for archive_key, (expected_id, archive_id, pointer, expected_sha, expected_bytes) in expected_records.items():
+        record = records_by_key.get(archive_key)
+        if record is None:
+            continue
+        if record.get("record_id") != expected_id or record.get("archive_id") != archive_id or record.get("json_pointer") != pointer or record.get("sha256") != expected_sha or record.get("bytes") != expected_bytes:
+            errors.append(f"{archive_key}: compact archive pointer/SHA-256/byte length differs")
+            continue
+        source = archive_sources.get(archive_id)
+        if source is None:
+            errors.append(f"{archive_key}: archive source {archive_id} is unresolved")
+            continue
+        try:
+            source_bytes = subprocess.check_output(["git", "show", f"{source['commit']}:{source['path']}"], cwd=ROOT)
+            summary_bytes = source_bytes if pointer is None else (json.dumps(resolve_pointer(json.loads(source_bytes), pointer), ensure_ascii=False, indent=2) + "\n").encode("utf-8")
+            summary = json.loads(summary_bytes)
+        except (subprocess.CalledProcessError, KeyError, TypeError, ValueError, json.JSONDecodeError):
+            errors.append(f"{archive_key}: summary cannot be extracted from the pinned history blob/path")
+            continue
+        if summary.get("record_id") != expected_id or hashlib.sha256(summary_bytes).hexdigest() != expected_sha or len(summary_bytes) != expected_bytes:
+            errors.append(f"{archive_key}: extracted summary record ID/SHA-256/byte length differs")
+    def contains_embedded_result(value):
+        if isinstance(value, dict):
+            return "result" in value or any(contains_embedded_result(child) for child in value.values())
+        if isinstance(value, list):
+            return any(contains_embedded_result(child) for child in value)
+        return False
+    if contains_embedded_result(history):
+        errors.append("current evidence-history must reference old summary objects, not embed result objects")
+    archive_view = {
+        "archive_sources":[{k:v[k] for k in ("id","kind","commit","path","blob","sha256","bytes")} for v in history.get("archive_sources", [])],
+        "archived_summaries":[{k:v.get(k) for k in ("archive_key","record_id","archive_id","json_pointer","sha256","bytes")} for v in records],
+    }
+    return errors, archive_view
 
 
 def pointer_for(case, obligation_index, case_index):
@@ -575,9 +661,17 @@ def derive_expected(row, case, raw, baseline, l3, l4, l5):
 def check():
     doc, l3, l4, l5, l9, l10, history = load(L8), load(L3), load(L4), load(L5), load(L9), load(L10), load(HISTORY)
     errors = []
+    archive_errors, archive_view = validate_history_archives(history)
+    errors.extend(archive_errors)
     old_bytes = subprocess.check_output(["git", "show", f"{BASE}:{L8}"], cwd=ROOT)
     old = json.loads(old_bytes)
     old_ids = [c["id"] for c in old["cases"]]
+    expected_historical_source = {"commit":BASE,"path":L8,"blob":subprocess.check_output(["git", "rev-parse", f"{BASE}:{L8}"], cwd=ROOT, text=True).strip(),"sha256":hashlib.sha256(old_bytes).hexdigest(),"bytes":len(old_bytes),"restore_command":f"git show {BASE}:{L8} > {L8}"}
+    if history.get("historical_source") != expected_historical_source:
+        errors.append("historical L8 source commit/blob/SHA-256/bytes/restore command do not resolve")
+    order_hash = hashlib.sha256(("\n".join(old_ids)+"\n").encode("utf-8")).hexdigest()
+    if history.get("historical_structure") != {"case_count":len(old_ids),"case_ids_order_sha256":order_hash,"case_ids_order_source":"historical_source commit/path; validator re-reads it"}:
+        errors.append("compact historical case count/order digest does not resolve from the fixed source")
     ids = [c.get("id") for c in doc.get("cases", [])]
     if ids != old_ids:
         errors.append("case ID/order differs from fixed pre-edit source")
@@ -733,8 +827,8 @@ def check():
         "record_id":"WR265-RETRY-L8-CURRENT-STATIC-R1",
         "target":L8, "target_revision":source_revision, "target_sha256":hashlib.sha256(current_bytes).hexdigest(),
         "source_pins": {path: hashlib.sha256((ROOT / path).read_bytes()).hexdigest() for path in (L3,L4,L5,L9,L10)},
-        "historical_source":history["historical_source"],
-        "checks":{"case_identity_order":"evaluated","u_id_and_original_function_ref":"evaluated","input_only_counterexamples":"evaluated","independent_L3_L4_L5_expectations":"evaluated","L9_oracle_comparison_only":"evaluated","existing_L5_L9_L10_consumers":"evaluated","removed_materials_and_forbidden_material":"evaluated"},
+        "historical_source":history["historical_source"], "historical_summary_archive":archive_view,
+        "checks":{"case_identity_order":"evaluated","u_id_and_original_function_ref":"evaluated","input_only_counterexamples":"evaluated","independent_L3_L4_L5_expectations":"evaluated","L9_oracle_comparison_only":"evaluated","existing_L5_L9_L10_consumers":"evaluated","removed_materials_and_forbidden_material":"evaluated","immutable_summary_history_recovery":"evaluated"},
         "rows_checked":matched, "expected_status_counts":{status:sum(1 for row in doc["cases"] if row.get("expected_status")==status) for status in sorted({row.get("expected_status") for row in doc["cases"]})}, "l9_comparison_status_counts":{status:sum(1 for item in comparisons if item["status"]==status) for status in sorted({item["status"] for item in comparisons})}, "result":"FAIL" if errors else "PASS_STATIC_ONLY",
         "errors":errors,
         "not_evaluated":["L5 algorithm execution","product test","real receiver effect",f"{sum(1 for row in doc['cases'] if row.get('expected_status')=='unverified')} row claim-level expectations explicitly marked unverified","approval or formal L8 completion","design_verification_checker child semantics"],
@@ -769,7 +863,7 @@ def check():
 def main():
     ap=argparse.ArgumentParser()
     ap.add_argument("--record", metavar="NEW_PATH", help="write one new report path with O_EXCL; default is read-only")
-    ap.add_argument("--record-id", default="WR265-RETRY-L8-CURRENT-STATIC-R1", help="unique ID for the explicitly recorded summary")
+    ap.add_argument("--record-id", default="WR265-RETRY-L8-CURRENT-STATIC-R8", help="unique ID for the explicitly recorded summary")
     args=ap.parse_args()
     report=check()
     report["record_id"] = args.record_id
