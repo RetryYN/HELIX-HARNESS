@@ -90,7 +90,9 @@
       "Historical L8 whole-file SHA-256 9f52fe3f90769cdacee9d147dceb0fabb2c36386839f39fdcb2d4039086ed6b7 is fixed evidence at revision 92cb38ffb792151ddd8029d654ca700126d02681, not the current L8 bytes. Current compact table has 35 existing L9-mapped rows plus 3 concise F03 head-comparison rows; candidate values and all 38 comparisons are checked by WR253 validator under SCF-B-0215.",
       "Historical validator scaffold/research/wr206-f02-l5-l8-pr-b-20261031/validate_static_candidate.py SHA-256 03e98e0e029e38bc8820fd066d8f29837053ce6f0e8be84529f1dfe1d1b56f18 is retained at revision 46864fcaa2426a480dbd037040cd4c4332c61ddd; current validator was adapted for the WR253 table without changing the fixed snapshot.",
       "candidate artifact SHA-256: scaffold/research/wr206-f02-l5-l8-pr-b-20261031/validate_static_candidate.py=469ec3aaa975700c0646d4091edacf1fd12bd442edbcaa3252884bf88a328ab5",
-      "WR253 pre-R1 validator scaffold/research/wr206-f02-l5-l8-pr-b-20261031/validate_static_candidate.py SHA-256 a969ee539db037593d0973b0d39161162193428e13375b36ea0601bb4080f25a is fixed at revision db42fa7ae4571b7f68690e3ba07cdf55735c1a94; the current validator also checks the restored three head rows."
+      "WR253 pre-R1 validator scaffold/research/wr206-f02-l5-l8-pr-b-20261031/validate_static_candidate.py SHA-256 a969ee539db037593d0973b0d39161162193428e13375b36ea0601bb4080f25a is fixed at revision db42fa7ae4571b7f68690e3ba07cdf55735c1a94; the current validator also checks the restored three head rows.",
+      "WR253 L9 follow-up: earlier validator hashes above are historical at revision 6c1ceb0172c0dcb95b843739bee2c15905dd735f; the following hashes bind current validators after preserving historical comparisons.",
+      "candidate artifact SHA-256: scaffold/research/wr206-f02-l5-l8-pr-b-20261031/validate_static_candidate.py=e3c0a1e15a7a5a73ad8ebd3ccca236581316bed33020207babc2e80cecb3f218"
     ],
     "negative_cases": [
       "Do not present chosen axis/state/schema as upstream approval or independent oracle.",

@@ -1,0 +1,49 @@
+{
+  "schema": "wr253-l9-slim-verification.v1",
+  "evidence_kind": "scaffold",
+  "authority_effect": "none",
+  "base": "6c1ceb0172c0dcb95b843739bee2c15905dd735f",
+  "l9_current_sha256": "805ab74d9792775616e10af7b3da92a8be13002f66180e2a1862de17dbd597d3",
+  "removed_hash_count": 35,
+  "historical_hashes_and_remaining_l9_values": "pass",
+  "pair": {
+    "L4_L9_pair": true,
+    "L5_L8_pair": true
+  },
+  "ownership_caps": {
+    "L4": {
+      "passed": true,
+      "failure_count": 0
+    },
+    "L9": {
+      "passed": true,
+      "failure_count": 0
+    },
+    "L5": {
+      "passed": true,
+      "failure_count": 0
+    },
+    "L8": {
+      "passed": true,
+      "failure_count": 0
+    }
+  },
+  "negative_4way": {
+    "passed": false,
+    "failure_count": 35,
+    "counts": {
+      "L4": 30,
+      "L9": 30,
+      "L8": 0,
+      "L5": 0
+    },
+    "matched_case_count": 0
+  },
+  "pins": {
+    "checked_count": 79,
+    "failures": 0
+  },
+  "limitations": [
+    "4way 35 failures remain; no product runtime/test/CI or approval was run or generated."
+  ]
+}

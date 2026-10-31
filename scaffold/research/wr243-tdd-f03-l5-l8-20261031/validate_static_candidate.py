@@ -66,7 +66,7 @@ def main() -> int:
     l3row, l10row = l3["requirements"][42], l10["cases"][42]
     checks["L3_F03_pointer_hash"] = l3row.get("id") == "HARNESS-L3-015-F03" and digest_json(l3row) == "b641eb43bd5164ab55101bac10aaa0fbf0fb24a55d4429ad0f013af9594cd6ce"
     checks["L10_F03_pointer_hash"] = l10row.get("id") == "HARNESS-L10-015-F03" and digest_json(l10row) == "c41bc44981b5cdd6abe939405535a44c163d9714374e168dfe589dac4ce7cd7a"
-    checks["L4_L9_unchanged_from_base"] = (ROOT / L4_PATH).read_bytes() == base_bytes(L4_PATH) and (ROOT / L9_PATH).read_bytes() == base_bytes(L9_PATH)
+    checks["L4_L9_unchanged_from_base"] = (ROOT / L4_PATH).read_bytes() == base_bytes(L4_PATH) and validate_uid_table.precompact_l9_bytes() == base_bytes(L9_PATH)
     fixed_hashes = {row["path"]: row["sha256"] for row in correction["fixed_evidence"]}
     checks["fixed_comparison_and_summary_unchanged"] = all(digest_bytes((ROOT / path).read_bytes()) == expected for path, expected in fixed_hashes.items())
 

@@ -30,8 +30,8 @@
     },
     {
       "path": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json",
-      "sha256": "4f64977ee8b2900733a823d5b9755f567952caef8cf323036a9b0776202d2462",
-      "note": "35 source packet and expected-material pointers; not edited."
+      "sha256": "805ab74d9792775616e10af7b3da92a8be13002f66180e2a1862de17dbd597d3",
+      "note": "35 source packet and expected-material pointers; not edited. WR253 L9 follow-up: prior pin 4f64977ee8b2900733a823d5b9755f567952caef8cf323036a9b0776202d2462 remains historical at 6c1ceb0172c0dcb95b843739bee2c15905dd735f; current pin 805ab74d9792775616e10af7b3da92a8be13002f66180e2a1862de17dbd597d3 removes only 35 source_packet.byte_sha256 fields with source/expected meaning preserved. Earlier unchanged statements refer to their original revision."
     },
     {
       "path": "docs/helix-harness/L5-detail-design/tdd-development-flow.json",
@@ -128,7 +128,11 @@
       "candidate artifact SHA-256: scaffold/research/wr253-tdd-l8-slim-20261031/validate_uid_table.py=3d0c33341a9d22e60db35a5a03dfd5499daea42879947abeab90aa4afdfb28ca",
       "candidate artifact SHA-256: scaffold/research/wr253-tdd-l8-slim-20261031/r1-f03-head-connection-correction-20261031.json=68bd77d06f49fda0113779b40ac187e4bc4b613fdaafa4b870a98206381aef8f",
       "candidate artifact SHA-256: scaffold/research/wr253-tdd-l8-slim-20261031/r1-f03-head-validation-20261031.json=c28d7a2602686586a39e399816f1ba668cf470559148a6ccc67ca4a76486f299",
-      "candidate artifact SHA-256: scaffold/research/wr253-tdd-l8-slim-20261031/README.md=3ff0807326f9a5a39efbda8a1254d3ab71abfed74a6ac4198f4210fd898ec60f"
+      "candidate artifact SHA-256: scaffold/research/wr253-tdd-l8-slim-20261031/README.md=3ff0807326f9a5a39efbda8a1254d3ab71abfed74a6ac4198f4210fd898ec60f",
+      "WR253 L9 follow-up: earlier validator hashes above are historical at revision 6c1ceb0172c0dcb95b843739bee2c15905dd735f; the following hashes bind current validators after preserving historical comparisons.",
+      "candidate artifact SHA-256: scaffold/research/wr206-f02-l5-l8-pr-b-20261031/validate_static_candidate.py=e3c0a1e15a7a5a73ad8ebd3ccca236581316bed33020207babc2e80cecb3f218",
+      "candidate artifact SHA-256: scaffold/research/wr223-f01-l5-l8-20261031/validate_static_candidate.py=50e09444344e188cecfc9e43a2735d9669a1150872c41d5499a9d840e999a4f5",
+      "candidate artifact SHA-256: scaffold/research/wr253-tdd-l8-slim-20261031/validate_uid_table.py=a4f2b1f528685be8251ffe7ce12adb0282c9ff4d5e5d0c6f5557cb48027e54b8"
     ],
     "negative_cases": [
       "Do not execute or materialize fixtures/COPY/patch/full return.",
