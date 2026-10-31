@@ -38,6 +38,8 @@ CLASS_EXPECTATIONS = {
     },
 }
 ORACLE_048_CONDITION = 'request.operation="read"かつconnection.allowed_operations=["read",null]であり、不正itemを捨てて読取許可として扱わない。'
+ASSET_IDENTITY_CONDITION = "asset_scopeの既知identity値が、expected_targetの同じidentity軸にある既知値と相反し、当該資産のscope対応を成立させない。"
+CONNECTION_MATERIAL_CONDITION = "実connection memberが独立expected connectionの同じmemberと既知値で相反する。"
 
 
 def load(path: str | Path):
@@ -221,7 +223,16 @@ def main() -> int:
     current_classes = {row["class_id"]: row for row in l4["failure_classifications"]}
     expected_class_ids = set(original_classes) | set(CLASS_EXPECTATIONS)
     check(set(current_classes) == expected_class_ids and len(l4["failure_classifications"]) == 17, "L4 adds only the two scope-conflict classes")
-    check(all(current_classes.get(cid) == row for cid, row in original_classes.items()), "the original 15 L4 classes are byte-value preserved")
+    expected_original_classes = copy.deepcopy(original_classes)
+    expected_original_classes["SEC003-F01-IDENTITY-CONFLICT"]["condition"] = ASSET_IDENTITY_CONDITION
+    check(all(current_classes.get(cid) == row for cid, row in expected_original_classes.items()),
+          "the original 15 L4 classes retain keys/expectations; only the asset identity-conflict wording is narrowed")
+    asset_identity_class = current_classes.get("SEC003-F01-IDENTITY-CONFLICT", {})
+    check(asset_identity_class.get("condition") == ASSET_IDENTITY_CONDITION,
+          "legacy identity-conflict condition names asset_scope and expected_target explicitly")
+    side_identity_class = current_classes.get("SEC003-F01-SCOPE-IDENTITY-CONFLICT", {})
+    check("asset_scope" not in side_identity_class.get("condition", "") and "expected_target" not in side_identity_class.get("condition", ""),
+          "request-side identity conflicts remain distinct from asset-scope comparison")
     for class_id, details in CLASS_EXPECTATIONS.items():
         cls = current_classes.get(class_id, {})
         check(cls.get("expected_axis") == details["axis"], f"{class_id}: axis is explicit")
@@ -261,7 +272,20 @@ def main() -> int:
         current_contract = copy.deepcopy(l4["contracts"][index])
         current_contract["negative_classifications"] = [row for row in current_contract["negative_classifications"] if row.get("code") not in {"SEC003_F01_SCOPE_IDENTITY_CONFLICT", "SEC003_F02_CONNECTION_SCOPE_CONFLICT"}]
         current_contract["negative_class_refs"] = [ref for ref in current_contract["negative_class_refs"] if ref not in CLASS_EXPECTATIONS]
-        check(current_contract == original_contract, f"L4 contract {index} changes only by its added scope-conflict classification/ref")
+        expected_contract = copy.deepcopy(original_contract)
+        if index == 0:
+            old_class = next(row for row in expected_contract["negative_classifications"] if row.get("code") == "SEC003_F01_IDENTITY_CONFLICT")
+            old_change = old_class["change"]
+            old_class["change"] = ASSET_IDENTITY_CONDITION
+            old_class["expected_text"] = old_class["expected_text"].replace(old_change, ASSET_IDENTITY_CONDITION, 1)
+            current_class = next(row for row in current_contract["negative_classifications"] if row.get("code") == "SEC003_F01_IDENTITY_CONFLICT")
+            check(current_class.get("expected") == old_class.get("expected"), "asset class contract key/expected remain unchanged")
+        if index == 1:
+            material_class = next(row for row in current_contract["negative_classifications"] if row.get("code") == "SEC003_F02_CONNECTION_MATERIAL_CONFLICT")
+            text = material_class.get("change", "")
+            check(all(term in text for term in ("connection member", "expected connection", "同じmember")),
+                  "connection-material class wording identifies same-member content comparison")
+        check(current_contract == expected_contract, f"L4 contract {index} changes only by scoped asset wording and added scope-conflict classification/ref")
     l4_other = copy.deepcopy(l4)
     original_l4_other = copy.deepcopy(original_l4)
     for doc in (l4_other, original_l4_other):
@@ -270,6 +294,43 @@ def main() -> int:
     check(l4_other == original_l4_other, "all other L4 content remains unchanged")
     original_rows = {row["id"]: row for group in original_l9["cases"] for row in group["negative_cases"]}
     current_rows = {row["id"]: row for group in l9["cases"] for row in group["negative_cases"]}
+    asset_identity_rows = [row for row in current_rows.values() if row.get("negative_class_ref") == "SEC003-F01-IDENTITY-CONFLICT"]
+    check(len(asset_identity_rows) == 54, "54 existing identity-conflict rows retain the asset-scope class")
+    asset_input_mismatches = []
+    for row in asset_identity_rows:
+        request = row.get("counterexample", {}).get("request", {})
+        context = row.get("counterexample", {}).get("context", {})
+        findings = row.get("expected_observation", {}).get("findings", [])
+        pointer = findings[0].get("pointer", "") if findings else ""
+        axis = pointer.rsplit("/", 1)[-1]
+        actual = request.get("asset_scope", {}).get(axis)
+        expected = context.get("expected_target", {}).get(axis)
+        if isinstance(row.get("counterexample"), dict):
+            matches_asset_scope = (
+                "asset_scope" in request
+                and axis in request.get("asset_scope", {})
+                and axis in context.get("expected_target", {})
+                and isinstance(actual, str)
+                and isinstance(expected, str)
+                and actual != expected
+            )
+        else:
+            # Six system-oracle rows are abstract source-derived contracts, not fixtures.
+            # Their own condition names the compared asset_scope axis and expected target.
+            condition = row.get("condition", "")
+            condition_axis = condition.split("asset_scope.", 1)[1].split("が", 1)[0] if "asset_scope." in condition else ""
+            matches_asset_scope = (
+                bool(condition_axis)
+                and "比較対象のexpected targetと不一致" in condition
+                and "state assetのscopeを別軸から補完しない" in condition
+            )
+        if not matches_asset_scope:
+            asset_input_mismatches.append(row["id"])
+    check(not asset_input_mismatches, "all 54 retained class-0 rows have an asset_scope/expected_target comparison: 48 concrete cases and six abstract source-derived system oracles")
+    material_class = current_classes.get("SEC003-F02-CONNECTION-MATERIAL-CONFLICT", {})
+    material_text = material_class.get("condition", "")
+    check(all(term in material_text for term in ("connection", "expected connection", "同じmember")),
+          "connection-material class remains a same-member connection-content comparison")
     expected_rows = {}
     class_indexes = {row["class_id"]: i for i, row in enumerate(l4["failure_classifications"])}
     for old_id, old_row in original_rows.items():
@@ -463,7 +524,7 @@ def main() -> int:
         "evidence_kind": "scaffold",
         "authority_effect": "none",
         "source": {"base_revision": BASE, "l4_sha256": sha(L4), "l9_sha256": sha(L9), "l3_sha256": sha(L3), "l10_sha256": sha(L10), "qa_sha256": sha(QA)},
-        "static_validation": {"passed": not failures, "failure_count": len(failures), "failures": failures, "integration_case_count": len(cases) if isinstance(cases, list) else 0, "existing_98": len(old98), "added_50": len(new50), "class_rows": {"L4": len(l4_rows), "L9": len(l9.get("negative_equivalence_classes", []))}, "unique_condition_count": len(set(conditions)), "source_input_conflict_count": len(input_conflicts), "system_oracle_mismatch_count": len(oracle_mismatches), "compact_observation_mismatch_count": len(compact_mismatches), "unresolved_source_pointer_count": len(source_pointer_failures), "source_layer_failure_count": len(source_layer_failures), "l3_requirement_ids": sorted(l3_seen), "l10_oracle_ids": sorted(l10_seen), "direct_case_audit": {"l8_case_count": len(expected_l8_codes), "l8_case_mismatches": direct_case_failures, "l9_multi_contract_conflict_count": len(residual_conflicts), "l9_multi_contract_conflict_ids": residual_conflicts, "reviewed_l5_functions": ["HELIXSECURITY-L5-003-compare_scope_side", "HELIXSECURITY-L5-003-compare_connection_content", "HELIXSECURITY-L5-003-compose_scope_proposal"]}},
+        "static_validation": {"passed": not failures, "failure_count": len(failures), "failures": failures, "integration_case_count": len(cases) if isinstance(cases, list) else 0, "existing_98": len(old98), "added_50": len(new50), "class_rows": {"L4": len(l4_rows), "L9": len(l9.get("negative_equivalence_classes", []))}, "unique_condition_count": len(set(conditions)), "source_input_conflict_count": len(input_conflicts), "system_oracle_mismatch_count": len(oracle_mismatches), "compact_observation_mismatch_count": len(compact_mismatches), "unresolved_source_pointer_count": len(source_pointer_failures), "source_layer_failure_count": len(source_layer_failures), "l3_requirement_ids": sorted(l3_seen), "l10_oracle_ids": sorted(l10_seen), "direct_case_audit": {"l8_case_count": len(expected_l8_codes), "l8_case_mismatches": direct_case_failures, "l9_multi_contract_conflict_count": len(residual_conflicts), "l9_multi_contract_conflict_ids": residual_conflicts, "class0_asset_identity_rows": len(asset_identity_rows), "class0_asset_input_mismatches": asset_input_mismatches, "connection_material_same_member_wording": all(term in material_text for term in ("connection", "expected connection", "同じmember")), "reviewed_l5_functions": ["HELIXSECURITY-L5-003-compare_scope_side", "HELIXSECURITY-L5-003-compare_connection_content", "HELIXSECURITY-L5-003-compose_scope_proposal"]}},
         "source_input_conflicts": input_conflicts,
         "l9_system_oracle_mismatches": oracle_mismatches,
         "compact_observation_mismatches": compact_mismatches,

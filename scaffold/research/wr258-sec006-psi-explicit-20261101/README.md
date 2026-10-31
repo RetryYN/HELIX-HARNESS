@@ -63,3 +63,9 @@ Claude R1で指摘された148件の`integration_cases[*].source_pointers`（約
 追加50件のL9 IDは`SEC003-L9-ORACLE-001..050`へ改名し、nested row、integration row、PR-B scaffold mapping、現在のvalidator期待を更新した。L9と同時に変更する必要があるPR-AだけでIDを更新し、canonical L5/L8はこのV-pairで変更していない。旧IDを含むR1前のL9、監査、overlay、mappingはcommit `902608f4f606d187e9a83dbf7bbc0c5951f3d674`のblob/hashから復元できるようdispositionへ記録した。
 
 R1最新main overlay（`ad2dfaf6f434fbb81cd34988d4bd76212380f3a5`）では、L4/L9 pairとL5/L8 pairはPASS、ownership capは4/4、pin検査は4組・計68件がPASS（失敗0）。explicit 4wayは0 matched・226 failuresで、L5/L8のmarker/class/case未整備と148 L9 caseのL8参照なしを実測した。`scfctl validate`は208 bindings・失敗0、`stale`は0。各validator 3本はPASS。L9は1,297,308 byteから1,055,315 byteへ241,993 byte減った。詳細は[`l4l9-supplement-current-overlay-r1.json`](l4l9-supplement-current-overlay-r1.json)に記録し、QA §58のL8 `change`/L9 `condition`文字列一致と、L8 `expected`の独立導出を明確に分ける。
+
+## PR #4024 R1 Minor: 資産identity conflictの範囲
+
+`SEC003-F01-IDENTITY-CONFLICT` と対応するL4 contract changeを、`asset_scope`の既知値と`expected_target`の同じidentity軸との相反に限定した。request側と独立expected側のidentity相反は `SEC003-F01-SCOPE-IDENTITY-CONFLICT` に残し、二つのclassの条件が重ならないことをvalidatorで確認する。既存期待値・class keyおよび54行の割当は維持する。54行のうち48件は具体counterexampleのpointerと値を照合し、6件（ORACLE-018..023）はfixtureではなくsource-derived system oracleとして、行固有conditionが`asset_scope.<axis>`とexpected target比較を示すことを確認する。接続material classは実connection memberと独立expected connectionの同じmemberの相反を表すことを別に確認し、connection-scope join classと区別する。
+
+この追補はL4/L9 pairだけを変更し、L5/L8・L3/L10・QAは変更しない。検証結果は [`l4l9-supplement-current-overlay-r2.json`](l4l9-supplement-current-overlay-r2.json) に現行1本として記録する。置換前の同path測定は [`pr4024-r1-minor-evidence-disposition.json`](pr4024-r1-minor-evidence-disposition.json) のrevision/blob/SHA-256/bytesと復元commandで保全し、復元をhash照合した。

@@ -182,7 +182,7 @@
       "negative_classifications": [
         {
           "code": "SEC003_F01_IDENTITY_CONFLICT",
-          "change": "明示されたidentity軸の既知値どうしが相反し、同一scope対応を成立させない。",
+          "change": "asset_scopeの既知identity値が、expected_targetの同じidentity軸にある既知値と相反し、当該資産のscope対応を成立させない。",
           "axis": "scope_identity",
           "state": "violation",
           "backflow_owner": "scope-binding-owner",
@@ -220,7 +220,7 @@
               "pointer": "/diagnostic_contract/return_owner"
             }
           ],
-          "expected_text": "明示されたidentity軸の既知値どうしが相反し、同一scope対応を成立させない。 condition=isolation_violation、finding_codes=[asset_scope_conflict]。original_identity=原request identityと存在するfinding/pointer/return_ownerを保持し、他project等の値で補完しない。 unaffected_scope=今回のrequest/operation以外の有効scopeを一律停止しない。 operation_effect=実認可・credential・接続・state変更、通信、停止や回復の実作用はnone。"
+          "expected_text": "asset_scopeの既知identity値が、expected_targetの同じidentity軸にある既知値と相反し、当該資産のscope対応を成立させない。 condition=isolation_violation、finding_codes=[asset_scope_conflict]。original_identity=原request identityと存在するfinding/pointer/return_ownerを保持し、他project等の値で補完しない。 unaffected_scope=今回のrequest/operation以外の有効scopeを一律停止しない。 operation_effect=実認可・credential・接続・state変更、通信、停止や回復の実作用はnone。"
         },
         {
           "code": "SEC003_F01_IDENTITY_UNRESOLVED",
@@ -1445,7 +1445,7 @@
       "class_id": "SEC003-F01-IDENTITY-CONFLICT",
       "design_ref": "HELIXSECURITY-L4-003-F01",
       "code": "isolation_violation",
-      "condition": "明示されたidentity軸の既知値どうしが相反し、同一scope対応を成立させない。",
+      "condition": "asset_scopeの既知identity値が、expected_targetの同じidentity軸にある既知値と相反し、当該資産のscope対応を成立させない。",
       "expected_classification": "isolation_violation",
       "expected": {
         "condition": "isolation_violation",
