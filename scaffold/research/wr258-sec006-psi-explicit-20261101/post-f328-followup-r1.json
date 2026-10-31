@@ -1,0 +1,70 @@
+{
+  "schema": "wr258-sec006-post-f328-followup.v1",
+  "evidence_kind": "scaffold",
+  "authority_effect": "none",
+  "fixed_source_commit": "f32812ea08cc88545ea228e71146738553ae1e35",
+  "restored_initial_artifact": {
+    "path": "scaffold/research/wr258-sec006-psi-explicit-20261101/integration-candidate.json",
+    "source_commit": "031d530f0e55f8ab264fa4fabeb6285e6e30fd49",
+    "sha256": "908f176f5b0c130b2cec452334c1244b372bcdc7a30eb2d704ffe4bb102d66c7",
+    "bytes": 35937,
+    "later_f328_version_sha256": "3d2dd7694a35a61a9a45b5a68d612f5a4fb1130bd4e7ee422f77eb65274df920"
+  },
+  "followup_measurements_preserved_at_original_immutable_paths": [
+    "integration-overlay-check-child.json",
+    "integration-overlay-measurement.json",
+    "caller-provenance-overlay-check-child.json",
+    "caller-provenance-overlay-measurement.json",
+    "rowwise-integration-design.json",
+    "checker-empty-finding-owner-candidate.json",
+    "checker-empty-finding-owner-static-check.json"
+  ],
+  "four_layer_baseline": "基本4marker overlayはL4/L9 pairとL5/L8 pairがPASSし、全class row 16/16/16/16を比較した。4wayはFAIL 16件。case condition/expected/expected_preserved不足は0件。残件はSEC003-L8-FALLBACK-PRIMARY参照未解決1件、primary-tree caller L9 6行未参照、SEC003-L8-OPERATION-DEFERの空ordered_findingsでownerを得られない1件と、そのためのL8/L9 class-key差分各4件。別provenance候補overlayでは6件のcaller row pairingが解消し、147 matched/9 failuresとなった。nested L4重複定義は0件。",
+  "caller_source_finding": "現行compare_fallbackのread fieldは/request/fallbackだけで6件すべてprimary_tree。compare_caller_materialはcaller_kindを読むが既知6値はいずれもcorresponding/空finding。compose_scope_proposalは両PartAnalysisを合成するが生caller kindを読まない。したがって現L5契約内にprovenance通過は存在しない。L3/L4のcaller区分とoriginal_identity保持を根拠に、既存二関数への来歴field追加とpass-throughだけを行う別L5/L8候補を設計し、実overlayで6 distinct inputs/outputsと6 one-to-one参照を照合した。これは契約拡張候補であり、現実装能力や承認済み設計ではない。",
+  "provenance_candidate": {
+    "artifact": "caller-provenance-overlay-measurement.json",
+    "status": "disposable_design_candidate_not_canonical",
+    "source_derivation": "L3 F02 names caller categories; L4 F02 forbids their implicit primary_tree/other_project fallback and requires original request identity preservation. L5 compare_caller_material already reads /request/caller_kind; compose_scope_proposal consumes its caller PartAnalysis.",
+    "candidate_contract": "Add caller_kind_provenance for the six known caller values to compare_caller_material result and pass it unchanged through compose_scope_proposal. Keep grade/findings, fallback violation, permissions, routing, owner and operation_effect unchanged.",
+    "actual_overlay_result": "L4/L9 and L5/L8 pair checks PASS; 4way FAIL with 147 matched cases and nine remaining failures, all from operation-defer empty-finding owner/class-key handling.",
+    "unresolved": [
+      "No canonical L5/L8 implementation or execution evidence.",
+      "Representation for unknown/absent/malformed caller inputs not derived by this six-row candidate."
+    ]
+  },
+  "empty_owner_candidate": {
+    "artifact": "checker-empty-finding-owner-candidate.json",
+    "static_check": "checker-empty-finding-owner-static-check.json",
+    "canonical_checker_changed": false
+  },
+  "large_overlay_disposition": {
+    "record": "f328-overlay-disposition.json",
+    "removed_full_copy_files": 8,
+    "recorded_bytes": 19545170,
+    "recorded_lines": 480283
+  },
+  "later_fourway_result": {
+    "baseline": {
+      "matched": 141,
+      "failures": 16,
+      "pair_checks": "L4/L9 PASS; L5/L8 PASS"
+    },
+    "caller_provenance_candidate": {
+      "matched": 147,
+      "failures": 9,
+      "pair_checks": "L4/L9 PASS; L5/L8 PASS",
+      "remaining": [
+        "operation-defer empty finding owner (1)",
+        "L8/L9 class key missing/unexpected (8)"
+      ]
+    }
+  },
+  "unresolved": [
+    "Caller provenance for unknown/absent/malformed caller inputs is not derived.",
+    "L9 integration request trace and executed oracle for the 50 source-derived case skeletons are absent.",
+    "The candidate adds a proposed L5 return field and is not canonical or approved."
+  ],
+  "canonical_scope": "L4/L9 changes from 031d and L4 pin history are retained. Canonical L5/L8/L9 source bytes after 031d remain unmodified by f328 followup. QA/checker remain unchanged.",
+  "reconstruction_report": "overlay-reconstruction-r2.json",
+  "reconstruction_report_observation": "8 historical full-copy blob SHA-256 values matched f328 before deletion in the temporary worktree; both overlays rebuilt and checker summaries reproduced."
+}

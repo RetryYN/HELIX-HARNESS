@@ -1,0 +1,528 @@
+{
+  "schema": "wr258-prb-l8-integration-case-reference-candidate.v1",
+  "evidence_kind": "scaffold",
+  "authority_effect": "none",
+  "source_basis": {
+    "rowwise_design_fixed_commit": "f32812ea08cc88545ea228e71146738553ae1e35",
+    "l8_path": "docs/helix-security/L8-unit-verification/project-scope-isolation.json",
+    "l9_path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
+    "rowwise_artifact_at_fixed_commit": {
+      "commit": "f32812ea08cc88545ea228e71146738553ae1e35",
+      "path": "scaffold/research/wr258-sec006-psi-explicit-20261101/rowwise-integration-design.json",
+      "blob": "a29776ee2d054341a924bc2ad4bc44e33183319f",
+      "sha256": "567ba03eff6607c3603b10c9bb443bf06c890364c0aa2106299cc92a81583004"
+    }
+  },
+  "rule": "この50行対応候補はL8.integration_case_refからL9.idへの未適用案。履歴rowwise入力は固定commitのGit objectで参照し、両正本は変更しない。",
+  "counts": {
+    "rows": 50,
+    "unique_l8_ids": 50,
+    "unique_l9_refs": 50
+  },
+  "rows": [
+    {
+      "candidate_id": "WR258-L9-CAND-001",
+      "l8_case_id": "SEC003-L8-SIDE-NULL-PROJECT",
+      "l8_case_pointer": "/cases/0/negative_cases/0",
+      "function_ref": "HELIXSECURITY-L5-003-compare_scope_side",
+      "l9_integration_case_ref": "SEC003-WR258-L9-ORACLE-001",
+      "l4_class_id": "SEC003-F01-IDENTITY-MISSING",
+      "purpose": "PR-BのL8 unit_casesへ追加するintegration_case_ref候補。L8入力・期待値はL9へ移さない。",
+      "status": "candidate_not_applied"
+    },
+    {
+      "candidate_id": "WR258-L9-CAND-002",
+      "l8_case_id": "SEC003-L8-SIDE-CONFLICT-PROJECT",
+      "l8_case_pointer": "/cases/0/negative_cases/1",
+      "function_ref": "HELIXSECURITY-L5-003-compare_scope_side",
+      "l9_integration_case_ref": "SEC003-WR258-L9-ORACLE-002",
+      "l4_class_id": "SEC003-F01-IDENTITY-CONFLICT",
+      "purpose": "PR-BのL8 unit_casesへ追加するintegration_case_ref候補。L8入力・期待値はL9へ移さない。",
+      "status": "candidate_not_applied"
+    },
+    {
+      "candidate_id": "WR258-L9-CAND-003",
+      "l8_case_id": "SEC003-L8-SIDE-NULL-TENANT",
+      "l8_case_pointer": "/cases/0/negative_cases/2",
+      "function_ref": "HELIXSECURITY-L5-003-compare_scope_side",
+      "l9_integration_case_ref": "SEC003-WR258-L9-ORACLE-003",
+      "l4_class_id": "SEC003-F01-IDENTITY-MISSING",
+      "purpose": "PR-BのL8 unit_casesへ追加するintegration_case_ref候補。L8入力・期待値はL9へ移さない。",
+      "status": "candidate_not_applied"
+    },
+    {
+      "candidate_id": "WR258-L9-CAND-004",
+      "l8_case_id": "SEC003-L8-SIDE-CONFLICT-TENANT",
+      "l8_case_pointer": "/cases/0/negative_cases/3",
+      "function_ref": "HELIXSECURITY-L5-003-compare_scope_side",
+      "l9_integration_case_ref": "SEC003-WR258-L9-ORACLE-004",
+      "l4_class_id": "SEC003-F01-IDENTITY-CONFLICT",
+      "purpose": "PR-BのL8 unit_casesへ追加するintegration_case_ref候補。L8入力・期待値はL9へ移さない。",
+      "status": "candidate_not_applied"
+    },
+    {
+      "candidate_id": "WR258-L9-CAND-005",
+      "l8_case_id": "SEC003-L8-SIDE-NULL-ENVIRONMENT",
+      "l8_case_pointer": "/cases/0/negative_cases/4",
+      "function_ref": "HELIXSECURITY-L5-003-compare_scope_side",
+      "l9_integration_case_ref": "SEC003-WR258-L9-ORACLE-005",
+      "l4_class_id": "SEC003-F01-IDENTITY-MISSING",
+      "purpose": "PR-BのL8 unit_casesへ追加するintegration_case_ref候補。L8入力・期待値はL9へ移さない。",
+      "status": "candidate_not_applied"
+    },
+    {
+      "candidate_id": "WR258-L9-CAND-006",
+      "l8_case_id": "SEC003-L8-SIDE-CONFLICT-ENVIRONMENT",
+      "l8_case_pointer": "/cases/0/negative_cases/5",
+      "function_ref": "HELIXSECURITY-L5-003-compare_scope_side",
+      "l9_integration_case_ref": "SEC003-WR258-L9-ORACLE-006",
+      "l4_class_id": "SEC003-F01-IDENTITY-CONFLICT",
+      "purpose": "PR-BのL8 unit_casesへ追加するintegration_case_ref候補。L8入力・期待値はL9へ移さない。",
+      "status": "candidate_not_applied"
+    },
+    {
+      "candidate_id": "WR258-L9-CAND-007",
+      "l8_case_id": "SEC003-L8-SIDE-NULL-ASSIGNMENT",
+      "l8_case_pointer": "/cases/0/negative_cases/6",
+      "function_ref": "HELIXSECURITY-L5-003-compare_scope_side",
+      "l9_integration_case_ref": "SEC003-WR258-L9-ORACLE-007",
+      "l4_class_id": "SEC003-F01-IDENTITY-MISSING",
+      "purpose": "PR-BのL8 unit_casesへ追加するintegration_case_ref候補。L8入力・期待値はL9へ移さない。",
+      "status": "candidate_not_applied"
+    },
+    {
+      "candidate_id": "WR258-L9-CAND-008",
+      "l8_case_id": "SEC003-L8-SIDE-CONFLICT-ASSIGNMENT",
+      "l8_case_pointer": "/cases/0/negative_cases/7",
+      "function_ref": "HELIXSECURITY-L5-003-compare_scope_side",
+      "l9_integration_case_ref": "SEC003-WR258-L9-ORACLE-008",
+      "l4_class_id": "SEC003-F01-IDENTITY-CONFLICT",
+      "purpose": "PR-BのL8 unit_casesへ追加するintegration_case_ref候補。L8入力・期待値はL9へ移さない。",
+      "status": "candidate_not_applied"
+    },
+    {
+      "candidate_id": "WR258-L9-CAND-009",
+      "l8_case_id": "SEC003-L8-SIDE-NULL-WORKTREE",
+      "l8_case_pointer": "/cases/0/negative_cases/8",
+      "function_ref": "HELIXSECURITY-L5-003-compare_scope_side",
+      "l9_integration_case_ref": "SEC003-WR258-L9-ORACLE-009",
+      "l4_class_id": "SEC003-F01-IDENTITY-MISSING",
+      "purpose": "PR-BのL8 unit_casesへ追加するintegration_case_ref候補。L8入力・期待値はL9へ移さない。",
+      "status": "candidate_not_applied"
+    },
+    {
+      "candidate_id": "WR258-L9-CAND-010",
+      "l8_case_id": "SEC003-L8-SIDE-CONFLICT-WORKTREE",
+      "l8_case_pointer": "/cases/0/negative_cases/9",
+      "function_ref": "HELIXSECURITY-L5-003-compare_scope_side",
+      "l9_integration_case_ref": "SEC003-WR258-L9-ORACLE-010",
+      "l4_class_id": "SEC003-F01-IDENTITY-CONFLICT",
+      "purpose": "PR-BのL8 unit_casesへ追加するintegration_case_ref候補。L8入力・期待値はL9へ移さない。",
+      "status": "candidate_not_applied"
+    },
+    {
+      "candidate_id": "WR258-L9-CAND-011",
+      "l8_case_id": "SEC003-L8-SIDE-NULL-REVISION",
+      "l8_case_pointer": "/cases/0/negative_cases/10",
+      "function_ref": "HELIXSECURITY-L5-003-compare_scope_side",
+      "l9_integration_case_ref": "SEC003-WR258-L9-ORACLE-011",
+      "l4_class_id": "SEC003-F01-IDENTITY-MISSING",
+      "purpose": "PR-BのL8 unit_casesへ追加するintegration_case_ref候補。L8入力・期待値はL9へ移さない。",
+      "status": "candidate_not_applied"
+    },
+    {
+      "candidate_id": "WR258-L9-CAND-012",
+      "l8_case_id": "SEC003-L8-SIDE-CONFLICT-REVISION",
+      "l8_case_pointer": "/cases/0/negative_cases/11",
+      "function_ref": "HELIXSECURITY-L5-003-compare_scope_side",
+      "l9_integration_case_ref": "SEC003-WR258-L9-ORACLE-012",
+      "l4_class_id": "SEC003-F01-IDENTITY-CONFLICT",
+      "purpose": "PR-BのL8 unit_casesへ追加するintegration_case_ref候補。L8入力・期待値はL9へ移さない。",
+      "status": "candidate_not_applied"
+    },
+    {
+      "candidate_id": "WR258-L9-CAND-013",
+      "l8_case_id": "SEC003-L8-SIDE-INVENTED",
+      "l8_case_pointer": "/cases/0/negative_cases/12",
+      "function_ref": "HELIXSECURITY-L5-003-compare_scope_side",
+      "l9_integration_case_ref": "SEC003-WR258-L9-ORACLE-013",
+      "l4_class_id": "SEC003-F01-TENANT-INVENTED",
+      "purpose": "PR-BのL8 unit_casesへ追加するintegration_case_ref候補。L8入力・期待値はL9へ移さない。",
+      "status": "candidate_not_applied"
+    },
+    {
+      "candidate_id": "WR258-L9-CAND-014",
+      "l8_case_id": "SEC003-L8-SIDE-UNKNOWN-VALUES",
+      "l8_case_pointer": "/cases/0/negative_cases/13",
+      "function_ref": "HELIXSECURITY-L5-003-compare_scope_side",
+      "l9_integration_case_ref": "SEC003-WR258-L9-ORACLE-014",
+      "l4_class_id": "SEC003-F01-TENANT-APPLICABILITY-UNRESOLVED",
+      "purpose": "PR-BのL8 unit_casesへ追加するintegration_case_ref候補。L8入力・期待値はL9へ移さない。",
+      "status": "candidate_not_applied"
+    },
+    {
+      "candidate_id": "WR258-L9-CAND-015",
+      "l8_case_id": "SEC003-L8-SIDE-NONAPPLICABLE-ABSENT",
+      "l8_case_pointer": "/cases/0/negative_cases/14",
+      "function_ref": "HELIXSECURITY-L5-003-compare_scope_side",
+      "l9_integration_case_ref": "SEC003-WR258-L9-ORACLE-015",
+      "l4_class_id": "SEC003-F01-IDENTITY-MISSING",
+      "purpose": "PR-BのL8 unit_casesへ追加するintegration_case_ref候補。L8入力・期待値はL9へ移さない。",
+      "status": "candidate_not_applied"
+    },
+    {
+      "candidate_id": "WR258-L9-CAND-016",
+      "l8_case_id": "SEC003-L8-SIDE-UNKNOWN-SIDE",
+      "l8_case_pointer": "/cases/0/negative_cases/15",
+      "function_ref": "HELIXSECURITY-L5-003-compare_scope_side",
+      "l9_integration_case_ref": "SEC003-WR258-L9-ORACLE-016",
+      "l4_class_id": "SEC003-F01-SIDE-INPUT-UNRESOLVED",
+      "purpose": "PR-BのL8 unit_casesへ追加するintegration_case_ref候補。L8入力・期待値はL9へ移さない。",
+      "status": "candidate_not_applied"
+    },
+    {
+      "candidate_id": "WR258-L9-CAND-017",
+      "l8_case_id": "SEC003-L8-SIDE-EXPECTED-NULL",
+      "l8_case_pointer": "/cases/0/negative_cases/16",
+      "function_ref": "HELIXSECURITY-L5-003-compare_scope_side",
+      "l9_integration_case_ref": "SEC003-WR258-L9-ORACLE-017",
+      "l4_class_id": "SEC003-F01-IDENTITY-MISSING",
+      "purpose": "PR-BのL8 unit_casesへ追加するintegration_case_ref候補。L8入力・期待値はL9へ移さない。",
+      "status": "candidate_not_applied"
+    },
+    {
+      "candidate_id": "WR258-L9-CAND-018",
+      "l8_case_id": "SEC003-L8-ASSET-CONFLICT-PROJECT",
+      "l8_case_pointer": "/cases/0/negative_cases/17",
+      "function_ref": "HELIXSECURITY-L5-003-compare_asset_scope",
+      "l9_integration_case_ref": "SEC003-WR258-L9-ORACLE-018",
+      "l4_class_id": "SEC003-F01-IDENTITY-CONFLICT",
+      "purpose": "PR-BのL8 unit_casesへ追加するintegration_case_ref候補。L8入力・期待値はL9へ移さない。",
+      "status": "candidate_not_applied"
+    },
+    {
+      "candidate_id": "WR258-L9-CAND-019",
+      "l8_case_id": "SEC003-L8-ASSET-CONFLICT-TENANT",
+      "l8_case_pointer": "/cases/0/negative_cases/18",
+      "function_ref": "HELIXSECURITY-L5-003-compare_asset_scope",
+      "l9_integration_case_ref": "SEC003-WR258-L9-ORACLE-019",
+      "l4_class_id": "SEC003-F01-IDENTITY-CONFLICT",
+      "purpose": "PR-BのL8 unit_casesへ追加するintegration_case_ref候補。L8入力・期待値はL9へ移さない。",
+      "status": "candidate_not_applied"
+    },
+    {
+      "candidate_id": "WR258-L9-CAND-020",
+      "l8_case_id": "SEC003-L8-ASSET-CONFLICT-ENVIRONMENT",
+      "l8_case_pointer": "/cases/0/negative_cases/19",
+      "function_ref": "HELIXSECURITY-L5-003-compare_asset_scope",
+      "l9_integration_case_ref": "SEC003-WR258-L9-ORACLE-020",
+      "l4_class_id": "SEC003-F01-IDENTITY-CONFLICT",
+      "purpose": "PR-BのL8 unit_casesへ追加するintegration_case_ref候補。L8入力・期待値はL9へ移さない。",
+      "status": "candidate_not_applied"
+    },
+    {
+      "candidate_id": "WR258-L9-CAND-021",
+      "l8_case_id": "SEC003-L8-ASSET-CONFLICT-ASSIGNMENT",
+      "l8_case_pointer": "/cases/0/negative_cases/20",
+      "function_ref": "HELIXSECURITY-L5-003-compare_asset_scope",
+      "l9_integration_case_ref": "SEC003-WR258-L9-ORACLE-021",
+      "l4_class_id": "SEC003-F01-IDENTITY-CONFLICT",
+      "purpose": "PR-BのL8 unit_casesへ追加するintegration_case_ref候補。L8入力・期待値はL9へ移さない。",
+      "status": "candidate_not_applied"
+    },
+    {
+      "candidate_id": "WR258-L9-CAND-022",
+      "l8_case_id": "SEC003-L8-ASSET-CONFLICT-WORKTREE",
+      "l8_case_pointer": "/cases/0/negative_cases/21",
+      "function_ref": "HELIXSECURITY-L5-003-compare_asset_scope",
+      "l9_integration_case_ref": "SEC003-WR258-L9-ORACLE-022",
+      "l4_class_id": "SEC003-F01-IDENTITY-CONFLICT",
+      "purpose": "PR-BのL8 unit_casesへ追加するintegration_case_ref候補。L8入力・期待値はL9へ移さない。",
+      "status": "candidate_not_applied"
+    },
+    {
+      "candidate_id": "WR258-L9-CAND-023",
+      "l8_case_id": "SEC003-L8-ASSET-CONFLICT-REVISION",
+      "l8_case_pointer": "/cases/0/negative_cases/22",
+      "function_ref": "HELIXSECURITY-L5-003-compare_asset_scope",
+      "l9_integration_case_ref": "SEC003-WR258-L9-ORACLE-023",
+      "l4_class_id": "SEC003-F01-IDENTITY-CONFLICT",
+      "purpose": "PR-BのL8 unit_casesへ追加するintegration_case_ref候補。L8入力・期待値はL9へ移さない。",
+      "status": "candidate_not_applied"
+    },
+    {
+      "candidate_id": "WR258-L9-CAND-024",
+      "l8_case_id": "SEC003-L8-ASSET-UNKNOWN-KIND",
+      "l8_case_pointer": "/cases/0/negative_cases/23",
+      "function_ref": "HELIXSECURITY-L5-003-compare_asset_scope",
+      "l9_integration_case_ref": "SEC003-WR258-L9-ORACLE-024",
+      "l4_class_id": "SEC003-F01-ASSET-KIND-UNRESOLVED",
+      "purpose": "PR-BのL8 unit_casesへ追加するintegration_case_ref候補。L8入力・期待値はL9へ移さない。",
+      "status": "candidate_not_applied"
+    },
+    {
+      "candidate_id": "WR258-L9-CAND-025",
+      "l8_case_id": "SEC003-L8-OWNERS-STALE-OS",
+      "l8_case_pointer": "/cases/0/negative_cases/24",
+      "function_ref": "HELIXSECURITY-L5-003-compare_owner_material_states",
+      "l9_integration_case_ref": "SEC003-WR258-L9-ORACLE-025",
+      "l4_class_id": "SEC003-F01-OWNER-MATERIAL-UNRESOLVED",
+      "purpose": "PR-BのL8 unit_casesへ追加するintegration_case_ref候補。L8入力・期待値はL9へ移さない。",
+      "status": "candidate_not_applied"
+    },
+    {
+      "candidate_id": "WR258-L9-CAND-026",
+      "l8_case_id": "SEC003-L8-OWNERS-STALE-INFRA",
+      "l8_case_pointer": "/cases/0/negative_cases/25",
+      "function_ref": "HELIXSECURITY-L5-003-compare_owner_material_states",
+      "l9_integration_case_ref": "SEC003-WR258-L9-ORACLE-026",
+      "l4_class_id": "SEC003-F01-OWNER-MATERIAL-UNRESOLVED",
+      "purpose": "PR-BのL8 unit_casesへ追加するintegration_case_ref候補。L8入力・期待値はL9へ移さない。",
+      "status": "candidate_not_applied"
+    },
+    {
+      "candidate_id": "WR258-L9-CAND-027",
+      "l8_case_id": "SEC003-L8-OWNERS-STALE-CONNECT",
+      "l8_case_pointer": "/cases/0/negative_cases/26",
+      "function_ref": "HELIXSECURITY-L5-003-compare_owner_material_states",
+      "l9_integration_case_ref": "SEC003-WR258-L9-ORACLE-027",
+      "l4_class_id": "SEC003-F01-OWNER-MATERIAL-UNRESOLVED",
+      "purpose": "PR-BのL8 unit_casesへ追加するintegration_case_ref候補。L8入力・期待値はL9へ移さない。",
+      "status": "candidate_not_applied"
+    },
+    {
+      "candidate_id": "WR258-L9-CAND-028",
+      "l8_case_id": "SEC003-L8-SIDE-TARGET-NULL",
+      "l8_case_pointer": "/cases/0/negative_cases/27",
+      "function_ref": "HELIXSECURITY-L5-003-compare_scope_side",
+      "l9_integration_case_ref": "SEC003-WR258-L9-ORACLE-028",
+      "l4_class_id": "SEC003-F01-IDENTITY-MISSING",
+      "purpose": "PR-BのL8 unit_casesへ追加するintegration_case_ref候補。L8入力・期待値はL9へ移さない。",
+      "status": "candidate_not_applied"
+    },
+    {
+      "candidate_id": "WR258-L9-CAND-029",
+      "l8_case_id": "SEC003-L8-SIDE-ORIGIN-MULTITARGET",
+      "l8_case_pointer": "/cases/0/negative_cases/28",
+      "function_ref": "HELIXSECURITY-L5-003-compare_scope_side",
+      "l9_integration_case_ref": "SEC003-WR258-L9-ORACLE-029",
+      "l4_class_id": "SEC003-F01-IDENTITY-MISSING",
+      "purpose": "PR-BのL8 unit_casesへ追加するintegration_case_ref候補。L8入力・期待値はL9へ移さない。",
+      "status": "candidate_not_applied"
+    },
+    {
+      "candidate_id": "WR258-L9-CAND-030",
+      "l8_case_id": "SEC003-L8-CONNECTION-ABSENT",
+      "l8_case_pointer": "/cases/1/negative_cases/0",
+      "function_ref": "HELIXSECURITY-L5-003-compare_connection_content",
+      "l9_integration_case_ref": "SEC003-WR258-L9-ORACLE-030",
+      "l4_class_id": "SEC003-F02-EXPLICIT-CONNECTION-ABSENT",
+      "purpose": "PR-BのL8 unit_casesへ追加するintegration_case_ref候補。L8入力・期待値はL9へ移さない。",
+      "status": "candidate_not_applied"
+    },
+    {
+      "candidate_id": "WR258-L9-CAND-031",
+      "l8_case_id": "SEC003-L8-CONNECTION-UNKNOWN",
+      "l8_case_pointer": "/cases/1/negative_cases/1",
+      "function_ref": "HELIXSECURITY-L5-003-compare_connection_content",
+      "l9_integration_case_ref": "SEC003-WR258-L9-ORACLE-031",
+      "l4_class_id": "SEC003-F02-CONNECTION-MATERIAL-UNRESOLVED",
+      "purpose": "PR-BのL8 unit_casesへ追加するintegration_case_ref候補。L8入力・期待値はL9へ移さない。",
+      "status": "candidate_not_applied"
+    },
+    {
+      "candidate_id": "WR258-L9-CAND-032",
+      "l8_case_id": "SEC003-L8-CONNECTION-ENUM",
+      "l8_case_pointer": "/cases/1/negative_cases/2",
+      "function_ref": "HELIXSECURITY-L5-003-compare_connection_content",
+      "l9_integration_case_ref": "SEC003-WR258-L9-ORACLE-032",
+      "l4_class_id": "SEC003-F02-CONNECTION-MATERIAL-UNRESOLVED",
+      "purpose": "PR-BのL8 unit_casesへ追加するintegration_case_ref候補。L8入力・期待値はL9へ移さない。",
+      "status": "candidate_not_applied"
+    },
+    {
+      "candidate_id": "WR258-L9-CAND-033",
+      "l8_case_id": "SEC003-L8-CONNECTION-CONTENT-IDENTITY",
+      "l8_case_pointer": "/cases/1/negative_cases/3",
+      "function_ref": "HELIXSECURITY-L5-003-compare_connection_content",
+      "l9_integration_case_ref": "SEC003-WR258-L9-ORACLE-033",
+      "l4_class_id": "SEC003-F02-CONNECTION-MATERIAL-CONFLICT",
+      "purpose": "PR-BのL8 unit_casesへ追加するintegration_case_ref候補。L8入力・期待値はL9へ移さない。",
+      "status": "candidate_not_applied"
+    },
+    {
+      "candidate_id": "WR258-L9-CAND-034",
+      "l8_case_id": "SEC003-L8-CONNECTION-CONTENT-REVISION",
+      "l8_case_pointer": "/cases/1/negative_cases/4",
+      "function_ref": "HELIXSECURITY-L5-003-compare_connection_content",
+      "l9_integration_case_ref": "SEC003-WR258-L9-ORACLE-034",
+      "l4_class_id": "SEC003-F02-CONNECTION-MATERIAL-CONFLICT",
+      "purpose": "PR-BのL8 unit_casesへ追加するintegration_case_ref候補。L8入力・期待値はL9へ移さない。",
+      "status": "candidate_not_applied"
+    },
+    {
+      "candidate_id": "WR258-L9-CAND-035",
+      "l8_case_id": "SEC003-L8-CONNECTION-CONTENT-ALLOWED_OPERATIONS",
+      "l8_case_pointer": "/cases/1/negative_cases/5",
+      "function_ref": "HELIXSECURITY-L5-003-compare_connection_content",
+      "l9_integration_case_ref": "SEC003-WR258-L9-ORACLE-035",
+      "l4_class_id": "SEC003-F02-CONNECTION-MATERIAL-CONFLICT",
+      "purpose": "PR-BのL8 unit_casesへ追加するintegration_case_ref候補。L8入力・期待値はL9へ移さない。",
+      "status": "candidate_not_applied"
+    },
+    {
+      "candidate_id": "WR258-L9-CAND-036",
+      "l8_case_id": "SEC003-L8-CONNECTION-JOIN-ORIGIN",
+      "l8_case_pointer": "/cases/1/negative_cases/6",
+      "function_ref": "HELIXSECURITY-L5-003-compare_connection_content",
+      "l9_integration_case_ref": "SEC003-WR258-L9-ORACLE-036",
+      "l4_class_id": "SEC003-F02-CONNECTION-MATERIAL-CONFLICT",
+      "purpose": "PR-BのL8 unit_casesへ追加するintegration_case_ref候補。L8入力・期待値はL9へ移さない。",
+      "status": "candidate_not_applied"
+    },
+    {
+      "candidate_id": "WR258-L9-CAND-037",
+      "l8_case_id": "SEC003-L8-CONNECTION-JOIN-TARGET",
+      "l8_case_pointer": "/cases/1/negative_cases/7",
+      "function_ref": "HELIXSECURITY-L5-003-compare_connection_content",
+      "l9_integration_case_ref": "SEC003-WR258-L9-ORACLE-037",
+      "l4_class_id": "SEC003-F02-CONNECTION-MATERIAL-CONFLICT",
+      "purpose": "PR-BのL8 unit_casesへ追加するintegration_case_ref候補。L8入力・期待値はL9へ移さない。",
+      "status": "candidate_not_applied"
+    },
+    {
+      "candidate_id": "WR258-L9-CAND-038",
+      "l8_case_id": "SEC003-L8-CONNECTION-IDENTITY-ABSENT",
+      "l8_case_pointer": "/cases/1/negative_cases/8",
+      "function_ref": "HELIXSECURITY-L5-003-compare_connection_content",
+      "l9_integration_case_ref": "SEC003-WR258-L9-ORACLE-038",
+      "l4_class_id": "SEC003-F02-CONNECTION-MATERIAL-UNRESOLVED",
+      "purpose": "PR-BのL8 unit_casesへ追加するintegration_case_ref候補。L8入力・期待値はL9へ移さない。",
+      "status": "candidate_not_applied"
+    },
+    {
+      "candidate_id": "WR258-L9-CAND-039",
+      "l8_case_id": "SEC003-L8-OPERATION-WRITE",
+      "l8_case_pointer": "/cases/1/negative_cases/9",
+      "function_ref": "HELIXSECURITY-L5-003-compare_operation_scope",
+      "l9_integration_case_ref": "SEC003-WR258-L9-ORACLE-039",
+      "l4_class_id": "SEC003-F02-OPERATION-SCOPE",
+      "purpose": "PR-BのL8 unit_casesへ追加するintegration_case_ref候補。L8入力・期待値はL9へ移さない。",
+      "status": "candidate_not_applied"
+    },
+    {
+      "candidate_id": "WR258-L9-CAND-040",
+      "l8_case_id": "SEC003-L8-OPERATION-EXECUTE",
+      "l8_case_pointer": "/cases/1/negative_cases/10",
+      "function_ref": "HELIXSECURITY-L5-003-compare_operation_scope",
+      "l9_integration_case_ref": "SEC003-WR258-L9-ORACLE-040",
+      "l4_class_id": "SEC003-F02-OPERATION-SCOPE",
+      "purpose": "PR-BのL8 unit_casesへ追加するintegration_case_ref候補。L8入力・期待値はL9へ移さない。",
+      "status": "candidate_not_applied"
+    },
+    {
+      "candidate_id": "WR258-L9-CAND-041",
+      "l8_case_id": "SEC003-L8-OPERATION-NETWORK",
+      "l8_case_pointer": "/cases/1/negative_cases/11",
+      "function_ref": "HELIXSECURITY-L5-003-compare_operation_scope",
+      "l9_integration_case_ref": "SEC003-WR258-L9-ORACLE-041",
+      "l4_class_id": "SEC003-F02-OPERATION-SCOPE",
+      "purpose": "PR-BのL8 unit_casesへ追加するintegration_case_ref候補。L8入力・期待値はL9へ移さない。",
+      "status": "candidate_not_applied"
+    },
+    {
+      "candidate_id": "WR258-L9-CAND-042",
+      "l8_case_id": "SEC003-L8-OPERATION-STATE",
+      "l8_case_pointer": "/cases/1/negative_cases/12",
+      "function_ref": "HELIXSECURITY-L5-003-compare_operation_scope",
+      "l9_integration_case_ref": "SEC003-WR258-L9-ORACLE-042",
+      "l4_class_id": "SEC003-F02-OPERATION-SCOPE",
+      "purpose": "PR-BのL8 unit_casesへ追加するintegration_case_ref候補。L8入力・期待値はL9へ移さない。",
+      "status": "candidate_not_applied"
+    },
+    {
+      "candidate_id": "WR258-L9-CAND-043",
+      "l8_case_id": "SEC003-L8-OPERATION-CREDENTIAL",
+      "l8_case_pointer": "/cases/1/negative_cases/13",
+      "function_ref": "HELIXSECURITY-L5-003-compare_operation_scope",
+      "l9_integration_case_ref": "SEC003-WR258-L9-ORACLE-043",
+      "l4_class_id": "SEC003-F02-OPERATION-SCOPE",
+      "purpose": "PR-BのL8 unit_casesへ追加するintegration_case_ref候補。L8入力・期待値はL9へ移さない。",
+      "status": "candidate_not_applied"
+    },
+    {
+      "candidate_id": "WR258-L9-CAND-044",
+      "l8_case_id": "SEC003-L8-OPERATION-ARTIFACT",
+      "l8_case_pointer": "/cases/1/negative_cases/14",
+      "function_ref": "HELIXSECURITY-L5-003-compare_operation_scope",
+      "l9_integration_case_ref": "SEC003-WR258-L9-ORACLE-044",
+      "l4_class_id": "SEC003-F02-OPERATION-SCOPE",
+      "purpose": "PR-BのL8 unit_casesへ追加するintegration_case_ref候補。L8入力・期待値はL9へ移さない。",
+      "status": "candidate_not_applied"
+    },
+    {
+      "candidate_id": "WR258-L9-CAND-045",
+      "l8_case_id": "SEC003-L8-OPERATION-UNKNOWN",
+      "l8_case_pointer": "/cases/1/negative_cases/15",
+      "function_ref": "HELIXSECURITY-L5-003-compare_operation_scope",
+      "l9_integration_case_ref": "SEC003-WR258-L9-ORACLE-045",
+      "l4_class_id": "SEC003-F02-OPERATION-INPUT-UNRESOLVED",
+      "purpose": "PR-BのL8 unit_casesへ追加するintegration_case_ref候補。L8入力・期待値はL9へ移さない。",
+      "status": "candidate_not_applied"
+    },
+    {
+      "candidate_id": "WR258-L9-CAND-046",
+      "l8_case_id": "SEC003-L8-OPERATION-DEFER",
+      "l8_case_pointer": "/cases/1/negative_cases/16",
+      "function_ref": "HELIXSECURITY-L5-003-compare_operation_scope",
+      "l9_integration_case_ref": "SEC003-WR258-L9-ORACLE-046",
+      "l4_class_id": "SEC003-F02-EXPLICIT-CONNECTION-ABSENT",
+      "purpose": "PR-BのL8 unit_casesへ追加するintegration_case_ref候補。L8入力・期待値はL9へ移さない。",
+      "status": "candidate_not_applied"
+    },
+    {
+      "candidate_id": "WR258-L9-CAND-047",
+      "l8_case_id": "SEC003-L8-OPERATION-EMPTY",
+      "l8_case_pointer": "/cases/1/negative_cases/17",
+      "function_ref": "HELIXSECURITY-L5-003-compare_operation_scope",
+      "l9_integration_case_ref": "SEC003-WR258-L9-ORACLE-047",
+      "l4_class_id": "SEC003-F02-OPERATION-SCOPE",
+      "purpose": "PR-BのL8 unit_casesへ追加するintegration_case_ref候補。L8入力・期待値はL9へ移さない。",
+      "status": "candidate_not_applied"
+    },
+    {
+      "candidate_id": "WR258-L9-CAND-048",
+      "l8_case_id": "SEC003-L8-OPERATION-INVALID-LIST",
+      "l8_case_pointer": "/cases/1/negative_cases/18",
+      "function_ref": "HELIXSECURITY-L5-003-compare_operation_scope",
+      "l9_integration_case_ref": "SEC003-WR258-L9-ORACLE-048",
+      "l4_class_id": "SEC003-F02-CONNECTION-MATERIAL-UNRESOLVED",
+      "purpose": "PR-BのL8 unit_casesへ追加するintegration_case_ref候補。L8入力・期待値はL9へ移さない。",
+      "status": "candidate_not_applied"
+    },
+    {
+      "candidate_id": "WR258-L9-CAND-049",
+      "l8_case_id": "SEC003-L8-FALLBACK-UNKNOWN",
+      "l8_case_pointer": "/cases/1/negative_cases/21",
+      "function_ref": "HELIXSECURITY-L5-003-compare_fallback",
+      "l9_integration_case_ref": "SEC003-WR258-L9-ORACLE-049",
+      "l4_class_id": "SEC003-F02-FALLBACK-INPUT-UNRESOLVED",
+      "purpose": "PR-BのL8 unit_casesへ追加するintegration_case_ref候補。L8入力・期待値はL9へ移さない。",
+      "status": "candidate_not_applied"
+    },
+    {
+      "candidate_id": "WR258-L9-CAND-050",
+      "l8_case_id": "SEC003-L8-FALLBACK-NULL",
+      "l8_case_pointer": "/cases/1/negative_cases/22",
+      "function_ref": "HELIXSECURITY-L5-003-compare_fallback",
+      "l9_integration_case_ref": "SEC003-WR258-L9-ORACLE-050",
+      "l4_class_id": "SEC003-F02-FALLBACK-INPUT-UNRESOLVED",
+      "purpose": "PR-BのL8 unit_casesへ追加するintegration_case_ref候補。L8入力・期待値はL9へ移さない。",
+      "status": "candidate_not_applied"
+    }
+  ],
+  "limitations": [
+    "rowwise rows identify candidate pairs, not accepted QA one-to-one mappings.",
+    "L9 class-level expectations and case conditions remain derived from L3/L10/L4; L8 inputs are not copied to L9."
+  ]
+}

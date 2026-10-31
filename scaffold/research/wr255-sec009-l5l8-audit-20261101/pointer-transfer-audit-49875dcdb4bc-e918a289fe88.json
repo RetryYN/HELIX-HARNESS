@@ -1,0 +1,2332 @@
+{
+  "schema": "sec009-scf-b-0209-pointer-transfer-audit.v2",
+  "evidence_kind": "scaffold",
+  "authority_effect": "none",
+  "operation_effect": "none",
+  "source_hashes": {
+    "docs/helix-security/L4-basic-design/revoke-quarantine-propagation.json": "00376c402930e1287e9e0e896804b1de8a20390f8abbea8377b70712f868b9da",
+    "docs/helix-security/L8-unit-verification/revoke-quarantine-propagation.json": "49875dcdb4bcec85ebffbad678127e90a61db329c9cccae96f0090cd260f698d",
+    "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json": "e918a289fe88446b3f84210577f0fe8094505d9dac9d9a8713cd074eb6776e5b",
+    "scaffold/tools/design_verification_checker.py": "e751526d67cd8df11e5aac1c5a1a178dfbd0fecc3f2ed21f995b7dda11ea4d5d"
+  },
+  "source_revisions": {
+    "docs/helix-security/L4-basic-design/revoke-quarantine-propagation.json": "d670496eebc5a28469ac3da0e2f9be1bcd7a37ce",
+    "docs/helix-security/L8-unit-verification/revoke-quarantine-propagation.json": "0451f67e4b94451b7258078f49df3cb34db36098",
+    "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json": "087f02dc637f6860e344e2bda9efa83c83506b72",
+    "scaffold/tools/design_verification_checker.py": "ca68470df10793319d290fefdf240cde6cfa3ba3"
+  },
+  "historical_l4": {
+    "revision": "c50eb21b34f034262ced3f8052d2502fb84c57c9",
+    "sha256": "d46e39cad2e2a90cfc532fa57226a4d650336e794a375f07e1cc2e6cbba15eb3"
+  },
+  "corrected_prior_pointer": {
+    "source_revision": "24d7f00bdca41c3dfb1f3137655ffdbe3674cfb3",
+    "source_sha256": "91da3af2c6ad997fdf265871f9776c5bed41f196fbccfc2276e1a41f42a267bb",
+    "consumer_location": "/positive_case_expectation_source_review/positive_cases/7/L4_sources/1/pointer",
+    "old_pointer": "/diagnostic_contract/locality",
+    "old_pointer_resolved": false,
+    "current_pointer": "/architecture/locality",
+    "current_pointer_resolved": true,
+    "reason": "L4ではF02 localityは/architecture/localityに置かれており、旧/diagnostic_contract/localityは未解決だった。旧bytesは固定Git revisionから取得できる。"
+  },
+  "counts": {
+    "L8_current_structured_consumers": 33,
+    "L8_current_canonical_aliases": 30,
+    "L8_removed_duplicate_group_raw_pointers": 275,
+    "L8_current_raw_nested_pointer_strings": 3,
+    "L8_counterexamples_with_generated_colon_artifact_before": 13,
+    "L8_counterexamples_with_generated_colon_artifact_current": 0,
+    "L8_fixed_taxonomy_pointers": 30,
+    "L8_historical_unassigned_refs": 3,
+    "L8_historic_collection_fanout": 14,
+    "L9_prior_recognized_consumer_subset": 308,
+    "L9_all_raw_nested_pointer_strings": 583,
+    "L9_raw_nested_pointer_strings_by_top_section": {
+      "cases": 550,
+      "negative_class_assignment_audit": 33
+    },
+    "L5_failure_rule_raw_nested_pointer_strings": 30,
+    "canonical_classes_projection_checked": 30,
+    "CHK_JSON_POINTER_checked": 959,
+    "CHK_JSON_POINTER_expanded": 959
+  },
+  "read_behavior": {
+    "active_mode": "explicit_negative_equivalence_classes",
+    "explicit_mode_uses_top_level_class_tables": true,
+    "CHK_JSON_POINTER": "参照先の存在解決を行う。構造化referenceのrevision fieldをgit showの固定revisionとして解決する。",
+    "legacy_mode": "checkerはmarkerがない場合にnested negative_classificationsを読む。L8の重複case groupsは削除済みだが、L5 30件とL9 583件のnested pointer文字列が残るため、全consumer移行前にL4 nestedを撤去しない。",
+    "expected_text_reader": "現行CHK-JSON-POINTERとexplicit 4-way checkerはnested expected_textを消費しない。人間向けsource意味は下記のfield projection表で検証する。",
+    "explicit_marker_all_layers": true,
+    "pointer_check_passed": true
+  },
+  "canonical_projection_by_class_id": {
+    "SEC009_B01_POLICY_BINDING_UNRESOLVED": {
+      "r2_pointer": "/contracts/0/negative_classifications/0",
+      "canonical_pointer": "/failure_classifications/0",
+      "field_map": {
+        "code": {
+          "canonical_field": "class_id",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "change": {
+          "canonical_field": "condition",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "axis": {
+          "canonical_field": "expected_axis",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "state": {
+          "canonical_field": "expected_state",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "backflow_owner": {
+          "canonical_field": "backflow_owner",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "expected": {
+          "canonical_field": "expected",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "expected_preserved": {
+          "canonical_field": "expected_preserved",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "expected_side_effect_count": {
+          "canonical_field": "side_effect_count",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "source_pointers": {
+          "canonical_field": "source_pointers",
+          "type_equal": true,
+          "value_equal": true
+        }
+      },
+      "legacy_code_alias": {
+        "source_field": "code",
+        "target_field": "class_id",
+        "value_equal": true,
+        "type_equal": true
+      },
+      "expected_text_reconstruction": {
+        "source_fields": [
+          "condition",
+          "expected_preserved.contract_detail"
+        ],
+        "separator": " ",
+        "value_equal": true,
+        "type_equal": true,
+        "sha256": "6952d3b8a78568c8ee15db52054ac20aa7abc71b35408dae8e1a8481f6b527ca"
+      }
+    },
+    "SEC009_B01_POLICY_BINDING_CONFLICT": {
+      "r2_pointer": "/contracts/0/negative_classifications/1",
+      "canonical_pointer": "/failure_classifications/1",
+      "field_map": {
+        "code": {
+          "canonical_field": "class_id",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "change": {
+          "canonical_field": "condition",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "axis": {
+          "canonical_field": "expected_axis",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "state": {
+          "canonical_field": "expected_state",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "backflow_owner": {
+          "canonical_field": "backflow_owner",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "expected": {
+          "canonical_field": "expected",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "expected_preserved": {
+          "canonical_field": "expected_preserved",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "expected_side_effect_count": {
+          "canonical_field": "side_effect_count",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "source_pointers": {
+          "canonical_field": "source_pointers",
+          "type_equal": true,
+          "value_equal": true
+        }
+      },
+      "legacy_code_alias": {
+        "source_field": "code",
+        "target_field": "class_id",
+        "value_equal": true,
+        "type_equal": true
+      },
+      "expected_text_reconstruction": {
+        "source_fields": [
+          "condition",
+          "expected_preserved.contract_detail"
+        ],
+        "separator": " ",
+        "value_equal": true,
+        "type_equal": true,
+        "sha256": "2bdc14446eb6d78dee7ab9aa9d6731cb256f2825c2bcd18b4fa90c94dfc4609f"
+      }
+    },
+    "SEC009_B01_RECIPIENT_SET_UNRESOLVED": {
+      "r2_pointer": "/contracts/0/negative_classifications/2",
+      "canonical_pointer": "/failure_classifications/2",
+      "field_map": {
+        "code": {
+          "canonical_field": "class_id",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "change": {
+          "canonical_field": "condition",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "axis": {
+          "canonical_field": "expected_axis",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "state": {
+          "canonical_field": "expected_state",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "backflow_owner": {
+          "canonical_field": "backflow_owner",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "expected": {
+          "canonical_field": "expected",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "expected_preserved": {
+          "canonical_field": "expected_preserved",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "expected_side_effect_count": {
+          "canonical_field": "side_effect_count",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "source_pointers": {
+          "canonical_field": "source_pointers",
+          "type_equal": true,
+          "value_equal": true
+        }
+      },
+      "legacy_code_alias": {
+        "source_field": "code",
+        "target_field": "class_id",
+        "value_equal": true,
+        "type_equal": true
+      },
+      "expected_text_reconstruction": {
+        "source_fields": [
+          "condition",
+          "expected_preserved.contract_detail"
+        ],
+        "separator": " ",
+        "value_equal": true,
+        "type_equal": true,
+        "sha256": "392501b3b249c9e7238b298f6e332d8b761d8bb408517a6971161124fa5c589a"
+      }
+    },
+    "SEC009_B01_RECIPIENT_SET_CONFLICT": {
+      "r2_pointer": "/contracts/0/negative_classifications/3",
+      "canonical_pointer": "/failure_classifications/3",
+      "field_map": {
+        "code": {
+          "canonical_field": "class_id",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "change": {
+          "canonical_field": "condition",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "axis": {
+          "canonical_field": "expected_axis",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "state": {
+          "canonical_field": "expected_state",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "backflow_owner": {
+          "canonical_field": "backflow_owner",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "expected": {
+          "canonical_field": "expected",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "expected_preserved": {
+          "canonical_field": "expected_preserved",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "expected_side_effect_count": {
+          "canonical_field": "side_effect_count",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "source_pointers": {
+          "canonical_field": "source_pointers",
+          "type_equal": true,
+          "value_equal": true
+        }
+      },
+      "legacy_code_alias": {
+        "source_field": "code",
+        "target_field": "class_id",
+        "value_equal": true,
+        "type_equal": true
+      },
+      "expected_text_reconstruction": {
+        "source_fields": [
+          "condition",
+          "expected_preserved.contract_detail"
+        ],
+        "separator": " ",
+        "value_equal": true,
+        "type_equal": true,
+        "sha256": "ff2ba1df6f8a74b88f0685b2ecb21156c8f3a360d21d36204d2fd807d6c05cb5"
+      }
+    },
+    "SEC009_F01_INSTRUCTION_UNRESOLVED": {
+      "r2_pointer": "/contracts/1/negative_classifications/0",
+      "canonical_pointer": "/failure_classifications/4",
+      "field_map": {
+        "code": {
+          "canonical_field": "class_id",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "change": {
+          "canonical_field": "condition",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "axis": {
+          "canonical_field": "expected_axis",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "state": {
+          "canonical_field": "expected_state",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "backflow_owner": {
+          "canonical_field": "backflow_owner",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "expected": {
+          "canonical_field": "expected",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "expected_preserved": {
+          "canonical_field": "expected_preserved",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "expected_side_effect_count": {
+          "canonical_field": "side_effect_count",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "source_pointers": {
+          "canonical_field": "source_pointers",
+          "type_equal": true,
+          "value_equal": true
+        }
+      },
+      "legacy_code_alias": {
+        "source_field": "code",
+        "target_field": "class_id",
+        "value_equal": true,
+        "type_equal": true
+      },
+      "expected_text_reconstruction": {
+        "source_fields": [
+          "condition",
+          "expected_preserved.contract_detail"
+        ],
+        "separator": " ",
+        "value_equal": true,
+        "type_equal": true,
+        "sha256": "6e57fbdcb01ab80b52bca36aff9a531635c76cdbeb7c839bbc73f96682649759"
+      }
+    },
+    "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED": {
+      "r2_pointer": "/contracts/1/negative_classifications/1",
+      "canonical_pointer": "/failure_classifications/5",
+      "field_map": {
+        "code": {
+          "canonical_field": "class_id",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "change": {
+          "canonical_field": "condition",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "axis": {
+          "canonical_field": "expected_axis",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "state": {
+          "canonical_field": "expected_state",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "backflow_owner": {
+          "canonical_field": "backflow_owner",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "expected": {
+          "canonical_field": "expected",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "expected_preserved": {
+          "canonical_field": "expected_preserved",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "expected_side_effect_count": {
+          "canonical_field": "side_effect_count",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "source_pointers": {
+          "canonical_field": "source_pointers",
+          "type_equal": true,
+          "value_equal": true
+        }
+      },
+      "legacy_code_alias": {
+        "source_field": "code",
+        "target_field": "class_id",
+        "value_equal": true,
+        "type_equal": true
+      },
+      "expected_text_reconstruction": {
+        "source_fields": [
+          "condition",
+          "expected_preserved.contract_detail"
+        ],
+        "separator": " ",
+        "value_equal": true,
+        "type_equal": true,
+        "sha256": "ea10f2a88168aabbe0a5f94786010ffa0d075a39849e6bc7533881486df652e9"
+      }
+    },
+    "SEC009_F01_INSTRUCTION_BINDING_CONFLICT": {
+      "r2_pointer": "/contracts/1/negative_classifications/2",
+      "canonical_pointer": "/failure_classifications/6",
+      "field_map": {
+        "code": {
+          "canonical_field": "class_id",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "change": {
+          "canonical_field": "condition",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "axis": {
+          "canonical_field": "expected_axis",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "state": {
+          "canonical_field": "expected_state",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "backflow_owner": {
+          "canonical_field": "backflow_owner",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "expected": {
+          "canonical_field": "expected",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "expected_preserved": {
+          "canonical_field": "expected_preserved",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "expected_side_effect_count": {
+          "canonical_field": "side_effect_count",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "source_pointers": {
+          "canonical_field": "source_pointers",
+          "type_equal": true,
+          "value_equal": true
+        }
+      },
+      "legacy_code_alias": {
+        "source_field": "code",
+        "target_field": "class_id",
+        "value_equal": true,
+        "type_equal": true
+      },
+      "expected_text_reconstruction": {
+        "source_fields": [
+          "condition",
+          "expected_preserved.contract_detail"
+        ],
+        "separator": " ",
+        "value_equal": true,
+        "type_equal": true,
+        "sha256": "4df80cbfd471bdc1c064ab8afd163b048550ce6989486cf92cd008fb7178ff35"
+      }
+    },
+    "SEC009_F01_RECIPIENT_ACTIONS_UNRESOLVED": {
+      "r2_pointer": "/contracts/1/negative_classifications/3",
+      "canonical_pointer": "/failure_classifications/7",
+      "field_map": {
+        "code": {
+          "canonical_field": "class_id",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "change": {
+          "canonical_field": "condition",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "axis": {
+          "canonical_field": "expected_axis",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "state": {
+          "canonical_field": "expected_state",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "backflow_owner": {
+          "canonical_field": "backflow_owner",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "expected": {
+          "canonical_field": "expected",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "expected_preserved": {
+          "canonical_field": "expected_preserved",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "expected_side_effect_count": {
+          "canonical_field": "side_effect_count",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "source_pointers": {
+          "canonical_field": "source_pointers",
+          "type_equal": true,
+          "value_equal": true
+        }
+      },
+      "legacy_code_alias": {
+        "source_field": "code",
+        "target_field": "class_id",
+        "value_equal": true,
+        "type_equal": true
+      },
+      "expected_text_reconstruction": {
+        "source_fields": [
+          "condition",
+          "expected_preserved.contract_detail"
+        ],
+        "separator": " ",
+        "value_equal": true,
+        "type_equal": true,
+        "sha256": "4717825c6c3d15db063c75930af13ee06671146f174ebc33bc373ee42047e369"
+      }
+    },
+    "SEC009_F01_RECIPIENT_ACTIONS_CONFLICT": {
+      "r2_pointer": "/contracts/1/negative_classifications/4",
+      "canonical_pointer": "/failure_classifications/8",
+      "field_map": {
+        "code": {
+          "canonical_field": "class_id",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "change": {
+          "canonical_field": "condition",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "axis": {
+          "canonical_field": "expected_axis",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "state": {
+          "canonical_field": "expected_state",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "backflow_owner": {
+          "canonical_field": "backflow_owner",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "expected": {
+          "canonical_field": "expected",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "expected_preserved": {
+          "canonical_field": "expected_preserved",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "expected_side_effect_count": {
+          "canonical_field": "side_effect_count",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "source_pointers": {
+          "canonical_field": "source_pointers",
+          "type_equal": true,
+          "value_equal": true
+        }
+      },
+      "legacy_code_alias": {
+        "source_field": "code",
+        "target_field": "class_id",
+        "value_equal": true,
+        "type_equal": true
+      },
+      "expected_text_reconstruction": {
+        "source_fields": [
+          "condition",
+          "expected_preserved.contract_detail"
+        ],
+        "separator": " ",
+        "value_equal": true,
+        "type_equal": true,
+        "sha256": "9d66573150be74366e4ebfd32f52d20e67d3beb0acf60c81f81a4514b3acb4ba"
+      }
+    },
+    "SEC009_F01_RECIPIENT_REPORT_UNRESOLVED": {
+      "r2_pointer": "/contracts/1/negative_classifications/5",
+      "canonical_pointer": "/failure_classifications/9",
+      "field_map": {
+        "code": {
+          "canonical_field": "class_id",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "change": {
+          "canonical_field": "condition",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "axis": {
+          "canonical_field": "expected_axis",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "state": {
+          "canonical_field": "expected_state",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "backflow_owner": {
+          "canonical_field": "backflow_owner",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "expected": {
+          "canonical_field": "expected",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "expected_preserved": {
+          "canonical_field": "expected_preserved",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "expected_side_effect_count": {
+          "canonical_field": "side_effect_count",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "source_pointers": {
+          "canonical_field": "source_pointers",
+          "type_equal": true,
+          "value_equal": true
+        }
+      },
+      "legacy_code_alias": {
+        "source_field": "code",
+        "target_field": "class_id",
+        "value_equal": true,
+        "type_equal": true
+      },
+      "expected_text_reconstruction": {
+        "source_fields": [
+          "condition",
+          "expected_preserved.contract_detail"
+        ],
+        "separator": " ",
+        "value_equal": true,
+        "type_equal": true,
+        "sha256": "13df86a97b2d8fc28a4a9f14ca1ae7a7917785b0eb3dc4a91da54ccff78ff97a"
+      }
+    },
+    "SEC009_F01_REPORT_BINDING_UNRESOLVED": {
+      "r2_pointer": "/contracts/1/negative_classifications/6",
+      "canonical_pointer": "/failure_classifications/10",
+      "field_map": {
+        "code": {
+          "canonical_field": "class_id",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "change": {
+          "canonical_field": "condition",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "axis": {
+          "canonical_field": "expected_axis",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "state": {
+          "canonical_field": "expected_state",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "backflow_owner": {
+          "canonical_field": "backflow_owner",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "expected": {
+          "canonical_field": "expected",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "expected_preserved": {
+          "canonical_field": "expected_preserved",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "expected_side_effect_count": {
+          "canonical_field": "side_effect_count",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "source_pointers": {
+          "canonical_field": "source_pointers",
+          "type_equal": true,
+          "value_equal": true
+        }
+      },
+      "legacy_code_alias": {
+        "source_field": "code",
+        "target_field": "class_id",
+        "value_equal": true,
+        "type_equal": true
+      },
+      "expected_text_reconstruction": {
+        "source_fields": [
+          "condition",
+          "expected_preserved.contract_detail"
+        ],
+        "separator": " ",
+        "value_equal": true,
+        "type_equal": true,
+        "sha256": "0391612c7b638ae7c05f3730a88fb81c3c21676ab0301175fba50501677198e8"
+      }
+    },
+    "SEC009_F01_REPORT_BINDING_CONFLICT": {
+      "r2_pointer": "/contracts/1/negative_classifications/7",
+      "canonical_pointer": "/failure_classifications/11",
+      "field_map": {
+        "code": {
+          "canonical_field": "class_id",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "change": {
+          "canonical_field": "condition",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "axis": {
+          "canonical_field": "expected_axis",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "state": {
+          "canonical_field": "expected_state",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "backflow_owner": {
+          "canonical_field": "backflow_owner",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "expected": {
+          "canonical_field": "expected",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "expected_preserved": {
+          "canonical_field": "expected_preserved",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "expected_side_effect_count": {
+          "canonical_field": "side_effect_count",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "source_pointers": {
+          "canonical_field": "source_pointers",
+          "type_equal": true,
+          "value_equal": true
+        }
+      },
+      "legacy_code_alias": {
+        "source_field": "code",
+        "target_field": "class_id",
+        "value_equal": true,
+        "type_equal": true
+      },
+      "expected_text_reconstruction": {
+        "source_fields": [
+          "condition",
+          "expected_preserved.contract_detail"
+        ],
+        "separator": " ",
+        "value_equal": true,
+        "type_equal": true,
+        "sha256": "c115d5f0bc8bfc692983735ee84dd2fda0c658af74c837396c80b01f3c51a75f"
+      }
+    },
+    "SEC009_F01_RECIPIENT_RECEIPT_UNRESOLVED": {
+      "r2_pointer": "/contracts/1/negative_classifications/8",
+      "canonical_pointer": "/failure_classifications/12",
+      "field_map": {
+        "code": {
+          "canonical_field": "class_id",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "change": {
+          "canonical_field": "condition",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "axis": {
+          "canonical_field": "expected_axis",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "state": {
+          "canonical_field": "expected_state",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "backflow_owner": {
+          "canonical_field": "backflow_owner",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "expected": {
+          "canonical_field": "expected",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "expected_preserved": {
+          "canonical_field": "expected_preserved",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "expected_side_effect_count": {
+          "canonical_field": "side_effect_count",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "source_pointers": {
+          "canonical_field": "source_pointers",
+          "type_equal": true,
+          "value_equal": true
+        }
+      },
+      "legacy_code_alias": {
+        "source_field": "code",
+        "target_field": "class_id",
+        "value_equal": true,
+        "type_equal": true
+      },
+      "expected_text_reconstruction": {
+        "source_fields": [
+          "condition",
+          "expected_preserved.contract_detail"
+        ],
+        "separator": " ",
+        "value_equal": true,
+        "type_equal": true,
+        "sha256": "7e68e67012a1b954efaa91de1195a251830fe540a609fbe712b81d504c45993b"
+      }
+    },
+    "SEC009_F01_RECIPIENT_NOT_DELIVERED": {
+      "r2_pointer": "/contracts/1/negative_classifications/9",
+      "canonical_pointer": "/failure_classifications/13",
+      "field_map": {
+        "code": {
+          "canonical_field": "class_id",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "change": {
+          "canonical_field": "condition",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "axis": {
+          "canonical_field": "expected_axis",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "state": {
+          "canonical_field": "expected_state",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "backflow_owner": {
+          "canonical_field": "backflow_owner",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "expected": {
+          "canonical_field": "expected",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "expected_preserved": {
+          "canonical_field": "expected_preserved",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "expected_side_effect_count": {
+          "canonical_field": "side_effect_count",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "source_pointers": {
+          "canonical_field": "source_pointers",
+          "type_equal": true,
+          "value_equal": true
+        }
+      },
+      "legacy_code_alias": {
+        "source_field": "code",
+        "target_field": "class_id",
+        "value_equal": true,
+        "type_equal": true
+      },
+      "expected_text_reconstruction": {
+        "source_fields": [
+          "condition",
+          "expected_preserved.contract_detail"
+        ],
+        "separator": " ",
+        "value_equal": true,
+        "type_equal": true,
+        "sha256": "10034d298e502c67c99005cd56ddf752517dceee9e1555aa6edaa08dffd3bdaf"
+      }
+    },
+    "SEC009_F01_RECIPIENT_APPLICATION_UNRESOLVED": {
+      "r2_pointer": "/contracts/1/negative_classifications/10",
+      "canonical_pointer": "/failure_classifications/14",
+      "field_map": {
+        "code": {
+          "canonical_field": "class_id",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "change": {
+          "canonical_field": "condition",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "axis": {
+          "canonical_field": "expected_axis",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "state": {
+          "canonical_field": "expected_state",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "backflow_owner": {
+          "canonical_field": "backflow_owner",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "expected": {
+          "canonical_field": "expected",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "expected_preserved": {
+          "canonical_field": "expected_preserved",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "expected_side_effect_count": {
+          "canonical_field": "side_effect_count",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "source_pointers": {
+          "canonical_field": "source_pointers",
+          "type_equal": true,
+          "value_equal": true
+        }
+      },
+      "legacy_code_alias": {
+        "source_field": "code",
+        "target_field": "class_id",
+        "value_equal": true,
+        "type_equal": true
+      },
+      "expected_text_reconstruction": {
+        "source_fields": [
+          "condition",
+          "expected_preserved.contract_detail"
+        ],
+        "separator": " ",
+        "value_equal": true,
+        "type_equal": true,
+        "sha256": "6383833b1d090c45686a8fbb6e0baed4c19c0efd2eec85a111a5b22a82e9c904"
+      }
+    },
+    "SEC009_F01_RECIPIENT_NOT_APPLIED": {
+      "r2_pointer": "/contracts/1/negative_classifications/11",
+      "canonical_pointer": "/failure_classifications/15",
+      "field_map": {
+        "code": {
+          "canonical_field": "class_id",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "change": {
+          "canonical_field": "condition",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "axis": {
+          "canonical_field": "expected_axis",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "state": {
+          "canonical_field": "expected_state",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "backflow_owner": {
+          "canonical_field": "backflow_owner",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "expected": {
+          "canonical_field": "expected",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "expected_preserved": {
+          "canonical_field": "expected_preserved",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "expected_side_effect_count": {
+          "canonical_field": "side_effect_count",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "source_pointers": {
+          "canonical_field": "source_pointers",
+          "type_equal": true,
+          "value_equal": true
+        }
+      },
+      "legacy_code_alias": {
+        "source_field": "code",
+        "target_field": "class_id",
+        "value_equal": true,
+        "type_equal": true
+      },
+      "expected_text_reconstruction": {
+        "source_fields": [
+          "condition",
+          "expected_preserved.contract_detail"
+        ],
+        "separator": " ",
+        "value_equal": true,
+        "type_equal": true,
+        "sha256": "e6673b412560dc2e1f94a8bfa1a4d72cc412693022d80561069e35210b5ecc17"
+      }
+    },
+    "SEC009_F01_RECIPIENT_POST_STATE_UNRESOLVED": {
+      "r2_pointer": "/contracts/1/negative_classifications/12",
+      "canonical_pointer": "/failure_classifications/16",
+      "field_map": {
+        "code": {
+          "canonical_field": "class_id",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "change": {
+          "canonical_field": "condition",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "axis": {
+          "canonical_field": "expected_axis",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "state": {
+          "canonical_field": "expected_state",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "backflow_owner": {
+          "canonical_field": "backflow_owner",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "expected": {
+          "canonical_field": "expected",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "expected_preserved": {
+          "canonical_field": "expected_preserved",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "expected_side_effect_count": {
+          "canonical_field": "side_effect_count",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "source_pointers": {
+          "canonical_field": "source_pointers",
+          "type_equal": true,
+          "value_equal": true
+        }
+      },
+      "legacy_code_alias": {
+        "source_field": "code",
+        "target_field": "class_id",
+        "value_equal": true,
+        "type_equal": true
+      },
+      "expected_text_reconstruction": {
+        "source_fields": [
+          "condition",
+          "expected_preserved.contract_detail"
+        ],
+        "separator": " ",
+        "value_equal": true,
+        "type_equal": true,
+        "sha256": "1f1b89b37dec95d6c3a691734d21a935cd647dda01a5b77d38681c34d789eb15"
+      }
+    },
+    "SEC009_F01_RECIPIENT_CONTINUES_AFTER_STOP": {
+      "r2_pointer": "/contracts/1/negative_classifications/13",
+      "canonical_pointer": "/failure_classifications/17",
+      "field_map": {
+        "code": {
+          "canonical_field": "class_id",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "change": {
+          "canonical_field": "condition",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "axis": {
+          "canonical_field": "expected_axis",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "state": {
+          "canonical_field": "expected_state",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "backflow_owner": {
+          "canonical_field": "backflow_owner",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "expected": {
+          "canonical_field": "expected",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "expected_preserved": {
+          "canonical_field": "expected_preserved",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "expected_side_effect_count": {
+          "canonical_field": "side_effect_count",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "source_pointers": {
+          "canonical_field": "source_pointers",
+          "type_equal": true,
+          "value_equal": true
+        }
+      },
+      "legacy_code_alias": {
+        "source_field": "code",
+        "target_field": "class_id",
+        "value_equal": true,
+        "type_equal": true
+      },
+      "expected_text_reconstruction": {
+        "source_fields": [
+          "condition",
+          "expected_preserved.contract_detail"
+        ],
+        "separator": " ",
+        "value_equal": true,
+        "type_equal": true,
+        "sha256": "b7a92b7f6c53cd522c842cc3e90b8c03f3424efb7c96fdd0771edc70788d3905"
+      }
+    },
+    "SEC009_F02_TRIGGER_CATEGORY_UNRESOLVED": {
+      "r2_pointer": "/contracts/2/negative_classifications/0",
+      "canonical_pointer": "/failure_classifications/18",
+      "field_map": {
+        "code": {
+          "canonical_field": "class_id",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "change": {
+          "canonical_field": "condition",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "axis": {
+          "canonical_field": "expected_axis",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "state": {
+          "canonical_field": "expected_state",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "backflow_owner": {
+          "canonical_field": "backflow_owner",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "expected": {
+          "canonical_field": "expected",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "expected_preserved": {
+          "canonical_field": "expected_preserved",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "expected_side_effect_count": {
+          "canonical_field": "side_effect_count",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "source_pointers": {
+          "canonical_field": "source_pointers",
+          "type_equal": true,
+          "value_equal": true
+        }
+      },
+      "legacy_code_alias": {
+        "source_field": "code",
+        "target_field": "class_id",
+        "value_equal": true,
+        "type_equal": true
+      },
+      "expected_text_reconstruction": {
+        "source_fields": [
+          "condition",
+          "expected_preserved.contract_detail"
+        ],
+        "separator": " ",
+        "value_equal": true,
+        "type_equal": true,
+        "sha256": "9ebd8c348ee394f8436d36ba2bccf2786e76551173c7d9dd6932783d4b778643"
+      }
+    },
+    "SEC009_F02_TRIGGER_CATEGORY_CONFLICT": {
+      "r2_pointer": "/contracts/2/negative_classifications/1",
+      "canonical_pointer": "/failure_classifications/19",
+      "field_map": {
+        "code": {
+          "canonical_field": "class_id",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "change": {
+          "canonical_field": "condition",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "axis": {
+          "canonical_field": "expected_axis",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "state": {
+          "canonical_field": "expected_state",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "backflow_owner": {
+          "canonical_field": "backflow_owner",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "expected": {
+          "canonical_field": "expected",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "expected_preserved": {
+          "canonical_field": "expected_preserved",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "expected_side_effect_count": {
+          "canonical_field": "side_effect_count",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "source_pointers": {
+          "canonical_field": "source_pointers",
+          "type_equal": true,
+          "value_equal": true
+        }
+      },
+      "legacy_code_alias": {
+        "source_field": "code",
+        "target_field": "class_id",
+        "value_equal": true,
+        "type_equal": true
+      },
+      "expected_text_reconstruction": {
+        "source_fields": [
+          "condition",
+          "expected_preserved.contract_detail"
+        ],
+        "separator": " ",
+        "value_equal": true,
+        "type_equal": true,
+        "sha256": "07bdbbfa4a74cac73d0ead911993fec55a1a0172f0240d588deba60dc6916646"
+      }
+    },
+    "SEC009_F02_STOP_SCOPE_UNRESOLVED": {
+      "r2_pointer": "/contracts/2/negative_classifications/2",
+      "canonical_pointer": "/failure_classifications/20",
+      "field_map": {
+        "code": {
+          "canonical_field": "class_id",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "change": {
+          "canonical_field": "condition",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "axis": {
+          "canonical_field": "expected_axis",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "state": {
+          "canonical_field": "expected_state",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "backflow_owner": {
+          "canonical_field": "backflow_owner",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "expected": {
+          "canonical_field": "expected",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "expected_preserved": {
+          "canonical_field": "expected_preserved",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "expected_side_effect_count": {
+          "canonical_field": "side_effect_count",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "source_pointers": {
+          "canonical_field": "source_pointers",
+          "type_equal": true,
+          "value_equal": true
+        }
+      },
+      "legacy_code_alias": {
+        "source_field": "code",
+        "target_field": "class_id",
+        "value_equal": true,
+        "type_equal": true
+      },
+      "expected_text_reconstruction": {
+        "source_fields": [
+          "condition",
+          "expected_preserved.contract_detail"
+        ],
+        "separator": " ",
+        "value_equal": true,
+        "type_equal": true,
+        "sha256": "a6b89f4634849cb41516291c5009e0f6b04f144aead46042cb9d042ebac6a759"
+      }
+    },
+    "SEC009_F02_GLOBAL_STOP_EXPANSION": {
+      "r2_pointer": "/contracts/2/negative_classifications/3",
+      "canonical_pointer": "/failure_classifications/21",
+      "field_map": {
+        "code": {
+          "canonical_field": "class_id",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "change": {
+          "canonical_field": "condition",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "axis": {
+          "canonical_field": "expected_axis",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "state": {
+          "canonical_field": "expected_state",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "backflow_owner": {
+          "canonical_field": "backflow_owner",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "expected": {
+          "canonical_field": "expected",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "expected_preserved": {
+          "canonical_field": "expected_preserved",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "expected_side_effect_count": {
+          "canonical_field": "side_effect_count",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "source_pointers": {
+          "canonical_field": "source_pointers",
+          "type_equal": true,
+          "value_equal": true
+        }
+      },
+      "legacy_code_alias": {
+        "source_field": "code",
+        "target_field": "class_id",
+        "value_equal": true,
+        "type_equal": true
+      },
+      "expected_text_reconstruction": {
+        "source_fields": [
+          "condition",
+          "expected_preserved.contract_detail"
+        ],
+        "separator": " ",
+        "value_equal": true,
+        "type_equal": true,
+        "sha256": "ca74a1df2ecedcdc9f654c7cf52ca319df2030465b9ca1b6a9639ea82a51cc08"
+      }
+    },
+    "SEC009_F02_ISOLATION_BINDING_UNRESOLVED": {
+      "r2_pointer": "/contracts/2/negative_classifications/4",
+      "canonical_pointer": "/failure_classifications/22",
+      "field_map": {
+        "code": {
+          "canonical_field": "class_id",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "change": {
+          "canonical_field": "condition",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "axis": {
+          "canonical_field": "expected_axis",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "state": {
+          "canonical_field": "expected_state",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "backflow_owner": {
+          "canonical_field": "backflow_owner",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "expected": {
+          "canonical_field": "expected",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "expected_preserved": {
+          "canonical_field": "expected_preserved",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "expected_side_effect_count": {
+          "canonical_field": "side_effect_count",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "source_pointers": {
+          "canonical_field": "source_pointers",
+          "type_equal": true,
+          "value_equal": true
+        }
+      },
+      "legacy_code_alias": {
+        "source_field": "code",
+        "target_field": "class_id",
+        "value_equal": true,
+        "type_equal": true
+      },
+      "expected_text_reconstruction": {
+        "source_fields": [
+          "condition",
+          "expected_preserved.contract_detail"
+        ],
+        "separator": " ",
+        "value_equal": true,
+        "type_equal": true,
+        "sha256": "6803f390892131ccc5cc01ccf13d9b86c75bb7110eaedc232efdfe48b38ef5df"
+      }
+    },
+    "SEC009_F02_ISOLATION_BINDING_CONFLICT": {
+      "r2_pointer": "/contracts/2/negative_classifications/5",
+      "canonical_pointer": "/failure_classifications/23",
+      "field_map": {
+        "code": {
+          "canonical_field": "class_id",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "change": {
+          "canonical_field": "condition",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "axis": {
+          "canonical_field": "expected_axis",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "state": {
+          "canonical_field": "expected_state",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "backflow_owner": {
+          "canonical_field": "backflow_owner",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "expected": {
+          "canonical_field": "expected",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "expected_preserved": {
+          "canonical_field": "expected_preserved",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "expected_side_effect_count": {
+          "canonical_field": "side_effect_count",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "source_pointers": {
+          "canonical_field": "source_pointers",
+          "type_equal": true,
+          "value_equal": true
+        }
+      },
+      "legacy_code_alias": {
+        "source_field": "code",
+        "target_field": "class_id",
+        "value_equal": true,
+        "type_equal": true
+      },
+      "expected_text_reconstruction": {
+        "source_fields": [
+          "condition",
+          "expected_preserved.contract_detail"
+        ],
+        "separator": " ",
+        "value_equal": true,
+        "type_equal": true,
+        "sha256": "6cbd3cb211c21bb9465e9156aa0e1e2698bb84d828b008961a0a329fd9991115"
+      }
+    },
+    "SEC009_F02_ISOLATION_UNRESOLVED": {
+      "r2_pointer": "/contracts/2/negative_classifications/6",
+      "canonical_pointer": "/failure_classifications/24",
+      "field_map": {
+        "code": {
+          "canonical_field": "class_id",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "change": {
+          "canonical_field": "condition",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "axis": {
+          "canonical_field": "expected_axis",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "state": {
+          "canonical_field": "expected_state",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "backflow_owner": {
+          "canonical_field": "backflow_owner",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "expected": {
+          "canonical_field": "expected",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "expected_preserved": {
+          "canonical_field": "expected_preserved",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "expected_side_effect_count": {
+          "canonical_field": "side_effect_count",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "source_pointers": {
+          "canonical_field": "source_pointers",
+          "type_equal": true,
+          "value_equal": true
+        }
+      },
+      "legacy_code_alias": {
+        "source_field": "code",
+        "target_field": "class_id",
+        "value_equal": true,
+        "type_equal": true
+      },
+      "expected_text_reconstruction": {
+        "source_fields": [
+          "condition",
+          "expected_preserved.contract_detail"
+        ],
+        "separator": " ",
+        "value_equal": true,
+        "type_equal": true,
+        "sha256": "ddaf34c42f6fda63f9cd356fc62012738e99afe73cd522a94dcba76859516fed"
+      }
+    },
+    "SEC009_F02_ISOLATION_NOT_APPLIED": {
+      "r2_pointer": "/contracts/2/negative_classifications/7",
+      "canonical_pointer": "/failure_classifications/25",
+      "field_map": {
+        "code": {
+          "canonical_field": "class_id",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "change": {
+          "canonical_field": "condition",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "axis": {
+          "canonical_field": "expected_axis",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "state": {
+          "canonical_field": "expected_state",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "backflow_owner": {
+          "canonical_field": "backflow_owner",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "expected": {
+          "canonical_field": "expected",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "expected_preserved": {
+          "canonical_field": "expected_preserved",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "expected_side_effect_count": {
+          "canonical_field": "side_effect_count",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "source_pointers": {
+          "canonical_field": "source_pointers",
+          "type_equal": true,
+          "value_equal": true
+        }
+      },
+      "legacy_code_alias": {
+        "source_field": "code",
+        "target_field": "class_id",
+        "value_equal": true,
+        "type_equal": true
+      },
+      "expected_text_reconstruction": {
+        "source_fields": [
+          "condition",
+          "expected_preserved.contract_detail"
+        ],
+        "separator": " ",
+        "value_equal": true,
+        "type_equal": true,
+        "sha256": "d9d33720b7e47f870bbea1c147c78f390ff9b3ac8356fa7e8a0057e77d0a591f"
+      }
+    },
+    "SEC009_F02_RECOVERY_BINDING_UNRESOLVED": {
+      "r2_pointer": "/contracts/2/negative_classifications/8",
+      "canonical_pointer": "/failure_classifications/26",
+      "field_map": {
+        "code": {
+          "canonical_field": "class_id",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "change": {
+          "canonical_field": "condition",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "axis": {
+          "canonical_field": "expected_axis",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "state": {
+          "canonical_field": "expected_state",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "backflow_owner": {
+          "canonical_field": "backflow_owner",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "expected": {
+          "canonical_field": "expected",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "expected_preserved": {
+          "canonical_field": "expected_preserved",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "expected_side_effect_count": {
+          "canonical_field": "side_effect_count",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "source_pointers": {
+          "canonical_field": "source_pointers",
+          "type_equal": true,
+          "value_equal": true
+        }
+      },
+      "legacy_code_alias": {
+        "source_field": "code",
+        "target_field": "class_id",
+        "value_equal": true,
+        "type_equal": true
+      },
+      "expected_text_reconstruction": {
+        "source_fields": [
+          "condition",
+          "expected_preserved.contract_detail"
+        ],
+        "separator": " ",
+        "value_equal": true,
+        "type_equal": true,
+        "sha256": "bebce15dab72b61b0c4820255b56e6a65124700bf63966d0ff22ee7c43f43909"
+      }
+    },
+    "SEC009_F02_RECOVERY_BINDING_CONFLICT": {
+      "r2_pointer": "/contracts/2/negative_classifications/9",
+      "canonical_pointer": "/failure_classifications/27",
+      "field_map": {
+        "code": {
+          "canonical_field": "class_id",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "change": {
+          "canonical_field": "condition",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "axis": {
+          "canonical_field": "expected_axis",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "state": {
+          "canonical_field": "expected_state",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "backflow_owner": {
+          "canonical_field": "backflow_owner",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "expected": {
+          "canonical_field": "expected",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "expected_preserved": {
+          "canonical_field": "expected_preserved",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "expected_side_effect_count": {
+          "canonical_field": "side_effect_count",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "source_pointers": {
+          "canonical_field": "source_pointers",
+          "type_equal": true,
+          "value_equal": true
+        }
+      },
+      "legacy_code_alias": {
+        "source_field": "code",
+        "target_field": "class_id",
+        "value_equal": true,
+        "type_equal": true
+      },
+      "expected_text_reconstruction": {
+        "source_fields": [
+          "condition",
+          "expected_preserved.contract_detail"
+        ],
+        "separator": " ",
+        "value_equal": true,
+        "type_equal": true,
+        "sha256": "f7c2acd34c5b84f4d0892da4a7c547ff307f35e11d6a51e18fa20b1d953fc2b7"
+      }
+    },
+    "SEC009_F02_RECOVERY_UNRESOLVED": {
+      "r2_pointer": "/contracts/2/negative_classifications/10",
+      "canonical_pointer": "/failure_classifications/28",
+      "field_map": {
+        "code": {
+          "canonical_field": "class_id",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "change": {
+          "canonical_field": "condition",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "axis": {
+          "canonical_field": "expected_axis",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "state": {
+          "canonical_field": "expected_state",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "backflow_owner": {
+          "canonical_field": "backflow_owner",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "expected": {
+          "canonical_field": "expected",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "expected_preserved": {
+          "canonical_field": "expected_preserved",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "expected_side_effect_count": {
+          "canonical_field": "side_effect_count",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "source_pointers": {
+          "canonical_field": "source_pointers",
+          "type_equal": true,
+          "value_equal": true
+        }
+      },
+      "legacy_code_alias": {
+        "source_field": "code",
+        "target_field": "class_id",
+        "value_equal": true,
+        "type_equal": true
+      },
+      "expected_text_reconstruction": {
+        "source_fields": [
+          "condition",
+          "expected_preserved.contract_detail"
+        ],
+        "separator": " ",
+        "value_equal": true,
+        "type_equal": true,
+        "sha256": "ecc78c2a99cfbf56462eeb495fb1d98fcaaa542e23cf7828b7d753b7cc433ff5"
+      }
+    },
+    "SEC009_F02_RECOVERY_INCOMPLETE": {
+      "r2_pointer": "/contracts/2/negative_classifications/11",
+      "canonical_pointer": "/failure_classifications/29",
+      "field_map": {
+        "code": {
+          "canonical_field": "class_id",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "change": {
+          "canonical_field": "condition",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "axis": {
+          "canonical_field": "expected_axis",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "state": {
+          "canonical_field": "expected_state",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "backflow_owner": {
+          "canonical_field": "backflow_owner",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "expected": {
+          "canonical_field": "expected",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "expected_preserved": {
+          "canonical_field": "expected_preserved",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "expected_side_effect_count": {
+          "canonical_field": "side_effect_count",
+          "type_equal": true,
+          "value_equal": true
+        },
+        "source_pointers": {
+          "canonical_field": "source_pointers",
+          "type_equal": true,
+          "value_equal": true
+        }
+      },
+      "legacy_code_alias": {
+        "source_field": "code",
+        "target_field": "class_id",
+        "value_equal": true,
+        "type_equal": true
+      },
+      "expected_text_reconstruction": {
+        "source_fields": [
+          "condition",
+          "expected_preserved.contract_detail"
+        ],
+        "separator": " ",
+        "value_equal": true,
+        "type_equal": true,
+        "sha256": "5bc6b8da8268db6d35554b0c17d72bdd997189c5067c7e0b413d34e2bdfc5bd4"
+      }
+    }
+  },
+  "L8_consumers": [
+    {
+      "consumer_location": "/negative_class_assignment_audit/fixed_taxonomy_source_pointers/0/L4/pointer",
+      "consumer_case_id": "SEC009_B01_POLICY_BINDING_UNRESOLVED",
+      "migration": "current_canonical_alias",
+      "class_id": "SEC009_B01_POLICY_BINDING_UNRESOLVED",
+      "target_pointer": "/failure_classifications/0"
+    },
+    {
+      "consumer_location": "/negative_class_assignment_audit/fixed_taxonomy_source_pointers/1/L4/pointer",
+      "consumer_case_id": "SEC009_B01_POLICY_BINDING_CONFLICT",
+      "migration": "current_canonical_alias",
+      "class_id": "SEC009_B01_POLICY_BINDING_CONFLICT",
+      "target_pointer": "/failure_classifications/1"
+    },
+    {
+      "consumer_location": "/negative_class_assignment_audit/fixed_taxonomy_source_pointers/2/L4/pointer",
+      "consumer_case_id": "SEC009_B01_RECIPIENT_SET_UNRESOLVED",
+      "migration": "current_canonical_alias",
+      "class_id": "SEC009_B01_RECIPIENT_SET_UNRESOLVED",
+      "target_pointer": "/failure_classifications/2"
+    },
+    {
+      "consumer_location": "/negative_class_assignment_audit/fixed_taxonomy_source_pointers/3/L4/pointer",
+      "consumer_case_id": "SEC009_B01_RECIPIENT_SET_CONFLICT",
+      "migration": "current_canonical_alias",
+      "class_id": "SEC009_B01_RECIPIENT_SET_CONFLICT",
+      "target_pointer": "/failure_classifications/3"
+    },
+    {
+      "consumer_location": "/negative_class_assignment_audit/fixed_taxonomy_source_pointers/4/L4/pointer",
+      "consumer_case_id": "SEC009_F01_INSTRUCTION_UNRESOLVED",
+      "migration": "current_canonical_alias",
+      "class_id": "SEC009_F01_INSTRUCTION_UNRESOLVED",
+      "target_pointer": "/failure_classifications/4"
+    },
+    {
+      "consumer_location": "/negative_class_assignment_audit/fixed_taxonomy_source_pointers/5/L4/pointer",
+      "consumer_case_id": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
+      "migration": "current_canonical_alias",
+      "class_id": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
+      "target_pointer": "/failure_classifications/5"
+    },
+    {
+      "consumer_location": "/negative_class_assignment_audit/fixed_taxonomy_source_pointers/6/L4/pointer",
+      "consumer_case_id": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
+      "migration": "current_canonical_alias",
+      "class_id": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
+      "target_pointer": "/failure_classifications/6"
+    },
+    {
+      "consumer_location": "/negative_class_assignment_audit/fixed_taxonomy_source_pointers/7/L4/pointer",
+      "consumer_case_id": "SEC009_F01_RECIPIENT_ACTIONS_UNRESOLVED",
+      "migration": "current_canonical_alias",
+      "class_id": "SEC009_F01_RECIPIENT_ACTIONS_UNRESOLVED",
+      "target_pointer": "/failure_classifications/7"
+    },
+    {
+      "consumer_location": "/negative_class_assignment_audit/fixed_taxonomy_source_pointers/8/L4/pointer",
+      "consumer_case_id": "SEC009_F01_RECIPIENT_ACTIONS_CONFLICT",
+      "migration": "current_canonical_alias",
+      "class_id": "SEC009_F01_RECIPIENT_ACTIONS_CONFLICT",
+      "target_pointer": "/failure_classifications/8"
+    },
+    {
+      "consumer_location": "/negative_class_assignment_audit/fixed_taxonomy_source_pointers/9/L4/pointer",
+      "consumer_case_id": "SEC009_F01_RECIPIENT_REPORT_UNRESOLVED",
+      "migration": "current_canonical_alias",
+      "class_id": "SEC009_F01_RECIPIENT_REPORT_UNRESOLVED",
+      "target_pointer": "/failure_classifications/9"
+    },
+    {
+      "consumer_location": "/negative_class_assignment_audit/fixed_taxonomy_source_pointers/10/L4/pointer",
+      "consumer_case_id": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
+      "migration": "current_canonical_alias",
+      "class_id": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
+      "target_pointer": "/failure_classifications/10"
+    },
+    {
+      "consumer_location": "/negative_class_assignment_audit/fixed_taxonomy_source_pointers/11/L4/pointer",
+      "consumer_case_id": "SEC009_F01_REPORT_BINDING_CONFLICT",
+      "migration": "current_canonical_alias",
+      "class_id": "SEC009_F01_REPORT_BINDING_CONFLICT",
+      "target_pointer": "/failure_classifications/11"
+    },
+    {
+      "consumer_location": "/negative_class_assignment_audit/fixed_taxonomy_source_pointers/12/L4/pointer",
+      "consumer_case_id": "SEC009_F01_RECIPIENT_RECEIPT_UNRESOLVED",
+      "migration": "current_canonical_alias",
+      "class_id": "SEC009_F01_RECIPIENT_RECEIPT_UNRESOLVED",
+      "target_pointer": "/failure_classifications/12"
+    },
+    {
+      "consumer_location": "/negative_class_assignment_audit/fixed_taxonomy_source_pointers/13/L4/pointer",
+      "consumer_case_id": "SEC009_F01_RECIPIENT_NOT_DELIVERED",
+      "migration": "current_canonical_alias",
+      "class_id": "SEC009_F01_RECIPIENT_NOT_DELIVERED",
+      "target_pointer": "/failure_classifications/13"
+    },
+    {
+      "consumer_location": "/negative_class_assignment_audit/fixed_taxonomy_source_pointers/14/L4/pointer",
+      "consumer_case_id": "SEC009_F01_RECIPIENT_APPLICATION_UNRESOLVED",
+      "migration": "current_canonical_alias",
+      "class_id": "SEC009_F01_RECIPIENT_APPLICATION_UNRESOLVED",
+      "target_pointer": "/failure_classifications/14"
+    },
+    {
+      "consumer_location": "/negative_class_assignment_audit/fixed_taxonomy_source_pointers/15/L4/pointer",
+      "consumer_case_id": "SEC009_F01_RECIPIENT_NOT_APPLIED",
+      "migration": "current_canonical_alias",
+      "class_id": "SEC009_F01_RECIPIENT_NOT_APPLIED",
+      "target_pointer": "/failure_classifications/15"
+    },
+    {
+      "consumer_location": "/negative_class_assignment_audit/fixed_taxonomy_source_pointers/16/L4/pointer",
+      "consumer_case_id": "SEC009_F01_RECIPIENT_POST_STATE_UNRESOLVED",
+      "migration": "current_canonical_alias",
+      "class_id": "SEC009_F01_RECIPIENT_POST_STATE_UNRESOLVED",
+      "target_pointer": "/failure_classifications/16"
+    },
+    {
+      "consumer_location": "/negative_class_assignment_audit/fixed_taxonomy_source_pointers/17/L4/pointer",
+      "consumer_case_id": "SEC009_F01_RECIPIENT_CONTINUES_AFTER_STOP",
+      "migration": "current_canonical_alias",
+      "class_id": "SEC009_F01_RECIPIENT_CONTINUES_AFTER_STOP",
+      "target_pointer": "/failure_classifications/17"
+    },
+    {
+      "consumer_location": "/negative_class_assignment_audit/fixed_taxonomy_source_pointers/18/L4/pointer",
+      "consumer_case_id": "SEC009_F02_TRIGGER_CATEGORY_UNRESOLVED",
+      "migration": "current_canonical_alias",
+      "class_id": "SEC009_F02_TRIGGER_CATEGORY_UNRESOLVED",
+      "target_pointer": "/failure_classifications/18"
+    },
+    {
+      "consumer_location": "/negative_class_assignment_audit/fixed_taxonomy_source_pointers/19/L4/pointer",
+      "consumer_case_id": "SEC009_F02_TRIGGER_CATEGORY_CONFLICT",
+      "migration": "current_canonical_alias",
+      "class_id": "SEC009_F02_TRIGGER_CATEGORY_CONFLICT",
+      "target_pointer": "/failure_classifications/19"
+    },
+    {
+      "consumer_location": "/negative_class_assignment_audit/fixed_taxonomy_source_pointers/20/L4/pointer",
+      "consumer_case_id": "SEC009_F02_STOP_SCOPE_UNRESOLVED",
+      "migration": "current_canonical_alias",
+      "class_id": "SEC009_F02_STOP_SCOPE_UNRESOLVED",
+      "target_pointer": "/failure_classifications/20"
+    },
+    {
+      "consumer_location": "/negative_class_assignment_audit/fixed_taxonomy_source_pointers/21/L4/pointer",
+      "consumer_case_id": "SEC009_F02_GLOBAL_STOP_EXPANSION",
+      "migration": "current_canonical_alias",
+      "class_id": "SEC009_F02_GLOBAL_STOP_EXPANSION",
+      "target_pointer": "/failure_classifications/21"
+    },
+    {
+      "consumer_location": "/negative_class_assignment_audit/fixed_taxonomy_source_pointers/22/L4/pointer",
+      "consumer_case_id": "SEC009_F02_ISOLATION_BINDING_UNRESOLVED",
+      "migration": "current_canonical_alias",
+      "class_id": "SEC009_F02_ISOLATION_BINDING_UNRESOLVED",
+      "target_pointer": "/failure_classifications/22"
+    },
+    {
+      "consumer_location": "/negative_class_assignment_audit/fixed_taxonomy_source_pointers/23/L4/pointer",
+      "consumer_case_id": "SEC009_F02_ISOLATION_BINDING_CONFLICT",
+      "migration": "current_canonical_alias",
+      "class_id": "SEC009_F02_ISOLATION_BINDING_CONFLICT",
+      "target_pointer": "/failure_classifications/23"
+    },
+    {
+      "consumer_location": "/negative_class_assignment_audit/fixed_taxonomy_source_pointers/24/L4/pointer",
+      "consumer_case_id": "SEC009_F02_ISOLATION_UNRESOLVED",
+      "migration": "current_canonical_alias",
+      "class_id": "SEC009_F02_ISOLATION_UNRESOLVED",
+      "target_pointer": "/failure_classifications/24"
+    },
+    {
+      "consumer_location": "/negative_class_assignment_audit/fixed_taxonomy_source_pointers/25/L4/pointer",
+      "consumer_case_id": "SEC009_F02_ISOLATION_NOT_APPLIED",
+      "migration": "current_canonical_alias",
+      "class_id": "SEC009_F02_ISOLATION_NOT_APPLIED",
+      "target_pointer": "/failure_classifications/25"
+    },
+    {
+      "consumer_location": "/negative_class_assignment_audit/fixed_taxonomy_source_pointers/26/L4/pointer",
+      "consumer_case_id": "SEC009_F02_RECOVERY_BINDING_UNRESOLVED",
+      "migration": "current_canonical_alias",
+      "class_id": "SEC009_F02_RECOVERY_BINDING_UNRESOLVED",
+      "target_pointer": "/failure_classifications/26"
+    },
+    {
+      "consumer_location": "/negative_class_assignment_audit/fixed_taxonomy_source_pointers/27/L4/pointer",
+      "consumer_case_id": "SEC009_F02_RECOVERY_BINDING_CONFLICT",
+      "migration": "current_canonical_alias",
+      "class_id": "SEC009_F02_RECOVERY_BINDING_CONFLICT",
+      "target_pointer": "/failure_classifications/27"
+    },
+    {
+      "consumer_location": "/negative_class_assignment_audit/fixed_taxonomy_source_pointers/28/L4/pointer",
+      "consumer_case_id": "SEC009_F02_RECOVERY_UNRESOLVED",
+      "migration": "current_canonical_alias",
+      "class_id": "SEC009_F02_RECOVERY_UNRESOLVED",
+      "target_pointer": "/failure_classifications/28"
+    },
+    {
+      "consumer_location": "/negative_class_assignment_audit/fixed_taxonomy_source_pointers/29/L4/pointer",
+      "consumer_case_id": "SEC009_F02_RECOVERY_INCOMPLETE",
+      "migration": "current_canonical_alias",
+      "class_id": "SEC009_F02_RECOVERY_INCOMPLETE",
+      "target_pointer": "/failure_classifications/29"
+    },
+    {
+      "consumer_location": "/negative_class_assignment_audit/unassigned_single_contract_negative_cases/0/source_pointers/0",
+      "consumer_case_id": "SEC009-COMPOUND-OS-UNKNOWN-CREDENTIAL-UNAPPLIED-WORKER-CONTINUES",
+      "migration": "fixed_r2_revision",
+      "revision": "c50eb21b34f034262ced3f8052d2502fb84c57c9",
+      "pointer": "/contracts/1/negative_classifications",
+      "target_type": "list",
+      "target_count": 14,
+      "target_sha256": "174e7db3d452f53a35a533d785272104c9d2ca5e3a1b19723141681b7a5bfde7",
+      "meaning": "R2時点の未割当根拠を維持する固定参照"
+    },
+    {
+      "consumer_location": "/negative_class_assignment_audit/unassigned_single_contract_negative_cases/1/source_pointers/0",
+      "consumer_case_id": "SEC009-RECOVERY-PRIOR-SOURCE-MISSING",
+      "migration": "fixed_r2_revision",
+      "revision": "c50eb21b34f034262ced3f8052d2502fb84c57c9",
+      "pointer": "/contracts/2/negative_classifications/4",
+      "target_type": "dict",
+      "target_count": 1,
+      "target_sha256": "b7dc93bf8191fa274056eb8ec2b5c148cb758d7e94fb58623d9b371e14a6725d",
+      "meaning": "R2時点の未割当根拠を維持する固定参照"
+    },
+    {
+      "consumer_location": "/negative_class_assignment_audit/unassigned_single_contract_negative_cases/1/source_pointers/1",
+      "consumer_case_id": "SEC009-RECOVERY-PRIOR-SOURCE-MISSING",
+      "migration": "fixed_r2_revision",
+      "revision": "c50eb21b34f034262ced3f8052d2502fb84c57c9",
+      "pointer": "/contracts/2/negative_classifications/8",
+      "target_type": "dict",
+      "target_count": 1,
+      "target_sha256": "b2426567c9117689409c1040aac088dc3e2709e111adaf2134e85b2269b75b6c",
+      "meaning": "R2時点の未割当根拠を維持する固定参照"
+    }
+  ],
+  "L9_pending_transfer": {
+    "status": "separate_l4_l9_v_pair_required",
+    "recognized_subset_count": 308,
+    "all_raw_nested_pointer_string_count": 583,
+    "all_targets_resolve_current_L4_nested_paths": true,
+    "reason": "L9は別V-pairの正式sourceであり、L5/L8 PRから変更しない。全raw pointer strings 583件の置換監査が終わるまでSCF-B-0209はpendingのままにする。"
+  },
+  "retirement": {
+    "SCF-B-0209_status": "pending",
+    "check_replacement_performed": false,
+    "retire_performed": false,
+    "reason": "L9の583 raw nested pointer strings、L5の30 raw nested pointer strings、履歴consumerの移行・全件reviewが未完了。L4 nested payloadを保持する。"
+  }
+}

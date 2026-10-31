@@ -1,0 +1,146 @@
+{
+  "schema": "wr258-sec006-explicit-overlay-measurement.v3",
+  "evidence_kind": "scaffold",
+  "authority_effect": "none",
+  "builder": "build_overlay_probe.py",
+  "rowwise_design": "rowwise-integration-design.json",
+  "persistent_overlay": "integrated-overlay-candidate/",
+  "command": "python3 scaffold/tools/design_verification_checker.py check-child --root . --l4 scaffold/research/wr258-sec006-psi-explicit-20261101/integrated-overlay-candidate/l4.json --l5 scaffold/research/wr258-sec006-psi-explicit-20261101/integrated-overlay-candidate/l5.json --l8 scaffold/research/wr258-sec006-psi-explicit-20261101/integrated-overlay-candidate/l8.json --l9 scaffold/research/wr258-sec006-psi-explicit-20261101/integrated-overlay-candidate/l9.json",
+  "canonical_documents_modified_by_probe": false,
+  "integrated_check_child": {
+    "exit_code": 1,
+    "overall_passed": false,
+    "l4_l9_pair_passed": true,
+    "l5_l8_pair_passed": true,
+    "comparison_mode": "explicit_negative_equivalence_classes",
+    "parent_link_mode": "new_parent_link",
+    "negative_4way_passed": false,
+    "class_row_counts": {
+      "L4": 16,
+      "L9": 16,
+      "L8": 16,
+      "L5": 16
+    },
+    "unique_class_counts": {
+      "L4": 16,
+      "L9": 16,
+      "L8": 16,
+      "L5": 16
+    },
+    "case_row_counts": {
+      "L8": 143,
+      "L9": 148
+    },
+    "matched_case_count": 141,
+    "failure_count": 16,
+    "failure_groups": [
+      {
+        "layer": "L8",
+        "attribute": "equivalence_class",
+        "reason": "class_key_missing_from_layer",
+        "count": 1
+      },
+      {
+        "layer": "L8",
+        "attribute": "equivalence_class",
+        "reason": "unexpected_class_key",
+        "count": 1
+      },
+      {
+        "layer": "L8",
+        "attribute": "equivalence_key",
+        "reason": "class_key_missing_from_layer",
+        "count": 1
+      },
+      {
+        "layer": "L8",
+        "attribute": "equivalence_key",
+        "reason": "unexpected_class_key",
+        "count": 1
+      },
+      {
+        "layer": "L8",
+        "attribute": "integration_case_ref",
+        "reason": "integration_case_ref_unresolved",
+        "count": 1
+      },
+      {
+        "layer": "L9",
+        "attribute": "equivalence_class",
+        "reason": "class_key_missing_from_layer",
+        "count": 1
+      },
+      {
+        "layer": "L9",
+        "attribute": "equivalence_class",
+        "reason": "unexpected_class_key",
+        "count": 1
+      },
+      {
+        "layer": "L9",
+        "attribute": "equivalence_key",
+        "reason": "class_key_missing_from_layer",
+        "count": 1
+      },
+      {
+        "layer": "L9",
+        "attribute": "equivalence_key",
+        "reason": "unexpected_class_key",
+        "count": 1
+      },
+      {
+        "layer": "L9",
+        "attribute": "integration_case_ref",
+        "reason": "integration_case_not_referenced_from_l8",
+        "count": 6
+      },
+      {
+        "layer": "L9",
+        "attribute": "owner_unresolved",
+        "reason": "finding_owners_not_unique",
+        "count": 1
+      }
+    ],
+    "owner_declaration_candidate_static_check": "checker-empty-finding-owner-static-check.json"
+  },
+  "rowwise_observations": {
+    "canonical_l8_rows": 52,
+    "retained_l8_candidate_rows": 91,
+    "combined_l8_overlay_rows": 143,
+    "current_l9_rows": 98,
+    "source_derived_l9_candidate_rows": 50,
+    "combined_l9_overlay_rows": 148,
+    "distinct_l8_integration_case_refs": 142,
+    "unresolved_l8_refs": [
+      "SEC003-L8-FALLBACK-PRIMARY"
+    ],
+    "unreferenced_l9_rows": [
+      "SEC003-PRIMARY-TREE-FALLBACK",
+      "SEC003-AGENT-PRIMARY-TREE-FALLBACK",
+      "SEC003-HOOK-PRIMARY-TREE-FALLBACK",
+      "SEC003-MEMORY-PRIMARY-TREE-FALLBACK",
+      "SEC003-CREDENTIAL-PRIMARY-TREE-FALLBACK",
+      "SEC003-CONFIGURATION-PRIMARY-TREE-FALLBACK"
+    ],
+    "operation_defer_case_not_pairable_to_whole_system_absent_connection_observations": true,
+    "other_project_fallback_unique_pair": [
+      "SEC003-L8-FALLBACK-OTHER",
+      "SEC003-OTHER-PROJECT-FALLBACK"
+    ],
+    "primary_tree_mapping": "one canonical L8 row vs six caller-distinct L9 rows; no selection made"
+  },
+  "interpretation": [
+    "Four marker copies were used only in the persistent scaffold overlay. L4/L9 and L5/L8 pair checks pass; explicit four-way comparison fails and is not completion evidence.",
+    "For all 50 previously unmatched L8 rows, candidate condition/expected/expected_preserved were independently projected from each L4 class and its L3/L10 source links. L8 projection was used only to identify input correspondence, not to derive L9 oracle.",
+    "The other-project fallback maps one-to-one with equal /request/fallback projection, implicit_fallback observation, and scope-binding-owner.",
+    "The six primary-tree L9 caller rows remain distinct. compare_fallback reads only /request/fallback; five duplicate unit rows were not added. A source-derived caller-aware composite L5/L8 design candidate is recorded for a separate V-pair.",
+    "SEC003-L8-OPERATION-DEFER is an L5 local unknown/empty-finding result. L9 absent-connection cases are whole-system isolation_violation with explicit_connection_absent. Their observations are not interchangeable. The checker also rejects an empty ordered_findings array because it cannot derive a unique owner.",
+    "Nested L4 negative_classifications dual-definition count remains zero; existing nested code labels remain provenance labels, while explicit consumers use class_ref/class tables."
+  ],
+  "limits": [
+    "The 50 new L9 cases are noncanonical candidates without system input trace or executed oracle; case-level fields are class-derived structural candidates only.",
+    "The 91 retained L8 candidate rows remain not_executed.",
+    "No canonical L5/L8/L9 expected_observation, L3/L10, QA, checker, or runtime was changed.",
+    "Empty-finding owner checker change is only a separate PR candidate; helper static checks validate its proposed guard, not current checker behavior."
+  ]
+}

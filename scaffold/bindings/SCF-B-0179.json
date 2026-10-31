@@ -35,12 +35,12 @@
     },
     {
       "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
-      "sha256": "4a770515153fb97e2f5915af8308868450a22014d5739b996bc0ebf4a62db7db",
+      "sha256": "0d489264b02287bbcf4e52879b8e15f227fa4b58c2f0f046402e3598571cc1e8",
       "note": "既存gap_proposition_body guardを参照。変更なし。"
     },
     {
       "path": "docs/helix-harness/L9-integration-verification/product-template-application.json",
-      "sha256": "06c255043e143a0ddd23da750fede31ff6d3b4b1c94d854de22d07ff109c0d8b",
+      "sha256": "7649cbe93417726ad3d2ea47e6ff2ab0819527bcc85491ec66a825b2e7a498ca",
       "note": "case HARNESS-L9-009-F05-EVIDENCE-QUESTION-CONTRACTと既存Stopを参照。変更なし。"
     },
     {

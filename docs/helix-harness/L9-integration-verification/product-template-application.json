@@ -12640,6 +12640,568 @@
      "選択field外の全出力"
     ],
     "execution_state": "not_executed"
+   },
+   {
+    "id": "HARNESS-L9-009-F05-EVIDENCE-DEF-REF-MATCHING-UNESTABLISHED",
+    "source_basis": [
+     {
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+      "pointer": "/requirements/27"
+     },
+     {
+      "path": "docs/helix-harness/L10-verification/functional-verification.json",
+      "pointer": "/cases/27"
+     },
+     {
+      "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+      "pointer": "/field_source_materialization_contract/ordered_source_materialization/1"
+     },
+     {
+      "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+      "pointer": "/field_source_materialization_contract/ordered_source_materialization/2"
+     },
+     {
+      "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+      "pointer": "/field_semantic_evidence_contract/common_target_guards/0"
+     },
+     {
+      "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+      "pointer": "/field_semantic_evidence_contract/common_target_guards/2"
+     },
+     {
+      "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+      "pointer": "/field_semantic_evidence_contract/field_definition_evidence_body/absent_guard"
+     },
+     {
+      "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+      "pointer": "/field_semantic_evidence_contract/field_definition_evidence_body/undecided_guard"
+     },
+     {
+      "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+      "pointer": "/field_semantic_evidence_contract/basic_candidate_return/fields/definition_evidence_results"
+     },
+     {
+      "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+      "pointer": "/field_semantic_evidence_contract/basic_candidate_return/fields/local_unestablished"
+     },
+     {
+      "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+      "pointer": "/field_semantic_evidence_contract/basic_candidate_return/cause_vocabulary"
+     },
+     {
+      "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+      "pointer": "/field_semantic_evidence_contract/basic_candidate_return/cause_boundary"
+     },
+     {
+      "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+      "pointer": "/field_semantic_evidence_contract/basic_candidate_return/cause_kind_extension_rules/rules/3"
+     }
+    ],
+    "not_full_return": [
+     "/original_context の全leaf",
+     "選択したfield-A以外の/domain_observations"
+    ],
+    "uninstantiated_output_paths": [
+     "/original_context",
+     "/domain_observations/gap_proposals"
+    ],
+    "asserted_output_paths": [
+     "/gap_evidence_results",
+     "/definition_evidence_results",
+     "/local_unestablished",
+     "/unfinished_obligation_refs",
+     "/multiple_support_observations",
+     "/domain_observations/field_inputs/0"
+    ],
+    "assertion_pointer_namespace": {
+     "asserted_output_paths": "F05 basic candidate viewの出力root相対RFC 6901 pointer。",
+     "expected_echo_patch": "RFC 6902 destinationはこのcase document rootの/expectedを起点とする。"
+    },
+    "basis_occurrence_index_rule": "basis_occurrence_indicesは当該resultのbasis_occurrences配列への0-based indexのみを指す。operand_occurrences、native record/source/bodyの元index、proposition又はinterpretation indexとは区別し、反復した元Ref出現も保持する。",
+    "selection_scope": "期待値はこのcaseの固定literalが選ぶfield-Aまたはproposal-0、およびそれらの原Ref/source/body occurrenceに局所化する。local_unestablishedとunfinished_obligation_refsは当該selected operandから観測した項目だけを表し、同call C全体の原因・義務一覧、未提示枝の消去、義務完了を意味しない。",
+    "unfinished_obligation_scope": "元GapProposalのunfinished_obligation_refsのselected raw順/反復を保持する有限projection。これ以外のC義務集合を網羅せず、候補分類による消込をしない。",
+    "asserted_output_scope": "asserted_output_pathsはこのcaseで選んだfield/proposal/roleに対する有限projectionを示す。/local_unestablishedと/unfinished_obligation_refsはC全体の配列同値ではない。",
+    "logical_input_root_pointer": "/input/projection_operand",
+    "input_mutation_ja": "同一snapshotの選択FieldInput（/field_inputs/0）のdefinition_refs[0]について、input.axis_factsおよびinput.semantic_recordsの双方は観測済み実配列（Read.present）であるが、(a-1) definition_refs[0]自体がRef比較必須端（identity/revision/scope/owner）の欠落/null/型外により未形成であるか、又は(a-2) definition_refs[0]はRef比較必須端を満たし観測済みcollection内の候補record[k]とのRef比較が候補record.ref側の必須端欠落/null/型外又はdigest条件未成立によりref_relation=unestablished（matching=unestablished）となる入力を与える。全要素がref_relation=differentとなる単純検索miss（content_unresolved）、同Refのbinding不一致/未形成、collection自体の未観測とは混ぜない。",
+    "l4_meaning_ja": "L4 ordered_source_materialization/2 / common_target_guards/0,2 / field_definition_evidence_body.absent_guard・undecided_guard / basic_candidate_return.cause_boundary・cause_kind_extension_rules/rules/3: definition_refs[0]のRef比較がmatching=unestablished（枝a）のとき、CauseKindはcontent_unresolvedではなくtarget_unformedとし、target=/field_inputs/0/definition_refs/0、left=field_inputs[0].definition_refs[0]のoriginal Read、rightは(a-1)ではnormative_literal（1件）、(a-2)では当該候補record.refのoriginal Read（2探索domain順・原index順で当該候補record出現ごとに1件）として記録し、operand単位のcontent_unresolvedを重複併記しない。局所owner evidenceのformed/missing又はformed/unknown候補を保持したままfield単位のjudgmentをunformedにする。",
+    "selected_operand_expectation_ja": "対象FieldInput（/field_inputs/0）のdefinition_refs[0]のRef比較がmatching=unestablishedとなる場合、target=/field_inputs/0/definition_refs/0、left=field_inputs[0].definition_refs[0]のoriginal Read、right=((a-1) normative_literal 1件 / (a-2) 候補record.refのoriginal Readを出現ごとに1件)のtarget_unformedがlocal_unestablishedおよびdefinition_evidence_results[0].judgment={formation:unformed,causes}へ局所保持され、operand単位のcontent_unresolvedは併記されない。原definition_refs[0]および探索collection/候補recordの原Readとpresenceを保持し、架空indexやbasis_occurrencesを作らない。",
+    "expected_semantic_observation_ja": "選択field（/field_inputs/0）のdefinition_refs[0]がmatching=unestablished（枝a）のとき、definition_evidence_results[0].judgmentは{formation:unformed,causes}となり、local_unestablishedにtarget_unformed（target=/field_inputs/0/definition_refs/0、left=field_inputs[0].definition_refs[0]原Read、right=(a-1) normative_literal 1件又は(a-2) 候補record.ref原Readを出現ごと1件）が保持される。content_unresolvedへの丸めやoperand単位のcontent_unresolved併記（+1件化）をせず、既存owner evidence候補と兄弟fieldを維持し、架空のrecord/source/body出現やbasis_occurrences index、definition missing/unknownを生成しない（DT-VT-105）。",
+    "l3_l10_meaning_basis": [
+     "L3#/requirements/27: source/template/revision/field/義務/evidence/scopeと不足4候補を保持する",
+     "L10#/cases/27: definition absenceとvalue undecidedを混同せず、分類不明を補完しない"
+    ],
+    "execution_state": "not_executed"
+   },
+   {
+    "id": "HARNESS-L9-009-F05-EVIDENCE-DEF-BINDING-MISMATCH",
+    "source_basis": [
+     {
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+      "pointer": "/requirements/27"
+     },
+     {
+      "path": "docs/helix-harness/L10-verification/functional-verification.json",
+      "pointer": "/cases/27"
+     },
+     {
+      "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+      "pointer": "/field_source_materialization_contract/ordered_source_materialization/2"
+     },
+     {
+      "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+      "pointer": "/field_source_materialization_contract/ordered_source_materialization/3"
+     },
+     {
+      "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+      "pointer": "/field_semantic_evidence_contract/common_target_guards/1"
+     },
+     {
+      "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+      "pointer": "/field_semantic_evidence_contract/common_target_guards/5"
+     },
+     {
+      "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+      "pointer": "/field_semantic_evidence_contract/field_definition_evidence_body/absent_guard"
+     },
+     {
+      "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+      "pointer": "/field_semantic_evidence_contract/field_definition_evidence_body/undecided_guard"
+     },
+     {
+      "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+      "pointer": "/field_semantic_evidence_contract/basic_candidate_return/fields/definition_evidence_results"
+     },
+     {
+      "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+      "pointer": "/field_semantic_evidence_contract/basic_candidate_return/fields/local_unestablished"
+     },
+     {
+      "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+      "pointer": "/field_semantic_evidence_contract/basic_candidate_return/cause_vocabulary"
+     },
+     {
+      "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+      "pointer": "/field_semantic_evidence_contract/basic_candidate_return/cause_boundary"
+     },
+     {
+      "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+      "pointer": "/field_semantic_evidence_contract/basic_candidate_return/cause_kind_extension_rules/rules/4"
+     }
+    ],
+    "not_full_return": [
+     "/original_context の全leaf",
+     "選択したfield-A以外の/domain_observations"
+    ],
+    "uninstantiated_output_paths": [
+     "/original_context",
+     "/domain_observations/gap_proposals"
+    ],
+    "asserted_output_paths": [
+     "/gap_evidence_results",
+     "/definition_evidence_results",
+     "/local_unestablished",
+     "/unfinished_obligation_refs",
+     "/multiple_support_observations",
+     "/domain_observations/field_inputs/0"
+    ],
+    "assertion_pointer_namespace": {
+     "asserted_output_paths": "F05 basic candidate viewの出力root相対RFC 6901 pointer。",
+     "expected_echo_patch": "RFC 6902 destinationはこのcase document rootの/expectedを起点とする。"
+    },
+    "basis_occurrence_index_rule": "basis_occurrence_indicesは当該resultのbasis_occurrences配列への0-based indexのみを指す。operand_occurrences、native record/source/bodyの元index、proposition又はinterpretation indexとは区別し、反復した元Ref出現も保持する。",
+    "selection_scope": "期待値はこのcaseの固定literalが選ぶfield-Aまたはproposal-0、およびそれらの原Ref/source/body occurrenceに局所化する。local_unestablishedとunfinished_obligation_refsは当該selected operandから観測した項目だけを表し、同call C全体の原因・義務一覧、未提示枝の消去、義務完了を意味しない。",
+    "unfinished_obligation_scope": "元GapProposalのunfinished_obligation_refsのselected raw順/反復を保持する有限projection。これ以外のC義務集合を網羅せず、候補分類による消込をしない。",
+    "asserted_output_scope": "asserted_output_pathsはこのcaseで選んだfield/proposal/roleに対する有限projectionを示す。/local_unestablishedと/unfinished_obligation_refsはC全体の配列同値ではない。",
+    "logical_input_root_pointer": "/input/projection_operand",
+    "input_mutation_ja": "同一snapshotの選択FieldInput（/field_inputs/0）のdefinition_refs[0]にpresent non-nullのfull Refを置き、観測済みcollection（axis_facts又はsemantic_records）内にref_relation=corresponding（同Ref）となる候補record[k]を置くが、同binding（binding_relation=corresponding）のrecordは0件であり、当該候補record[k].bindingとfield_inputs[0].bindingの必須member又は供給版memberが既知不一致（binding_relation=different、枝b-1）である入力を与える。同Ref・同bindingの解決済みrecordとの併存（cases/16）、Ref不一致（content_unresolved）、binding自体の欠落/型外（binding_relation=unestablished）、collection未観測とは混ぜない。",
+    "l4_meaning_ja": "L4 ordered_source_materialization/2..3 / common_target_guards/1,3,5 / field_definition_evidence_body.present_guard・absent_guard・undecided_guard / basic_candidate_return.cause_boundary・cause_kind_extension_rules/rules/4: 同Ref（ref_relation=corresponding）でもrecord bindingが異なる原対応（枝b-1）は全てresolved_occurrencesへ残し、target=/field_inputs/0/binding、left=field_inputs[0].bindingのoriginal Read、right=当該候補record[k].bindingのoriginal Readとしてtarget_mismatchを2探索domain順・原index順で当該候補record出現ごとに1件記録し、operand単位のcontent_unresolvedを重複併記しない。局所owner evidence候補を保持したままfield単位のjudgmentをunformedにする。",
+    "selected_operand_expectation_ja": "対象FieldInput（/field_inputs/0）のdefinition_refs[0]と同Ref（ref_relation=corresponding）の候補record[k]がbinding_relation=differentとなる場合、同Ref候補record出現を消去せず保持したうえで、target=/field_inputs/0/binding、left=field_inputs[0].bindingのoriginal Read、right=当該候補record[k].bindingのoriginal Readとするtarget_mismatchを出現ごとに1件記録し、content_unresolvedへ丸めずoperand単位のcontent_unresolvedも併記しない。",
+    "expected_semantic_observation_ja": "選択field（/field_inputs/0）のdefinition_refs[0]に対して同Ref・同bindingのrecordが0件で同Ref（ref_relation=corresponding）かつbinding_relation=different（枝b-1）の候補recordが存在するとき、definition_evidence_results[0].judgmentは{formation:unformed,causes}となり、local_unestablishedにtarget_mismatch（target=/field_inputs/0/binding、left=field_inputs[0].binding原Read、right=候補record[k].binding原Read、該当出現ごとに1件）が保持される。同Ref候補recordの原出現と左右bindingの原Readを保持し、content_unresolvedへの読み替えや併記（+1件化）、架空のbasis_occurrences index、definition missing/unknownを生成しない（DT-VT-105）。",
+    "l3_l10_meaning_basis": [
+     "L3#/requirements/27: source/template/revision/field/義務/evidence/scopeと不足4候補を保持する",
+     "L10#/cases/27: definition absenceとvalue undecidedを混同せず、分類不明を補完しない"
+    ],
+    "execution_state": "not_executed"
+   },
+   {
+    "id": "HARNESS-L9-009-F05-EVIDENCE-DEF-BINDING-UNESTABLISHED",
+    "source_basis": [
+     {
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+      "pointer": "/requirements/27"
+     },
+     {
+      "path": "docs/helix-harness/L10-verification/functional-verification.json",
+      "pointer": "/cases/27"
+     },
+     {
+      "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+      "pointer": "/field_source_materialization_contract/ordered_source_materialization/2"
+     },
+     {
+      "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+      "pointer": "/field_source_materialization_contract/ordered_source_materialization/3"
+     },
+     {
+      "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+      "pointer": "/field_semantic_evidence_contract/common_target_guards/0"
+     },
+     {
+      "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+      "pointer": "/field_semantic_evidence_contract/common_target_guards/1"
+     },
+     {
+      "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+      "pointer": "/field_semantic_evidence_contract/common_target_guards/2"
+     },
+     {
+      "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+      "pointer": "/field_semantic_evidence_contract/field_definition_evidence_body/absent_guard"
+     },
+     {
+      "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+      "pointer": "/field_semantic_evidence_contract/field_definition_evidence_body/undecided_guard"
+     },
+     {
+      "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+      "pointer": "/field_semantic_evidence_contract/basic_candidate_return/fields/definition_evidence_results"
+     },
+     {
+      "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+      "pointer": "/field_semantic_evidence_contract/basic_candidate_return/fields/local_unestablished"
+     },
+     {
+      "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+      "pointer": "/field_semantic_evidence_contract/basic_candidate_return/cause_vocabulary"
+     },
+     {
+      "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+      "pointer": "/field_semantic_evidence_contract/basic_candidate_return/cause_boundary"
+     },
+     {
+      "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+      "pointer": "/field_semantic_evidence_contract/basic_candidate_return/cause_kind_extension_rules/rules/5"
+     }
+    ],
+    "not_full_return": [
+     "/original_context の全leaf",
+     "選択したfield-A以外の/domain_observations"
+    ],
+    "uninstantiated_output_paths": [
+     "/original_context",
+     "/domain_observations/gap_proposals"
+    ],
+    "asserted_output_paths": [
+     "/gap_evidence_results",
+     "/definition_evidence_results",
+     "/local_unestablished",
+     "/unfinished_obligation_refs",
+     "/multiple_support_observations",
+     "/domain_observations/field_inputs/0"
+    ],
+    "assertion_pointer_namespace": {
+     "asserted_output_paths": "F05 basic candidate viewの出力root相対RFC 6901 pointer。",
+     "expected_echo_patch": "RFC 6902 destinationはこのcase document rootの/expectedを起点とする。"
+    },
+    "basis_occurrence_index_rule": "basis_occurrence_indicesは当該resultのbasis_occurrences配列への0-based indexのみを指す。operand_occurrences、native record/source/bodyの元index、proposition又はinterpretation indexとは区別し、反復した元Ref出現も保持する。",
+    "selection_scope": "期待値はこのcaseの固定literalが選ぶfield-Aまたはproposal-0、およびそれらの原Ref/source/body occurrenceに局所化する。local_unestablishedとunfinished_obligation_refsは当該selected operandから観測した項目だけを表し、同call C全体の原因・義務一覧、未提示枝の消去、義務完了を意味しない。",
+    "unfinished_obligation_scope": "元GapProposalのunfinished_obligation_refsのselected raw順/反復を保持する有限projection。これ以外のC義務集合を網羅せず、候補分類による消込をしない。",
+    "asserted_output_scope": "asserted_output_pathsはこのcaseで選んだfield/proposal/roleに対する有限projectionを示す。/local_unestablishedと/unfinished_obligation_refsはC全体の配列同値ではない。",
+    "logical_input_root_pointer": "/input/projection_operand",
+    "input_mutation_ja": "同一snapshotの選択FieldInput（/field_inputs/0）のdefinition_refs[0]にpresent non-nullのfull Refを置き、観測済みcollection（axis_facts又はsemantic_records）内にref_relation=corresponding（同Ref）となる候補record[k]を置くが、同binding（binding_relation=corresponding）のrecordは0件であり、field_inputs[0].binding又は当該候補record[k].bindingの欠落/null/型外、必須binding memberの未形成、又は数値leafの比較未成立によりbinding_relation=unestablished（枝b-2）となる入力を与える。同Ref・同bindingの解決済みrecordとの併存（cases/16）、binding既知不一致（binding_relation=different）、Ref不一致（content_unresolved）、collection未観測とは混ぜない。",
+    "l4_meaning_ja": "L4 ordered_source_materialization/2..3 / common_target_guards/0..3,5 / field_definition_evidence_body.present_guard・absent_guard・undecided_guard / basic_candidate_return.cause_boundary・cause_kind_extension_rules/rules/5: 同Ref（ref_relation=corresponding）の候補record[k]についてbinding比較自体がbinding_relation=unestablished（枝b-2）のとき、同Ref候補record出現をresolved_occurrencesへ残したうえで、target=/field_inputs/0/binding、left=field_inputs[0].bindingのoriginal Read、right=当該候補record[k].bindingのoriginal Readとしてtarget_unformedを2探索domain順・原index順で当該候補record出現ごとに1件記録し、operand単位のcontent_unresolvedを重複併記しない。",
+    "selected_operand_expectation_ja": "対象FieldInput（/field_inputs/0）のdefinition_refs[0]と同Ref（ref_relation=corresponding）の候補record[k]がbinding_relation=unestablishedとなる場合、target=/field_inputs/0/binding、left=field_inputs[0].bindingのoriginal Read、right=当該候補record[k].bindingのoriginal Readとするtarget_unformedを出現ごとに1件記録し、target_mismatchやcontent_unresolvedへ読み替えずoperand単位のcontent_unresolvedも併記しない。",
+    "expected_semantic_observation_ja": "選択field（/field_inputs/0）のdefinition_refs[0]に対して同Ref・同bindingのrecordが0件で同Ref（ref_relation=corresponding）かつbinding_relation=unestablished（枝b-2）の候補recordが存在するとき、definition_evidence_results[0].judgmentは{formation:unformed,causes}となり、local_unestablishedにtarget_unformed（target=/field_inputs/0/binding、left=field_inputs[0].binding原Read、right=候補record[k].binding原Read、該当出現ごとに1件）が保持される。同Ref候補recordの原出現と左右bindingの原Read/presenceを保持し、target_mismatchやcontent_unresolvedへの読み替え・併記（+1件化）、架空のbasis_occurrences index、definition missing/unknownを生成しない（DT-VT-105）。",
+    "l3_l10_meaning_basis": [
+     "L3#/requirements/27: source/template/revision/field/義務/evidence/scopeと不足4候補を保持する",
+     "L10#/cases/27: definition absenceとvalue undecidedを混同せず、分類不明を補完しない"
+    ],
+    "execution_state": "not_executed"
+   },
+   {
+    "id": "HARNESS-L9-009-F05-EVIDENCE-DEF-COLLECTION-UNOBSERVED",
+    "source_basis": [
+     {
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+      "pointer": "/requirements/27"
+     },
+     {
+      "path": "docs/helix-harness/L10-verification/functional-verification.json",
+      "pointer": "/cases/27"
+     },
+     {
+      "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+      "pointer": "/field_source_materialization_contract/ordered_source_materialization/1"
+     },
+     {
+      "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+      "pointer": "/field_source_materialization_contract/ordered_source_materialization/2"
+     },
+     {
+      "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+      "pointer": "/field_semantic_evidence_contract/common_target_guards/0"
+     },
+     {
+      "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+      "pointer": "/field_semantic_evidence_contract/field_definition_evidence_body/absent_guard"
+     },
+     {
+      "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+      "pointer": "/field_semantic_evidence_contract/field_definition_evidence_body/undecided_guard"
+     },
+     {
+      "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+      "pointer": "/field_semantic_evidence_contract/basic_candidate_return/fields/definition_evidence_results"
+     },
+     {
+      "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+      "pointer": "/field_semantic_evidence_contract/basic_candidate_return/fields/local_unestablished"
+     },
+     {
+      "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+      "pointer": "/field_semantic_evidence_contract/basic_candidate_return/cause_vocabulary"
+     },
+     {
+      "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+      "pointer": "/field_semantic_evidence_contract/basic_candidate_return/cause_boundary"
+     },
+     {
+      "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+      "pointer": "/field_semantic_evidence_contract/basic_candidate_return/cause_kind_extension_rules/rules/6"
+     }
+    ],
+    "not_full_return": [
+     "/original_context の全leaf",
+     "選択したfield-A以外の/domain_observations"
+    ],
+    "uninstantiated_output_paths": [
+     "/original_context",
+     "/domain_observations/gap_proposals"
+    ],
+    "asserted_output_paths": [
+     "/gap_evidence_results",
+     "/definition_evidence_results",
+     "/local_unestablished",
+     "/unfinished_obligation_refs",
+     "/multiple_support_observations",
+     "/domain_observations/field_inputs/0"
+    ],
+    "assertion_pointer_namespace": {
+     "asserted_output_paths": "F05 basic candidate viewの出力root相対RFC 6901 pointer。",
+     "expected_echo_patch": "RFC 6902 destinationはこのcase document rootの/expectedを起点とする。"
+    },
+    "basis_occurrence_index_rule": "basis_occurrence_indicesは当該resultのbasis_occurrences配列への0-based indexのみを指す。operand_occurrences、native record/source/bodyの元index、proposition又はinterpretation indexとは区別し、反復した元Ref出現も保持する。",
+    "selection_scope": "期待値はこのcaseの固定literalが選ぶfield-Aまたはproposal-0、およびそれらの原Ref/source/body occurrenceに局所化する。local_unestablishedとunfinished_obligation_refsは当該selected operandから観測した項目だけを表し、同call C全体の原因・義務一覧、未提示枝の消去、義務完了を意味しない。",
+    "unfinished_obligation_scope": "元GapProposalのunfinished_obligation_refsのselected raw順/反復を保持する有限projection。これ以外のC義務集合を網羅せず、候補分類による消込をしない。",
+    "asserted_output_scope": "asserted_output_pathsはこのcaseで選んだfield/proposal/roleに対する有限projectionを示す。/local_unestablishedと/unfinished_obligation_refsはC全体の配列同値ではない。",
+    "logical_input_root_pointer": "/input/projection_operand",
+    "input_mutation_ja": "同一snapshotの選択FieldInput（/field_inputs/0）のdefinition_refs[0]にRef比較必須端を満たすpresent non-nullのfull Refを置くが、探索collectionであるinput.axis_facts（Read.present(null)又はRead.absent）とinput.semantic_records（Read.absent）の片側又は両側を未観測とする（枝c、対応record 0件）。片側のみ未観測の入力では他方の観測済みcollection（Read.present）を全要素ref_relation=different（一致0件）とする。観測済み側に同Ref・同bindingの一致recordがある入力（cases/17）や両collectionがともにRead.presentで一致0件の入力（cases/3）とは混ぜない。",
+    "l4_meaning_ja": "L4 ordered_source_materialization/1..2 / common_target_guards/0 / field_definition_evidence_body.absent_guard・undecided_guard / basic_candidate_return.cause_boundary・cause_kind_extension_rules/rules/6: 探索collection（[0]=/axis_facts、[1]=/semantic_records）の片側又は両側が未観測（枝c）のとき、2探索domain順で未観測collection domainごとにtarget=/field_inputs/0/definition_refs/0、left=field_inputs[0].definition_refs[0]のoriginal Read、right=当該未観測collectionのoriginal Readとしてinput_unobservedを1件記録する（両側未観測ならinput_unobserved計2件。片側未観測かつ他方観測済み実配列で全要素ref_relation=differentの一致0件なら、未観測domainのinput_unobserved 1件と観測済みdomainのcontent_unresolved 1件をdomain順に記録して計2件。未観測domainにcontent_unresolvedを重複併記しない）。",
+    "selected_operand_expectation_ja": "対象FieldInput（/field_inputs/0）のdefinition_refs[0]について、2探索domain順（[0]=/axis_facts、[1]=/semantic_records）で未観測collection domainにはinput_unobserved（target=/field_inputs/0/definition_refs/0、left=field_inputs[0].definition_refs[0]原Read、right=未観測collection原Read）を1件記録し、両側未観測ならinput_unobserved 2件（content_unresolved 0件）、片側未観測かつ他方観測済み0件なら未観測domainのinput_unobserved 1件と観測済みdomainのcontent_unresolved 1件（計2件）をlocal_unestablishedおよびdefinition_evidence_results[0].judgment={formation:unformed,causes}へ局所保持する。",
+    "expected_semantic_observation_ja": "選択field（/field_inputs/0）のdefinition_refs[0]に対して探索collectionの片側又は両側が未観測で一致recordが0件（枝c）のとき、definition_evidence_results[0].judgmentは{formation:unformed,causes}となり、2探索domain順（/axis_facts→/semantic_records）で未観測domainにinput_unobserved（right=未観測collection原Read）、観測済み一致0件domainがあればそのdomainにのみcontent_unresolved（right=観測済みcollection原Read）が計2件局所保持される。未観測collectionを空配列（[]）や検索miss（content_unresolved）へ読み替えず、未観測domainへのcontent_unresolved重複併記（3件化）もせず、既存owner evidence候補と兄弟fieldを維持し、架空のbasis_occurrences indexやdefinition missing/unknownを生成しない（DT-VT-105）。",
+    "l3_l10_meaning_basis": [
+     "L3#/requirements/27: source/template/revision/field/義務/evidence/scopeと不足4候補を保持する",
+     "L10#/cases/27: definition absenceとvalue undecidedを混同せず、分類不明を補完しない"
+    ],
+    "execution_state": "not_executed"
+   },
+   {
+    "id": "HARNESS-L9-009-F05-EVIDENCE-DEF-SAME-REF-RESOLVED-AND-UNRESOLVED-MIXED",
+    "source_basis": [
+     {
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+      "pointer": "/requirements/27"
+     },
+     {
+      "path": "docs/helix-harness/L10-verification/functional-verification.json",
+      "pointer": "/cases/27"
+     },
+     {
+      "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+      "pointer": "/field_source_materialization_contract/ordered_source_materialization/2"
+     },
+     {
+      "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+      "pointer": "/field_source_materialization_contract/ordered_source_materialization/3"
+     },
+     {
+      "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+      "pointer": "/field_semantic_evidence_contract/common_target_guards/1"
+     },
+     {
+      "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+      "pointer": "/field_semantic_evidence_contract/common_target_guards/3"
+     },
+     {
+      "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+      "pointer": "/field_semantic_evidence_contract/common_target_guards/5"
+     },
+     {
+      "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+      "pointer": "/field_semantic_evidence_contract/field_definition_evidence_body/present_guard"
+     },
+     {
+      "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+      "pointer": "/field_semantic_evidence_contract/field_definition_evidence_body/absent_guard"
+     },
+     {
+      "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+      "pointer": "/field_semantic_evidence_contract/field_definition_evidence_body/undecided_guard"
+     },
+     {
+      "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+      "pointer": "/field_semantic_evidence_contract/basic_candidate_return/fields/definition_evidence_results"
+     },
+     {
+      "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+      "pointer": "/field_semantic_evidence_contract/basic_candidate_return/fields/local_unestablished"
+     },
+     {
+      "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+      "pointer": "/field_semantic_evidence_contract/basic_candidate_return/cause_boundary"
+     },
+     {
+      "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+      "pointer": "/field_semantic_evidence_contract/basic_candidate_return/cause_kind_extension_rules/rules/3"
+     },
+     {
+      "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+      "pointer": "/field_semantic_evidence_contract/basic_candidate_return/cause_kind_extension_rules/rules/4"
+     },
+     {
+      "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+      "pointer": "/field_semantic_evidence_contract/basic_candidate_return/cause_kind_extension_rules/rules/5"
+     }
+    ],
+    "not_full_return": [
+     "/original_context の全leaf",
+     "選択したfield-A以外の/domain_observations"
+    ],
+    "uninstantiated_output_paths": [
+     "/original_context",
+     "/domain_observations/gap_proposals"
+    ],
+    "asserted_output_paths": [
+     "/gap_evidence_results",
+     "/definition_evidence_results",
+     "/local_unestablished",
+     "/unfinished_obligation_refs",
+     "/multiple_support_observations",
+     "/domain_observations/field_inputs/0"
+    ],
+    "assertion_pointer_namespace": {
+     "asserted_output_paths": "F05 basic candidate viewの出力root相対RFC 6901 pointer。",
+     "expected_echo_patch": "RFC 6902 destinationはこのcase document rootの/expectedを起点とする。"
+    },
+    "basis_occurrence_index_rule": "basis_occurrence_indicesは当該resultのbasis_occurrences配列への0-based indexのみを指す。operand_occurrences、native record/source/bodyの元index、proposition又はinterpretation indexとは区別し、反復した元Ref出現も保持する。",
+    "selection_scope": "期待値はこのcaseの固定literalが選ぶfield-Aまたはproposal-0、およびそれらの原Ref/source/body occurrenceに局所化する。local_unestablishedとunfinished_obligation_refsは当該selected operandから観測した項目だけを表し、同call C全体の原因・義務一覧、未提示枝の消去、義務完了を意味しない。",
+    "unfinished_obligation_scope": "元GapProposalのunfinished_obligation_refsのselected raw順/反復を保持する有限projection。これ以外のC義務集合を網羅せず、候補分類による消込をしない。",
+    "asserted_output_scope": "asserted_output_pathsはこのcaseで選んだfield/proposal/roleに対する有限projectionを示す。/local_unestablishedと/unfinished_obligation_refsはC全体の配列同値ではない。",
+    "logical_input_root_pointer": "/input/projection_operand",
+    "input_mutation_ja": "同一snapshotの選択FieldInput（/field_inputs/0）の同一definition_refs[0]に対して、観測済みcollection（axis_facts及びsemantic_records）内に、同Ref・同binding（ref_relation=correspondingかつbinding_relation=corresponding）でsource/body/payloadが解決するrecordと、同Ref（ref_relation=corresponding）でbinding_relation=different（枝b-1）又はbinding_relation=unestablished（枝b-2）のrecord（あるいは候補record.refがref_relation=unestablishedのrecord、枝a-2）が併存する入力を与える（状態1）。同fieldにpresent・absent・undecidedのいずれのowner evidence命題が供給されている場合も含む。",
+    "l4_meaning_ja": "L4 ordered_source_materialization/2..3 / common_target_guards/1,3,5 / field_definition_evidence_body.present_guard・absent_guard・undecided_guard / basic_candidate_return.fields.definition_evidence_results・cause_boundary・cause_kind_extension_rules/rules/3..5: 同一definition_refs[0]に同Ref・同bindingの解決済みrecordと同Refでbinding_relation=different（rules/4）又はbinding_relation=unestablished（rules/5）のrecord（又はref_relation=unestablishedのrecord、rules/3）が併存する場合（状態1）、先頭/latestや解決済み出現の成功によって不一致・未成立出現を消さず、解決済み出現をresolved_occurrencesおよび個別evidence_judgments（known/missing/unknown支持候補）へ保持したまま、不一致・未成立出現ごとにtarget_mismatch（rules/4）又はtarget_unformed（rules/5, rules/3）を2探索domain順・原index順でlocal_unestablishedへ保存し（content_unresolvedは0件）、field単位のdefinition_evidence_results[0].judgmentはknown/missing/unknownへ畳まず{formation:unformed,causes}とする。",
+    "selected_operand_expectation_ja": "対象FieldInput（/field_inputs/0）の同一definition_refs[0]に同Ref・同binding解決済みrecordとbinding_relation=different又はunestablishedの同Ref recordが併存するとき、解決済みrecordと不一致/未成立recordの双方をresolved_occurrencesに保持し、不一致/未成立出現ごとにtarget=/field_inputs/0/binding、left=field_inputs[0].binding原Read、right=当該不一致/未成立record.binding原Readのtarget_mismatch又はtarget_unformedを1件記録し（content_unresolvedは0件）、field単位のjudgmentを{formation:unformed,causes}とする。",
+    "expected_semantic_observation_ja": "選択field（/field_inputs/0）の同一definition_refs[0]に同Ref・同binding解決済みrecordと同Refのbinding_relation=different又はunestablished（又は候補record.refがref_relation=unestablished）のrecordが併存する状態1では、個別evidence_judgmentsの候補（presentによるknown候補、absentによるmissing候補、undecidedによるunknown候補）およびresolved_occurrencesの解決済み出現を保持したまま、definition_evidence_results[0].judgmentは{formation:unformed,causes}となり、local_unestablishedに不一致/未成立出現ごとのtarget_mismatch又はtarget_unformedが局所保持される。解決済み出現があることを理由に不一致/未成立causeを消去してfield単位judgmentをformed/known等へ畳まず、content_unresolvedも発火させない（DT-VT-105）。",
+    "l3_l10_meaning_basis": [
+     "L3#/requirements/27: source/template/revision/field/義務/evidence/scopeと不足4候補を保持する",
+     "L10#/cases/27: 分類不明や相反を別source成功で相殺せず未解決へ残す"
+    ],
+    "execution_state": "not_executed"
+   },
+   {
+    "id": "HARNESS-L9-009-F05-EVIDENCE-DEF-ONE-COLLECTION-UNOBSERVED-WITH-MATCHING-RECORD",
+    "source_basis": [
+     {
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+      "pointer": "/requirements/27"
+     },
+     {
+      "path": "docs/helix-harness/L10-verification/functional-verification.json",
+      "pointer": "/cases/27"
+     },
+     {
+      "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+      "pointer": "/field_source_materialization_contract/original_operand_contract/record_domain"
+     },
+     {
+      "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+      "pointer": "/field_source_materialization_contract/ordered_source_materialization/2"
+     },
+     {
+      "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+      "pointer": "/field_semantic_evidence_contract/common_target_guards/0"
+     },
+     {
+      "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+      "pointer": "/field_semantic_evidence_contract/common_target_guards/3"
+     },
+     {
+      "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+      "pointer": "/field_semantic_evidence_contract/common_target_guards/5"
+     },
+     {
+      "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+      "pointer": "/field_semantic_evidence_contract/field_definition_evidence_body/present_guard"
+     },
+     {
+      "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+      "pointer": "/field_semantic_evidence_contract/field_definition_evidence_body/absent_guard"
+     },
+     {
+      "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+      "pointer": "/field_semantic_evidence_contract/field_definition_evidence_body/undecided_guard"
+     },
+     {
+      "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+      "pointer": "/field_semantic_evidence_contract/basic_candidate_return/fields/definition_evidence_results"
+     },
+     {
+      "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+      "pointer": "/field_semantic_evidence_contract/basic_candidate_return/fields/local_unestablished"
+     },
+     {
+      "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+      "pointer": "/field_semantic_evidence_contract/basic_candidate_return/cause_boundary"
+     },
+     {
+      "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+      "pointer": "/field_semantic_evidence_contract/basic_candidate_return/cause_kind_extension_rules/rules/6"
+     }
+    ],
+    "not_full_return": [
+     "/original_context の全leaf",
+     "選択したfield-A以外の/domain_observations"
+    ],
+    "uninstantiated_output_paths": [
+     "/original_context",
+     "/domain_observations/gap_proposals"
+    ],
+    "asserted_output_paths": [
+     "/gap_evidence_results",
+     "/definition_evidence_results",
+     "/local_unestablished",
+     "/unfinished_obligation_refs",
+     "/multiple_support_observations",
+     "/domain_observations/field_inputs/0"
+    ],
+    "assertion_pointer_namespace": {
+     "asserted_output_paths": "F05 basic candidate viewの出力root相対RFC 6901 pointer。",
+     "expected_echo_patch": "RFC 6902 destinationはこのcase document rootの/expectedを起点とする。"
+    },
+    "basis_occurrence_index_rule": "basis_occurrence_indicesは当該resultのbasis_occurrences配列への0-based indexのみを指す。operand_occurrences、native record/source/bodyの元index、proposition又はinterpretation indexとは区別し、反復した元Ref出現も保持する。",
+    "selection_scope": "期待値はこのcaseの固定literalが選ぶfield-Aまたはproposal-0、およびそれらの原Ref/source/body occurrenceに局所化する。local_unestablishedとunfinished_obligation_refsは当該selected operandから観測した項目だけを表し、同call C全体の原因・義務一覧、未提示枝の消去、義務完了を意味しない。",
+    "unfinished_obligation_scope": "元GapProposalのunfinished_obligation_refsのselected raw順/反復を保持する有限projection。これ以外のC義務集合を網羅せず、候補分類による消込をしない。",
+    "asserted_output_scope": "asserted_output_pathsはこのcaseで選んだfield/proposal/roleに対する有限projectionを示す。/local_unestablishedと/unfinished_obligation_refsはC全体の配列同値ではない。",
+    "logical_input_root_pointer": "/input/projection_operand",
+    "input_mutation_ja": "同一snapshotの選択FieldInput（/field_inputs/0）のdefinition_refs[0]にRef比較必須端を満たすpresent non-nullのfull Refを置き、探索collectionであるinput.axis_facts（Read.present(null)又はRead.absent）とinput.semantic_records（Read.absent）の片側を未観測とする一方、他方の観測済みcollection（Read.present）には同Ref・同binding（ref_relation=correspondingかつbinding_relation=corresponding）でsource/body/payloadが解決するrecordが1件以上存在する入力を与える（状態2）。観測済み側が全要素differentの入力（cases/15）とは混ぜない。",
+    "l4_meaning_ja": "L4 original_operand_contract.record_domain / ordered_source_materialization/2 / common_target_guards/0,3,5 / field_definition_evidence_body.present_guard・absent_guard・undecided_guard / basic_candidate_return.cause_boundary・cause_kind_extension_rules/rules/6: 各Refはaxis_facts及びsemantic_recordsの両collectionを対象に全原recordを解決するため、片側collectionが未観測で他方の観測済みcollectionに同Ref・同bindingの解決済みrecordが存在する場合（状態2）も、観測済み側の解決済み出現をresolved_occurrencesおよび個別evidence_judgmentsへ保持したうえで、未観測collection domainにつきtarget=/field_inputs/0/definition_refs/0、left=field_inputs[0].definition_refs[0]のoriginal Read、right=当該未観測collectionのoriginal Readとしてinput_unobservedを1件記録し（観測済み側にはcorrespondingが存在するためcontent_unresolvedは0件）、field単位のdefinition_evidence_results[0].judgmentはknown/missing/unknownへ畳まず{formation:unformed,causes}とする。",
+    "selected_operand_expectation_ja": "対象FieldInput（/field_inputs/0）のdefinition_refs[0]について、片側collectionが未観測かつ他方観測済みcollectionに同Ref・同bindingの解決済みrecordが存在するとき、観測済み側の解決済み出現をresolved_occurrencesに保持しつつ、未観測domainのinput_unobserved 1件（target=/field_inputs/0/definition_refs/0、left=field_inputs[0].definition_refs[0]原Read、right=未観測collection原Read）のみを記録し（content_unresolvedは0件）、definition_evidence_results[0].judgmentを{formation:unformed,causes}とする。",
+    "expected_semantic_observation_ja": "選択field（/field_inputs/0）のdefinition_refs[0]に対して片側collectionが未観測で他方の観測済みcollectionに同Ref・同bindingの解決済みrecordが存在する状態2では、観測済み側の解決済み出現（resolved_occurrences）と個別evidence_judgmentsの候補（known/missing/unknown）を保持したまま、definition_evidence_results[0].judgmentは{formation:unformed,causes}となり、local_unestablishedに未観測domainのinput_unobserved 1件が局所保持される（content_unresolvedは0件）。片側collectionの成功だけで未観測collectionの探索義務（record_domain）を省略してformed/known等へ畳まず、未観測collectionを空配列（[]）へ読み替えない（DT-VT-105）。",
+    "l3_l10_meaning_basis": [
+     "L3#/requirements/27: source/template/revision/field/義務/evidence/scopeと不足4候補を保持する",
+     "L10#/cases/27: 親未観測や分類不明を別collectionの成功で相殺せず未解決へ残す"
+    ],
+    "execution_state": "not_executed"
    }
   ],
   "unexercised_and_unverified": {
@@ -12923,6 +13485,226 @@
      "rule_pointer": "/field_semantic_evidence_contract/basic_candidate_return/cause_kind_extension_rules/rules/2"
     },
     "expected_preserved": "解決済み対象recordの原Read、当該record.refおよびrecord.source_refの原Read、対応SourceEnvelopeおよび観測済みbody.records配列の原Readを消去・正規化せず保持し、架空のsource/body出現やbasis_occurrences entry/indexを作らない。当該evidence/projectionをunformedとしてlocal_unestablishedへ局所保持し、source_unresolved、body_unformed、content_unresolved、source_body_mismatchへ読み替えず、definition_evidence_resultsのknown/missing/unknown/conflictやgap_evidence_resultsのformed意味候補をこのCauseから生成しない。",
+    "expected_side_effect_count": 0
+   },
+   {
+    "id": "HARNESS-L9-009-F05-CAUSE-DEF-REF-MATCHING-UNESTABLISHED",
+    "name": "definition-ref-comparison-unestablished",
+    "execution_state": "not_executed",
+    "logical_input_status": "型付き条件を記述した設計case。入力fixtureは未作成。",
+    "source_basis": [
+     {
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+      "pointer": "/requirements/27"
+     },
+     {
+      "path": "docs/helix-harness/L10-verification/functional-verification.json",
+      "pointer": "/cases/27"
+     },
+     {
+      "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+      "pointer": "/field_source_materialization_contract/ordered_source_materialization/2"
+     },
+     {
+      "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+      "pointer": "/field_semantic_evidence_contract/common_target_guards/0"
+     },
+     {
+      "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+      "pointer": "/field_semantic_evidence_contract/common_target_guards/2"
+     },
+     {
+      "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+      "pointer": "/field_semantic_evidence_contract/common_target_guards/3"
+     },
+     {
+      "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+      "pointer": "/field_semantic_evidence_contract/common_target_guards/5"
+     },
+     {
+      "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+      "pointer": "/field_semantic_evidence_contract/field_definition_evidence_body/present_guard"
+     },
+     {
+      "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+      "pointer": "/field_semantic_evidence_contract/basic_candidate_return/cause_kind_extension_rules/rules/3"
+     }
+    ],
+    "condition": "選択FieldInput（field_inputs[i]）のdefinition_refs[j]のRef比較がmatching=unestablishedとなる場合（(a-1) definition_refs[j]自体のRef比較必須端欠落/null/型外、又は(a-2) 観測済みcollection内の候補record[k].refとのRef比較がref_relation=unestablished。同一definition_refs[j]に対する同Ref・同bindingの解決済みrecordが0件のときも1件以上併存するときも適用）。",
+    "expected_cause": {
+     "kind": "target_unformed",
+     "target": "当該field_inputs[i].definition_refs[j]のoriginal Read location（/field_inputs/{i}/definition_refs/{j}）",
+     "left": "当該field_inputs[i].definition_refs[j]のoriginal Read全値",
+     "right": "(a-1)ではnormative_literal（1件）、(a-2)ではref_relation=unestablishedとなった当該候補record.refのoriginal Read全値（2探索domain順・原index順で当該候補record出現ごとに1件。operand単位のcontent_unresolvedは併記しない）",
+     "rule_pointer": "/field_semantic_evidence_contract/basic_candidate_return/cause_kind_extension_rules/rules/3"
+    },
+    "expected_preserved": "原definition_refs[j]と候補record/collectionの原Read、同definition_refs[j]に併存する解決済み出現（resolved_occurrences）、および個別owner evidence候補（evidence_judgmentsのpresent/absent/undecided）を保持し、definition_evidence_results[i].judgment={formation:unformed,causes}およびlocal_unestablishedへ局所保持する。解決済み出現の併存でtarget_unformedを消さず、content_unresolvedへの丸めや併記もせず、domainのdefinition missing/unknownを生成しない。",
+    "expected_side_effect_count": 0
+   },
+   {
+    "id": "HARNESS-L9-009-F05-CAUSE-DEF-BINDING-MISMATCH",
+    "name": "same-definition-ref-candidate-record-binding-different",
+    "execution_state": "not_executed",
+    "logical_input_status": "型付き条件を記述した設計case。入力fixtureは未作成。",
+    "source_basis": [
+     {
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+      "pointer": "/requirements/27"
+     },
+     {
+      "path": "docs/helix-harness/L10-verification/functional-verification.json",
+      "pointer": "/cases/27"
+     },
+     {
+      "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+      "pointer": "/field_source_materialization_contract/ordered_source_materialization/2"
+     },
+     {
+      "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+      "pointer": "/field_source_materialization_contract/ordered_source_materialization/3"
+     },
+     {
+      "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+      "pointer": "/field_semantic_evidence_contract/common_target_guards/1"
+     },
+     {
+      "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+      "pointer": "/field_semantic_evidence_contract/common_target_guards/3"
+     },
+     {
+      "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+      "pointer": "/field_semantic_evidence_contract/common_target_guards/5"
+     },
+     {
+      "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+      "pointer": "/field_semantic_evidence_contract/field_definition_evidence_body/present_guard"
+     },
+     {
+      "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+      "pointer": "/field_semantic_evidence_contract/basic_candidate_return/cause_kind_extension_rules/rules/4"
+     }
+    ],
+    "condition": "選択FieldInput（field_inputs[i]）のdefinition_refs[j]と観測済みcollection内の候補record[k].refがref_relation=corresponding（同Ref）であり、field_inputs[i].bindingと当該候補record[k].bindingがbinding_relation=different（枝b-1）となる場合（同一definition_refs[j]に対する同Ref・同bindingの解決済みrecordが0件のときも1件以上併存する状態1のときも適用）。",
+    "expected_cause": {
+     "kind": "target_mismatch",
+     "target": "当該field_inputs[i].bindingのoriginal Read location（/field_inputs/{i}/binding）",
+     "left": "当該field_inputs[i].bindingのoriginal Read全値",
+     "right": "ref_relation=correspondingかつbinding_relation=differentとなった当該候補record[k].bindingのoriginal Read全値（2探索domain順・原index順で当該候補record出現ごとに1件。operand単位のcontent_unresolvedは併記しない）",
+     "rule_pointer": "/field_semantic_evidence_contract/basic_candidate_return/cause_kind_extension_rules/rules/4"
+    },
+    "expected_preserved": "同Ref候補record出現（同binding解決済み出現とbinding不一致出現の双方）をresolved_occurrencesへ残し、左右bindingの原Readと個別owner evidence候補（evidence_judgmentsのpresent/absent/undecided）を保持したまま、definition_evidence_results[i].judgment={formation:unformed,causes}およびlocal_unestablishedへ局所保持する。解決済み出現の併存でtarget_mismatchを消さず、content_unresolvedへの読み替えや併記もせず、domainのdefinition missing/unknownを生成しない。",
+    "expected_side_effect_count": 0
+   },
+   {
+    "id": "HARNESS-L9-009-F05-CAUSE-DEF-BINDING-UNESTABLISHED",
+    "name": "same-definition-ref-candidate-record-binding-unestablished",
+    "execution_state": "not_executed",
+    "logical_input_status": "型付き条件を記述した設計case。入力fixtureは未作成。",
+    "source_basis": [
+     {
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+      "pointer": "/requirements/27"
+     },
+     {
+      "path": "docs/helix-harness/L10-verification/functional-verification.json",
+      "pointer": "/cases/27"
+     },
+     {
+      "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+      "pointer": "/field_source_materialization_contract/ordered_source_materialization/2"
+     },
+     {
+      "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+      "pointer": "/field_source_materialization_contract/ordered_source_materialization/3"
+     },
+     {
+      "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+      "pointer": "/field_semantic_evidence_contract/common_target_guards/0"
+     },
+     {
+      "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+      "pointer": "/field_semantic_evidence_contract/common_target_guards/1"
+     },
+     {
+      "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+      "pointer": "/field_semantic_evidence_contract/common_target_guards/3"
+     },
+     {
+      "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+      "pointer": "/field_semantic_evidence_contract/common_target_guards/5"
+     },
+     {
+      "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+      "pointer": "/field_semantic_evidence_contract/field_definition_evidence_body/present_guard"
+     },
+     {
+      "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+      "pointer": "/field_semantic_evidence_contract/basic_candidate_return/cause_kind_extension_rules/rules/5"
+     }
+    ],
+    "condition": "選択FieldInput（field_inputs[i]）のdefinition_refs[j]と観測済みcollection内の候補record[k].refがref_relation=corresponding（同Ref）であり、field_inputs[i].bindingと当該候補record[k].bindingの比較がbinding_relation=unestablished（枝b-2）となる場合（同一definition_refs[j]に対する同Ref・同bindingの解決済みrecordが0件のときも1件以上併存する状態1のときも適用）。",
+    "expected_cause": {
+     "kind": "target_unformed",
+     "target": "当該field_inputs[i].bindingのoriginal Read location（/field_inputs/{i}/binding）",
+     "left": "当該field_inputs[i].bindingのoriginal Read全値",
+     "right": "ref_relation=correspondingかつbinding_relation=unestablishedとなった当該候補record[k].bindingのoriginal Read全値（2探索domain順・原index順で当該候補record出現ごとに1件。operand単位のcontent_unresolvedは併記しない）",
+     "rule_pointer": "/field_semantic_evidence_contract/basic_candidate_return/cause_kind_extension_rules/rules/5"
+    },
+    "expected_preserved": "同Ref候補record出現（同binding解決済み出現とbinding比較未成立出現の双方）をresolved_occurrencesへ残し、左右bindingの原Read/presenceと個別owner evidence候補（evidence_judgmentsのpresent/absent/undecided）を保持したまま、definition_evidence_results[i].judgment={formation:unformed,causes}およびlocal_unestablishedへ局所保持する。解決済み出現の併存でtarget_unformedを消さず、target_mismatchやcontent_unresolvedへの読み替えや併記もせず、domainのdefinition missing/unknownを生成しない。",
+    "expected_side_effect_count": 0
+   },
+   {
+    "id": "HARNESS-L9-009-F05-CAUSE-DEF-COLLECTION-UNOBSERVED",
+    "name": "definition-ref-search-collection-unobserved",
+    "execution_state": "not_executed",
+    "logical_input_status": "型付き条件を記述した設計case。入力fixtureは未作成。",
+    "source_basis": [
+     {
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+      "pointer": "/requirements/27"
+     },
+     {
+      "path": "docs/helix-harness/L10-verification/functional-verification.json",
+      "pointer": "/cases/27"
+     },
+     {
+      "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+      "pointer": "/field_source_materialization_contract/original_operand_contract/record_domain"
+     },
+     {
+      "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+      "pointer": "/field_source_materialization_contract/ordered_source_materialization/2"
+     },
+     {
+      "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+      "pointer": "/field_semantic_evidence_contract/common_target_guards/0"
+     },
+     {
+      "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+      "pointer": "/field_semantic_evidence_contract/common_target_guards/3"
+     },
+     {
+      "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+      "pointer": "/field_semantic_evidence_contract/common_target_guards/5"
+     },
+     {
+      "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+      "pointer": "/field_semantic_evidence_contract/field_definition_evidence_body/present_guard"
+     },
+     {
+      "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+      "pointer": "/field_semantic_evidence_contract/basic_candidate_return/cause_kind_extension_rules/rules/6"
+     }
+    ],
+    "condition": "選択FieldInput（field_inputs[i]）のdefinition_refs[j]がRef比較必須端を満たすが、同snapshotの探索collectionであるaxis_facts（Read.present(null)又はRead.absent）とsemantic_records（Read.absent）の片側又は両側が未観測である場合（枝c。他方の観測済みcollectionが全要素ref_relation=differentの一致0件である場合、および他方の観測済みcollectionに同Ref・同bindingの解決済みrecordが存在する状態2の双方を含む）。",
+    "expected_cause": {
+     "kind": "input_unobserved",
+     "target": "当該field_inputs[i].definition_refs[j]のoriginal Read location（/field_inputs/{i}/definition_refs/{j}）",
+     "left": "当該field_inputs[i].definition_refs[j]のoriginal Read全値",
+     "right": "2探索domain順（[0]=/axis_facts、[1]=/semantic_records）における当該未観測collectionのoriginal Read（両側未観測ならinput_unobserved計2件。片側未観測かつ他方観測済み0件なら未観測domainのinput_unobserved 1件と観測済みdomainのcontent_unresolved 1件をdomain順に記録して計2件。片側未観測かつ他方観測済みcollectionに同Ref・同bindingの解決済みrecordが存在する状態2なら未観測domainのinput_unobserved 1件のみでcontent_unresolvedは0件。いずれも未観測domainにcontent_unresolvedを重複併記しない）",
+     "rule_pointer": "/field_semantic_evidence_contract/basic_candidate_return/cause_kind_extension_rules/rules/6"
+    },
+    "expected_preserved": "原definition_refs[j]のRead、両collection（/axis_factsおよび/semantic_records）の原Read/presence、観測済み側に存在する解決済み出現（resolved_occurrences）、および個別owner evidence候補（evidence_judgmentsのpresent/absent/undecided）を保持し、未観測collectionを空配列（[]）やcontent_unresolvedへ読み替えず、観測済み側の成功で未観測domainのinput_unobservedを消さず、definition_evidence_results[i].judgment={formation:unformed,causes}およびlocal_unestablishedへ局所保持する。",
     "expected_side_effect_count": 0
    }
   ],
