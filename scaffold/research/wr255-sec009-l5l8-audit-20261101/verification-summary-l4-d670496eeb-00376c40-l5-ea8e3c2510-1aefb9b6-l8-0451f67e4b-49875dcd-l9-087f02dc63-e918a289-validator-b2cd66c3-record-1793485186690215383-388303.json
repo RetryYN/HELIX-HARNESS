@@ -1,0 +1,376 @@
+{
+  "schema": "sec009-l5l8-independent-audit.v1",
+  "evidence_kind": "scaffold",
+  "authority_effect": "none",
+  "source_revision": "0451f67e4b94451b7258078f49df3cb34db36098",
+  "source_revisions": {
+    "l4": "d670496eebc5a28469ac3da0e2f9be1bcd7a37ce",
+    "l5": "ea8e3c251069f64ca96a060a183693ab1bdfc08d",
+    "l8": "0451f67e4b94451b7258078f49df3cb34db36098",
+    "l9": "087f02dc637f6860e344e2bda9efa83c83506b72"
+  },
+  "source_hashes": {
+    "l3_business": "f1668180a3daccb38da15f471ade0806c64f094a77b0d7a5cef25edc9b6ce901",
+    "l3_functional": "e4eeb70cc303e44199c7d898281e91c22dba89b47666353b9c80a4c634e898b5",
+    "l4": "00376c402930e1287e9e0e896804b1de8a20390f8abbea8377b70712f868b9da",
+    "l5": "1aefb9b64fb52abc8cf6eec7d32312bfcb9a07359d7406c2ca4e9fa9717fa190",
+    "l8": "49875dcdb4bcec85ebffbad678127e90a61db329c9cccae96f0090cd260f698d",
+    "l9": "e918a289fe88446b3f84210577f0fe8094505d9dac9d9a8713cd074eb6776e5b",
+    "l10_business": "c34b8f9a99f8f240558458dd63033acd0d756dfe61ad9cd3aac0e8e1c8193f42",
+    "l10_functional": "e6da7eaff29a623b5d069801280c295d9dd7cc43b51d9cde25b12a8110e5072a",
+    "checker": "e751526d67cd8df11e5aac1c5a1a178dfbd0fecc3f2ed21f995b7dda11ea4d5d"
+  },
+  "counts": {
+    "classes_per_layer": 32,
+    "l8_u_ids": 285,
+    "l9_source_case_ids": 285,
+    "negative": 277,
+    "positive_contract_minimum_designed_not_observed": 8
+  },
+  "class_audit_summary": {
+    "count": 32,
+    "canonical_sha256": "ac5ca36c5366a83508192fbd22a7d59af5706e531e8e8e213e0c3dcd7ca02ee7",
+    "identity_and_projection_checks": "recomputed by this validator; full class values remain in the pinned L4/L5/L8/L9 source documents"
+  },
+  "row_audit_summary": {
+    "count": 285,
+    "negative_count": 277,
+    "positive_count": 8,
+    "canonical_sha256": "9d7a711e044697b7616cb2fe655c21a41c981a1723c9764fedfaf2f200151a7c",
+    "row_details": "recomputed by joining the 285 canonical L8 U-ID rows to L9 integration source IDs; no duplicate unit_case_source_index or L8 nested case groups are used"
+  },
+  "negative_source_review": {
+    "summary": "Each negative L9 nested source was resolved by joining the U-ID row's integration_case_ref to the canonical L9 integration inventory and case ID. Every `given` object contains only the shared evidence_limit notice; no concrete field values or paired conflicting values are present. Counterexamples therefore state the source ID's missing/conflict dimension plus the L4 class meaning, and conflict rows explicitly avoid inventing values.",
+    "negative_case_count": 277,
+    "distinct_given_hashes": 1,
+    "given_hash_counts": {
+      "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68": 277
+    },
+    "case_id_and_pointer_are_in_row_audit": true
+  },
+  "positive_source_review": {
+    "summary": "No positive expected values were copied from L9 expected_proposal. A minimum positive contract expectation was derived independently from each abstract case marker and the cited L3/L10/L4 meaning. L9 given still provides only the shared evidence_limit field, so the designed expectations are not fixture-backed or observed outcomes.",
+    "contract_oracle": "HELIXSECURITY-L10-009-B01 is resolved at contract level; individual oracle_id is null for each U-ID.",
+    "resolved_contract_sources": [
+      {
+        "layer": "L3",
+        "id": "HELIXSECURITY-L3-009-B01",
+        "path": "docs/helix-security/L3-requirements/business-requirements.json",
+        "pointer": "/requirements/2"
+      },
+      {
+        "layer": "L3",
+        "id": "HELIXSECURITY-L3-009-F01",
+        "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+        "pointer": "/requirements/21"
+      },
+      {
+        "layer": "L3",
+        "id": "HELIXSECURITY-L3-009-F02",
+        "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+        "pointer": "/requirements/22"
+      },
+      {
+        "layer": "L10",
+        "id": "HELIXSECURITY-L10-009-B01",
+        "path": "docs/helix-security/L10-verification/business-verification.json",
+        "pointer": "/cases/2"
+      },
+      {
+        "layer": "L4",
+        "id": "HELIXSECURITY-L4-009-B01",
+        "path": "docs/helix-security/L4-basic-design/revoke-quarantine-propagation.json",
+        "pointer": "/contracts/0"
+      }
+    ],
+    "shared_l9_given_fact": {
+      "evidence_limit": "fixed synthetic identity/refs/stateのみ。原受領/適用/隔離/復旧labelは実観測や資格を証明しない。値・時刻/latency上限・実命令なし。"
+    },
+    "shared_l9_given_case_count": 8,
+    "cases": [
+      {
+        "uid": "SEC009-U0001",
+        "case_id": "SEC009-ONLY-OS_ASSIGNMENT-UNSELECTED-ABSENT",
+        "l9_source_pointer_resolved_from_integration_case_ref": "/cases/0/positive_cases/0",
+        "l9_given_keys": [
+          "evidence_limit"
+        ],
+        "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+        "l3_sources": [
+          "business-requirements.json:/requirements/2",
+          "functional-requirements.json:/requirements/21",
+          "functional-requirements.json:/requirements/22"
+        ],
+        "l10_source": "business-verification.json:/cases/2",
+        "l4_source": "revoke-quarantine-propagation.json:/contracts/0",
+        "condition": {
+          "scenario": "unselected_recipient_absent",
+          "recipient": "os_assignment",
+          "premise_status": "case_marker_only_not_observed"
+        },
+        "expected": {
+          "recipient_scope": "選択recipientだけを照合する。未選択recipientの能力不在を選択閉包の不足にしない。",
+          "operation_start": "全recipient能力の完成を任意operation開始条件にしない。"
+        },
+        "expected_preserved": {
+          "unrelated_scope": "全scope停止へ広げない。",
+          "actual_stop": "none",
+          "actual_recovery": "none",
+          "resume_authorized": false,
+          "operation_effect": "none"
+        },
+        "expectation_ref": "positive_expectation_basis/rules/B01_UNSELECTED_ABSENT",
+        "individual_expected_result": "contract-derived minimum meaning is designed from the case marker and L3/L10/L4; case-specific inputs are absent, so this is not a measured result"
+      },
+      {
+        "uid": "SEC009-U0002",
+        "case_id": "SEC009-ONLY-WORKER_EXECUTION-UNSELECTED-ABSENT",
+        "l9_source_pointer_resolved_from_integration_case_ref": "/cases/0/positive_cases/1",
+        "l9_given_keys": [
+          "evidence_limit"
+        ],
+        "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+        "l3_sources": [
+          "business-requirements.json:/requirements/2",
+          "functional-requirements.json:/requirements/21",
+          "functional-requirements.json:/requirements/22"
+        ],
+        "l10_source": "business-verification.json:/cases/2",
+        "l4_source": "revoke-quarantine-propagation.json:/contracts/0",
+        "condition": {
+          "scenario": "unselected_recipient_absent",
+          "recipient": "worker_execution",
+          "premise_status": "case_marker_only_not_observed"
+        },
+        "expected": {
+          "recipient_scope": "選択recipientだけを照合する。未選択recipientの能力不在を選択閉包の不足にしない。",
+          "operation_start": "全recipient能力の完成を任意operation開始条件にしない。"
+        },
+        "expected_preserved": {
+          "unrelated_scope": "全scope停止へ広げない。",
+          "actual_stop": "none",
+          "actual_recovery": "none",
+          "resume_authorized": false,
+          "operation_effect": "none"
+        },
+        "expectation_ref": "positive_expectation_basis/rules/B01_UNSELECTED_ABSENT",
+        "individual_expected_result": "contract-derived minimum meaning is designed from the case marker and L3/L10/L4; case-specific inputs are absent, so this is not a measured result"
+      },
+      {
+        "uid": "SEC009-U0003",
+        "case_id": "SEC009-ONLY-CONNECT_COMMUNICATION-UNSELECTED-ABSENT",
+        "l9_source_pointer_resolved_from_integration_case_ref": "/cases/0/positive_cases/2",
+        "l9_given_keys": [
+          "evidence_limit"
+        ],
+        "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+        "l3_sources": [
+          "business-requirements.json:/requirements/2",
+          "functional-requirements.json:/requirements/21",
+          "functional-requirements.json:/requirements/22"
+        ],
+        "l10_source": "business-verification.json:/cases/2",
+        "l4_source": "revoke-quarantine-propagation.json:/contracts/0",
+        "condition": {
+          "scenario": "unselected_recipient_absent",
+          "recipient": "connect_communication",
+          "premise_status": "case_marker_only_not_observed"
+        },
+        "expected": {
+          "recipient_scope": "選択recipientだけを照合する。未選択recipientの能力不在を選択閉包の不足にしない。",
+          "operation_start": "全recipient能力の完成を任意operation開始条件にしない。"
+        },
+        "expected_preserved": {
+          "unrelated_scope": "全scope停止へ広げない。",
+          "actual_stop": "none",
+          "actual_recovery": "none",
+          "resume_authorized": false,
+          "operation_effect": "none"
+        },
+        "expectation_ref": "positive_expectation_basis/rules/B01_UNSELECTED_ABSENT",
+        "individual_expected_result": "contract-derived minimum meaning is designed from the case marker and L3/L10/L4; case-specific inputs are absent, so this is not a measured result"
+      },
+      {
+        "uid": "SEC009-U0004",
+        "case_id": "SEC009-ONLY-CREDENTIAL_USE-UNSELECTED-ABSENT",
+        "l9_source_pointer_resolved_from_integration_case_ref": "/cases/0/positive_cases/3",
+        "l9_given_keys": [
+          "evidence_limit"
+        ],
+        "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+        "l3_sources": [
+          "business-requirements.json:/requirements/2",
+          "functional-requirements.json:/requirements/21",
+          "functional-requirements.json:/requirements/22"
+        ],
+        "l10_source": "business-verification.json:/cases/2",
+        "l4_source": "revoke-quarantine-propagation.json:/contracts/0",
+        "condition": {
+          "scenario": "unselected_recipient_absent",
+          "recipient": "credential_use",
+          "premise_status": "case_marker_only_not_observed"
+        },
+        "expected": {
+          "recipient_scope": "選択recipientだけを照合する。未選択recipientの能力不在を選択閉包の不足にしない。",
+          "operation_start": "全recipient能力の完成を任意operation開始条件にしない。"
+        },
+        "expected_preserved": {
+          "unrelated_scope": "全scope停止へ広げない。",
+          "actual_stop": "none",
+          "actual_recovery": "none",
+          "resume_authorized": false,
+          "operation_effect": "none"
+        },
+        "expectation_ref": "positive_expectation_basis/rules/B01_UNSELECTED_ABSENT",
+        "individual_expected_result": "contract-derived minimum meaning is designed from the case marker and L3/L10/L4; case-specific inputs are absent, so this is not a measured result"
+      },
+      {
+        "uid": "SEC009-U0005",
+        "case_id": "SEC009-ONLY-ARTIFACT_ACCESS-UNSELECTED-ABSENT",
+        "l9_source_pointer_resolved_from_integration_case_ref": "/cases/0/positive_cases/4",
+        "l9_given_keys": [
+          "evidence_limit"
+        ],
+        "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+        "l3_sources": [
+          "business-requirements.json:/requirements/2",
+          "functional-requirements.json:/requirements/21",
+          "functional-requirements.json:/requirements/22"
+        ],
+        "l10_source": "business-verification.json:/cases/2",
+        "l4_source": "revoke-quarantine-propagation.json:/contracts/0",
+        "condition": {
+          "scenario": "unselected_recipient_absent",
+          "recipient": "artifact_access",
+          "premise_status": "case_marker_only_not_observed"
+        },
+        "expected": {
+          "recipient_scope": "選択recipientだけを照合する。未選択recipientの能力不在を選択閉包の不足にしない。",
+          "operation_start": "全recipient能力の完成を任意operation開始条件にしない。"
+        },
+        "expected_preserved": {
+          "unrelated_scope": "全scope停止へ広げない。",
+          "actual_stop": "none",
+          "actual_recovery": "none",
+          "resume_authorized": false,
+          "operation_effect": "none"
+        },
+        "expectation_ref": "positive_expectation_basis/rules/B01_UNSELECTED_ABSENT",
+        "individual_expected_result": "contract-derived minimum meaning is designed from the case marker and L3/L10/L4; case-specific inputs are absent, so this is not a measured result"
+      },
+      {
+        "uid": "SEC009-U0006",
+        "case_id": "SEC009-EMPTY-RECIPIENT-SET",
+        "l9_source_pointer_resolved_from_integration_case_ref": "/cases/0/positive_cases/5",
+        "l9_given_keys": [
+          "evidence_limit"
+        ],
+        "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+        "l3_sources": [
+          "business-requirements.json:/requirements/2",
+          "functional-requirements.json:/requirements/21",
+          "functional-requirements.json:/requirements/22"
+        ],
+        "l10_source": "business-verification.json:/cases/2",
+        "l4_source": "revoke-quarantine-propagation.json:/contracts/0",
+        "condition": {
+          "scenario": "empty_recipient_set",
+          "premise": "独立期待集合とpolicy.selected_recipientsが空として解決する場合",
+          "premise_status": "case_marker_only_not_observed"
+        },
+        "expected": {
+          "recipient_output": "recipient別の照合結果を空集合として出力する。",
+          "missing_recipient": "空集合だけを理由にrecipient不足を生成しない。"
+        },
+        "expected_preserved": {
+          "unrelated_scope": "全scope停止へ広げない。",
+          "actual_stop": "none",
+          "actual_recovery": "none",
+          "resume_authorized": false,
+          "operation_effect": "none"
+        },
+        "expectation_ref": "positive_expectation_basis/rules/B01_EMPTY_RECIPIENT_SET",
+        "individual_expected_result": "contract-derived minimum meaning is designed from the case marker and L3/L10/L4; case-specific inputs are absent, so this is not a measured result"
+      },
+      {
+        "uid": "SEC009-U0007",
+        "case_id": "SEC009-OS-OFFLINE-INDEPENDENT-RECOVERY-SELECTION",
+        "l9_source_pointer_resolved_from_integration_case_ref": "/cases/0/positive_cases/6",
+        "l9_given_keys": [
+          "evidence_limit"
+        ],
+        "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+        "l3_sources": [
+          "business-requirements.json:/requirements/2",
+          "functional-requirements.json:/requirements/21",
+          "functional-requirements.json:/requirements/22"
+        ],
+        "l10_source": "business-verification.json:/cases/2",
+        "l4_source": "revoke-quarantine-propagation.json:/contracts/0",
+        "condition": {
+          "scenario": "os_offline_independent_recovery_selection",
+          "phase": "recovery",
+          "premise_status": "case_marker_only_not_observed"
+        },
+        "expected": {
+          "selection": "独立復旧経路の選択条件に従ってrecipientを照合する。",
+          "prerequisite": "停止中OSまたは通常009応答を普遍的な開始前提にしない。",
+          "state_separation": "隔離素材と復旧素材を別状態として示す。"
+        },
+        "expected_preserved": {
+          "actual_stop": "none",
+          "actual_recovery": "none",
+          "resume_authorized": false,
+          "operation_effect": "none"
+        },
+        "expectation_ref": "positive_expectation_basis/rules/B01_INDEPENDENT_RECOVERY",
+        "individual_expected_result": "contract-derived minimum meaning is designed from the case marker and L3/L10/L4; case-specific inputs are absent, so this is not a measured result"
+      },
+      {
+        "uid": "SEC009-U0241",
+        "case_id": "SEC009-GENERAL-MEANING-UNKNOWN",
+        "l9_source_pointer_resolved_from_integration_case_ref": "/cases/2/positive_cases/0",
+        "l9_given_keys": [
+          "evidence_limit"
+        ],
+        "l9_given_sha256": "07047ffe45f0dcc2c30a7df7045ca7ed720f8403da1e06d630a125ca983e6e68",
+        "l3_sources": [
+          "business-requirements.json:/requirements/2",
+          "functional-requirements.json:/requirements/21",
+          "functional-requirements.json:/requirements/22"
+        ],
+        "l10_source": "functional-verification.json:/cases/22",
+        "l4_source": "revoke-quarantine-propagation.json:/contracts/2",
+        "condition": {
+          "scenario": "general_document_meaning_unknown",
+          "premise_status": "case_marker_only_not_observed"
+        },
+        "expected": {
+          "locality": "一般文書の意味unknownを全操作/全scope停止へ拡張しない。",
+          "classification": "unknownだけから安全trigger分類を生成しない。"
+        },
+        "expected_preserved": {
+          "unrelated_scope": "全scope停止へ広げない。",
+          "actual_stop": "none",
+          "actual_recovery": "none",
+          "resume_authorized": false,
+          "operation_effect": "none"
+        },
+        "expectation_ref": "positive_expectation_basis/rules/F02_GENERAL_MEANING_UNKNOWN",
+        "individual_expected_result": "contract-derived minimum meaning is designed from the case marker and L3/L10/L4; case-specific inputs are absent, so this is not a measured result"
+      }
+    ]
+  },
+  "check_child": {
+    "exit_code": 0,
+    "passed": true,
+    "l4_l9_pair_passed": true,
+    "l5_l8_pair_passed": true,
+    "negative_4way_matched_case_count": 277,
+    "negative_4way_failure_count": 0,
+    "negative_4way_failure_reasons": {},
+    "full_report": "check-child-report-l4-d670496eeb-00376c40-l5-ea8e3c2510-1aefb9b6-l8-0451f67e4b-49875dcd-l9-087f02dc63-e918a289-record-1793485186690215383-388303.json",
+    "full_report_sha256": "c5913fcfe04b387f8b137ee92a9011904b17a80c391b271d9a16fc86534735f5",
+    "interpretation": "L4/L9 and L5/L8 pair checks pass, with 277 matched cases and zero 4-way checker failures. The eight positive rows remain contract-minimum designs, not observed fixture outcomes; this evidence does not claim runtime behavior or formal security verification."
+  }
+}
