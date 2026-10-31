@@ -21,6 +21,15 @@ python3 -m json.tool docs/helix-security/L9-integration-verification/revoke-quar
 git diff --check
 ```
 
+validatorの既定実行は読み取り専用で、測定結果だけをstdoutへ出します。成果物を保存するときだけ、まだ存在しない専用pathを明示します。
+
+```sh
+python3 scaffold/research/wr255-sec009-l4l9-supplement-20261101/validate_l4_l9_supplement.py \
+  --record-dir scaffold/research/wr255-sec009-l4l9-supplement-20261101/measurements/run-20261101-001
+```
+
+`--record-dir`は既存directory・fileを受け付けません。既存artifactやSCF-B-0221の参照先へ書き込まず、専用path内にcontent-addressed artifactを記録します。
+
 validatorは固定L5/L8 commitを `git show` で読み込み、canonical L4/L9文書に対してcurrent checkerを実行します。L9提案の一時複製は作りません。代わりに固定base L9から独立投影を作り、canonical L9の `integration_cases` と全ての非case fieldが一致することを確認します。
 
 ## 285行の照合と投影

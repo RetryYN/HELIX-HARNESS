@@ -3,6 +3,7 @@
 
 from __future__ import annotations
 
+import argparse
 import hashlib
 import json
 import re
@@ -125,16 +126,13 @@ def write_immutable_json(path: Path, value: Any) -> None:
     path.write_text(rendered, encoding="utf-8")
 
 
-def write_or_reuse_json(path: Path, value: Any, prefix: str) -> str:
+def write_or_reuse_json(value: Any, prefix: str, record_dir: Path | None) -> str:
     rendered = json.dumps(value, ensure_ascii=False, indent=2) + "\n"
     digest = sha256_bytes(rendered.encode("utf-8"))
-    content_path = HERE / f"{prefix}{digest[:16]}.json"
-    if content_path.exists():
-        if content_path.read_text(encoding="utf-8") != rendered:
-            raise ValueError(f"content-addressed evidence path has different bytes: {content_path.name}")
-        return content_path.name
-    content_path.write_text(rendered, encoding="utf-8")
-    return content_path.name
+    name = f"{prefix}{digest[:16]}.json"
+    if record_dir is not None:
+        write_immutable_json(record_dir / name, value)
+    return name
 
 
 def write_immutable_jsonl(path: Path, rows: list[dict[str, Any]]) -> None:
@@ -146,16 +144,13 @@ def write_immutable_jsonl(path: Path, rows: list[dict[str, Any]]) -> None:
     path.write_text(rendered, encoding="utf-8")
 
 
-def write_or_reuse_jsonl(path: Path, rows: list[dict[str, Any]], prefix: str) -> str:
+def write_or_reuse_jsonl(rows: list[dict[str, Any]], prefix: str, record_dir: Path | None) -> str:
     rendered = "".join(json.dumps(row, ensure_ascii=False, separators=(",", ":")) + "\n" for row in rows)
     digest = sha256_bytes(rendered.encode("utf-8"))
-    content_path = HERE / f"{prefix}{digest[:16]}.jsonl"
-    if content_path.exists():
-        if content_path.read_text(encoding="utf-8") != rendered:
-            raise ValueError(f"content-addressed evidence path has different bytes: {content_path.name}")
-        return content_path.name
-    content_path.write_text(rendered, encoding="utf-8")
-    return content_path.name
+    name = f"{prefix}{digest[:16]}.jsonl"
+    if record_dir is not None:
+        write_immutable_jsonl(record_dir / name, rows)
+    return name
 
 
 def normalize_temp_paths(value: Any) -> Any:
@@ -245,6 +240,22 @@ def git(*args: str) -> str:
 
 
 def main() -> int:
+    parser = argparse.ArgumentParser(description="SEC009 L4/L9 overlayを読取専用で測定する")
+    parser.add_argument(
+        "--record-dir",
+        type=Path,
+        help="測定結果を保存する新規の空きpath。既定では保存しない。",
+    )
+    args = parser.parse_args()
+    record_dir = args.record_dir.resolve() if args.record_dir else None
+    if record_dir is not None:
+        try:
+            record_dir.relative_to(HERE.resolve())
+        except ValueError as exc:
+            raise ValueError("--record-dir must be a new path under the supplement directory") from exc
+        if record_dir.exists():
+            raise ValueError(f"--record-dir already exists; recording requires an exclusive new path: {record_dir}")
+
     l9_revision = git("log", "-1", "--format=%H", "--", PATHS["l9"])
     l9_digest = sha256(ROOT / PATHS["l9"])
     l4_digest = sha256(ROOT / PATHS["l4"])
@@ -365,7 +376,10 @@ def main() -> int:
             raise ValueError(f"canonical L9 non-case field changed during projection: {key}")
     if len(row_audit) != 285 or len(projection_rows) != 277 or len(positive_rows) != 8:
         raise ValueError(f"unexpected SEC009 case inventory: rows={len(row_audit)} negative={len(projection_rows)} positive={len(positive_rows)}")
-    row_audit_name = write_or_reuse_jsonl(HERE / row_audit_name, row_audit, "l9-row-audit-")
+    if record_dir is not None:
+        record_dir.mkdir(parents=True, exist_ok=False)
+    row_audit_name = write_or_reuse_jsonl(row_audit, "l9-row-audit-", record_dir)
+    row_audit_bytes = "".join(json.dumps(row, ensure_ascii=False, separators=(",", ":")) + "\n" for row in row_audit).encode("utf-8")
 
     # Independently audit all 308 direct L4 nested pointer fields in each layer.
     nested_pointer_re = re.compile(r"^/contracts/\d+/negative_classifications(?:/\d+)?$")
@@ -538,8 +552,9 @@ def main() -> int:
         },
         "retirement_result": "退役条件未成立。consumer移行は実施しておらず、field mappingを伴うclass参照の更新とcollection pointerの一対多変換、各consumerの再照合が必要。",
     }
-    write_immutable_json(POINTER_AUDIT_SUMMARY, pointer_summary)
-    write_immutable_jsonl(HERE / pointer_rows_name, consumer_rows)
+    if record_dir is not None:
+        write_immutable_json(record_dir / POINTER_AUDIT_SUMMARY.name, pointer_summary)
+        write_immutable_jsonl(record_dir / pointer_rows_name, consumer_rows)
     validate_pointer_audit_manifest(consumer_rows)
 
     # Design contract-minimum expectations from case markers and L3/L10/L4; do
@@ -567,7 +582,7 @@ def main() -> int:
         ],
         "decision": "各行に契約最小期待を設計した。L9 expected_proposalを参照せず、具体fixture値・個別oracle ID・test citation・実観測は補っていない。givenには行別入力値がないため期待は未実測である。",
     }
-    positive_review_name = write_or_reuse_json(HERE / positive_review_name, review, "positive-source-review-")
+    positive_review_name = write_or_reuse_json(review, "positive-source-review-", record_dir)
 
     # Read fixed L5/L8 candidate bytes from Git and use disposable temp files;
     # do not retain duplicate layer snapshots in the scaffold.
@@ -584,7 +599,7 @@ def main() -> int:
         ]
         proc = subprocess.run(checker_cmd, cwd=ROOT, text=True, capture_output=True)
     report = normalize_temp_paths(json.loads(proc.stdout))
-    checker_report_name = write_or_reuse_json(HERE / checker_report_name, report, "overlay-check-child-")
+    checker_report_name = write_or_reuse_json(report, "overlay-check-child-", record_dir)
     neg = report["negative_4way"]
     summary = {
         "schema": "wr255-sec009-l4-l9-overlay-summary.v1",
@@ -624,13 +639,13 @@ def main() -> int:
             "report_path": checker_report_name,
         },
         "row_audit_file": row_audit_name,
-        "row_audit_sha256": sha256(HERE / row_audit_name),
+        "row_audit_sha256": sha256_bytes(row_audit_bytes),
         "consumer_audit_file": pointer_rows_name,
         "consumer_audit_sha256": sha256(HERE / pointer_rows_name),
         "positive_review_file": positive_review_name,
     }
-    summary_name = write_or_reuse_json(HERE / summary_name, summary, "overlay-summary-")
-    print(json.dumps({"L4_L9_pair": report["L4_L9_pair"].get("passed"), "L5_L8_pair": report["L5_L8_pair"].get("passed"), "matched": neg.get("matched_case_count"), "failures": len(neg.get("failures", [])), "positive_contract_minimum_unobserved": len(positive_rows), "pointer_audit_L8": len(pointer_audit["layers"]["L8"]["consumer_rows"]), "pointer_audit_L9": len(pointer_audit["layers"]["L9"]["consumer_rows"]), "summary": summary_name}, ensure_ascii=False))
+    summary_name = write_or_reuse_json(summary, "overlay-summary-", record_dir)
+    print(json.dumps({"L4_L9_pair": report["L4_L9_pair"].get("passed"), "L5_L8_pair": report["L5_L8_pair"].get("passed"), "matched": neg.get("matched_case_count"), "failures": len(neg.get("failures", [])), "positive_contract_minimum_unobserved": len(positive_rows), "pointer_audit_L8": len(pointer_audit["layers"]["L8"]["consumer_rows"]), "pointer_audit_L9": len(pointer_audit["layers"]["L9"]["consumer_rows"]), "summary": str(record_dir / summary_name) if record_dir else None, "recorded_to": str(record_dir) if record_dir else None}, ensure_ascii=False))
     return 0
 
 
