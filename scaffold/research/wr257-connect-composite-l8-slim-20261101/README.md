@@ -36,6 +36,8 @@ raw fixture、型付きraw fixture、mutation再構成レシピ、full return、
 
 fresh fetchおよび`git ls-remote`で確認したorigin/mainと候補HEADのmerge overlay上で`check-child`を実行した。配列consumerの例外なく完了し、L8 ownership cap failureは0件だった。checker全体のexit codeは1で、L9 ownership cap 91件、pair照合およびnegative four-way照合の残存failureがある。全体passとは扱わず、対象revision・overlay commit・raw report hashを`checker-evidence/`へ保存した。
 
+checkerの1930行raw reportは4時点でSHA-256がすべて`89d09246bc42b821133d04b43d375dfe52999ebd5cf6ed8dd436fa32aea08028`と一致したため、同一bytesは1 copyだけ現行treeへ残した。各時点のoverlay要約は別に保ち、元commit・Git blob SHA・復元手順は`checker-evidence/raw-report-dedup-receipt.json`に記録した。履歴中のいずれのpathも`git show <commit>:<path>`で正確に戻せる。
+
 初回`static-evidence.json`は8510d76時点の原bytesとして復元し固定した。後続の測定は旧revision/blob SHAとともにappend-onlyの別証拠へ保存し、現行測定はbindingのartifact一覧から対象L8 hashに一致するappendixを参照する。既存証拠を上書きしない。
 
 ## 旧HELIXと失敗事例

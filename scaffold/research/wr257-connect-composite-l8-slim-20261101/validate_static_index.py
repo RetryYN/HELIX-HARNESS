@@ -22,6 +22,8 @@ EVIDENCE = 'scaffold/research/wr257-connect-composite-l8-slim-20261101/static-ev
 EVIDENCE_DIR = 'scaffold/research/wr257-connect-composite-l8-slim-20261101'
 BINDING = 'scaffold/bindings/SCF-B-0216.json'
 CHECK_CHILD_DIR = 'scaffold/research/wr257-connect-composite-l8-slim-20261101/checker-evidence'
+RAW_REPORT_DEDUP = 'scaffold/research/wr257-connect-composite-l8-slim-20261101/checker-evidence/raw-report-dedup-receipt.json'
+CANONICAL_RAW_REPORT = 'scaffold/research/wr257-connect-composite-l8-slim-20261101/checker-evidence/raw-check-child-report-8d982681.json'
 
 PROBE_EXPECTATIONS = {
     'LOCAL-C007-N01-EXACT-DECLARED-SCOPE-THREE-BOUNDARY-EVIDENCE-READONLY-OWNER-PROBE': ('必要証拠3件のうち第三境界の原証拠・提出証拠がともに欠ける。', '証拠集合はcontent conflictとして保留し、証拠ownerへ返す。'),
@@ -371,6 +373,19 @@ def main() -> None:
     raw_check_child_path = check_child.get('source_report_path')
     assert isinstance(raw_check_child_path, str) and raw_check_child_path.startswith(CHECK_CHILD_DIR + '/')
     raw_check_child = load(raw_check_child_path)
+    dedup_receipt = load(RAW_REPORT_DEDUP)
+    assert dedup_receipt['schema'] == 'wr257-check-child-raw-report-dedup-receipt.v1'
+    assert raw_check_child_path == dedup_receipt['retained_copy'] == CANONICAL_RAW_REPORT
+    assert dedup_receipt['same_content_sha256'] == check_child['source_report_sha256']
+    assert sha((ROOT / raw_check_child_path).read_bytes()) == dedup_receipt['same_content_sha256']
+    assert len(dedup_receipt['historical_copies']) == 4
+    for historical in dedup_receipt['historical_copies']:
+        recovered = subprocess.check_output(['git', 'show', f"{historical['introduced_in_revision']}:{historical['path']}"], cwd=ROOT)
+        blob = subprocess.check_output(['git', 'rev-parse', f"{historical['introduced_in_revision']}:{historical['path']}"], cwd=ROOT, text=True).strip()
+        assert sha(recovered) == historical['sha256'] == dedup_receipt['same_content_sha256']
+        assert blob == historical['git_blob_sha1']
+        if historical['path'] != CANONICAL_RAW_REPORT:
+            assert not (ROOT / historical['path']).exists()
     assert check_child['schema'] == 'wr257-check-child-merge-overlay-evidence.v1'
     assert check_child['target_path'] == L8 and check_child['target_sha256'] == l8_sha
     assert check_child['checker_completed'] is True and check_child['crash_free'] is True
@@ -707,6 +722,13 @@ def main() -> None:
             'ownership_caps': check_child['ownership_caps'],
             'other_residuals': check_child['remaining_checker_findings'],
         },
+        'deduplicated_checker_report': {
+            'sha256': dedup_receipt['same_content_sha256'],
+            'line_count': dedup_receipt['same_line_count'],
+            'retained_path': dedup_receipt['retained_copy'],
+            'historical_identical_copies': len(dedup_receipt['historical_copies']),
+            'recovery_receipt': RAW_REPORT_DEDUP,
+        },
         'checks': [
             'all prior L8 source case IDs and order retained in a consumer-compatible array; exact L9 source/expected pointers and scenario basis resolve',
             'all 27 local probe IDs/roles/source cases retain unique short counterexample and expected judgment; fixed historical delta comparison supports rule coverage without embedding patch recipes or return values',
@@ -718,6 +740,7 @@ def main() -> None:
             'fixture hashes are absent from case/probe inventories; retained digests are source/authority pins',
             'removed_materials has six required keys and names DT-VT-105 boundary',
             'merge-overlay check-child completed without crash and L8 ownership cap has zero failures; unrelated L9/pair/four-way failures remain reported',
+            'byte-identical raw checker reports are stored once; old commit/blob/hash and exact restore method are recorded',
         ],
         'not_established': ['product test execution', 'runtime behavior', 'source/owner qualification', 'L7 test citation', 'design or implementation readiness', 'full mutation-family coverage'],
     }
@@ -747,6 +770,8 @@ def main() -> None:
         payload['recorded_appendix'] = output
     else:
         binding = load(BINDING)
+        assert RAW_REPORT_DEDUP in binding.get('artifacts', [])
+        assert CANONICAL_RAW_REPORT in binding.get('artifacts', [])
         assert check_child_path in binding.get('artifacts', [])
         assert raw_check_child_path in binding.get('artifacts', [])
         measurement_paths = [path for path in binding.get('artifacts', []) if 'static-evidence-measurement-' in path]
