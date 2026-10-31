@@ -190,6 +190,8 @@ def main() -> int:
     old8, l5, l9 = source_json(L8), source_json(L5), source_json(L9)
     l10_functional = source_json(L10)
     l10_nfr = source_json("docs/helix-connect/L10-verification/nfr-verification.json")
+    l3_nfr = source_json("docs/helix-connect/L3-requirements/nfr-grade.json")
+    l4 = source_json(L4)
     rows = current.get("unit_cases", [])
     counts = {"L9_basic_branch": 90, "local_domain_probe": 61, "independent_semantic_probe": 68, "independent_cross_field_probe": 5}
     observed = {kind: sum(row.get("source_kind") == kind for row in rows) for kind in counts}
@@ -199,12 +201,45 @@ def main() -> int:
         "parent", "source_main", "scope", "full_goal_scope_preserved", "implementation_readiness",
         "authority_effect", "operation_effect", "source_pin_limit", "status", "approval_basis",
         "upstream_pins", "document_id", "layer", "layer_id", "pair", "pair_id", "design_ref",
-        "integration_ref", "method", "source_pair_pins", "preserved_l9_oracle", "fixture_coverage_limits",
+        "integration_ref", "source_pair_pins", "preserved_l9_oracle", "fixture_coverage_limits",
         "unresolved", "approved_document_pins", "source_revision_roles",
     )
     changed_boundary_fields = [key for key in preserved_top_level if current.get(key) != old8.get(key)]
     if changed_boundary_fields:
         failures.append({"check": "existing_boundary_and_unverified_state_preserved", "fields": changed_boundary_fields})
+    expected_method = "候補U-ID表は、固定されたL3/L4/L5/L10の契約と参照されたL9/probeの反例・期待差分を対応づける。全行はnot_executed。L5 AST評価、test実行、L8 pass/fail判定は行わず、行別意味監査はsource-semantic-audit.jsonに記録する。"
+    if current.get("method") != expected_method:
+        failures.append({"check": "method_matches_static_candidate_role_and_unexecuted_boundary"})
+
+    l4_contracts = {item["id"]: item for item in l4["contracts"]}
+    l3_requirements = {item["id"]: item for item in source_json(L3)["requirements"]}
+    l3_requirements.update({item["id"]: item for item in l3_nfr["requirements"]})
+    l10_cases = {item["id"]: item for item in l10_functional["cases"]}
+    l10_cases.update({item["id"]: item for item in l10_nfr["cases"]})
+    output_literals = l5["output_literals"]
+    expected_contract_outcomes = {
+        "qualification_boundary": {
+            "authority_effect": l4["authority_effect"],
+            "operation_effect": l4["operation_effect"],
+            "actual_effects_false": {field: False for field in output_literals["effects_false_fields"]},
+            "qualification_rule": l4_contracts["HELIXCONNECT-L4-005-F01"]["qualification_rule"],
+        },
+        "functions": {}
+    }
+    for suffix in ("F01", "F02", "N01"):
+        requirement_id = f"HELIXCONNECT-L3-005-{suffix}"
+        design = l4_contracts[f"HELIXCONNECT-L4-005-{suffix}"]
+        oracle = l10_cases[f"HELIXCONNECT-L10-005-{suffix}"]
+        expected_contract_outcomes["functions"][suffix] = {
+            "requirement_ref": requirement_id,
+            "requirement_obligation": l3_requirements[requirement_id]["obligation"],
+            "l4_output_meanings": design["output_meanings"],
+            "l5_fixed_outputs": l5["branch_tables"][suffix]["fixed_outputs"],
+            "l10_expected_observation": oracle["expected_observation"],
+            "l10_failure_observation": oracle["failure_observation"],
+        }
+    if current.get("contract_outcome_boundaries") != expected_contract_outcomes:
+        failures.append({"check": "short_contract_outcome_boundaries_match_L3_L4_L5_L10"})
 
     if len(rows) != 224 or observed != counts:
         failures.append({"check": "source_row_counts", "expected": {"total": 224, **counts}, "actual": {"total": len(rows), **observed}})
@@ -464,6 +499,7 @@ def main() -> int:
         "evidence_kind": "scaffold",
         "authority_effect": "none",
         "base_revision": BASE,
+        "contract_outcome_boundaries": expected_contract_outcomes,
         "groups": {group: {"row_count": len(items), "modal_source_projection": expected_baselines[group]} for group, items in sorted(grouped.items())},
         "rows": source_audit_rows,
         "limits": ["This is a fixed-source semantic audit projection, not an executed oracle or full-return fixture."],
@@ -487,8 +523,11 @@ def main() -> int:
             "wrong_target_mapping_count": len(wrong_contract_oracles),
         },
         "preserved_boundary_fields": {"checked": len(preserved_top_level), "changed": changed_boundary_fields},
+        "method_boundary": {"passed": not any(item.get("check") == "method_matches_static_candidate_role_and_unexecuted_boundary" for item in failures), "L5_AST_test_execution_or_L8_pass_fail": "not_performed"},
+        "contract_outcome_boundaries": {"checked_functions": sorted(expected_contract_outcomes["functions"]), "mismatch_count": sum(item.get("check") == "short_contract_outcome_boundaries_match_L3_L4_L5_L10" for item in failures)},
         "source_semantic_audit": {"path": str(audit_path.relative_to(ROOT)), "row_count": len(source_audit_rows), "sha256": hashlib.sha256(audit_path.read_bytes()).hexdigest()},
-        "expected_result_audit": {"row_count": len(rows), "baseline_groups": {group: {"rows": len(grouped[group]), "audit_baseline_fields": len(expected_baselines[group])} for group in sorted(grouped)}, "audit_baseline_field_total": sum(len(fields) for fields in expected_baselines.values()), "audit_row_delta_fields": sum(len(item["set"]) + len(item["remove"]) for item in source_deltas.values()), "max_audit_row_delta_fields": max((len(item["set"]) + len(item["remove"]) for item in source_deltas.values()), default=0), "formal_expected_result_kind": "concise row-specific semantic statement", "formal_expected_result_length_max": max((len(row.get("expected_result", "")) for row in rows), default=0), "ellipsis_count": ellipsis_count, "array_count_placeholder_count": array_placeholder_count, "source_semantic_mismatch_count": sum(any(f.get("u_id") == row.get("u_id") and f.get("check", "").startswith(("row_expected_delta", "row_expected_semantics_resolution", "independent_cross_field_probe")) for f in failures) for row in rows)},
+        "contract_outcome_boundary_count": sum(len(items["l5_fixed_outputs"]) for items in expected_contract_outcomes["functions"].values()),
+        "expected_result_audit": {"row_count": len(rows), "baseline_groups": {group: {"rows": len(grouped[group]), "audit_baseline_fields": len(expected_baselines[group])} for group in sorted(grouped)}, "audit_baseline_field_total": sum(len(fields) for fields in expected_baselines.values()), "audit_row_delta_fields": sum(len(item["set"]) + len(item["remove"]) for item in source_deltas.values()), "max_audit_row_delta_fields": max((len(item["set"]) + len(item["remove"]) for item in source_deltas.values()), default=0), "formal_expected_result_kind": "concise row-specific semantic statement", "formal_expected_result_length_max": max((len(row.get("expected_result", "")) for row in rows), default=0), "ellipsis_count": ellipsis_count, "array_count_placeholder_count": array_placeholder_count, "source_semantic_mismatch_count": sum(any(f.get("u_id") == row.get("u_id") and f.get("check", "").startswith(("row_expected_delta", "row_expected_semantics_resolution", "row_expected_result", "independent_cross_field_probe")) for f in failures) for row in rows)},
         "row_oracle_and_test_citation": "null; not found at fixed source; not invented",
         "ownership_cap": {"passed": not cap.get("failures"), "failure_count": len(cap.get("failures", []))},
         "check_child": {

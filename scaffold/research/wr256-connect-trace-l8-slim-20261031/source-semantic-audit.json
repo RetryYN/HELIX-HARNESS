@@ -3,6 +3,75 @@
   "evidence_kind": "scaffold",
   "authority_effect": "none",
   "base_revision": "c14adddf2678c7a69d76420c451df3f05b1251ab",
+  "contract_outcome_boundaries": {
+    "qualification_boundary": {
+      "authority_effect": "none",
+      "operation_effect": "none",
+      "actual_effects_false": {
+        "actual_append": false,
+        "actual_transmission": false,
+        "actual_storage": false,
+        "actual_deletion": false,
+        "actual_business_completion": false,
+        "actual_authority": false,
+        "actual_implementation_ready": false,
+        "actual_acceptance": false
+      },
+      "qualification_rule": "原event/必要集合/元owner/SECの実資格は合成例で成立しない。実append/保存/伝送/解決/業務完了/Accepted/設計閉包へ昇格しない。"
+    },
+    "functions": {
+      "F01": {
+        "requirement_ref": "HELIXCONNECT-L3-005-F01",
+        "requirement_obligation": "登録/照合/送信/受信/再送/終端/stale/交換/切戻し/拒否をconnection・operation・contract revision・attempt identity/順序・correlation・scope・期限・許可結果へ結ぶ。成功/失敗/部分成功/重複/digest衝突/unknownと観測端点を区別する。",
+        "l4_output_meanings": [
+          "原event/順序/観測端/結果保持",
+          "欠落/内容差/対象差/unknownとoperation owner"
+        ],
+        "l5_fixed_outputs": {
+          "candidate_clean": "content_corresponding_requires_actual_trace_qualification",
+          "candidate_failure": "unknown_due_to_trace_gap_or_conflict",
+          "business_completion": "not_generated_by_technical_trace",
+          "effects": false
+        },
+        "l10_expected_observation": "各eventと観測端点、現在結果と元記録が辿れる。",
+        "l10_failure_observation": "該当operationをunknownに保ち、operation ownerへ不足を返す。"
+      },
+      "F02": {
+        "requirement_ref": "HELIXCONNECT-L3-005-F02",
+        "requirement_obligation": "ACKなし/取消/expiry/失効/送信後結果未回収/部分成功をunknown/unfinishedとして保持し、停止位置・未完義務・owner/recovery参照へ結ぶ。先行成功を消さず終端/業務完了へ丸めない。",
+        "l4_output_meanings": [
+          "先行成功と未完owner/recovery保持",
+          "受領/解決の別内容と局所不足"
+        ],
+        "l5_fixed_outputs": {
+          "handoff_receipt_generates_resolution": false,
+          "business_completion": "not_generated_by_trace_or_handoff",
+          "candidate_clean": "content_corresponding_requires_actual_owner_qualification",
+          "candidate_failure": "held_with_original_unfinished",
+          "effects": false
+        },
+        "l10_expected_observation": "到達済み/未観測と未完、受領/解決の別状態が辿れる。",
+        "l10_failure_observation": "必要な確認は該当endpoint、意味判断は元業務ownerへ返す。"
+      },
+      "N01": {
+        "requirement_ref": "HELIXCONNECT-L3-005-N01",
+        "requirement_obligation": "通常trace/receiptにraw payload/secret/credential値を保存しない。本文の保持/削除/data-useはsource/consumer ownerとSEC契約へ返し、payload保存を追跡成立の必須条件にしない。",
+        "l4_output_meanings": [
+          "値なし内容対照と本文保存の責務区別",
+          "不足/許可不明/分類保持の変更を元owner/SECへ返す"
+        ],
+        "l5_fixed_outputs": {
+          "payload_persistence_required_for_trace": false,
+          "classification_retention_deletion_authority": "retained_source_consumer_and_SEC_not_CONNECT",
+          "candidate_clean": "value_free_content_corresponding_requires_actual_qualification",
+          "candidate_failure": "held_return_to_original_owner_SEC",
+          "effects": false
+        },
+        "l10_expected_observation": "技術traceと本文custodyが別に辿れ、非公開値を証拠へ出さない。",
+        "l10_failure_observation": "該当保存を保留し、元owner/SECへ不足を返す。"
+      }
+    }
+  },
   "groups": {
     "F01": {
       "row_count": 69,

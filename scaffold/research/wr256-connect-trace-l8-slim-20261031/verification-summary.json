@@ -45,14 +45,27 @@
     "wrong_target_mapping_count": 0
   },
   "preserved_boundary_fields": {
-    "checked": 25,
+    "checked": 24,
     "changed": []
+  },
+  "method_boundary": {
+    "passed": true,
+    "L5_AST_test_execution_or_L8_pass_fail": "not_performed"
+  },
+  "contract_outcome_boundaries": {
+    "checked_functions": [
+      "F01",
+      "F02",
+      "N01"
+    ],
+    "mismatch_count": 0
   },
   "source_semantic_audit": {
     "path": "scaffold/research/wr256-connect-trace-l8-slim-20261031/source-semantic-audit.json",
     "row_count": 224,
-    "sha256": "64a673123da67e5c5a05bcbb2855e504c279b31a942521ae571ab9fab9c55b5d"
+    "sha256": "40b125ea10565ca902425de4d86bf3758c38985ad42b3d081dfd847a85cce546"
   },
+  "contract_outcome_boundary_count": 14,
   "expected_result_audit": {
     "row_count": 224,
     "baseline_groups": {
