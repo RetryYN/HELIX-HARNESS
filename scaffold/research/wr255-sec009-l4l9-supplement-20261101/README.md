@@ -4,9 +4,11 @@
 
 ## 固定revisionと再現
 
-- L4/L9の投影元L9: `c14adddf2678c7a69d76420c451df3f05b1251ab`
+- L4/L9の投影元L9: `6a7fbfbe134e9163976fa67319044fa0bc03973f`（fetch済み`origin/main`）
 - canonical L4/L9補足: commit `d646a09e74aa815f5e565f02d26f27ecb67efe98`
 - overlay対象のL5/L8候補: commit `24d7f00bdca41c3dfb1f3137655ffdbe3674cfb3`（L5/L8側でcase markerとL3/L10/L4からpositive最小期待を独立設計）
+
+過去測定の投影元 `c14adddf2678c7a69d76420c451df3f05b1251ab` は各時点artifactとGit履歴に残しています。現行validatorは最新origin/mainの固定bytesから投影し、L9 285行のIDと順序、非case field、L4由来のnegative期待、L3/L10/L4由来のpositive期待を比較します。
 
 repository rootで次を実行します。
 

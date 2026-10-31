@@ -30,7 +30,7 @@ PATHS = {
     "checker": "scaffold/tools/design_verification_checker.py",
 }
 L4_PATH = PATHS["l4"]
-BASE_REVISION = "c14adddf2678c7a69d76420c451df3f05b1251ab"
+BASE_REVISION = "6a7fbfbe134e9163976fa67319044fa0bc03973f"
 POSITIVE_RECIPIENT_CASES = {
     "SEC009-ONLY-OS_ASSIGNMENT-UNSELECTED-ABSENT": "os_assignment",
     "SEC009-ONLY-WORKER_EXECUTION-UNSELECTED-ABSENT": "worker_execution",
@@ -124,6 +124,15 @@ def write_immutable_json(path: Path, value: Any) -> None:
     path.write_text(rendered, encoding="utf-8")
 
 
+def write_or_reuse_json(path: Path, value: Any, prefix: str) -> str:
+    rendered = json.dumps(value, ensure_ascii=False, indent=2) + "\n"
+    matches = [item for item in HERE.glob(f"{prefix}*.json") if item.read_text(encoding="utf-8") == rendered]
+    if matches:
+        return sorted(matches, key=lambda item: item.name)[-1].name
+    write_immutable_json(path, value)
+    return path.name
+
+
 def write_immutable_jsonl(path: Path, rows: list[dict[str, Any]]) -> None:
     rendered = "".join(json.dumps(row, ensure_ascii=False, separators=(",", ":")) + "\n" for row in rows)
     if path.exists():
@@ -131,6 +140,15 @@ def write_immutable_jsonl(path: Path, rows: list[dict[str, Any]]) -> None:
             raise ValueError(f"append-only evidence path already exists with different bytes: {path.name}")
         return
     path.write_text(rendered, encoding="utf-8")
+
+
+def write_or_reuse_jsonl(path: Path, rows: list[dict[str, Any]], prefix: str) -> str:
+    rendered = "".join(json.dumps(row, ensure_ascii=False, separators=(",", ":")) + "\n" for row in rows)
+    matches = [item for item in HERE.glob(f"{prefix}*.jsonl") if item.read_text(encoding="utf-8") == rendered]
+    if matches:
+        return sorted(matches, key=lambda item: item.name)[-1].name
+    write_immutable_jsonl(path, rows)
+    return path.name
 
 
 def normalize_temp_paths(value: Any) -> Any:
@@ -186,6 +204,11 @@ def validate_positive_expectation_refs(document: Any, label: str) -> None:
 def validate_pointer_audit_manifest(consumer_rows: list[dict[str, Any]]) -> None:
     manifest = read_json(POINTER_AUDIT_MANIFEST)
     rendered = "".join(json.dumps(row, ensure_ascii=False, separators=(",", ":")) + "\n" for row in consumer_rows).encode()
+    row_files = sorted(path.name for path in HERE.glob("pointer-consumer-audit-*.jsonl"))
+    if row_files != [POINTER_AUDIT_ROWS.name]:
+        raise ValueError(f"pointer audit must have exactly one current JSONL file, found: {row_files}")
+    if (HERE / "pointer-consumer-audit.json").exists():
+        raise ValueError("expanded duplicate pointer-consumer-audit.json must remain removed from the current tree")
     if manifest.get("canonical_path") != POINTER_AUDIT_ROWS.name:
         raise ValueError("pointer audit history manifest names a different canonical row file")
     if manifest.get("canonical_sha256") != sha256_bytes(rendered):
@@ -335,7 +358,7 @@ def main() -> int:
             raise ValueError(f"canonical L9 non-case field changed during projection: {key}")
     if len(row_audit) != 285 or len(projection_rows) != 277 or len(positive_rows) != 8:
         raise ValueError(f"unexpected SEC009 case inventory: rows={len(row_audit)} negative={len(projection_rows)} positive={len(positive_rows)}")
-    write_immutable_jsonl(HERE / row_audit_name, row_audit)
+    row_audit_name = write_or_reuse_jsonl(HERE / row_audit_name, row_audit, "l9-row-audit-")
 
     # Independently audit all 308 direct L4 nested pointer fields in each layer.
     nested_pointer_re = re.compile(r"^/contracts/\d+/negative_classifications(?:/\d+)?$")
@@ -508,7 +531,7 @@ def main() -> int:
         },
         "retirement_result": "退役条件未成立。consumer移行は実施しておらず、field mappingを伴うclass参照の更新とcollection pointerの一対多変換、各consumerの再照合が必要。",
     }
-    write_immutable_json(HERE / pointer_summary_name, pointer_summary)
+    pointer_summary_name = write_or_reuse_json(HERE / pointer_summary_name, pointer_summary, "pointer-consumer-audit-summary-")
     write_immutable_jsonl(HERE / pointer_rows_name, consumer_rows)
     validate_pointer_audit_manifest(consumer_rows)
 
@@ -537,7 +560,7 @@ def main() -> int:
         ],
         "decision": "各行に契約最小期待を設計した。L9 expected_proposalを参照せず、具体fixture値・個別oracle ID・test citation・実観測は補っていない。givenには行別入力値がないため期待は未実測である。",
     }
-    write_immutable_json(HERE / positive_review_name, review)
+    positive_review_name = write_or_reuse_json(HERE / positive_review_name, review, "positive-source-review-")
 
     # Read fixed L5/L8 candidate bytes from Git and use disposable temp files;
     # do not retain duplicate layer snapshots in the scaffold.
@@ -554,7 +577,7 @@ def main() -> int:
         ]
         proc = subprocess.run(checker_cmd, cwd=ROOT, text=True, capture_output=True)
     report = normalize_temp_paths(json.loads(proc.stdout))
-    write_immutable_json(HERE / checker_report_name, report)
+    checker_report_name = write_or_reuse_json(HERE / checker_report_name, report, "overlay-check-child-")
     neg = report["negative_4way"]
     summary = {
         "schema": "wr255-sec009-l4-l9-overlay-summary.v1",
