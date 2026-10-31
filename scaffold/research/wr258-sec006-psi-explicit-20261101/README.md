@@ -1,12 +1,12 @@
 # WR258 SEC006 project-scope-isolation L4/L9分類と4層移行候補
 
-状態: `scaffold` の検討証拠。authority effect: none。基準revision: `3e469f273817af640a2adafa50b8548b22a107fd`。Binding: `SCF-B-0218`。
+状態: `scaffold` の検討証拠。authority effect: none。基準revision: `3e469f273817af640a2adafa50b8548b22a107fd`。Binding: `SCF-B-0226`。
 
 ## 現行のL4/L9
 
 L4の`failure_classifications`は15 class、L9のnegative caseは148行（F01 93、F02 55）。従前の98行はID、expected、expected_preserved、nested `negative_class_assignment`を維持し、R1で直接`negative_class_ref`を加えた。nested `classification`は`source_pointers`が指す旧`negative_classifications[].code`名を保持する履歴labelであり、明示modeの参照先はtop-level class tableと`negative_class_ref`である。現L4 nested rowには`id`/`class_id`がなく`code`だけで、統合overlayで二重定義FAILは0件だった。
 
-L9に追加した50件はすべて`not_executed`であり、`condition`は各system oracleを区別する行固有の文章を保つ。50件でconditionは50種類ある。`expected`、`expected_preserved`、classification、axis、stateは対応L4 classと一致し、各rowの`source_pointers`はL3/L10/L4だけを指す。L9にはL8 case pointer、L8由来のcondition補助欄、PR作業用candidate token、重複する`expected_observation`を置かない。戻し先ownerは参照classから得る。追加caseの期待・分類は実行済み挙動ではない。
+L9に追加した50件はすべて`not_executed`であり、`condition`は各system oracleを区別する行固有の文章を保つ。50件でconditionは50種類ある。`expected`、`expected_preserved`、classification、axis、stateは対応L4 classと一致し、追加50件のL9 nested rowの`source_pointers`はL3/L10/L4だけを指し、integration rowは重複pointerを持たない。L9にはL8 case pointer、L8由来のcondition補助欄、PR作業番号を含むcase ID、重複する`expected_observation`を置かない。integration rowの共通source pointerはL4 classとL9 nested rowにある同じ根拠と重なるため持たず、`negative_class_ref`と既存nested row IDで参照する。戻し先ownerは参照classから得る。追加caseの期待・分類は実行済み挙動ではない。
 
 PR-BでL8側に置く`integration_case_ref`案は [`pr-b-l8-integration-case-ref-candidate-r2.json`](pr-b-l8-integration-case-ref-candidate-r2.json) に保持する。これは固定f328 rowwise設計の50 candidate↔L8 ID対応から作った未適用の候補であり、L8 canonical caseとL9 IDの参照方向はL8→L9である。このPRではL8を変更せず、candidate JSONを正本として扱わない。
 
@@ -32,13 +32,22 @@ PR #4007 merge後の基準mainは`151713275e2c2aa65bb23a8fe38eb63c46d570c8`。�
 
 各integration rowにはQA §58の`compact_whole_observation`を置く。既存98行は元の`expected_observation`からordered `code`/`return_owner`を射影し、新規50行はL9 rowのsystem expectationとL4 class ownerから未実行のcompact oracleを構成する。148行すべて`not_executed`で、実行結果やraw fixtureを追加しない。ORACLE-046はoperation read/connection absentのsystem oracleとして既存class `SEC003-F02-EXPLICIT-CONNECTION-ABSENT`へ接続し、局所operation-deferをnegative caseとして紐付けない。
 
-PR-B候補との一時overlayでは、class keyとL8↔L9 ID対応は15 class・148行が揃い、148 case pairが比較対象になった。期待値と保持内容は148/148一致した。L9の日本語case conditionは入力根拠から独立導出したため、現PR-B候補の旧98件英語condition文字列とはQAの完全一致がなく、その98 IDだけがcase-condition FAILとなる。追加50件は50/50一致した。英語文字列をL9へ機械複写して解消しない。L8候補側の条件も同じcounterexampleから日本語で独立に記述する必要がある。正式4way `matched_case_count`と失敗内訳は`l4l9-supplement-current-overlay.json`に実測を保存する。
+PR-B候補の初回overlay（origin/main `fe6232a6062685aeb15e1b8641533ea86fa712f4`）では、148 case pairのexpected/preservedが148/148一致し、conditionは50一致・98不一致だった。これはR1前の時点証拠として`l4l9-supplement-current-overlay.json`に固定してある。QA §58は`condition`をcase単位で完全一致比較するため、L8 `change`はL9 `condition`と同じ文字列にする。`expected`と`expected_preserved`はL3/L10/L4からL8側で独立導出し、L9値の複写ではなく意味一致を検証する。現行PR-B候補との最新照合はR1 overlay測定に記録する。
 
-行別source/期待照合は`l4l9-casewise-source-audit.json`に148行の固定JSON Pointer・導出結果として記録し、conditionやsource本文はL9正本への重複コピーを避ける。読取専用validatorは`validate_wr258_l4l9_supplement.py`、新しい専用bindingは`SCF-B-0226`で登録する。SCF-B-0201/0218のL9 current pinを更新し、旧hashを各noteへ保全する。これらの変更はL4/L9 V-pairとそのscaffold evidenceの範囲内であり、L3/L10/QA/L5/L8はこのbranchで編集しない。
+R1後の行別source/期待照合は`l4l9-casewise-source-audit-r1.json`に148行の固定JSON Pointer・導出結果として記録し、condition、source本文、class共通pointerを複製しない。R1前の`l4l9-casewise-source-audit.json`と`l4l9-supplement-current-overlay.json`は当時の証拠として不変保持し、Git commit/blob/SHAと復元手順を`pr4017-r1-review-disposition.json`へ記録する。読取専用validatorは`validate_wr258_l4l9_supplement.py`、専用bindingは`SCF-B-0226`で登録する。SCF-B-0201/0218/0226のL9 current pinを更新し、旧hashをnotesとdispositionに保全する。これらの変更はL4/L9 V-pairとそのscaffold evidenceの範囲内であり、L3/L10/QA/L5/L8 canonical sourceはこのbranchで編集しない。
 
 
 ### 最新origin/main overlayの再測定
 
 `origin/main`は本補足の起点`151713275e2c2aa65bb23a8fe38eb63c46d570c8`から`fe6232a6062685aeb15e1b8641533ea86fa712f4`へ進んでいた。SEC006のL4/L9/L5/L8正本にはその間の変更がないことを確認し、PR-B候補commit `12ce2fe821`、`7da2d1a1b5`、`89a91dfb80cabc206004b50beb825c0461f5c9a1`を一時worktreeで最新mainへ適用して再測定した。SCF-B-0201/0218のL5/L8候補pinとSCF-B-0224のL9 pinを測定overlay内だけで更新し、その前のpin値を各noteに残した。
 
-このoverlayではL4/L9 pairとL5/L8 pairがともにPASS。explicit 4wayは148件を対応付けたが、98件のL8/L9 condition不一致でFAILした。条件以外の期待値と保持内容はそれぞれ148/148一致した。候補側の英語機械投影をL9へ移さず、L8側も各入力から独立に日本語化した後に照合する。`scfctl validate`は208 bindings・失敗0、`scfctl stale`は0 stale。実測は[`l4l9-supplement-current-overlay.json`](l4l9-supplement-current-overlay.json)へ一件だけ保存した。
+このR1前overlayではL4/L9 pairとL5/L8 pairがともにPASS。explicit 4wayは148件を対応付けたが、98件のL8/L9 condition不一致でFAILした。条件以外の期待値と保持内容はそれぞれ148/148一致した。condition不一致は独立した日本語表現にすることで解消するものではなく、QA §58の完全一致に合わせL8 `change`をL9 `condition`と同じ文字列にする。expected/expected_preservedはL3/L10/L4から独立導出する。`scfctl validate`は208 bindings・失敗0、`scfctl stale`は0 stale。実測は[`l4l9-supplement-current-overlay.json`](l4l9-supplement-current-overlay.json)にR1前の時点証拠として固定した。
+
+
+## PR #4017 R1追補
+
+Claude R1で指摘された148件の`integration_cases[*].source_pointers`（約176KB）は撤去した。共通sourceは参照classのL4 `source_pointers`、入力とsystem oracleは同じIDのL9 nested row（既存98行のassignmentまたは追加50行のsource list）に保持し、current validatorは両方を解決・照合する。casewise監査はID・固定JSON Pointer・照合結果だけをR1監査に置く。
+
+追加50件のL9 IDは`SEC003-L9-ORACLE-001..050`へ改名し、nested row、integration row、PR-B scaffold mapping、現在のvalidator期待を更新した。L9と同時に変更する必要があるPR-AだけでIDを更新し、canonical L5/L8はこのV-pairで変更していない。旧IDを含むR1前のL9、監査、overlay、mappingはcommit `902608f4f606d187e9a83dbf7bbc0c5951f3d674`のblob/hashから復元できるようdispositionへ記録した。
+
+R1最新main overlay（`ad2dfaf6f434fbb81cd34988d4bd76212380f3a5`）では、L4/L9 pairとL5/L8 pairはPASS、ownership capは4/4、pin検査は4組・計68件がPASS（失敗0）。explicit 4wayは0 matched・226 failuresで、L5/L8のmarker/class/case未整備と148 L9 caseのL8参照なしを実測した。`scfctl validate`は208 bindings・失敗0、`stale`は0。各validator 3本はPASS。L9は1,297,308 byteから1,055,315 byteへ241,993 byte減った。詳細は[`l4l9-supplement-current-overlay-r1.json`](l4l9-supplement-current-overlay-r1.json)に記録し、QA §58のL8 `change`/L9 `condition`文字列一致と、L8 `expected`の独立導出を明確に分ける。

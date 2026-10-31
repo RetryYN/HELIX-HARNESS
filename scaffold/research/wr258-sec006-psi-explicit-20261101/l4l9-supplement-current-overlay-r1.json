@@ -1,0 +1,1681 @@
+{
+  "schema": "wr258-l4l9-supplement-current-overlay-r1.v1",
+  "evidence_kind": "scaffold",
+  "authority_effect": "none",
+  "composition": {
+    "latest_origin_main": "ad2dfaf6f434fbb81cd34988d4bd76212380f3a5",
+    "l4l9_supplement_base": "151713275e2c2aa65bb23a8fe38eb63c46d570c8",
+    "current_worktree_head": "902608f4f606d187e9a83dbf7bbc0c5951f3d674",
+    "overlay_type": "最新origin/mainへL4/L9 V-pairのcurrent sourceとR1 scaffold artifactsだけを反映した一時worktree。L5/L8 canonicalはorigin/mainのまま。",
+    "l9_sha256": "0d46617674373fb9b1677c02eac2766765aafb448192b5c6fc1674b4e7fa88da",
+    "l9_bytes_before_r1": 1297308,
+    "l9_bytes_after_r1": 1055315,
+    "l9_bytes_delta": 241993,
+    "integration_case_count": 148,
+    "integration_case_rows_with_source_pointers": 0,
+    "stable_new_id_count": 50,
+    "work_qualified_id_count": 0,
+    "pin_updates": [
+      "SCF-B-0201 L9",
+      "SCF-B-0218 L9",
+      "SCF-B-0226 L9"
+    ]
+  },
+  "validators": {
+    "validate_wr258_l4l9_supplement.py": {
+      "exit_code": 0,
+      "static_validation": {
+        "passed": true,
+        "failure_count": 0,
+        "failures": [],
+        "integration_case_count": 148,
+        "existing_98": 98,
+        "added_50": 50,
+        "class_rows": {
+          "L4": 15,
+          "L9": 15
+        },
+        "unique_condition_count": 148,
+        "source_input_conflict_count": 0,
+        "system_oracle_mismatch_count": 0,
+        "compact_observation_mismatch_count": 0,
+        "unresolved_source_pointer_count": 0,
+        "source_layer_failure_count": 0,
+        "l3_requirement_ids": [
+          "HELIXSECURITY-L3-003-F01",
+          "HELIXSECURITY-L3-003-F02"
+        ],
+        "l10_oracle_ids": [
+          "HELIXSECURITY-L10-003-F01",
+          "HELIXSECURITY-L10-003-F02"
+        ]
+      }
+    },
+    "validate_pr4007_r1_followup.py": {
+      "exit_code": 0,
+      "passed": true,
+      "counts": {
+        "l4_classes": 15,
+        "l9_old_rows_preserved": 98,
+        "l9_added_short_oracles": 50,
+        "l9_total_negative_rows": 148,
+        "l9_by_contract": [
+          93,
+          55
+        ],
+        "l9_class_table": 15,
+        "new_class_case_counts": {
+          "SEC003-F01-ASSET-KIND-UNRESOLVED": 1,
+          "SEC003-F01-OWNER-MATERIAL-UNRESOLVED": 3,
+          "SEC003-F01-SIDE-INPUT-UNRESOLVED": 1,
+          "SEC003-F02-FALLBACK-INPUT-UNRESOLVED": 2,
+          "SEC003-F02-OPERATION-INPUT-UNRESOLVED": 1
+        },
+        "multi_contract_residual_negative_rows": 16
+      },
+      "assertion_failures": []
+    },
+    "validate_pr4007_r2.py": {
+      "exit_code": 0,
+      "passed": true,
+      "counts": {
+        "l4_classes": 15,
+        "l9_old_rows": 98,
+        "l9_r1_additions": 50,
+        "l9_total_rows": 148,
+        "unique_conditions": 50,
+        "python_repr_occurrences": 0,
+        "prb_candidate_rows": 50
+      },
+      "sha256": {
+        "docs/helix-security/L3-requirements/functional-requirements.json": "e4eeb70cc303e44199c7d898281e91c22dba89b47666353b9c80a4c634e898b5",
+        "docs/helix-security/L10-verification/functional-verification.json": "e6da7eaff29a623b5d069801280c295d9dd7cc43b51d9cde25b12a8110e5072a",
+        "docs/helix-security/L4-basic-design/project-scope-isolation.json": "16d4fc5e3fcf0c677703b694b538f6d8f5542db36291850ed7f72865f0d9c72c",
+        "docs/helix-security/L8-unit-verification/project-scope-isolation.json": "6d093e482b013e733bc3eb5950aef5b8385b3288dc85bbcb9854bea92830900d",
+        "docs/helix-security/L9-integration-verification/project-scope-isolation.json": "0d46617674373fb9b1677c02eac2766765aafb448192b5c6fc1674b4e7fa88da",
+        "scaffold/research/wr258-sec006-psi-explicit-20261101/pr-b-l8-integration-case-ref-candidate-r2.json": "d2b9b5cf7a9ddf5b776609ca4188f91dafd8d8a33253b02db463daca350ed551",
+        "scaffold/bindings/SCF-B-0218.json": "07bc6480aeca784265b71c240b91583ecbd91e14a29b1ad00176687d16e7cfc5"
+      },
+      "failures": []
+    }
+  },
+  "formal_check_child": {
+    "exit_code": 1,
+    "passed": false,
+    "L4_L9_pair": {
+      "passed": true,
+      "failure_count": 0
+    },
+    "L5_L8_pair": {
+      "passed": true,
+      "failure_count": 0
+    },
+    "ownership_cap_check_count": 4,
+    "ownership_cap_failure_count": 0,
+    "pin_checked_count": 68,
+    "pin_failure_count": 0,
+    "negative_4way": {
+      "passed": false,
+      "mode": "explicit_negative_equivalence_classes",
+      "matched_case_count": 0,
+      "class_counts": {
+        "L4": 15,
+        "L9": 15,
+        "L8": 0,
+        "L5": 0
+      },
+      "failure_count": 226,
+      "failure_counts": {
+        "explicit_mode:class_source_marker_invalid:L5": 1,
+        "explicit_mode:class_table_marker_missing:L8": 1,
+        "case_identity:unit_cases_missing_or_not_array:L8": 1,
+        "integration_case_ref:integration_case_not_referenced_from_l8:L9": 148,
+        "owner_ref:class_owner_ref_unresolved:L4": 15,
+        "equivalence_key:class_key_missing_from_layer:L8": 15,
+        "equivalence_class:class_key_missing_from_layer:L8": 15,
+        "equivalence_key:class_key_missing_from_layer:L5": 15,
+        "equivalence_class:class_key_missing_from_layer:L5": 15
+      },
+      "failures": [
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "explicit_mode",
+          "reason": "class_source_marker_invalid",
+          "layer": "L5"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "explicit_mode",
+          "reason": "class_table_marker_missing",
+          "layer": "L8"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "case_identity",
+          "reason": "unit_cases_missing_or_not_array",
+          "layer": "L8"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "integration_case_ref",
+          "reason": "integration_case_not_referenced_from_l8",
+          "layer": "L9",
+          "case_id": "SEC003-AGENT-OTHER-PROJECT-LATEST"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "integration_case_ref",
+          "reason": "integration_case_not_referenced_from_l8",
+          "layer": "L9",
+          "case_id": "SEC003-AGENT-PRIMARY-TREE-FALLBACK"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "integration_case_ref",
+          "reason": "integration_case_not_referenced_from_l8",
+          "layer": "L9",
+          "case_id": "SEC003-AGENT-READ-DOES-NOT-GRANT-NETWORK"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "integration_case_ref",
+          "reason": "integration_case_not_referenced_from_l8",
+          "layer": "L9",
+          "case_id": "SEC003-ARTIFACT-ASSET-ASSIGNMENT-DRIFT"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "integration_case_ref",
+          "reason": "integration_case_not_referenced_from_l8",
+          "layer": "L9",
+          "case_id": "SEC003-ARTIFACT-ASSET-ENVIRONMENT-DRIFT"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "integration_case_ref",
+          "reason": "integration_case_not_referenced_from_l8",
+          "layer": "L9",
+          "case_id": "SEC003-ARTIFACT-ASSET-PROJECT-DRIFT"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "integration_case_ref",
+          "reason": "integration_case_not_referenced_from_l8",
+          "layer": "L9",
+          "case_id": "SEC003-ARTIFACT-ASSET-REVISION-DRIFT"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "integration_case_ref",
+          "reason": "integration_case_not_referenced_from_l8",
+          "layer": "L9",
+          "case_id": "SEC003-ARTIFACT-ASSET-TENANT-DRIFT"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "integration_case_ref",
+          "reason": "integration_case_not_referenced_from_l8",
+          "layer": "L9",
+          "case_id": "SEC003-ARTIFACT-ASSET-WORKTREE-DRIFT"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "integration_case_ref",
+          "reason": "integration_case_not_referenced_from_l8",
+          "layer": "L9",
+          "case_id": "SEC003-CONFIGURATION-OTHER-PROJECT-LATEST"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "integration_case_ref",
+          "reason": "integration_case_not_referenced_from_l8",
+          "layer": "L9",
+          "case_id": "SEC003-CONFIGURATION-PRIMARY-TREE-FALLBACK"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "integration_case_ref",
+          "reason": "integration_case_not_referenced_from_l8",
+          "layer": "L9",
+          "case_id": "SEC003-CONFIGURATION-READ-DOES-NOT-GRANT-NETWORK"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "integration_case_ref",
+          "reason": "integration_case_not_referenced_from_l8",
+          "layer": "L9",
+          "case_id": "SEC003-CONNECTION-REVISION"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "integration_case_ref",
+          "reason": "integration_case_not_referenced_from_l8",
+          "layer": "L9",
+          "case_id": "SEC003-CONNECTION-UNKNOWN"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "integration_case_ref",
+          "reason": "integration_case_not_referenced_from_l8",
+          "layer": "L9",
+          "case_id": "SEC003-CREDENTIAL-ASSET-ASSIGNMENT-DRIFT"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "integration_case_ref",
+          "reason": "integration_case_not_referenced_from_l8",
+          "layer": "L9",
+          "case_id": "SEC003-CREDENTIAL-ASSET-ENVIRONMENT-DRIFT"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "integration_case_ref",
+          "reason": "integration_case_not_referenced_from_l8",
+          "layer": "L9",
+          "case_id": "SEC003-CREDENTIAL-ASSET-PROJECT-DRIFT"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "integration_case_ref",
+          "reason": "integration_case_not_referenced_from_l8",
+          "layer": "L9",
+          "case_id": "SEC003-CREDENTIAL-ASSET-REVISION-DRIFT"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "integration_case_ref",
+          "reason": "integration_case_not_referenced_from_l8",
+          "layer": "L9",
+          "case_id": "SEC003-CREDENTIAL-ASSET-TENANT-DRIFT"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "integration_case_ref",
+          "reason": "integration_case_not_referenced_from_l8",
+          "layer": "L9",
+          "case_id": "SEC003-CREDENTIAL-ASSET-WORKTREE-DRIFT"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "integration_case_ref",
+          "reason": "integration_case_not_referenced_from_l8",
+          "layer": "L9",
+          "case_id": "SEC003-CREDENTIAL-OTHER-PROJECT-LATEST"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "integration_case_ref",
+          "reason": "integration_case_not_referenced_from_l8",
+          "layer": "L9",
+          "case_id": "SEC003-CREDENTIAL-PRIMARY-TREE-FALLBACK"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "integration_case_ref",
+          "reason": "integration_case_not_referenced_from_l8",
+          "layer": "L9",
+          "case_id": "SEC003-CREDENTIAL-READ-DOES-NOT-GRANT-NETWORK"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "integration_case_ref",
+          "reason": "integration_case_not_referenced_from_l8",
+          "layer": "L9",
+          "case_id": "SEC003-CROSS-ARTIFACT-ABSENT"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "integration_case_ref",
+          "reason": "integration_case_not_referenced_from_l8",
+          "layer": "L9",
+          "case_id": "SEC003-CROSS-CREDENTIAL-ABSENT"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "integration_case_ref",
+          "reason": "integration_case_not_referenced_from_l8",
+          "layer": "L9",
+          "case_id": "SEC003-CROSS-EXECUTE-ABSENT"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "integration_case_ref",
+          "reason": "integration_case_not_referenced_from_l8",
+          "layer": "L9",
+          "case_id": "SEC003-CROSS-NETWORK-ABSENT"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "integration_case_ref",
+          "reason": "integration_case_not_referenced_from_l8",
+          "layer": "L9",
+          "case_id": "SEC003-CROSS-READ-ABSENT"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "integration_case_ref",
+          "reason": "integration_case_not_referenced_from_l8",
+          "layer": "L9",
+          "case_id": "SEC003-CROSS-STATE-ABSENT"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "integration_case_ref",
+          "reason": "integration_case_not_referenced_from_l8",
+          "layer": "L9",
+          "case_id": "SEC003-CROSS-WRITE-ABSENT"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "integration_case_ref",
+          "reason": "integration_case_not_referenced_from_l8",
+          "layer": "L9",
+          "case_id": "SEC003-DATA-ASSET-ASSIGNMENT-DRIFT"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "integration_case_ref",
+          "reason": "integration_case_not_referenced_from_l8",
+          "layer": "L9",
+          "case_id": "SEC003-DATA-ASSET-ENVIRONMENT-DRIFT"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "integration_case_ref",
+          "reason": "integration_case_not_referenced_from_l8",
+          "layer": "L9",
+          "case_id": "SEC003-DATA-ASSET-PROJECT-DRIFT"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "integration_case_ref",
+          "reason": "integration_case_not_referenced_from_l8",
+          "layer": "L9",
+          "case_id": "SEC003-DATA-ASSET-REVISION-DRIFT"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "integration_case_ref",
+          "reason": "integration_case_not_referenced_from_l8",
+          "layer": "L9",
+          "case_id": "SEC003-DATA-ASSET-TENANT-DRIFT"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "integration_case_ref",
+          "reason": "integration_case_not_referenced_from_l8",
+          "layer": "L9",
+          "case_id": "SEC003-DATA-ASSET-WORKTREE-DRIFT"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "integration_case_ref",
+          "reason": "integration_case_not_referenced_from_l8",
+          "layer": "L9",
+          "case_id": "SEC003-EXECUTION_TARGET-ASSET-ASSIGNMENT-DRIFT"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "integration_case_ref",
+          "reason": "integration_case_not_referenced_from_l8",
+          "layer": "L9",
+          "case_id": "SEC003-EXECUTION_TARGET-ASSET-ENVIRONMENT-DRIFT"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "integration_case_ref",
+          "reason": "integration_case_not_referenced_from_l8",
+          "layer": "L9",
+          "case_id": "SEC003-EXECUTION_TARGET-ASSET-PROJECT-DRIFT"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "integration_case_ref",
+          "reason": "integration_case_not_referenced_from_l8",
+          "layer": "L9",
+          "case_id": "SEC003-EXECUTION_TARGET-ASSET-REVISION-DRIFT"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "integration_case_ref",
+          "reason": "integration_case_not_referenced_from_l8",
+          "layer": "L9",
+          "case_id": "SEC003-EXECUTION_TARGET-ASSET-TENANT-DRIFT"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "integration_case_ref",
+          "reason": "integration_case_not_referenced_from_l8",
+          "layer": "L9",
+          "case_id": "SEC003-EXECUTION_TARGET-ASSET-WORKTREE-DRIFT"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "integration_case_ref",
+          "reason": "integration_case_not_referenced_from_l8",
+          "layer": "L9",
+          "case_id": "SEC003-HOOK-OTHER-PROJECT-LATEST"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "integration_case_ref",
+          "reason": "integration_case_not_referenced_from_l8",
+          "layer": "L9",
+          "case_id": "SEC003-HOOK-PRIMARY-TREE-FALLBACK"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "integration_case_ref",
+          "reason": "integration_case_not_referenced_from_l8",
+          "layer": "L9",
+          "case_id": "SEC003-HOOK-READ-DOES-NOT-GRANT-NETWORK"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "integration_case_ref",
+          "reason": "integration_case_not_referenced_from_l8",
+          "layer": "L9",
+          "case_id": "SEC003-L9-ORACLE-001"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "integration_case_ref",
+          "reason": "integration_case_not_referenced_from_l8",
+          "layer": "L9",
+          "case_id": "SEC003-L9-ORACLE-002"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "integration_case_ref",
+          "reason": "integration_case_not_referenced_from_l8",
+          "layer": "L9",
+          "case_id": "SEC003-L9-ORACLE-003"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "integration_case_ref",
+          "reason": "integration_case_not_referenced_from_l8",
+          "layer": "L9",
+          "case_id": "SEC003-L9-ORACLE-004"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "integration_case_ref",
+          "reason": "integration_case_not_referenced_from_l8",
+          "layer": "L9",
+          "case_id": "SEC003-L9-ORACLE-005"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "integration_case_ref",
+          "reason": "integration_case_not_referenced_from_l8",
+          "layer": "L9",
+          "case_id": "SEC003-L9-ORACLE-006"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "integration_case_ref",
+          "reason": "integration_case_not_referenced_from_l8",
+          "layer": "L9",
+          "case_id": "SEC003-L9-ORACLE-007"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "integration_case_ref",
+          "reason": "integration_case_not_referenced_from_l8",
+          "layer": "L9",
+          "case_id": "SEC003-L9-ORACLE-008"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "integration_case_ref",
+          "reason": "integration_case_not_referenced_from_l8",
+          "layer": "L9",
+          "case_id": "SEC003-L9-ORACLE-009"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "integration_case_ref",
+          "reason": "integration_case_not_referenced_from_l8",
+          "layer": "L9",
+          "case_id": "SEC003-L9-ORACLE-010"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "integration_case_ref",
+          "reason": "integration_case_not_referenced_from_l8",
+          "layer": "L9",
+          "case_id": "SEC003-L9-ORACLE-011"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "integration_case_ref",
+          "reason": "integration_case_not_referenced_from_l8",
+          "layer": "L9",
+          "case_id": "SEC003-L9-ORACLE-012"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "integration_case_ref",
+          "reason": "integration_case_not_referenced_from_l8",
+          "layer": "L9",
+          "case_id": "SEC003-L9-ORACLE-013"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "integration_case_ref",
+          "reason": "integration_case_not_referenced_from_l8",
+          "layer": "L9",
+          "case_id": "SEC003-L9-ORACLE-014"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "integration_case_ref",
+          "reason": "integration_case_not_referenced_from_l8",
+          "layer": "L9",
+          "case_id": "SEC003-L9-ORACLE-015"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "integration_case_ref",
+          "reason": "integration_case_not_referenced_from_l8",
+          "layer": "L9",
+          "case_id": "SEC003-L9-ORACLE-016"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "integration_case_ref",
+          "reason": "integration_case_not_referenced_from_l8",
+          "layer": "L9",
+          "case_id": "SEC003-L9-ORACLE-017"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "integration_case_ref",
+          "reason": "integration_case_not_referenced_from_l8",
+          "layer": "L9",
+          "case_id": "SEC003-L9-ORACLE-018"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "integration_case_ref",
+          "reason": "integration_case_not_referenced_from_l8",
+          "layer": "L9",
+          "case_id": "SEC003-L9-ORACLE-019"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "integration_case_ref",
+          "reason": "integration_case_not_referenced_from_l8",
+          "layer": "L9",
+          "case_id": "SEC003-L9-ORACLE-020"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "integration_case_ref",
+          "reason": "integration_case_not_referenced_from_l8",
+          "layer": "L9",
+          "case_id": "SEC003-L9-ORACLE-021"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "integration_case_ref",
+          "reason": "integration_case_not_referenced_from_l8",
+          "layer": "L9",
+          "case_id": "SEC003-L9-ORACLE-022"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "integration_case_ref",
+          "reason": "integration_case_not_referenced_from_l8",
+          "layer": "L9",
+          "case_id": "SEC003-L9-ORACLE-023"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "integration_case_ref",
+          "reason": "integration_case_not_referenced_from_l8",
+          "layer": "L9",
+          "case_id": "SEC003-L9-ORACLE-024"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "integration_case_ref",
+          "reason": "integration_case_not_referenced_from_l8",
+          "layer": "L9",
+          "case_id": "SEC003-L9-ORACLE-025"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "integration_case_ref",
+          "reason": "integration_case_not_referenced_from_l8",
+          "layer": "L9",
+          "case_id": "SEC003-L9-ORACLE-026"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "integration_case_ref",
+          "reason": "integration_case_not_referenced_from_l8",
+          "layer": "L9",
+          "case_id": "SEC003-L9-ORACLE-027"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "integration_case_ref",
+          "reason": "integration_case_not_referenced_from_l8",
+          "layer": "L9",
+          "case_id": "SEC003-L9-ORACLE-028"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "integration_case_ref",
+          "reason": "integration_case_not_referenced_from_l8",
+          "layer": "L9",
+          "case_id": "SEC003-L9-ORACLE-029"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "integration_case_ref",
+          "reason": "integration_case_not_referenced_from_l8",
+          "layer": "L9",
+          "case_id": "SEC003-L9-ORACLE-030"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "integration_case_ref",
+          "reason": "integration_case_not_referenced_from_l8",
+          "layer": "L9",
+          "case_id": "SEC003-L9-ORACLE-031"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "integration_case_ref",
+          "reason": "integration_case_not_referenced_from_l8",
+          "layer": "L9",
+          "case_id": "SEC003-L9-ORACLE-032"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "integration_case_ref",
+          "reason": "integration_case_not_referenced_from_l8",
+          "layer": "L9",
+          "case_id": "SEC003-L9-ORACLE-033"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "integration_case_ref",
+          "reason": "integration_case_not_referenced_from_l8",
+          "layer": "L9",
+          "case_id": "SEC003-L9-ORACLE-034"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "integration_case_ref",
+          "reason": "integration_case_not_referenced_from_l8",
+          "layer": "L9",
+          "case_id": "SEC003-L9-ORACLE-035"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "integration_case_ref",
+          "reason": "integration_case_not_referenced_from_l8",
+          "layer": "L9",
+          "case_id": "SEC003-L9-ORACLE-036"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "integration_case_ref",
+          "reason": "integration_case_not_referenced_from_l8",
+          "layer": "L9",
+          "case_id": "SEC003-L9-ORACLE-037"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "integration_case_ref",
+          "reason": "integration_case_not_referenced_from_l8",
+          "layer": "L9",
+          "case_id": "SEC003-L9-ORACLE-038"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "integration_case_ref",
+          "reason": "integration_case_not_referenced_from_l8",
+          "layer": "L9",
+          "case_id": "SEC003-L9-ORACLE-039"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "integration_case_ref",
+          "reason": "integration_case_not_referenced_from_l8",
+          "layer": "L9",
+          "case_id": "SEC003-L9-ORACLE-040"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "integration_case_ref",
+          "reason": "integration_case_not_referenced_from_l8",
+          "layer": "L9",
+          "case_id": "SEC003-L9-ORACLE-041"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "integration_case_ref",
+          "reason": "integration_case_not_referenced_from_l8",
+          "layer": "L9",
+          "case_id": "SEC003-L9-ORACLE-042"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "integration_case_ref",
+          "reason": "integration_case_not_referenced_from_l8",
+          "layer": "L9",
+          "case_id": "SEC003-L9-ORACLE-043"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "integration_case_ref",
+          "reason": "integration_case_not_referenced_from_l8",
+          "layer": "L9",
+          "case_id": "SEC003-L9-ORACLE-044"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "integration_case_ref",
+          "reason": "integration_case_not_referenced_from_l8",
+          "layer": "L9",
+          "case_id": "SEC003-L9-ORACLE-045"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "integration_case_ref",
+          "reason": "integration_case_not_referenced_from_l8",
+          "layer": "L9",
+          "case_id": "SEC003-L9-ORACLE-046"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "integration_case_ref",
+          "reason": "integration_case_not_referenced_from_l8",
+          "layer": "L9",
+          "case_id": "SEC003-L9-ORACLE-047"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "integration_case_ref",
+          "reason": "integration_case_not_referenced_from_l8",
+          "layer": "L9",
+          "case_id": "SEC003-L9-ORACLE-048"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "integration_case_ref",
+          "reason": "integration_case_not_referenced_from_l8",
+          "layer": "L9",
+          "case_id": "SEC003-L9-ORACLE-049"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "integration_case_ref",
+          "reason": "integration_case_not_referenced_from_l8",
+          "layer": "L9",
+          "case_id": "SEC003-L9-ORACLE-050"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "integration_case_ref",
+          "reason": "integration_case_not_referenced_from_l8",
+          "layer": "L9",
+          "case_id": "SEC003-MEMORY-ASSET-ASSIGNMENT-DRIFT"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "integration_case_ref",
+          "reason": "integration_case_not_referenced_from_l8",
+          "layer": "L9",
+          "case_id": "SEC003-MEMORY-ASSET-ENVIRONMENT-DRIFT"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "integration_case_ref",
+          "reason": "integration_case_not_referenced_from_l8",
+          "layer": "L9",
+          "case_id": "SEC003-MEMORY-ASSET-PROJECT-DRIFT"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "integration_case_ref",
+          "reason": "integration_case_not_referenced_from_l8",
+          "layer": "L9",
+          "case_id": "SEC003-MEMORY-ASSET-REVISION-DRIFT"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "integration_case_ref",
+          "reason": "integration_case_not_referenced_from_l8",
+          "layer": "L9",
+          "case_id": "SEC003-MEMORY-ASSET-TENANT-DRIFT"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "integration_case_ref",
+          "reason": "integration_case_not_referenced_from_l8",
+          "layer": "L9",
+          "case_id": "SEC003-MEMORY-ASSET-WORKTREE-DRIFT"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "integration_case_ref",
+          "reason": "integration_case_not_referenced_from_l8",
+          "layer": "L9",
+          "case_id": "SEC003-MEMORY-OTHER-PROJECT-LATEST"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "integration_case_ref",
+          "reason": "integration_case_not_referenced_from_l8",
+          "layer": "L9",
+          "case_id": "SEC003-MEMORY-PRIMARY-TREE-FALLBACK"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "integration_case_ref",
+          "reason": "integration_case_not_referenced_from_l8",
+          "layer": "L9",
+          "case_id": "SEC003-MEMORY-READ-DOES-NOT-GRANT-NETWORK"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "integration_case_ref",
+          "reason": "integration_case_not_referenced_from_l8",
+          "layer": "L9",
+          "case_id": "SEC003-ORIGIN-ASSIGNMENT-MISSING"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "integration_case_ref",
+          "reason": "integration_case_not_referenced_from_l8",
+          "layer": "L9",
+          "case_id": "SEC003-ORIGIN-ENVIRONMENT-MISSING"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "integration_case_ref",
+          "reason": "integration_case_not_referenced_from_l8",
+          "layer": "L9",
+          "case_id": "SEC003-ORIGIN-PROJECT-MISSING"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "integration_case_ref",
+          "reason": "integration_case_not_referenced_from_l8",
+          "layer": "L9",
+          "case_id": "SEC003-ORIGIN-REVISION-MISSING"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "integration_case_ref",
+          "reason": "integration_case_not_referenced_from_l8",
+          "layer": "L9",
+          "case_id": "SEC003-ORIGIN-TENANT-MISSING"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "integration_case_ref",
+          "reason": "integration_case_not_referenced_from_l8",
+          "layer": "L9",
+          "case_id": "SEC003-ORIGIN-TENANT-UNKNOWN-VALUES"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "integration_case_ref",
+          "reason": "integration_case_not_referenced_from_l8",
+          "layer": "L9",
+          "case_id": "SEC003-ORIGIN-WORKTREE-MISSING"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "integration_case_ref",
+          "reason": "integration_case_not_referenced_from_l8",
+          "layer": "L9",
+          "case_id": "SEC003-OTHER-PROJECT-FALLBACK"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "integration_case_ref",
+          "reason": "integration_case_not_referenced_from_l8",
+          "layer": "L9",
+          "case_id": "SEC003-OTHER-PROJECT-LATEST"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "integration_case_ref",
+          "reason": "integration_case_not_referenced_from_l8",
+          "layer": "L9",
+          "case_id": "SEC003-PERMISSION-ASSET-ASSIGNMENT-DRIFT"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "integration_case_ref",
+          "reason": "integration_case_not_referenced_from_l8",
+          "layer": "L9",
+          "case_id": "SEC003-PERMISSION-ASSET-ENVIRONMENT-DRIFT"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "integration_case_ref",
+          "reason": "integration_case_not_referenced_from_l8",
+          "layer": "L9",
+          "case_id": "SEC003-PERMISSION-ASSET-PROJECT-DRIFT"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "integration_case_ref",
+          "reason": "integration_case_not_referenced_from_l8",
+          "layer": "L9",
+          "case_id": "SEC003-PERMISSION-ASSET-REVISION-DRIFT"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "integration_case_ref",
+          "reason": "integration_case_not_referenced_from_l8",
+          "layer": "L9",
+          "case_id": "SEC003-PERMISSION-ASSET-TENANT-DRIFT"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "integration_case_ref",
+          "reason": "integration_case_not_referenced_from_l8",
+          "layer": "L9",
+          "case_id": "SEC003-PERMISSION-ASSET-WORKTREE-DRIFT"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "integration_case_ref",
+          "reason": "integration_case_not_referenced_from_l8",
+          "layer": "L9",
+          "case_id": "SEC003-PRIMARY-TREE-FALLBACK"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "integration_case_ref",
+          "reason": "integration_case_not_referenced_from_l8",
+          "layer": "L9",
+          "case_id": "SEC003-READ-DOES-NOT-GRANT-ARTIFACT"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "integration_case_ref",
+          "reason": "integration_case_not_referenced_from_l8",
+          "layer": "L9",
+          "case_id": "SEC003-READ-DOES-NOT-GRANT-CREDENTIAL"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "integration_case_ref",
+          "reason": "integration_case_not_referenced_from_l8",
+          "layer": "L9",
+          "case_id": "SEC003-READ-DOES-NOT-GRANT-EXECUTE"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "integration_case_ref",
+          "reason": "integration_case_not_referenced_from_l8",
+          "layer": "L9",
+          "case_id": "SEC003-READ-DOES-NOT-GRANT-NETWORK"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "integration_case_ref",
+          "reason": "integration_case_not_referenced_from_l8",
+          "layer": "L9",
+          "case_id": "SEC003-READ-DOES-NOT-GRANT-STATE"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "integration_case_ref",
+          "reason": "integration_case_not_referenced_from_l8",
+          "layer": "L9",
+          "case_id": "SEC003-READ-DOES-NOT-GRANT-WRITE"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "integration_case_ref",
+          "reason": "integration_case_not_referenced_from_l8",
+          "layer": "L9",
+          "case_id": "SEC003-SAME-PROJECT-NO-CONNECTION"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "integration_case_ref",
+          "reason": "integration_case_not_referenced_from_l8",
+          "layer": "L9",
+          "case_id": "SEC003-STATE-ASSET-ASSIGNMENT-DRIFT"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "integration_case_ref",
+          "reason": "integration_case_not_referenced_from_l8",
+          "layer": "L9",
+          "case_id": "SEC003-STATE-ASSET-ENVIRONMENT-DRIFT"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "integration_case_ref",
+          "reason": "integration_case_not_referenced_from_l8",
+          "layer": "L9",
+          "case_id": "SEC003-STATE-ASSET-PROJECT-DRIFT"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "integration_case_ref",
+          "reason": "integration_case_not_referenced_from_l8",
+          "layer": "L9",
+          "case_id": "SEC003-STATE-ASSET-REVISION-DRIFT"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "integration_case_ref",
+          "reason": "integration_case_not_referenced_from_l8",
+          "layer": "L9",
+          "case_id": "SEC003-STATE-ASSET-TENANT-DRIFT"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "integration_case_ref",
+          "reason": "integration_case_not_referenced_from_l8",
+          "layer": "L9",
+          "case_id": "SEC003-STATE-ASSET-WORKTREE-DRIFT"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "integration_case_ref",
+          "reason": "integration_case_not_referenced_from_l8",
+          "layer": "L9",
+          "case_id": "SEC003-TARGET-ASSIGNMENT-MISSING"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "integration_case_ref",
+          "reason": "integration_case_not_referenced_from_l8",
+          "layer": "L9",
+          "case_id": "SEC003-TARGET-ENVIRONMENT-MISSING"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "integration_case_ref",
+          "reason": "integration_case_not_referenced_from_l8",
+          "layer": "L9",
+          "case_id": "SEC003-TARGET-PROJECT-MISSING"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "integration_case_ref",
+          "reason": "integration_case_not_referenced_from_l8",
+          "layer": "L9",
+          "case_id": "SEC003-TARGET-REVISION-MISSING"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "integration_case_ref",
+          "reason": "integration_case_not_referenced_from_l8",
+          "layer": "L9",
+          "case_id": "SEC003-TARGET-TENANT-MISSING"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "integration_case_ref",
+          "reason": "integration_case_not_referenced_from_l8",
+          "layer": "L9",
+          "case_id": "SEC003-TARGET-TENANT-UNKNOWN-VALUES"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "integration_case_ref",
+          "reason": "integration_case_not_referenced_from_l8",
+          "layer": "L9",
+          "case_id": "SEC003-TARGET-WORKTREE-MISSING"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "integration_case_ref",
+          "reason": "integration_case_not_referenced_from_l8",
+          "layer": "L9",
+          "case_id": "SEC003-TENANT-APPLICABILITY-UNKNOWN"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "integration_case_ref",
+          "reason": "integration_case_not_referenced_from_l8",
+          "layer": "L9",
+          "case_id": "SEC003-TENANT-INVENTED"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "integration_case_ref",
+          "reason": "integration_case_not_referenced_from_l8",
+          "layer": "L9",
+          "case_id": "SEC003-WORKER-ASSET-ASSIGNMENT-DRIFT"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "integration_case_ref",
+          "reason": "integration_case_not_referenced_from_l8",
+          "layer": "L9",
+          "case_id": "SEC003-WORKER-ASSET-ENVIRONMENT-DRIFT"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "integration_case_ref",
+          "reason": "integration_case_not_referenced_from_l8",
+          "layer": "L9",
+          "case_id": "SEC003-WORKER-ASSET-PROJECT-DRIFT"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "integration_case_ref",
+          "reason": "integration_case_not_referenced_from_l8",
+          "layer": "L9",
+          "case_id": "SEC003-WORKER-ASSET-REVISION-DRIFT"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "integration_case_ref",
+          "reason": "integration_case_not_referenced_from_l8",
+          "layer": "L9",
+          "case_id": "SEC003-WORKER-ASSET-TENANT-DRIFT"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "integration_case_ref",
+          "reason": "integration_case_not_referenced_from_l8",
+          "layer": "L9",
+          "case_id": "SEC003-WORKER-ASSET-WORKTREE-DRIFT"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "owner_ref",
+          "reason": "class_owner_ref_unresolved",
+          "layer": "L4",
+          "case_id": "SEC003-F01-IDENTITY-CONFLICT"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "owner_ref",
+          "reason": "class_owner_ref_unresolved",
+          "layer": "L4",
+          "case_id": "SEC003-F01-IDENTITY-MISSING"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "owner_ref",
+          "reason": "class_owner_ref_unresolved",
+          "layer": "L4",
+          "case_id": "SEC003-F01-TENANT-APPLICABILITY-UNRESOLVED"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "owner_ref",
+          "reason": "class_owner_ref_unresolved",
+          "layer": "L4",
+          "case_id": "SEC003-F01-TENANT-INVENTED"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "owner_ref",
+          "reason": "class_owner_ref_unresolved",
+          "layer": "L4",
+          "case_id": "SEC003-F02-IMPLICIT-FALLBACK"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "owner_ref",
+          "reason": "class_owner_ref_unresolved",
+          "layer": "L4",
+          "case_id": "SEC003-F02-FOREIGN-LATEST"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "owner_ref",
+          "reason": "class_owner_ref_unresolved",
+          "layer": "L4",
+          "case_id": "SEC003-F02-OPERATION-SCOPE"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "owner_ref",
+          "reason": "class_owner_ref_unresolved",
+          "layer": "L4",
+          "case_id": "SEC003-F02-EXPLICIT-CONNECTION-ABSENT"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "owner_ref",
+          "reason": "class_owner_ref_unresolved",
+          "layer": "L4",
+          "case_id": "SEC003-F02-CONNECTION-MATERIAL-CONFLICT"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "owner_ref",
+          "reason": "class_owner_ref_unresolved",
+          "layer": "L4",
+          "case_id": "SEC003-F02-CONNECTION-MATERIAL-UNRESOLVED"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "owner_ref",
+          "reason": "class_owner_ref_unresolved",
+          "layer": "L4",
+          "case_id": "SEC003-F01-SIDE-INPUT-UNRESOLVED"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "owner_ref",
+          "reason": "class_owner_ref_unresolved",
+          "layer": "L4",
+          "case_id": "SEC003-F01-ASSET-KIND-UNRESOLVED"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "owner_ref",
+          "reason": "class_owner_ref_unresolved",
+          "layer": "L4",
+          "case_id": "SEC003-F01-OWNER-MATERIAL-UNRESOLVED"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "owner_ref",
+          "reason": "class_owner_ref_unresolved",
+          "layer": "L4",
+          "case_id": "SEC003-F02-OPERATION-INPUT-UNRESOLVED"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "owner_ref",
+          "reason": "class_owner_ref_unresolved",
+          "layer": "L4",
+          "case_id": "SEC003-F02-FALLBACK-INPUT-UNRESOLVED"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "equivalence_key",
+          "reason": "class_key_missing_from_layer",
+          "layer": "L8"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "equivalence_class",
+          "reason": "class_key_missing_from_layer",
+          "layer": "L8"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "equivalence_key",
+          "reason": "class_key_missing_from_layer",
+          "layer": "L8"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "equivalence_class",
+          "reason": "class_key_missing_from_layer",
+          "layer": "L8"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "equivalence_key",
+          "reason": "class_key_missing_from_layer",
+          "layer": "L8"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "equivalence_class",
+          "reason": "class_key_missing_from_layer",
+          "layer": "L8"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "equivalence_key",
+          "reason": "class_key_missing_from_layer",
+          "layer": "L8"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "equivalence_class",
+          "reason": "class_key_missing_from_layer",
+          "layer": "L8"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "equivalence_key",
+          "reason": "class_key_missing_from_layer",
+          "layer": "L8"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "equivalence_class",
+          "reason": "class_key_missing_from_layer",
+          "layer": "L8"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "equivalence_key",
+          "reason": "class_key_missing_from_layer",
+          "layer": "L8"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "equivalence_class",
+          "reason": "class_key_missing_from_layer",
+          "layer": "L8"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "equivalence_key",
+          "reason": "class_key_missing_from_layer",
+          "layer": "L8"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "equivalence_class",
+          "reason": "class_key_missing_from_layer",
+          "layer": "L8"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "equivalence_key",
+          "reason": "class_key_missing_from_layer",
+          "layer": "L8"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "equivalence_class",
+          "reason": "class_key_missing_from_layer",
+          "layer": "L8"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "equivalence_key",
+          "reason": "class_key_missing_from_layer",
+          "layer": "L8"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "equivalence_class",
+          "reason": "class_key_missing_from_layer",
+          "layer": "L8"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "equivalence_key",
+          "reason": "class_key_missing_from_layer",
+          "layer": "L8"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "equivalence_class",
+          "reason": "class_key_missing_from_layer",
+          "layer": "L8"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "equivalence_key",
+          "reason": "class_key_missing_from_layer",
+          "layer": "L8"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "equivalence_class",
+          "reason": "class_key_missing_from_layer",
+          "layer": "L8"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "equivalence_key",
+          "reason": "class_key_missing_from_layer",
+          "layer": "L8"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "equivalence_class",
+          "reason": "class_key_missing_from_layer",
+          "layer": "L8"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "equivalence_key",
+          "reason": "class_key_missing_from_layer",
+          "layer": "L8"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "equivalence_class",
+          "reason": "class_key_missing_from_layer",
+          "layer": "L8"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "equivalence_key",
+          "reason": "class_key_missing_from_layer",
+          "layer": "L8"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "equivalence_class",
+          "reason": "class_key_missing_from_layer",
+          "layer": "L8"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "equivalence_key",
+          "reason": "class_key_missing_from_layer",
+          "layer": "L8"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "equivalence_class",
+          "reason": "class_key_missing_from_layer",
+          "layer": "L8"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "equivalence_key",
+          "reason": "class_key_missing_from_layer",
+          "layer": "L5"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "equivalence_class",
+          "reason": "class_key_missing_from_layer",
+          "layer": "L5"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "equivalence_key",
+          "reason": "class_key_missing_from_layer",
+          "layer": "L5"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "equivalence_class",
+          "reason": "class_key_missing_from_layer",
+          "layer": "L5"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "equivalence_key",
+          "reason": "class_key_missing_from_layer",
+          "layer": "L5"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "equivalence_class",
+          "reason": "class_key_missing_from_layer",
+          "layer": "L5"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "equivalence_key",
+          "reason": "class_key_missing_from_layer",
+          "layer": "L5"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "equivalence_class",
+          "reason": "class_key_missing_from_layer",
+          "layer": "L5"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "equivalence_key",
+          "reason": "class_key_missing_from_layer",
+          "layer": "L5"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "equivalence_class",
+          "reason": "class_key_missing_from_layer",
+          "layer": "L5"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "equivalence_key",
+          "reason": "class_key_missing_from_layer",
+          "layer": "L5"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "equivalence_class",
+          "reason": "class_key_missing_from_layer",
+          "layer": "L5"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "equivalence_key",
+          "reason": "class_key_missing_from_layer",
+          "layer": "L5"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "equivalence_class",
+          "reason": "class_key_missing_from_layer",
+          "layer": "L5"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "equivalence_key",
+          "reason": "class_key_missing_from_layer",
+          "layer": "L5"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "equivalence_class",
+          "reason": "class_key_missing_from_layer",
+          "layer": "L5"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "equivalence_key",
+          "reason": "class_key_missing_from_layer",
+          "layer": "L5"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "equivalence_class",
+          "reason": "class_key_missing_from_layer",
+          "layer": "L5"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "equivalence_key",
+          "reason": "class_key_missing_from_layer",
+          "layer": "L5"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "equivalence_class",
+          "reason": "class_key_missing_from_layer",
+          "layer": "L5"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "equivalence_key",
+          "reason": "class_key_missing_from_layer",
+          "layer": "L5"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "equivalence_class",
+          "reason": "class_key_missing_from_layer",
+          "layer": "L5"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "equivalence_key",
+          "reason": "class_key_missing_from_layer",
+          "layer": "L5"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "equivalence_class",
+          "reason": "class_key_missing_from_layer",
+          "layer": "L5"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "equivalence_key",
+          "reason": "class_key_missing_from_layer",
+          "layer": "L5"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "equivalence_class",
+          "reason": "class_key_missing_from_layer",
+          "layer": "L5"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "equivalence_key",
+          "reason": "class_key_missing_from_layer",
+          "layer": "L5"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "equivalence_class",
+          "reason": "class_key_missing_from_layer",
+          "layer": "L5"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "equivalence_key",
+          "reason": "class_key_missing_from_layer",
+          "layer": "L5"
+        },
+        {
+          "check": "CHK-NEG-4WAY-MATCH",
+          "attribute": "equivalence_class",
+          "reason": "class_key_missing_from_layer",
+          "layer": "L5"
+        }
+      ]
+    }
+  },
+  "commands": [
+    "python3 -B scaffold/research/wr258-sec006-psi-explicit-20261101/validate_wr258_l4l9_supplement.py",
+    "python3 -B scaffold/research/wr258-sec006-psi-explicit-20261101/validate_pr4007_r1_followup.py",
+    "python3 -B scaffold/research/wr258-sec006-psi-explicit-20261101/validate_pr4007_r2.py",
+    "python3 -B scaffold/tools/design_verification_checker.py check-child --root . --l4 docs/helix-security/L4-basic-design/project-scope-isolation.json --l5 docs/helix-security/L5-detail-design/project-scope-isolation.json --l8 docs/helix-security/L8-unit-verification/project-scope-isolation.json --l9 docs/helix-security/L9-integration-verification/project-scope-isolation.json",
+    "python3 scaffold/tools/scfctl.py validate",
+    "python3 scaffold/tools/scfctl.py stale"
+  ],
+  "binding_measurements": {
+    "scfctl_validate": {
+      "exit_code": 0,
+      "output_summary": "bindings=208 fail=0"
+    },
+    "scfctl_stale": {
+      "exit_code": 0,
+      "output_summary": "stale=0"
+    }
+  },
+  "interpretation": "L4/L9 pairとL5/L8 pairはPASS。explicit 4wayはL4/L9 partial markerのままL5/L8が未整備で、0 matched・226 failures。failureはL8 marker/table/array欠落、class key/owner未解決、全148 L9 caseのL8参照なし。これはformal PASSではない。canonical L5/L8はこのoverlayから変更していない。"
+}

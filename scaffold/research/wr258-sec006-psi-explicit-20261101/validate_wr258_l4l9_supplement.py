@@ -16,6 +16,8 @@ L10 = "docs/helix-security/L10-verification/functional-verification.json"
 L4 = "docs/helix-security/L4-basic-design/project-scope-isolation.json"
 L9 = "docs/helix-security/L9-integration-verification/project-scope-isolation.json"
 QA = "docs/governance/design-verification-quality-assurance.md"
+HISTORICAL_ORACLE_PREFIX = "SEC003-WR258-L9-ORACLE-"
+CURRENT_ORACLE_PREFIX = "SEC003-L9-ORACLE-"
 
 
 def load(path: str | Path):
@@ -195,7 +197,16 @@ def main() -> int:
             failures.append(label)
 
     check(l4 == original_l4, "L4 source bytes/structure are unchanged from pinned main")
-    check(l9["cases"] == original_l9["cases"], "all 148 nested L9 negative rows remain unchanged")
+    original_rows = {row["id"]: row for group in original_l9["cases"] for row in group["negative_cases"]}
+    current_rows = {row["id"]: row for group in l9["cases"] for row in group["negative_cases"]}
+    expected_rows = {}
+    for old_id, old_row in original_rows.items():
+        new_id = old_id.replace(HISTORICAL_ORACLE_PREFIX, CURRENT_ORACLE_PREFIX, 1) if old_id.startswith(HISTORICAL_ORACLE_PREFIX) else old_id
+        expected_row = dict(old_row)
+        expected_row["id"] = new_id
+        expected_rows[new_id] = expected_row
+    check(current_rows == expected_rows, "148 nested L9 rows are preserved except the reviewed 50 ID renames")
+    check(not any(row_id.startswith(HISTORICAL_ORACLE_PREFIX) for row_id in current_rows), "no work-qualified oracle ID remains in canonical L9")
     check(l9["multi_contract_residual"] == original_l9["multi_contract_residual"], "L9 multi_contract_residual remains unchanged")
     check(len(class_by_id) == 15 and len(l9.get("negative_equivalence_classes", [])) == 15, "L4/L9 each retain 15 class rows")
     check(l4.get("negative_equivalence_classes") == {"source_rows": "failure_classifications"}, "L4 explicit source marker is retained")
@@ -228,7 +239,7 @@ def main() -> int:
         if not cls:
             failures.append(f"{row['id']}: unresolved L4 class {cid}")
             continue
-        is_new = row["id"].startswith("SEC003-WR258-L9-ORACLE-")
+        is_new = row["id"].startswith(CURRENT_ORACLE_PREFIX)
         group = new50 if is_new else old98
         group.append(row["id"])
         check(case.get("population_state") == "negative", f"{row['id']}: negative population")
@@ -284,30 +295,41 @@ def main() -> int:
                 compact_mismatches.append({"case_id": row["id"], "reason": "compact observation differs from L4 class"})
             check(compact.get("condition") == cls.get("expected", {}).get("condition") and compact_codes == expected_codes and compact_owners == {cls.get("backflow_owner")}, f"{row['id']}: compact system observation agrees with L4 class")
 
-        pointers = case.get("source_pointers", [])
-        check(isinstance(pointers, list) and bool(pointers), f"{row['id']}: source pointers are present")
-        for source in pointers if isinstance(pointers, list) else []:
-            try:
-                target = load(source["path"])
-                resolve_pointer(target, source["pointer"])
-            except Exception as exc:
-                source_pointer_failures.append({"case_id": row["id"], "source": source, "reason": str(exc)})
-                failures.append(f"{row['id']}: unresolved source pointer {source}")
-        source_paths = {source.get("path", "") for source in pointers if isinstance(source, dict)} if isinstance(pointers, list) else set()
-        required_paths = {L3, L10, L4, L9}
+        check("source_pointers" not in case, f"{row['id']}: case does not duplicate source pointers")
+        assignment = row.get("negative_class_assignment", {})
+        nested_pointers = row.get("source_pointers") or assignment.get("source_pointers", [])
+        class_pointers = cls.get("source_pointers", [])
+        if not isinstance(nested_pointers, list) or not nested_pointers:
+            source_pointer_failures.append({"case_id": row["id"], "source": "nested row source pointers missing", "kind": "nested"})
+            failures.append(f"{row['id']}: nested row source pointers are missing")
+            nested_pointers = []
+        if not isinstance(class_pointers, list) or not class_pointers:
+            source_pointer_failures.append({"case_id": row["id"], "source": "L4 class source pointers missing", "kind": "class"})
+            failures.append(f"{row['id']}: L4 class source pointers are missing")
+            class_pointers = []
+        for kind, pointers in (("nested", nested_pointers), ("L4_class", class_pointers)):
+            for source in pointers:
+                try:
+                    target = load(source["path"])
+                    resolve_pointer(target, source["pointer"])
+                except Exception as exc:
+                    source_pointer_failures.append({"case_id": row["id"], "source": source, "kind": kind, "reason": str(exc)})
+                    failures.append(f"{row['id']}: unresolved {kind} source pointer {source}")
+        source_paths = {source.get("path", "") for source in nested_pointers + class_pointers if isinstance(source, dict)}
+        required_paths = {L3, L10, L4}
         missing_layers = sorted(required_paths - source_paths)
         l8_sources = sorted(path for path in source_paths if "/L8-" in path)
         if missing_layers or l8_sources:
             source_layer_failures.append({"case_id": row["id"], "missing_required_layers": missing_layers, "forbidden_l8_sources": l8_sources})
-        check(not missing_layers and not l8_sources, f"{row['id']}: L3/L10/L4/L9 source basis present and no L8 derivation pointer")
+        check(not missing_layers and not l8_sources, f"{row['id']}: nested row/class refs retain L3/L10/L4 basis without L8 derivation pointer")
 
-    check(len(old98) == 98 and len(new50) == 50, "casewise inventory preserves 98 prior and 50 added L9 rows")
+    check(len(old98) == 98 and len(new50) == 50, "casewise inventory preserves 98 prior and 50 added L9 rows with the current stable ID scheme")
     check(len(set(conditions)) == 148, "all 148 case condition values are unique")
     check(not input_conflicts, "no L9 counterexample contradicts its L3/L10/L4-derived class")
     check(not oracle_mismatches, "all old L9 system oracles agree with L4 class expectations")
     check(not compact_mismatches, "all 148 compact system observations resolve to the L4 class")
     check(not source_pointer_failures, "all source pointers resolve")
-    check(not source_layer_failures, "all rows cite L3/L10/L4/L9 source layers and no L8 source")
+    check(not source_layer_failures, "all nested rows/classes retain L3/L10/L4 source basis and no L8 source")
 
     candidate_comparison = None
     if args.candidate_l8:

@@ -1,0 +1,76 @@
+{
+  "schema": "pr4017-r1-review-disposition.v1",
+  "evidence_kind": "scaffold",
+  "authority_effect": "none",
+  "review_source": {
+    "pr": 4017,
+    "comment_id": 6549966564,
+    "review_head": "902608f4f606d187e9a83dbf7bbc0c5951f3d674",
+    "findings": [
+      "integration_cases 148件の共通source_pointers重複を撤去し、L4 class/L9 nested rowへ参照を戻す。",
+      "L9追加50件のIDをSEC003-L9-ORACLE-001..050へ改名しcurrent consumersを更新する。",
+      "QA §58 exact comparisonに合わせREADMEのcondition説明を直し、expectedはL3/L10/L4から独立導出と明記する。"
+    ]
+  },
+  "immutable_pre_r1_artifacts": [
+    {
+      "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
+      "commit": "902608f4f606d187e9a83dbf7bbc0c5951f3d674",
+      "blob": "4a49b46b96b41eaa7041bc2ddcace4ed14b37b13",
+      "sha256": "80f3adc2c3a00c93f1c5eb81ed1ba28542dc7e31b558db15b9c5909a2f193754",
+      "bytes": 1297308,
+      "restore_command": "git show 902608f4f606d187e9a83dbf7bbc0c5951f3d674:docs/helix-security/L9-integration-verification/project-scope-isolation.json > docs/helix-security/L9-integration-verification/project-scope-isolation.json"
+    },
+    {
+      "path": "scaffold/research/wr258-sec006-psi-explicit-20261101/l4l9-casewise-source-audit.json",
+      "commit": "902608f4f606d187e9a83dbf7bbc0c5951f3d674",
+      "blob": "376e48f91854ade125d03c1859b6f4c21bc33d89",
+      "sha256": "fe970f46025f291bd9210ad8b70db29594a7b17b227b4934c69a551b2c1d1e73",
+      "bytes": 153831,
+      "restore_command": "git show 902608f4f606d187e9a83dbf7bbc0c5951f3d674:scaffold/research/wr258-sec006-psi-explicit-20261101/l4l9-casewise-source-audit.json > scaffold/research/wr258-sec006-psi-explicit-20261101/l4l9-casewise-source-audit.json"
+    },
+    {
+      "path": "scaffold/research/wr258-sec006-psi-explicit-20261101/l4l9-supplement-current-overlay.json",
+      "commit": "902608f4f606d187e9a83dbf7bbc0c5951f3d674",
+      "blob": "f3b429914c6d15e8e692325e968305995dee79ce",
+      "sha256": "6074938a669ee71d8f9e4c2583f8e3fb4141968e2dd1bddb290c4cb381f3ec9a",
+      "bytes": 29278,
+      "restore_command": "git show 902608f4f606d187e9a83dbf7bbc0c5951f3d674:scaffold/research/wr258-sec006-psi-explicit-20261101/l4l9-supplement-current-overlay.json > scaffold/research/wr258-sec006-psi-explicit-20261101/l4l9-supplement-current-overlay.json"
+    },
+    {
+      "path": "scaffold/research/wr258-sec006-psi-explicit-20261101/pr-b-l8-integration-case-ref-candidate-r2.json",
+      "commit": "902608f4f606d187e9a83dbf7bbc0c5951f3d674",
+      "blob": "c66cca4c3d5e38f1b57bdc2007e17cfc4c815745",
+      "sha256": "298f6d6b255c7a27e58b9d417955cdc73763575337ac044be06686e1bc46b995",
+      "bytes": 27287,
+      "restore_command": "git show 902608f4f606d187e9a83dbf7bbc0c5951f3d674:scaffold/research/wr258-sec006-psi-explicit-20261101/pr-b-l8-integration-case-ref-candidate-r2.json > scaffold/research/wr258-sec006-psi-explicit-20261101/pr-b-l8-integration-case-ref-candidate-r2.json"
+    }
+  ],
+  "id_transition": {
+    "old_prefix": "SEC003-WR258-L9-ORACLE-",
+    "current_prefix": "SEC003-L9-ORACLE-",
+    "renamed_count": 50,
+    "canonical_l8_prb_source_modified": false,
+    "old_id_values_retained_only_in_fixed_git_history_and_this_disposition": false,
+    "historical_retention": "old IDs remain in the immutable pre-R1 casewise audit and the Git blobs listed above; current canonical L9 and PR-B mapping use SEC003-L9-ORACLE-001..050. Current validators mention the old prefix only when locating the fixed pre-R2 baseline rows for exact migration comparison."
+  },
+  "source_pointer_transition": {
+    "integration_cases_before": 148,
+    "integration_cases_after": 148,
+    "per_case_source_pointers_removed": 148,
+    "remainder_basis": [
+      "L4 failure_classifications[].source_pointers via negative_class_ref",
+      "L9 nested row source_pointers or negative_class_assignment.source_pointers via same row ID"
+    ],
+    "raw_l9_input_rows_and_expected_oracles_unchanged_except_50_id_values": true
+  },
+  "current_followup_paths": [
+    "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
+    "scaffold/research/wr258-sec006-psi-explicit-20261101/l4l9-casewise-source-audit-r1.json",
+    "scaffold/research/wr258-sec006-psi-explicit-20261101/l4l9-supplement-current-overlay-r1.json",
+    "scaffold/research/wr258-sec006-psi-explicit-20261101/pr-b-l8-integration-case-ref-candidate-r2.json"
+  ],
+  "restoration_semantics": "変更前の時点証拠は固定commit/blob/SHAをGit履歴に保全し、このdispositionのrestore_commandで再取得できる。新しいcurrent audit/overlayは別pathに追補し、旧ファイルbytesは変更しない。",
+  "latest_overlay_revision": "ad2dfaf6f434fbb81cd34988d4bd76212380f3a5",
+  "current_overlay_artifact": "scaffold/research/wr258-sec006-psi-explicit-20261101/l4l9-supplement-current-overlay-r1.json"
+}
