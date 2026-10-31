@@ -24,6 +24,9 @@ BINDING = 'scaffold/bindings/SCF-B-0216.json'
 CHECK_CHILD_DIR = 'scaffold/research/wr257-connect-composite-l8-slim-20261101/checker-evidence'
 RAW_REPORT_DEDUP = 'scaffold/research/wr257-connect-composite-l8-slim-20261101/checker-evidence/raw-report-dedup-receipt.json'
 CANONICAL_RAW_REPORT = 'scaffold/research/wr257-connect-composite-l8-slim-20261101/checker-evidence/raw-check-child-report-8d982681.json'
+CURRENT_OVERLAY = f'{CHECK_CHILD_DIR}/merge-overlay-check-child-current.json'
+CURRENT_MEASUREMENT = f'{EVIDENCE_DIR}/static-evidence-measurement-current.json'
+EVIDENCE_HISTORY = f'{EVIDENCE_DIR}/evidence-history.json'
 
 PROBE_EXPECTATIONS = {
     'LOCAL-C007-N01-EXACT-DECLARED-SCOPE-THREE-BOUNDARY-EVIDENCE-READONLY-OWNER-PROBE': ('必要証拠3件のうち第三境界の原証拠・提出証拠がともに欠ける。', '証拠集合はcontent conflictとして保留し、証拠ownerへ返す。'),
@@ -338,6 +341,30 @@ def main() -> None:
     prior = base_load(L8)
     l5, l4, l9 = load(L5), load(L4), load(L9)
     l8_sha = sha((ROOT / L8).read_bytes())
+    history = load(EVIDENCE_HISTORY)
+    assert history['schema'] == 'wr257-evidence-consolidation-history.v1'
+    assert history['evidence_kind'] == 'scaffold' and history['authority_effect'] == 'none'
+    baseline_anchor = history['retained_initial_static_evidence']
+    assert baseline_anchor['path'] == EVIDENCE
+    baseline_raw = subprocess.check_output(['git', 'show', f"{baseline_anchor['source_revision']}:{baseline_anchor['path']}"], cwd=ROOT)
+    baseline_blob = subprocess.check_output(['git', 'rev-parse', f"{baseline_anchor['source_revision']}:{baseline_anchor['path']}"], cwd=ROOT, text=True).strip()
+    assert baseline_blob == baseline_anchor['git_blob_sha1'] and sha(baseline_raw) == baseline_anchor['sha256']
+    assert sha((ROOT / EVIDENCE).read_bytes()) == baseline_anchor['sha256']
+    retired = history['retired_artifacts']
+    assert Counter(item['kind'] for item in retired) == {
+        'static_measurement': 10,
+        'merge_overlay_check_child': 6,
+        'evidence_history_record': 3,
+    }
+    assert len({item['path'] for item in retired}) == 19
+    for item in retired:
+        assert item['restore_command'] == f"git show {item['source_revision']}:{item['path']} > {item['path']}"
+        assert not (ROOT / item['path']).exists()
+        restored = subprocess.check_output(['git', 'show', f"{item['source_revision']}:{item['path']}"], cwd=ROOT)
+        blob = subprocess.check_output(['git', 'rev-parse', f"{item['source_revision']}:{item['path']}"], cwd=ROOT, text=True).strip()
+        assert blob == item['git_blob_sha1'] and sha(restored) == item['sha256']
+    assert [p.relative_to(ROOT).as_posix() for p in sorted((ROOT / EVIDENCE_DIR).glob('static-evidence-measurement-*.json'))] == [CURRENT_MEASUREMENT]
+    assert not (ROOT / f'{EVIDENCE_DIR}/evidence-history').exists()
     assert '固有の反例・期待判断' in current['method']['rule'] and 'patch path' not in current['method']['rule']
     assert 'decode指示' in current['method']['rule'] and 'fixture再構成' in current['method']['rule']
     assert '固定基準revision' in current['local_probe_contract']['expectation'] and '現行L8には' in current['local_probe_contract']['expectation'] and '保持しない' in current['local_probe_contract']['expectation']
@@ -356,22 +383,11 @@ def main() -> None:
         assert '未実行' in derivation['boundary'] and 'DT-VT-105' in derivation['boundary']
     assert all('未実行' in item['boundary'] and 'DT-VT-105' in item['boundary'] for item in current['local_probes'])
     head = subprocess.check_output(['git', 'rev-parse', 'HEAD'], cwd=ROOT, text=True).strip()
-    check_child_candidates = []
-    for report_path in sorted((ROOT / CHECK_CHILD_DIR).glob('merge-overlay-check-child-*.json')):
-        item = json.loads(report_path.read_text(encoding='utf-8'))
-        if item.get('target_sha256') != l8_sha:
-            continue
-        candidate_revision = item.get('candidate_revision', '')
-        is_ancestor = subprocess.run(['git', 'merge-base', '--is-ancestor', candidate_revision, head], cwd=ROOT, check=False).returncode == 0
-        if not is_ancestor:
-            continue
-        distance = int(subprocess.check_output(['git', 'rev-list', '--count', f'{candidate_revision}..{head}'], cwd=ROOT, text=True))
-        check_child_candidates.append((distance, report_path.relative_to(ROOT).as_posix(), item))
-    assert check_child_candidates, 'checker evidence for current L8 must be based on a candidate revision in HEAD history'
-    latest_distance = min(item[0] for item in check_child_candidates)
-    latest_reports = [item for item in check_child_candidates if item[0] == latest_distance]
-    assert len(latest_reports) == 1, 'latest candidate overlay checker evidence must be unique'
-    _, check_child_path, check_child = latest_reports[0]
+    check_child_path = CURRENT_OVERLAY
+    check_child = load(check_child_path)
+    candidate_revision = check_child.get('candidate_revision', '')
+    assert subprocess.run(['git', 'merge-base', '--is-ancestor', candidate_revision, head], cwd=ROOT, check=False).returncode == 0
+    assert [p.relative_to(ROOT).as_posix() for p in sorted((ROOT / CHECK_CHILD_DIR).glob('merge-overlay-check-child-*.json'))] == [CURRENT_OVERLAY]
     raw_check_child_path = check_child.get('source_report_path')
     assert isinstance(raw_check_child_path, str) and raw_check_child_path.startswith(CHECK_CHILD_DIR + '/')
     raw_check_child = load(raw_check_child_path)
@@ -413,18 +429,19 @@ def main() -> None:
     pinned_docs = {L4: l4, L9: l9}
     pin_records = {item['path']: item for item in current['source_pair_pins']}
 
-    case_columns = ['id', 'function_ref', 'requirement_ref', 'l4_ref', 'l9_ref', 'system_oracle_ref', 'source_packet_pointer', 'expected_oracle_pointer', 'scenario_condition_ref', 'boundary', 'execution_state', 'qualification', 'u_id', 'l5_function_ref', 'l5_failure_rule_refs', 'expected']
+    case_columns = ['id', 'function_ref', 'requirement_ref', 'l4_ref', 'l9_ref', 'system_oracle_ref', 'source_packet_pointer', 'expected_oracle_pointer', 'scenario_condition_ref', 'boundary', 'execution_state', 'qualification', 'u_id', 'l5_failure_rule_refs', 'expected']
     case_rows = []
     for case in current['cases']:
         packet_ref = case['source_packet_ref']
         assert 'typed_arguments' not in case and 'raw_pointer_suffix' not in packet_ref
         assert 'scenario_basis' not in case and 'condition' not in case['expected']
+        assert 'l5_function_ref' not in case and 'l3_ref' not in case and 'l10_ref' not in case
         assert packet_ref['document'] == L9 and packet_ref['pointer'].endswith('/independent_source_packet/raw_utf8')
         case_rows.append([
             case['id'], case['function_ref'], case['requirement_ref'], case['l4_ref'], case['l9_ref'],
             case['system_oracle_ref'], packet_ref['pointer'],
             case['expected_oracle_ref']['pointer'], case['scenario_condition_ref'], case['boundary'],
-            case['execution_state'], case['qualification'], case['u_id'], case['l5_function_ref'],
+            case['execution_state'], case['qualification'], case['u_id'],
             case['l5_failure_rule_refs'], case['expected'],
         ])
     local_probes = current['local_probes']
@@ -439,6 +456,14 @@ def main() -> None:
     assert len(current['typed_carrier_boundary_cases']) == len(prior['typed_carrier_boundary_cases']) == 1
     assert sum(current['preserved_inventory'][key] for key in ('source_cases', 'local_probes', 'local_probe_source_reuse', 'pure_primitive_cases', 'typed_carrier_boundary_cases')) == 127
     assert [row[0] for row in case_rows] == [row['id'] for row in prior['cases']]
+    prior_cases_by_id = {row['id']: row for row in prior['cases']}
+    for case in current['cases']:
+        source = prior_cases_by_id[case['id']]
+        assert case['function_ref'] == source['function_ref']
+        assert case['requirement_ref'] == source['requirement_ref']
+        assert case['l4_ref'] == source['l4_ref']
+        assert case['l9_ref'] == source['l9_ref']
+        assert case['system_oracle_ref'] == source['system_oracle_ref']
     assert [row['id'] for row in local_probes] == [row['id'] for row in prior['local_probes']]
     assert [row['id'] for row in current['pure_primitive_cases']] == [row['id'] for row in prior['pure_primitive_cases']]
     assert [row['id'] for row in current['typed_carrier_boundary_cases']] == [row['id'] for row in prior['typed_carrier_boundary_cases']]
@@ -449,7 +474,7 @@ def main() -> None:
         for ob in l9['verification_obligations']
     }
     cix = {name: i for i, name in enumerate(case_columns)}
-    assert case_columns[-4:] == ['u_id', 'l5_function_ref', 'l5_failure_rule_refs', 'expected']
+    assert case_columns[-3:] == ['u_id', 'l5_failure_rule_refs', 'expected']
     duplicate_expectation_groups = {}
     for row in case_rows:
         cid, role, req, l4_ref, l9_ref, oracle, source_ptr, expected_ptr, condition_ref, boundary, state, qualification = row[:12]
@@ -478,7 +503,8 @@ def main() -> None:
     branch_case_ids = []
     expected_class_counts = {'normal': 0, 'negative': 0}
     for row in case_rows:
-        uid, fn, rule_refs, expected = row[-4:]
+        uid, rule_refs, expected = row[-3:]
+        fn = row[1]
         assert uid.startswith('U-C007-') and uid not in rows_by_uid
         assert fn in function_refs
         rows_by_uid[uid] = row
@@ -557,7 +583,7 @@ def main() -> None:
         assert resolve(l5, function['source_ref']['pointer'])['id'] == fn
         assert resolve(l5, function['algorithm_ref']['pointer'])['id'] == fn
         assert len(function['case_u_ids']) > 0
-        assert all(rows_by_uid[uid][-3] == fn for uid in function['case_u_ids'])
+        assert all(rows_by_uid[uid][1] == fn for uid in function['case_u_ids'])
         assert len(function['case_u_ids']) == len(set(function['case_u_ids']))
     for rule in trace['l5_failure_rules']:
         tag_rule = (rule['source_ref']['pointer'].split('/')[2], rule['rule_id'])
@@ -569,11 +595,8 @@ def main() -> None:
         for uid in rule['case_u_ids']:
             assert uid in rows_by_uid and f'{tag_rule[0]}:{rule["rule_id"]}' in rows_by_uid[uid][-2]
     assert seen_rules == declared_rules
-    assert len(trace['l9_basic_branches']) == 91
-    for branch in trace['l9_basic_branches']:
-        assert branch['u_id'] in rows_by_uid and rows_by_uid[branch['u_id']][0] == branch['source_case_id']
-        assert resolve(l9, branch['source_ref']['pointer'])['id'] == branch['source_case_id']
-        assert branch['execution_state'] == 'not_executed' and branch['fixture_only'] is True
+    assert 'l9_basic_branches' not in trace
+    assert len(branch_case_ids) == len(l9_by_id) == 91
 
     assert set(PROBE_EXPECTATIONS) == {item['id'] for item in local_probes}
     assert len({item['u_id'] for item in local_probes}) == 27
@@ -707,7 +730,7 @@ def main() -> None:
         'inventory': current['preserved_inventory'],
         'l5_traceability': {
             'public_functions': len(trace['l5_public_functions']),
-            'l9_branch_u_ids': len(trace['l9_basic_branches']),
+            'l9_branch_u_ids': len(case_rows),
             'predeclared_local_probe_u_ids': len(local_probes),
             'failure_rules': len(trace['l5_failure_rules']),
             'covered_failure_rules': sum(rule['coverage_status'] != 'uncovered' for rule in trace['l5_failure_rules']),
@@ -738,7 +761,7 @@ def main() -> None:
             'recovery_receipt': RAW_REPORT_DEDUP,
         },
         'checks': [
-            'L8 source caseのID・順序・配列形を保ち、L9 source/expected pointerと共通条件表参照を照合する',
+            'L8 source caseのID・順序・配列形を保ち、L9 source/expected pointerと共通条件表参照を照合する。重複l9_basic_branchesと同値function_ref/requirement_ref/system_oracle_ref別名はない',
             '27 local probeのID・役割・source caseと短い反例/期待判断を保ち、固定履歴の静的比較でrule根拠を確かめる。patch手順や返却値は埋め込まない',
             'source再照合1件、primitive 7件、typed carrier境界1件のIDとoracle境界を保つ',
             '127件の宣言数を変えず、91 L9分岐と27 local probeのU-ID、各分岐のL5由来期待・引用・正常/反例・未検証状態を保つ（正常3、反例88）',
@@ -754,7 +777,7 @@ def main() -> None:
     }
     if args.record:
         target_hash = payload['target_sha256']
-        output = args.record_path or f'{EVIDENCE_DIR}/static-evidence-measurement-{target_hash[:12]}.json'
+        output = args.record_path or CURRENT_MEASUREMENT
         if output == EVIDENCE:
             raise SystemExit('refusing to overwrite the initial static-evidence.json; choose a new appendix path')
         out_path = (ROOT / output).resolve()
@@ -782,9 +805,12 @@ def main() -> None:
         assert CANONICAL_RAW_REPORT in binding.get('artifacts', [])
         assert check_child_path in binding.get('artifacts', [])
         assert raw_check_child_path in binding.get('artifacts', [])
+        assert EVIDENCE_HISTORY in binding.get('artifacts', [])
+        assert CURRENT_MEASUREMENT in binding.get('artifacts', [])
         measurement_paths = [path for path in binding.get('artifacts', []) if 'static-evidence-measurement-' in path]
-        matching = [(path, load(path)) for path in measurement_paths if load(path).get('target_sha256') == payload['target_sha256']]
-        assert matching, 'binding must point to a measurement appendix for the current L8 bytes'
+        assert measurement_paths == [CURRENT_MEASUREMENT]
+        matching = [(CURRENT_MEASUREMENT, load(CURRENT_MEASUREMENT))]
+        assert matching[0][1].get('target_sha256') == payload['target_sha256']
         head = subprocess.check_output(['git', 'rev-parse', 'HEAD'], cwd=ROOT, text=True).strip()
         applicable = []
         for path, item in matching:

@@ -1,0 +1,447 @@
+{
+  "schema": "wr257-evidence-consolidation-history.v1",
+  "evidence_kind": "scaffold",
+  "authority_effect": "none",
+  "snapshot_revision": "49fdbb32920600806bfb51a010cac4767aa78223",
+  "purpose": "重複する測定appendix・overlay要約・evidence-historyを一本化する。各旧bytesは書き換えずGit履歴から正確に復元できる。",
+  "retained_initial_static_evidence": {
+    "path": "scaffold/research/wr257-connect-composite-l8-slim-20261101/static-evidence.json",
+    "source_revision": "8510d76e27390894d7a646aacf63022f86b31045",
+    "git_blob_sha1": "078f3afa1b5a935fe1b8616c7b151f1699a6e597",
+    "sha256": "80058cb02084858b2317b726d08737e3898a4b8b45ff8c68dae2f4545b88b108",
+    "bytes": 2043,
+    "restore_command": "git show 8510d76e27390894d7a646aacf63022f86b31045:scaffold/research/wr257-connect-composite-l8-slim-20261101/static-evidence.json > scaffold/research/wr257-connect-composite-l8-slim-20261101/static-evidence.json"
+  },
+  "retired_artifacts": [
+    {
+      "path": "scaffold/research/wr257-connect-composite-l8-slim-20261101/static-evidence-measurement-5d31d583a695-final-origin-main.json",
+      "source_revision": "49fdbb32920600806bfb51a010cac4767aa78223",
+      "git_blob_sha1": "a8702ed44c73b1d81ca017173ec3b53f9d95ca5e",
+      "sha256": "868a1383bf540b4ef47c83b256ae10797cd5b807c85ad668f2cd2d6c65fe957f",
+      "bytes": 6654,
+      "restore_command": "git show 49fdbb32920600806bfb51a010cac4767aa78223:scaffold/research/wr257-connect-composite-l8-slim-20261101/static-evidence-measurement-5d31d583a695-final-origin-main.json > scaffold/research/wr257-connect-composite-l8-slim-20261101/static-evidence-measurement-5d31d583a695-final-origin-main.json",
+      "kind": "static_measurement",
+      "recorded_against_revision": "b0032c54d606c824f84ad6a83959c8b4ba785bcf",
+      "target_sha256": "5d31d583a69574b653a9731de2512b4f5c5009ceb6a975127df090df747f6994",
+      "measurement_kind": "wr257-static-index-evidence.v1"
+    },
+    {
+      "path": "scaffold/research/wr257-connect-composite-l8-slim-20261101/static-evidence-measurement-66c0ba8f0011.json",
+      "source_revision": "49fdbb32920600806bfb51a010cac4767aa78223",
+      "git_blob_sha1": "3a7ee5e6795d8771bf947c4c0b3223a175903cc9",
+      "sha256": "e3950e026a439db04e8ba9448817915918303911bc63faa0fa32f1eda64d58ca",
+      "bytes": 4723,
+      "restore_command": "git show 49fdbb32920600806bfb51a010cac4767aa78223:scaffold/research/wr257-connect-composite-l8-slim-20261101/static-evidence-measurement-66c0ba8f0011.json > scaffold/research/wr257-connect-composite-l8-slim-20261101/static-evidence-measurement-66c0ba8f0011.json",
+      "kind": "static_measurement",
+      "recorded_against_revision": "59a5371cab86ece0d68d82a8490454b030481b9d",
+      "target_sha256": "66c0ba8f001133af2c902fb8719a0f90f94a379986a8f9ad9a0223bae606ea6f",
+      "measurement_kind": "wr257-static-index-evidence.v1"
+    },
+    {
+      "path": "scaffold/research/wr257-connect-composite-l8-slim-20261101/static-evidence-measurement-6e8b76ebf3d0.json",
+      "source_revision": "49fdbb32920600806bfb51a010cac4767aa78223",
+      "git_blob_sha1": "0727b72b623f7916ae5f1595f364f3e68b390590",
+      "sha256": "17e93c463fafe247df107f4584d7a124b9e75a20a2c36e374d53670623176018",
+      "bytes": 4724,
+      "restore_command": "git show 49fdbb32920600806bfb51a010cac4767aa78223:scaffold/research/wr257-connect-composite-l8-slim-20261101/static-evidence-measurement-6e8b76ebf3d0.json > scaffold/research/wr257-connect-composite-l8-slim-20261101/static-evidence-measurement-6e8b76ebf3d0.json",
+      "kind": "static_measurement",
+      "recorded_against_revision": "3d5097bd3f27479661d60989282ffa7a5551107f",
+      "target_sha256": "6e8b76ebf3d0d97807145fc9df08fbfc747d1907a0217f98793728789d62f13c",
+      "measurement_kind": "wr257-static-index-evidence.v1"
+    },
+    {
+      "path": "scaffold/research/wr257-connect-composite-l8-slim-20261101/static-evidence-measurement-de87cf706cad-final-main-20261101.json",
+      "source_revision": "49fdbb32920600806bfb51a010cac4767aa78223",
+      "git_blob_sha1": "ca353d561096dcceb44b0e6c9f187d56003fe9bc",
+      "sha256": "b520ec4bf788667941663c73e7e2afe7f403aa9a3d6263230c9b636ab7c3691f",
+      "bytes": 6060,
+      "restore_command": "git show 49fdbb32920600806bfb51a010cac4767aa78223:scaffold/research/wr257-connect-composite-l8-slim-20261101/static-evidence-measurement-de87cf706cad-final-main-20261101.json > scaffold/research/wr257-connect-composite-l8-slim-20261101/static-evidence-measurement-de87cf706cad-final-main-20261101.json",
+      "kind": "static_measurement",
+      "recorded_against_revision": "21b2ec9a0007e5cd80abdb7d570ad015860ee0dd",
+      "target_sha256": "de87cf706cad9d579ef3bdbb37a94f757c198214833f2ab32a1179d470019bb7",
+      "measurement_kind": "wr257-static-index-evidence.v1"
+    },
+    {
+      "path": "scaffold/research/wr257-connect-composite-l8-slim-20261101/static-evidence-measurement-de87cf706cad-origin-main.json",
+      "source_revision": "49fdbb32920600806bfb51a010cac4767aa78223",
+      "git_blob_sha1": "137138c04044939f53fb2aacd467d3d7efa24ef1",
+      "sha256": "c5a3624301be11be6a956759cad97cb5c64078635043b9fdc16e93e61584ecb5",
+      "bytes": 6060,
+      "restore_command": "git show 49fdbb32920600806bfb51a010cac4767aa78223:scaffold/research/wr257-connect-composite-l8-slim-20261101/static-evidence-measurement-de87cf706cad-origin-main.json > scaffold/research/wr257-connect-composite-l8-slim-20261101/static-evidence-measurement-de87cf706cad-origin-main.json",
+      "kind": "static_measurement",
+      "recorded_against_revision": "1a61f7e55f3a283f9937cfc43e6aff3b5d91d16c",
+      "target_sha256": "de87cf706cad9d579ef3bdbb37a94f757c198214833f2ab32a1179d470019bb7",
+      "measurement_kind": "wr257-static-index-evidence.v1"
+    },
+    {
+      "path": "scaffold/research/wr257-connect-composite-l8-slim-20261101/static-evidence-measurement-eab8c07c187f.json",
+      "source_revision": "49fdbb32920600806bfb51a010cac4767aa78223",
+      "git_blob_sha1": "9c43c19d3f789581adee7dc8f370ef9cbe4985c9",
+      "sha256": "51371d5cced2f1567c143ae0f1990ecf098485c01135f5d6d6e3ad9233b1773f",
+      "bytes": 4747,
+      "restore_command": "git show 49fdbb32920600806bfb51a010cac4767aa78223:scaffold/research/wr257-connect-composite-l8-slim-20261101/static-evidence-measurement-eab8c07c187f.json > scaffold/research/wr257-connect-composite-l8-slim-20261101/static-evidence-measurement-eab8c07c187f.json",
+      "kind": "static_measurement",
+      "recorded_against_revision": "59a5371cab86ece0d68d82a8490454b030481b9d",
+      "target_sha256": "eab8c07c187fe84da434f571f3a6faa5e0b393a84841089dc8d8c07082dcd950",
+      "measurement_kind": "wr257-static-index-evidence.v1"
+    },
+    {
+      "path": "scaffold/research/wr257-connect-composite-l8-slim-20261101/static-evidence-measurement-f21e8e6f1493-commit-a0b39c3a0.json",
+      "source_revision": "49fdbb32920600806bfb51a010cac4767aa78223",
+      "git_blob_sha1": "b4e16b9c290fc119c3422dabcad49a2ea2ca0260",
+      "sha256": "3fa475a720019062f24a985f3e0007d84588901e9057ce17982c030ef853ae2d",
+      "bytes": 4792,
+      "restore_command": "git show 49fdbb32920600806bfb51a010cac4767aa78223:scaffold/research/wr257-connect-composite-l8-slim-20261101/static-evidence-measurement-f21e8e6f1493-commit-a0b39c3a0.json > scaffold/research/wr257-connect-composite-l8-slim-20261101/static-evidence-measurement-f21e8e6f1493-commit-a0b39c3a0.json",
+      "kind": "static_measurement",
+      "recorded_against_revision": "a0b39c3a061a6943b9b38747e4a1985ef8c7b35a",
+      "target_sha256": "f21e8e6f1493420145172c337884d05423c679404e0f46179d74491ec60ac2c2",
+      "measurement_kind": "wr257-static-index-evidence.v1"
+    },
+    {
+      "path": "scaffold/research/wr257-connect-composite-l8-slim-20261101/static-evidence-measurement-f21e8e6f1493-overlay.json",
+      "source_revision": "49fdbb32920600806bfb51a010cac4767aa78223",
+      "git_blob_sha1": "d3fa423fcf11914a88814009da83a1287d97b9a0",
+      "sha256": "8a37ab89347587c6cd30e7600d68881f82ba0a56a13b4c2b1bda7784ef11e3a2",
+      "bytes": 5993,
+      "restore_command": "git show 49fdbb32920600806bfb51a010cac4767aa78223:scaffold/research/wr257-connect-composite-l8-slim-20261101/static-evidence-measurement-f21e8e6f1493-overlay.json > scaffold/research/wr257-connect-composite-l8-slim-20261101/static-evidence-measurement-f21e8e6f1493-overlay.json",
+      "kind": "static_measurement",
+      "recorded_against_revision": "e27085e7970124e91b0d2a63e231aa007b8018a5",
+      "target_sha256": "f21e8e6f1493420145172c337884d05423c679404e0f46179d74491ec60ac2c2",
+      "measurement_kind": "wr257-static-index-evidence.v1"
+    },
+    {
+      "path": "scaffold/research/wr257-connect-composite-l8-slim-20261101/static-evidence-measurement-f21e8e6f1493.json",
+      "source_revision": "49fdbb32920600806bfb51a010cac4767aa78223",
+      "git_blob_sha1": "eb31206806c687dc7dbc5506561762426332754c",
+      "sha256": "d5eae027ffc179d7ef32d51716dccf3b58183795d56e618d9b68b9c834ea4a95",
+      "bytes": 4792,
+      "restore_command": "git show 49fdbb32920600806bfb51a010cac4767aa78223:scaffold/research/wr257-connect-composite-l8-slim-20261101/static-evidence-measurement-f21e8e6f1493.json > scaffold/research/wr257-connect-composite-l8-slim-20261101/static-evidence-measurement-f21e8e6f1493.json",
+      "kind": "static_measurement",
+      "recorded_against_revision": "1a51d41182e4d1891669678a8960a64bd7b0914f",
+      "target_sha256": "f21e8e6f1493420145172c337884d05423c679404e0f46179d74491ec60ac2c2",
+      "measurement_kind": "wr257-static-index-evidence.v1"
+    },
+    {
+      "path": "scaffold/research/wr257-connect-composite-l8-slim-20261101/static-evidence-measurement-scenario-centralization.json",
+      "source_revision": "49fdbb32920600806bfb51a010cac4767aa78223",
+      "git_blob_sha1": "8b317ca4a0c8c1b4f9202e91cb557c2c7594c9bf",
+      "sha256": "f93d81a2fa5b4ac8702f1fc6722d2d5e67f96757055d0ce2d37a04e5681e381e",
+      "bytes": 6384,
+      "restore_command": "git show 49fdbb32920600806bfb51a010cac4767aa78223:scaffold/research/wr257-connect-composite-l8-slim-20261101/static-evidence-measurement-scenario-centralization.json > scaffold/research/wr257-connect-composite-l8-slim-20261101/static-evidence-measurement-scenario-centralization.json",
+      "kind": "static_measurement",
+      "recorded_against_revision": "1f4c85f8cd59564fca840c1143f257d01039f82c",
+      "target_sha256": "c285ba795e1a6c5d504eec760d5459192d965c49cc1cd47fc998c8ddae9d814b",
+      "measurement_kind": "wr257-static-index-evidence.v1"
+    },
+    {
+      "path": "scaffold/research/wr257-connect-composite-l8-slim-20261101/checker-evidence/merge-overlay-check-child-61cd289c.json",
+      "source_revision": "49fdbb32920600806bfb51a010cac4767aa78223",
+      "git_blob_sha1": "2e4e7f8d11900783c84b18a2f8b7a58f0a79c39b",
+      "sha256": "33573403983a37623cd40349e9e6168dbe4aa824c712c2248ab834fe030fbcf8",
+      "bytes": 2042,
+      "restore_command": "git show 49fdbb32920600806bfb51a010cac4767aa78223:scaffold/research/wr257-connect-composite-l8-slim-20261101/checker-evidence/merge-overlay-check-child-61cd289c.json > scaffold/research/wr257-connect-composite-l8-slim-20261101/checker-evidence/merge-overlay-check-child-61cd289c.json",
+      "kind": "merge_overlay_check_child",
+      "main_revision": "569bde0bc5792349f0833461f0bb1bb6db33c592",
+      "candidate_revision": "981be2cd253868c9124cf5a85b6ae562776893fc",
+      "overlay_revision": "61cd289c36ecb9d7d3be6b24fb037d2067191b8f",
+      "overlay_tree": "5f16df140767100e52c84993288fda71c295fe6a",
+      "target_sha256": "4806eb2f5d753a8277410d4c60a0817b69a8eee500bf745d42dd5d3b2a23894d",
+      "checker_exit_code": 1,
+      "overall_passed": false,
+      "L8_ownership_cap_failure_count": 0
+    },
+    {
+      "path": "scaffold/research/wr257-connect-composite-l8-slim-20261101/checker-evidence/merge-overlay-check-child-6a0dab48.json",
+      "source_revision": "49fdbb32920600806bfb51a010cac4767aa78223",
+      "git_blob_sha1": "758c8c445f144241f74b8930361e867f366ebbed",
+      "sha256": "e3c943aa209d0480e23f03d5157cb4fa9b4ca53aa050bd3b1dd09c5f01432c41",
+      "bytes": 2042,
+      "restore_command": "git show 49fdbb32920600806bfb51a010cac4767aa78223:scaffold/research/wr257-connect-composite-l8-slim-20261101/checker-evidence/merge-overlay-check-child-6a0dab48.json > scaffold/research/wr257-connect-composite-l8-slim-20261101/checker-evidence/merge-overlay-check-child-6a0dab48.json",
+      "kind": "merge_overlay_check_child",
+      "main_revision": "569bde0bc5792349f0833461f0bb1bb6db33c592",
+      "candidate_revision": "fd5e3c979560d2b5ff0adc489a83e65c8a945919",
+      "overlay_revision": "6a0dab48b20b204d7d11f8a6f2e14dc5ceb7ecda",
+      "overlay_tree": "52da2b41b7844786d7f53e6b95b9cb6cfd1b45a0",
+      "target_sha256": "5d31d583a69574b653a9731de2512b4f5c5009ceb6a975127df090df747f6994",
+      "checker_exit_code": 1,
+      "overall_passed": false,
+      "L8_ownership_cap_failure_count": 0
+    },
+    {
+      "path": "scaffold/research/wr257-connect-composite-l8-slim-20261101/checker-evidence/merge-overlay-check-child-82fba857.json",
+      "source_revision": "49fdbb32920600806bfb51a010cac4767aa78223",
+      "git_blob_sha1": "f4b808b47a563fef3d767d6de8988e1e093ebdb4",
+      "sha256": "f89cea229b4af32fa6c9d106ddcf17548852e94e076dc1ac710c3b6c62b2f760",
+      "bytes": 1902,
+      "restore_command": "git show 49fdbb32920600806bfb51a010cac4767aa78223:scaffold/research/wr257-connect-composite-l8-slim-20261101/checker-evidence/merge-overlay-check-child-82fba857.json > scaffold/research/wr257-connect-composite-l8-slim-20261101/checker-evidence/merge-overlay-check-child-82fba857.json",
+      "kind": "merge_overlay_check_child",
+      "main_revision": "569bde0bc5792349f0833461f0bb1bb6db33c592",
+      "candidate_revision": "b3e71b8e8bc258505e896aa49eae7156ce0e4d21",
+      "overlay_revision": "82fba8577c1a63d3eac75c3342e9cd195f2c76ec",
+      "overlay_tree": "390e71f34773163a47ef6b4aebae8d43a1401211",
+      "target_sha256": "de87cf706cad9d579ef3bdbb37a94f757c198214833f2ab32a1179d470019bb7",
+      "checker_exit_code": 1,
+      "overall_passed": false,
+      "L8_ownership_cap_failure_count": 0
+    },
+    {
+      "path": "scaffold/research/wr257-connect-composite-l8-slim-20261101/checker-evidence/merge-overlay-check-child-8d982681.json",
+      "source_revision": "49fdbb32920600806bfb51a010cac4767aa78223",
+      "git_blob_sha1": "8b7d0b76f65e6f686dcd37b00415c295344f4452",
+      "sha256": "8c7b1920638d79a52365323515e8af9eacad1a0f4bdd169a3bab4c48273a6245",
+      "bytes": 1816,
+      "restore_command": "git show 49fdbb32920600806bfb51a010cac4767aa78223:scaffold/research/wr257-connect-composite-l8-slim-20261101/checker-evidence/merge-overlay-check-child-8d982681.json > scaffold/research/wr257-connect-composite-l8-slim-20261101/checker-evidence/merge-overlay-check-child-8d982681.json",
+      "kind": "merge_overlay_check_child",
+      "main_revision": "aa124441198b3b89cbe089be3dbd46805634201d",
+      "candidate_revision": "70ca969f20830fd21e79fb2f7e5d0bccbbf0a832",
+      "overlay_revision": "8d9826818ca75422bff3b4656457d21715fd694e",
+      "overlay_tree": "ba81aecf443933b4420a317e1ecacde65b798643",
+      "target_sha256": "f21e8e6f1493420145172c337884d05423c679404e0f46179d74491ec60ac2c2",
+      "checker_exit_code": 1,
+      "overall_passed": false,
+      "L8_ownership_cap_failure_count": 0
+    },
+    {
+      "path": "scaffold/research/wr257-connect-composite-l8-slim-20261101/checker-evidence/merge-overlay-check-child-ce813755.json",
+      "source_revision": "49fdbb32920600806bfb51a010cac4767aa78223",
+      "git_blob_sha1": "aebc6f39cf66f8a77b33e6e2f225946c6d44d98a",
+      "sha256": "d710a01c746cec7624158a1599d4f72feb0223f4d27eca4c6a714fdfaffdd9d8",
+      "bytes": 2042,
+      "restore_command": "git show 49fdbb32920600806bfb51a010cac4767aa78223:scaffold/research/wr257-connect-composite-l8-slim-20261101/checker-evidence/merge-overlay-check-child-ce813755.json > scaffold/research/wr257-connect-composite-l8-slim-20261101/checker-evidence/merge-overlay-check-child-ce813755.json",
+      "kind": "merge_overlay_check_child",
+      "main_revision": "569bde0bc5792349f0833461f0bb1bb6db33c592",
+      "candidate_revision": "c4828ff2a972690ceeb65f4d57abfebec3fb9198",
+      "overlay_revision": "ce813755e5731dafb8029023f40acdecb9bcd11a",
+      "overlay_tree": "7783e17f37dfa45f9e7ae5ac89b524d6144aaf7d",
+      "target_sha256": "de87cf706cad9d579ef3bdbb37a94f757c198214833f2ab32a1179d470019bb7",
+      "checker_exit_code": 1,
+      "overall_passed": false,
+      "L8_ownership_cap_failure_count": 0
+    },
+    {
+      "path": "scaffold/research/wr257-connect-composite-l8-slim-20261101/checker-evidence/merge-overlay-check-child-e4b38392.json",
+      "source_revision": "49fdbb32920600806bfb51a010cac4767aa78223",
+      "git_blob_sha1": "ecfa3e3e394f5fa0950b2b389eb7d1c0bee8cb0a",
+      "sha256": "e9ba6865fa76ef4c421c8834e63f259c589900ec86423b1a9d72bcb579ffd55a",
+      "bytes": 2018,
+      "restore_command": "git show 49fdbb32920600806bfb51a010cac4767aa78223:scaffold/research/wr257-connect-composite-l8-slim-20261101/checker-evidence/merge-overlay-check-child-e4b38392.json > scaffold/research/wr257-connect-composite-l8-slim-20261101/checker-evidence/merge-overlay-check-child-e4b38392.json",
+      "kind": "merge_overlay_check_child",
+      "main_revision": "3c2ea6734d0038d8fd93f8bdbf090e0db6a9e09d",
+      "candidate_revision": "1f4c85f8cd59564fca840c1143f257d01039f82c",
+      "overlay_revision": "e4b38392daa4ac4a9ab504caa53981a15b49adfa",
+      "overlay_tree": "55caedcbc59d17c136f03bcb04cd738c8730766e",
+      "target_sha256": "c285ba795e1a6c5d504eec760d5459192d965c49cc1cd47fc998c8ddae9d814b",
+      "checker_exit_code": 1,
+      "overall_passed": false,
+      "L8_ownership_cap_failure_count": 0
+    },
+    {
+      "path": "scaffold/research/wr257-connect-composite-l8-slim-20261101/evidence-history/3d39410235d0.json",
+      "source_revision": "49fdbb32920600806bfb51a010cac4767aa78223",
+      "git_blob_sha1": "d97624eb40cd893fc7ccbfbebcf4dd0768c8b589",
+      "sha256": "57928a81ee4e3baaa74907ce30ffb2303655dec6045b1ba1f0e3e6f2860c6bf5",
+      "bytes": 3106,
+      "restore_command": "git show 49fdbb32920600806bfb51a010cac4767aa78223:scaffold/research/wr257-connect-composite-l8-slim-20261101/evidence-history/3d39410235d0.json > scaffold/research/wr257-connect-composite-l8-slim-20261101/evidence-history/3d39410235d0.json",
+      "kind": "evidence_history_record",
+      "recorded_source_revision": "3d39410235d08bae5e18848231e2ae1468167875",
+      "source_path": "scaffold/research/wr257-connect-composite-l8-slim-20261101/static-evidence.json",
+      "source_blob_sha256": "5c471c53f8ac488f037c22a18ca6b99f353e504e8fd01d781214c8991393fd08",
+      "source_blob_bytes": 2575,
+      "historical_artifact": {
+        "schema": "wr257-static-index-evidence.v1",
+        "evidence_kind": "scaffold",
+        "authority_effect": "none",
+        "request_id": "WR257-CONNECT-COMPOSITE-L8-SLIM",
+        "base_revision": "663b75324810a6f004668a1451de5b03acc542c3",
+        "target_path": "docs/helix-connect/L8-unit-verification/composite-edge-terminal.json",
+        "target_sha256": "540f286cc5ed7aeb7453b21f0e0b0278082f61e35bb4ff8c4839067d4935e784",
+        "target_bytes": 271965,
+        "source_pins": {
+          "docs/helix-connect/L4-basic-design/composite-edge-terminal.json": "166a7800eac7427983ccc716a2472e9017cb9510a19ade5e9f07f63c11785030",
+          "docs/helix-connect/L5-detail-design/composite-edge-terminal.json": "0f672d5d2a8abc906a0c61139359ac41f1725635b2d2a43aef8fa3b08e2f85cd",
+          "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json": "313757d63a2afdbfa2bfd7d9ceff8db0f294131e393ac360fcf96b3938635f72"
+        },
+        "inventory": {
+          "source_cases": 91,
+          "local_probes": 27,
+          "local_probe_source_reuse": 1,
+          "pure_primitive_cases": 7,
+          "typed_carrier_boundary_cases": 1,
+          "meaning": "ID inventory only; counts are not coverage or completion claims."
+        },
+        "l5_traceability": {
+          "public_functions": 4,
+          "l9_branch_u_ids": 91,
+          "failure_rules": 26,
+          "l9_oracle_witnessed_rules": 24,
+          "rules_without_l9_oracle_witness": [
+            "FN-C007-02:stop_position (U-C007-RULE-F02-08)",
+            "FN-C007-04:technical_content (U-C007-RULE-B01-01)"
+          ]
+        },
+        "checks": [
+          "all prior L8 source case IDs and order retained; exact L9 source/expected pointers and scenario basis resolve",
+          "all 27 local probe IDs, roles, source cases, patch paths and independent expected deltas match prior bytes; L4/L9 source_ref revision+pointer resolve against exact pins",
+          "1 source reuse, 7 primitive cases and 1 typed carrier boundary retain identity and intended oracle boundary",
+          "91 L9 basic branches map to unique U-IDs and exact L9 pointers; all four L5 public functions map by source refs; all 26 L5 failure rules have oracle-witnessed U-IDs or explicit derived-needed U-IDs when no witness exists",
+          "L5 has no unit_case_refs; absence is recorded without synthetic references",
+          "fixture hashes are absent from case/probe inventories; retained digests are source/authority pins",
+          "removed_materials has six required keys and names DT-VT-105 boundary"
+        ],
+        "not_established": [
+          "product test execution",
+          "runtime behavior",
+          "source/owner qualification",
+          "L7 test citation",
+          "design or implementation readiness",
+          "full mutation-family coverage"
+        ]
+      }
+    },
+    {
+      "path": "scaffold/research/wr257-connect-composite-l8-slim-20261101/evidence-history/4730e5a072b6.json",
+      "source_revision": "49fdbb32920600806bfb51a010cac4767aa78223",
+      "git_blob_sha1": "e2c1aa2355236bbd4679584ede65c82b49f50bc8",
+      "sha256": "4d4c40821943a772171fd700cb60d165316913de032a2f2331f82e2c34186c6b",
+      "bytes": 4093,
+      "restore_command": "git show 49fdbb32920600806bfb51a010cac4767aa78223:scaffold/research/wr257-connect-composite-l8-slim-20261101/evidence-history/4730e5a072b6.json > scaffold/research/wr257-connect-composite-l8-slim-20261101/evidence-history/4730e5a072b6.json",
+      "kind": "evidence_history_record",
+      "recorded_source_revision": "4730e5a072b674fe8e1e6f7e74b23107e6d54188",
+      "source_path": "scaffold/research/wr257-connect-composite-l8-slim-20261101/static-evidence.json",
+      "source_blob_sha256": "c0265178232bc15680476f88968528daf67eef07476f45dd67e38f8b472481d8",
+      "source_blob_bytes": 3548,
+      "historical_artifact": {
+        "schema": "wr257-static-index-evidence.v1",
+        "evidence_kind": "scaffold",
+        "authority_effect": "none",
+        "request_id": "WR257-CONNECT-COMPOSITE-L8-SLIM",
+        "base_revision": "663b75324810a6f004668a1451de5b03acc542c3",
+        "target_path": "docs/helix-connect/L8-unit-verification/composite-edge-terminal.json",
+        "target_sha256": "b1c52add989c3da48d76db40ff6fcfd95e59b098ccc7dfbce6195a8d8535e2e4",
+        "target_bytes": 284688,
+        "source_pins": {
+          "docs/helix-connect/L4-basic-design/composite-edge-terminal.json": "166a7800eac7427983ccc716a2472e9017cb9510a19ade5e9f07f63c11785030",
+          "docs/helix-connect/L5-detail-design/composite-edge-terminal.json": "0f672d5d2a8abc906a0c61139359ac41f1725635b2d2a43aef8fa3b08e2f85cd",
+          "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json": "313757d63a2afdbfa2bfd7d9ceff8db0f294131e393ac360fcf96b3938635f72"
+        },
+        "traceability_source_pins": {
+          "docs/helix-connect/L3-requirements/functional-requirements.json": "fb04683632d92e5c51c46fdc2eecf388a58e406856f243b8105513e075a49421",
+          "docs/helix-connect/L10-verification/functional-verification.json": "8728cf7c2730a29375f3c7dad75c77157a119d603e52b46f775ede8f1eae474d",
+          "docs/helix-connect/L3-requirements/business-requirements.json": "29ca195ff54d61f422050f28740c2cf887defaf21a3ad7da4c37f3ef797bd0ed",
+          "docs/helix-connect/L10-verification/business-verification.json": "b01cdbd03885b523254aba339bd166ad235382402942527e4e7844825ea05fcd",
+          "docs/helix-connect/L4-basic-design/composite-edge-terminal.json": "166a7800eac7427983ccc716a2472e9017cb9510a19ade5e9f07f63c11785030",
+          "docs/helix-connect/L5-detail-design/composite-edge-terminal.json": "0f672d5d2a8abc906a0c61139359ac41f1725635b2d2a43aef8fa3b08e2f85cd",
+          "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json": "313757d63a2afdbfa2bfd7d9ceff8db0f294131e393ac360fcf96b3938635f72"
+        },
+        "inventory": {
+          "source_cases": 91,
+          "local_probes": 27,
+          "local_probe_source_reuse": 1,
+          "pure_primitive_cases": 7,
+          "typed_carrier_boundary_cases": 1,
+          "meaning": "ID inventory only; counts are not coverage or completion claims."
+        },
+        "l5_traceability": {
+          "public_functions": 4,
+          "l9_branch_u_ids": 91,
+          "predeclared_local_probe_u_ids": 27,
+          "failure_rules": 26,
+          "covered_failure_rules": 26,
+          "uncovered_failure_rules": []
+        },
+        "checks": [
+          "all prior L8 source case IDs and order retained; exact L9 source/expected pointers and scenario basis resolve",
+          "all 27 local probe IDs, roles, source cases, patch paths and independent expected deltas match prior bytes; L4/L9 source_ref revision+pointer resolve against exact pins",
+          "1 source reuse, 7 primitive cases and 1 typed carrier boundary retain identity and intended oracle boundary",
+          "91 L9 branches and 27 predeclared local probes carry U-IDs without changing the 127 declaration count; all four L5 public functions map by exact source refs; all 26 L5 failure rules are covered by fixed L9 oracle branches and/or predeclared local expected deltas",
+          "L5 has no unit_case_refs; absence is recorded without synthetic references",
+          "fixture hashes are absent from case/probe inventories; retained digests are source/authority pins",
+          "removed_materials has six required keys and names DT-VT-105 boundary"
+        ],
+        "not_established": [
+          "product test execution",
+          "runtime behavior",
+          "source/owner qualification",
+          "L7 test citation",
+          "design or implementation readiness",
+          "full mutation-family coverage"
+        ]
+      }
+    },
+    {
+      "path": "scaffold/research/wr257-connect-composite-l8-slim-20261101/evidence-history/59a5371cab86.json",
+      "source_revision": "49fdbb32920600806bfb51a010cac4767aa78223",
+      "git_blob_sha1": "10884615338d74d63f44d9fde2a4bcffd27da134",
+      "sha256": "325fd5425fa87ffcf6acc565084f04f1437b99f32869274d91922508c2bfb981",
+      "bytes": 4327,
+      "restore_command": "git show 49fdbb32920600806bfb51a010cac4767aa78223:scaffold/research/wr257-connect-composite-l8-slim-20261101/evidence-history/59a5371cab86.json > scaffold/research/wr257-connect-composite-l8-slim-20261101/evidence-history/59a5371cab86.json",
+      "kind": "evidence_history_record",
+      "recorded_source_revision": "59a5371cab86ece0d68d82a8490454b030481b9d",
+      "source_path": "scaffold/research/wr257-connect-composite-l8-slim-20261101/static-evidence.json",
+      "source_blob_sha256": "b1ae2acecc959bc5986be6717cfdf64a9164223fa5b73cd7838c75cbbbc62a7d",
+      "source_blob_bytes": 3772,
+      "historical_artifact": {
+        "schema": "wr257-static-index-evidence.v1",
+        "evidence_kind": "scaffold",
+        "authority_effect": "none",
+        "request_id": "WR257-CONNECT-COMPOSITE-L8-SLIM",
+        "base_revision": "663b75324810a6f004668a1451de5b03acc542c3",
+        "target_path": "docs/helix-connect/L8-unit-verification/composite-edge-terminal.json",
+        "target_sha256": "715d77639a43e62300ff2182f54f606f5b44b408284f6e0cae13f2d0b9bce4d9",
+        "target_bytes": 340192,
+        "source_pins": {
+          "docs/helix-connect/L4-basic-design/composite-edge-terminal.json": "166a7800eac7427983ccc716a2472e9017cb9510a19ade5e9f07f63c11785030",
+          "docs/helix-connect/L5-detail-design/composite-edge-terminal.json": "0f672d5d2a8abc906a0c61139359ac41f1725635b2d2a43aef8fa3b08e2f85cd",
+          "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json": "313757d63a2afdbfa2bfd7d9ceff8db0f294131e393ac360fcf96b3938635f72"
+        },
+        "traceability_source_pins": {
+          "docs/helix-connect/L3-requirements/functional-requirements.json": "fb04683632d92e5c51c46fdc2eecf388a58e406856f243b8105513e075a49421",
+          "docs/helix-connect/L10-verification/functional-verification.json": "8728cf7c2730a29375f3c7dad75c77157a119d603e52b46f775ede8f1eae474d",
+          "docs/helix-connect/L3-requirements/business-requirements.json": "29ca195ff54d61f422050f28740c2cf887defaf21a3ad7da4c37f3ef797bd0ed",
+          "docs/helix-connect/L10-verification/business-verification.json": "b01cdbd03885b523254aba339bd166ad235382402942527e4e7844825ea05fcd",
+          "docs/helix-connect/L4-basic-design/composite-edge-terminal.json": "166a7800eac7427983ccc716a2472e9017cb9510a19ade5e9f07f63c11785030",
+          "docs/helix-connect/L5-detail-design/composite-edge-terminal.json": "0f672d5d2a8abc906a0c61139359ac41f1725635b2d2a43aef8fa3b08e2f85cd",
+          "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json": "313757d63a2afdbfa2bfd7d9ceff8db0f294131e393ac360fcf96b3938635f72"
+        },
+        "inventory": {
+          "source_cases": 91,
+          "local_probes": 27,
+          "local_probe_source_reuse": 1,
+          "pure_primitive_cases": 7,
+          "typed_carrier_boundary_cases": 1,
+          "meaning": "ID inventory only; counts are not coverage or completion claims."
+        },
+        "l5_traceability": {
+          "public_functions": 4,
+          "l9_branch_u_ids": 91,
+          "predeclared_local_probe_u_ids": 27,
+          "failure_rules": 26,
+          "covered_failure_rules": 26,
+          "case_expected_classes": {
+            "normal": 3,
+            "negative": 88
+          },
+          "uncovered_failure_rules": []
+        },
+        "checks": [
+          "all prior L8 source case IDs and order retained; exact L9 source/expected pointers and scenario basis resolve",
+          "all 27 local probe IDs, roles, source cases, patch paths and independent expected deltas match prior bytes; L4/L9 source_ref revision+pointer resolve against exact pins",
+          "1 source reuse, 7 primitive cases and 1 typed carrier boundary retain identity and intended oracle boundary",
+          "91 L9 branches and 27 predeclared local probes carry U-IDs without changing the 127 declaration count; each branch row has a short L5-derived expected decision, L5 citation, normal/negative class, and unverified state (3 normal, 88 negative)",
+          "all four L5 public functions map by exact source refs; all 26 L5 failure rules are covered by fixed L9 oracle branches and/or predeclared local expected deltas",
+          "L5 has no unit_case_refs; absence is recorded without synthetic references",
+          "fixture hashes are absent from case/probe inventories; retained digests are source/authority pins",
+          "removed_materials has six required keys and names DT-VT-105 boundary"
+        ],
+        "not_established": [
+          "product test execution",
+          "runtime behavior",
+          "source/owner qualification",
+          "L7 test citation",
+          "design or implementation readiness",
+          "full mutation-family coverage"
+        ]
+      }
+    }
+  ]
+}

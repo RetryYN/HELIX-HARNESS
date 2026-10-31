@@ -229,10 +229,8 @@
     {
       "id": "C007-F01-FOUR-MECHANISMS-THREE-DISTINCT-EDGES",
       "requirement_ref": "HELIXCONNECT-L3-007-F01",
-      "l3_ref": "HELIXCONNECT-L3-007-F01",
       "l4_ref": "HELIXCONNECT-L4-007-F01",
       "l9_ref": "HELIXCONNECT-L9-007-F01",
-      "l10_ref": "HELIXCONNECT-L10-007-F01",
       "system_oracle_ref": "HELIXCONNECT-L10-007-F01",
       "function_ref": "FN-C007-01",
       "source_packet_ref": {
@@ -247,7 +245,6 @@
       "qualification": "synthetic_fixture_only",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-001",
-      "l5_function_ref": "FN-C007-01",
       "l5_failure_rule_refs": [],
       "expected": {
         "scenario_class": "normal",
@@ -268,10 +265,8 @@
     {
       "id": "C007-F01-ORIGINAL-RECEIPT-EDGE-1-MISSING",
       "requirement_ref": "HELIXCONNECT-L3-007-F01",
-      "l3_ref": "HELIXCONNECT-L3-007-F01",
       "l4_ref": "HELIXCONNECT-L4-007-F01",
       "l9_ref": "HELIXCONNECT-L9-007-F01",
-      "l10_ref": "HELIXCONNECT-L10-007-F01",
       "system_oracle_ref": "HELIXCONNECT-L10-007-F01",
       "function_ref": "FN-C007-01",
       "source_packet_ref": {
@@ -286,7 +281,6 @@
       "qualification": "synthetic_fixture_only",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-002",
-      "l5_function_ref": "FN-C007-01",
       "l5_failure_rule_refs": [
         "F01:receipt_cardinality_original",
         "F01:receipt_cardinality_submitted",
@@ -319,10 +313,8 @@
     {
       "id": "C007-F01-ORIGINAL-RECEIPT-EDGE-2-MISSING",
       "requirement_ref": "HELIXCONNECT-L3-007-F01",
-      "l3_ref": "HELIXCONNECT-L3-007-F01",
       "l4_ref": "HELIXCONNECT-L4-007-F01",
       "l9_ref": "HELIXCONNECT-L9-007-F01",
-      "l10_ref": "HELIXCONNECT-L10-007-F01",
       "system_oracle_ref": "HELIXCONNECT-L10-007-F01",
       "function_ref": "FN-C007-01",
       "source_packet_ref": {
@@ -337,7 +329,6 @@
       "qualification": "synthetic_fixture_only",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-003",
-      "l5_function_ref": "FN-C007-01",
       "l5_failure_rule_refs": [
         "F01:receipt_cardinality_original",
         "F01:receipt_cardinality_submitted",
@@ -370,10 +361,8 @@
     {
       "id": "C007-F01-ORIGINAL-RECEIPT-EDGE-3-MISSING",
       "requirement_ref": "HELIXCONNECT-L3-007-F01",
-      "l3_ref": "HELIXCONNECT-L3-007-F01",
       "l4_ref": "HELIXCONNECT-L4-007-F01",
       "l9_ref": "HELIXCONNECT-L9-007-F01",
-      "l10_ref": "HELIXCONNECT-L10-007-F01",
       "system_oracle_ref": "HELIXCONNECT-L10-007-F01",
       "function_ref": "FN-C007-01",
       "source_packet_ref": {
@@ -388,7 +377,6 @@
       "qualification": "synthetic_fixture_only",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-004",
-      "l5_function_ref": "FN-C007-01",
       "l5_failure_rule_refs": [
         "F01:receipt_cardinality_original",
         "F01:receipt_cardinality_submitted",
@@ -421,10 +409,8 @@
     {
       "id": "C007-F01-RECEIPT-TARGET-CONNECTION_IDENTITY-FOREIGN",
       "requirement_ref": "HELIXCONNECT-L3-007-F01",
-      "l3_ref": "HELIXCONNECT-L3-007-F01",
       "l4_ref": "HELIXCONNECT-L4-007-F01",
       "l9_ref": "HELIXCONNECT-L9-007-F01",
-      "l10_ref": "HELIXCONNECT-L10-007-F01",
       "system_oracle_ref": "HELIXCONNECT-L10-007-F01",
       "function_ref": "FN-C007-01",
       "source_packet_ref": {
@@ -439,7 +425,6 @@
       "qualification": "synthetic_fixture_only",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-005",
-      "l5_function_ref": "FN-C007-01",
       "l5_failure_rule_refs": [
         "F01:edge_target"
       ],
@@ -462,10 +447,8 @@
     {
       "id": "C007-F01-RECEIPT-TARGET-CONTRACT_REVISION-FOREIGN",
       "requirement_ref": "HELIXCONNECT-L3-007-F01",
-      "l3_ref": "HELIXCONNECT-L3-007-F01",
       "l4_ref": "HELIXCONNECT-L4-007-F01",
       "l9_ref": "HELIXCONNECT-L9-007-F01",
-      "l10_ref": "HELIXCONNECT-L10-007-F01",
       "system_oracle_ref": "HELIXCONNECT-L10-007-F01",
       "function_ref": "FN-C007-01",
       "source_packet_ref": {
@@ -480,7 +463,6 @@
       "qualification": "synthetic_fixture_only",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-006",
-      "l5_function_ref": "FN-C007-01",
       "l5_failure_rule_refs": [
         "F01:edge_target"
       ],
@@ -503,10 +485,8 @@
     {
       "id": "C007-F01-RECEIPT-TARGET-ABILITY_REF-FOREIGN",
       "requirement_ref": "HELIXCONNECT-L3-007-F01",
-      "l3_ref": "HELIXCONNECT-L3-007-F01",
       "l4_ref": "HELIXCONNECT-L4-007-F01",
       "l9_ref": "HELIXCONNECT-L9-007-F01",
-      "l10_ref": "HELIXCONNECT-L10-007-F01",
       "system_oracle_ref": "HELIXCONNECT-L10-007-F01",
       "function_ref": "FN-C007-01",
       "source_packet_ref": {
@@ -521,7 +501,6 @@
       "qualification": "synthetic_fixture_only",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-007",
-      "l5_function_ref": "FN-C007-01",
       "l5_failure_rule_refs": [
         "F01:edge_target"
       ],
@@ -544,10 +523,8 @@
     {
       "id": "C007-F01-RECEIPT-TARGET-SCOPE-FOREIGN",
       "requirement_ref": "HELIXCONNECT-L3-007-F01",
-      "l3_ref": "HELIXCONNECT-L3-007-F01",
       "l4_ref": "HELIXCONNECT-L4-007-F01",
       "l9_ref": "HELIXCONNECT-L9-007-F01",
-      "l10_ref": "HELIXCONNECT-L10-007-F01",
       "system_oracle_ref": "HELIXCONNECT-L10-007-F01",
       "function_ref": "FN-C007-01",
       "source_packet_ref": {
@@ -562,7 +539,6 @@
       "qualification": "synthetic_fixture_only",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-008",
-      "l5_function_ref": "FN-C007-01",
       "l5_failure_rule_refs": [
         "F01:edge_target"
       ],
@@ -585,10 +561,8 @@
     {
       "id": "C007-F01-RECEIPT-TARGET-OPERATION_IDENTITY-FOREIGN",
       "requirement_ref": "HELIXCONNECT-L3-007-F01",
-      "l3_ref": "HELIXCONNECT-L3-007-F01",
       "l4_ref": "HELIXCONNECT-L4-007-F01",
       "l9_ref": "HELIXCONNECT-L9-007-F01",
-      "l10_ref": "HELIXCONNECT-L10-007-F01",
       "system_oracle_ref": "HELIXCONNECT-L10-007-F01",
       "function_ref": "FN-C007-01",
       "source_packet_ref": {
@@ -603,7 +577,6 @@
       "qualification": "synthetic_fixture_only",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-009",
-      "l5_function_ref": "FN-C007-01",
       "l5_failure_rule_refs": [
         "F01:edge_target"
       ],
@@ -626,10 +599,8 @@
     {
       "id": "C007-F01-RECEIPT-TARGET-ATTEMPT_IDENTITY-FOREIGN",
       "requirement_ref": "HELIXCONNECT-L3-007-F01",
-      "l3_ref": "HELIXCONNECT-L3-007-F01",
       "l4_ref": "HELIXCONNECT-L4-007-F01",
       "l9_ref": "HELIXCONNECT-L9-007-F01",
-      "l10_ref": "HELIXCONNECT-L10-007-F01",
       "system_oracle_ref": "HELIXCONNECT-L10-007-F01",
       "function_ref": "FN-C007-01",
       "source_packet_ref": {
@@ -644,7 +615,6 @@
       "qualification": "synthetic_fixture_only",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-010",
-      "l5_function_ref": "FN-C007-01",
       "l5_failure_rule_refs": [
         "F01:edge_target"
       ],
@@ -667,10 +637,8 @@
     {
       "id": "C007-F01-RECEIPT-TARGET-CORRELATION-FOREIGN",
       "requirement_ref": "HELIXCONNECT-L3-007-F01",
-      "l3_ref": "HELIXCONNECT-L3-007-F01",
       "l4_ref": "HELIXCONNECT-L4-007-F01",
       "l9_ref": "HELIXCONNECT-L9-007-F01",
-      "l10_ref": "HELIXCONNECT-L10-007-F01",
       "system_oracle_ref": "HELIXCONNECT-L10-007-F01",
       "function_ref": "FN-C007-01",
       "source_packet_ref": {
@@ -685,7 +653,6 @@
       "qualification": "synthetic_fixture_only",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-011",
-      "l5_function_ref": "FN-C007-01",
       "l5_failure_rule_refs": [
         "F01:edge_target"
       ],
@@ -708,10 +675,8 @@
     {
       "id": "C007-F01-RECEIPT-TARGET-EXPIRY_REF-FOREIGN",
       "requirement_ref": "HELIXCONNECT-L3-007-F01",
-      "l3_ref": "HELIXCONNECT-L3-007-F01",
       "l4_ref": "HELIXCONNECT-L4-007-F01",
       "l9_ref": "HELIXCONNECT-L9-007-F01",
-      "l10_ref": "HELIXCONNECT-L10-007-F01",
       "system_oracle_ref": "HELIXCONNECT-L10-007-F01",
       "function_ref": "FN-C007-01",
       "source_packet_ref": {
@@ -726,7 +691,6 @@
       "qualification": "synthetic_fixture_only",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-012",
-      "l5_function_ref": "FN-C007-01",
       "l5_failure_rule_refs": [
         "F01:edge_target"
       ],
@@ -749,10 +713,8 @@
     {
       "id": "C007-F01-RECEIPT-TARGET-PERMISSION_REF-FOREIGN",
       "requirement_ref": "HELIXCONNECT-L3-007-F01",
-      "l3_ref": "HELIXCONNECT-L3-007-F01",
       "l4_ref": "HELIXCONNECT-L4-007-F01",
       "l9_ref": "HELIXCONNECT-L9-007-F01",
-      "l10_ref": "HELIXCONNECT-L10-007-F01",
       "system_oracle_ref": "HELIXCONNECT-L10-007-F01",
       "function_ref": "FN-C007-01",
       "source_packet_ref": {
@@ -767,7 +729,6 @@
       "qualification": "synthetic_fixture_only",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-013",
-      "l5_function_ref": "FN-C007-01",
       "l5_failure_rule_refs": [
         "F01:edge_target"
       ],
@@ -790,10 +751,8 @@
     {
       "id": "C007-F01-RECEIPT-TARGET-IDEMPOTENCY-FOREIGN",
       "requirement_ref": "HELIXCONNECT-L3-007-F01",
-      "l3_ref": "HELIXCONNECT-L3-007-F01",
       "l4_ref": "HELIXCONNECT-L4-007-F01",
       "l9_ref": "HELIXCONNECT-L9-007-F01",
-      "l10_ref": "HELIXCONNECT-L10-007-F01",
       "system_oracle_ref": "HELIXCONNECT-L10-007-F01",
       "function_ref": "FN-C007-01",
       "source_packet_ref": {
@@ -808,7 +767,6 @@
       "qualification": "synthetic_fixture_only",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-014",
-      "l5_function_ref": "FN-C007-01",
       "l5_failure_rule_refs": [
         "F01:edge_target"
       ],
@@ -831,10 +789,8 @@
     {
       "id": "C007-F01-RECEIPT-TARGET-CONTENT_DIGEST-FOREIGN",
       "requirement_ref": "HELIXCONNECT-L3-007-F01",
-      "l3_ref": "HELIXCONNECT-L3-007-F01",
       "l4_ref": "HELIXCONNECT-L4-007-F01",
       "l9_ref": "HELIXCONNECT-L9-007-F01",
-      "l10_ref": "HELIXCONNECT-L10-007-F01",
       "system_oracle_ref": "HELIXCONNECT-L10-007-F01",
       "function_ref": "FN-C007-01",
       "source_packet_ref": {
@@ -849,7 +805,6 @@
       "qualification": "synthetic_fixture_only",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-015",
-      "l5_function_ref": "FN-C007-01",
       "l5_failure_rule_refs": [
         "F01:edge_target"
       ],
@@ -872,10 +827,8 @@
     {
       "id": "C007-F01-RECEIPT-TARGET-REGISTRATION_REVISION-FOREIGN",
       "requirement_ref": "HELIXCONNECT-L3-007-F01",
-      "l3_ref": "HELIXCONNECT-L3-007-F01",
       "l4_ref": "HELIXCONNECT-L4-007-F01",
       "l9_ref": "HELIXCONNECT-L9-007-F01",
-      "l10_ref": "HELIXCONNECT-L10-007-F01",
       "system_oracle_ref": "HELIXCONNECT-L10-007-F01",
       "function_ref": "FN-C007-01",
       "source_packet_ref": {
@@ -890,7 +843,6 @@
       "qualification": "synthetic_fixture_only",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-016",
-      "l5_function_ref": "FN-C007-01",
       "l5_failure_rule_refs": [
         "F01:edge_target"
       ],
@@ -913,10 +865,8 @@
     {
       "id": "C007-F01-RECEIPT-TARGET-RECOVERY_REF-FOREIGN",
       "requirement_ref": "HELIXCONNECT-L3-007-F01",
-      "l3_ref": "HELIXCONNECT-L3-007-F01",
       "l4_ref": "HELIXCONNECT-L4-007-F01",
       "l9_ref": "HELIXCONNECT-L9-007-F01",
-      "l10_ref": "HELIXCONNECT-L10-007-F01",
       "system_oracle_ref": "HELIXCONNECT-L10-007-F01",
       "function_ref": "FN-C007-01",
       "source_packet_ref": {
@@ -931,7 +881,6 @@
       "qualification": "synthetic_fixture_only",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-017",
-      "l5_function_ref": "FN-C007-01",
       "l5_failure_rule_refs": [
         "F01:edge_target"
       ],
@@ -954,10 +903,8 @@
     {
       "id": "C007-F01-RECEIPT-COMPOSITE-IDENTITY-FOREIGN",
       "requirement_ref": "HELIXCONNECT-L3-007-F01",
-      "l3_ref": "HELIXCONNECT-L3-007-F01",
       "l4_ref": "HELIXCONNECT-L4-007-F01",
       "l9_ref": "HELIXCONNECT-L9-007-F01",
-      "l10_ref": "HELIXCONNECT-L10-007-F01",
       "system_oracle_ref": "HELIXCONNECT-L10-007-F01",
       "function_ref": "FN-C007-01",
       "source_packet_ref": {
@@ -972,7 +919,6 @@
       "qualification": "synthetic_fixture_only",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-018",
-      "l5_function_ref": "FN-C007-01",
       "l5_failure_rule_refs": [
         "F01:composite_target"
       ],
@@ -995,10 +941,8 @@
     {
       "id": "C007-F01-RECEIPT-COMPOSITE-REVISION-FOREIGN",
       "requirement_ref": "HELIXCONNECT-L3-007-F01",
-      "l3_ref": "HELIXCONNECT-L3-007-F01",
       "l4_ref": "HELIXCONNECT-L4-007-F01",
       "l9_ref": "HELIXCONNECT-L9-007-F01",
-      "l10_ref": "HELIXCONNECT-L10-007-F01",
       "system_oracle_ref": "HELIXCONNECT-L10-007-F01",
       "function_ref": "FN-C007-01",
       "source_packet_ref": {
@@ -1013,7 +957,6 @@
       "qualification": "synthetic_fixture_only",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-019",
-      "l5_function_ref": "FN-C007-01",
       "l5_failure_rule_refs": [
         "F01:composite_target"
       ],
@@ -1036,10 +979,8 @@
     {
       "id": "C007-F01-RECEIPT-COMPOSITE-SCOPE-FOREIGN",
       "requirement_ref": "HELIXCONNECT-L3-007-F01",
-      "l3_ref": "HELIXCONNECT-L3-007-F01",
       "l4_ref": "HELIXCONNECT-L4-007-F01",
       "l9_ref": "HELIXCONNECT-L9-007-F01",
-      "l10_ref": "HELIXCONNECT-L10-007-F01",
       "system_oracle_ref": "HELIXCONNECT-L10-007-F01",
       "function_ref": "FN-C007-01",
       "source_packet_ref": {
@@ -1054,7 +995,6 @@
       "qualification": "synthetic_fixture_only",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-020",
-      "l5_function_ref": "FN-C007-01",
       "l5_failure_rule_refs": [
         "F01:composite_target"
       ],
@@ -1077,10 +1017,8 @@
     {
       "id": "C007-F01-RECEIPT-COMPOSITE-REQUIREMENT_REVISION-FOREIGN",
       "requirement_ref": "HELIXCONNECT-L3-007-F01",
-      "l3_ref": "HELIXCONNECT-L3-007-F01",
       "l4_ref": "HELIXCONNECT-L4-007-F01",
       "l9_ref": "HELIXCONNECT-L9-007-F01",
-      "l10_ref": "HELIXCONNECT-L10-007-F01",
       "system_oracle_ref": "HELIXCONNECT-L10-007-F01",
       "function_ref": "FN-C007-01",
       "source_packet_ref": {
@@ -1095,7 +1033,6 @@
       "qualification": "synthetic_fixture_only",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-021",
-      "l5_function_ref": "FN-C007-01",
       "l5_failure_rule_refs": [
         "F01:composite_target"
       ],
@@ -1118,10 +1055,8 @@
     {
       "id": "C007-F01-RECEIPT-COMPOSITE-CORRELATION-FOREIGN",
       "requirement_ref": "HELIXCONNECT-L3-007-F01",
-      "l3_ref": "HELIXCONNECT-L3-007-F01",
       "l4_ref": "HELIXCONNECT-L4-007-F01",
       "l9_ref": "HELIXCONNECT-L9-007-F01",
-      "l10_ref": "HELIXCONNECT-L10-007-F01",
       "system_oracle_ref": "HELIXCONNECT-L10-007-F01",
       "function_ref": "FN-C007-01",
       "source_packet_ref": {
@@ -1136,7 +1071,6 @@
       "qualification": "synthetic_fixture_only",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-022",
-      "l5_function_ref": "FN-C007-01",
       "l5_failure_rule_refs": [
         "F01:composite_target"
       ],
@@ -1159,10 +1093,8 @@
     {
       "id": "C007-F01-RECEIPT-COMPOSITE-OWNER-FOREIGN",
       "requirement_ref": "HELIXCONNECT-L3-007-F01",
-      "l3_ref": "HELIXCONNECT-L3-007-F01",
       "l4_ref": "HELIXCONNECT-L4-007-F01",
       "l9_ref": "HELIXCONNECT-L9-007-F01",
-      "l10_ref": "HELIXCONNECT-L10-007-F01",
       "system_oracle_ref": "HELIXCONNECT-L10-007-F01",
       "function_ref": "FN-C007-01",
       "source_packet_ref": {
@@ -1177,7 +1109,6 @@
       "qualification": "synthetic_fixture_only",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-023",
-      "l5_function_ref": "FN-C007-01",
       "l5_failure_rule_refs": [
         "F01:composite_target"
       ],
@@ -1200,10 +1131,8 @@
     {
       "id": "C007-F01-ORIGINAL-REGISTRATION_STATE-UNKNOWN",
       "requirement_ref": "HELIXCONNECT-L3-007-F01",
-      "l3_ref": "HELIXCONNECT-L3-007-F01",
       "l4_ref": "HELIXCONNECT-L4-007-F01",
       "l9_ref": "HELIXCONNECT-L9-007-F01",
-      "l10_ref": "HELIXCONNECT-L10-007-F01",
       "system_oracle_ref": "HELIXCONNECT-L10-007-F01",
       "function_ref": "FN-C007-01",
       "source_packet_ref": {
@@ -1218,7 +1147,6 @@
       "qualification": "synthetic_fixture_only",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-024",
-      "l5_function_ref": "FN-C007-01",
       "l5_failure_rule_refs": [
         "F01:edge_conditions"
       ],
@@ -1241,10 +1169,8 @@
     {
       "id": "C007-F01-ORIGINAL-COMPATIBILITY_STATE-STALE",
       "requirement_ref": "HELIXCONNECT-L3-007-F01",
-      "l3_ref": "HELIXCONNECT-L3-007-F01",
       "l4_ref": "HELIXCONNECT-L4-007-F01",
       "l9_ref": "HELIXCONNECT-L9-007-F01",
-      "l10_ref": "HELIXCONNECT-L10-007-F01",
       "system_oracle_ref": "HELIXCONNECT-L10-007-F01",
       "function_ref": "FN-C007-01",
       "source_packet_ref": {
@@ -1259,7 +1185,6 @@
       "qualification": "synthetic_fixture_only",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-025",
-      "l5_function_ref": "FN-C007-01",
       "l5_failure_rule_refs": [
         "F01:edge_conditions"
       ],
@@ -1282,10 +1207,8 @@
     {
       "id": "C007-F01-ORIGINAL-EXPIRY_STATE-EXPIRED",
       "requirement_ref": "HELIXCONNECT-L3-007-F01",
-      "l3_ref": "HELIXCONNECT-L3-007-F01",
       "l4_ref": "HELIXCONNECT-L4-007-F01",
       "l9_ref": "HELIXCONNECT-L9-007-F01",
-      "l10_ref": "HELIXCONNECT-L10-007-F01",
       "system_oracle_ref": "HELIXCONNECT-L10-007-F01",
       "function_ref": "FN-C007-01",
       "source_packet_ref": {
@@ -1300,7 +1223,6 @@
       "qualification": "synthetic_fixture_only",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-026",
-      "l5_function_ref": "FN-C007-01",
       "l5_failure_rule_refs": [
         "F01:edge_conditions"
       ],
@@ -1323,10 +1245,8 @@
     {
       "id": "C007-F01-ORIGINAL-PERMISSION_STATE-REVOKED",
       "requirement_ref": "HELIXCONNECT-L3-007-F01",
-      "l3_ref": "HELIXCONNECT-L3-007-F01",
       "l4_ref": "HELIXCONNECT-L4-007-F01",
       "l9_ref": "HELIXCONNECT-L9-007-F01",
-      "l10_ref": "HELIXCONNECT-L10-007-F01",
       "system_oracle_ref": "HELIXCONNECT-L10-007-F01",
       "function_ref": "FN-C007-01",
       "source_packet_ref": {
@@ -1341,7 +1261,6 @@
       "qualification": "synthetic_fixture_only",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-027",
-      "l5_function_ref": "FN-C007-01",
       "l5_failure_rule_refs": [
         "F01:edge_conditions"
       ],
@@ -1364,10 +1283,8 @@
     {
       "id": "C007-F01-ORIGINAL-RESULT_STATE-PARTIAL_SUCCESS",
       "requirement_ref": "HELIXCONNECT-L3-007-F01",
-      "l3_ref": "HELIXCONNECT-L3-007-F01",
       "l4_ref": "HELIXCONNECT-L4-007-F01",
       "l9_ref": "HELIXCONNECT-L9-007-F01",
-      "l10_ref": "HELIXCONNECT-L10-007-F01",
       "system_oracle_ref": "HELIXCONNECT-L10-007-F01",
       "function_ref": "FN-C007-01",
       "source_packet_ref": {
@@ -1382,7 +1299,6 @@
       "qualification": "synthetic_fixture_only",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-028",
-      "l5_function_ref": "FN-C007-01",
       "l5_failure_rule_refs": [
         "F01:edge_conditions"
       ],
@@ -1405,10 +1321,8 @@
     {
       "id": "C007-F01-ORIGINAL-RECEIVER_EFFECT_STATE-NOT_OBSERVED",
       "requirement_ref": "HELIXCONNECT-L3-007-F01",
-      "l3_ref": "HELIXCONNECT-L3-007-F01",
       "l4_ref": "HELIXCONNECT-L4-007-F01",
       "l9_ref": "HELIXCONNECT-L9-007-F01",
-      "l10_ref": "HELIXCONNECT-L10-007-F01",
       "system_oracle_ref": "HELIXCONNECT-L10-007-F01",
       "function_ref": "FN-C007-01",
       "source_packet_ref": {
@@ -1423,7 +1337,6 @@
       "qualification": "synthetic_fixture_only",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-029",
-      "l5_function_ref": "FN-C007-01",
       "l5_failure_rule_refs": [
         "F01:edge_conditions"
       ],
@@ -1446,10 +1359,8 @@
     {
       "id": "C007-F01-ORIGINAL-EDGE-DEFINITION-MISSING",
       "requirement_ref": "HELIXCONNECT-L3-007-F01",
-      "l3_ref": "HELIXCONNECT-L3-007-F01",
       "l4_ref": "HELIXCONNECT-L4-007-F01",
       "l9_ref": "HELIXCONNECT-L9-007-F01",
-      "l10_ref": "HELIXCONNECT-L10-007-F01",
       "system_oracle_ref": "HELIXCONNECT-L10-007-F01",
       "function_ref": "FN-C007-01",
       "source_packet_ref": {
@@ -1464,7 +1375,6 @@
       "qualification": "synthetic_fixture_only",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-030",
-      "l5_function_ref": "FN-C007-01",
       "l5_failure_rule_refs": [
         "F01:required_edge_set",
         "F01:operation_mapping",
@@ -1491,10 +1401,8 @@
     {
       "id": "C007-F01-SUBMITTED-EDGE-ORDER-REVERSED",
       "requirement_ref": "HELIXCONNECT-L3-007-F01",
-      "l3_ref": "HELIXCONNECT-L3-007-F01",
       "l4_ref": "HELIXCONNECT-L4-007-F01",
       "l9_ref": "HELIXCONNECT-L9-007-F01",
-      "l10_ref": "HELIXCONNECT-L10-007-F01",
       "system_oracle_ref": "HELIXCONNECT-L10-007-F01",
       "function_ref": "FN-C007-01",
       "source_packet_ref": {
@@ -1509,7 +1417,6 @@
       "qualification": "synthetic_fixture_only",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-031",
-      "l5_function_ref": "FN-C007-01",
       "l5_failure_rule_refs": [
         "F01:edge_definition"
       ],
@@ -1532,10 +1439,8 @@
     {
       "id": "C007-F01-ORIGINAL-MAPPING-SOURCE_OPERATION-UNKNOWN",
       "requirement_ref": "HELIXCONNECT-L3-007-F01",
-      "l3_ref": "HELIXCONNECT-L3-007-F01",
       "l4_ref": "HELIXCONNECT-L4-007-F01",
       "l9_ref": "HELIXCONNECT-L9-007-F01",
-      "l10_ref": "HELIXCONNECT-L10-007-F01",
       "system_oracle_ref": "HELIXCONNECT-L10-007-F01",
       "function_ref": "FN-C007-01",
       "source_packet_ref": {
@@ -1550,7 +1455,6 @@
       "qualification": "synthetic_fixture_only",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-032",
-      "l5_function_ref": "FN-C007-01",
       "l5_failure_rule_refs": [
         "F01:edge_target",
         "F01:operation_mapping"
@@ -1575,10 +1479,8 @@
     {
       "id": "C007-F01-ORIGINAL-MAPPING-SOURCE_OPERATION-FOREIGN",
       "requirement_ref": "HELIXCONNECT-L3-007-F01",
-      "l3_ref": "HELIXCONNECT-L3-007-F01",
       "l4_ref": "HELIXCONNECT-L4-007-F01",
       "l9_ref": "HELIXCONNECT-L9-007-F01",
-      "l10_ref": "HELIXCONNECT-L10-007-F01",
       "system_oracle_ref": "HELIXCONNECT-L10-007-F01",
       "function_ref": "FN-C007-01",
       "source_packet_ref": {
@@ -1593,7 +1495,6 @@
       "qualification": "synthetic_fixture_only",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-033",
-      "l5_function_ref": "FN-C007-01",
       "l5_failure_rule_refs": [
         "F01:operation_mapping"
       ],
@@ -1616,10 +1517,8 @@
     {
       "id": "C007-F01-ORIGINAL-MAPPING-SOURCE_ENDPOINT-FOREIGN",
       "requirement_ref": "HELIXCONNECT-L3-007-F01",
-      "l3_ref": "HELIXCONNECT-L3-007-F01",
       "l4_ref": "HELIXCONNECT-L4-007-F01",
       "l9_ref": "HELIXCONNECT-L9-007-F01",
-      "l10_ref": "HELIXCONNECT-L10-007-F01",
       "system_oracle_ref": "HELIXCONNECT-L10-007-F01",
       "function_ref": "FN-C007-01",
       "source_packet_ref": {
@@ -1634,7 +1533,6 @@
       "qualification": "synthetic_fixture_only",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-034",
-      "l5_function_ref": "FN-C007-01",
       "l5_failure_rule_refs": [
         "F01:operation_mapping"
       ],
@@ -1657,10 +1555,8 @@
     {
       "id": "C007-F01-SUBMITTED-RECEIPT-MISSING",
       "requirement_ref": "HELIXCONNECT-L3-007-F01",
-      "l3_ref": "HELIXCONNECT-L3-007-F01",
       "l4_ref": "HELIXCONNECT-L4-007-F01",
       "l9_ref": "HELIXCONNECT-L9-007-F01",
-      "l10_ref": "HELIXCONNECT-L10-007-F01",
       "system_oracle_ref": "HELIXCONNECT-L10-007-F01",
       "function_ref": "FN-C007-01",
       "source_packet_ref": {
@@ -1675,7 +1571,6 @@
       "qualification": "synthetic_fixture_only",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-035",
-      "l5_function_ref": "FN-C007-01",
       "l5_failure_rule_refs": [
         "F01:receipt_cardinality_submitted",
         "F01:receipt_content"
@@ -1700,10 +1595,8 @@
     {
       "id": "C007-F01-SUBMITTED-RECEIPT-DUPLICATE",
       "requirement_ref": "HELIXCONNECT-L3-007-F01",
-      "l3_ref": "HELIXCONNECT-L3-007-F01",
       "l4_ref": "HELIXCONNECT-L4-007-F01",
       "l9_ref": "HELIXCONNECT-L9-007-F01",
-      "l10_ref": "HELIXCONNECT-L10-007-F01",
       "system_oracle_ref": "HELIXCONNECT-L10-007-F01",
       "function_ref": "FN-C007-01",
       "source_packet_ref": {
@@ -1718,7 +1611,6 @@
       "qualification": "synthetic_fixture_only",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-036",
-      "l5_function_ref": "FN-C007-01",
       "l5_failure_rule_refs": [
         "F01:receipt_cardinality_submitted",
         "F01:receipt_content"
@@ -1743,10 +1635,8 @@
     {
       "id": "C007-F01-ONE_EDGE_GREEN_IS_COMPOSITE",
       "requirement_ref": "HELIXCONNECT-L3-007-F01",
-      "l3_ref": "HELIXCONNECT-L3-007-F01",
       "l4_ref": "HELIXCONNECT-L4-007-F01",
       "l9_ref": "HELIXCONNECT-L9-007-F01",
-      "l10_ref": "HELIXCONNECT-L10-007-F01",
       "system_oracle_ref": "HELIXCONNECT-L10-007-F01",
       "function_ref": "FN-C007-01",
       "source_packet_ref": {
@@ -1761,7 +1651,6 @@
       "qualification": "synthetic_fixture_only",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-037",
-      "l5_function_ref": "FN-C007-01",
       "l5_failure_rule_refs": [
         "F01:receipt_cardinality_original",
         "F01:receipt_cardinality_submitted",
@@ -1794,10 +1683,8 @@
     {
       "id": "C007-F01-MISSING_EDGE_COMPLETE",
       "requirement_ref": "HELIXCONNECT-L3-007-F01",
-      "l3_ref": "HELIXCONNECT-L3-007-F01",
       "l4_ref": "HELIXCONNECT-L4-007-F01",
       "l9_ref": "HELIXCONNECT-L9-007-F01",
-      "l10_ref": "HELIXCONNECT-L10-007-F01",
       "system_oracle_ref": "HELIXCONNECT-L10-007-F01",
       "function_ref": "FN-C007-01",
       "source_packet_ref": {
@@ -1812,7 +1699,6 @@
       "qualification": "synthetic_fixture_only",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-038",
-      "l5_function_ref": "FN-C007-01",
       "l5_failure_rule_refs": [
         "F01:receipt_cardinality_original",
         "F01:receipt_cardinality_submitted",
@@ -1845,10 +1731,8 @@
     {
       "id": "C007-F01-UNKNOWN_MAPPING_COMPLETE",
       "requirement_ref": "HELIXCONNECT-L3-007-F01",
-      "l3_ref": "HELIXCONNECT-L3-007-F01",
       "l4_ref": "HELIXCONNECT-L4-007-F01",
       "l9_ref": "HELIXCONNECT-L9-007-F01",
-      "l10_ref": "HELIXCONNECT-L10-007-F01",
       "system_oracle_ref": "HELIXCONNECT-L10-007-F01",
       "function_ref": "FN-C007-01",
       "source_packet_ref": {
@@ -1863,7 +1747,6 @@
       "qualification": "synthetic_fixture_only",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-039",
-      "l5_function_ref": "FN-C007-01",
       "l5_failure_rule_refs": [
         "F01:edge_target",
         "F01:operation_mapping"
@@ -1888,10 +1771,8 @@
     {
       "id": "C007-F02-STALE-MIDDLE-PREDECESSOR-RETAINED-NO-DOWNSTREAM",
       "requirement_ref": "HELIXCONNECT-L3-007-F02",
-      "l3_ref": "HELIXCONNECT-L3-007-F02",
       "l4_ref": "HELIXCONNECT-L4-007-F02",
       "l9_ref": "HELIXCONNECT-L9-007-F02",
-      "l10_ref": "HELIXCONNECT-L10-007-F02",
       "system_oracle_ref": "HELIXCONNECT-L10-007-F02",
       "function_ref": "FN-C007-02",
       "source_packet_ref": {
@@ -1906,7 +1787,6 @@
       "qualification": "synthetic_fixture_only",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-040",
-      "l5_function_ref": "FN-C007-02",
       "l5_failure_rule_refs": [],
       "expected": {
         "scenario_class": "negative",
@@ -1927,10 +1807,8 @@
     {
       "id": "C007-F02-MIDDLE-TIMEOUT",
       "requirement_ref": "HELIXCONNECT-L3-007-F02",
-      "l3_ref": "HELIXCONNECT-L3-007-F02",
       "l4_ref": "HELIXCONNECT-L4-007-F02",
       "l9_ref": "HELIXCONNECT-L9-007-F02",
-      "l10_ref": "HELIXCONNECT-L10-007-F02",
       "system_oracle_ref": "HELIXCONNECT-L10-007-F02",
       "function_ref": "FN-C007-02",
       "source_packet_ref": {
@@ -1945,7 +1823,6 @@
       "qualification": "synthetic_fixture_only",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-041",
-      "l5_function_ref": "FN-C007-02",
       "l5_failure_rule_refs": [],
       "expected": {
         "scenario_class": "negative",
@@ -1966,10 +1843,8 @@
     {
       "id": "C007-F02-MIDDLE-DIGEST_CONFLICT",
       "requirement_ref": "HELIXCONNECT-L3-007-F02",
-      "l3_ref": "HELIXCONNECT-L3-007-F02",
       "l4_ref": "HELIXCONNECT-L4-007-F02",
       "l9_ref": "HELIXCONNECT-L9-007-F02",
-      "l10_ref": "HELIXCONNECT-L10-007-F02",
       "system_oracle_ref": "HELIXCONNECT-L10-007-F02",
       "function_ref": "FN-C007-02",
       "source_packet_ref": {
@@ -1984,7 +1859,6 @@
       "qualification": "synthetic_fixture_only",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-042",
-      "l5_function_ref": "FN-C007-02",
       "l5_failure_rule_refs": [],
       "expected": {
         "scenario_class": "negative",
@@ -2005,10 +1879,8 @@
     {
       "id": "C007-F02-MIDDLE-EXPIRY",
       "requirement_ref": "HELIXCONNECT-L3-007-F02",
-      "l3_ref": "HELIXCONNECT-L3-007-F02",
       "l4_ref": "HELIXCONNECT-L4-007-F02",
       "l9_ref": "HELIXCONNECT-L9-007-F02",
-      "l10_ref": "HELIXCONNECT-L10-007-F02",
       "system_oracle_ref": "HELIXCONNECT-L10-007-F02",
       "function_ref": "FN-C007-02",
       "source_packet_ref": {
@@ -2023,7 +1895,6 @@
       "qualification": "synthetic_fixture_only",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-043",
-      "l5_function_ref": "FN-C007-02",
       "l5_failure_rule_refs": [],
       "expected": {
         "scenario_class": "negative",
@@ -2044,10 +1915,8 @@
     {
       "id": "C007-F02-MIDDLE-CANCELLED",
       "requirement_ref": "HELIXCONNECT-L3-007-F02",
-      "l3_ref": "HELIXCONNECT-L3-007-F02",
       "l4_ref": "HELIXCONNECT-L4-007-F02",
       "l9_ref": "HELIXCONNECT-L9-007-F02",
-      "l10_ref": "HELIXCONNECT-L10-007-F02",
       "system_oracle_ref": "HELIXCONNECT-L10-007-F02",
       "function_ref": "FN-C007-02",
       "source_packet_ref": {
@@ -2062,7 +1931,6 @@
       "qualification": "synthetic_fixture_only",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-044",
-      "l5_function_ref": "FN-C007-02",
       "l5_failure_rule_refs": [],
       "expected": {
         "scenario_class": "negative",
@@ -2083,10 +1951,8 @@
     {
       "id": "C007-F02-MIDDLE-PERMISSION_REVOKED",
       "requirement_ref": "HELIXCONNECT-L3-007-F02",
-      "l3_ref": "HELIXCONNECT-L3-007-F02",
       "l4_ref": "HELIXCONNECT-L4-007-F02",
       "l9_ref": "HELIXCONNECT-L9-007-F02",
-      "l10_ref": "HELIXCONNECT-L10-007-F02",
       "system_oracle_ref": "HELIXCONNECT-L10-007-F02",
       "function_ref": "FN-C007-02",
       "source_packet_ref": {
@@ -2101,7 +1967,6 @@
       "qualification": "synthetic_fixture_only",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-045",
-      "l5_function_ref": "FN-C007-02",
       "l5_failure_rule_refs": [],
       "expected": {
         "scenario_class": "negative",
@@ -2122,10 +1987,8 @@
     {
       "id": "C007-F02-MIDDLE-PARTIAL_SUCCESS",
       "requirement_ref": "HELIXCONNECT-L3-007-F02",
-      "l3_ref": "HELIXCONNECT-L3-007-F02",
       "l4_ref": "HELIXCONNECT-L4-007-F02",
       "l9_ref": "HELIXCONNECT-L9-007-F02",
-      "l10_ref": "HELIXCONNECT-L10-007-F02",
       "system_oracle_ref": "HELIXCONNECT-L10-007-F02",
       "function_ref": "FN-C007-02",
       "source_packet_ref": {
@@ -2140,7 +2003,6 @@
       "qualification": "synthetic_fixture_only",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-046",
-      "l5_function_ref": "FN-C007-02",
       "l5_failure_rule_refs": [],
       "expected": {
         "scenario_class": "negative",
@@ -2161,10 +2023,8 @@
     {
       "id": "C007-F02-MIDDLE-UNKNOWN",
       "requirement_ref": "HELIXCONNECT-L3-007-F02",
-      "l3_ref": "HELIXCONNECT-L3-007-F02",
       "l4_ref": "HELIXCONNECT-L4-007-F02",
       "l9_ref": "HELIXCONNECT-L9-007-F02",
-      "l10_ref": "HELIXCONNECT-L10-007-F02",
       "system_oracle_ref": "HELIXCONNECT-L10-007-F02",
       "function_ref": "FN-C007-02",
       "source_packet_ref": {
@@ -2179,7 +2039,6 @@
       "qualification": "synthetic_fixture_only",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-047",
-      "l5_function_ref": "FN-C007-02",
       "l5_failure_rule_refs": [],
       "expected": {
         "scenario_class": "negative",
@@ -2200,10 +2059,8 @@
     {
       "id": "C007-F02-SUBMITTED-PRIOR_SUCCESSES-ERASED",
       "requirement_ref": "HELIXCONNECT-L3-007-F02",
-      "l3_ref": "HELIXCONNECT-L3-007-F02",
       "l4_ref": "HELIXCONNECT-L4-007-F02",
       "l9_ref": "HELIXCONNECT-L9-007-F02",
-      "l10_ref": "HELIXCONNECT-L10-007-F02",
       "system_oracle_ref": "HELIXCONNECT-L10-007-F02",
       "function_ref": "FN-C007-02",
       "source_packet_ref": {
@@ -2218,7 +2075,6 @@
       "qualification": "synthetic_fixture_only",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-048",
-      "l5_function_ref": "FN-C007-02",
       "l5_failure_rule_refs": [
         "F02:prior_successes"
       ],
@@ -2241,10 +2097,8 @@
     {
       "id": "C007-F02-SUBMITTED-UNFINISHED-ERASED",
       "requirement_ref": "HELIXCONNECT-L3-007-F02",
-      "l3_ref": "HELIXCONNECT-L3-007-F02",
       "l4_ref": "HELIXCONNECT-L4-007-F02",
       "l9_ref": "HELIXCONNECT-L9-007-F02",
-      "l10_ref": "HELIXCONNECT-L10-007-F02",
       "system_oracle_ref": "HELIXCONNECT-L10-007-F02",
       "function_ref": "FN-C007-02",
       "source_packet_ref": {
@@ -2259,7 +2113,6 @@
       "qualification": "synthetic_fixture_only",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-049",
-      "l5_function_ref": "FN-C007-02",
       "l5_failure_rule_refs": [
         "F02:unfinished"
       ],
@@ -2282,10 +2135,8 @@
     {
       "id": "C007-F02-SUBMITTED-DOWNSTREAM-ATTEMPT-INVENTED",
       "requirement_ref": "HELIXCONNECT-L3-007-F02",
-      "l3_ref": "HELIXCONNECT-L3-007-F02",
       "l4_ref": "HELIXCONNECT-L4-007-F02",
       "l9_ref": "HELIXCONNECT-L9-007-F02",
-      "l10_ref": "HELIXCONNECT-L10-007-F02",
       "system_oracle_ref": "HELIXCONNECT-L10-007-F02",
       "function_ref": "FN-C007-02",
       "source_packet_ref": {
@@ -2300,7 +2151,6 @@
       "qualification": "synthetic_fixture_only",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-050",
-      "l5_function_ref": "FN-C007-02",
       "l5_failure_rule_refs": [
         "F02:downstream_attempts"
       ],
@@ -2323,10 +2173,8 @@
     {
       "id": "C007-F02-ORIGINAL-UNAUTHORIZED-DOWNSTREAM-ATTEMPT",
       "requirement_ref": "HELIXCONNECT-L3-007-F02",
-      "l3_ref": "HELIXCONNECT-L3-007-F02",
       "l4_ref": "HELIXCONNECT-L4-007-F02",
       "l9_ref": "HELIXCONNECT-L9-007-F02",
-      "l10_ref": "HELIXCONNECT-L10-007-F02",
       "system_oracle_ref": "HELIXCONNECT-L10-007-F02",
       "function_ref": "FN-C007-02",
       "source_packet_ref": {
@@ -2341,7 +2189,6 @@
       "qualification": "synthetic_fixture_only",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-051",
-      "l5_function_ref": "FN-C007-02",
       "l5_failure_rule_refs": [
         "F02:unauthorized_attempt"
       ],
@@ -2364,10 +2211,8 @@
     {
       "id": "C007-F02-SUBMITTED-STOP-OWNER-FOREIGN",
       "requirement_ref": "HELIXCONNECT-L3-007-F02",
-      "l3_ref": "HELIXCONNECT-L3-007-F02",
       "l4_ref": "HELIXCONNECT-L4-007-F02",
       "l9_ref": "HELIXCONNECT-L9-007-F02",
-      "l10_ref": "HELIXCONNECT-L10-007-F02",
       "system_oracle_ref": "HELIXCONNECT-L10-007-F02",
       "function_ref": "FN-C007-02",
       "source_packet_ref": {
@@ -2382,7 +2227,6 @@
       "qualification": "synthetic_fixture_only",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-052",
-      "l5_function_ref": "FN-C007-02",
       "l5_failure_rule_refs": [
         "F02:stop_content"
       ],
@@ -2405,10 +2249,8 @@
     {
       "id": "C007-F02-SUBMITTED-STOP-RECOVERY_REF-FOREIGN",
       "requirement_ref": "HELIXCONNECT-L3-007-F02",
-      "l3_ref": "HELIXCONNECT-L3-007-F02",
       "l4_ref": "HELIXCONNECT-L4-007-F02",
       "l9_ref": "HELIXCONNECT-L9-007-F02",
-      "l10_ref": "HELIXCONNECT-L10-007-F02",
       "system_oracle_ref": "HELIXCONNECT-L10-007-F02",
       "function_ref": "FN-C007-02",
       "source_packet_ref": {
@@ -2423,7 +2265,6 @@
       "qualification": "synthetic_fixture_only",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-053",
-      "l5_function_ref": "FN-C007-02",
       "l5_failure_rule_refs": [
         "F02:stop_content"
       ],
@@ -2446,10 +2287,8 @@
     {
       "id": "C007-F02-SUBMITTED-STOP-EDGE_IDENTITY-FOREIGN",
       "requirement_ref": "HELIXCONNECT-L3-007-F02",
-      "l3_ref": "HELIXCONNECT-L3-007-F02",
       "l4_ref": "HELIXCONNECT-L4-007-F02",
       "l9_ref": "HELIXCONNECT-L9-007-F02",
-      "l10_ref": "HELIXCONNECT-L10-007-F02",
       "system_oracle_ref": "HELIXCONNECT-L10-007-F02",
       "function_ref": "FN-C007-02",
       "source_packet_ref": {
@@ -2464,7 +2303,6 @@
       "qualification": "synthetic_fixture_only",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-054",
-      "l5_function_ref": "FN-C007-02",
       "l5_failure_rule_refs": [
         "F02:stop_content"
       ],
@@ -2487,10 +2325,8 @@
     {
       "id": "C007-F02-SUBMITTED-STOP-OPERATION_IDENTITY-FOREIGN",
       "requirement_ref": "HELIXCONNECT-L3-007-F02",
-      "l3_ref": "HELIXCONNECT-L3-007-F02",
       "l4_ref": "HELIXCONNECT-L4-007-F02",
       "l9_ref": "HELIXCONNECT-L9-007-F02",
-      "l10_ref": "HELIXCONNECT-L10-007-F02",
       "system_oracle_ref": "HELIXCONNECT-L10-007-F02",
       "function_ref": "FN-C007-02",
       "source_packet_ref": {
@@ -2505,7 +2341,6 @@
       "qualification": "synthetic_fixture_only",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-055",
-      "l5_function_ref": "FN-C007-02",
       "l5_failure_rule_refs": [
         "F02:stop_content"
       ],
@@ -2528,10 +2363,8 @@
     {
       "id": "C007-F02-SUBMITTED-STOP-ATTEMPT_IDENTITY-FOREIGN",
       "requirement_ref": "HELIXCONNECT-L3-007-F02",
-      "l3_ref": "HELIXCONNECT-L3-007-F02",
       "l4_ref": "HELIXCONNECT-L4-007-F02",
       "l9_ref": "HELIXCONNECT-L9-007-F02",
-      "l10_ref": "HELIXCONNECT-L10-007-F02",
       "system_oracle_ref": "HELIXCONNECT-L10-007-F02",
       "function_ref": "FN-C007-02",
       "source_packet_ref": {
@@ -2546,7 +2379,6 @@
       "qualification": "synthetic_fixture_only",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-056",
-      "l5_function_ref": "FN-C007-02",
       "l5_failure_rule_refs": [
         "F02:stop_content"
       ],
@@ -2569,10 +2401,8 @@
     {
       "id": "C007-F02-HANDOFF-COMPOSITE-SCOPE-FOREIGN",
       "requirement_ref": "HELIXCONNECT-L3-007-F02",
-      "l3_ref": "HELIXCONNECT-L3-007-F02",
       "l4_ref": "HELIXCONNECT-L4-007-F02",
       "l9_ref": "HELIXCONNECT-L9-007-F02",
-      "l10_ref": "HELIXCONNECT-L10-007-F02",
       "system_oracle_ref": "HELIXCONNECT-L10-007-F02",
       "function_ref": "FN-C007-02",
       "source_packet_ref": {
@@ -2587,7 +2417,6 @@
       "qualification": "synthetic_fixture_only",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-057",
-      "l5_function_ref": "FN-C007-02",
       "l5_failure_rule_refs": [
         "F02:handoff_target"
       ],
@@ -2610,10 +2439,8 @@
     {
       "id": "C007-F02-ORIGINAL-STOP-OWNER-FOREIGN",
       "requirement_ref": "HELIXCONNECT-L3-007-F02",
-      "l3_ref": "HELIXCONNECT-L3-007-F02",
       "l4_ref": "HELIXCONNECT-L4-007-F02",
       "l9_ref": "HELIXCONNECT-L9-007-F02",
-      "l10_ref": "HELIXCONNECT-L10-007-F02",
       "system_oracle_ref": "HELIXCONNECT-L10-007-F02",
       "function_ref": "FN-C007-02",
       "source_packet_ref": {
@@ -2628,7 +2455,6 @@
       "qualification": "synthetic_fixture_only",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-058",
-      "l5_function_ref": "FN-C007-02",
       "l5_failure_rule_refs": [
         "F02:stop_binding"
       ],
@@ -2651,10 +2477,8 @@
     {
       "id": "C007-F02-ORIGINAL-STOP-RECOVERY_REF-FOREIGN",
       "requirement_ref": "HELIXCONNECT-L3-007-F02",
-      "l3_ref": "HELIXCONNECT-L3-007-F02",
       "l4_ref": "HELIXCONNECT-L4-007-F02",
       "l9_ref": "HELIXCONNECT-L9-007-F02",
-      "l10_ref": "HELIXCONNECT-L10-007-F02",
       "system_oracle_ref": "HELIXCONNECT-L10-007-F02",
       "function_ref": "FN-C007-02",
       "source_packet_ref": {
@@ -2669,7 +2493,6 @@
       "qualification": "synthetic_fixture_only",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-059",
-      "l5_function_ref": "FN-C007-02",
       "l5_failure_rule_refs": [
         "F02:stop_binding"
       ],
@@ -2692,10 +2515,8 @@
     {
       "id": "C007-F02-ORIGINAL-STOP-OPERATION_IDENTITY-FOREIGN",
       "requirement_ref": "HELIXCONNECT-L3-007-F02",
-      "l3_ref": "HELIXCONNECT-L3-007-F02",
       "l4_ref": "HELIXCONNECT-L4-007-F02",
       "l9_ref": "HELIXCONNECT-L9-007-F02",
-      "l10_ref": "HELIXCONNECT-L10-007-F02",
       "system_oracle_ref": "HELIXCONNECT-L10-007-F02",
       "function_ref": "FN-C007-02",
       "source_packet_ref": {
@@ -2710,7 +2531,6 @@
       "qualification": "synthetic_fixture_only",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-060",
-      "l5_function_ref": "FN-C007-02",
       "l5_failure_rule_refs": [
         "F02:stop_binding"
       ],
@@ -2733,10 +2553,8 @@
     {
       "id": "C007-F02-ORIGINAL-STOP-ATTEMPT_IDENTITY-FOREIGN",
       "requirement_ref": "HELIXCONNECT-L3-007-F02",
-      "l3_ref": "HELIXCONNECT-L3-007-F02",
       "l4_ref": "HELIXCONNECT-L4-007-F02",
       "l9_ref": "HELIXCONNECT-L9-007-F02",
-      "l10_ref": "HELIXCONNECT-L10-007-F02",
       "system_oracle_ref": "HELIXCONNECT-L10-007-F02",
       "function_ref": "FN-C007-02",
       "source_packet_ref": {
@@ -2751,7 +2569,6 @@
       "qualification": "synthetic_fixture_only",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-061",
-      "l5_function_ref": "FN-C007-02",
       "l5_failure_rule_refs": [
         "F02:stop_binding"
       ],
@@ -2774,10 +2591,8 @@
     {
       "id": "C007-F02-UNAUTHORIZED_DOWNSTREAM_RETRY",
       "requirement_ref": "HELIXCONNECT-L3-007-F02",
-      "l3_ref": "HELIXCONNECT-L3-007-F02",
       "l4_ref": "HELIXCONNECT-L4-007-F02",
       "l9_ref": "HELIXCONNECT-L9-007-F02",
-      "l10_ref": "HELIXCONNECT-L10-007-F02",
       "system_oracle_ref": "HELIXCONNECT-L10-007-F02",
       "function_ref": "FN-C007-02",
       "source_packet_ref": {
@@ -2792,7 +2607,6 @@
       "qualification": "synthetic_fixture_only",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-062",
-      "l5_function_ref": "FN-C007-02",
       "l5_failure_rule_refs": [
         "F02:downstream_attempts"
       ],
@@ -2815,10 +2629,8 @@
     {
       "id": "C007-F02-OTHER_EDGE_GREEN_OFFSETS",
       "requirement_ref": "HELIXCONNECT-L3-007-F02",
-      "l3_ref": "HELIXCONNECT-L3-007-F02",
       "l4_ref": "HELIXCONNECT-L4-007-F02",
       "l9_ref": "HELIXCONNECT-L9-007-F02",
-      "l10_ref": "HELIXCONNECT-L10-007-F02",
       "system_oracle_ref": "HELIXCONNECT-L10-007-F02",
       "function_ref": "FN-C007-02",
       "source_packet_ref": {
@@ -2833,7 +2645,6 @@
       "qualification": "synthetic_fixture_only",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-063",
-      "l5_function_ref": "FN-C007-02",
       "l5_failure_rule_refs": [
         "F02:stop_content"
       ],
@@ -2856,10 +2667,8 @@
     {
       "id": "C007-F02-ERASE_FULL_TRACE",
       "requirement_ref": "HELIXCONNECT-L3-007-F02",
-      "l3_ref": "HELIXCONNECT-L3-007-F02",
       "l4_ref": "HELIXCONNECT-L4-007-F02",
       "l9_ref": "HELIXCONNECT-L9-007-F02",
-      "l10_ref": "HELIXCONNECT-L10-007-F02",
       "system_oracle_ref": "HELIXCONNECT-L10-007-F02",
       "function_ref": "FN-C007-02",
       "source_packet_ref": {
@@ -2874,7 +2683,6 @@
       "qualification": "synthetic_fixture_only",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-064",
-      "l5_function_ref": "FN-C007-02",
       "l5_failure_rule_refs": [
         "F02:prior_successes",
         "F02:unfinished"
@@ -2899,10 +2707,8 @@
     {
       "id": "C007-N01-EXACT-DECLARED-SCOPE-THREE-BOUNDARY-EVIDENCE",
       "requirement_ref": "HELIXCONNECT-L3-007-N01",
-      "l3_ref": "HELIXCONNECT-L3-007-N01",
       "l4_ref": "HELIXCONNECT-L4-007-N01",
       "l9_ref": "HELIXCONNECT-L9-007-N01",
-      "l10_ref": "HELIXCONNECT-L10-007-N01",
       "system_oracle_ref": "HELIXCONNECT-L10-007-N01",
       "function_ref": "FN-C007-03",
       "source_packet_ref": {
@@ -2917,7 +2723,6 @@
       "qualification": "synthetic_fixture_only",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-065",
-      "l5_function_ref": "FN-C007-03",
       "l5_failure_rule_refs": [],
       "expected": {
         "scenario_class": "normal",
@@ -2938,10 +2743,8 @@
     {
       "id": "C007-N01-EVIDENCE-TARGET-COMPOSITE_IDENTITY-FOREIGN",
       "requirement_ref": "HELIXCONNECT-L3-007-N01",
-      "l3_ref": "HELIXCONNECT-L3-007-N01",
       "l4_ref": "HELIXCONNECT-L4-007-N01",
       "l9_ref": "HELIXCONNECT-L9-007-N01",
-      "l10_ref": "HELIXCONNECT-L10-007-N01",
       "system_oracle_ref": "HELIXCONNECT-L10-007-N01",
       "function_ref": "FN-C007-03",
       "source_packet_ref": {
@@ -2956,7 +2759,6 @@
       "qualification": "synthetic_fixture_only",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-066",
-      "l5_function_ref": "FN-C007-03",
       "l5_failure_rule_refs": [
         "N01:evidence_target"
       ],
@@ -2979,10 +2781,8 @@
     {
       "id": "C007-N01-EVIDENCE-TARGET-COMPOSITE_REVISION-FOREIGN",
       "requirement_ref": "HELIXCONNECT-L3-007-N01",
-      "l3_ref": "HELIXCONNECT-L3-007-N01",
       "l4_ref": "HELIXCONNECT-L4-007-N01",
       "l9_ref": "HELIXCONNECT-L9-007-N01",
-      "l10_ref": "HELIXCONNECT-L10-007-N01",
       "system_oracle_ref": "HELIXCONNECT-L10-007-N01",
       "function_ref": "FN-C007-03",
       "source_packet_ref": {
@@ -2997,7 +2797,6 @@
       "qualification": "synthetic_fixture_only",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-067",
-      "l5_function_ref": "FN-C007-03",
       "l5_failure_rule_refs": [
         "N01:evidence_target"
       ],
@@ -3020,10 +2819,8 @@
     {
       "id": "C007-N01-EVIDENCE-TARGET-REQUIREMENT_REVISION-FOREIGN",
       "requirement_ref": "HELIXCONNECT-L3-007-N01",
-      "l3_ref": "HELIXCONNECT-L3-007-N01",
       "l4_ref": "HELIXCONNECT-L4-007-N01",
       "l9_ref": "HELIXCONNECT-L9-007-N01",
-      "l10_ref": "HELIXCONNECT-L10-007-N01",
       "system_oracle_ref": "HELIXCONNECT-L10-007-N01",
       "function_ref": "FN-C007-03",
       "source_packet_ref": {
@@ -3038,7 +2835,6 @@
       "qualification": "synthetic_fixture_only",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-068",
-      "l5_function_ref": "FN-C007-03",
       "l5_failure_rule_refs": [
         "N01:evidence_target"
       ],
@@ -3061,10 +2857,8 @@
     {
       "id": "C007-N01-EVIDENCE-TARGET-SCOPE-FOREIGN",
       "requirement_ref": "HELIXCONNECT-L3-007-N01",
-      "l3_ref": "HELIXCONNECT-L3-007-N01",
       "l4_ref": "HELIXCONNECT-L4-007-N01",
       "l9_ref": "HELIXCONNECT-L9-007-N01",
-      "l10_ref": "HELIXCONNECT-L10-007-N01",
       "system_oracle_ref": "HELIXCONNECT-L10-007-N01",
       "function_ref": "FN-C007-03",
       "source_packet_ref": {
@@ -3079,7 +2873,6 @@
       "qualification": "synthetic_fixture_only",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-069",
-      "l5_function_ref": "FN-C007-03",
       "l5_failure_rule_refs": [
         "N01:evidence_target"
       ],
@@ -3102,10 +2895,8 @@
     {
       "id": "C007-N01-EVIDENCE-TARGET-CONNECTION_EXACT_SET-FOREIGN",
       "requirement_ref": "HELIXCONNECT-L3-007-N01",
-      "l3_ref": "HELIXCONNECT-L3-007-N01",
       "l4_ref": "HELIXCONNECT-L4-007-N01",
       "l9_ref": "HELIXCONNECT-L9-007-N01",
-      "l10_ref": "HELIXCONNECT-L10-007-N01",
       "system_oracle_ref": "HELIXCONNECT-L10-007-N01",
       "function_ref": "FN-C007-03",
       "source_packet_ref": {
@@ -3120,7 +2911,6 @@
       "qualification": "synthetic_fixture_only",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-070",
-      "l5_function_ref": "FN-C007-03",
       "l5_failure_rule_refs": [
         "N01:evidence_target"
       ],
@@ -3143,10 +2933,8 @@
     {
       "id": "C007-N01-EVIDENCE-TARGET-ENDPOINT_REGISTRATION_REVISIONS-FOREIGN",
       "requirement_ref": "HELIXCONNECT-L3-007-N01",
-      "l3_ref": "HELIXCONNECT-L3-007-N01",
       "l4_ref": "HELIXCONNECT-L4-007-N01",
       "l9_ref": "HELIXCONNECT-L9-007-N01",
-      "l10_ref": "HELIXCONNECT-L10-007-N01",
       "system_oracle_ref": "HELIXCONNECT-L10-007-N01",
       "function_ref": "FN-C007-03",
       "source_packet_ref": {
@@ -3161,7 +2949,6 @@
       "qualification": "synthetic_fixture_only",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-071",
-      "l5_function_ref": "FN-C007-03",
       "l5_failure_rule_refs": [
         "N01:evidence_target"
       ],
@@ -3184,10 +2971,8 @@
     {
       "id": "C007-N01-EVIDENCE-TARGET-OPERATION_ATTEMPTS-FOREIGN",
       "requirement_ref": "HELIXCONNECT-L3-007-N01",
-      "l3_ref": "HELIXCONNECT-L3-007-N01",
       "l4_ref": "HELIXCONNECT-L4-007-N01",
       "l9_ref": "HELIXCONNECT-L9-007-N01",
-      "l10_ref": "HELIXCONNECT-L10-007-N01",
       "system_oracle_ref": "HELIXCONNECT-L10-007-N01",
       "function_ref": "FN-C007-03",
       "source_packet_ref": {
@@ -3202,7 +2987,6 @@
       "qualification": "synthetic_fixture_only",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-072",
-      "l5_function_ref": "FN-C007-03",
       "l5_failure_rule_refs": [
         "N01:evidence_target"
       ],
@@ -3225,10 +3009,8 @@
     {
       "id": "C007-N01-EVIDENCE-TARGET-EFFECT_STOP_REF-FOREIGN",
       "requirement_ref": "HELIXCONNECT-L3-007-N01",
-      "l3_ref": "HELIXCONNECT-L3-007-N01",
       "l4_ref": "HELIXCONNECT-L4-007-N01",
       "l9_ref": "HELIXCONNECT-L9-007-N01",
-      "l10_ref": "HELIXCONNECT-L10-007-N01",
       "system_oracle_ref": "HELIXCONNECT-L10-007-N01",
       "function_ref": "FN-C007-03",
       "source_packet_ref": {
@@ -3243,7 +3025,6 @@
       "qualification": "synthetic_fixture_only",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-073",
-      "l5_function_ref": "FN-C007-03",
       "l5_failure_rule_refs": [
         "N01:evidence_target"
       ],
@@ -3266,10 +3047,8 @@
     {
       "id": "C007-N01-ORIGINAL-BOUNDARY-EVIDENCE-MISSING",
       "requirement_ref": "HELIXCONNECT-L3-007-N01",
-      "l3_ref": "HELIXCONNECT-L3-007-N01",
       "l4_ref": "HELIXCONNECT-L4-007-N01",
       "l9_ref": "HELIXCONNECT-L9-007-N01",
-      "l10_ref": "HELIXCONNECT-L10-007-N01",
       "system_oracle_ref": "HELIXCONNECT-L10-007-N01",
       "function_ref": "FN-C007-03",
       "source_packet_ref": {
@@ -3284,7 +3063,6 @@
       "qualification": "synthetic_fixture_only",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-074",
-      "l5_function_ref": "FN-C007-03",
       "l5_failure_rule_refs": [
         "N01:required_evidence_set"
       ],
@@ -3307,10 +3085,8 @@
     {
       "id": "C007-N01-ORIGINAL-BOUNDARY-NOT-EXECUTED",
       "requirement_ref": "HELIXCONNECT-L3-007-N01",
-      "l3_ref": "HELIXCONNECT-L3-007-N01",
       "l4_ref": "HELIXCONNECT-L4-007-N01",
       "l9_ref": "HELIXCONNECT-L9-007-N01",
-      "l10_ref": "HELIXCONNECT-L10-007-N01",
       "system_oracle_ref": "HELIXCONNECT-L10-007-N01",
       "function_ref": "FN-C007-03",
       "source_packet_ref": {
@@ -3325,7 +3101,6 @@
       "qualification": "synthetic_fixture_only",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-075",
-      "l5_function_ref": "FN-C007-03",
       "l5_failure_rule_refs": [
         "N01:evidence_observation"
       ],
@@ -3348,10 +3123,8 @@
     {
       "id": "C007-N01-SUBMITTED-BOUNDARY-EVIDENCE-MISSING",
       "requirement_ref": "HELIXCONNECT-L3-007-N01",
-      "l3_ref": "HELIXCONNECT-L3-007-N01",
       "l4_ref": "HELIXCONNECT-L4-007-N01",
       "l9_ref": "HELIXCONNECT-L9-007-N01",
-      "l10_ref": "HELIXCONNECT-L10-007-N01",
       "system_oracle_ref": "HELIXCONNECT-L10-007-N01",
       "function_ref": "FN-C007-03",
       "source_packet_ref": {
@@ -3366,7 +3139,6 @@
       "qualification": "synthetic_fixture_only",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-076",
-      "l5_function_ref": "FN-C007-03",
       "l5_failure_rule_refs": [
         "N01:evidence_cardinality_or_content"
       ],
@@ -3389,10 +3161,8 @@
     {
       "id": "C007-N01-ORIGINAL-EVIDENCE-EDGE-FOREIGN",
       "requirement_ref": "HELIXCONNECT-L3-007-N01",
-      "l3_ref": "HELIXCONNECT-L3-007-N01",
       "l4_ref": "HELIXCONNECT-L4-007-N01",
       "l9_ref": "HELIXCONNECT-L9-007-N01",
-      "l10_ref": "HELIXCONNECT-L10-007-N01",
       "system_oracle_ref": "HELIXCONNECT-L10-007-N01",
       "function_ref": "FN-C007-03",
       "source_packet_ref": {
@@ -3407,7 +3177,6 @@
       "qualification": "synthetic_fixture_only",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-077",
-      "l5_function_ref": "FN-C007-03",
       "l5_failure_rule_refs": [
         "N01:edge_binding"
       ],
@@ -3430,10 +3199,8 @@
     {
       "id": "C007-N01-FIELD_COUNT_COMPOSITE_COMPLETE",
       "requirement_ref": "HELIXCONNECT-L3-007-N01",
-      "l3_ref": "HELIXCONNECT-L3-007-N01",
       "l4_ref": "HELIXCONNECT-L4-007-N01",
       "l9_ref": "HELIXCONNECT-L9-007-N01",
-      "l10_ref": "HELIXCONNECT-L10-007-N01",
       "system_oracle_ref": "HELIXCONNECT-L10-007-N01",
       "function_ref": "FN-C007-03",
       "source_packet_ref": {
@@ -3448,7 +3215,6 @@
       "qualification": "synthetic_fixture_only",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-078",
-      "l5_function_ref": "FN-C007-03",
       "l5_failure_rule_refs": [
         "N01:required_evidence_set"
       ],
@@ -3471,10 +3237,8 @@
     {
       "id": "C007-N01-FOREIGN_SCOPE_SUCCESS_INHERITED",
       "requirement_ref": "HELIXCONNECT-L3-007-N01",
-      "l3_ref": "HELIXCONNECT-L3-007-N01",
       "l4_ref": "HELIXCONNECT-L4-007-N01",
       "l9_ref": "HELIXCONNECT-L9-007-N01",
-      "l10_ref": "HELIXCONNECT-L10-007-N01",
       "system_oracle_ref": "HELIXCONNECT-L10-007-N01",
       "function_ref": "FN-C007-03",
       "source_packet_ref": {
@@ -3489,7 +3253,6 @@
       "qualification": "synthetic_fixture_only",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-079",
-      "l5_function_ref": "FN-C007-03",
       "l5_failure_rule_refs": [
         "N01:evidence_target"
       ],
@@ -3512,10 +3275,8 @@
     {
       "id": "C007-N01-FIXTURE_ALL_CONNECTIONS_COMPLETE",
       "requirement_ref": "HELIXCONNECT-L3-007-N01",
-      "l3_ref": "HELIXCONNECT-L3-007-N01",
       "l4_ref": "HELIXCONNECT-L4-007-N01",
       "l9_ref": "HELIXCONNECT-L9-007-N01",
-      "l10_ref": "HELIXCONNECT-L10-007-N01",
       "system_oracle_ref": "HELIXCONNECT-L10-007-N01",
       "function_ref": "FN-C007-03",
       "source_packet_ref": {
@@ -3530,7 +3291,6 @@
       "qualification": "synthetic_fixture_only",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-080",
-      "l5_function_ref": "FN-C007-03",
       "l5_failure_rule_refs": [],
       "expected": {
         "scenario_class": "negative",
@@ -3551,10 +3311,8 @@
     {
       "id": "C007-B01-TECHNICAL-TERMINAL-BUSINESS-NOT-ACCEPTED",
       "requirement_ref": "HELIXCONNECT-L3-007-B01",
-      "l3_ref": "HELIXCONNECT-L3-007-B01",
       "l4_ref": "HELIXCONNECT-L4-007-B01",
       "l9_ref": "HELIXCONNECT-L9-007-B01",
-      "l10_ref": "HELIXCONNECT-L10-007-B01",
       "system_oracle_ref": "HELIXCONNECT-L10-007-B01",
       "function_ref": "FN-C007-04",
       "source_packet_ref": {
@@ -3569,7 +3327,6 @@
       "qualification": "synthetic_fixture_only",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-081",
-      "l5_function_ref": "FN-C007-04",
       "l5_failure_rule_refs": [],
       "expected": {
         "scenario_class": "normal",
@@ -3590,10 +3347,8 @@
     {
       "id": "C007-B01-SUBMITTED-BUSINESS-OWNER-OVERRIDE",
       "requirement_ref": "HELIXCONNECT-L3-007-B01",
-      "l3_ref": "HELIXCONNECT-L3-007-B01",
       "l4_ref": "HELIXCONNECT-L4-007-B01",
       "l9_ref": "HELIXCONNECT-L9-007-B01",
-      "l10_ref": "HELIXCONNECT-L10-007-B01",
       "system_oracle_ref": "HELIXCONNECT-L10-007-B01",
       "function_ref": "FN-C007-04",
       "source_packet_ref": {
@@ -3608,7 +3363,6 @@
       "qualification": "synthetic_fixture_only",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-082",
-      "l5_function_ref": "FN-C007-04",
       "l5_failure_rule_refs": [
         "B01:business_content"
       ],
@@ -3631,10 +3385,8 @@
     {
       "id": "C007-B01-SUBMITTED-BUSINESS-STATE-OVERRIDE",
       "requirement_ref": "HELIXCONNECT-L3-007-B01",
-      "l3_ref": "HELIXCONNECT-L3-007-B01",
       "l4_ref": "HELIXCONNECT-L4-007-B01",
       "l9_ref": "HELIXCONNECT-L9-007-B01",
-      "l10_ref": "HELIXCONNECT-L10-007-B01",
       "system_oracle_ref": "HELIXCONNECT-L10-007-B01",
       "function_ref": "FN-C007-04",
       "source_packet_ref": {
@@ -3649,7 +3401,6 @@
       "qualification": "synthetic_fixture_only",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-083",
-      "l5_function_ref": "FN-C007-04",
       "l5_failure_rule_refs": [
         "B01:business_content"
       ],
@@ -3672,10 +3423,8 @@
     {
       "id": "C007-B01-SUBMITTED-BUSINESS-REQUIREMENT_ADOPTION-OVERRIDE",
       "requirement_ref": "HELIXCONNECT-L3-007-B01",
-      "l3_ref": "HELIXCONNECT-L3-007-B01",
       "l4_ref": "HELIXCONNECT-L4-007-B01",
       "l9_ref": "HELIXCONNECT-L9-007-B01",
-      "l10_ref": "HELIXCONNECT-L10-007-B01",
       "system_oracle_ref": "HELIXCONNECT-L10-007-B01",
       "function_ref": "FN-C007-04",
       "source_packet_ref": {
@@ -3690,7 +3439,6 @@
       "qualification": "synthetic_fixture_only",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-084",
-      "l5_function_ref": "FN-C007-04",
       "l5_failure_rule_refs": [
         "B01:business_content"
       ],
@@ -3713,10 +3461,8 @@
     {
       "id": "C007-B01-SUBMITTED-BUSINESS-ACCEPTANCE_REF-OVERRIDE",
       "requirement_ref": "HELIXCONNECT-L3-007-B01",
-      "l3_ref": "HELIXCONNECT-L3-007-B01",
       "l4_ref": "HELIXCONNECT-L4-007-B01",
       "l9_ref": "HELIXCONNECT-L9-007-B01",
-      "l10_ref": "HELIXCONNECT-L10-007-B01",
       "system_oracle_ref": "HELIXCONNECT-L10-007-B01",
       "function_ref": "FN-C007-04",
       "source_packet_ref": {
@@ -3731,7 +3477,6 @@
       "qualification": "synthetic_fixture_only",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-085",
-      "l5_function_ref": "FN-C007-04",
       "l5_failure_rule_refs": [
         "B01:business_content"
       ],
@@ -3754,10 +3499,8 @@
     {
       "id": "C007-B01-UNSELECTED-REPLACEMENT-REQUIRED",
       "requirement_ref": "HELIXCONNECT-L3-007-B01",
-      "l3_ref": "HELIXCONNECT-L3-007-B01",
       "l4_ref": "HELIXCONNECT-L4-007-B01",
       "l9_ref": "HELIXCONNECT-L9-007-B01",
-      "l10_ref": "HELIXCONNECT-L10-007-B01",
       "system_oracle_ref": "HELIXCONNECT-L10-007-B01",
       "function_ref": "FN-C007-04",
       "source_packet_ref": {
@@ -3772,7 +3515,6 @@
       "qualification": "synthetic_fixture_only",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-086",
-      "l5_function_ref": "FN-C007-04",
       "l5_failure_rule_refs": [
         "B01:dependency_content"
       ],
@@ -3795,10 +3537,8 @@
     {
       "id": "C007-B01-UNSELECTED-CONNECTION-ADDED",
       "requirement_ref": "HELIXCONNECT-L3-007-B01",
-      "l3_ref": "HELIXCONNECT-L3-007-B01",
       "l4_ref": "HELIXCONNECT-L4-007-B01",
       "l9_ref": "HELIXCONNECT-L9-007-B01",
-      "l10_ref": "HELIXCONNECT-L10-007-B01",
       "system_oracle_ref": "HELIXCONNECT-L10-007-B01",
       "function_ref": "FN-C007-04",
       "source_packet_ref": {
@@ -3813,7 +3553,6 @@
       "qualification": "synthetic_fixture_only",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-087",
-      "l5_function_ref": "FN-C007-04",
       "l5_failure_rule_refs": [
         "B01:dependency_content"
       ],
@@ -3836,10 +3575,8 @@
     {
       "id": "C007-B01-SELECTED-SEC-CONTRACT-ERASED",
       "requirement_ref": "HELIXCONNECT-L3-007-B01",
-      "l3_ref": "HELIXCONNECT-L3-007-B01",
       "l4_ref": "HELIXCONNECT-L4-007-B01",
       "l9_ref": "HELIXCONNECT-L9-007-B01",
-      "l10_ref": "HELIXCONNECT-L10-007-B01",
       "system_oracle_ref": "HELIXCONNECT-L10-007-B01",
       "function_ref": "FN-C007-04",
       "source_packet_ref": {
@@ -3854,7 +3591,6 @@
       "qualification": "synthetic_fixture_only",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-088",
-      "l5_function_ref": "FN-C007-04",
       "l5_failure_rule_refs": [
         "B01:dependency_content"
       ],
@@ -3877,10 +3613,8 @@
     {
       "id": "C007-B01-TECHNICAL_RECEIPT_IS_ACCEPTED",
       "requirement_ref": "HELIXCONNECT-L3-007-B01",
-      "l3_ref": "HELIXCONNECT-L3-007-B01",
       "l4_ref": "HELIXCONNECT-L4-007-B01",
       "l9_ref": "HELIXCONNECT-L9-007-B01",
-      "l10_ref": "HELIXCONNECT-L10-007-B01",
       "system_oracle_ref": "HELIXCONNECT-L10-007-B01",
       "function_ref": "FN-C007-04",
       "source_packet_ref": {
@@ -3895,7 +3629,6 @@
       "qualification": "synthetic_fixture_only",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-089",
-      "l5_function_ref": "FN-C007-04",
       "l5_failure_rule_refs": [
         "B01:business_content"
       ],
@@ -3918,10 +3651,8 @@
     {
       "id": "C007-B01-WAIT_ALL_UNINVENTORIED_CONNECTIONS",
       "requirement_ref": "HELIXCONNECT-L3-007-B01",
-      "l3_ref": "HELIXCONNECT-L3-007-B01",
       "l4_ref": "HELIXCONNECT-L4-007-B01",
       "l9_ref": "HELIXCONNECT-L9-007-B01",
-      "l10_ref": "HELIXCONNECT-L10-007-B01",
       "system_oracle_ref": "HELIXCONNECT-L10-007-B01",
       "function_ref": "FN-C007-04",
       "source_packet_ref": {
@@ -3936,7 +3667,6 @@
       "qualification": "synthetic_fixture_only",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-090",
-      "l5_function_ref": "FN-C007-04",
       "l5_failure_rule_refs": [
         "B01:dependency_content"
       ],
@@ -3959,10 +3689,8 @@
     {
       "id": "C007-B01-UNSELECTED_REPLACEMENT_REQUIRED",
       "requirement_ref": "HELIXCONNECT-L3-007-B01",
-      "l3_ref": "HELIXCONNECT-L3-007-B01",
       "l4_ref": "HELIXCONNECT-L4-007-B01",
       "l9_ref": "HELIXCONNECT-L9-007-B01",
-      "l10_ref": "HELIXCONNECT-L10-007-B01",
       "system_oracle_ref": "HELIXCONNECT-L10-007-B01",
       "function_ref": "FN-C007-04",
       "source_packet_ref": {
@@ -3977,7 +3705,6 @@
       "qualification": "synthetic_fixture_only",
       "boundary": "synthetic_fixture_only; no source qualification or effect",
       "u_id": "U-C007-091",
-      "l5_function_ref": "FN-C007-04",
       "l5_failure_rule_refs": [
         "B01:dependency_content"
       ],
@@ -4597,8 +4324,8 @@
     "decision_ref": "https://github.com/RetryYN/HELIX-HARNESS/issues/3510#issuecomment-6447665479",
     "git_commit": "663b75324810a6f004668a1451de5b03acc542c3",
     "path": "docs/helix-connect/L8-unit-verification/composite-edge-terminal.json",
-    "meaning": "91 source case、27 local probe、1 source reuse、7 primitive case、1 typed carrier caseのID・役割・oracle参照・行別の差分意図/期待・境界・未実行状態を保持した。91 caseはconsumer互換の配列でU-IDと短い期待を各case objectに結び、L5 unit_case_refs不在を明記。局所probeは独立した短い反例・判断のみを保持し、変更指示列と返却差分全体は固定基準revisionとのvalidator比較に限る。raw fixture、inline変異bytes、返却全体、fixture digestは除いた。",
-    "removed_key_rule": "L8はsource ID対応・短い期待判断・意味条件を保持し、raw_utf8、型付きraw fixture、mutation patch/再構成レシピ、全返却値・hash、実行生成物を置かない。独立oracleはexact L9 revision/pointerへ結び、probeの比較証拠は固定git revisionとの静的比較でのみ参照する。",
+    "meaning": "91 source case、27 local probe、1 source reuse、7 primitive case、1 typed carrier caseのID・役割・oracle参照・行別の差分意図/期待・境界・未実行状態を保持した。91 caseはconsumer互換の配列でU-IDと短い期待を各case objectに結び、L5 unit_case_refs不在を明記。局所probeは独立した短い反例・判断のみを保持し、変更指示列と返却差分全体は固定基準revisionとのvalidator比較に限る。raw fixture、inline変異bytes、返却全体、fixture digestは除いた。 重複する91行のl9_basic_branches表、l5_function_ref別名、l3_ref/l10_ref別名はconsumer照合後に除き、function_ref・requirement_ref・system_oracle_refとcase source pointerへ集約した。",
+    "removed_key_rule": "L8はsource ID対応・短い期待判断・意味条件を保持し、raw_utf8、型付きraw fixture、mutation patch/再構成レシピ、全返却値・hash、実行生成物を置かない。独立oracleはexact L9 revision/pointerへ結び、probeの比較証拠は固定git revisionとの静的比較でのみ参照する。 l9_basic_branchesのsource case ID/U-ID/function/state/source pointerはcasesと重複するため再掲しない。function_refをL5関数識別にも使い、l5_function_ref・l3_ref・l10_refの同値別名を作らない。",
     "use_boundary": "DT-VT-105（L5↔L8照合）のseed候補を適用照合先とする。固定旧revisionは比較・由来照合専用であり、fixture・期待値の再生成、実行、fallback、合格・authority・Readyの根拠にしない。"
   },
   "preserved_inventory": {
@@ -5510,1100 +5237,6 @@
         "local_probe_ids": [
           "LOCAL-C007-B01-TECHNICAL-TERMINAL-BUSINESS-NOT-ACCEPTED-READONLY-OWNER-PROBE"
         ]
-      }
-    ],
-    "l9_basic_branches": [
-      {
-        "source_case_id": "C007-F01-FOUR-MECHANISMS-THREE-DISTINCT-EDGES",
-        "u_id": "U-C007-001",
-        "function_ref": "FN-C007-01",
-        "source_ref": {
-          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
-          "pointer": "/verification_obligations/0/concrete_cases/0"
-        },
-        "execution_state": "not_executed",
-        "fixture_only": true
-      },
-      {
-        "source_case_id": "C007-F01-ORIGINAL-RECEIPT-EDGE-1-MISSING",
-        "u_id": "U-C007-002",
-        "function_ref": "FN-C007-01",
-        "source_ref": {
-          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
-          "pointer": "/verification_obligations/0/concrete_cases/1"
-        },
-        "execution_state": "not_executed",
-        "fixture_only": true
-      },
-      {
-        "source_case_id": "C007-F01-ORIGINAL-RECEIPT-EDGE-2-MISSING",
-        "u_id": "U-C007-003",
-        "function_ref": "FN-C007-01",
-        "source_ref": {
-          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
-          "pointer": "/verification_obligations/0/concrete_cases/2"
-        },
-        "execution_state": "not_executed",
-        "fixture_only": true
-      },
-      {
-        "source_case_id": "C007-F01-ORIGINAL-RECEIPT-EDGE-3-MISSING",
-        "u_id": "U-C007-004",
-        "function_ref": "FN-C007-01",
-        "source_ref": {
-          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
-          "pointer": "/verification_obligations/0/concrete_cases/3"
-        },
-        "execution_state": "not_executed",
-        "fixture_only": true
-      },
-      {
-        "source_case_id": "C007-F01-RECEIPT-TARGET-CONNECTION_IDENTITY-FOREIGN",
-        "u_id": "U-C007-005",
-        "function_ref": "FN-C007-01",
-        "source_ref": {
-          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
-          "pointer": "/verification_obligations/0/concrete_cases/4"
-        },
-        "execution_state": "not_executed",
-        "fixture_only": true
-      },
-      {
-        "source_case_id": "C007-F01-RECEIPT-TARGET-CONTRACT_REVISION-FOREIGN",
-        "u_id": "U-C007-006",
-        "function_ref": "FN-C007-01",
-        "source_ref": {
-          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
-          "pointer": "/verification_obligations/0/concrete_cases/5"
-        },
-        "execution_state": "not_executed",
-        "fixture_only": true
-      },
-      {
-        "source_case_id": "C007-F01-RECEIPT-TARGET-ABILITY_REF-FOREIGN",
-        "u_id": "U-C007-007",
-        "function_ref": "FN-C007-01",
-        "source_ref": {
-          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
-          "pointer": "/verification_obligations/0/concrete_cases/6"
-        },
-        "execution_state": "not_executed",
-        "fixture_only": true
-      },
-      {
-        "source_case_id": "C007-F01-RECEIPT-TARGET-SCOPE-FOREIGN",
-        "u_id": "U-C007-008",
-        "function_ref": "FN-C007-01",
-        "source_ref": {
-          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
-          "pointer": "/verification_obligations/0/concrete_cases/7"
-        },
-        "execution_state": "not_executed",
-        "fixture_only": true
-      },
-      {
-        "source_case_id": "C007-F01-RECEIPT-TARGET-OPERATION_IDENTITY-FOREIGN",
-        "u_id": "U-C007-009",
-        "function_ref": "FN-C007-01",
-        "source_ref": {
-          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
-          "pointer": "/verification_obligations/0/concrete_cases/8"
-        },
-        "execution_state": "not_executed",
-        "fixture_only": true
-      },
-      {
-        "source_case_id": "C007-F01-RECEIPT-TARGET-ATTEMPT_IDENTITY-FOREIGN",
-        "u_id": "U-C007-010",
-        "function_ref": "FN-C007-01",
-        "source_ref": {
-          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
-          "pointer": "/verification_obligations/0/concrete_cases/9"
-        },
-        "execution_state": "not_executed",
-        "fixture_only": true
-      },
-      {
-        "source_case_id": "C007-F01-RECEIPT-TARGET-CORRELATION-FOREIGN",
-        "u_id": "U-C007-011",
-        "function_ref": "FN-C007-01",
-        "source_ref": {
-          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
-          "pointer": "/verification_obligations/0/concrete_cases/10"
-        },
-        "execution_state": "not_executed",
-        "fixture_only": true
-      },
-      {
-        "source_case_id": "C007-F01-RECEIPT-TARGET-EXPIRY_REF-FOREIGN",
-        "u_id": "U-C007-012",
-        "function_ref": "FN-C007-01",
-        "source_ref": {
-          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
-          "pointer": "/verification_obligations/0/concrete_cases/11"
-        },
-        "execution_state": "not_executed",
-        "fixture_only": true
-      },
-      {
-        "source_case_id": "C007-F01-RECEIPT-TARGET-PERMISSION_REF-FOREIGN",
-        "u_id": "U-C007-013",
-        "function_ref": "FN-C007-01",
-        "source_ref": {
-          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
-          "pointer": "/verification_obligations/0/concrete_cases/12"
-        },
-        "execution_state": "not_executed",
-        "fixture_only": true
-      },
-      {
-        "source_case_id": "C007-F01-RECEIPT-TARGET-IDEMPOTENCY-FOREIGN",
-        "u_id": "U-C007-014",
-        "function_ref": "FN-C007-01",
-        "source_ref": {
-          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
-          "pointer": "/verification_obligations/0/concrete_cases/13"
-        },
-        "execution_state": "not_executed",
-        "fixture_only": true
-      },
-      {
-        "source_case_id": "C007-F01-RECEIPT-TARGET-CONTENT_DIGEST-FOREIGN",
-        "u_id": "U-C007-015",
-        "function_ref": "FN-C007-01",
-        "source_ref": {
-          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
-          "pointer": "/verification_obligations/0/concrete_cases/14"
-        },
-        "execution_state": "not_executed",
-        "fixture_only": true
-      },
-      {
-        "source_case_id": "C007-F01-RECEIPT-TARGET-REGISTRATION_REVISION-FOREIGN",
-        "u_id": "U-C007-016",
-        "function_ref": "FN-C007-01",
-        "source_ref": {
-          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
-          "pointer": "/verification_obligations/0/concrete_cases/15"
-        },
-        "execution_state": "not_executed",
-        "fixture_only": true
-      },
-      {
-        "source_case_id": "C007-F01-RECEIPT-TARGET-RECOVERY_REF-FOREIGN",
-        "u_id": "U-C007-017",
-        "function_ref": "FN-C007-01",
-        "source_ref": {
-          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
-          "pointer": "/verification_obligations/0/concrete_cases/16"
-        },
-        "execution_state": "not_executed",
-        "fixture_only": true
-      },
-      {
-        "source_case_id": "C007-F01-RECEIPT-COMPOSITE-IDENTITY-FOREIGN",
-        "u_id": "U-C007-018",
-        "function_ref": "FN-C007-01",
-        "source_ref": {
-          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
-          "pointer": "/verification_obligations/0/concrete_cases/17"
-        },
-        "execution_state": "not_executed",
-        "fixture_only": true
-      },
-      {
-        "source_case_id": "C007-F01-RECEIPT-COMPOSITE-REVISION-FOREIGN",
-        "u_id": "U-C007-019",
-        "function_ref": "FN-C007-01",
-        "source_ref": {
-          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
-          "pointer": "/verification_obligations/0/concrete_cases/18"
-        },
-        "execution_state": "not_executed",
-        "fixture_only": true
-      },
-      {
-        "source_case_id": "C007-F01-RECEIPT-COMPOSITE-SCOPE-FOREIGN",
-        "u_id": "U-C007-020",
-        "function_ref": "FN-C007-01",
-        "source_ref": {
-          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
-          "pointer": "/verification_obligations/0/concrete_cases/19"
-        },
-        "execution_state": "not_executed",
-        "fixture_only": true
-      },
-      {
-        "source_case_id": "C007-F01-RECEIPT-COMPOSITE-REQUIREMENT_REVISION-FOREIGN",
-        "u_id": "U-C007-021",
-        "function_ref": "FN-C007-01",
-        "source_ref": {
-          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
-          "pointer": "/verification_obligations/0/concrete_cases/20"
-        },
-        "execution_state": "not_executed",
-        "fixture_only": true
-      },
-      {
-        "source_case_id": "C007-F01-RECEIPT-COMPOSITE-CORRELATION-FOREIGN",
-        "u_id": "U-C007-022",
-        "function_ref": "FN-C007-01",
-        "source_ref": {
-          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
-          "pointer": "/verification_obligations/0/concrete_cases/21"
-        },
-        "execution_state": "not_executed",
-        "fixture_only": true
-      },
-      {
-        "source_case_id": "C007-F01-RECEIPT-COMPOSITE-OWNER-FOREIGN",
-        "u_id": "U-C007-023",
-        "function_ref": "FN-C007-01",
-        "source_ref": {
-          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
-          "pointer": "/verification_obligations/0/concrete_cases/22"
-        },
-        "execution_state": "not_executed",
-        "fixture_only": true
-      },
-      {
-        "source_case_id": "C007-F01-ORIGINAL-REGISTRATION_STATE-UNKNOWN",
-        "u_id": "U-C007-024",
-        "function_ref": "FN-C007-01",
-        "source_ref": {
-          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
-          "pointer": "/verification_obligations/0/concrete_cases/23"
-        },
-        "execution_state": "not_executed",
-        "fixture_only": true
-      },
-      {
-        "source_case_id": "C007-F01-ORIGINAL-COMPATIBILITY_STATE-STALE",
-        "u_id": "U-C007-025",
-        "function_ref": "FN-C007-01",
-        "source_ref": {
-          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
-          "pointer": "/verification_obligations/0/concrete_cases/24"
-        },
-        "execution_state": "not_executed",
-        "fixture_only": true
-      },
-      {
-        "source_case_id": "C007-F01-ORIGINAL-EXPIRY_STATE-EXPIRED",
-        "u_id": "U-C007-026",
-        "function_ref": "FN-C007-01",
-        "source_ref": {
-          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
-          "pointer": "/verification_obligations/0/concrete_cases/25"
-        },
-        "execution_state": "not_executed",
-        "fixture_only": true
-      },
-      {
-        "source_case_id": "C007-F01-ORIGINAL-PERMISSION_STATE-REVOKED",
-        "u_id": "U-C007-027",
-        "function_ref": "FN-C007-01",
-        "source_ref": {
-          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
-          "pointer": "/verification_obligations/0/concrete_cases/26"
-        },
-        "execution_state": "not_executed",
-        "fixture_only": true
-      },
-      {
-        "source_case_id": "C007-F01-ORIGINAL-RESULT_STATE-PARTIAL_SUCCESS",
-        "u_id": "U-C007-028",
-        "function_ref": "FN-C007-01",
-        "source_ref": {
-          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
-          "pointer": "/verification_obligations/0/concrete_cases/27"
-        },
-        "execution_state": "not_executed",
-        "fixture_only": true
-      },
-      {
-        "source_case_id": "C007-F01-ORIGINAL-RECEIVER_EFFECT_STATE-NOT_OBSERVED",
-        "u_id": "U-C007-029",
-        "function_ref": "FN-C007-01",
-        "source_ref": {
-          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
-          "pointer": "/verification_obligations/0/concrete_cases/28"
-        },
-        "execution_state": "not_executed",
-        "fixture_only": true
-      },
-      {
-        "source_case_id": "C007-F01-ORIGINAL-EDGE-DEFINITION-MISSING",
-        "u_id": "U-C007-030",
-        "function_ref": "FN-C007-01",
-        "source_ref": {
-          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
-          "pointer": "/verification_obligations/0/concrete_cases/29"
-        },
-        "execution_state": "not_executed",
-        "fixture_only": true
-      },
-      {
-        "source_case_id": "C007-F01-SUBMITTED-EDGE-ORDER-REVERSED",
-        "u_id": "U-C007-031",
-        "function_ref": "FN-C007-01",
-        "source_ref": {
-          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
-          "pointer": "/verification_obligations/0/concrete_cases/30"
-        },
-        "execution_state": "not_executed",
-        "fixture_only": true
-      },
-      {
-        "source_case_id": "C007-F01-ORIGINAL-MAPPING-SOURCE_OPERATION-UNKNOWN",
-        "u_id": "U-C007-032",
-        "function_ref": "FN-C007-01",
-        "source_ref": {
-          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
-          "pointer": "/verification_obligations/0/concrete_cases/31"
-        },
-        "execution_state": "not_executed",
-        "fixture_only": true
-      },
-      {
-        "source_case_id": "C007-F01-ORIGINAL-MAPPING-SOURCE_OPERATION-FOREIGN",
-        "u_id": "U-C007-033",
-        "function_ref": "FN-C007-01",
-        "source_ref": {
-          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
-          "pointer": "/verification_obligations/0/concrete_cases/32"
-        },
-        "execution_state": "not_executed",
-        "fixture_only": true
-      },
-      {
-        "source_case_id": "C007-F01-ORIGINAL-MAPPING-SOURCE_ENDPOINT-FOREIGN",
-        "u_id": "U-C007-034",
-        "function_ref": "FN-C007-01",
-        "source_ref": {
-          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
-          "pointer": "/verification_obligations/0/concrete_cases/33"
-        },
-        "execution_state": "not_executed",
-        "fixture_only": true
-      },
-      {
-        "source_case_id": "C007-F01-SUBMITTED-RECEIPT-MISSING",
-        "u_id": "U-C007-035",
-        "function_ref": "FN-C007-01",
-        "source_ref": {
-          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
-          "pointer": "/verification_obligations/0/concrete_cases/34"
-        },
-        "execution_state": "not_executed",
-        "fixture_only": true
-      },
-      {
-        "source_case_id": "C007-F01-SUBMITTED-RECEIPT-DUPLICATE",
-        "u_id": "U-C007-036",
-        "function_ref": "FN-C007-01",
-        "source_ref": {
-          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
-          "pointer": "/verification_obligations/0/concrete_cases/35"
-        },
-        "execution_state": "not_executed",
-        "fixture_only": true
-      },
-      {
-        "source_case_id": "C007-F01-ONE_EDGE_GREEN_IS_COMPOSITE",
-        "u_id": "U-C007-037",
-        "function_ref": "FN-C007-01",
-        "source_ref": {
-          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
-          "pointer": "/verification_obligations/0/concrete_cases/36"
-        },
-        "execution_state": "not_executed",
-        "fixture_only": true
-      },
-      {
-        "source_case_id": "C007-F01-MISSING_EDGE_COMPLETE",
-        "u_id": "U-C007-038",
-        "function_ref": "FN-C007-01",
-        "source_ref": {
-          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
-          "pointer": "/verification_obligations/0/concrete_cases/37"
-        },
-        "execution_state": "not_executed",
-        "fixture_only": true
-      },
-      {
-        "source_case_id": "C007-F01-UNKNOWN_MAPPING_COMPLETE",
-        "u_id": "U-C007-039",
-        "function_ref": "FN-C007-01",
-        "source_ref": {
-          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
-          "pointer": "/verification_obligations/0/concrete_cases/38"
-        },
-        "execution_state": "not_executed",
-        "fixture_only": true
-      },
-      {
-        "source_case_id": "C007-F02-STALE-MIDDLE-PREDECESSOR-RETAINED-NO-DOWNSTREAM",
-        "u_id": "U-C007-040",
-        "function_ref": "FN-C007-02",
-        "source_ref": {
-          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
-          "pointer": "/verification_obligations/1/concrete_cases/0"
-        },
-        "execution_state": "not_executed",
-        "fixture_only": true
-      },
-      {
-        "source_case_id": "C007-F02-MIDDLE-TIMEOUT",
-        "u_id": "U-C007-041",
-        "function_ref": "FN-C007-02",
-        "source_ref": {
-          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
-          "pointer": "/verification_obligations/1/concrete_cases/1"
-        },
-        "execution_state": "not_executed",
-        "fixture_only": true
-      },
-      {
-        "source_case_id": "C007-F02-MIDDLE-DIGEST_CONFLICT",
-        "u_id": "U-C007-042",
-        "function_ref": "FN-C007-02",
-        "source_ref": {
-          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
-          "pointer": "/verification_obligations/1/concrete_cases/2"
-        },
-        "execution_state": "not_executed",
-        "fixture_only": true
-      },
-      {
-        "source_case_id": "C007-F02-MIDDLE-EXPIRY",
-        "u_id": "U-C007-043",
-        "function_ref": "FN-C007-02",
-        "source_ref": {
-          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
-          "pointer": "/verification_obligations/1/concrete_cases/3"
-        },
-        "execution_state": "not_executed",
-        "fixture_only": true
-      },
-      {
-        "source_case_id": "C007-F02-MIDDLE-CANCELLED",
-        "u_id": "U-C007-044",
-        "function_ref": "FN-C007-02",
-        "source_ref": {
-          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
-          "pointer": "/verification_obligations/1/concrete_cases/4"
-        },
-        "execution_state": "not_executed",
-        "fixture_only": true
-      },
-      {
-        "source_case_id": "C007-F02-MIDDLE-PERMISSION_REVOKED",
-        "u_id": "U-C007-045",
-        "function_ref": "FN-C007-02",
-        "source_ref": {
-          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
-          "pointer": "/verification_obligations/1/concrete_cases/5"
-        },
-        "execution_state": "not_executed",
-        "fixture_only": true
-      },
-      {
-        "source_case_id": "C007-F02-MIDDLE-PARTIAL_SUCCESS",
-        "u_id": "U-C007-046",
-        "function_ref": "FN-C007-02",
-        "source_ref": {
-          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
-          "pointer": "/verification_obligations/1/concrete_cases/6"
-        },
-        "execution_state": "not_executed",
-        "fixture_only": true
-      },
-      {
-        "source_case_id": "C007-F02-MIDDLE-UNKNOWN",
-        "u_id": "U-C007-047",
-        "function_ref": "FN-C007-02",
-        "source_ref": {
-          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
-          "pointer": "/verification_obligations/1/concrete_cases/7"
-        },
-        "execution_state": "not_executed",
-        "fixture_only": true
-      },
-      {
-        "source_case_id": "C007-F02-SUBMITTED-PRIOR_SUCCESSES-ERASED",
-        "u_id": "U-C007-048",
-        "function_ref": "FN-C007-02",
-        "source_ref": {
-          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
-          "pointer": "/verification_obligations/1/concrete_cases/8"
-        },
-        "execution_state": "not_executed",
-        "fixture_only": true
-      },
-      {
-        "source_case_id": "C007-F02-SUBMITTED-UNFINISHED-ERASED",
-        "u_id": "U-C007-049",
-        "function_ref": "FN-C007-02",
-        "source_ref": {
-          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
-          "pointer": "/verification_obligations/1/concrete_cases/9"
-        },
-        "execution_state": "not_executed",
-        "fixture_only": true
-      },
-      {
-        "source_case_id": "C007-F02-SUBMITTED-DOWNSTREAM-ATTEMPT-INVENTED",
-        "u_id": "U-C007-050",
-        "function_ref": "FN-C007-02",
-        "source_ref": {
-          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
-          "pointer": "/verification_obligations/1/concrete_cases/10"
-        },
-        "execution_state": "not_executed",
-        "fixture_only": true
-      },
-      {
-        "source_case_id": "C007-F02-ORIGINAL-UNAUTHORIZED-DOWNSTREAM-ATTEMPT",
-        "u_id": "U-C007-051",
-        "function_ref": "FN-C007-02",
-        "source_ref": {
-          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
-          "pointer": "/verification_obligations/1/concrete_cases/11"
-        },
-        "execution_state": "not_executed",
-        "fixture_only": true
-      },
-      {
-        "source_case_id": "C007-F02-SUBMITTED-STOP-OWNER-FOREIGN",
-        "u_id": "U-C007-052",
-        "function_ref": "FN-C007-02",
-        "source_ref": {
-          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
-          "pointer": "/verification_obligations/1/concrete_cases/12"
-        },
-        "execution_state": "not_executed",
-        "fixture_only": true
-      },
-      {
-        "source_case_id": "C007-F02-SUBMITTED-STOP-RECOVERY_REF-FOREIGN",
-        "u_id": "U-C007-053",
-        "function_ref": "FN-C007-02",
-        "source_ref": {
-          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
-          "pointer": "/verification_obligations/1/concrete_cases/13"
-        },
-        "execution_state": "not_executed",
-        "fixture_only": true
-      },
-      {
-        "source_case_id": "C007-F02-SUBMITTED-STOP-EDGE_IDENTITY-FOREIGN",
-        "u_id": "U-C007-054",
-        "function_ref": "FN-C007-02",
-        "source_ref": {
-          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
-          "pointer": "/verification_obligations/1/concrete_cases/14"
-        },
-        "execution_state": "not_executed",
-        "fixture_only": true
-      },
-      {
-        "source_case_id": "C007-F02-SUBMITTED-STOP-OPERATION_IDENTITY-FOREIGN",
-        "u_id": "U-C007-055",
-        "function_ref": "FN-C007-02",
-        "source_ref": {
-          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
-          "pointer": "/verification_obligations/1/concrete_cases/15"
-        },
-        "execution_state": "not_executed",
-        "fixture_only": true
-      },
-      {
-        "source_case_id": "C007-F02-SUBMITTED-STOP-ATTEMPT_IDENTITY-FOREIGN",
-        "u_id": "U-C007-056",
-        "function_ref": "FN-C007-02",
-        "source_ref": {
-          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
-          "pointer": "/verification_obligations/1/concrete_cases/16"
-        },
-        "execution_state": "not_executed",
-        "fixture_only": true
-      },
-      {
-        "source_case_id": "C007-F02-HANDOFF-COMPOSITE-SCOPE-FOREIGN",
-        "u_id": "U-C007-057",
-        "function_ref": "FN-C007-02",
-        "source_ref": {
-          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
-          "pointer": "/verification_obligations/1/concrete_cases/17"
-        },
-        "execution_state": "not_executed",
-        "fixture_only": true
-      },
-      {
-        "source_case_id": "C007-F02-ORIGINAL-STOP-OWNER-FOREIGN",
-        "u_id": "U-C007-058",
-        "function_ref": "FN-C007-02",
-        "source_ref": {
-          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
-          "pointer": "/verification_obligations/1/concrete_cases/18"
-        },
-        "execution_state": "not_executed",
-        "fixture_only": true
-      },
-      {
-        "source_case_id": "C007-F02-ORIGINAL-STOP-RECOVERY_REF-FOREIGN",
-        "u_id": "U-C007-059",
-        "function_ref": "FN-C007-02",
-        "source_ref": {
-          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
-          "pointer": "/verification_obligations/1/concrete_cases/19"
-        },
-        "execution_state": "not_executed",
-        "fixture_only": true
-      },
-      {
-        "source_case_id": "C007-F02-ORIGINAL-STOP-OPERATION_IDENTITY-FOREIGN",
-        "u_id": "U-C007-060",
-        "function_ref": "FN-C007-02",
-        "source_ref": {
-          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
-          "pointer": "/verification_obligations/1/concrete_cases/20"
-        },
-        "execution_state": "not_executed",
-        "fixture_only": true
-      },
-      {
-        "source_case_id": "C007-F02-ORIGINAL-STOP-ATTEMPT_IDENTITY-FOREIGN",
-        "u_id": "U-C007-061",
-        "function_ref": "FN-C007-02",
-        "source_ref": {
-          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
-          "pointer": "/verification_obligations/1/concrete_cases/21"
-        },
-        "execution_state": "not_executed",
-        "fixture_only": true
-      },
-      {
-        "source_case_id": "C007-F02-UNAUTHORIZED_DOWNSTREAM_RETRY",
-        "u_id": "U-C007-062",
-        "function_ref": "FN-C007-02",
-        "source_ref": {
-          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
-          "pointer": "/verification_obligations/1/concrete_cases/22"
-        },
-        "execution_state": "not_executed",
-        "fixture_only": true
-      },
-      {
-        "source_case_id": "C007-F02-OTHER_EDGE_GREEN_OFFSETS",
-        "u_id": "U-C007-063",
-        "function_ref": "FN-C007-02",
-        "source_ref": {
-          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
-          "pointer": "/verification_obligations/1/concrete_cases/23"
-        },
-        "execution_state": "not_executed",
-        "fixture_only": true
-      },
-      {
-        "source_case_id": "C007-F02-ERASE_FULL_TRACE",
-        "u_id": "U-C007-064",
-        "function_ref": "FN-C007-02",
-        "source_ref": {
-          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
-          "pointer": "/verification_obligations/1/concrete_cases/24"
-        },
-        "execution_state": "not_executed",
-        "fixture_only": true
-      },
-      {
-        "source_case_id": "C007-N01-EXACT-DECLARED-SCOPE-THREE-BOUNDARY-EVIDENCE",
-        "u_id": "U-C007-065",
-        "function_ref": "FN-C007-03",
-        "source_ref": {
-          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
-          "pointer": "/verification_obligations/2/concrete_cases/0"
-        },
-        "execution_state": "not_executed",
-        "fixture_only": true
-      },
-      {
-        "source_case_id": "C007-N01-EVIDENCE-TARGET-COMPOSITE_IDENTITY-FOREIGN",
-        "u_id": "U-C007-066",
-        "function_ref": "FN-C007-03",
-        "source_ref": {
-          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
-          "pointer": "/verification_obligations/2/concrete_cases/1"
-        },
-        "execution_state": "not_executed",
-        "fixture_only": true
-      },
-      {
-        "source_case_id": "C007-N01-EVIDENCE-TARGET-COMPOSITE_REVISION-FOREIGN",
-        "u_id": "U-C007-067",
-        "function_ref": "FN-C007-03",
-        "source_ref": {
-          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
-          "pointer": "/verification_obligations/2/concrete_cases/2"
-        },
-        "execution_state": "not_executed",
-        "fixture_only": true
-      },
-      {
-        "source_case_id": "C007-N01-EVIDENCE-TARGET-REQUIREMENT_REVISION-FOREIGN",
-        "u_id": "U-C007-068",
-        "function_ref": "FN-C007-03",
-        "source_ref": {
-          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
-          "pointer": "/verification_obligations/2/concrete_cases/3"
-        },
-        "execution_state": "not_executed",
-        "fixture_only": true
-      },
-      {
-        "source_case_id": "C007-N01-EVIDENCE-TARGET-SCOPE-FOREIGN",
-        "u_id": "U-C007-069",
-        "function_ref": "FN-C007-03",
-        "source_ref": {
-          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
-          "pointer": "/verification_obligations/2/concrete_cases/4"
-        },
-        "execution_state": "not_executed",
-        "fixture_only": true
-      },
-      {
-        "source_case_id": "C007-N01-EVIDENCE-TARGET-CONNECTION_EXACT_SET-FOREIGN",
-        "u_id": "U-C007-070",
-        "function_ref": "FN-C007-03",
-        "source_ref": {
-          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
-          "pointer": "/verification_obligations/2/concrete_cases/5"
-        },
-        "execution_state": "not_executed",
-        "fixture_only": true
-      },
-      {
-        "source_case_id": "C007-N01-EVIDENCE-TARGET-ENDPOINT_REGISTRATION_REVISIONS-FOREIGN",
-        "u_id": "U-C007-071",
-        "function_ref": "FN-C007-03",
-        "source_ref": {
-          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
-          "pointer": "/verification_obligations/2/concrete_cases/6"
-        },
-        "execution_state": "not_executed",
-        "fixture_only": true
-      },
-      {
-        "source_case_id": "C007-N01-EVIDENCE-TARGET-OPERATION_ATTEMPTS-FOREIGN",
-        "u_id": "U-C007-072",
-        "function_ref": "FN-C007-03",
-        "source_ref": {
-          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
-          "pointer": "/verification_obligations/2/concrete_cases/7"
-        },
-        "execution_state": "not_executed",
-        "fixture_only": true
-      },
-      {
-        "source_case_id": "C007-N01-EVIDENCE-TARGET-EFFECT_STOP_REF-FOREIGN",
-        "u_id": "U-C007-073",
-        "function_ref": "FN-C007-03",
-        "source_ref": {
-          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
-          "pointer": "/verification_obligations/2/concrete_cases/8"
-        },
-        "execution_state": "not_executed",
-        "fixture_only": true
-      },
-      {
-        "source_case_id": "C007-N01-ORIGINAL-BOUNDARY-EVIDENCE-MISSING",
-        "u_id": "U-C007-074",
-        "function_ref": "FN-C007-03",
-        "source_ref": {
-          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
-          "pointer": "/verification_obligations/2/concrete_cases/9"
-        },
-        "execution_state": "not_executed",
-        "fixture_only": true
-      },
-      {
-        "source_case_id": "C007-N01-ORIGINAL-BOUNDARY-NOT-EXECUTED",
-        "u_id": "U-C007-075",
-        "function_ref": "FN-C007-03",
-        "source_ref": {
-          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
-          "pointer": "/verification_obligations/2/concrete_cases/10"
-        },
-        "execution_state": "not_executed",
-        "fixture_only": true
-      },
-      {
-        "source_case_id": "C007-N01-SUBMITTED-BOUNDARY-EVIDENCE-MISSING",
-        "u_id": "U-C007-076",
-        "function_ref": "FN-C007-03",
-        "source_ref": {
-          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
-          "pointer": "/verification_obligations/2/concrete_cases/11"
-        },
-        "execution_state": "not_executed",
-        "fixture_only": true
-      },
-      {
-        "source_case_id": "C007-N01-ORIGINAL-EVIDENCE-EDGE-FOREIGN",
-        "u_id": "U-C007-077",
-        "function_ref": "FN-C007-03",
-        "source_ref": {
-          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
-          "pointer": "/verification_obligations/2/concrete_cases/12"
-        },
-        "execution_state": "not_executed",
-        "fixture_only": true
-      },
-      {
-        "source_case_id": "C007-N01-FIELD_COUNT_COMPOSITE_COMPLETE",
-        "u_id": "U-C007-078",
-        "function_ref": "FN-C007-03",
-        "source_ref": {
-          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
-          "pointer": "/verification_obligations/2/concrete_cases/13"
-        },
-        "execution_state": "not_executed",
-        "fixture_only": true
-      },
-      {
-        "source_case_id": "C007-N01-FOREIGN_SCOPE_SUCCESS_INHERITED",
-        "u_id": "U-C007-079",
-        "function_ref": "FN-C007-03",
-        "source_ref": {
-          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
-          "pointer": "/verification_obligations/2/concrete_cases/14"
-        },
-        "execution_state": "not_executed",
-        "fixture_only": true
-      },
-      {
-        "source_case_id": "C007-N01-FIXTURE_ALL_CONNECTIONS_COMPLETE",
-        "u_id": "U-C007-080",
-        "function_ref": "FN-C007-03",
-        "source_ref": {
-          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
-          "pointer": "/verification_obligations/2/concrete_cases/15"
-        },
-        "execution_state": "not_executed",
-        "fixture_only": true
-      },
-      {
-        "source_case_id": "C007-B01-TECHNICAL-TERMINAL-BUSINESS-NOT-ACCEPTED",
-        "u_id": "U-C007-081",
-        "function_ref": "FN-C007-04",
-        "source_ref": {
-          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
-          "pointer": "/verification_obligations/3/concrete_cases/0"
-        },
-        "execution_state": "not_executed",
-        "fixture_only": true
-      },
-      {
-        "source_case_id": "C007-B01-SUBMITTED-BUSINESS-OWNER-OVERRIDE",
-        "u_id": "U-C007-082",
-        "function_ref": "FN-C007-04",
-        "source_ref": {
-          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
-          "pointer": "/verification_obligations/3/concrete_cases/1"
-        },
-        "execution_state": "not_executed",
-        "fixture_only": true
-      },
-      {
-        "source_case_id": "C007-B01-SUBMITTED-BUSINESS-STATE-OVERRIDE",
-        "u_id": "U-C007-083",
-        "function_ref": "FN-C007-04",
-        "source_ref": {
-          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
-          "pointer": "/verification_obligations/3/concrete_cases/2"
-        },
-        "execution_state": "not_executed",
-        "fixture_only": true
-      },
-      {
-        "source_case_id": "C007-B01-SUBMITTED-BUSINESS-REQUIREMENT_ADOPTION-OVERRIDE",
-        "u_id": "U-C007-084",
-        "function_ref": "FN-C007-04",
-        "source_ref": {
-          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
-          "pointer": "/verification_obligations/3/concrete_cases/3"
-        },
-        "execution_state": "not_executed",
-        "fixture_only": true
-      },
-      {
-        "source_case_id": "C007-B01-SUBMITTED-BUSINESS-ACCEPTANCE_REF-OVERRIDE",
-        "u_id": "U-C007-085",
-        "function_ref": "FN-C007-04",
-        "source_ref": {
-          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
-          "pointer": "/verification_obligations/3/concrete_cases/4"
-        },
-        "execution_state": "not_executed",
-        "fixture_only": true
-      },
-      {
-        "source_case_id": "C007-B01-UNSELECTED-REPLACEMENT-REQUIRED",
-        "u_id": "U-C007-086",
-        "function_ref": "FN-C007-04",
-        "source_ref": {
-          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
-          "pointer": "/verification_obligations/3/concrete_cases/5"
-        },
-        "execution_state": "not_executed",
-        "fixture_only": true
-      },
-      {
-        "source_case_id": "C007-B01-UNSELECTED-CONNECTION-ADDED",
-        "u_id": "U-C007-087",
-        "function_ref": "FN-C007-04",
-        "source_ref": {
-          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
-          "pointer": "/verification_obligations/3/concrete_cases/6"
-        },
-        "execution_state": "not_executed",
-        "fixture_only": true
-      },
-      {
-        "source_case_id": "C007-B01-SELECTED-SEC-CONTRACT-ERASED",
-        "u_id": "U-C007-088",
-        "function_ref": "FN-C007-04",
-        "source_ref": {
-          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
-          "pointer": "/verification_obligations/3/concrete_cases/7"
-        },
-        "execution_state": "not_executed",
-        "fixture_only": true
-      },
-      {
-        "source_case_id": "C007-B01-TECHNICAL_RECEIPT_IS_ACCEPTED",
-        "u_id": "U-C007-089",
-        "function_ref": "FN-C007-04",
-        "source_ref": {
-          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
-          "pointer": "/verification_obligations/3/concrete_cases/8"
-        },
-        "execution_state": "not_executed",
-        "fixture_only": true
-      },
-      {
-        "source_case_id": "C007-B01-WAIT_ALL_UNINVENTORIED_CONNECTIONS",
-        "u_id": "U-C007-090",
-        "function_ref": "FN-C007-04",
-        "source_ref": {
-          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
-          "pointer": "/verification_obligations/3/concrete_cases/9"
-        },
-        "execution_state": "not_executed",
-        "fixture_only": true
-      },
-      {
-        "source_case_id": "C007-B01-UNSELECTED_REPLACEMENT_REQUIRED",
-        "u_id": "U-C007-091",
-        "function_ref": "FN-C007-04",
-        "source_ref": {
-          "path": "docs/helix-connect/L9-integration-verification/composite-edge-terminal.json",
-          "revision": "1451d8efe8896226c171778c7953c1d55381c37a",
-          "pointer": "/verification_obligations/3/concrete_cases/10"
-        },
-        "execution_state": "not_executed",
-        "fixture_only": true
       }
     ],
     "coverage_boundary": "91件のL9分岐と27件の事前宣言probeは、既存127宣言の内訳であり、U-IDは各宣言に付けたラベルで追加件数ではない。failure_ruleは固定L9 oracleまたは固定基準revisionに残るprobe由来の根拠に対応するときだけ被覆に数える。sourceに期待根拠がない値は補わない。",
