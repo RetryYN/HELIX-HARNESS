@@ -29,6 +29,8 @@ FILES = {
     "l10_functional": "docs/helix-security/L10-verification/functional-verification.json",
     "checker": "scaffold/tools/design_verification_checker.py",
 }
+L9_CASE_SOURCE_REVISION = "22076e0c0f5aa3fe7b8933dfa556565900623487"
+L9_CASE_SOURCE_SHA256 = "8296d811f95f94d9391a15a597839ee7f9d47b32dd7c7b780312821fc1c52a19"
 SHARED_CLASS_FIELDS = (
     "expected_classification",
     "expected",
@@ -59,6 +61,10 @@ def load_json(path: str) -> Any:
 
 def sha256(path: str) -> str:
     return hashlib.sha256((ROOT / path).read_bytes()).hexdigest()
+
+
+def git_bytes(revision: str, path: str) -> bytes:
+    return subprocess.check_output(["git", "show", f"{revision}:{path}"], cwd=ROOT)
 
 
 def resolve_pointer(value: Any, pointer: str) -> Any:
@@ -101,6 +107,10 @@ def main() -> int:
     sources = {name: load_json(path) for name, path in FILES.items() if name != "checker"}
     l3b, l3f = sources["l3_business"], sources["l3_functional"]
     l4, l5, l8, l9, l10, l10f = (sources[k] for k in ("l4", "l5", "l8", "l9", "l10_business", "l10_functional"))
+    l9_case_source_bytes = git_bytes(L9_CASE_SOURCE_REVISION, FILES["l9"])
+    if hashlib.sha256(l9_case_source_bytes).hexdigest() != L9_CASE_SOURCE_SHA256:
+        fail("固定L9 nested source revision/SHAが一致しません")
+    l9_case_source = json.loads(l9_case_source_bytes)
 
     rows_by_layer = {
         "L4": l4.get("failure_classifications", []),
@@ -177,9 +187,8 @@ def main() -> int:
     if any(row.get("integration_case_ref") != row.get("case_id") for row in unit_rows):
         fail("L8 integration_case_ref does not preserve source case_id")
 
-    # U-ID rows retain the source ID in both case_id and integration_case_ref.
-    # Resolve source observations directly from the current L9 case arrays; do not
-    # duplicate their pointers in an L8 index or in the removed case-group arrays.
+    # Current L8 U-ID rows join the current L9 integration roster. Source-only
+    # given metadata is recovered from the immutable pre-retirement L9 revision.
     l9_case_by_id: dict[str, tuple[str, dict[str, Any]]] = {}
     source_id_set = set(source_ids)
     def collect_l9_cases(node: Any, pointer: str = "") -> None:
@@ -194,9 +203,9 @@ def main() -> int:
         elif isinstance(node, list):
             for index, value in enumerate(node):
                 collect_l9_cases(value, pointer + "/" + str(index))
-    collect_l9_cases(l9.get("cases", []), "/cases")
+    collect_l9_cases(l9_case_source.get("cases", []), "/cases")
     if set(l9_case_by_id) != source_id_set:
-        fail(f"L9 nested source IDs differ from integration inventory: {len(l9_case_by_id)}")
+        fail(f"fixed L9 source IDs differ from current integration inventory: {len(l9_case_by_id)}")
     l4_class_pointer_by_id = {row["class_id"]: f"/failure_classifications/{i}" for i, row in enumerate(l4.get("failure_classifications", []))}
     l5_rule_pointer_by_id = {row["id"]: f"/failure_rules/{i}" for i, row in enumerate(l5.get("failure_rules", []))}
 
@@ -234,6 +243,7 @@ def main() -> int:
             positives.append({
                 "uid": unit["id"],
                 "case_id": case_id,
+                "l9_source_revision": L9_CASE_SOURCE_REVISION,
                 "l9_source_pointer_resolved_from_integration_case_ref": source_pointer,
                 "l9_given_keys": sorted(given),
                 "l9_given_sha256": hashlib.sha256(json.dumps(given, ensure_ascii=False, sort_keys=True, separators=(",", ":")).encode()).hexdigest(),
@@ -281,7 +291,7 @@ def main() -> int:
             fail(f"U-ID target does not resolve to L5 rule owner: {case_id}")
         if unit.get("expected") != c4.get("expected") or unit.get("expected_preserved") != c4.get("expected_preserved") or unit.get("condition") != c4.get("condition"):
             fail(f"U-ID expected result is not the corresponding L4 class projection: {case_id}")
-        row_audit.append({"uid": unit["id"], "case_id": case_id, "population_state": "negative", "class_id": class_id, "rule_id": rule_id, "counterexample": counterexample, "l9_pointer": l9_pointer, "l9_given_sha256": given_sha256, "l4_class_pointer": l4_pointer, "l5_rule_pointer": l5_pointer, "expected_sha256": hashlib.sha256(json.dumps({"condition": unit.get("condition"), "expected": unit.get("expected"), "expected_preserved": unit.get("expected_preserved")}, ensure_ascii=False, sort_keys=True, separators=(",", ":")).encode()).hexdigest()})
+        row_audit.append({"uid": unit["id"], "case_id": case_id, "population_state": "negative", "class_id": class_id, "rule_id": rule_id, "counterexample": counterexample, "l9_source_revision": L9_CASE_SOURCE_REVISION, "l9_pointer": l9_pointer, "l9_given_sha256": given_sha256, "l4_class_pointer": l4_pointer, "l5_rule_pointer": l5_pointer, "expected_sha256": hashlib.sha256(json.dumps({"condition": unit.get("condition"), "expected": unit.get("expected"), "expected_preserved": unit.get("expected_preserved")}, ensure_ascii=False, sort_keys=True, separators=(",", ":")).encode()).hexdigest()})
     if negative_count != 277 or len(positives) != 8:
         fail(f"case polarity counts differ: negative={negative_count} positive={len(positives)}")
     if len(set(counterexample_labels)) != 277:
@@ -363,6 +373,7 @@ def main() -> int:
         "source_revision": source_revision,
         "source_revisions": source_revisions,
         "source_hashes": {name: sha256(path) for name, path in FILES.items()},
+        "fixed_l9_case_source": {"revision": L9_CASE_SOURCE_REVISION, "sha256": L9_CASE_SOURCE_SHA256, "purpose": "撤去前のgiven-only sourceをhistorical evidenceとして読む"},
         "counts": {"classes_per_layer": 32, "l8_u_ids": 285, "l9_source_case_ids": 285, "negative": negative_count, "positive_contract_minimum_designed_not_observed": len(positives)},
         "class_audit_summary": {
             "count": len(class_audit),
@@ -381,14 +392,14 @@ def main() -> int:
             "row_details": "recomputed by joining the 285 canonical L8 U-ID rows to L9 integration source IDs; no duplicate unit_case_source_index or L8 nested case groups are used",
         },
         "negative_source_review": {
-            "summary": "Each negative L9 nested source was resolved by joining the U-ID row's integration_case_ref to the canonical L9 integration inventory and case ID. Every `given` object contains only the shared evidence_limit notice; no concrete field values or paired conflicting values are present. Counterexamples therefore state the source ID's missing/conflict dimension plus the L4 class meaning, and conflict rows explicitly avoid inventing values.",
+            "summary": "現行L8 unit_casesのintegration_case_refを現行L9 integration_casesへ照合し、given-only情報は固定revision 22076e0c0f5aa3fe7b8933dfa556565900623487から取得した。negative全件のgivenは共通evidence_limitのみで具体値なし。反例は対象・不足または衝突種類とL4 classの意味を述べ、元sourceにないconflict値は追加しない。",
             "negative_case_count": negative_count,
             "distinct_given_hashes": len(negative_given_hashes),
             "given_hash_counts": dict(negative_given_hashes),
             "case_id_and_pointer_are_in_row_audit": True,
         },
         "positive_source_review": {
-            "summary": "No positive expected values were copied from L9 expected_proposal. A minimum positive contract expectation was derived independently from each abstract case marker and the cited L3/L10/L4 meaning. L9 given still provides only the shared evidence_limit field, so the designed expectations are not fixture-backed or observed outcomes.",
+            "summary": "L9 expected_proposalからpositive期待値を転記していない。case markerとL3/L10/L4契約意味から契約最小期待を設計した。L9 givenは固定履歴revisionから共通evidence_limitのみ参照し、個別fixture/観測結果ではない。",
             "contract_oracle": "HELIXSECURITY-L10-009-B01 is resolved at contract level; individual oracle_id is null for each U-ID.",
             "resolved_contract_sources": [
                 {"layer": "L3", "id": "HELIXSECURITY-L3-009-B01", "path": FILES["l3_business"], "pointer": "/requirements/2"},

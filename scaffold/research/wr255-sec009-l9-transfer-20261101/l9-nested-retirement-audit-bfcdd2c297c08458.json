@@ -1,0 +1,45 @@
+{
+  "evidence_kind": "scaffold",
+  "validator": "validate_l9_nested_retirement.py",
+  "pre_removal_revision": "22076e0c0f5aa3fe7b8933dfa556565900623487",
+  "pre_removal_l9_sha256": "8296d811f95f94d9391a15a597839ee7f9d47b32dd7c7b780312821fc1c52a19",
+  "current_l9_sha256": "bfcdd2c297c08458043b7a78dd483faf7c87873774d3b0c321e65ca6cf1f5a6c",
+  "current_l4_sha256": "00376c402930e1287e9e0e896804b1de8a20390f8abbea8377b70712f868b9da",
+  "result": "PASS",
+  "retired_sections": [
+    "cases[].negative_cases",
+    "cases[].positive_cases",
+    "cases[].source_case_refs"
+  ],
+  "case_roster": {
+    "retained_integration_cases": 285,
+    "positive": 8,
+    "negative": 277,
+    "retired_nested_case_rows": 285
+  },
+  "given_when": {
+    "pre_removal_unique_given_values": 1,
+    "pre_removal_unique_when_values": 1,
+    "row_specific_condition_and_expectation_unchanged": true
+  },
+  "system_oracle": {
+    "L3_L10_chain_resolved": true,
+    "L10_oracle_rows": 3,
+    "individual_oracle_and_test_citation": "null; 未観測"
+  },
+  "current_consumers": {
+    "pre_removal_L9_integration_self_pointers": 285,
+    "L8_group_envelopes_resolved": 3,
+    "L8_unit_case_refs": 285,
+    "current_L9_integration_self_pointers": 0,
+    "L4_taxonomy_aliases": 30,
+    "fixed_R2_history_refs": 3
+  },
+  "R1_assignment_history_mappings": 2,
+  "multi_contract_residual_count": 71,
+  "bytes": {
+    "before": 2165916,
+    "after": 779690,
+    "reduction": 1386226
+  }
+}

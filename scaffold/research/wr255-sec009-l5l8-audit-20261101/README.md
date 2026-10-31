@@ -20,13 +20,13 @@ python3 scaffold/research/wr255-sec009-l5l8-audit-20261101/validate_wr255_l5l8.p
 
 ## U-ID表とsource参照
 
-L8 `unit_cases` の `id` は `SEC009-U0001`〜`SEC009-U0285` の専用連番です。元のSEC009 source IDは `case_id` と `integration_case_ref` に保持します。L8 `cases` は契約単位の概要だけを持ち、`positive_cases`、`negative_cases`、`source_case_refs` の重複行群と重複`unit_case_source_index`は置きません。validatorは285 U-ID行の`integration_case_ref`をL9 `integration_cases`のIDと照合し、L9のcase-specific sourceはL9本文内でIDから解決します。negative行は`negative_class_ref`、`rule_ref`、`function_ref`でL4 classとL5 rule/ownerを引きます。
+L8 `unit_cases` の `id` は `SEC009-U0001`〜`SEC009-U0285` の専用連番です。元のSEC009 source IDは `case_id` と `integration_case_ref` に保持します。L8 `cases` は契約単位の概要だけを持ち、`positive_cases`、`negative_cases`、`source_case_refs` の重複行群と重複`unit_case_source_index`は置きません。validatorは285 U-ID行の`integration_case_ref`を現行L9 `integration_cases`のIDと照合します。撤去済みcase sectionsの`given`のみ固定L9 revision `22076e0c0f5aa3fe7b8933dfa556565900623487`（SHA-256 `8296d811f95f94d9391a15a597839ee7f9d47b32dd7c7b780312821fc1c52a19`）から読み、行別のcondition/期待や現在のU-ID対応表は複製せず現行L9/L8で独立照合します。negative行は`negative_class_ref`、`rule_ref`、`function_ref`でL4 classとL5 rule/ownerを引きます。
 
 各negative行のcounterexampleは対象と食い違いを日本語で短く説明し、L4 classが示す失敗の意味を添えます。source IDの言い換えだけにはしていません。R1指摘の「識別子:が欠落/unknown」等13行を読み直して句読点を文に直し、他の反例本文は維持しました。sourceのL9 `given` に具体値がないconflict行では、値が根拠に記載されていないと明記し、値の組を補っていません。各行には契約単位の `system_oracle_ref` を残し、個別の `oracle_id` と `test_citation` はnullのままにしています。negative期待値はL9 `expected_proposal` ではなくL4から導きます。
 
 class tableをaxis、state、owner、expected classificationの共有元とします。重複する行別 `source_pointers`、`expected_property`、classのaxis/state投影は取り除きました。checkerが各L8行に必要とする `condition`、`expected`、`expected_preserved` は保持し、L5 ownerを解決する `function_ref` もnegative行に残します。
 
-validatorはnegative 277行それぞれのL9 nested pointerを解決します。全givenに共通の `evidence_limit` があるだけで、具体的なidentity値やconflict値は含まれていません。そこでcounterexampleはsource case markerにある対象・不足またはconflictの種類とL4 classの意味を説明します。実際値は記録・推測していません。
+validatorはnegative 277行それぞれを現行L8 `integration_case_ref`から現行L9 `integration_cases`へ照合し、共通given-only情報に限り固定L9 revision `22076e0c0f5aa3fe7b8933dfa556565900623487`を読みます。全givenに共通の `evidence_limit` があるだけで、具体的なidentity値やconflict値は含まれていません。そこでcounterexampleはsource case markerにある対象・不足またはconflictの種類とL4 classの意味を説明します。実際値は記録・推測していません。
 
 ## positive行の最小期待と根拠境界
 
@@ -66,7 +66,7 @@ summaryは正本285行の内容を再複製せず、validatorで再計算したr
 
 R2時点の未割当監査にあるL4参照3件（F01の14要素collection 1件、F02の単体class 2件）は、過去の未割当判断を保持するためL4固定revision `c50eb21b34f034262ced3f8052d2502fb84c57c9`を参照します。collectionの14要素をcurrent 32 classから同じ順序の集合としてJSON Pointer一つで選ぶことはできません。削除したL8 case群を指していた監査内2件は、参照先objectの値を確認したうえで、固定L9 revision `40d6da48a44625bfd064ccabceb7f7ecb47dcd7c`上の同一case objectへ直接付け替えました。L8のF02 source-review pointer `/diagnostic_contract/locality`の訂正履歴は旧L8 revision `24d7f00bdca41c3dfb1f3137655ffdbe3674cfb3`・SHA-256 `91da3af2c6ad997fdf265871f9776c5bed41f196fbccfc2276e1a41f42a267bb`にあり、現行L4 `/architecture/locality`へ訂正済みです。
 
-WR255 L5追補後の現行raw nested pointer文字列はL8が3件（すべて固定R2 L4参照）、L9が583件（`cases` 550件、`negative_class_assignment_audit` 33件）、L5 `failure_rules`が0件です。R1前のL8 wrapper 275件は削除済みです。旧auditの「L8 308件」「L9 308件」は旧時点に認識したconsumer subsetの測定であり、raw pointer文字列の全件数ではありません。L5の30件は各ruleに既存canonical pointerがあったためnested重複pointerのみを除き、L4 payloadと他のsource refsは保持しました。L9の583件は未移行なのでSCF-B-0209のcheck-replacementとretireは行いません。
+PR #4018 R1前の固定測定（revision `8dc4891e8d613c173afff5b37ed7236918c5d095`）では、L8に3件の固定R2 L4参照、L9に583件（`cases` 550件、`negative_class_assignment_audit` 33件）、L5に30件のnested pointer文字列がありました。この履歴測定は現行件数を表しません。現行L5 nested refsは0件、L9のcase sectionsと285 self pointersは撤去済み、L9にはtaxonomy alias 30件と固定R2 history refs 3件が残ります。旧`validate_pointer_transfer.py`とそのauditは当時の固定測定としてのみ扱い、現行L9監査には`../wr255-sec009-l9-transfer-20261101/validate_l9_nested_retirement.py`を使います。L4 nested payloadとR2 history refsが残るためSCF-B-0209はpendingです。
 
 再現コマンドは次の通りです。
 
@@ -85,7 +85,7 @@ python3 scaffold/research/wr255-sec009-l5l8-audit-20261101/validate_pointer_tran
 
 固定base `ad2dfaf6f434fbb81cd34988d4bd76212380f3a5` を照合し、30個のL5 `failure_rules`それぞれに、L4 nested classificationと同じclassのtop-level canonical pointerが既に存在したことを確認しました。各ruleからnested pointerだけを除去し、canonical pointerと他のsource refs、意味字段は保持しています。L4/L8のsource bytesは不変です。
 
-現行検証は `validate_l5_pointer_redirect.py` です。通常実行はread-onlyで、`--record PATH` は新規ファイルのみexclusive createします。 [current redirect audit](l5-pointer-redirect-audit-r2-13f16113cafb-00376c402930.json) は30件の型・値projection、30 nested pointer除去、30 canonical pointer保持、32 L5 ruleのうち変更対象30行だけpointer-only変更を確認します。既存 `validate_pointer_transfer.py` と `pointer-transfer-audit-49875dcdb4bc-e918a289fe88.json` は変更せず移行前の時点証拠として保持します。L9の583 nested pointer stringsは対象外で、L4 nested payloadとSCF-B-0209も保持します。
+現行検証は `validate_l5_pointer_redirect.py` です。通常実行はread-onlyで、`--record PATH` は新規ファイルのみexclusive createします。 [current redirect audit](l5-pointer-redirect-audit-r2-13f16113cafb-00376c402930.json) は30件の型・値projection、30 nested pointer除去、30 canonical pointer保持、32 L5 ruleのうち変更対象30行だけpointer-only変更を確認します。既存 `validate_pointer_transfer.py` と `pointer-transfer-audit-49875dcdb4bc-e918a289fe88.json` は変更せず移行前の時点証拠として保持します。この監査のL9 583件という記述は当時値です。現行L9は別V-pair監査 `../wr255-sec009-l9-transfer-20261101/validate_l9_nested_retirement.py` で確認します。L4 nested payloadとSCF-B-0209は保持します。
 
 
 ## latest-main overlay (2026-11-01)
