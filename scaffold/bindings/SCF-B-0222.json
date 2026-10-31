@@ -40,7 +40,7 @@
     },
     {
       "path": "scaffold/research/wr259-naming-l9-slim-20261101/README.md",
-      "sha256": "2a6e145c12e0c7f98f80c11b86c58edf1b5cb8ee32182872f85e6fcc7540b820",
+      "sha256": "01034210c7a62ae91e76c2a8bfdfb8b18f25c1e0c41ba3a17f70eb92c516e301",
       "note": "WR259固定作業treeのsource/artifact bytes。"
     },
     {
@@ -110,7 +110,10 @@
     "scaffold/research/wr259-naming-l9-slim-20261101/evidence/evidence-history-index-r1.json",
     "scaffold/research/wr259-naming-l9-slim-20261101/evidence/validation-results-r9.json",
     "scaffold/research/wr259-naming-l9-slim-20261101/evidence/merge-overlay-check-child-r7.json",
-    "scaffold/research/wr259-naming-l9-slim-20261101/evidence/evidence-history-index-r2.json"
+    "scaffold/research/wr259-naming-l9-slim-20261101/evidence/evidence-history-index-r2.json",
+    "scaffold/research/wr259-naming-l9-slim-20261101/evidence/evidence-history-index-r3.json",
+    "scaffold/research/wr259-naming-l9-slim-20261101/evidence/validation-results-r10.json",
+    "scaffold/research/wr259-naming-l9-slim-20261101/evidence/merge-overlay-check-child-r8.json"
   ],
   "verification": {
     "evidence_kind": "scaffold",
