@@ -1,0 +1,1426 @@
+{
+  "schema": "wr259-validation-results-r7.v1",
+  "evidence_kind": "scaffold",
+  "authority_effect": "none",
+  "target": "working-tree overlay on fe79e0004d8164bffc4be7c8c31dd9e14da2ead3",
+  "commands": {
+    "allowlist_validator": {
+      "command": "python3 -B scaffold/research/wr259-naming-l9-slim-20261101/validate_l9_slim.py",
+      "returncode": 0,
+      "result": {
+        "schema": "wr259-l9-allowlist-validation-r4.v1",
+        "evidence_kind": "scaffold",
+        "authority_effect": "none",
+        "passed": true,
+        "checks": {
+          "removed_materials_exact_six_fields_fixed_base_and_DT_VT_105": true,
+          "ten_authority_pins_and_legacy_comparison_unchanged": true,
+          "absent_source_fields_are_declared_and_not_misrepresented_as_source_diffs": true,
+          "fixture_full_return_mutation_and_approved_l10_copies_absent": true,
+          "L4_contract_source_pin_resolves": true,
+          "59_oracles_derive_from_fixed_original_basis_packet_expected_material_and_L3_L4_L10": true,
+          "obligation_order_and_numeric_L10_pointer_resolve": true,
+          "L8_is_ID_and_reference_crosscheck_only": true,
+          "row_summaries_are_compact_and_shared_boundaries_are_factored": true,
+          "case_order_59": true,
+          "all_37_L5_pointers_resolve_at_fixed_revision": true,
+          "size_reduction_over_half": true,
+          "L8_contains_no_direct_L9_pointers": true
+        },
+        "measurements": {
+          "fixed_base": "fe79e0004d8164bffc4be7c8c31dd9e14da2ead3",
+          "pre_edit_bytes": 194059,
+          "current_bytes": 72333,
+          "reduction_percent": 62.73,
+          "case_count": 59,
+          "fixed_source_file_sha256": "897861a09bd1b6a16e35bb5ce9ed3aad36f63c6ee0ec9ced24d5b241d5c335b1",
+          "L5_direct_pointer_count": 37,
+          "L5_source_revision": "b52ad0e1e954790ebe57b2d87da46ea6712a07d9",
+          "authority_source_pins": 10,
+          "l4_contract_source_sha256": "45f8ca2ab75b9748994d913e46b2351ccdb9293e71201eb23887853bdb048eb7"
+        },
+        "row_audit": [
+          {
+            "oracle_number": "L9-SYSTEM-ORACLE-01",
+            "case_id": "H048-F01-SAME-NAME-DIFFERENT-ROLE",
+            "original_source_pointer": "docs/helix-harness/L9-integration-verification/naming-identity-correspondence.json#/verification_obligations/0/concrete_cases/0",
+            "source_fields_absent": [
+              "code",
+              "condition",
+              "axis",
+              "state",
+              "backflow_owner"
+            ],
+            "condition_input_delta_paths": [],
+            "expectation_source_keys": [
+              "target_results",
+              "canonical_decided_here",
+              "unaffected_Q",
+              "effects"
+            ],
+            "L8_crosscheck": "id+requirement_ref+system_oracle_ref only"
+          },
+          {
+            "oracle_number": "L9-SYSTEM-ORACLE-02",
+            "case_id": "H048-F01-LEXICAL-GUESS",
+            "original_source_pointer": "docs/helix-harness/L9-integration-verification/naming-identity-correspondence.json#/verification_obligations/0/concrete_cases/1",
+            "source_fields_absent": [
+              "code",
+              "condition",
+              "axis",
+              "state",
+              "backflow_owner"
+            ],
+            "condition_input_delta_paths": [
+              "/targets/0/declared_role",
+              "/targets/0/name"
+            ],
+            "expectation_source_keys": [
+              "target_results",
+              "canonical_decided_here",
+              "unaffected_Q",
+              "effects"
+            ],
+            "L8_crosscheck": "id+requirement_ref+system_oracle_ref only"
+          },
+          {
+            "oracle_number": "L9-SYSTEM-ORACLE-03",
+            "case_id": "H048-F01-NO-BASIS-MANAGER",
+            "original_source_pointer": "docs/helix-harness/L9-integration-verification/naming-identity-correspondence.json#/verification_obligations/0/concrete_cases/2",
+            "source_fields_absent": [
+              "code",
+              "condition",
+              "axis",
+              "state",
+              "backflow_owner"
+            ],
+            "condition_input_delta_paths": [
+              "/targets/0/name",
+              "/targets/0/role_basis"
+            ],
+            "expectation_source_keys": [
+              "target_results",
+              "canonical_decided_here",
+              "unaffected_Q",
+              "effects"
+            ],
+            "L8_crosscheck": "id+requirement_ref+system_oracle_ref only"
+          },
+          {
+            "oracle_number": "L9-SYSTEM-ORACLE-04",
+            "case_id": "H048-F01-NO-CONSUMER",
+            "original_source_pointer": "docs/helix-harness/L9-integration-verification/naming-identity-correspondence.json#/verification_obligations/0/concrete_cases/3",
+            "source_fields_absent": [
+              "code",
+              "condition",
+              "axis",
+              "state",
+              "backflow_owner"
+            ],
+            "condition_input_delta_paths": [
+              "/targets/0/consumers",
+              "/targets/0/name"
+            ],
+            "expectation_source_keys": [
+              "target_results",
+              "canonical_decided_here",
+              "unaffected_Q",
+              "effects"
+            ],
+            "L8_crosscheck": "id+requirement_ref+system_oracle_ref only"
+          },
+          {
+            "oracle_number": "L9-SYSTEM-ORACLE-05",
+            "case_id": "H048-F01-MANAGER-REASONED-EXCEPTION",
+            "original_source_pointer": "docs/helix-harness/L9-integration-verification/naming-identity-correspondence.json#/verification_obligations/0/concrete_cases/4",
+            "source_fields_absent": [
+              "code",
+              "condition",
+              "axis",
+              "state",
+              "backflow_owner"
+            ],
+            "condition_input_delta_paths": [
+              "/targets/0/exception",
+              "/targets/0/name"
+            ],
+            "expectation_source_keys": [
+              "target_results",
+              "canonical_decided_here",
+              "unaffected_Q",
+              "effects"
+            ],
+            "L8_crosscheck": "id+requirement_ref+system_oracle_ref only"
+          },
+          {
+            "oracle_number": "L9-SYSTEM-ORACLE-06",
+            "case_id": "H048-F01-MANAGER-NO-EXCEPTION",
+            "original_source_pointer": "docs/helix-harness/L9-integration-verification/naming-identity-correspondence.json#/verification_obligations/0/concrete_cases/5",
+            "source_fields_absent": [
+              "code",
+              "condition",
+              "axis",
+              "state",
+              "backflow_owner"
+            ],
+            "condition_input_delta_paths": [
+              "/targets/0/name"
+            ],
+            "expectation_source_keys": [
+              "target_results",
+              "canonical_decided_here",
+              "unaffected_Q",
+              "effects"
+            ],
+            "L8_crosscheck": "id+requirement_ref+system_oracle_ref only"
+          },
+          {
+            "oracle_number": "L9-SYSTEM-ORACLE-07",
+            "case_id": "H048-F02-NORMAL",
+            "original_source_pointer": "docs/helix-harness/L9-integration-verification/naming-identity-correspondence.json#/verification_obligations/1/concrete_cases/0",
+            "source_fields_absent": [
+              "code",
+              "condition",
+              "axis",
+              "state",
+              "backflow_owner"
+            ],
+            "condition_input_delta_paths": [],
+            "expectation_source_keys": [
+              "edge_results",
+              "symbol_change",
+              "unaffected_Q",
+              "effects"
+            ],
+            "L8_crosscheck": "id+requirement_ref+system_oracle_ref only"
+          },
+          {
+            "oracle_number": "L9-SYSTEM-ORACLE-08",
+            "case_id": "H048-F02-OBJECT-ID-CHANGED",
+            "original_source_pointer": "docs/helix-harness/L9-integration-verification/naming-identity-correspondence.json#/verification_obligations/1/concrete_cases/1",
+            "source_fields_absent": [
+              "code",
+              "condition",
+              "axis",
+              "state",
+              "backflow_owner"
+            ],
+            "condition_input_delta_paths": [
+              "/after/object"
+            ],
+            "expectation_source_keys": [
+              "edge_results",
+              "symbol_change",
+              "unaffected_Q",
+              "effects"
+            ],
+            "L8_crosscheck": "id+requirement_ref+system_oracle_ref only"
+          },
+          {
+            "oracle_number": "L9-SYSTEM-ORACLE-09",
+            "case_id": "H048-F02-ORACLE-ID-CHANGED",
+            "original_source_pointer": "docs/helix-harness/L9-integration-verification/naming-identity-correspondence.json#/verification_obligations/1/concrete_cases/2",
+            "source_fields_absent": [
+              "code",
+              "condition",
+              "axis",
+              "state",
+              "backflow_owner"
+            ],
+            "condition_input_delta_paths": [
+              "/after/oracle"
+            ],
+            "expectation_source_keys": [
+              "edge_results",
+              "symbol_change",
+              "unaffected_Q",
+              "effects"
+            ],
+            "L8_crosscheck": "id+requirement_ref+system_oracle_ref only"
+          },
+          {
+            "oracle_number": "L9-SYSTEM-ORACLE-10",
+            "case_id": "H048-F02-SYMBOL-EDGE-MISSING",
+            "original_source_pointer": "docs/helix-harness/L9-integration-verification/naming-identity-correspondence.json#/verification_obligations/1/concrete_cases/3",
+            "source_fields_absent": [
+              "code",
+              "condition",
+              "axis",
+              "state",
+              "backflow_owner"
+            ],
+            "condition_input_delta_paths": [
+              "/symbol_edge"
+            ],
+            "expectation_source_keys": [
+              "edge_results",
+              "symbol_change",
+              "unaffected_Q",
+              "effects"
+            ],
+            "L8_crosscheck": "id+requirement_ref+system_oracle_ref only"
+          },
+          {
+            "oracle_number": "L9-SYSTEM-ORACLE-11",
+            "case_id": "H048-F02-ORACLE-EDGE-MISSING",
+            "original_source_pointer": "docs/helix-harness/L9-integration-verification/naming-identity-correspondence.json#/verification_obligations/1/concrete_cases/4",
+            "source_fields_absent": [
+              "code",
+              "condition",
+              "axis",
+              "state",
+              "backflow_owner"
+            ],
+            "condition_input_delta_paths": [
+              "/oracle_edge"
+            ],
+            "expectation_source_keys": [
+              "edge_results",
+              "symbol_change",
+              "unaffected_Q",
+              "effects"
+            ],
+            "L8_crosscheck": "id+requirement_ref+system_oracle_ref only"
+          },
+          {
+            "oracle_number": "L9-SYSTEM-ORACLE-12",
+            "case_id": "H048-F02-PRIVATE-ONLY-ORACLE",
+            "original_source_pointer": "docs/helix-harness/L9-integration-verification/naming-identity-correspondence.json#/verification_obligations/1/concrete_cases/5",
+            "source_fields_absent": [
+              "code",
+              "condition",
+              "axis",
+              "state",
+              "backflow_owner"
+            ],
+            "condition_input_delta_paths": [
+              "/oracle_edge/object",
+              "/oracle_edge/operation",
+              "/oracle_edge/oracle",
+              "/oracle_edge/private_symbol"
+            ],
+            "expectation_source_keys": [
+              "edge_results",
+              "symbol_change",
+              "unaffected_Q",
+              "effects"
+            ],
+            "L8_crosscheck": "id+requirement_ref+system_oracle_ref only"
+          },
+          {
+            "oracle_number": "L9-SYSTEM-ORACLE-13",
+            "case_id": "H048-F02-FOREIGN-OBJECT-PAIR",
+            "original_source_pointer": "docs/helix-harness/L9-integration-verification/naming-identity-correspondence.json#/verification_obligations/1/concrete_cases/6",
+            "source_fields_absent": [
+              "code",
+              "condition",
+              "axis",
+              "state",
+              "backflow_owner"
+            ],
+            "condition_input_delta_paths": [
+              "/pair/verification_object"
+            ],
+            "expectation_source_keys": [
+              "edge_results",
+              "symbol_change",
+              "unaffected_Q",
+              "effects"
+            ],
+            "L8_crosscheck": "id+requirement_ref+system_oracle_ref only"
+          },
+          {
+            "oracle_number": "L9-SYSTEM-ORACLE-14",
+            "case_id": "H048-F03-NORMAL",
+            "original_source_pointer": "docs/helix-harness/L9-integration-verification/naming-identity-correspondence.json#/verification_obligations/2/concrete_cases/0",
+            "source_fields_absent": [
+              "code",
+              "condition",
+              "axis",
+              "state",
+              "backflow_owner"
+            ],
+            "condition_input_delta_paths": [],
+            "expectation_source_keys": [
+              "condition_results",
+              "candidate_presentable",
+              "unaffected_Q",
+              "effects"
+            ],
+            "L8_crosscheck": "id+requirement_ref+system_oracle_ref only"
+          },
+          {
+            "oracle_number": "L9-SYSTEM-ORACLE-15",
+            "case_id": "H048-F03-CANONICAL-MISSING",
+            "original_source_pointer": "docs/helix-harness/L9-integration-verification/naming-identity-correspondence.json#/verification_obligations/2/concrete_cases/1",
+            "source_fields_absent": [
+              "code",
+              "condition",
+              "axis",
+              "state",
+              "backflow_owner"
+            ],
+            "condition_input_delta_paths": [
+              "/canonical_decision"
+            ],
+            "expectation_source_keys": [
+              "condition_results",
+              "candidate_presentable",
+              "unaffected_Q",
+              "effects"
+            ],
+            "L8_crosscheck": "id+requirement_ref+system_oracle_ref only"
+          },
+          {
+            "oracle_number": "L9-SYSTEM-ORACLE-16",
+            "case_id": "H048-F03-PUBLIC-SURFACE",
+            "original_source_pointer": "docs/helix-harness/L9-integration-verification/naming-identity-correspondence.json#/verification_obligations/2/concrete_cases/2",
+            "source_fields_absent": [
+              "code",
+              "condition",
+              "axis",
+              "state",
+              "backflow_owner"
+            ],
+            "condition_input_delta_paths": [
+              "/visibility"
+            ],
+            "expectation_source_keys": [
+              "condition_results",
+              "candidate_presentable",
+              "unaffected_Q",
+              "effects"
+            ],
+            "L8_crosscheck": "id+requirement_ref+system_oracle_ref only"
+          },
+          {
+            "oracle_number": "L9-SYSTEM-ORACLE-17",
+            "case_id": "H048-F03-CONSUMER-PARTIAL",
+            "original_source_pointer": "docs/helix-harness/L9-integration-verification/naming-identity-correspondence.json#/verification_obligations/2/concrete_cases/3",
+            "source_fields_absent": [
+              "code",
+              "condition",
+              "axis",
+              "state",
+              "backflow_owner"
+            ],
+            "condition_input_delta_paths": [
+              "/observed_consumers"
+            ],
+            "expectation_source_keys": [
+              "condition_results",
+              "candidate_presentable",
+              "unaffected_Q",
+              "effects"
+            ],
+            "L8_crosscheck": "id+requirement_ref+system_oracle_ref only"
+          },
+          {
+            "oracle_number": "L9-SYSTEM-ORACLE-18",
+            "case_id": "H048-F03-CONSUMER-SAME-COUNT-FOREIGN",
+            "original_source_pointer": "docs/helix-harness/L9-integration-verification/naming-identity-correspondence.json#/verification_obligations/2/concrete_cases/4",
+            "source_fields_absent": [
+              "code",
+              "condition",
+              "axis",
+              "state",
+              "backflow_owner"
+            ],
+            "condition_input_delta_paths": [
+              "/observed_consumers/1"
+            ],
+            "expectation_source_keys": [
+              "condition_results",
+              "candidate_presentable",
+              "unaffected_Q",
+              "effects"
+            ],
+            "L8_crosscheck": "id+requirement_ref+system_oracle_ref only"
+          },
+          {
+            "oracle_number": "L9-SYSTEM-ORACLE-19",
+            "case_id": "H048-F03-INVARIANT-MISSING",
+            "original_source_pointer": "docs/helix-harness/L9-integration-verification/naming-identity-correspondence.json#/verification_obligations/2/concrete_cases/5",
+            "source_fields_absent": [
+              "code",
+              "condition",
+              "axis",
+              "state",
+              "backflow_owner"
+            ],
+            "condition_input_delta_paths": [
+              "/behavior_invariant"
+            ],
+            "expectation_source_keys": [
+              "condition_results",
+              "candidate_presentable",
+              "unaffected_Q",
+              "effects"
+            ],
+            "L8_crosscheck": "id+requirement_ref+system_oracle_ref only"
+          },
+          {
+            "oracle_number": "L9-SYSTEM-ORACLE-20",
+            "case_id": "H048-F03-MINIMUM-MISSING",
+            "original_source_pointer": "docs/helix-harness/L9-integration-verification/naming-identity-correspondence.json#/verification_obligations/2/concrete_cases/6",
+            "source_fields_absent": [
+              "code",
+              "condition",
+              "axis",
+              "state",
+              "backflow_owner"
+            ],
+            "condition_input_delta_paths": [
+              "/minimum_transform"
+            ],
+            "expectation_source_keys": [
+              "condition_results",
+              "candidate_presentable",
+              "unaffected_Q",
+              "effects"
+            ],
+            "L8_crosscheck": "id+requirement_ref+system_oracle_ref only"
+          },
+          {
+            "oracle_number": "L9-SYSTEM-ORACLE-21",
+            "case_id": "H048-F03-ROLLBACK-MISSING",
+            "original_source_pointer": "docs/helix-harness/L9-integration-verification/naming-identity-correspondence.json#/verification_obligations/2/concrete_cases/7",
+            "source_fields_absent": [
+              "code",
+              "condition",
+              "axis",
+              "state",
+              "backflow_owner"
+            ],
+            "condition_input_delta_paths": [
+              "/rollback"
+            ],
+            "expectation_source_keys": [
+              "condition_results",
+              "candidate_presentable",
+              "unaffected_Q",
+              "effects"
+            ],
+            "L8_crosscheck": "id+requirement_ref+system_oracle_ref only"
+          },
+          {
+            "oracle_number": "L9-SYSTEM-ORACLE-22",
+            "case_id": "H048-F03-LEXICAL-ONLY",
+            "original_source_pointer": "docs/helix-harness/L9-integration-verification/naming-identity-correspondence.json#/verification_obligations/2/concrete_cases/8",
+            "source_fields_absent": [
+              "code",
+              "condition",
+              "axis",
+              "state",
+              "backflow_owner"
+            ],
+            "condition_input_delta_paths": [
+              "/evidence_basis"
+            ],
+            "expectation_source_keys": [
+              "condition_results",
+              "candidate_presentable",
+              "unaffected_Q",
+              "effects"
+            ],
+            "L8_crosscheck": "id+requirement_ref+system_oracle_ref only"
+          },
+          {
+            "oracle_number": "L9-SYSTEM-ORACLE-23",
+            "case_id": "H048-F03-REAL-RENAME-REQUEST",
+            "original_source_pointer": "docs/helix-harness/L9-integration-verification/naming-identity-correspondence.json#/verification_obligations/2/concrete_cases/9",
+            "source_fields_absent": [
+              "code",
+              "condition",
+              "axis",
+              "state",
+              "backflow_owner"
+            ],
+            "condition_input_delta_paths": [
+              "/requested_effect"
+            ],
+            "expectation_source_keys": [
+              "condition_results",
+              "candidate_presentable",
+              "unaffected_Q",
+              "effects"
+            ],
+            "L8_crosscheck": "id+requirement_ref+system_oracle_ref only"
+          },
+          {
+            "oracle_number": "L9-SYSTEM-ORACLE-24",
+            "case_id": "H048-F03-SIGNATURE-INPUTS-MISSING",
+            "original_source_pointer": "docs/helix-harness/L9-integration-verification/naming-identity-correspondence.json#/verification_obligations/2/concrete_cases/10",
+            "source_fields_absent": [
+              "code",
+              "condition",
+              "axis",
+              "state",
+              "backflow_owner"
+            ],
+            "condition_input_delta_paths": [
+              "/signature_after/inputs"
+            ],
+            "expectation_source_keys": [
+              "condition_results",
+              "candidate_presentable",
+              "unaffected_Q",
+              "effects"
+            ],
+            "L8_crosscheck": "id+requirement_ref+system_oracle_ref only"
+          },
+          {
+            "oracle_number": "L9-SYSTEM-ORACLE-25",
+            "case_id": "H048-F03-SIGNATURE-INPUTS-MISMATCH",
+            "original_source_pointer": "docs/helix-harness/L9-integration-verification/naming-identity-correspondence.json#/verification_obligations/2/concrete_cases/11",
+            "source_fields_absent": [
+              "code",
+              "condition",
+              "axis",
+              "state",
+              "backflow_owner"
+            ],
+            "condition_input_delta_paths": [
+              "/signature_after/inputs"
+            ],
+            "expectation_source_keys": [
+              "condition_results",
+              "candidate_presentable",
+              "unaffected_Q",
+              "effects"
+            ],
+            "L8_crosscheck": "id+requirement_ref+system_oracle_ref only"
+          },
+          {
+            "oracle_number": "L9-SYSTEM-ORACLE-26",
+            "case_id": "H048-F03-SIGNATURE-OUTPUTS-MISSING",
+            "original_source_pointer": "docs/helix-harness/L9-integration-verification/naming-identity-correspondence.json#/verification_obligations/2/concrete_cases/12",
+            "source_fields_absent": [
+              "code",
+              "condition",
+              "axis",
+              "state",
+              "backflow_owner"
+            ],
+            "condition_input_delta_paths": [
+              "/signature_after/outputs"
+            ],
+            "expectation_source_keys": [
+              "condition_results",
+              "candidate_presentable",
+              "unaffected_Q",
+              "effects"
+            ],
+            "L8_crosscheck": "id+requirement_ref+system_oracle_ref only"
+          },
+          {
+            "oracle_number": "L9-SYSTEM-ORACLE-27",
+            "case_id": "H048-F03-SIGNATURE-OUTPUTS-MISMATCH",
+            "original_source_pointer": "docs/helix-harness/L9-integration-verification/naming-identity-correspondence.json#/verification_obligations/2/concrete_cases/13",
+            "source_fields_absent": [
+              "code",
+              "condition",
+              "axis",
+              "state",
+              "backflow_owner"
+            ],
+            "condition_input_delta_paths": [
+              "/signature_after/outputs"
+            ],
+            "expectation_source_keys": [
+              "condition_results",
+              "candidate_presentable",
+              "unaffected_Q",
+              "effects"
+            ],
+            "L8_crosscheck": "id+requirement_ref+system_oracle_ref only"
+          },
+          {
+            "oracle_number": "L9-SYSTEM-ORACLE-28",
+            "case_id": "H048-F03-SIGNATURE-EFFECTS-MISSING",
+            "original_source_pointer": "docs/helix-harness/L9-integration-verification/naming-identity-correspondence.json#/verification_obligations/2/concrete_cases/14",
+            "source_fields_absent": [
+              "code",
+              "condition",
+              "axis",
+              "state",
+              "backflow_owner"
+            ],
+            "condition_input_delta_paths": [
+              "/signature_after/effects"
+            ],
+            "expectation_source_keys": [
+              "condition_results",
+              "candidate_presentable",
+              "unaffected_Q",
+              "effects"
+            ],
+            "L8_crosscheck": "id+requirement_ref+system_oracle_ref only"
+          },
+          {
+            "oracle_number": "L9-SYSTEM-ORACLE-29",
+            "case_id": "H048-F03-SIGNATURE-EFFECTS-MISMATCH",
+            "original_source_pointer": "docs/helix-harness/L9-integration-verification/naming-identity-correspondence.json#/verification_obligations/2/concrete_cases/15",
+            "source_fields_absent": [
+              "code",
+              "condition",
+              "axis",
+              "state",
+              "backflow_owner"
+            ],
+            "condition_input_delta_paths": [
+              "/signature_after/effects"
+            ],
+            "expectation_source_keys": [
+              "condition_results",
+              "candidate_presentable",
+              "unaffected_Q",
+              "effects"
+            ],
+            "L8_crosscheck": "id+requirement_ref+system_oracle_ref only"
+          },
+          {
+            "oracle_number": "L9-SYSTEM-ORACLE-30",
+            "case_id": "H048-F03-SIGNATURE-FAILURE-MISSING",
+            "original_source_pointer": "docs/helix-harness/L9-integration-verification/naming-identity-correspondence.json#/verification_obligations/2/concrete_cases/16",
+            "source_fields_absent": [
+              "code",
+              "condition",
+              "axis",
+              "state",
+              "backflow_owner"
+            ],
+            "condition_input_delta_paths": [
+              "/signature_after/failure"
+            ],
+            "expectation_source_keys": [
+              "condition_results",
+              "candidate_presentable",
+              "unaffected_Q",
+              "effects"
+            ],
+            "L8_crosscheck": "id+requirement_ref+system_oracle_ref only"
+          },
+          {
+            "oracle_number": "L9-SYSTEM-ORACLE-31",
+            "case_id": "H048-F03-SIGNATURE-FAILURE-MISMATCH",
+            "original_source_pointer": "docs/helix-harness/L9-integration-verification/naming-identity-correspondence.json#/verification_obligations/2/concrete_cases/17",
+            "source_fields_absent": [
+              "code",
+              "condition",
+              "axis",
+              "state",
+              "backflow_owner"
+            ],
+            "condition_input_delta_paths": [
+              "/signature_after/failure"
+            ],
+            "expectation_source_keys": [
+              "condition_results",
+              "candidate_presentable",
+              "unaffected_Q",
+              "effects"
+            ],
+            "L8_crosscheck": "id+requirement_ref+system_oracle_ref only"
+          },
+          {
+            "oracle_number": "L9-SYSTEM-ORACLE-32",
+            "case_id": "H048-F03-SIGNATURE-STATE_TRANSITION-MISSING",
+            "original_source_pointer": "docs/helix-harness/L9-integration-verification/naming-identity-correspondence.json#/verification_obligations/2/concrete_cases/18",
+            "source_fields_absent": [
+              "code",
+              "condition",
+              "axis",
+              "state",
+              "backflow_owner"
+            ],
+            "condition_input_delta_paths": [
+              "/signature_after/state_transition"
+            ],
+            "expectation_source_keys": [
+              "condition_results",
+              "candidate_presentable",
+              "unaffected_Q",
+              "effects"
+            ],
+            "L8_crosscheck": "id+requirement_ref+system_oracle_ref only"
+          },
+          {
+            "oracle_number": "L9-SYSTEM-ORACLE-33",
+            "case_id": "H048-F03-SIGNATURE-STATE_TRANSITION-MISMATCH",
+            "original_source_pointer": "docs/helix-harness/L9-integration-verification/naming-identity-correspondence.json#/verification_obligations/2/concrete_cases/19",
+            "source_fields_absent": [
+              "code",
+              "condition",
+              "axis",
+              "state",
+              "backflow_owner"
+            ],
+            "condition_input_delta_paths": [
+              "/signature_after/state_transition"
+            ],
+            "expectation_source_keys": [
+              "condition_results",
+              "candidate_presentable",
+              "unaffected_Q",
+              "effects"
+            ],
+            "L8_crosscheck": "id+requirement_ref+system_oracle_ref only"
+          },
+          {
+            "oracle_number": "L9-SYSTEM-ORACLE-34",
+            "case_id": "H048-F03-SIGNATURE-CALL_GRAPH-MISSING",
+            "original_source_pointer": "docs/helix-harness/L9-integration-verification/naming-identity-correspondence.json#/verification_obligations/2/concrete_cases/20",
+            "source_fields_absent": [
+              "code",
+              "condition",
+              "axis",
+              "state",
+              "backflow_owner"
+            ],
+            "condition_input_delta_paths": [
+              "/signature_after/call_graph"
+            ],
+            "expectation_source_keys": [
+              "condition_results",
+              "candidate_presentable",
+              "unaffected_Q",
+              "effects"
+            ],
+            "L8_crosscheck": "id+requirement_ref+system_oracle_ref only"
+          },
+          {
+            "oracle_number": "L9-SYSTEM-ORACLE-35",
+            "case_id": "H048-F03-SIGNATURE-CALL_GRAPH-MISMATCH",
+            "original_source_pointer": "docs/helix-harness/L9-integration-verification/naming-identity-correspondence.json#/verification_obligations/2/concrete_cases/21",
+            "source_fields_absent": [
+              "code",
+              "condition",
+              "axis",
+              "state",
+              "backflow_owner"
+            ],
+            "condition_input_delta_paths": [
+              "/signature_after/call_graph"
+            ],
+            "expectation_source_keys": [
+              "condition_results",
+              "candidate_presentable",
+              "unaffected_Q",
+              "effects"
+            ],
+            "L8_crosscheck": "id+requirement_ref+system_oracle_ref only"
+          },
+          {
+            "oracle_number": "L9-SYSTEM-ORACLE-36",
+            "case_id": "H048-F03-SIGNATURE-CONSUMER_CONTRACT-MISSING",
+            "original_source_pointer": "docs/helix-harness/L9-integration-verification/naming-identity-correspondence.json#/verification_obligations/2/concrete_cases/22",
+            "source_fields_absent": [
+              "code",
+              "condition",
+              "axis",
+              "state",
+              "backflow_owner"
+            ],
+            "condition_input_delta_paths": [
+              "/signature_after/consumer_contract"
+            ],
+            "expectation_source_keys": [
+              "condition_results",
+              "candidate_presentable",
+              "unaffected_Q",
+              "effects"
+            ],
+            "L8_crosscheck": "id+requirement_ref+system_oracle_ref only"
+          },
+          {
+            "oracle_number": "L9-SYSTEM-ORACLE-37",
+            "case_id": "H048-F03-SIGNATURE-CONSUMER_CONTRACT-MISMATCH",
+            "original_source_pointer": "docs/helix-harness/L9-integration-verification/naming-identity-correspondence.json#/verification_obligations/2/concrete_cases/23",
+            "source_fields_absent": [
+              "code",
+              "condition",
+              "axis",
+              "state",
+              "backflow_owner"
+            ],
+            "condition_input_delta_paths": [
+              "/signature_after/consumer_contract"
+            ],
+            "expectation_source_keys": [
+              "condition_results",
+              "candidate_presentable",
+              "unaffected_Q",
+              "effects"
+            ],
+            "L8_crosscheck": "id+requirement_ref+system_oracle_ref only"
+          },
+          {
+            "oracle_number": "L9-SYSTEM-ORACLE-38",
+            "case_id": "H048-F04-VALID-EXCEPTION",
+            "original_source_pointer": "docs/helix-harness/L9-integration-verification/naming-identity-correspondence.json#/verification_obligations/3/concrete_cases/0",
+            "source_fields_absent": [
+              "code",
+              "condition",
+              "axis",
+              "state",
+              "backflow_owner"
+            ],
+            "condition_input_delta_paths": [],
+            "expectation_source_keys": [
+              "auto_rename",
+              "return_candidate",
+              "finding_retained",
+              "exception_result",
+              "local_continuation",
+              "global_stop",
+              "unaffected_Q",
+              "effects"
+            ],
+            "L8_crosscheck": "id+requirement_ref+system_oracle_ref only"
+          },
+          {
+            "oracle_number": "L9-SYSTEM-ORACLE-39",
+            "case_id": "H048-F04-OWNER-MISSING",
+            "original_source_pointer": "docs/helix-harness/L9-integration-verification/naming-identity-correspondence.json#/verification_obligations/3/concrete_cases/1",
+            "source_fields_absent": [
+              "code",
+              "condition",
+              "axis",
+              "state",
+              "backflow_owner"
+            ],
+            "condition_input_delta_paths": [
+              "/exception/owner"
+            ],
+            "expectation_source_keys": [
+              "auto_rename",
+              "return_candidate",
+              "finding_retained",
+              "exception_result",
+              "local_continuation",
+              "global_stop",
+              "unaffected_Q",
+              "effects"
+            ],
+            "L8_crosscheck": "id+requirement_ref+system_oracle_ref only"
+          },
+          {
+            "oracle_number": "L9-SYSTEM-ORACLE-40",
+            "case_id": "H048-F04-EXPIRY-MISSING",
+            "original_source_pointer": "docs/helix-harness/L9-integration-verification/naming-identity-correspondence.json#/verification_obligations/3/concrete_cases/2",
+            "source_fields_absent": [
+              "code",
+              "condition",
+              "axis",
+              "state",
+              "backflow_owner"
+            ],
+            "condition_input_delta_paths": [
+              "/exception/expiry"
+            ],
+            "expectation_source_keys": [
+              "auto_rename",
+              "return_candidate",
+              "finding_retained",
+              "exception_result",
+              "local_continuation",
+              "global_stop",
+              "unaffected_Q",
+              "effects"
+            ],
+            "L8_crosscheck": "id+requirement_ref+system_oracle_ref only"
+          },
+          {
+            "oracle_number": "L9-SYSTEM-ORACLE-41",
+            "case_id": "H048-F04-EXPIRED",
+            "original_source_pointer": "docs/helix-harness/L9-integration-verification/naming-identity-correspondence.json#/verification_obligations/3/concrete_cases/3",
+            "source_fields_absent": [
+              "code",
+              "condition",
+              "axis",
+              "state",
+              "backflow_owner"
+            ],
+            "condition_input_delta_paths": [
+              "/exception/expiry"
+            ],
+            "expectation_source_keys": [
+              "auto_rename",
+              "return_candidate",
+              "finding_retained",
+              "exception_result",
+              "local_continuation",
+              "global_stop",
+              "unaffected_Q",
+              "effects"
+            ],
+            "L8_crosscheck": "id+requirement_ref+system_oracle_ref only"
+          },
+          {
+            "oracle_number": "L9-SYSTEM-ORACLE-42",
+            "case_id": "H048-F04-REASON-MISSING",
+            "original_source_pointer": "docs/helix-harness/L9-integration-verification/naming-identity-correspondence.json#/verification_obligations/3/concrete_cases/4",
+            "source_fields_absent": [
+              "code",
+              "condition",
+              "axis",
+              "state",
+              "backflow_owner"
+            ],
+            "condition_input_delta_paths": [
+              "/exception/reason"
+            ],
+            "expectation_source_keys": [
+              "auto_rename",
+              "return_candidate",
+              "finding_retained",
+              "exception_result",
+              "local_continuation",
+              "global_stop",
+              "unaffected_Q",
+              "effects"
+            ],
+            "L8_crosscheck": "id+requirement_ref+system_oracle_ref only"
+          },
+          {
+            "oracle_number": "L9-SYSTEM-ORACLE-43",
+            "case_id": "H048-F04-FOREIGN-SCOPE",
+            "original_source_pointer": "docs/helix-harness/L9-integration-verification/naming-identity-correspondence.json#/verification_obligations/3/concrete_cases/5",
+            "source_fields_absent": [
+              "code",
+              "condition",
+              "axis",
+              "state",
+              "backflow_owner"
+            ],
+            "condition_input_delta_paths": [
+              "/exception/scope"
+            ],
+            "expectation_source_keys": [
+              "auto_rename",
+              "return_candidate",
+              "finding_retained",
+              "exception_result",
+              "local_continuation",
+              "global_stop",
+              "unaffected_Q",
+              "effects"
+            ],
+            "L8_crosscheck": "id+requirement_ref+system_oracle_ref only"
+          },
+          {
+            "oracle_number": "L9-SYSTEM-ORACLE-44",
+            "case_id": "H048-F04-PUBLIC_API",
+            "original_source_pointer": "docs/helix-harness/L9-integration-verification/naming-identity-correspondence.json#/verification_obligations/3/concrete_cases/6",
+            "source_fields_absent": [
+              "code",
+              "condition",
+              "axis",
+              "state",
+              "backflow_owner"
+            ],
+            "condition_input_delta_paths": [
+              "/boundary",
+              "/finding/reason"
+            ],
+            "expectation_source_keys": [
+              "auto_rename",
+              "return_candidate",
+              "finding_retained",
+              "exception_result",
+              "local_continuation",
+              "global_stop",
+              "unaffected_Q",
+              "effects"
+            ],
+            "L8_crosscheck": "id+requirement_ref+system_oracle_ref only"
+          },
+          {
+            "oracle_number": "L9-SYSTEM-ORACLE-45",
+            "case_id": "H048-F04-PUBLIC_CLI",
+            "original_source_pointer": "docs/helix-harness/L9-integration-verification/naming-identity-correspondence.json#/verification_obligations/3/concrete_cases/7",
+            "source_fields_absent": [
+              "code",
+              "condition",
+              "axis",
+              "state",
+              "backflow_owner"
+            ],
+            "condition_input_delta_paths": [
+              "/boundary",
+              "/finding/reason"
+            ],
+            "expectation_source_keys": [
+              "auto_rename",
+              "return_candidate",
+              "finding_retained",
+              "exception_result",
+              "local_continuation",
+              "global_stop",
+              "unaffected_Q",
+              "effects"
+            ],
+            "L8_crosscheck": "id+requirement_ref+system_oracle_ref only"
+          },
+          {
+            "oracle_number": "L9-SYSTEM-ORACLE-46",
+            "case_id": "H048-F04-PERSISTED_FIELD",
+            "original_source_pointer": "docs/helix-harness/L9-integration-verification/naming-identity-correspondence.json#/verification_obligations/3/concrete_cases/8",
+            "source_fields_absent": [
+              "code",
+              "condition",
+              "axis",
+              "state",
+              "backflow_owner"
+            ],
+            "condition_input_delta_paths": [
+              "/boundary",
+              "/finding/reason"
+            ],
+            "expectation_source_keys": [
+              "auto_rename",
+              "return_candidate",
+              "finding_retained",
+              "exception_result",
+              "local_continuation",
+              "global_stop",
+              "unaffected_Q",
+              "effects"
+            ],
+            "L8_crosscheck": "id+requirement_ref+system_oracle_ref only"
+          },
+          {
+            "oracle_number": "L9-SYSTEM-ORACLE-47",
+            "case_id": "H048-F04-PERSISTED_EVENT",
+            "original_source_pointer": "docs/helix-harness/L9-integration-verification/naming-identity-correspondence.json#/verification_obligations/3/concrete_cases/9",
+            "source_fields_absent": [
+              "code",
+              "condition",
+              "axis",
+              "state",
+              "backflow_owner"
+            ],
+            "condition_input_delta_paths": [
+              "/boundary",
+              "/finding/reason"
+            ],
+            "expectation_source_keys": [
+              "auto_rename",
+              "return_candidate",
+              "finding_retained",
+              "exception_result",
+              "local_continuation",
+              "global_stop",
+              "unaffected_Q",
+              "effects"
+            ],
+            "L8_crosscheck": "id+requirement_ref+system_oracle_ref only"
+          },
+          {
+            "oracle_number": "L9-SYSTEM-ORACLE-48",
+            "case_id": "H048-F04-DIRECT_CONFIG_KEY",
+            "original_source_pointer": "docs/helix-harness/L9-integration-verification/naming-identity-correspondence.json#/verification_obligations/3/concrete_cases/10",
+            "source_fields_absent": [
+              "code",
+              "condition",
+              "axis",
+              "state",
+              "backflow_owner"
+            ],
+            "condition_input_delta_paths": [
+              "/boundary",
+              "/finding/reason"
+            ],
+            "expectation_source_keys": [
+              "auto_rename",
+              "return_candidate",
+              "finding_retained",
+              "exception_result",
+              "local_continuation",
+              "global_stop",
+              "unaffected_Q",
+              "effects"
+            ],
+            "L8_crosscheck": "id+requirement_ref+system_oracle_ref only"
+          },
+          {
+            "oracle_number": "L9-SYSTEM-ORACLE-49",
+            "case_id": "H048-F04-CONSUMER_INCOMPLETE",
+            "original_source_pointer": "docs/helix-harness/L9-integration-verification/naming-identity-correspondence.json#/verification_obligations/3/concrete_cases/11",
+            "source_fields_absent": [
+              "code",
+              "condition",
+              "axis",
+              "state",
+              "backflow_owner"
+            ],
+            "condition_input_delta_paths": [
+              "/finding/reason"
+            ],
+            "expectation_source_keys": [
+              "auto_rename",
+              "return_candidate",
+              "finding_retained",
+              "exception_result",
+              "local_continuation",
+              "global_stop",
+              "unaffected_Q",
+              "effects"
+            ],
+            "L8_crosscheck": "id+requirement_ref+system_oracle_ref only"
+          },
+          {
+            "oracle_number": "L9-SYSTEM-ORACLE-50",
+            "case_id": "H048-F04-SIGNATURE_MISMATCH",
+            "original_source_pointer": "docs/helix-harness/L9-integration-verification/naming-identity-correspondence.json#/verification_obligations/3/concrete_cases/12",
+            "source_fields_absent": [
+              "code",
+              "condition",
+              "axis",
+              "state",
+              "backflow_owner"
+            ],
+            "condition_input_delta_paths": [
+              "/finding/reason"
+            ],
+            "expectation_source_keys": [
+              "auto_rename",
+              "return_candidate",
+              "finding_retained",
+              "exception_result",
+              "local_continuation",
+              "global_stop",
+              "unaffected_Q",
+              "effects"
+            ],
+            "L8_crosscheck": "id+requirement_ref+system_oracle_ref only"
+          },
+          {
+            "oracle_number": "L9-SYSTEM-ORACLE-51",
+            "case_id": "H048-F04-WARNING-GLOBAL-STOP-REJECTED",
+            "original_source_pointer": "docs/helix-harness/L9-integration-verification/naming-identity-correspondence.json#/verification_obligations/3/concrete_cases/13",
+            "source_fields_absent": [
+              "code",
+              "condition",
+              "axis",
+              "state",
+              "backflow_owner"
+            ],
+            "condition_input_delta_paths": [
+              "/warning_requests_global_stop"
+            ],
+            "expectation_source_keys": [
+              "auto_rename",
+              "return_candidate",
+              "finding_retained",
+              "exception_result",
+              "local_continuation",
+              "global_stop",
+              "unaffected_Q",
+              "effects"
+            ],
+            "L8_crosscheck": "id+requirement_ref+system_oracle_ref only"
+          },
+          {
+            "oracle_number": "L9-SYSTEM-ORACLE-52",
+            "case_id": "H048-B01-NORMAL",
+            "original_source_pointer": "docs/helix-harness/L9-integration-verification/naming-identity-correspondence.json#/verification_obligations/4/concrete_cases/0",
+            "source_fields_absent": [
+              "code",
+              "condition",
+              "axis",
+              "state",
+              "backflow_owner"
+            ],
+            "condition_input_delta_paths": [],
+            "expectation_source_keys": [
+              "boundary_results",
+              "owner_return_candidates",
+              "unaffected_Q",
+              "effects"
+            ],
+            "L8_crosscheck": "id+requirement_ref+system_oracle_ref only"
+          },
+          {
+            "oracle_number": "L9-SYSTEM-ORACLE-53",
+            "case_id": "H048-B01-BRAIN-NORM-OVERRIDE",
+            "original_source_pointer": "docs/helix-harness/L9-integration-verification/naming-identity-correspondence.json#/verification_obligations/4/concrete_cases/1",
+            "source_fields_absent": [
+              "code",
+              "condition",
+              "axis",
+              "state",
+              "backflow_owner"
+            ],
+            "condition_input_delta_paths": [
+              "/proposal/norm_content"
+            ],
+            "expectation_source_keys": [
+              "boundary_results",
+              "owner_return_candidates",
+              "unaffected_Q",
+              "effects"
+            ],
+            "L8_crosscheck": "id+requirement_ref+system_oracle_ref only"
+          },
+          {
+            "oracle_number": "L9-SYSTEM-ORACLE-54",
+            "case_id": "H048-B01-BRAIN-PRODUCT-OVERRIDE",
+            "original_source_pointer": "docs/helix-harness/L9-integration-verification/naming-identity-correspondence.json#/verification_obligations/4/concrete_cases/2",
+            "source_fields_absent": [
+              "code",
+              "condition",
+              "axis",
+              "state",
+              "backflow_owner"
+            ],
+            "condition_input_delta_paths": [
+              "/proposal/product_name"
+            ],
+            "expectation_source_keys": [
+              "boundary_results",
+              "owner_return_candidates",
+              "unaffected_Q",
+              "effects"
+            ],
+            "L8_crosscheck": "id+requirement_ref+system_oracle_ref only"
+          },
+          {
+            "oracle_number": "L9-SYSTEM-ORACLE-55",
+            "case_id": "H048-B01-CI-ADOPTION",
+            "original_source_pointer": "docs/helix-harness/L9-integration-verification/naming-identity-correspondence.json#/verification_obligations/4/concrete_cases/3",
+            "source_fields_absent": [
+              "code",
+              "condition",
+              "axis",
+              "state",
+              "backflow_owner"
+            ],
+            "condition_input_delta_paths": [
+              "/proposal/CI_effect"
+            ],
+            "expectation_source_keys": [
+              "boundary_results",
+              "owner_return_candidates",
+              "unaffected_Q",
+              "effects"
+            ],
+            "L8_crosscheck": "id+requirement_ref+system_oracle_ref only"
+          },
+          {
+            "oracle_number": "L9-SYSTEM-ORACLE-56",
+            "case_id": "H048-B01-CI-SELF-MERGE",
+            "original_source_pointer": "docs/helix-harness/L9-integration-verification/naming-identity-correspondence.json#/verification_obligations/4/concrete_cases/4",
+            "source_fields_absent": [
+              "code",
+              "condition",
+              "axis",
+              "state",
+              "backflow_owner"
+            ],
+            "condition_input_delta_paths": [
+              "/proposal/CI_effect"
+            ],
+            "expectation_source_keys": [
+              "boundary_results",
+              "owner_return_candidates",
+              "unaffected_Q",
+              "effects"
+            ],
+            "L8_crosscheck": "id+requirement_ref+system_oracle_ref only"
+          },
+          {
+            "oracle_number": "L9-SYSTEM-ORACLE-57",
+            "case_id": "H048-B01-REQUIREMENT_ID-CHANGE",
+            "original_source_pointer": "docs/helix-harness/L9-integration-verification/naming-identity-correspondence.json#/verification_obligations/4/concrete_cases/5",
+            "source_fields_absent": [
+              "code",
+              "condition",
+              "axis",
+              "state",
+              "backflow_owner"
+            ],
+            "condition_input_delta_paths": [
+              "/protected_after/requirement_id"
+            ],
+            "expectation_source_keys": [
+              "boundary_results",
+              "owner_return_candidates",
+              "unaffected_Q",
+              "effects"
+            ],
+            "L8_crosscheck": "id+requirement_ref+system_oracle_ref only"
+          },
+          {
+            "oracle_number": "L9-SYSTEM-ORACLE-58",
+            "case_id": "H048-B01-MECHANISM_ROLE-CHANGE",
+            "original_source_pointer": "docs/helix-harness/L9-integration-verification/naming-identity-correspondence.json#/verification_obligations/4/concrete_cases/6",
+            "source_fields_absent": [
+              "code",
+              "condition",
+              "axis",
+              "state",
+              "backflow_owner"
+            ],
+            "condition_input_delta_paths": [
+              "/protected_after/mechanism_role"
+            ],
+            "expectation_source_keys": [
+              "boundary_results",
+              "owner_return_candidates",
+              "unaffected_Q",
+              "effects"
+            ],
+            "L8_crosscheck": "id+requirement_ref+system_oracle_ref only"
+          },
+          {
+            "oracle_number": "L9-SYSTEM-ORACLE-59",
+            "case_id": "H048-B01-ADOPTED_BODY-CHANGE",
+            "original_source_pointer": "docs/helix-harness/L9-integration-verification/naming-identity-correspondence.json#/verification_obligations/4/concrete_cases/7",
+            "source_fields_absent": [
+              "code",
+              "condition",
+              "axis",
+              "state",
+              "backflow_owner"
+            ],
+            "condition_input_delta_paths": [
+              "/protected_after/adopted_body"
+            ],
+            "expectation_source_keys": [
+              "boundary_results",
+              "owner_return_candidates",
+              "unaffected_Q",
+              "effects"
+            ],
+            "L8_crosscheck": "id+requirement_ref+system_oracle_ref only"
+          }
+        ],
+        "not_run": [
+          "legacy runtime",
+          "legacy tests",
+          "legacy CI",
+          "design or product algorithms"
+        ]
+      }
+    },
+    "scfctl_validate": {
+      "command": "python3 -B scaffold/tools/scfctl.py validate",
+      "returncode": 0,
+      "summary": "bindings=199 fail=0"
+    },
+    "scfctl_stale": {
+      "command": "python3 -B scaffold/tools/scfctl.py stale",
+      "returncode": 0,
+      "summary": "stale=0"
+    },
+    "check_child_snapshot": "scaffold/research/wr259-naming-l9-slim-20261101/evidence/merge-overlay-check-child-r5.json"
+  },
+  "not_run": [
+    "legacy runtime",
+    "legacy tests",
+    "legacy CI",
+    "design or product algorithms"
+  ]
+}
