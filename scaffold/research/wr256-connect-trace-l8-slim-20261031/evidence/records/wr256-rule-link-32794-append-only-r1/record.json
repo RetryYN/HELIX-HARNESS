@@ -1,0 +1,22 @@
+{
+  "schema": "wr256-immutable-evidence-record.v1",
+  "evidence_kind": "scaffold",
+  "authority_effect": "none",
+  "record_id": "wr256-rule-link-32794-append-only-r1",
+  "head_revision_at_recording": "32794e1ca8ce4f4f7508533992b69fcff4e669b0",
+  "validator_sha256": "ea25caba44ab057f8e9d70914d241e3dcdda01ad972bbeb213a03685b1d7e014",
+  "worktree_dirty_at_recording": true,
+  "artifacts": {
+    "source_semantic_audit": {
+      "path": "scaffold/research/wr256-connect-trace-l8-slim-20261031/evidence/records/wr256-rule-link-32794-append-only-r1/source-semantic-audit.json",
+      "sha256": "7b113b55c3d54676e759bc6acc3448b56dd4386dceafaa336695b73b8754e7ab",
+      "bytes": 1014510
+    },
+    "verification_summary": {
+      "path": "scaffold/research/wr256-connect-trace-l8-slim-20261031/evidence/records/wr256-rule-link-32794-append-only-r1/verification-summary.json",
+      "sha256": "93e8570fdbf9f1c0f284917e71b7b78c54671fc03835db7fc90ab7565b21a555",
+      "bytes": 3493
+    }
+  },
+  "note": "Created with exclusive file creation. Existing evidence is never overwritten; add this record to an append-only lineage artifact in the accompanying change."
+}

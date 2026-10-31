@@ -1,0 +1,57 @@
+{
+  "schema": "wr256-evidence-checkpoint.v1",
+  "evidence_kind": "scaffold",
+  "authority_effect": "none",
+  "revision": "32794e1ca8ce4f4f7508533992b69fcff4e669b0",
+  "artifacts": {
+    "verification-summary": {
+      "historical_path": "scaffold/research/wr256-connect-trace-l8-slim-20261031/verification-summary.json",
+      "git_blob": "b8d34fc212f9f13ea9111b5871ed8a5ece5b08c1",
+      "sha256": "ea9dfbe7207a623c13505e42bf5eb0cadf739898477cd93204f015fc4dfa7b3f",
+      "bytes": 3439,
+      "observations": {
+        "passed": true,
+        "rows": {
+          "before": {
+            "l9_cases": 90,
+            "local_domain_probes": 61,
+            "independent_semantic_probes": 68,
+            "independent_cross_field_probes": 5,
+            "u_id_total": 224
+          },
+          "after": {
+            "l9_basic_branches": 90,
+            "local_domain_probes": 61,
+            "independent_semantic_probes": 68,
+            "independent_cross_field_probes": 5,
+            "u_id_total": 224
+          }
+        },
+        "l5": {
+          "public_functions": 3,
+          "failure_rules": 27,
+          "rules_with_fixed_source_emissions": 27,
+          "rules_without_fixed_source_emission": []
+        },
+        "failure_rule_semantic_audit": {
+          "rule_count": 27,
+          "candidate_row_links": 184,
+          "unsupported_links": 0,
+          "unexecuted": true
+        },
+        "source_semantic_audit": {
+          "path": "scaffold/research/wr256-connect-trace-l8-slim-20261031/source-semantic-audit.json",
+          "row_count": 224,
+          "sha256": "7b113b55c3d54676e759bc6acc3448b56dd4386dceafaa336695b73b8754e7ab"
+        }
+      }
+    },
+    "source-semantic-audit": {
+      "historical_path": "scaffold/research/wr256-connect-trace-l8-slim-20261031/source-semantic-audit.json",
+      "git_blob": "e594c57f0edf03975ca3d1bab272071b3836a863",
+      "sha256": "7b113b55c3d54676e759bc6acc3448b56dd4386dceafaa336695b73b8754e7ab",
+      "bytes": 1014510,
+      "row_count": 224
+    }
+  }
+}

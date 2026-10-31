@@ -1,0 +1,55 @@
+{
+  "schema": "wr256-evidence-history-addendum.v2",
+  "evidence_kind": "scaffold",
+  "authority_effect": "none",
+  "supersedes_addendum": "evidence-history-addendum-20261101.json",
+  "reason": "Record the compact current rerun after restoring first committed evidence and changing validator output to avoid retaining full repeated source projections. Prior full audits remain pinned by checkpoint Git blobs.",
+  "current_immutable_record": {
+    "path": "records/wr256-rule-link-32794-append-only-r2/record.json",
+    "schema": "wr256-immutable-evidence-record.v1",
+    "evidence_kind": "scaffold",
+    "authority_effect": "none",
+    "record_id": "wr256-rule-link-32794-append-only-r2",
+    "head_revision_at_recording": "32794e1ca8ce4f4f7508533992b69fcff4e669b0",
+    "validator_sha256": "8bada133660ddaac05cdb0d7f10404841f90cc5e59795653220e26f804056004",
+    "worktree_dirty_at_recording": true,
+    "artifacts": {
+      "source_semantic_audit": {
+        "path": "scaffold/research/wr256-connect-trace-l8-slim-20261031/evidence/records/wr256-rule-link-32794-append-only-r2/source-semantic-audit.json",
+        "sha256": "2a5689d33cb6e5a7d202c0380535727fbdf64dcc659a5378bf0a924e136ef180",
+        "bytes": 413421
+      },
+      "verification_summary": {
+        "path": "scaffold/research/wr256-connect-trace-l8-slim-20261031/evidence/records/wr256-rule-link-32794-append-only-r2/verification-summary.json",
+        "sha256": "a9f127a5cb74634c260a9f2e74d6ae392480c70c8be141f38f04e1ff16a24087",
+        "bytes": 3493
+      }
+    },
+    "note": "Created with exclusive file creation. Existing evidence is never overwritten; add this record to an append-only lineage artifact in the accompanying change."
+  },
+  "previous_current_record": {
+    "path": "records/wr256-rule-link-32794-append-only-r1/record.json",
+    "sha256": "11fa32e6dd6eabbdc957ddc332109c3cbe42d84319b4112a04fbb0f10ac61261",
+    "note": "Retained as a static full-projection audit snapshot from before compact audit output; do not treat as latest comparison target."
+  },
+  "historical_full_audit_payloads": {
+    "lineage_index": "evidence-history.json",
+    "prior_addendum": "evidence-history-addendum-20261101.json",
+    "latest_precompact_revision": "32794e1ca8ce4f4f7508533992b69fcff4e669b0",
+    "latest_precompact_source_audit_sha256": "7b113b55c3d54676e759bc6acc3448b56dd4386dceafaa336695b73b8754e7ab"
+  },
+  "compaction": {
+    "prior_source_audit_bytes": 1014510,
+    "current_source_audit_bytes": 413421,
+    "reduction_bytes": 601089,
+    "current_retained": "All 224 row IDs, fixed source and expected pointers, contract oracle IDs, projection hashes, concise row expectation, source failure findings, 27 rule definitions with condition witnesses and emitted findings, shared L3/L4/L5/L10 outcomes.",
+    "omitted": "Repeated full source-semantic projections, modal projection baselines, and row delta maps. They are reproducible from the pinned source revisions and prior immutable Git evidence blobs."
+  },
+  "validator_policy": {
+    "normal_run": "Regenerate current compact audit and summary in memory; compare byte-for-byte to this record; no evidence writes.",
+    "record_run": "--record --record-id <unique-id> uses exclusive creation for a new immutable record. Add its pins in a new history addendum; never update previous records."
+  },
+  "limits": [
+    "Static source and document check only. No L5 algorithm, test, runtime, CI, execution, or approval claim."
+  ]
+}

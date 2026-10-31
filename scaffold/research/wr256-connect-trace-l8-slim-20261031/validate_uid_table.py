@@ -2,6 +2,7 @@
 """Static WR256 U-ID/source/count/cap audit; never evaluates L4/L5 algorithms."""
 from __future__ import annotations
 
+import argparse
 import json
 import re
 import hashlib
@@ -274,7 +275,109 @@ def failure_rule_emissions(function_name, rule_index, projection):
     return [item for item in emissions if matches[function_name][rule_index](item)]
 
 
-def main() -> int:
+EVIDENCE_DIR = "scaffold/research/wr256-connect-trace-l8-slim-20261031/evidence/records"
+CURRENT_RECORD_ID = "wr256-rule-link-32794-append-only-r2"
+
+
+def verify_evidence_lineage(failures):
+    """Check first-path restoration and immutable historical/current evidence pins."""
+    research = ROOT / "scaffold/research/wr256-connect-trace-l8-slim-20261031"
+    evidence = research / "evidence"
+    history = json.loads((evidence / "evidence-history.json").read_text(encoding="utf-8"))
+    addendum = json.loads((evidence / "evidence-history-addendum-20261101-r2.json").read_text(encoding="utf-8"))
+    summary_path = "scaffold/research/wr256-connect-trace-l8-slim-20261031/verification-summary.json"
+    audit_path = "scaffold/research/wr256-connect-trace-l8-slim-20261031/source-semantic-audit.json"
+    expected = {
+        summary_path: ["4e2995c454b84f73b5e12d46e807a4b26831630b", "ace8a529d005f3854086c40e7c5967ba73e43da8", "684fa076bdbc7c586d60d04b8208fa4bb6a463fd", "2cbadcd2d175560860fce632d12810f5d0101ef1", "80e69e6f2ab1fe147ad132d0f76e5567b4b5d284", "32794e1ca8ce4f4f7508533992b69fcff4e669b0"],
+        audit_path: ["684fa076bdbc7c586d60d04b8208fa4bb6a463fd", "2cbadcd2d175560860fce632d12810f5d0101ef1", "80e69e6f2ab1fe147ad132d0f76e5567b4b5d284", "32794e1ca8ce4f4f7508533992b69fcff4e669b0"],
+    }
+    expected_checkpoints = list(dict.fromkeys(expected[summary_path][1:] + expected[audit_path][1:]))
+    actual_checkpoints = [item.get("revision") for item in history.get("checkpoints", [])]
+    if actual_checkpoints != expected_checkpoints:
+        failures.append({"check": "append_only_evidence_checkpoint_sequence", "expected": expected_checkpoints, "actual": actual_checkpoints})
+
+    def verify_pinned_blob(commit, path, pin, label):
+        try:
+            data = subprocess.check_output(["git", "show", f"{commit}:{path}"], cwd=ROOT)
+            blob = subprocess.check_output(["git", "rev-parse", f"{commit}:{path}"], cwd=ROOT, text=True).strip()
+            actual_sha = hashlib.sha256(data).hexdigest()
+            if pin.get("git_blob") != blob or pin.get("sha256") != actual_sha or pin.get("bytes") != len(data):
+                failures.append({"check": "historical_evidence_blob_pin", "label": label, "expected_blob": blob, "actual_blob": pin.get("git_blob"), "expected_sha256": actual_sha, "actual_sha256": pin.get("sha256")})
+            return data
+        except Exception as exc:
+            failures.append({"check": "historical_evidence_blob_resolution", "label": label, "error": str(exc)})
+            return None
+
+    for path, commits in expected.items():
+        kind = "verification-summary" if path == summary_path else "source-semantic-audit"
+        first_commit = commits[0]
+        first_pin = history.get("initial_path_snapshots", {}).get(Path(path).name, {})
+        data = verify_pinned_blob(first_commit, path, first_pin, f"initial:{kind}")
+        actual_path_bytes = (ROOT / path).read_bytes()
+        if data is not None and (hashlib.sha256(actual_path_bytes).digest() != hashlib.sha256(data).digest()):
+            failures.append({"check": "initial_evidence_path_restored", "path": path, "expected_sha256": hashlib.sha256(data).hexdigest(), "actual_sha256": hashlib.sha256(actual_path_bytes).hexdigest()})
+        for commit in commits[1:]:
+            entry_path = evidence / "checkpoints" / f"{commit}.json"
+            checkpoint = json.loads(entry_path.read_text(encoding="utf-8"))
+            if checkpoint.get("revision") != commit:
+                failures.append({"check": "evidence_checkpoint_revision", "path": str(entry_path.relative_to(ROOT)), "expected": commit, "actual": checkpoint.get("revision")})
+            pin = checkpoint.get("artifacts", {}).get(kind, {})
+            verify_pinned_blob(commit, path, pin, f"checkpoint:{commit}:{kind}")
+
+    record_info = addendum.get("current_immutable_record", {})
+    record_id = record_info.get("record_id")
+    if record_id != CURRENT_RECORD_ID:
+        failures.append({"check": "current_immutable_record_id", "expected": CURRENT_RECORD_ID, "actual": record_id})
+    record_dir = evidence / "records" / CURRENT_RECORD_ID
+    manifest_path = record_dir / "record.json"
+    manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+    for field in ("record_id", "validator_sha256", "artifacts"):
+        if manifest.get(field) != record_info.get(field):
+            failures.append({"check": "current_record_manifest_matches_addendum", "field": field})
+    for artifact in manifest.get("artifacts", {}).values():
+        path = ROOT / artifact["path"]
+        data = path.read_bytes()
+        if hashlib.sha256(data).hexdigest() != artifact.get("sha256") or len(data) != artifact.get("bytes"):
+            failures.append({"check": "current_record_artifact_pin", "path": artifact["path"]})
+
+    prior_record = addendum.get("previous_current_record", {})
+    prior_manifest_path = evidence / prior_record.get("path", "")
+    prior_manifest_bytes = prior_manifest_path.read_bytes()
+    if hashlib.sha256(prior_manifest_bytes).hexdigest() != prior_record.get("sha256"):
+        failures.append({"check": "previous_record_manifest_pin", "path": str(prior_manifest_path.relative_to(ROOT))})
+    prior_manifest = json.loads(prior_manifest_bytes)
+    for artifact in prior_manifest.get("artifacts", {}).values():
+        artifact_bytes = (ROOT / artifact["path"]).read_bytes()
+        if hashlib.sha256(artifact_bytes).hexdigest() != artifact.get("sha256"):
+            failures.append({"check": "previous_record_artifact_pin", "path": artifact["path"]})
+
+    prior_addendum_name = addendum.get("supersedes_addendum")
+    prior_addendum = json.loads((evidence / prior_addendum_name).read_text(encoding="utf-8"))
+    previous = prior_addendum.get("previous_copy_retained_as_noncurrent", {})
+    for basename in ("source-semantic-audit.json", "verification-summary.json"):
+        path = f"{previous.get('path')}/{basename}"
+        source_path = audit_path if basename.startswith("source") else summary_path
+        data = subprocess.check_output(["git", "show", f"{previous.get('source_revision')}:{source_path}"], cwd=ROOT)
+        copied = (research / previous.get("path") / basename).read_bytes()
+        if copied != data:
+            failures.append({"check": "retained_previous_copy_matches_historical_blob", "path": path, "expected_sha256": hashlib.sha256(data).hexdigest(), "actual_sha256": hashlib.sha256(copied).hexdigest()})
+
+
+def main(argv=None) -> int:
+    parser = argparse.ArgumentParser(description="Static WR256 U-ID and immutable evidence comparison")
+    parser.add_argument("--record", action="store_true", help="write a new immutable evidence record; requires a never-used --record-id")
+    parser.add_argument("--record-id", help="unique immutable record directory name (exclusive creation)")
+    args = parser.parse_args(argv)
+    if args.record and not args.record_id:
+        parser.error("--record requires --record-id")
+    if not args.record and args.record_id:
+        parser.error("--record-id is only valid with --record")
+    if args.record and not re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9._-]{0,127}", args.record_id):
+        parser.error("--record-id must be a simple unique filename token")
+    record_id = args.record_id if args.record else CURRENT_RECORD_ID
+    record_dir = ROOT / EVIDENCE_DIR / record_id
+    if args.record and record_dir.exists():
+        parser.error(f"immutable evidence record already exists: {record_dir}")
     current = json.loads((ROOT / L8).read_text(encoding="utf-8"))
     old8, l5, l9 = source_json(L8), source_json(L5), source_json(L9)
     l10_functional = source_json(L10)
@@ -285,6 +388,7 @@ def main() -> int:
     counts = {"L9_basic_branch": 90, "local_domain_probe": 61, "independent_semantic_probe": 68, "independent_cross_field_probe": 5}
     observed = {kind: sum(row.get("source_kind") == kind for row in rows) for kind in counts}
     failures = []
+    verify_evidence_lineage(failures)
 
     preserved_top_level = (
         "parent", "source_main", "scope", "full_goal_scope_preserved", "implementation_readiness",
@@ -296,7 +400,7 @@ def main() -> int:
     changed_boundary_fields = [key for key in preserved_top_level if current.get(key) != old8.get(key)]
     if changed_boundary_fields:
         failures.append({"check": "existing_boundary_and_unverified_state_preserved", "fields": changed_boundary_fields})
-    expected_method = "候補U-ID表は、固定されたL3/L4/L5/L10の契約と参照されたL9/probeの反例・期待差分を対応づける。全行はnot_executed。L5 AST評価、test実行、L8 pass/fail判定は行わず、行別意味監査はsource-semantic-audit.jsonに記録する。"
+    expected_method = "候補U-ID表は、固定されたL3/L4/L5/L10の契約と参照されたL9/probeの反例・期待差分を対応づける。全行はnot_executed。L5 AST評価、test実行、L8 pass/fail判定は行わず、行別意味監査はscaffold/research/wr256-connect-trace-l8-slim-20261031/evidence/records/wr256-rule-link-32794-append-only-r2/source-semantic-audit.jsonに記録する。"
     if current.get("method") != expected_method:
         failures.append({"check": "method_matches_static_candidate_role_and_unexecuted_boundary"})
 
@@ -433,9 +537,9 @@ def main() -> int:
             "source_ref": row["source_ref"], "expected_ref": row["expected_ref"],
             "contract_oracle_id": row["contract_oracle_id"],
             "projection_sha256": hashlib.sha256(json.dumps(flat, ensure_ascii=False, sort_keys=True, separators=(",", ":")).encode("utf-8")).hexdigest(),
-            "source_semantic_projection": flat,
-            "modal_comparison_delta": {"set": sets, "remove": removes},
             "formal_expected_result": label,
+            "source_failure_expectation": projection.get("failure_reasons", "failure_reasons=[]"),
+            "l5_failure_rule_refs": row.get("l5_failure_rule_refs", []),
         })
     expectation_text = json.dumps({"audit": source_audit_rows, "formal": [row.get("expected_result") for row in rows]}, ensure_ascii=False)
     ellipsis_count = expectation_text.count("...") + expectation_text.count("…")
@@ -610,18 +714,18 @@ def main() -> int:
     child_status = "not_evaluated" if child_pair.get("status") == "not_evaluated" and child_four_way.get("status") == "not_evaluated" else "evaluated"
 
     source_audit = {
-        "schema": "wr256-connect-l8-source-semantic-audit.v1",
+        "schema": "wr256-connect-l8-source-semantic-audit.v2",
         "evidence_kind": "scaffold",
         "authority_effect": "none",
         "base_revision": BASE,
         "contract_outcome_boundaries": expected_contract_outcomes,
         "failure_rule_semantic_audit": failure_rule_semantic_audit,
-        "groups": {group: {"row_count": len(items), "modal_source_projection": expected_baselines[group]} for group, items in sorted(grouped.items())},
+        "groups": {group: {"row_count": len(items)} for group, items in sorted(grouped.items())},
         "rows": source_audit_rows,
-        "limits": ["This is a fixed-source semantic audit projection, not an executed oracle or full-return fixture."],
+        "limits": ["Compact fixed-source audit: row pointers, expected-result text, source projection hashes, failure findings, and L5 rule witnesses are retained. Full projections and modal baselines are intentionally omitted; fixed source revisions and historical Git blobs preserve reproducibility. This is not an executed oracle."],
     }
-    audit_path = ROOT / "scaffold/research/wr256-connect-trace-l8-slim-20261031/source-semantic-audit.json"
-    audit_path.write_text(json.dumps(source_audit, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    audit_path = record_dir / "source-semantic-audit.json"
+    source_bytes = (json.dumps(source_audit, ensure_ascii=False, indent=2) + "\n").encode("utf-8")
 
     result = {
         "schema": "wr256-connect-l8-u-id-audit.v1",
@@ -642,7 +746,7 @@ def main() -> int:
         "preserved_boundary_fields": {"checked": len(preserved_top_level), "changed": changed_boundary_fields},
         "method_boundary": {"passed": not any(item.get("check") == "method_matches_static_candidate_role_and_unexecuted_boundary" for item in failures), "L5_AST_test_execution_or_L8_pass_fail": "not_performed"},
         "contract_outcome_boundaries": {"checked_functions": sorted(expected_contract_outcomes["functions"]), "mismatch_count": sum(item.get("check") == "short_contract_outcome_boundaries_match_L3_L4_L5_L10" for item in failures)},
-        "source_semantic_audit": {"path": str(audit_path.relative_to(ROOT)), "row_count": len(source_audit_rows), "sha256": hashlib.sha256(audit_path.read_bytes()).hexdigest()},
+        "source_semantic_audit": {"path": str(audit_path.relative_to(ROOT)), "row_count": len(source_audit_rows), "sha256": hashlib.sha256(source_bytes).hexdigest()},
         "contract_outcome_boundary_count": sum(len(items["l5_fixed_outputs"]) for items in expected_contract_outcomes["functions"].values()),
         "expected_result_audit": {"row_count": len(rows), "baseline_groups": {group: {"rows": len(grouped[group]), "audit_baseline_fields": len(expected_baselines[group])} for group in sorted(grouped)}, "audit_baseline_field_total": sum(len(fields) for fields in expected_baselines.values()), "audit_row_delta_fields": sum(len(item["set"]) + len(item["remove"]) for item in source_deltas.values()), "max_audit_row_delta_fields": max((len(item["set"]) + len(item["remove"]) for item in source_deltas.values()), default=0), "formal_expected_result_kind": "concise row-specific semantic statement", "formal_expected_result_length_max": max((len(row.get("expected_result", "")) for row in rows), default=0), "ellipsis_count": ellipsis_count, "array_count_placeholder_count": array_placeholder_count, "source_semantic_mismatch_count": sum(any(f.get("u_id") == row.get("u_id") and f.get("check", "").startswith(("row_expected_delta", "row_expected_semantics_resolution", "row_expected_result", "independent_cross_field_probe")) for f in failures) for row in rows)},
         "row_oracle_and_test_citation": "null; not found at fixed source; not invented",
@@ -658,11 +762,44 @@ def main() -> int:
         "failures": failures,
         "limits": ["This static check does not evaluate L4/L5 algorithms, tests, runtime, CI, independent semantic equivalence, or approval."]
     }
-    out = ROOT / "scaffold/research/wr256-connect-trace-l8-slim-20261031/verification-summary.json"
-    out.parent.mkdir(parents=True, exist_ok=True)
-    out.write_text(json.dumps(result, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    print(json.dumps(result, ensure_ascii=False, indent=2))
-    return 0 if result["passed"] else 1
+    result_bytes = (json.dumps(result, ensure_ascii=False, indent=2) + "\n").encode("utf-8")
+    summary_path = record_dir / "verification-summary.json"
+    if args.record:
+        if not result["passed"]:
+            print(json.dumps({"passed": False, "evidence_written": False, "failures": failures}, ensure_ascii=False, indent=2))
+            return 1
+        record_dir.mkdir(parents=True, exist_ok=False)
+        for path, data in ((audit_path, source_bytes), (summary_path, result_bytes)):
+            with path.open("xb") as handle:
+                handle.write(data)
+        manifest = {
+            "schema": "wr256-immutable-evidence-record.v1",
+            "evidence_kind": "scaffold",
+            "authority_effect": "none",
+            "record_id": record_id,
+            "head_revision_at_recording": subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=ROOT, text=True).strip(),
+            "validator_sha256": hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
+            "worktree_dirty_at_recording": bool(subprocess.check_output(["git", "status", "--porcelain"], cwd=ROOT, text=True).strip()),
+            "artifacts": {
+                "source_semantic_audit": {"path": str(audit_path.relative_to(ROOT)), "sha256": hashlib.sha256(source_bytes).hexdigest(), "bytes": len(source_bytes)},
+                "verification_summary": {"path": str(summary_path.relative_to(ROOT)), "sha256": hashlib.sha256(result_bytes).hexdigest(), "bytes": len(result_bytes)},
+            },
+            "note": "Created with exclusive file creation. Existing evidence is never overwritten; add this record to an append-only lineage artifact in the accompanying change.",
+        }
+        manifest_path = record_dir / "record.json"
+        with manifest_path.open("xb") as handle:
+            handle.write((json.dumps(manifest, ensure_ascii=False, indent=2) + "\n").encode("utf-8"))
+        comparison = {"mode": "record", "record_id": record_id, "written": True}
+    else:
+        expected = {audit_path: source_bytes, summary_path: result_bytes}
+        comparison = {"mode": "compare", "record_id": record_id, "matches": True, "artifacts": []}
+        for path, data in expected.items():
+            actual = path.read_bytes() if path.exists() else None
+            match = actual == data
+            comparison["artifacts"].append({"path": str(path.relative_to(ROOT)), "matches": match, "expected_sha256": hashlib.sha256(data).hexdigest(), "actual_sha256": hashlib.sha256(actual).hexdigest() if actual is not None else None})
+            comparison["matches"] = comparison["matches"] and match
+    print(json.dumps({"verification": result, "artifact_comparison": comparison}, ensure_ascii=False, indent=2))
+    return 0 if result["passed"] and comparison.get("matches", True) else 1
 
 
 if __name__ == "__main__":

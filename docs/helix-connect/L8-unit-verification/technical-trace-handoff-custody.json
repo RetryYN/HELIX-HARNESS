@@ -93,7 +93,7 @@
   "pair_id": "HELIXCONNECT-L5-005",
   "design_ref": "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json",
   "integration_ref": "docs/helix-connect/L9-integration-verification/technical-trace-handoff-custody.json",
-  "method": "候補U-ID表は、固定されたL3/L4/L5/L10の契約と参照されたL9/probeの反例・期待差分を対応づける。全行はnot_executed。L5 AST評価、test実行、L8 pass/fail判定は行わず、行別意味監査はsource-semantic-audit.jsonに記録する。",
+  "method": "候補U-ID表は、固定されたL3/L4/L5/L10の契約と参照されたL9/probeの反例・期待差分を対応づける。全行はnot_executed。L5 AST評価、test実行、L8 pass/fail判定は行わず、行別意味監査はscaffold/research/wr256-connect-trace-l8-slim-20261031/evidence/records/wr256-rule-link-32794-append-only-r2/source-semantic-audit.jsonに記録する。",
   "source_pair_pins": [
     {
       "path": "docs/helix-connect/L4-basic-design/technical-trace-handoff-custody.json",

@@ -22,14 +22,7 @@
   "l5": {
     "public_functions": 3,
     "failure_rules": 27,
-    "rules_with_fixed_source_emissions": 27,
-    "rules_without_fixed_source_emission": []
-  },
-  "failure_rule_semantic_audit": {
-    "rule_count": 27,
-    "candidate_row_links": 184,
-    "unsupported_links": 0,
-    "unexecuted": true
+    "unmapped_failure_rules": 0
   },
   "source_pointers_resolved": 224,
   "preserved_l9_whole_oracle": {
@@ -52,52 +45,11 @@
     "wrong_target_mapping_count": 0
   },
   "preserved_boundary_fields": {
-    "checked": 24,
+    "checked": 25,
     "changed": []
   },
-  "method_boundary": {
-    "passed": true,
-    "L5_AST_test_execution_or_L8_pass_fail": "not_performed"
-  },
-  "contract_outcome_boundaries": {
-    "checked_functions": [
-      "F01",
-      "F02",
-      "N01"
-    ],
-    "mismatch_count": 0
-  },
-  "source_semantic_audit": {
-    "path": "scaffold/research/wr256-connect-trace-l8-slim-20261031/source-semantic-audit.json",
-    "row_count": 224,
-    "sha256": "7b113b55c3d54676e759bc6acc3448b56dd4386dceafaa336695b73b8754e7ab"
-  },
-  "contract_outcome_boundary_count": 14,
   "expected_result_audit": {
     "row_count": 224,
-    "baseline_groups": {
-      "F01": {
-        "rows": 69,
-        "audit_baseline_fields": 22
-      },
-      "F02": {
-        "rows": 87,
-        "audit_baseline_fields": 47
-      },
-      "N01": {
-        "rows": 63,
-        "audit_baseline_fields": 39
-      },
-      "independent_cross_field_probe": {
-        "rows": 5,
-        "audit_baseline_fields": 2
-      }
-    },
-    "audit_baseline_field_total": 110,
-    "audit_row_delta_fields": 834,
-    "max_audit_row_delta_fields": 14,
-    "formal_expected_result_kind": "concise row-specific semantic statement",
-    "formal_expected_result_length_max": 159,
     "ellipsis_count": 0,
     "array_count_placeholder_count": 0,
     "source_semantic_mismatch_count": 0
