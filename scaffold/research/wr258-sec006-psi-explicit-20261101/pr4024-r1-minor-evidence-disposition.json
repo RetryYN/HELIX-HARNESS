@@ -1,0 +1,19 @@
+{
+  "schema": "wr258-pr4024-evidence-disposition.v1",
+  "evidence_kind": "scaffold",
+  "authority_effect": "none",
+  "reason": "同一current-overlay pathは現在測定1本に保ち、PR #4024 R1 Minor修正を加えた最新main基準の測定へ置き換える。旧本文は変更せずGit objectで復元可能。",
+  "retired_current_measurements": [
+    {
+      "path": "scaffold/research/wr258-sec006-psi-explicit-20261101/l4l9-supplement-current-overlay-r2.json",
+      "revision": "da62b1d106b64ea360009b29a6202610d09663da",
+      "git_blob": "0cf853e962342b90455e4f67b434bff7f64ddf04",
+      "sha256": "8da39885535fb2c0cbe8052160b5202e7930aff695948f4a3411c69cf4bf2bb3",
+      "bytes": 7535,
+      "restore_exact_bytes": "git show da62b1d106b64ea360009b29a6202610d09663da:scaffold/research/wr258-sec006-psi-explicit-20261101/l4l9-supplement-current-overlay-r2.json > scaffold/research/wr258-sec006-psi-explicit-20261101/l4l9-supplement-current-overlay-r2.json",
+      "restoration_verified": true,
+      "unique_facts": "旧測定本文全体を固定Git blobとして保存。",
+      "superseded_by": "scaffold/research/wr258-sec006-psi-explicit-20261101/l4l9-supplement-current-overlay-r2.json"
+    }
+  ]
+}

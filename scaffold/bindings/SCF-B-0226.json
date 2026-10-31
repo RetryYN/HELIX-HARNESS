@@ -6,7 +6,7 @@
   "product": "HELIX-HARNESS",
   "owner_candidate": "HELIX-HARNESS SEC006 L4/L9補足担当",
   "state": "registered",
-  "reason": "PR #4007 merge後のL9 98既存行にcasewise condition/expected/expected_preservedがなく、top-level integration_casesもなかったため、L9入力とL3/L10/L4から148行のcasewise候補を独立導出し、照合証拠を登録する。正本変更はL4/L9 pairだけとし、L5/L8 candidateとの比較は導出後の一時overlayに限る。実行・authority effectなし。 PR #4017 R1でcasewise source pointerの重複を撤去し、追加50件をstable L9 IDへ改名した。条件文字列はQA §58どおりcase照合の対象、期待値はL3/L10/L4から独立導出する。",
+  "reason": "PR #4007 merge後のL9 98既存行にcasewise condition/expected/expected_preservedがなく、top-level integration_casesもなかったため、L9入力とL3/L10/L4から148行のcasewise候補を独立導出し、照合証拠を登録する。正本変更はL4/L9 pairだけとし、L5/L8 candidateとの比較は導出後の一時overlayに限る。実行・authority effectなし。 PR #4017 R1でcasewise source pointerの重複を撤去し、追加50件をstable L9 IDへ改名した。条件文字列はQA §58どおりcase照合の対象、期待値はL3/L10/L4から独立導出する。 PR #4023 R1 F1/F3追補ではL5の既存関数契約・L8元caseとL9 residualを照合し、scope identity差・connection join差を既存の集約material差から分離した2 classをL4/L9へ追加する。L9 ORACLE-002/004/006/008/010/012/036/037を対応classへ移し、ORACLE-048条件をL8反例に沿って修正する。L3/L10とL5/L8正本は変更しない。",
   "upstream": [
     {
       "path": "docs/helix-security/L3-requirements/functional-requirements.json",
@@ -20,13 +20,13 @@
     },
     {
       "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
-      "sha256": "16d4fc5e3fcf0c677703b694b538f6d8f5542db36291850ed7f72865f0d9c72c",
-      "note": "15 classの意味とexpected/expected_preserved source。"
+      "sha256": "153ecf819acf90c51906a5e5064d98a010b9bf52c3660031bafc9c6b78611484",
+      "note": "17 classの意味とexpected/expected_preserved source。 PR #4023 R1 F1/F3追補で現行pinを更新。直前のcurrent pin 16d4fc5e3fcf0c677703b694b538f6d8f5542db36291850ed7f72865f0d9c72c は履歴として保持。current SHA-256 2da2e64dc5aad459c7d1a6a6e8e645375f76371d43b7c0cdea95f2e0b3ce5cdf はL4/L9の既知scope差finding分離とORACLE-048条件修正を含む。 Minor: PR #4024 R1で資産identity conflictをasset_scope対expected_targetの同一axis比較に限定。変更前current pin SHA-256 2da2e64dc5aad459c7d1a6a6e8e645375f76371d43b7c0cdea95f2e0b3ce5cdf は履歴として保持。"
     },
     {
       "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
-      "sha256": "0d46617674373fb9b1677c02eac2766765aafb448192b5c6fc1674b4e7fa88da",
-      "note": "148 nested negative rowsとL9 system oracle。新top-level integration_casesはそのcasewise投影。 PR #4017 R1補足で更新。R1前pin 80f3adc2c3a00c93f1c5eb81ed1ba28542dc7e31b558db15b9c5909a2f193754を履歴に保持。148 integration rowsからclass/nested source pointer重複を除き、追加50 IDをSEC003-L9-ORACLE-001..050へ改名。"
+      "sha256": "5594ff7c05c27e78032dd92dd18cd15516410eb218cb41a9b26581956b02db6e",
+      "note": "148 nested negative rowsとL9 system oracle。新top-level integration_casesはそのcasewise投影。current projectionは17 classで、scope-identity差6行とconnection-join差2行を別classへ参照する。 PR #4017 R1補足で更新。R1前pin 80f3adc2c3a00c93f1c5eb81ed1ba28542dc7e31b558db15b9c5909a2f193754を履歴に保持。148 integration rowsからclass/nested source pointer重複を除き、追加50 IDをSEC003-L9-ORACLE-001..050へ改名。 PR #4023 R1 F1/F3追補で現行pinを更新。直前のcurrent pin 0d46617674373fb9b1677c02eac2766765aafb448192b5c6fc1674b4e7fa88da は履歴として保持。current SHA-256 5594ff7c05c27e78032dd92dd18cd15516410eb218cb41a9b26581956b02db6e はL4/L9の既知scope差finding分離とORACLE-048条件修正を含む。"
     },
     {
       "path": "docs/governance/design-verification-quality-assurance.md",
@@ -36,7 +36,7 @@
   ],
   "role": "L9 casewise条件・期待とsource参照の重複を避けた導出根拠、ID移行、最新overlay結果をscaffold evidenceとして追跡する。",
   "obligations": [
-    "L9の既存98行・追加50行、15 class、16 residualを保持する。",
+    "L9の既存98行・追加50行、17 class、16 residualを保持する。",
     "既存98 conditionは各L9 counterexample request/contextとL4 axisから個別に導出し、expected/expected_preservedはL4 classから得る。",
     "L8のcondition・expected・fixtureからL9値を導出しない。L8候補との意味照合は導出後に行い、不一致IDを理由つきで記録する。",
     "ORACLE-046のsystem-level connection absentを局所operation-deferと混同しない。",
@@ -44,7 +44,8 @@
     "L3/L10/L4/L9/QA以外の正本を編集せず、4way結果は実測どおり報告する。",
     "integration_casesのclass共通source pointerを重複保持せず、L4 classと同一IDのL9 nested rowの参照を正とする。",
     "追加50 L9 case IDはSEC003-L9-ORACLE-001..050とし、PR-B mappingおよび現行validatorを同時に更新する。",
-    "QA §58のcondition完全一致要件とexpectedの独立導出要件を区別し、L8候補条件はL9 conditionと文字列一致させる。"
+    "QA §58のcondition完全一致要件とexpectedの独立導出要件を区別し、L8候補条件はL9 conditionと文字列一致させる。",
+    "PR #4023 R1 F1/F3ではscope_identity_conflictとconnection_scope_conflictを別L4 classとして扱い、該当8 L9 system oracleのclass ref・expected・compact observationを同じclass projectionへ揃える。ORACLE-048はread要求とallowed_operations内のnull不正itemを表す。"
   ],
   "connections": {
     "consumers": [
@@ -85,7 +86,9 @@
     "scaffold/research/wr258-sec006-psi-explicit-20261101/validate_pr4007_r2.py",
     "scaffold/research/wr258-sec006-psi-explicit-20261101/l4l9-casewise-source-audit-r1.json",
     "scaffold/research/wr258-sec006-psi-explicit-20261101/l4l9-supplement-current-overlay-r1.json",
-    "scaffold/research/wr258-sec006-psi-explicit-20261101/pr4017-r1-review-disposition.json"
+    "scaffold/research/wr258-sec006-psi-explicit-20261101/pr4017-r1-review-disposition.json",
+    "scaffold/research/wr258-sec006-psi-explicit-20261101/l4l9-supplement-current-overlay-r2.json",
+    "scaffold/research/wr258-sec006-psi-explicit-20261101/pr4024-r1-minor-evidence-disposition.json"
   ],
   "replacement": {
     "role_target": "L5/L8側のsource-derived case conditionsを整えた後、明示modeで4層一体検証する候補。",
@@ -109,7 +112,9 @@
       "L8比較はL9値の生成後に限る。条件の不一致98件はIDと比較差として報告し、意味一致とは扱わない。",
       "すべてnot_executedとし、fixture実行、実観測、4way passを主張しない。",
       "全148 integration_casesでsource_pointersは省略し、negative_class_refと同IDのnested rowから根拠を解決する。",
-      "追加50のstable L9 IDsはPR-B候補mappingへ一意に参照され、作業番号付きIDはcanonical L9/現行mappingに残らない。"
+      "追加50のstable L9 IDsはPR-B候補mappingへ一意に参照され、作業番号付きIDはcanonical L9/現行mappingに残らない。",
+      "2 scope-conflict classesはL3/L10/L4 source pointerへ解決し、対応8 L9 rowsはclass expectedを使う。L5/L8比較は診断用であり、このpairでは両層を編集しない。",
+      "最新main overlay測定は current-overlay-r2 を唯一の現行値として参照し、L4/L9 pair合格、現行mainでの4way check-child結果、PR-B候補との差分を分けて記録する。"
     ],
     "negative_cases": [
       "L8 oracleをL9へ複写しない。",
@@ -117,7 +122,8 @@
       "L3/L10/QA/L5/L8の正本を変更しない。",
       "4way check-childの実際のFAILをPASSと報告しない。",
       "R1前のaudit/overlay/mappingはGit固定commit/blob/SHAから復元でき、current R1 artifactと混同しない。",
-      "canonical L5/L8はこのV-pairで変更しない。"
+      "canonical L5/L8はこのV-pairで変更しない。",
+      "scope_identity_conflictをasset_scope_conflictに、connection_scope_conflictをconnection_content_conflictに集約しない。ORACLE-048をoperation=listの反例と誤記しない。"
     ]
   }
 }

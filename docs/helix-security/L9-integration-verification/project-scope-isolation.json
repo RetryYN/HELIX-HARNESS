@@ -6836,13 +6836,13 @@
           ],
           "design_ref": "HELIXSECURITY-L4-003-F01",
           "system_oracle_ref": "HELIXSECURITY-L10-003-F01",
-          "negative_class_ref": "SEC003-F01-IDENTITY-CONFLICT",
+          "negative_class_ref": "SEC003-F01-SCOPE-IDENTITY-CONFLICT",
           "condition": "origin側のprojectが独立した期待値と不一致であり、他軸で補完せずscope対応を扱う。",
           "expected_classification": "isolation_violation",
           "expected": {
             "condition": "isolation_violation",
             "finding_codes": [
-              "asset_scope_conflict"
+              "scope_identity_conflict"
             ]
           },
           "expected_preserved": {
@@ -6864,7 +6864,7 @@
             },
             {
               "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
-              "pointer": "/failure_classifications/0"
+              "pointer": "/failure_classifications/15"
             },
             {
               "path": "docs/helix-security/L3-requirements/functional-requirements.json",
@@ -6958,13 +6958,13 @@
           ],
           "design_ref": "HELIXSECURITY-L4-003-F01",
           "system_oracle_ref": "HELIXSECURITY-L10-003-F01",
-          "negative_class_ref": "SEC003-F01-IDENTITY-CONFLICT",
+          "negative_class_ref": "SEC003-F01-SCOPE-IDENTITY-CONFLICT",
           "condition": "origin側のtenantが独立した期待値と不一致であり、他軸で補完せずscope対応を扱う。",
           "expected_classification": "isolation_violation",
           "expected": {
             "condition": "isolation_violation",
             "finding_codes": [
-              "asset_scope_conflict"
+              "scope_identity_conflict"
             ]
           },
           "expected_preserved": {
@@ -6986,7 +6986,7 @@
             },
             {
               "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
-              "pointer": "/failure_classifications/0"
+              "pointer": "/failure_classifications/15"
             },
             {
               "path": "docs/helix-security/L3-requirements/functional-requirements.json",
@@ -7080,13 +7080,13 @@
           ],
           "design_ref": "HELIXSECURITY-L4-003-F01",
           "system_oracle_ref": "HELIXSECURITY-L10-003-F01",
-          "negative_class_ref": "SEC003-F01-IDENTITY-CONFLICT",
+          "negative_class_ref": "SEC003-F01-SCOPE-IDENTITY-CONFLICT",
           "condition": "origin側のenvironmentが独立した期待値と不一致であり、他軸で補完せずscope対応を扱う。",
           "expected_classification": "isolation_violation",
           "expected": {
             "condition": "isolation_violation",
             "finding_codes": [
-              "asset_scope_conflict"
+              "scope_identity_conflict"
             ]
           },
           "expected_preserved": {
@@ -7108,7 +7108,7 @@
             },
             {
               "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
-              "pointer": "/failure_classifications/0"
+              "pointer": "/failure_classifications/15"
             },
             {
               "path": "docs/helix-security/L3-requirements/functional-requirements.json",
@@ -7202,13 +7202,13 @@
           ],
           "design_ref": "HELIXSECURITY-L4-003-F01",
           "system_oracle_ref": "HELIXSECURITY-L10-003-F01",
-          "negative_class_ref": "SEC003-F01-IDENTITY-CONFLICT",
+          "negative_class_ref": "SEC003-F01-SCOPE-IDENTITY-CONFLICT",
           "condition": "origin側のassignmentが独立した期待値と不一致であり、他軸で補完せずscope対応を扱う。",
           "expected_classification": "isolation_violation",
           "expected": {
             "condition": "isolation_violation",
             "finding_codes": [
-              "asset_scope_conflict"
+              "scope_identity_conflict"
             ]
           },
           "expected_preserved": {
@@ -7230,7 +7230,7 @@
             },
             {
               "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
-              "pointer": "/failure_classifications/0"
+              "pointer": "/failure_classifications/15"
             },
             {
               "path": "docs/helix-security/L3-requirements/functional-requirements.json",
@@ -7324,13 +7324,13 @@
           ],
           "design_ref": "HELIXSECURITY-L4-003-F01",
           "system_oracle_ref": "HELIXSECURITY-L10-003-F01",
-          "negative_class_ref": "SEC003-F01-IDENTITY-CONFLICT",
+          "negative_class_ref": "SEC003-F01-SCOPE-IDENTITY-CONFLICT",
           "condition": "origin側のworktreeが独立した期待値と不一致であり、他軸で補完せずscope対応を扱う。",
           "expected_classification": "isolation_violation",
           "expected": {
             "condition": "isolation_violation",
             "finding_codes": [
-              "asset_scope_conflict"
+              "scope_identity_conflict"
             ]
           },
           "expected_preserved": {
@@ -7352,7 +7352,7 @@
             },
             {
               "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
-              "pointer": "/failure_classifications/0"
+              "pointer": "/failure_classifications/15"
             },
             {
               "path": "docs/helix-security/L3-requirements/functional-requirements.json",
@@ -7446,13 +7446,13 @@
           ],
           "design_ref": "HELIXSECURITY-L4-003-F01",
           "system_oracle_ref": "HELIXSECURITY-L10-003-F01",
-          "negative_class_ref": "SEC003-F01-IDENTITY-CONFLICT",
+          "negative_class_ref": "SEC003-F01-SCOPE-IDENTITY-CONFLICT",
           "condition": "origin側のrevisionが独立した期待値と不一致であり、他軸で補完せずscope対応を扱う。",
           "expected_classification": "isolation_violation",
           "expected": {
             "condition": "isolation_violation",
             "finding_codes": [
-              "asset_scope_conflict"
+              "scope_identity_conflict"
             ]
           },
           "expected_preserved": {
@@ -7474,7 +7474,7 @@
             },
             {
               "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
-              "pointer": "/failure_classifications/0"
+              "pointer": "/failure_classifications/15"
             },
             {
               "path": "docs/helix-security/L3-requirements/functional-requirements.json",
@@ -12599,13 +12599,13 @@
           ],
           "design_ref": "HELIXSECURITY-L4-003-F02",
           "system_oracle_ref": "HELIXSECURITY-L10-003-F02",
-          "negative_class_ref": "SEC003-F02-CONNECTION-MATERIAL-CONFLICT",
+          "negative_class_ref": "SEC003-F02-CONNECTION-SCOPE-CONFLICT",
           "condition": "request origin scopeとconnection同側scopeが一致せず、connection joinを成立扱いにしない。",
           "expected_classification": "isolation_violation",
           "expected": {
             "condition": "isolation_violation",
             "finding_codes": [
-              "connection_content_conflict"
+              "connection_scope_conflict"
             ]
           },
           "expected_preserved": {
@@ -12627,7 +12627,7 @@
             },
             {
               "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
-              "pointer": "/failure_classifications/8"
+              "pointer": "/failure_classifications/16"
             },
             {
               "path": "docs/helix-security/L3-requirements/functional-requirements.json",
@@ -12660,13 +12660,13 @@
           ],
           "design_ref": "HELIXSECURITY-L4-003-F02",
           "system_oracle_ref": "HELIXSECURITY-L10-003-F02",
-          "negative_class_ref": "SEC003-F02-CONNECTION-MATERIAL-CONFLICT",
+          "negative_class_ref": "SEC003-F02-CONNECTION-SCOPE-CONFLICT",
           "condition": "request target scopeとconnection同側scopeが一致せず、connection joinを成立扱いにしない。",
           "expected_classification": "isolation_violation",
           "expected": {
             "condition": "isolation_violation",
             "finding_codes": [
-              "connection_content_conflict"
+              "connection_scope_conflict"
             ]
           },
           "expected_preserved": {
@@ -12688,7 +12688,7 @@
             },
             {
               "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
-              "pointer": "/failure_classifications/8"
+              "pointer": "/failure_classifications/16"
             },
             {
               "path": "docs/helix-security/L3-requirements/functional-requirements.json",
@@ -13332,7 +13332,7 @@
           "design_ref": "HELIXSECURITY-L4-003-F02",
           "system_oracle_ref": "HELIXSECURITY-L10-003-F02",
           "negative_class_ref": "SEC003-F02-CONNECTION-MATERIAL-UNRESOLVED",
-          "condition": "requested operation=listはallowed_operationsに含まれず、read許可を当該operationへ拡張しない。",
+          "condition": "request.operation=\"read\"かつconnection.allowed_operations=[\"read\",null]であり、不正itemを捨てて読取許可として扱わない。",
           "expected_classification": "scope_unresolved",
           "expected": {
             "condition": "scope_unresolved",
@@ -15340,7 +15340,7 @@
       "expected": {
         "condition": "isolation_violation",
         "finding_codes": [
-          "asset_scope_conflict"
+          "scope_identity_conflict"
         ]
       },
       "expected_preserved": {
@@ -15348,14 +15348,14 @@
         "unaffected_scope": "今回のrequest/operation以外の有効scopeを一律停止しない。",
         "operation_effect": "実認可・credential・接続・state変更、通信、停止や回復の実作用はnone。"
       },
-      "negative_class_ref": "SEC003-F01-IDENTITY-CONFLICT",
+      "negative_class_ref": "SEC003-F01-SCOPE-IDENTITY-CONFLICT",
       "execution_state": "not_executed",
       "test_citation": null,
       "compact_whole_observation": {
         "condition": "isolation_violation",
         "ordered_findings": [
           {
-            "code": "asset_scope_conflict",
+            "code": "scope_identity_conflict",
             "return_owner": "scope-binding-owner"
           }
         ]
@@ -15396,7 +15396,7 @@
       "expected": {
         "condition": "isolation_violation",
         "finding_codes": [
-          "asset_scope_conflict"
+          "scope_identity_conflict"
         ]
       },
       "expected_preserved": {
@@ -15404,14 +15404,14 @@
         "unaffected_scope": "今回のrequest/operation以外の有効scopeを一律停止しない。",
         "operation_effect": "実認可・credential・接続・state変更、通信、停止や回復の実作用はnone。"
       },
-      "negative_class_ref": "SEC003-F01-IDENTITY-CONFLICT",
+      "negative_class_ref": "SEC003-F01-SCOPE-IDENTITY-CONFLICT",
       "execution_state": "not_executed",
       "test_citation": null,
       "compact_whole_observation": {
         "condition": "isolation_violation",
         "ordered_findings": [
           {
-            "code": "asset_scope_conflict",
+            "code": "scope_identity_conflict",
             "return_owner": "scope-binding-owner"
           }
         ]
@@ -15452,7 +15452,7 @@
       "expected": {
         "condition": "isolation_violation",
         "finding_codes": [
-          "asset_scope_conflict"
+          "scope_identity_conflict"
         ]
       },
       "expected_preserved": {
@@ -15460,14 +15460,14 @@
         "unaffected_scope": "今回のrequest/operation以外の有効scopeを一律停止しない。",
         "operation_effect": "実認可・credential・接続・state変更、通信、停止や回復の実作用はnone。"
       },
-      "negative_class_ref": "SEC003-F01-IDENTITY-CONFLICT",
+      "negative_class_ref": "SEC003-F01-SCOPE-IDENTITY-CONFLICT",
       "execution_state": "not_executed",
       "test_citation": null,
       "compact_whole_observation": {
         "condition": "isolation_violation",
         "ordered_findings": [
           {
-            "code": "asset_scope_conflict",
+            "code": "scope_identity_conflict",
             "return_owner": "scope-binding-owner"
           }
         ]
@@ -15508,7 +15508,7 @@
       "expected": {
         "condition": "isolation_violation",
         "finding_codes": [
-          "asset_scope_conflict"
+          "scope_identity_conflict"
         ]
       },
       "expected_preserved": {
@@ -15516,14 +15516,14 @@
         "unaffected_scope": "今回のrequest/operation以外の有効scopeを一律停止しない。",
         "operation_effect": "実認可・credential・接続・state変更、通信、停止や回復の実作用はnone。"
       },
-      "negative_class_ref": "SEC003-F01-IDENTITY-CONFLICT",
+      "negative_class_ref": "SEC003-F01-SCOPE-IDENTITY-CONFLICT",
       "execution_state": "not_executed",
       "test_citation": null,
       "compact_whole_observation": {
         "condition": "isolation_violation",
         "ordered_findings": [
           {
-            "code": "asset_scope_conflict",
+            "code": "scope_identity_conflict",
             "return_owner": "scope-binding-owner"
           }
         ]
@@ -15564,7 +15564,7 @@
       "expected": {
         "condition": "isolation_violation",
         "finding_codes": [
-          "asset_scope_conflict"
+          "scope_identity_conflict"
         ]
       },
       "expected_preserved": {
@@ -15572,14 +15572,14 @@
         "unaffected_scope": "今回のrequest/operation以外の有効scopeを一律停止しない。",
         "operation_effect": "実認可・credential・接続・state変更、通信、停止や回復の実作用はnone。"
       },
-      "negative_class_ref": "SEC003-F01-IDENTITY-CONFLICT",
+      "negative_class_ref": "SEC003-F01-SCOPE-IDENTITY-CONFLICT",
       "execution_state": "not_executed",
       "test_citation": null,
       "compact_whole_observation": {
         "condition": "isolation_violation",
         "ordered_findings": [
           {
-            "code": "asset_scope_conflict",
+            "code": "scope_identity_conflict",
             "return_owner": "scope-binding-owner"
           }
         ]
@@ -15620,7 +15620,7 @@
       "expected": {
         "condition": "isolation_violation",
         "finding_codes": [
-          "asset_scope_conflict"
+          "scope_identity_conflict"
         ]
       },
       "expected_preserved": {
@@ -15628,14 +15628,14 @@
         "unaffected_scope": "今回のrequest/operation以外の有効scopeを一律停止しない。",
         "operation_effect": "実認可・credential・接続・state変更、通信、停止や回復の実作用はnone。"
       },
-      "negative_class_ref": "SEC003-F01-IDENTITY-CONFLICT",
+      "negative_class_ref": "SEC003-F01-SCOPE-IDENTITY-CONFLICT",
       "execution_state": "not_executed",
       "test_citation": null,
       "compact_whole_observation": {
         "condition": "isolation_violation",
         "ordered_findings": [
           {
-            "code": "asset_scope_conflict",
+            "code": "scope_identity_conflict",
             "return_owner": "scope-binding-owner"
           }
         ]
@@ -17244,7 +17244,7 @@
       "expected": {
         "condition": "isolation_violation",
         "finding_codes": [
-          "connection_content_conflict"
+          "connection_scope_conflict"
         ]
       },
       "expected_preserved": {
@@ -17252,14 +17252,14 @@
         "unaffected_scope": "無関係な有効scope/operationを全停止しない。",
         "operation_effect": "実接続、認可、通信、変更はnone。"
       },
-      "negative_class_ref": "SEC003-F02-CONNECTION-MATERIAL-CONFLICT",
+      "negative_class_ref": "SEC003-F02-CONNECTION-SCOPE-CONFLICT",
       "execution_state": "not_executed",
       "test_citation": null,
       "compact_whole_observation": {
         "condition": "isolation_violation",
         "ordered_findings": [
           {
-            "code": "connection_content_conflict",
+            "code": "connection_scope_conflict",
             "return_owner": "scope-binding-owner"
           }
         ]
@@ -17272,7 +17272,7 @@
       "expected": {
         "condition": "isolation_violation",
         "finding_codes": [
-          "connection_content_conflict"
+          "connection_scope_conflict"
         ]
       },
       "expected_preserved": {
@@ -17280,14 +17280,14 @@
         "unaffected_scope": "無関係な有効scope/operationを全停止しない。",
         "operation_effect": "実接続、認可、通信、変更はnone。"
       },
-      "negative_class_ref": "SEC003-F02-CONNECTION-MATERIAL-CONFLICT",
+      "negative_class_ref": "SEC003-F02-CONNECTION-SCOPE-CONFLICT",
       "execution_state": "not_executed",
       "test_citation": null,
       "compact_whole_observation": {
         "condition": "isolation_violation",
         "ordered_findings": [
           {
-            "code": "connection_content_conflict",
+            "code": "connection_scope_conflict",
             "return_owner": "scope-binding-owner"
           }
         ]
@@ -17576,7 +17576,7 @@
     {
       "id": "SEC003-L9-ORACLE-048",
       "population_state": "negative",
-      "condition": "requested operation=listはallowed_operationsに含まれず、read許可を当該operationへ拡張しない。",
+      "condition": "request.operation=\"read\"かつconnection.allowed_operations=[\"read\",null]であり、不正itemを捨てて読取許可として扱わない。",
       "expected": {
         "condition": "scope_unresolved",
         "finding_codes": [
@@ -23615,6 +23615,34 @@
       },
       "expected_axis": "explicit_connection",
       "expected_state": "unknown",
+      "backflow_owner": "scope-binding-owner",
+      "side_effect_count": 0
+    },
+    {
+      "class_id": "SEC003-F01-SCOPE-IDENTITY-CONFLICT",
+      "expected_classification": "isolation_violation",
+      "expected": {
+        "condition": "isolation_violation",
+        "finding_codes": [
+          "scope_identity_conflict"
+        ]
+      },
+      "expected_axis": "scope_identity",
+      "expected_state": "violation",
+      "backflow_owner": "scope-binding-owner",
+      "side_effect_count": 0
+    },
+    {
+      "class_id": "SEC003-F02-CONNECTION-SCOPE-CONFLICT",
+      "expected_classification": "isolation_violation",
+      "expected": {
+        "condition": "isolation_violation",
+        "finding_codes": [
+          "connection_scope_conflict"
+        ]
+      },
+      "expected_axis": "explicit_connection",
+      "expected_state": "violation",
       "backflow_owner": "scope-binding-owner",
       "side_effect_count": 0
     }

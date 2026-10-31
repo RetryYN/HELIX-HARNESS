@@ -1,0 +1,100 @@
+{
+  "schema": "wr258-l4l9-pr4024-r1-minor-current-main-overlay.v1",
+  "evidence_kind": "scaffold",
+  "authority_effect": "none",
+  "base_main": "0e218828fbb3b487eff1469cd57ead8e3dfa7b67",
+  "candidate_commit": "1b1f6a7146db0bd5f31aa9da120094e2c18def60",
+  "merge_base": "0e218828fbb3b487eff1469cd57ead8e3dfa7b67",
+  "overlay_worktree": "/home/tenni/helix-worktrees/wr258-sec006-l4l9-f1f3",
+  "overlay_method": "origin/main is an ancestor of the candidate; the candidate tree is the main-plus-branch overlay, so no extra merge commit was needed.",
+  "commands": [
+    "python3 -B scaffold/research/wr258-sec006-psi-explicit-20261101/validate_wr258_l4l9_supplement.py",
+    "python3 -B scaffold/tools/scfctl.py validate",
+    "python3 -B scaffold/tools/scfctl.py stale",
+    "python3 -B scaffold/tools/design_verification_checker.py check-pair --left docs/helix-security/L4-basic-design/project-scope-isolation.json --right docs/helix-security/L9-integration-verification/project-scope-isolation.json --root .",
+    "python3 -B scaffold/tools/design_verification_checker.py check-child --l4 docs/helix-security/L4-basic-design/project-scope-isolation.json --l9 docs/helix-security/L9-integration-verification/project-scope-isolation.json --l5 docs/helix-security/L5-detail-design/project-scope-isolation.json --l8 docs/helix-security/L8-unit-verification/project-scope-isolation.json --root ."
+  ],
+  "source_sha256": {
+    "docs/helix-security/L4-basic-design/project-scope-isolation.json": "153ecf819acf90c51906a5e5064d98a010b9bf52c3660031bafc9c6b78611484",
+    "docs/helix-security/L9-integration-verification/project-scope-isolation.json": "5594ff7c05c27e78032dd92dd18cd15516410eb218cb41a9b26581956b02db6e"
+  },
+  "minor_scope_audit": {
+    "asset_identity_class_id": "SEC003-F01-IDENTITY-CONFLICT",
+    "condition": "asset_scopeの既知identity値とexpected_targetの同一identity軸との相反",
+    "contract_and_class_key_expected_preserved": true,
+    "retained_l9_rows": 54,
+    "concrete_same_axis_inputs": 48,
+    "abstract_source_derived_oracles": [
+      "SEC003-L9-ORACLE-018",
+      "SEC003-L9-ORACLE-019",
+      "SEC003-L9-ORACLE-020",
+      "SEC003-L9-ORACLE-021",
+      "SEC003-L9-ORACLE-022",
+      "SEC003-L9-ORACLE-023"
+    ],
+    "input_mismatches": 0,
+    "connection_material_same_member_wording": true,
+    "L9_document_changed": false,
+    "L5_L8_documents_changed": false
+  },
+  "casewise_validator": {
+    "exit": 0,
+    "passed": true,
+    "integration_case_count": 148,
+    "existing_98": 98,
+    "added_50": 50,
+    "L4_classes": 17,
+    "L9_classes": 17,
+    "source_input_conflicts": 0,
+    "system_oracle_mismatches": 0,
+    "pointer_failures": 0,
+    "failures": 0
+  },
+  "pair_check": {
+    "exit": 0,
+    "passed": true,
+    "failure_count": 0
+  },
+  "formal_check_child": {
+    "exit": 1,
+    "overall_passed": false,
+    "L4_L9_pair": true,
+    "L5_L8_pair": true,
+    "fourway_passed": false,
+    "class_counts": {
+      "L4": 17,
+      "L9": 17,
+      "L8": 0,
+      "L5": 0
+    },
+    "case_row_counts": {
+      "L8": 0,
+      "L9": 148
+    },
+    "matched_case_count": 0,
+    "failure_count": 236,
+    "failure_groups": {
+      "L4|class_owner_ref_unresolved": 17,
+      "L5|class_key_missing_from_layer": 34,
+      "L5|class_source_marker_invalid": 1,
+      "L8|class_key_missing_from_layer": 34,
+      "L8|class_table_marker_missing": 1,
+      "L8|unit_cases_missing_or_not_array": 1,
+      "L9|integration_case_not_referenced_from_l8": 148
+    },
+    "interpretation": "4wayはFAIL。L5 explicit marker、L8 class marker/unit_casesが不足し、L9 148件がL8から未参照。L4/L9 pairはPASS。"
+  },
+  "scfctl": {
+    "validate_exit": 0,
+    "validate_summary": "bindings=210 fail=0",
+    "stale_exit": 0,
+    "stale_summary": "stale=0"
+  },
+  "historical_measurement": {
+    "path": "scaffold/research/wr258-sec006-psi-explicit-20261101/l4l9-supplement-current-overlay-r2.json",
+    "disposition": "scaffold/research/wr258-sec006-psi-explicit-20261101/pr4024-r1-minor-evidence-disposition.json",
+    "old_sha256": "8da39885535fb2c0cbe8052160b5202e7930aff695948f4a3411c69cf4bf2bb3",
+    "old_git_blob": "0cf853e962342b90455e4f67b434bff7f64ddf04",
+    "restore_verified": true
+  }
+}
