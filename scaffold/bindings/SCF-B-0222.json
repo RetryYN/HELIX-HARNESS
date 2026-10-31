@@ -94,7 +94,9 @@
     "scaffold/research/wr259-naming-l9-slim-20261101/validate_l9_slim.py",
     "scaffold/bindings/SCF-B-0211.json",
     "scaffold/bindings/SCF-B-0222.json",
-    "scaffold/research/wr259-naming-l9-slim-20261101/evidence/evidence-disposition.json"
+    "scaffold/research/wr259-naming-l9-slim-20261101/evidence/evidence-disposition.json",
+    "scaffold/research/wr259-naming-l9-slim-20261101/evidence/validation-results-current.json",
+    "scaffold/research/wr259-naming-l9-slim-20261101/evidence/merge-overlay-check-child-current.json"
   ],
   "verification": {
     "evidence_kind": "scaffold",
